@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \"import py_compile; py_compile.compile\\(''cases/scripts/ai_render.py'', doraise=True\\)\")",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(python3 -c \"import py_compile; py_compile.compile\\(''cases/scripts/cost_tracker.py'', doraise=True\\)\")",
+      "Bash(python3 -c \"import py_compile; py_compile.compile\\(''cases/scripts/validate_narrative.py'', doraise=True\\)\")",
+      "Bash(python3:*)",
+      "Bash(git rm:*)",
+      "Bash(git push:*)",
+      "Bash(chmod:*)"
+    ]
+  }
+}

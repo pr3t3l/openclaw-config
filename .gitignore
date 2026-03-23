@@ -1,0 +1,73 @@
+# API keys (NUNCA en git)
+.env
+*.env
+litellm.env
+
+# Session data (regenerable)
+agents/*/sessions/
+agents/*/qmd/
+
+# Case exports (producto, en repo separado)
+workspace-declassified/cases/exports/*/
+
+# Node
+node_modules/
+package-lock.json
+
+# Python
+__pycache__/
+*.pyc
+litellm-venv/
+
+# Temp
+*.log
+*.tmp
+media/inbound/
+
+# Workspaces archivados (ya no existen aquí)
+workspace-art-director/
+workspace-image-generator/
+workspace-narrative-architect/
+workspace-org/
+
+# OpenClaw runtime (regenerable, no necesita backup)
+browser/
+canvas/
+completions/
+delivery-queue/
+devices/
+exec-approvals.json
+update-check.json
+logs/
+subagents/
+credentials/
+
+# Backups de config viejos
+*.backup_*
+
+# Workspaces tienen su propio git
+workspace/
+workspace-declassified/
+
+# SQLite binarios
+*.sqlite
+*.sqlite-journal
+
+# Cron backups
+*.bak
+
+# Sessions (pesadas, regenerables, contienen logs con secrets)
+agents/*/sessions/
+
+# Identity tokens
+identity/
+
+# Memory SQLite (binario, regenerable por QMD)
+memory/*.sqlite
+
+# Media (runtime)
+media/
+
+# Auth tokens (OAuth, refresh tokens - SECRETS)
+agents/*/agent/auth.json
+agents/*/agent/auth-profiles.json
