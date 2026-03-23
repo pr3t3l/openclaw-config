@@ -50,10 +50,10 @@
 - [x] Declassified: Mantener heartbeat condicional via HEARTBEAT.md (ya funciona) — no tocado, 120m. 2026-03-23
 - **NOTA:** isolatedSession + lightContext requieren upgrade de gateway. Revisitar cuando se actualice a ≥v2026.4+
 
-### Fase 5: Sesiones y Compaction
-- [ ] **GATE: Verificar keys exactas contra docs oficiales**
-- [ ] Configurar session scope, maintenance, pruning
-- [ ] Verificar compaction mode safeguard activo
+### Fase 5: Sesiones y Compaction ✅
+- [x] **GATE: Verificar keys exactas contra docs oficiales** — session.*, contextPruning.*, compaction.memoryFlush.* validadas. 2026-03-23
+- [x] Configurar session scope, maintenance, pruning — dmScope: per-channel-peer, maintenance: enforce/200/14d, contextPruning: cache-ttl. All accepted by gateway. 2026-03-23
+- [x] Verificar compaction mode safeguard activo — safeguard + memoryFlush enabled (softThreshold 6000 tokens). 2026-03-23
 
 ### Fase 6: OpenRouter + A/B Test M2.7 en CEO
 - [ ] 6A: Crear cuenta OpenRouter, obtener API key

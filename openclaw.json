@@ -232,6 +232,14 @@
       }
     }
   },
+  "session": {
+    "dmScope": "per-channel-peer",
+    "maintenance": {
+      "mode": "enforce",
+      "maxEntries": 200,
+      "pruneAfter": "14d"
+    }
+  },
   "agents": {
     "defaults": {
       "model": {
@@ -259,7 +267,16 @@
       },
       "workspace": "/home/robotin/.openclaw/workspace",
       "compaction": {
-        "mode": "safeguard"
+        "mode": "safeguard",
+        "memoryFlush": {
+          "enabled": true,
+          "softThresholdTokens": 6000,
+          "systemPrompt": "Session nearing compaction. Write critical context to memory/YYYY-MM-DD.md NOW.",
+          "prompt": "Write lasting notes to memory/YYYY-MM-DD.md. Reply NO_REPLY if nothing to store."
+        }
+      },
+      "contextPruning": {
+        "mode": "cache-ttl"
       },
       "timeoutSeconds": 1000,
       "heartbeat": {
