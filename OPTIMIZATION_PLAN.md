@@ -87,6 +87,7 @@
 3. **Validar config contra docs.** Ningún snippet JSON se aplica sin verificar keys reales.
 4. **Una variable a la vez.** No meter múltiples cambios simultáneos.
 5. **Gates antes de avanzar.** Si una fase falla, se itera ahí — no se salta.
+6. **Git repo boundaries.** `~/.openclaw/` → openclaw-config (Claude Code scope). `workspace/` y `workspace-declassified/` → NUNCA hacer git add/commit/push ahí. Esos repos los maneja Alfredo. Crear archivos en workspace/ está OK, pero sin operaciones git.
 
 ---
 
