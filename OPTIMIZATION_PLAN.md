@@ -18,7 +18,7 @@
 - [x] sync_keys.sh creado (no existía)
 - [x] LiteLLM reiniciado y verificado (gpt52 respondiendo)
 - [x] OpenClaw gateway reiniciado y verificado (@Robotin1620_Bot responde)
-- [ ] Snapshot local (tar.gz con .env, solo almacenamiento local)
+- [x] Snapshot local (tar.gz con .env, solo almacenamiento local) — 2026-03-23, 295MB en Downloads
 
 ### Fase 1: Medir Línea Base de Costos
 - [ ] Reconciliar LiteLLM /spend/logs
@@ -92,7 +92,7 @@
 
 ## DETALLE POR FASE
 
-### FASE 0: BACKUP Y PROTECCIÓN ✅ MAYORMENTE COMPLETADA
+### FASE 0: BACKUP Y PROTECCIÓN ✅ COMPLETADA
 
 **Pendiente: Snapshot local**
 ```bash
