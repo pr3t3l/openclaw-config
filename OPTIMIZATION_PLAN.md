@@ -32,12 +32,13 @@
 - [x] Verificar modelos Gemini responden en LiteLLM — 18 endpoints healthy, gemini31pro + gemini31lite respondiendo
 
 ### Fase 3: Memoria — Solo en CEO
-- [ ] Crear estructura memory/ en workspace CEO
-- [ ] Crear MEMORY.md inicial
-- [ ] Instalar Bun + QMD
-- [ ] **GATE: Validar config keys contra docs oficiales**
-- [ ] Configurar QMD en openclaw.json
-- [ ] Configurar memory flush (pre-compaction)
+- [x] Crear estructura memory/ en workspace CEO — 2026-03-23
+- [x] Crear MEMORY.md inicial — workspace/MEMORY.md ya existía (Declassified data), kept as-is
+- [x] Instalar Bun + QMD — Bun 1.3.11 + QMD 2.0.1 instalados 2026-03-23
+- [x] **GATE: Validar config keys contra docs oficiales** — memory.qmd keys validadas OK. memoryFlush keys NO validadas (omitidas). 2026-03-23
+- [x] Configurar QMD en openclaw.json — backend:qmd, paths: workspace/memory/*.md, scope: direct only. 2026-03-23
+- [ ] Configurar memory flush (pre-compaction) — BLOQUEADO: keys no validadas contra docs, omitido por ahora
+- [x] Crear lessons_summary.md — convertido de lessons_learned.json a Markdown en workspace/memory/. 2026-03-23
 - [ ] Probar: pedir al CEO "busca en memoria qué lessons learned tenemos"
 - [ ] **GATE (Obsidian): Test WSL↔Windows symlink permisos antes de adoptar**
 

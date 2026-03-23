@@ -307,7 +307,7 @@
           ]
         },
         "heartbeat": {
-          "every": "2m",
+          "every": "120m",
           "activeHours": {
             "start": "06:00",
             "end": "02:00"
@@ -357,6 +357,43 @@
           "enabled": true
         }
       }
+    }
+  },
+  "memory": {
+    "backend": "qmd",
+    "citations": "auto",
+    "qmd": {
+      "includeDefaultMemory": true,
+      "searchMode": "search",
+      "update": {
+        "interval": "5m",
+        "debounceMs": 15000,
+        "onBoot": true,
+        "waitForBootSync": false
+      },
+      "limits": {
+        "maxResults": 6,
+        "maxSnippetChars": 700,
+        "timeoutMs": 4000
+      },
+      "scope": {
+        "default": "deny",
+        "rules": [
+          {
+            "action": "allow",
+            "match": {
+              "chatType": "direct"
+            }
+          }
+        ]
+      },
+      "paths": [
+        {
+          "name": "ceo-memory",
+          "path": "/home/robotin/.openclaw/workspace/memory",
+          "pattern": "*.md"
+        }
+      ]
     }
   },
   "channels": {
