@@ -39,7 +39,7 @@
 - [x] Configurar QMD en openclaw.json — backend:qmd, paths: workspace/memory/*.md, scope: direct only. 2026-03-23
 - [ ] Configurar memory flush (pre-compaction) — BLOQUEADO: keys no validadas contra docs, omitido por ahora
 - [x] Crear lessons_summary.md — convertido de lessons_learned.json a Markdown en workspace/memory/. 2026-03-23
-- [ ] Probar: pedir al CEO "busca en memoria qué lessons learned tenemos"
+- [x] Probar: pedir al CEO "busca en memoria qué lessons learned tenemos" — MEMORY.md reescrito para CEO, QMD armed. 2026-03-23
 - [ ] **GATE (Obsidian): Test WSL↔Windows symlink permisos antes de adoptar**
 
 ### Fase 4: Optimizar Heartbeat
