@@ -26,10 +26,10 @@
 - [x] Documentar cost_baseline.md — creado workspace/cost_baseline.md con estructura y precios. 2026-03-23
 - [ ] **GATE: Mínimo 3-7 días de datos CEO + 2 corridas Declassified** (earliest: 2026-03-30)
 
-### Fase 2: Renovar Gemini Key
-- [ ] Generar nueva key en aistudio.google.com
-- [ ] Actualizar .env + sync_keys.sh + restart LiteLLM
-- [ ] Verificar modelos Gemini responden en LiteLLM
+### Fase 2: Renovar Gemini Key ✅
+- [x] Generar nueva key en aistudio.google.com — 2026-03-23
+- [x] Actualizar .env + sync_keys.sh + restart LiteLLM — GEMINI_API_KEY + NANO_BANANA_API_KEY actualizadas, keys synced, LiteLLM restarted
+- [x] Verificar modelos Gemini responden en LiteLLM — 18 endpoints healthy, gemini31pro + gemini31lite respondiendo
 
 ### Fase 3: Memoria — Solo en CEO
 - [ ] Crear estructura memory/ en workspace CEO
