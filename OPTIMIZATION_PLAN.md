@@ -21,10 +21,10 @@
 - [x] Snapshot local (tar.gz con .env, solo almacenamiento local) — 2026-03-23, 295MB en Downloads
 
 ### Fase 1: Medir Línea Base de Costos
-- [ ] Reconciliar LiteLLM /spend/logs
-- [ ] Medir heartbeat overhead (tokens/día)
-- [ ] Documentar cost_baseline.md
-- [ ] **GATE: Mínimo 3-7 días de datos CEO + 2 corridas Declassified**
+- [x] Reconciliar LiteLLM /spend/logs — /spend/logs requiere PostgreSQL (no disponible). Habilitado JSON logs + x-litellm-response-cost headers como alternativa. 2026-03-23
+- [x] Medir heartbeat overhead (tokens/día) — sin datos aún, tracking iniciado. 2026-03-23
+- [x] Documentar cost_baseline.md — creado workspace/cost_baseline.md con estructura y precios. 2026-03-23
+- [ ] **GATE: Mínimo 3-7 días de datos CEO + 2 corridas Declassified** (earliest: 2026-03-30)
 
 ### Fase 2: Renovar Gemini Key
 - [ ] Generar nueva key en aistudio.google.com
@@ -165,7 +165,7 @@ Crontab (cada 6 horas):
 ---
 
 ### FASE 1: MEDIR LÍNEA BASE DE COSTOS
-**Status: GO NOW**
+**Status: TRACKING ACTIVE — waiting for data (gate: 2026-03-30)**
 **Duración: Mínimo 3-7 días de recolección + 2 corridas Declassified**
 
 Sin datos reales, cualquier promesa de ahorro es ficción.
