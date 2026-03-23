@@ -43,11 +43,12 @@
 - [ ] **GATE (Obsidian): Test WSL↔Windows symlink permisos antes de adoptar**
 
 ### Fase 4: Optimizar Heartbeat
-- [ ] **GATE: Verificar opciones reales en docs (isolatedSession, lightContext)**
-- [ ] CEO: Configurar isolatedSession + lightContext + frecuencia 30m (NO 0m)
-- [ ] Confirmar si CEO tiene cron jobs o wakeups que dependan de heartbeat
-- [ ] Solo si no hay dependencias → bajar a 0m
-- [ ] Declassified: Mantener heartbeat condicional via HEARTBEAT.md (ya funciona)
+- [x] **GATE: Verificar opciones reales en docs (isolatedSession, lightContext)** — Keys existen en docs pero NO soportadas en gateway v2026.3.2 (config validation rejects them). 2026-03-23
+- [x] CEO: Configurar frecuencia 30m — aplicado (era 999999m). isolatedSession+lightContext omitidos por incompatibilidad de versión. 2026-03-23
+- [x] Confirmar si CEO tiene cron jobs o wakeups que dependan de heartbeat — cron/jobs.json vacío, sin dependencias. 2026-03-23
+- [x] Solo si no hay dependencias → bajar a 0m — decidido mantener 30m para monitoreo periódico
+- [x] Declassified: Mantener heartbeat condicional via HEARTBEAT.md (ya funciona) — no tocado, 120m. 2026-03-23
+- **NOTA:** isolatedSession + lightContext requieren upgrade de gateway. Revisitar cuando se actualice a ≥v2026.4+
 
 ### Fase 5: Sesiones y Compaction
 - [ ] **GATE: Verificar keys exactas contra docs oficiales**
