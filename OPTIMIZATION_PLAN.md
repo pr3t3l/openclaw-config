@@ -21,7 +21,7 @@
 - [x] Snapshot local (tar.gz con .env, solo almacenamiento local) — 2026-03-23, 295MB en Downloads
 
 ### Fase 1: Medir Línea Base de Costos
-- [x] Reconciliar LiteLLM /spend/logs — PostgreSQL + Prisma configurado, /spend/logs activo, dashboard UI en :4000/ui/ (sin auth, localhost-only — master_key incompatible con OpenClaw v2026.3.2). 2026-03-23
+- [x] Reconciliar LiteLLM /spend/logs — PostgreSQL + Prisma + master_key activos. Dashboard UI en :4000/ui/ (login: admin/sk-litellm-local). Fix: override.conf tenía LITELLM_API_KEY=config_local_pretel (viejo), corregido a sk-litellm-local. 2026-03-23
 - [x] Medir heartbeat overhead (tokens/día) — sin datos aún, tracking iniciado. 2026-03-23
 - [x] Documentar cost_baseline.md — creado workspace/cost_baseline.md con estructura y precios. 2026-03-23
 - [ ] **GATE: Mínimo 3-7 días de datos CEO + 2 corridas Declassified** (earliest: 2026-03-30)
