@@ -62,7 +62,7 @@ for name in artifact_order:
     info = artifacts[name]
     status = info['status']
     icon = {'fresh': '✅', 'stale': '🔄', 'missing': '⬜'}.get(status, '❓')
-    cost = '${0:.4f}'.format(info['cost_usd']) if info.get('cost_usd') else '-'
+    cost = ('%.4f' % info['cost_usd']) if info.get('cost_usd') else '-'
     print(f'  {icon} [{phases[name]}] {name}: {status} (cost: {cost})')
 "
 echo ""
