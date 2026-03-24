@@ -56,10 +56,10 @@
 - [x] Verificar compaction mode safeguard activo — safeguard + memoryFlush enabled (softThreshold 6000 tokens). 2026-03-23
 
 ### Fase 6: OpenRouter + A/B Test M2.7 en CEO
-- [ ] 6A: Crear cuenta OpenRouter, obtener API key
-- [ ] 6A: Agregar OPENROUTER_API_KEY a .env
-- [ ] 6A: Agregar M2.7, Step 3.5 Flash, Kimi K2.5 a LiteLLM config
-- [ ] 6A: Restart LiteLLM, verificar nuevos modelos responden
+- [x] 6A: Crear cuenta OpenRouter, obtener API key — 2026-03-23
+- [x] 6A: Agregar OPENROUTER_API_KEY a .env + sync_keys.sh — 2026-03-23
+- [x] 6A: Agregar M2.7, Step 3.5 Flash, Kimi K2.5 a LiteLLM config — minimax-m27, step35-flash, kimi-k25 (highspeed removido, no existe). 2026-03-23
+- [x] 6A: Restart LiteLLM, verificar nuevos modelos responden — 21 endpoints healthy, 0 unhealthy. 2026-03-23
 - [ ] 6B: Documentar 1 semana de CEO con GPT-5.2 (línea base de Fase 1)
 - [ ] 6B: Cambiar CEO a M2.7, documentar 1 semana
 - [ ] 6B: Comparar: costo/día, calidad respuesta, fallos
