@@ -21,7 +21,7 @@
 - [x] Snapshot local (tar.gz con .env, solo almacenamiento local) — 2026-03-23, 295MB en Downloads
 
 ### Fase 1: Medir Línea Base de Costos
-- [x] Reconciliar LiteLLM /spend/logs — /spend/logs requiere PostgreSQL (no disponible). Habilitado JSON logs + x-litellm-response-cost headers como alternativa. 2026-03-23
+- [x] Reconciliar LiteLLM /spend/logs — PostgreSQL + Prisma configurado, /spend/logs activo, dashboard UI en :4000/ui/. 2026-03-23
 - [x] Medir heartbeat overhead (tokens/día) — sin datos aún, tracking iniciado. 2026-03-23
 - [x] Documentar cost_baseline.md — creado workspace/cost_baseline.md con estructura y precios. 2026-03-23
 - [ ] **GATE: Mínimo 3-7 días de datos CEO + 2 corridas Declassified** (earliest: 2026-03-30)
