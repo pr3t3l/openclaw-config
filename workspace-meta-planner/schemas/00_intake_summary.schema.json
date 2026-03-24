@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "00_intake_summary.schema.json",
+  "title": "Intake Summary",
+  "description": "Output of A1: Intake Analyst. Structured summary of a raw idea.",
+  "type": "object",
+  "required": [
+    "project_name",
+    "core_problem",
+    "target_beneficiary",
+    "project_category",
+    "known_inputs",
+    "desired_outputs",
+    "activation_mode",
+    "frequency",
+    "known_constraints",
+    "critical_missing_data",
+    "debate_level_recommendation",
+    "status"
+  ],
+  "properties": {
+    "project_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "core_problem": {
+      "type": "string",
+      "minLength": 10
+    },
+    "target_beneficiary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "project_category": {
+      "type": "string",
+      "enum": [
+        "internal_tool",
+        "commercial_product",
+        "marketing",
+        "content_factory",
+        "research",
+        "software",
+        "operations",
+        "hybrid"
+      ]
+    },
+    "known_inputs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "desired_outputs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "activation_mode": {
+      "type": "string",
+      "minLength": 1
+    },
+    "frequency": {
+      "type": "string",
+      "minLength": 1
+    },
+    "budget_monthly_max": {
+      "type": ["number", "null"]
+    },
+    "known_constraints": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "critical_missing_data": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "clarification_questions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "maxItems": 3
+    },
+    "debate_level_recommendation": {
+      "type": "string",
+      "enum": ["simple", "complex", "critical"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["READY", "NEEDS_CLARIFICATION"]
+    }
+  },
+  "additionalProperties": false
+}

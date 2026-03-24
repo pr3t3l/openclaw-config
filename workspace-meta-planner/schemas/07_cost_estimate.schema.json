@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "07_cost_estimate.schema.json",
+  "title": "Cost Estimate",
+  "description": "Output of C2: Cost Estimator (deterministic script, not LLM).",
+  "type": "object",
+  "required": [
+    "project_name",
+    "per_component_costs",
+    "per_run_total",
+    "monthly_estimate",
+    "budget_feasible",
+    "notes"
+  ],
+  "properties": {
+    "project_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "per_component_costs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["component", "type", "model", "estimated_input_tokens", "estimated_output_tokens", "cost_per_call"],
+        "properties": {
+          "component": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["agent", "script", "external_api"]
+          },
+          "model": { "type": ["string", "null"] },
+          "estimated_input_tokens": { "type": "integer", "minimum": 0 },
+          "estimated_output_tokens": { "type": "integer", "minimum": 0 },
+          "cost_per_call": { "type": "number", "minimum": 0 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "per_run_total": {
+      "type": "number",
+      "minimum": 0
+    },
+    "monthly_estimate": {
+      "type": "object",
+      "required": ["runs_per_month", "total_monthly_cost"],
+      "properties": {
+        "runs_per_month": { "type": "integer", "minimum": 0 },
+        "total_monthly_cost": { "type": "number", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "budget_feasible": {
+      "type": "boolean"
+    },
+    "orchestrator_overhead": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Estimated orchestrator token cost (L-09, L-25)"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

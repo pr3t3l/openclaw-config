@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "06_implementation_plan.schema.json",
+  "title": "Implementation Plan",
+  "description": "Output of C1: Implementation Planner. Phased build plan.",
+  "type": "object",
+  "required": [
+    "project_name",
+    "phases",
+    "deferred_to_v2"
+  ],
+  "properties": {
+    "project_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "phases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "phase_number",
+          "name",
+          "tasks",
+          "test_minimum",
+          "human_gate",
+          "definition_of_done",
+          "estimated_effort_hours"
+        ],
+        "properties": {
+          "phase_number": { "type": "integer", "minimum": 0 },
+          "name": { "type": "string", "minLength": 1 },
+          "tasks": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          },
+          "test_minimum": {
+            "type": "string",
+            "minLength": 10,
+            "description": "Single-item E2E test description (L-03)"
+          },
+          "human_gate": {
+            "type": "object",
+            "required": ["required", "justification"],
+            "properties": {
+              "required": { "type": "boolean" },
+              "justification": { "type": "string" }
+            },
+            "additionalProperties": false
+          },
+          "definition_of_done": {
+            "type": "string",
+            "minLength": 10
+          },
+          "estimated_effort_hours": {
+            "type": "number",
+            "minimum": 0
+          },
+          "dependencies": {
+            "type": "array",
+            "items": { "type": "integer" },
+            "description": "Phase numbers this phase depends on"
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "deferred_to_v2": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Explicitly listed features NOT built in v1"
+    },
+    "total_estimated_hours": {
+      "type": "number",
+      "minimum": 0
+    }
+  },
+  "additionalProperties": false
+}

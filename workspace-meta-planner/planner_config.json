@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "workspace_root": "/home/robotin/.openclaw/workspace-meta-planner",
+  "shared_scripts": "/home/robotin/.openclaw/shared/scripts",
+  "lessons_learned_path": "/home/robotin/.openclaw/shared/lessons_learned.md",
+  "debate": {
+    "execution_mode": "parallel",
+    "fallback_to_sequential": true,
+    "parallel_max_concurrent": 3,
+    "timeout_per_model_seconds": 300,
+    "subprocess_timeout_seconds": 350
+  },
+  "defaults": {
+    "max_tokens_standard": 8192,
+    "max_tokens_debate": 12288,
+    "curl_max_time": 300,
+    "subprocess_buffer": 50
+  },
+  "cost_estimates_are": "preliminary — not commitments",
+  "schema_validation": {
+    "enabled": true,
+    "fail_on_orphan_outputs": true,
+    "fail_on_missing_consumer": true
+  }
+}

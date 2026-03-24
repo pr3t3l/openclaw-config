@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "03_data_flow_map.schema.json",
+  "title": "Data Flow Map",
+  "description": "Output of B1: Data Flow Mapper. Every artifact the workflow produces, who produces it, who consumes it.",
+  "type": "object",
+  "required": [
+    "project_name",
+    "scope_version",
+    "artifacts",
+    "orphan_outputs",
+    "missing_required_artifacts"
+  ],
+  "properties": {
+    "project_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scope_version": {
+      "type": "string",
+      "enum": ["mvp", "standard", "advanced"]
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "produced_by",
+          "consumed_by",
+          "format",
+          "purpose",
+          "is_source_of_truth",
+          "must_persist"
+        ],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "produced_by": { "type": "string", "minLength": 1 },
+          "consumed_by": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          },
+          "format": {
+            "type": "string",
+            "enum": ["json", "md", "csv", "pdf", "image", "html", "txt", "sqlite", "yaml", "other"]
+          },
+          "purpose": { "type": "string", "minLength": 10 },
+          "is_source_of_truth": { "type": "boolean" },
+          "must_persist": { "type": "boolean" }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "orphan_outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "reason_discarded"],
+        "properties": {
+          "name": { "type": "string" },
+          "reason_discarded": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "missing_required_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["needed_by", "description"],
+        "properties": {
+          "needed_by": { "type": "string" },
+          "description": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

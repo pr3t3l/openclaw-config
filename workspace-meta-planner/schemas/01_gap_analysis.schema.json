@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "01_gap_analysis.schema.json",
+  "title": "Gap Analysis",
+  "description": "Output of A2: Gap Finder. Identifies what the user didn't think of.",
+  "type": "object",
+  "required": [
+    "project_name",
+    "gaps",
+    "anti_patterns_detected",
+    "readiness_score",
+    "blocker_count",
+    "advisory_count",
+    "summary"
+  ],
+  "properties": {
+    "project_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "gaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "dimension", "description", "severity", "recommendation"],
+        "properties": {
+          "id": { "type": "string" },
+          "dimension": {
+            "type": "string",
+            "enum": [
+              "data_orphanage",
+              "storage",
+              "frequency",
+              "human_gates",
+              "privacy",
+              "rollback",
+              "observability",
+              "fallbacks",
+              "maintenance",
+              "success_criteria",
+              "security",
+              "cost",
+              "scalability",
+              "dependencies",
+              "other"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "minLength": 10
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["blocker", "advisory"]
+          },
+          "recommendation": {
+            "type": "string",
+            "minLength": 10
+          },
+          "related_lesson": {
+            "type": ["string", "null"],
+            "description": "L-XX reference from lessons_learned.md"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "anti_patterns_detected": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["lesson_id", "description", "applies_here"],
+        "properties": {
+          "lesson_id": { "type": "string" },
+          "description": { "type": "string" },
+          "applies_here": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "readiness_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "blocker_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "advisory_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 20
+    }
+  },
+  "additionalProperties": false
+}

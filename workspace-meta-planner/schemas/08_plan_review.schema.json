@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "08_plan_review.schema.json",
+  "title": "Plan Review",
+  "description": "Output of C3: Lessons Learned Validator. Final verdict on the plan.",
+  "type": "object",
+  "required": [
+    "project_name",
+    "lessons_check",
+    "risk_register",
+    "infrastructure_check",
+    "verdict",
+    "summary"
+  ],
+  "properties": {
+    "project_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "lessons_check": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["lesson_id", "addressed", "detail"],
+        "properties": {
+          "lesson_id": { "type": "string" },
+          "addressed": {
+            "type": "string",
+            "enum": ["yes", "no", "partial", "not_applicable"]
+          },
+          "detail": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "risk_register": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["risk", "category", "probability", "impact", "mitigation"],
+        "properties": {
+          "risk": { "type": "string" },
+          "category": {
+            "type": "string",
+            "enum": ["technical", "cost", "timeline", "quality", "dependencies", "maintenance"]
+          },
+          "probability": {
+            "type": "string",
+            "enum": ["low", "medium", "high"]
+          },
+          "impact": {
+            "type": "string",
+            "enum": ["low", "medium", "high", "critical"]
+          },
+          "mitigation": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "infrastructure_check": {
+      "type": "object",
+      "required": [
+        "models_in_litellm",
+        "spawn_method_compatible",
+        "absolute_paths",
+        "budget_realistic",
+        "wsl_constraints_addressed"
+      ],
+      "properties": {
+        "models_in_litellm": { "type": "boolean" },
+        "spawn_method_compatible": { "type": "boolean" },
+        "absolute_paths": { "type": "boolean" },
+        "budget_realistic": { "type": "boolean" },
+        "wsl_constraints_addressed": { "type": "boolean" },
+        "notes": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "verdict": {
+      "type": "string",
+      "enum": ["GO", "NEEDS_REVISION", "DO_NOT_BUILD_YET"]
+    },
+    "revision_items": {
+      "type": ["array", "null"],
+      "items": { "type": "string" },
+      "description": "Required if verdict is NEEDS_REVISION"
+    },
+    "do_not_build_reason": {
+      "type": ["string", "null"],
+      "description": "Required if verdict is DO_NOT_BUILD_YET"
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 20
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "04_contracts.schema.json",
+  "title": "Contracts",
+  "description": "Output of B2: Contract Designer. Schema and validation rules for each artifact.",
+  "type": "object",
+  "required": [
+    "project_name",
+    "contracts"
+  ],
+  "properties": {
+    "project_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "contracts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "artifact_name",
+          "format",
+          "schema_definition",
+          "example",
+          "validation_rules",
+          "estimated_size_tokens"
+        ],
+        "properties": {
+          "artifact_name": { "type": "string", "minLength": 1 },
+          "format": { "type": "string" },
+          "schema_definition": {
+            "type": "object",
+            "description": "JSON Schema or structural definition for this artifact"
+          },
+          "example": {
+            "description": "A realistic example of this artifact's content"
+          },
+          "validation_rules": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "estimated_size_tokens": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "needs_split": {
+            "type": "boolean",
+            "description": "True if artifact exceeds single API call MAX_TOKENS (L-08)"
+          },
+          "split_strategy": {
+            "type": ["string", "null"]
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "additionalProperties": false
+}

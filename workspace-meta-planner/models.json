@@ -1,0 +1,36 @@
+{
+  "_note": "Model routing for the planner. Change here, not in scripts. Costs are estimates.",
+  "litellm_proxy": "http://127.0.0.1:4000",
+  "litellm_api_key": "sk-litellm-local",
+  "_note_routing": "ALL models route through LiteLLM proxy. spawn_core.py only needs one endpoint.",
+  "_note_model_names": "Model names must match LiteLLM registered names (see /v1/models).",
+  "agents": {
+    "intake_analyst":        { "model": "claude-sonnet46", "route": "litellm", "est_cost": 0.08 },
+    "gap_finder":            { "model": "claude-sonnet46", "route": "litellm", "est_cost": 0.12 },
+    "scope_framer":          { "model": "claude-sonnet46", "route": "litellm", "est_cost": 0.08 },
+    "data_flow_mapper":      { "model": "claude-sonnet46", "route": "litellm", "est_cost": 0.10 },
+    "contract_designer":     { "model": "claude-sonnet46", "route": "litellm", "est_cost": 0.12 },
+    "architecture_planner":  { "model": "claude-sonnet46", "route": "litellm", "est_cost": 0.15 },
+    "implementation_planner":{ "model": "claude-sonnet46", "route": "litellm", "est_cost": 0.12 },
+    "lessons_validator":     { "model": "claude-sonnet46", "route": "litellm", "est_cost": 0.12 }
+  },
+  "debate_models": {
+    "simple":   ["claude-sonnet46"],
+    "complex":  ["claude-opus46", "gpt52-none"],
+    "critical": ["claude-opus46", "gpt52-none", "gemini31pro-none"]
+  },
+  "judge": {
+    "simple":   null,
+    "complex":  "claude-sonnet46",
+    "critical": "claude-opus46"
+  },
+  "red_team": "claude-opus46",
+  "cost_estimator": "script",
+  "conditional_modules": {
+    "landscape_researcher":  { "model": "claude-sonnet46", "route": "litellm", "needs_web_search": true },
+    "capability_mapper":     { "model": "claude-sonnet46", "route": "litellm" },
+    "compliance_reviewer":   { "model": "claude-sonnet46", "route": "litellm" },
+    "creative_strategist":   { "model": "claude-sonnet46", "route": "litellm" },
+    "red_team":              { "model": "claude-opus46",   "route": "litellm" }
+  }
+}

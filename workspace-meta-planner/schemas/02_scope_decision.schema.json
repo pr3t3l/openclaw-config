@@ -1,0 +1,106 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "02_scope_decision.schema.json",
+  "title": "Scope Decision",
+  "description": "Output of A3: Scope Framer. Forces MVP/Standard/Advanced decision.",
+  "type": "object",
+  "required": [
+    "project_name",
+    "versions",
+    "recommendation",
+    "upgrade_path"
+  ],
+  "properties": {
+    "project_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "versions": {
+      "type": "object",
+      "required": ["mvp", "standard", "advanced"],
+      "properties": {
+        "mvp": { "$ref": "#/definitions/scope_version" },
+        "standard": { "$ref": "#/definitions/scope_version" },
+        "advanced": { "$ref": "#/definitions/scope_version" }
+      },
+      "additionalProperties": false
+    },
+    "recommendation": {
+      "type": "object",
+      "required": ["start_with", "reasoning"],
+      "properties": {
+        "start_with": {
+          "type": "string",
+          "enum": ["mvp", "standard", "advanced"]
+        },
+        "reasoning": {
+          "type": "string",
+          "minLength": 20
+        }
+      },
+      "additionalProperties": false
+    },
+    "upgrade_path": {
+      "type": "object",
+      "required": ["mvp_to_standard", "standard_to_advanced"],
+      "properties": {
+        "mvp_to_standard": {
+          "type": "string",
+          "minLength": 10
+        },
+        "standard_to_advanced": {
+          "type": "string",
+          "minLength": 10
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "scope_version": {
+      "type": "object",
+      "required": [
+        "features_included",
+        "features_excluded",
+        "estimated_agents_scripts",
+        "estimated_effort_hours",
+        "estimated_cost_per_run",
+        "risk_under_scoping",
+        "risk_over_scoping"
+      ],
+      "properties": {
+        "features_included": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "features_excluded": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "estimated_agents_scripts": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "estimated_effort_hours": {
+          "type": "number",
+          "minimum": 0
+        },
+        "estimated_cost_per_run": {
+          "type": "number",
+          "minimum": 0
+        },
+        "risk_under_scoping": {
+          "type": "string",
+          "minLength": 5
+        },
+        "risk_over_scoping": {
+          "type": "string",
+          "minLength": 5
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
