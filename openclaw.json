@@ -227,6 +227,38 @@
             ],
             "contextWindow": 200000,
             "maxTokens": 128000
+          },
+          {
+            "id": "minimax-m27",
+            "name": "MiniMax M2.7",
+            "reasoning": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "contextWindow": 1000000,
+            "maxTokens": 16384
+          },
+          {
+            "id": "step35-flash",
+            "name": "Step 3.5 Flash",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "contextWindow": 256000,
+            "maxTokens": 16384
+          },
+          {
+            "id": "kimi-k25",
+            "name": "Kimi K2.5",
+            "reasoning": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "contextWindow": 131072,
+            "maxTokens": 16384
           }
         ]
       }
@@ -243,7 +275,7 @@
   "agents": {
     "defaults": {
       "model": {
-        "primary": "litellm/gpt52-medium"
+        "primary": "litellm/minimax-m27"
       },
       "models": {
         "litellm/gpt52-none": {},
@@ -263,7 +295,10 @@
         "litellm/claude-sonnet46": {},
         "litellm/claude-sonnet46-thinking": {},
         "litellm/claude-opus46": {},
-        "litellm/claude-opus46-thinking": {}
+        "litellm/claude-opus46-thinking": {},
+        "litellm/minimax-m27": {},
+        "litellm/step35-flash": {},
+        "litellm/kimi-k25": {}
       },
       "workspace": "/home/robotin/.openclaw/workspace",
       "compaction": {
