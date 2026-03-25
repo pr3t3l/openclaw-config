@@ -1,0 +1,35 @@
+{
+  "source": "https://asylummedicine.com/body-diagrams",
+  "license_note": "Available for use without attribution by asylum medicine clinicians in forensic medical evaluations.",
+  "usage_guide": "Art Director references these diagrams in art_briefs.json with reusable_from_library: true and library_path: 'body-diagrams/asylummedicine/<filename>'. The forensic_report.html template renders via the bodyDiagram var. Select based on victim sex and injury locations from case-plan.json.",
+  "selection_rules": {
+    "default_for_male_victim": ["MWB.png", "heads.png"],
+    "default_for_female_victim": ["FWB.png", "heads.png"],
+    "add_if_torso_detail_male": "Mtorso.png",
+    "add_if_torso_detail_female": "Ftorso.png",
+    "add_if_lateral_injuries_male": "Mside.png",
+    "add_if_lateral_injuries_female": "Fside.png",
+    "add_if_hand_injuries": "Hands.png",
+    "add_if_head_detail": "headupdown.png",
+    "add_if_dental_evidence": "teethwithnumbers.png",
+    "add_if_foot_injuries": "feet.png",
+    "add_if_skeletal_analysis": "Skeleton.png"
+  },
+  "diagrams": [
+    { "id": "FWB", "filename": "FWB.png", "description": "Female whole body front+back. Primary overview for female victims.", "victim_sex": "female", "region": "whole_body", "use_when": "Default for any female victim forensic report" },
+    { "id": "MWB", "filename": "MWB.png", "description": "Male whole body front+back. Primary overview for male victims.", "victim_sex": "male", "region": "whole_body", "use_when": "Default for any male victim forensic report" },
+    { "id": "Fside", "filename": "Fside.png", "description": "Female lateral (side) views left+right.", "victim_sex": "female", "region": "lateral", "use_when": "Side-of-body injuries, fall impacts" },
+    { "id": "Mside", "filename": "Mside.png", "description": "Male lateral (side) views left+right.", "victim_sex": "male", "region": "lateral", "use_when": "Side-of-body injuries, fall impacts" },
+    { "id": "Ftorso", "filename": "Ftorso.png", "description": "Female torso close-up front+back. Stab/gunshot/injection detail.", "victim_sex": "female", "region": "torso", "use_when": "Stab wounds, gunshot wounds, injection sites, chest trauma" },
+    { "id": "Mtorso", "filename": "Mtorso.png", "description": "Male torso close-up front+back.", "victim_sex": "male", "region": "torso", "use_when": "Stab wounds, gunshot wounds, injection sites, chest trauma" },
+    { "id": "heads", "filename": "heads.png", "description": "Head 4 views: front, back, left, right. Any head/neck trauma.", "victim_sex": "neutral", "region": "head", "use_when": "Head trauma, blunt force, strangulation, facial injuries" },
+    { "id": "headupdown", "filename": "headupdown.png", "description": "Head top-down (vertex) and bottom-up (skull base).", "victim_sex": "neutral", "region": "head_vertical", "use_when": "Falls from height, skull base fractures, overhead strikes" },
+    { "id": "Hands", "filename": "Hands.png", "description": "Both hands palmar+dorsal. Defensive wounds, ligature, needles.", "victim_sex": "neutral", "region": "hands", "use_when": "Defensive wounds, ligature marks, needle marks, struggle evidence" },
+    { "id": "feet", "filename": "feet.png", "description": "Both feet sole+top views.", "victim_sex": "neutral", "region": "feet", "use_when": "Burns on soles, ankle ligature, dragging evidence" },
+    { "id": "teeth", "filename": "teeth.png", "description": "Dental chart no numbering.", "victim_sex": "neutral", "region": "dental", "use_when": "Dental ID, bite marks" },
+    { "id": "teethwithnumbers", "filename": "teethwithnumbers.png", "description": "Dental chart with universal numbering for specific tooth references.", "victim_sex": "neutral", "region": "dental_numbered", "use_when": "Detailed dental evidence citing specific tooth numbers" },
+    { "id": "Skeleton", "filename": "Skeleton.png", "description": "Full skeleton anterior view.", "victim_sex": "neutral", "region": "skeleton", "use_when": "Bone fractures, skeletal remains, decomposed bodies" },
+    { "id": "Perineum", "filename": "Perineum.png", "description": "Perineal region color.", "victim_sex": "neutral", "region": "perineum", "use_when": "Perineal injuries only, rarely needed" },
+    { "id": "Perineumnocolor", "filename": "Perineumnocolor.png", "description": "Perineal region B&W print-friendly.", "victim_sex": "neutral", "region": "perineum_bw", "use_when": "Same as above, for print" }
+  ]
+}

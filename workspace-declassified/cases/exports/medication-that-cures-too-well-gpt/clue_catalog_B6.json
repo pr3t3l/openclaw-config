@@ -1,0 +1,57 @@
+{
+  "envelope": "B",
+  "documents": [
+    {
+      "doc_id": "B6",
+      "envelope": "B",
+      "sequence_number": 6,
+      "type_id": 18,
+      "type_key": "calls_sms_log",
+      "in_world_title": "Phone Records (Subpoena Return) — Dr. Mara Ellison, Helixure Biologics (Line: 617-555-0194)",
+      "owner_source": "Verizon Law Enforcement Support — Subpoena Return to Cambridge PD (Case CPD-MCU-26-0319)",
+      "timestamp": "2026-03-22T09:18:00",
+      "filename_base": "B6_Phone_Records_Mara_Ellison",
+      "player_purpose": "clue_delivery",
+      "reveals": "Carrier-style call/SMS detail records show Ellison texting Nadia Reyes at 21:58 about finishing documentation, exchanging terse SMS with Raina Patel at 22:06 regarding the ‘GF-102 deviation folder,’ and then sending her last outgoing message at 23:11:52 (from Helixure’s Building 7 Level-4 femtocell sector labeled STW4B) moments before the nitrogen purge window. After 23:12, multiple inbound calls go unanswered and voicemail is auto-generated, tightening Ellison’s incapacitation to minutes rather than hours.",
+      "player_inference": "Ellison was alive and actively using her phone right up to the critical 23:12 timeframe, then abruptly stopped responding—supporting the theory that the stairwell incident happened during the engineered low-O2 window, not as a later accidental fall.",
+      "document_justification": "B6 looks like mundane subpoena paperwork but functions as a timeline clamp: it anchors Ellison’s last known conscious activity to the exact late-night window the building systems later implicate (C2). It also quietly establishes that Patel was being contacted about deviations the same night, sharpening the compliance motive without ‘solving’ it yet.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-03",
+        "POI-05"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1",
+        "B2"
+      ],
+      "production_brief_writing": {
+        "summary": "A printed carrier subpoena return with a dense table of calls and texts. Most rows should be banal (two-factor codes, calendar pings), but three highlighted rows create the investigative value: the 22:06 deviation-folder exchange with Patel, the 23:11 last outgoing SMS from the STW4B femtocell sector, and the first unanswered inbound call after 23:12.",
+        "tone": "dry telecom data export — mono font tables, abbreviations, and exhibit-style labeling",
+        "min_words": 180,
+        "key_mandatory_line": "2026-03-20 23:11:52 | SMS (OUT) | To: N. Reyes (857-555-0133) | Preview: ‘Heading to the garage—call me if you need anything.’ | Cell Site: HLX-B7-FEMTO-L4 (Sector: STW4B)",
+        "key_information_to_include": [
+          "Header block with case number (CPD-MCU-26-0319), subscriber line (617-555-0194), and date range (2026-03-20 18:00 to 2026-03-21 08:00)",
+          "A highlighted SMS exchange at ~22:06 with contact saved as ‘R. Patel’ referencing ‘deviation folder’ in a short preview (e.g., ‘Need full GF-102 deviation folder by Monday 09:00’)",
+          "A highlighted last outgoing SMS at 23:11:52 with Cell Site/Sector indicating Building 7 Level 4 / Stairwell 4B coverage",
+          "At least one inbound call after 23:12 that is not answered (Duration 00:00; result: NO ANSWER/VM), showing abrupt silence",
+          "A small summary statistics box (total calls/SMS, unique contacts) that makes the highlights feel like needle-in-haystack discoveries"
+        ],
+        "voice_notes": "Make it feel like a real subpoena exhibit: include carrier boilerplate, abbreviations (MO/MT, SMS/MMS), and a legend for columns. The ‘reveals’ should come from highlighted rows and the cell-site label, not from narration; keep the rest of the table realistically boring."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    }
+  ]
+}

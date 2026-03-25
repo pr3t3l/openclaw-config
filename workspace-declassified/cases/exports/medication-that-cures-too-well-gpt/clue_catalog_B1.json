@@ -1,0 +1,402 @@
+{
+  "envelope": "B",
+  "documents": [
+    {
+      "doc_id": "B1",
+      "envelope": "B",
+      "sequence_number": 1,
+      "type_id": 11,
+      "type_key": "interrogation_transcript",
+      "in_world_title": "Cambridge Police — Interview Transcript: Evan Kline (POI-02)",
+      "owner_source": "Cambridge Police Department — Major Crimes Unit, Interview Room 2",
+      "timestamp": "2026-03-21T13:20:00",
+      "filename_base": "B1_Interview_Evan_Kline",
+      "player_purpose": "clue_delivery",
+      "reveals": "CFO Evan Kline insists he left Helixure right after the 20:03 investor-prep call and drove straight home, yet he immediately recognizes the internal badge label ‘EXEC-0441’ and explains ‘executive escort mode’ before detectives present any access printouts.",
+      "player_inference": "Kline is either lying about a late-night return or revealing how executive credentials can be used by someone else; the killer likely exploited access-control exceptions, not just motive.",
+      "document_justification": "Locks POI-02 into a confident, specific alibi while planting CONTRA-01: a late-night executive credential event exists and Kline’s unsolicited technical fluency suggests it’s a known loophole worth verifying in later log documents.",
+      "pois_referenced": [
+        "POI-02",
+        "POI-01",
+        "POI-04"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-01"
+      ],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1",
+        "A2",
+        "A3"
+      ],
+      "production_brief_writing": {
+        "summary": "A realistic police interview transcript where Evan Kline tries to sound cooperative while protecting the acquisition timeline and his own exposure. Detectives keep the tone professional but use exact times and access-control language to pull him off script.",
+        "tone": "verbatim transcript with time-stamps and speaker tags; corporate-polished subject gradually losing composure",
+        "min_words": 850,
+        "key_mandatory_line": "KLINE: If your system says ‘EXEC-0441’ at 22:39, that’s the executive pool credential — it doesn’t prove it was me holding the badge.",
+        "key_information_to_include": [
+          "Explicitly name the 20:03 investor-prep call as his anchor for leaving the site",
+          "Kline’s obsession with ‘material events’ and disclosure timing (acquisition pressure)",
+          "Detectives ask about after-hours access and ‘escort’ practices without showing exhibits",
+          "Kline ‘slips’ by identifying the exact badge label and describing the executive pool credential system"
+        ],
+        "voice_notes": "Kline speaks like an earnings call: ‘to be clear,’ ‘for context.’ Under pressure, he starts redefining terms and narrating policy instead of answering. The slip is technical over-precision, not a confession."
+      },
+      "production_brief_interview": {
+        "subject_poi_id": "POI-02",
+        "phases": [
+          {
+            "phase": 1,
+            "label": "Baseline",
+            "tactic": "Confirm identity, role, and normal after-hours habits",
+            "goal": "Establish polished corporate cadence and control",
+            "exchanges": 3
+          },
+          {
+            "phase": 2,
+            "label": "Timeline lock",
+            "tactic": "Minute-by-minute walkthrough after the 20:03 call",
+            "goal": "Elicit a firm ‘straight home’ claim with concrete details",
+            "exchanges": 6
+          },
+          {
+            "phase": 3,
+            "label": "Access anomaly",
+            "tactic": "Ask what ‘executive escort mode’ means and who can invoke it",
+            "goal": "Force him to reveal familiarity or deny knowledge",
+            "exchanges": 5
+          },
+          {
+            "phase": 4,
+            "label": "The slip",
+            "tactic": "Mention a generic ‘executive pool badge label’ and pause",
+            "goal": "Trigger his unprompted recognition of ‘EXEC-0441’ and the 22:39 time",
+            "exchanges": 4
+          }
+        ],
+        "min_exchanges": 18,
+        "the_lie": "He claims he left immediately after the 20:03 investor-prep call and did not return to Building 7 that night.",
+        "the_slip": {
+          "what": "He identifies the exact badge label ‘EXEC-0441’ and treats a 22:39 entry as a known, meaningful record before being shown any log.",
+          "how": "Trying to sound knowledgeable and innocent at once, he over-corrects and explains the executive credential pool and escort exception in detail."
+        }
+      },
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Header mugshot-style interview photo for Evan Kline (POI-02) in harsh station/interview-room lighting.",
+      "image_requirements": [
+        {
+          "type": "mugshot",
+          "subject": "POI-02",
+          "brief": "Evan Kline, late-40s, suit slightly rumpled, polished haircut, tired eyes; neutral police backdrop; interview-room vibe"
+        }
+      ],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "B2",
+      "envelope": "B",
+      "sequence_number": 2,
+      "type_id": 11,
+      "type_key": "interrogation_transcript",
+      "in_world_title": "Cambridge Police — Interview Transcript: Nadia Reyes (POI-03)",
+      "owner_source": "Cambridge Police Department — Major Crimes Unit, Interview Room 3",
+      "timestamp": "2026-03-21T15:05:00",
+      "filename_base": "B2_Interview_Nadia_Reyes",
+      "player_purpose": "tension_builder",
+      "reveals": "Research associate Nadia Reyes claims she left at 21:55 and never returned, insisting ‘you can’t get into the cGMP corridor without your badge’—then, when pressed, admits after-hours piggybacking happens when someone with executive escort privilege is around.",
+      "player_inference": "Reyes is hiding sloppy rule-breaking and audit fear, but her admission explains how a person could move in restricted areas without leaving a clean personal badge trail during the 22:39–23:36 window.",
+      "document_justification": "Raises suspicion while keeping POI-03 human: she lies to protect herself from compliance fallout, not to conceal murder. Crucially, she provides the vocabulary and mechanism for ambiguous access traces, introducing CONTRA-02.",
+      "pois_referenced": [
+        "POI-03",
+        "POI-01",
+        "POI-04"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-02"
+      ],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1",
+        "A2",
+        "A4"
+      ],
+      "production_brief_writing": {
+        "summary": "An anxious interview transcript where Nadia Reyes wants to be helpful but keeps getting trapped by details. Detectives use calm repetition to draw out the difference between policy and reality (piggybacking/escort after hours).",
+        "tone": "verbatim transcript — rapid, technical speech; interruptions; emotion noted in brackets",
+        "min_words": 850,
+        "key_mandatory_line": "REYES: After 9 p.m. you can’t just wander into the cGMP corridor—unless someone’s using executive escort, and then… people slip through.",
+        "key_information_to_include": [
+          "Her claimed departure time 21:55 and why she stayed late (assay rerun)",
+          "Her last interaction with Ellison and the tone of that interaction",
+          "An admission that piggybacking happens despite policy, especially around executive escort",
+          "A non-homicide secret: she altered a lab notebook timestamp earlier in the week and is terrified of audits"
+        ],
+        "voice_notes": "Reyes alternates between over-explaining and apologizing. She should sound scared of blame and compliance discipline, not cunning. The ‘slip’ is a workplace truth she cannot keep in under pressure."
+      },
+      "production_brief_interview": {
+        "subject_poi_id": "POI-03",
+        "phases": [
+          {
+            "phase": 1,
+            "label": "Rapport",
+            "tactic": "Offer water, acknowledge stress, confirm role",
+            "goal": "Get her talking without shutting down",
+            "exchanges": 3
+          },
+          {
+            "phase": 2,
+            "label": "Lab timeline",
+            "tactic": "Walk her last hours with Ellison in detail",
+            "goal": "Lock in the 21:55 departure claim",
+            "exchanges": 6
+          },
+          {
+            "phase": 3,
+            "label": "Access reality check",
+            "tactic": "Ask how doors work after hours; contrast policy language with practice",
+            "goal": "Expose piggybacking/escort as an unlogged pathway",
+            "exchanges": 5
+          },
+          {
+            "phase": 4,
+            "label": "The slip",
+            "tactic": "Repeat her ‘badge-only’ claim back to her and wait",
+            "goal": "Trigger the executive-escort piggyback admission",
+            "exchanges": 4
+          }
+        ],
+        "min_exchanges": 18,
+        "the_lie": "She claims her badge trail would definitively prove whether she returned, because after-hours access is ‘badge-only.’",
+        "the_slip": {
+          "what": "She admits that executive escort privilege allows others to enter without their own badge record (‘people slip through’).",
+          "how": "When pinned to her earlier certainty, she backtracks and blurts out the practical workaround everyone pretends does not exist."
+        }
+      },
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Header mugshot-style interview photo for Nadia Reyes (POI-03) in interview room lighting.",
+      "image_requirements": [
+        {
+          "type": "mugshot",
+          "subject": "POI-03",
+          "brief": "Nadia Reyes, late-20s/early-30s, exhausted lab staffer look (tired eyes, practical hair), hoodie under a blazer or lab-adjacent casual; neutral police backdrop; anxious expression"
+        }
+      ],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "B3",
+      "envelope": "B",
+      "sequence_number": 3,
+      "type_id": 11,
+      "type_key": "interrogation_transcript",
+      "in_world_title": "Cambridge Police — Interview Transcript: Tom Briggs (POI-04)",
+      "owner_source": "Cambridge Police Department — Major Crimes Unit, Interview Room 1",
+      "timestamp": "2026-03-21T17:10:00",
+      "filename_base": "B3_Interview_Tom_Briggs",
+      "player_purpose": "clue_delivery",
+      "reveals": "Facilities/Security manager Tom Briggs claims no alarms triggered and his on-call phone never rang overnight, but he acknowledges—too quickly—that an oxygen monitor can be placed into a ‘maintenance/silenced’ state that suppresses paging and leaves the dashboard looking ‘normal’ to anyone who checks it later.",
+      "player_inference": "Briggs may be minimizing a system failure or covering procedural shortcuts, but the important takeaway is that ‘no alarm page’ is not proof of safety; it can be the signature of deliberate suppression.",
+      "document_justification": "Introduces CONTRA-03 by letting POI-04 anchor the ‘no page’ claim while inadvertently teaching the player the exact mechanism that would make that claim misleading. This primes the player to understand the pivot evidence when system history appears later.",
+      "pois_referenced": [
+        "POI-04",
+        "POI-01",
+        "POI-05"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-03"
+      ],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1",
+        "A2",
+        "B1",
+        "B2"
+      ],
+      "production_brief_writing": {
+        "summary": "A blunt, policy-heavy interview transcript with Tom Briggs, who speaks like a compliance manual and gets defensive about any suggestion his systems failed. Detectives keep him on specifics (what pages, what settings, who can silence monitors).",
+        "tone": "verbatim transcript — procedural, defensive, and clipped; occasional sarcasm; bracketed notes for irritation",
+        "min_words": 850,
+        "key_mandatory_line": "BRIGGS: If the monitor’s in maintenance, it won’t page me. That’s not ‘failure’—that’s a state someone has to put it into.",
+        "key_information_to_include": [
+          "Briggs confirms his role: cameras, badge readers, and alarm paging pathways for Building 7",
+          "He asserts the on-call phone ‘never rang’ and treats that as definitive",
+          "He describes ‘maintenance/silenced’ status and how it suppresses pages",
+          "He references executive escort exceptions and complains about after-hours work culture",
+          "A self-serving detail: he admits he allowed shortcut practices to keep executives happy"
+        ],
+        "voice_notes": "Briggs speaks in policy framing: ‘per policy,’ ‘that’s logged.’ Under pressure, he deflects and lists other people’s violations. The slip is his casual, matter-of-fact description of silencing states and how they mask reality."
+      },
+      "production_brief_interview": {
+        "subject_poi_id": "POI-04",
+        "phases": [
+          {
+            "phase": 1,
+            "label": "Authority",
+            "tactic": "Establish his responsibilities and the chain of notification",
+            "goal": "Make him commit to what ‘should’ happen when alarms trip",
+            "exchanges": 4
+          },
+          {
+            "phase": 2,
+            "label": "No-page claim",
+            "tactic": "Get a firm statement that no alarm pages occurred overnight",
+            "goal": "Lock in the ‘phone never rang’ position",
+            "exchanges": 5
+          },
+          {
+            "phase": 3,
+            "label": "System states",
+            "tactic": "Ask about silenced/maintenance modes and who can enable them",
+            "goal": "Teach the player how suppression would look in records",
+            "exchanges": 5
+          },
+          {
+            "phase": 4,
+            "label": "The slip",
+            "tactic": "Present a hypothetical: ‘If someone wanted no page, what would they do?’",
+            "goal": "Get him to say the quiet part: maintenance state suppresses paging",
+            "exchanges": 4
+          }
+        ],
+        "min_exchanges": 18,
+        "the_lie": "He implies that because he received no on-call page, no meaningful oxygen alarm condition could have existed in Stairwell 4B overnight.",
+        "the_slip": {
+          "what": "He concedes that a monitor can be intentionally put into a maintenance/silenced state that suppresses paging while making later checks appear routine.",
+          "how": "While defending his performance, he over-explains system behavior and accidentally describes the exact technique a planner would use to avoid an on-call alert."
+        }
+      },
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Header mugshot-style interview photo for Tom Briggs (POI-04) with a hard, practical demeanor.",
+      "image_requirements": [
+        {
+          "type": "mugshot",
+          "subject": "POI-04",
+          "brief": "Tom Briggs, late-30s/40s, facilities/security manager; practical haircut, work polo or button-down; square jaw; annoyed expression; neutral police backdrop"
+        }
+      ],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "B4",
+      "envelope": "B",
+      "sequence_number": 4,
+      "type_id": 11,
+      "type_key": "interrogation_transcript",
+      "in_world_title": "Cambridge Police — Interview Transcript: Raina Patel (POI-05)",
+      "owner_source": "Cambridge Police Department — Major Crimes Unit, Interview Room 2",
+      "timestamp": "2026-03-21T19:05:00",
+      "filename_base": "B4_Interview_Raina_Patel",
+      "player_purpose": "tension_builder",
+      "reveals": "QA Director Raina Patel calmly states she left Building 7 at 19:05 and did not return, insisting deviations and releases are tightly controlled—yet she repeatedly redirects to ‘audit trails’ and ‘regulator-facing exports,’ and slips by referencing a specific late-night system ‘export’ as if she already knows what investigators will find.",
+      "player_inference": "Patel’s language is less about grief and more about controlling what can be proven; her defensiveness around audit logs suggests the real conflict is documentation liability, and her alibi may collapse when systems metadata is compared to her claimed timeline.",
+      "document_justification": "Introduces CONTRA-04 and frames QA as the pressure point: Patel is uniquely positioned to fear an internal deviation folder becoming external evidence. Her careful, process-first answers create the sense of a cover-up that later digital records (envelope C) can puncture.",
+      "pois_referenced": [
+        "POI-05",
+        "POI-01",
+        "POI-02",
+        "POI-04"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-04"
+      ],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1",
+        "A2",
+        "B1",
+        "B3"
+      ],
+      "production_brief_writing": {
+        "summary": "A controlled, high-stakes interview transcript where Raina Patel answers in regulatory phrasing and tries to turn every question into ‘process.’ Detectives chip away by asking for yes/no answers tied to time stamps and specific systems (deviation log, audit exports).",
+        "tone": "verbatim transcript — calm, formal, and slightly chilling; the subject is never loud, just relentlessly precise",
+        "min_words": 900,
+        "key_mandatory_line": "PATEL: I left at 19:05. Any claim about a 23:36 export would have to be tied to an authenticated session, because QA systems don’t ‘just’ generate documents.",
+        "key_information_to_include": [
+          "Patel’s role: QA release authority, deviation/exception ownership, regulator-facing documentation",
+          "Her alibi claim: left at 19:05 and did not return",
+          "Ellison’s request for the GF-102 deviation folder and Patel’s attempt to minimize it",
+          "Patel’s insistence that audit trails are definitive—while carefully avoiding a direct ‘no’ on whether she has admin access",
+          "A clear ‘slip’ where she references an export/audit artifact with unexpected specificity"
+        ],
+        "voice_notes": "Patel uses compliance language: ‘outside of SOP,’ ‘to my recollection.’ Under pressure, she becomes pedantic and refuses yes/no. The slip is meta: she talks like someone already managing an evidentiary record."
+      },
+      "production_brief_interview": {
+        "subject_poi_id": "POI-05",
+        "phases": [
+          {
+            "phase": 1,
+            "label": "Credentials",
+            "tactic": "Confirm role, authority, and what systems she controls",
+            "goal": "Establish that QA owns releases, deviations, and exports",
+            "exchanges": 4
+          },
+          {
+            "phase": 2,
+            "label": "Alibi lock",
+            "tactic": "Time-stamp her departure and after-hours return denial",
+            "goal": "Get a clean 19:05 ‘no return’ commitment",
+            "exchanges": 5
+          },
+          {
+            "phase": 3,
+            "label": "Ellison conflict",
+            "tactic": "Ask about the deviation folder request and what Ellison planned for Monday",
+            "goal": "Surface motive pressure without accusing",
+            "exchanges": 5
+          },
+          {
+            "phase": 4,
+            "label": "The slip",
+            "tactic": "Ask how a ‘regulator-facing export’ is generated and who can do it",
+            "goal": "Trigger her over-specific reference to a late-night export/audit session",
+            "exchanges": 4
+          }
+        ],
+        "min_exchanges": 18,
+        "the_lie": "She claims she left at 19:05, did not return, and would have no reason to access any Building 7 or QA systems during the late-night incident window.",
+        "the_slip": {
+          "what": "She references a late-night ‘export’/audit artifact with specificity that suggests foreknowledge of what the system record will show.",
+          "how": "Attempting to preempt investigators by leaning on ‘audit trail certainty,’ she accidentally tips her hand about how (and when) such exports are created."
+        }
+      },
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Header mugshot-style interview photo for Raina Patel (POI-05), composed and unblinking in interview lighting.",
+      "image_requirements": [
+        {
+          "type": "mugshot",
+          "subject": "POI-05",
+          "brief": "Raina Patel, late-30s/early-40s, QA director; neat professional attire; calm, controlled expression; neutral police backdrop; eyes steady"
+        }
+      ],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    }
+  ]
+}

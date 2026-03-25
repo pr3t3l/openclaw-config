@@ -1,0 +1,470 @@
+{
+  "telemetry": {
+    "model": "litellm/gpt52-thinking",
+    "input_tokens": null,
+    "output_tokens": null
+  },
+  "tier": "NORMAL",
+  "slug": "medication-that-cures-too-well-gpt",
+  "title": "The Miracle Withdrawal",
+  "logline": "A biotech miracle appears to cure a chronic disease—then the lead scientist dies in a staged accident and the company yanks the drug before anyone can learn why it worked so well.",
+  "setting": {
+    "city": "Cambridge",
+    "neighborhood": "Kendall Square",
+    "time_period": "March 2026",
+    "atmosphere": "Badge-locked labs and immaculate conference rooms where every sentence is recorded and every risk is footnoted. After hours, the building becomes a machine—doors, sensors, and alarms writing a timeline no one can fully erase."
+  },
+  "victim": {
+    "name": "Dr. Mara Ellison",
+    "age": 41,
+    "occupation": "Principal Research Scientist, Helixure Biologics",
+    "cause_of_death": "Inert-gas asphyxiation with secondary blunt-force trauma from a staged stairwell fall",
+    "found_by": "Ruth Kessler, overnight custodian",
+    "found_at": "Stairwell 4B outside the cGMP suite (Building 7, Level 4)",
+    "found_when": "2026-03-21T06:14:00"
+  },
+  "culprit": {
+    "poi_id": "POI-05",
+    "motive": "Raina Patel personally approved a falsified quality release and buried an unreported safety deviation that helped make GF-102’s ‘miracle’ outcomes possible; Ellison’s planned disclosure to regulators would expose Patel’s audit-trail edits, end her career, and likely trigger criminal liability.",
+    "motive_specificity_test": "Only Patel controlled the quality systems, deviation approvals, and audit-trail permissions that would directly tie the falsified batch release to one credential and one signature chain; other POIs could spin the story, but she could not escape the metadata.",
+    "method_steps": [
+      "2026-03-20 22:39 — Patel returns to Building 7 using after-hours access and chooses Stairwell 4B because it has a known camera blind spot at the landing (B5, A4).",
+      "22:48 — She uses the safety panel to place the stairwell oxygen monitor into a maintenance/silenced state so it will not page Facilities on-call (C2, A4).",
+      "23:12 — She opens the nitrogen purge valve in the adjacent utility closet, allowing inert gas to displace oxygen near the stairwell landing Ellison must pass to reach the garage (C2).",
+      "23:17 — When Ellison collapses, Patel drags her into the stairwell and stages a fall down a short flight so the scene reads as a routine accident (A1, C1).",
+      "23:36 — Patel attempts to sanitize the narrative by exporting a ‘clean’ environmental incident summary and relying on the initial assumption of an accident to delay deeper investigation (C2, A1)."
+    ],
+    "the_almost": "A redundant building-system backup recorded both the alarm silencing and Patel’s admin session even after she tried to clean the primary dashboard, creating a pivot document that pins the real murder window."
+  },
+  "pois": [
+    {
+      "id": "POI-01",
+      "name": "Dr. Mara Ellison",
+      "role": "Principal Research Scientist (Victim)",
+      "status": "deceased",
+      "description": "Lead scientist on GF-102, a treatment producing near-impossible remission markers in early-access Type 1 diabetes patients. She was preparing to raise data-integrity and safety concerns internally and to regulators.",
+      "voice_profile": {
+        "speech_pattern": "N/A — deceased",
+        "under_pressure": "N/A",
+        "verbal_tics": "N/A"
+      },
+      "surface_motive": "Victim",
+      "alibi": {
+        "claim": "N/A",
+        "verifiable": false,
+        "holes": "N/A"
+      },
+      "hiding": "She copied internal QA deviation records and drafted a Monday-morning ‘voluntary disclosure’ agenda without telling senior leadership.",
+      "interview_doc": null,
+      "is_culprit": false,
+      "red_herring_reason": null
+    },
+    {
+      "id": "POI-02",
+      "name": "Evan Kline",
+      "role": "Chief Financial Officer, Helixure Biologics",
+      "status": "alive",
+      "description": "CFO shepherding a fragile acquisition and a share price dependent on GF-102’s momentum. He is charming in public and allergic to questions about risk disclosures.",
+      "voice_profile": {
+        "speech_pattern": "Smooth, corporate, answers with numbers and carefully bounded statements",
+        "under_pressure": "Speeds up, starts redefining terms, asks to ‘reframe’ the question",
+        "verbal_tics": "‘To be clear’, ‘for context’, ‘what I can say is’"
+      },
+      "surface_motive": "The acquisition earn-out and his equity package hinge on keeping GF-102 on track; Ellison’s concerns could tank the deal.",
+      "alibi": {
+        "claim": "He says he left after the 20:00 investor-prep call and went straight home.",
+        "verifiable": true,
+        "holes": "A late-night access event appears under an executive credential, and he cannot explain why it exists."
+      },
+      "hiding": "He knows the acquisition includes a side letter requiring immediate disclosure of any material safety event and he is worried about insider-trading optics.",
+      "interview_doc": "B1",
+      "is_culprit": false,
+      "red_herring_reason": "He is hiding financial exposure and reputational risk, but the physical method (alarm suppression and purge access) points to someone with operational permissions, not a finance executive."
+    },
+    {
+      "id": "POI-03",
+      "name": "Nadia Reyes",
+      "role": "Research Associate (Ellison’s lab)",
+      "status": "alive",
+      "description": "Ellison’s overworked right hand in the lab, juggling protocols and late-night sampling. She worships the science but fears a scandal will end her career.",
+      "voice_profile": {
+        "speech_pattern": "Fast, technical, apologetic when challenged, eager to be believed",
+        "under_pressure": "Over-explains, then retreats into ‘I’m not sure’ when cornered",
+        "verbal_tics": "‘Honestly’, ‘I swear’, ‘I don’t know if that matters’"
+      },
+      "surface_motive": "She worked late with Ellison and has access to the cleanroom corridor, making her an easy suspect.",
+      "alibi": {
+        "claim": "She says she left at 21:55 after a failed assay rerun.",
+        "verifiable": false,
+        "holes": "Her story does not cleanly match all badge timestamps, and she admits staff sometimes piggyback through secure doors."
+      },
+      "hiding": "She altered a lab notebook timestamp earlier in the week to avoid blame for a sample-handling mistake, making her terrified of audits.",
+      "interview_doc": "B2",
+      "is_culprit": false,
+      "red_herring_reason": "She lies about documentation and minor rule-breaking, not murder; later system-level evidence shows premeditated alarm manipulation beyond her authority."
+    },
+    {
+      "id": "POI-04",
+      "name": "Tom Briggs",
+      "role": "Facilities & Security Operations Manager (Building 7)",
+      "status": "alive",
+      "description": "Runs cameras, badge readers, and alarms and hates after-hours exceptions. He is competent but defensive about any failure that makes him look careless.",
+      "voice_profile": {
+        "speech_pattern": "Blunt, procedural, speaks in policy language and time-stamped facts",
+        "under_pressure": "Deflects blame, starts listing other people’s violations",
+        "verbal_tics": "‘Per policy’, ‘that’s logged’, ‘that’s not how it works’"
+      },
+      "surface_motive": "He had access to alarms and security systems and openly clashed with Ellison about late-night work.",
+      "alibi": {
+        "claim": "He says he was home asleep; the on-call phone never rang.",
+        "verifiable": true,
+        "holes": "If alarms were silenced, his on-call phone would not ring, making his claim self-serving."
+      },
+      "hiding": "He quietly allowed ‘executive escort mode’ after hours without the required written approvals, leaving gaps in who was actually in the building.",
+      "interview_doc": "B3",
+      "is_culprit": false,
+      "red_herring_reason": "He is covering procedural shortcuts and will minimize system failures, but the audit-trail and QA deviation angle points away from Facilities as the driver of the murder."
+    },
+    {
+      "id": "POI-05",
+      "name": "Raina Patel",
+      "role": "Director of Quality Assurance, Helixure Biologics",
+      "status": "alive",
+      "description": "QA director with the authority to declare a batch ‘good’ and the permissions to decide what regulators will see. Calm, articulate, and dangerous when cornered by metadata.",
+      "voice_profile": {
+        "speech_pattern": "Controlled, formal, uses regulatory phrasing and calm certainty",
+        "under_pressure": "Becomes pedantic, avoids yes/no, insists on ‘process’ over events",
+        "verbal_tics": "‘Outside of SOP’, ‘to my recollection’, ‘I would never authorize that’"
+      },
+      "surface_motive": "If GF-102 collapses under scrutiny, QA is the first department blamed, and Patel signed the releases that made the rollout possible.",
+      "alibi": {
+        "claim": "She says she left at 19:05 and did not return to the site.",
+        "verifiable": true,
+        "holes": "Badge and system logs suggest a late-night return and an admin session consistent with her credentials."
+      },
+      "hiding": "She edited the quality audit trail to conceal a deviation and kept a private folder of ‘cleaned’ PDFs intended for regulator-facing review.",
+      "interview_doc": "B4",
+      "is_culprit": true,
+      "red_herring_reason": null
+    }
+  ],
+  "timeline": [
+    {
+      "datetime": "2026-03-20T09:10:00",
+      "event": "Helixure publicly touts GF-102’s ‘unprecedented’ early-access outcomes, spiking attention and internal pressure to keep the narrative clean.",
+      "source_docs": [
+        "A3",
+        "A5"
+      ],
+      "is_critical_period": false
+    },
+    {
+      "datetime": "2026-03-20T18:30:00",
+      "event": "Ellison schedules a Monday-morning ‘data integrity and safety review’ and requests the full GF-102 deviation folder from QA.",
+      "source_docs": [
+        "B7"
+      ],
+      "is_critical_period": false
+    },
+    {
+      "datetime": "2026-03-20T20:03:00",
+      "event": "Investor-prep call ends; Kline emphasizes that any delay could force acquisition renegotiation and insists on messaging discipline.",
+      "source_docs": [
+        "B1",
+        "B7"
+      ],
+      "is_critical_period": false
+    },
+    {
+      "datetime": "2026-03-20T21:55:00",
+      "event": "Reyes leaves the lab after rerunning an assay and messages Ellison that she will finish documentation in the morning.",
+      "source_docs": [
+        "B2",
+        "B6"
+      ],
+      "is_critical_period": false
+    },
+    {
+      "datetime": "2026-03-20T22:39:00",
+      "event": "After-hours building access is recorded in the Building 7 corridor; an entry appears under an executive credential and/or an escort exception.",
+      "source_docs": [
+        "B5"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-03-20T22:48:00",
+      "event": "The stairwell oxygen monitor is placed into maintenance/silenced status, preventing an automatic page to Facilities on-call.",
+      "source_docs": [
+        "C2",
+        "A4"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-03-20T23:12:00",
+      "event": "A nitrogen purge is initiated from the utility closet adjacent to Stairwell 4B.",
+      "source_docs": [
+        "C2",
+        "A4"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-03-20T23:17:00",
+      "event": "Ellison collapses near the stairwell landing; the scene is staged as a fall to disguise asphyxiation.",
+      "source_docs": [
+        "A1",
+        "C1"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-03-20T23:36:00",
+      "event": "An admin session exports an ‘incident summary’ and attempts to normalize the building-system narrative before morning staff arrive.",
+      "source_docs": [
+        "C2",
+        "C3"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-03-21T06:14:00",
+      "event": "Custodian Ruth Kessler finds Ellison at Stairwell 4B and calls Security; responders initially treat it as an accident.",
+      "source_docs": [
+        "A1"
+      ],
+      "is_critical_period": false
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "CONTRA-01",
+      "what": "Kline insists he went straight home after the 20:00 call, yet an after-hours access event appears under an executive credential during the murder window.",
+      "introduced_in": "B1",
+      "resolved_in": "B5",
+      "player_inference": "The ‘executive access’ record can be borrowed or spoofed; the investigation must focus on who can exploit access-control exceptions rather than who merely benefits financially."
+    },
+    {
+      "id": "CONTRA-02",
+      "what": "Reyes claims she left at 21:55 and never returned, but later movement in restricted areas suggests a staff pathway was used during the critical period.",
+      "introduced_in": "B2",
+      "resolved_in": "B5",
+      "player_inference": "A later movement trace without a clean personal match suggests piggybacking or escort-mode behavior, indicating a deliberate effort to obscure identity."
+    },
+    {
+      "id": "CONTRA-03",
+      "what": "Briggs says no alarms triggered and the on-call phone never rang, but system history indicates the stairwell monitor was intentionally placed into a silenced/maintenance state.",
+      "introduced_in": "B3",
+      "resolved_in": "C2",
+      "player_inference": "The lack of a page is not proof of safety; it is evidence of deliberate suppression, shifting the case from negligence to premeditation."
+    },
+    {
+      "id": "CONTRA-04",
+      "what": "Patel states she left at 19:05 and did not return, yet the backup export shows admin-level interactions and timestamps consistent with her credentials during the murder window.",
+      "introduced_in": "B4",
+      "resolved_in": "C2",
+      "player_inference": "When physical access and admin activity converge on one credential, the murder looks like a compliance cover-up with operational execution, not a spontaneous personal attack."
+    },
+    {
+      "id": "CONTRA-05",
+      "what": "The initial report frames Ellison’s death as an accidental fall, but medical findings indicate oxygen deprivation occurred before the impact injuries.",
+      "introduced_in": "A1",
+      "resolved_in": "C1",
+      "player_inference": "If asphyxiation preceded the fall, the ‘accident’ is staged and the method required knowledge of gases or safety systems, narrowing viable suspects."
+    },
+    {
+      "id": "CONTRA-06",
+      "what": "Public messaging suggests GF-102 was withdrawn for operational reasons, but internal communications show panic about a specific QA deviation and regulator-facing audit trail.",
+      "introduced_in": "A3",
+      "resolved_in": "B7",
+      "player_inference": "The withdrawal is not a normal business pause; it is a containment move tied to documentation and liability, suggesting the victim was about to force disclosure."
+    }
+  ],
+  "evidence_chain": [
+    {
+      "step": 1,
+      "docs_needed": [
+        "A1"
+      ],
+      "reveals": "The scene is treated as a routine accident in a controlled facility, but the location and procedural details imply a more complex event than a simple fall."
+    },
+    {
+      "step": 2,
+      "docs_needed": [
+        "A2",
+        "A3"
+      ],
+      "reveals": "The death is tied to a product at its most valuable moment; multiple POIs have incentives to keep GF-102’s story intact, creating a suspect-rich environment."
+    },
+    {
+      "step": 3,
+      "docs_needed": [
+        "B1",
+        "B7"
+      ],
+      "reveals": "Ellison was actively pushing for a data-integrity review; Kline’s interview shows the financial stakes and the pressure to control disclosure timing."
+    },
+    {
+      "step": 4,
+      "docs_needed": [
+        "B2",
+        "B5"
+      ],
+      "reveals": "The building timeline is messy by design: staff piggybacking and escort exceptions create ambiguity that a prepared offender could exploit."
+    },
+    {
+      "step": 5,
+      "docs_needed": [
+        "B3",
+        "C2"
+      ],
+      "reveals": "The key systems clue is not an alarm that failed; it is an alarm placed into a silenced state, indicating deliberate suppression and planning."
+    },
+    {
+      "step": 6,
+      "docs_needed": [
+        "C1"
+      ],
+      "reveals": "Medical findings shift the case from ‘accidental fall’ to ‘staged fall after asphyxiation,’ implying a method involving inert gas or oxygen displacement."
+    },
+    {
+      "step": 7,
+      "docs_needed": [
+        "C2",
+        "A4"
+      ],
+      "reveals": "The pivot ties the silenced monitor state and nitrogen purge pathway to a specific stairwell/utility layout and a tight timestamp window, making the method reproducible and intentional."
+    },
+    {
+      "step": 8,
+      "docs_needed": [
+        "B4",
+        "B7",
+        "C2",
+        "C3"
+      ],
+      "reveals": "QA motive and system-admin capability converge: Patel is uniquely positioned to fear the audit trail and to access or influence the systems used to silence safety alerts."
+    }
+  ],
+  "envelopes": {
+    "A": {
+      "description": "Scene Setup — establish the death, the ‘miracle’ context, and the initial accident narrative.",
+      "docs": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5"
+      ]
+    },
+    "B": {
+      "description": "Contradictory Evidence — interviews and mundane logs complicate alibis and reveal access-control loopholes and compliance pressure.",
+      "docs": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7",
+        "B8"
+      ]
+    },
+    "C": {
+      "description": "The Pivot — proof the ‘accident’ was engineered by manipulating safety systems and controlling the record.",
+      "docs": [
+        "C1",
+        "C2",
+        "C3"
+      ]
+    },
+    "R": {
+      "description": "Resolution — one document per POI with guilty/not-guilty reasoning and explicit evidence references.",
+      "docs": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5"
+      ]
+    }
+  },
+  "experiential_style": "digital_corporate",
+  "emotional_arc": {
+    "envelope_A": "Curiosity and unease — a miracle drug meets a quiet death in a controlled facility, and the official story feels too tidy.",
+    "envelope_B": "Suspicion and mounting dread — everyone has a reason to lie, and the most important clues look like boring logs and compliance emails.",
+    "envelope_C": "Aha and shock — the pivot proves the accident was engineered by manipulating safety systems, turning corporate pressure into physical violence.",
+    "envelope_R": "Catharsis and clarity — the paper trail and the sensor trail align, and each POI’s lies snap into a coherent motive map."
+  },
+  "trojan_horse_docs": [
+    {
+      "doc_id": "B5",
+      "appears_as": "A routine entry/exit and badge-access log export collected ‘for completeness.’",
+      "actually_proves": "A specific after-hours access exception (escort/override behavior) aligns with the murder window, showing the killer relied on procedural loopholes to obscure identity."
+    },
+    {
+      "doc_id": "B6",
+      "appears_as": "A boring carrier-style calls/SMS log from Ellison’s phone—mostly verification codes and mundane contacts.",
+      "actually_proves": "Ellison’s last authenticated activity and phone movement patterns tighten the time-of-incapacitation and contradict assumptions about when she ‘fell.’"
+    }
+  ],
+  "social_media_plan": [
+    {
+      "platform": "X/Twitter",
+      "content_type": "thread",
+      "case_purpose": "The miracle-cure narrative goes viral; mixed praise and skepticism establish public pressure and introduce early ‘too good to be true’ suspicion."
+    },
+    {
+      "platform": "Instagram",
+      "content_type": "post",
+      "case_purpose": "A lab-adjacent post/story provides a timestamped slice of company life that lightly supports or challenges a POI’s timeline without feeling like police evidence."
+    },
+    {
+      "platform": "Reddit",
+      "content_type": "thread",
+      "case_purpose": "A whistleblower-style discussion hints at QA deviations and audit-trail edits, steering the player toward compliance motive before the pivot confirms it."
+    }
+  ],
+  "spatial_tool": {
+    "type": "floor_plan",
+    "doc_id": "A4",
+    "description": "Annotated Building 7 Level 4 + Stairwell 4B layout showing the cGMP suite entrance, utility closet with nitrogen purge hardware, oxygen monitor location, and camera coverage gaps relevant to staging."
+  },
+  "hint_system": {
+    "levels": [
+      {
+        "level": 1,
+        "label": "Nudge",
+        "hints": [
+          "Treat the ‘boring’ documents as the spine of the case: focus on exact times and system states, not just motives.",
+          "If a person says ‘nothing happened,’ ask what would prevent them from being notified even if something did happen."
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Direction",
+        "hints": [
+          "Compare what Facilities says about alarms (B3) to what the system history/backup export claims (C2).",
+          "Look for evidence of a silenced or maintenance state, not just a missing alert."
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Strong Hint",
+        "hints": [
+          "The pivot is the building-system backup: it should show an intentional suppression action and when it occurred.",
+          "Once you accept asphyxiation-before-fall (C1), the method requires access to gas/purge infrastructure shown on the floor plan (A4)."
+        ]
+      },
+      {
+        "level": 4,
+        "label": "Reveal",
+        "hints": [
+          "The killer silenced the stairwell monitor and initiated a nitrogen purge; that combination is incompatible with an accident and points to someone who understands compliance exposure and system permissions.",
+          "Patel’s role in QA gives her both the motive (audit-trail liability) and the mindset to control what gets recorded; the system timestamps and admin activity in C2/C3 should align with her claimed timeline."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "envelope": "B",
+  "documents": [
+    {
+      "doc_id": "B7",
+      "envelope": "B",
+      "sequence_number": 7,
+      "type_id": 9,
+      "type_key": "email_export",
+      "in_world_title": "Helixure Biologics — Email Thread Export: ‘GF-102 Data Integrity & Safety Review (Mon 09:00)’",
+      "owner_source": "Helixure Biologics — IT eDiscovery / Legal Hold Export (Mailbox: Mara Ellison)",
+      "timestamp": "2026-03-20T20:27:00",
+      "filename_base": "B7_Email_Thread_GF102_Data_Integrity_Safety_Review",
+      "player_purpose": "clue_delivery",
+      "reveals": "An internal email thread shows Dr. Mara Ellison scheduling a Monday 09:00 ‘Data Integrity & Safety Review’ and demanding the complete deviation folder ‘DEV-102-17’ (including raw audit-trail exports) for GF-102 Batch 14C; Evan Kline repeatedly pushes to move the discussion ‘off email,’ while QA Director Raina Patel offers only a ‘regulator-facing PDF package’ and implies she will return to site later to pull ‘clean’ exports.",
+      "player_inference": "Helixure’s public ‘operational pause’ narrative is a containment strategy: someone in QA is actively controlling what documentation exists, and Ellison’s insistence on raw audit trails created the kind of panic that can motivate murder.",
+      "document_justification": "This is the documentary bridge between the miracle-drug hype (A3) and the corporate pressure behind Ellison’s death: it resolves CONTRA-06 by proving GF-102’s withdrawal was driven by a specific, named deviation and fear of regulator review, not routine operations. It also clarifies why Patel (POI-05) would treat audit-trail metadata as existential.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-02",
+        "POI-05",
+        "POI-03"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [
+        "CONTRA-06"
+      ],
+      "depends_on": [
+        "A3",
+        "B1",
+        "B4"
+      ],
+      "production_brief_writing": {
+        "summary": "A printed ‘subpoena style’ email export of a real-looking thread from Ellison’s Helixure account. It should read like corporate email with reply headers, timestamps, and cautious language, but the buried details (deviation ID, audit-trail request, ‘off email’ pressure) should feel damning when noticed.",
+        "tone": "corporate-compliance cautious — professional phrasing, risk-avoidant hedging, and a palpable fear of anything that will be discoverable",
+        "min_words": 520,
+        "key_mandatory_line": "ELLISON (18:30): Please provide the full DEV-102-17 folder for GF-102 Batch 14C, including the raw audit-trail export and original eQMS attachments, before Monday 09:00.",
+        "key_information_to_include": [
+          "Thread subject and calendar context: ‘GF-102 Data Integrity & Safety Review (Mon 09:00)’",
+          "Mara Ellison’s direct request for a specific deviation folder (DEV-102-17) and ‘raw audit-trail’ language",
+          "Evan Kline’s attempt to control the record (e.g., ‘take this off email’ / ‘avoid loaded terms in writing’) shortly after the 20:03 investor-prep call",
+          "Raina Patel’s offer of a ‘regulator-facing PDF package’ instead of raw records, implying curation/sanitization",
+          "A brief CC list that plausibly includes Nadia Reyes and a generic Regulatory Affairs alias (e.g., regulatory@helixurebio.com)",
+          "At least one line hinting that Patel will ‘stop back in’ or ‘pull exports tonight,’ foreshadowing after-hours activity without fully proving it"
+        ],
+        "voice_notes": "Ellison writes plainly and urgently, not theatrically. Kline writes like he’s on an earnings call—careful, reframing, asking to ‘align messaging.’ Patel writes in regulatory-SOP language and avoids direct yes/no commitments; her evasiveness should feel like process talk used as a shield. Make the thread formatting authentic (From/To/CC/Date/Subject blocks, nested quoting, and an attachment list placeholder)."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,280 @@
+{
+  "telemetry": {
+    "model": "litellm/gpt52-medium",
+    "input_tokens": null,
+    "output_tokens": null
+  },
+  "case_slug": "medication-that-cures-too-well-gpt",
+  "scenes": [
+    {
+      "for_doc": "A1",
+      "location": "Helixure Biologics — Building 7, Level 4, Stairwell 4B landing (outside cGMP suite)",
+      "visual_description": "A sterile stairwell landing with painted concrete block walls, a steel handrail, and a heavy fire door marked ‘STAIR 4B.’ The space smells faintly of disinfectant and cold metal. A single security camera is mounted at the corner of the ceiling, but its view misses the landing’s far edge—an awkward pocket of shadow created by the door frame and the angle of the lens. Evidence markers and a thin red line of scene tape cut across the landing. The setting feels too controlled for an ‘accident,’ like the building itself is designed to remove surprises.",
+      "time_of_day": "Early morning, approximately 06:20 (initial response window)",
+      "lighting": "Harsh fluorescent stairwell fixtures; clinical white light with minimal shadow; flashes from responder bodycams",
+      "notable_objects": [
+        "steel stairwell fire door labeled ‘4B’",
+        "handrail and short flight of stairs leading down",
+        "scene tape and evidence markers",
+        "nearby utility-closet door (unmarked, keyed)",
+        "a visible camera housing and a suspected blind spot at the landing edge"
+      ],
+      "atmosphere": "Quiet, procedural, and unsettling—an immaculate facility treating a death like a maintenance issue until someone insists it’s not."
+    },
+    {
+      "for_doc": "A2",
+      "location": "Cambridge Police Department — Major Crimes Unit briefing room",
+      "visual_description": "A windowless conference room with a whiteboard, a corkboard, and a metal table covered in manila folders. Five POI cards are laid out in a neat grid: the victim’s corporate headshot among four dossier-style portraits. A printed timeline strip (22:39, 22:48, 23:12, 23:36, 06:14) is taped to the table edge. The room smells like coffee and toner, and the hum of fluorescent lights makes every pause feel longer.",
+      "time_of_day": "Late morning, approximately 10:30",
+      "lighting": "Flat fluorescent overhead lighting; no natural light",
+      "notable_objects": [
+        "POI sheet draft with five portrait slots",
+        "timeline strip with key timestamps",
+        "case folder labeled CPD-MCU-26-0319",
+        "highlighter marks on ‘Stairwell 4B’ references",
+        "printouts of early witness notes and facilities contact info"
+      ],
+      "atmosphere": "Methodical and tense—the kind of room where suspicion is built out of small times, small permissions, and who has reason to care about paperwork."
+    },
+    {
+      "for_doc": "A3",
+      "location": "Online — X/Twitter thread about #GF102 ‘miracle’ outcomes (captured by digital forensics)",
+      "visual_description": "A dark-mode social feed full of clipped optimism, sarcasm, and rumor. A biotech ‘miracle’ headline is screenshot-saved beside replies that read like a public brainstorm: patients cheering, skeptics demanding data, and one account dropping the kind of precise compliance vocabulary that sounds like someone with insider proximity. The thread scroll feels endless, as if the company’s story is being rewritten in real time by strangers.",
+      "time_of_day": "Morning (thread active around 09:40; capture shows a live, fast-moving feed)",
+      "lighting": "Screen glow; high-contrast dark UI",
+      "notable_objects": [
+        "hashtag #GF102 and Helixure mentions",
+        "reply with ‘QA deviation’ / ‘audit trail’ phrasing",
+        "engagement counters (likes/reposts) climbing",
+        "a screenshot timestamp/capture watermark from a forensics tool",
+        "avatars and handles that range from real names to burner accounts"
+      ],
+      "atmosphere": "A pressure cooker—public hype colliding with the uneasy sense that something this good has to have a catch."
+    },
+    {
+      "for_doc": "A4",
+      "location": "Helixure Biologics — Building 7, Level 4 (annotated floor plan context)",
+      "visual_description": "A clean, modern biotech corridor plan: straight lines, restricted doors, and labeled rooms that read like a controlled machine. Stairwell 4B sits near the cGMP suite corridor; a utility closet is tucked adjacent to the landing, easy to miss unless you already know it matters. Camera icons and shaded coverage cones are marked in pen, with one stubborn gap at the landing that looks small on paper but large in consequence.",
+      "time_of_day": "N/A (investigative exhibit; reflects fixed building layout)",
+      "lighting": "N/A (document context); implied bright corporate interior lighting",
+      "notable_objects": [
+        "Stairwell 4B landing callout",
+        "Utility Closet U-4B adjacency",
+        "O₂ monitor location note",
+        "camera coverage cones and a marked blind spot",
+        "arrowed likely walking route toward garage access"
+      ],
+      "atmosphere": "Clinical inevitability—the kind of environment where a person can be reduced to a route and a timestamp."
+    },
+    {
+      "for_doc": "A5",
+      "location": "Helixure Biologics — Building 7 exterior, Kendall Square (news photo context)",
+      "visual_description": "A modern glass-and-metal biotech building with discreet signage and a security desk visible through the lobby windows. The sky is March overcast, and the sidewalks are wet with old snow melt. People in badges pass through turnstiles without looking up. The building feels expensive, careful, and slightly aloof—the kind of place that sells certainty.",
+      "time_of_day": "Morning, overcast March light",
+      "lighting": "Natural daylight muted by clouds; cool gray tones",
+      "notable_objects": [
+        "glass facade and minimal Helixure signage",
+        "badge-controlled entry turnstiles",
+        "security camera domes under the awning",
+        "Kendall Square street details (bike racks, concrete planters)",
+        "reflections of lab lights behind the windows"
+      ],
+      "atmosphere": "Corporate triumph with a hairline fracture—an institution built to look flawless from the sidewalk."
+    },
+    {
+      "for_doc": "B1",
+      "location": "Cambridge Police Department — Interview Room 2 (Evan Kline)",
+      "visual_description": "A small, plain interview room with a bolted metal table, two chairs, and a single wall camera with a red recording light. Evan Kline sits in a suit that still looks expensive but slightly rumpled at the collar. His posture is controlled, hands folded, eyes fixed on the detective like it’s an earnings call. A printed note card with times is placed on the table, and Kline keeps glancing at it as if the right phrasing will make the timeline behave.",
+      "time_of_day": "Early afternoon, approximately 13:20",
+      "lighting": "Overhead fluorescent; flat and unforgiving",
+      "notable_objects": [
+        "bolted metal table and two chairs",
+        "wall-mounted camera with red light",
+        "paper cup of water",
+        "folder tab showing ‘KLINE, Evan (CFO)’",
+        "a handwritten timeline prompt (20:03 / 22:39)"
+      ],
+      "atmosphere": "Polished defensiveness—someone used to controlling narratives suddenly forced to answer to seconds and door readers."
+    },
+    {
+      "for_doc": "B2",
+      "location": "Cambridge Police Department — Interview Room 3 (Nadia Reyes)",
+      "visual_description": "A similar interview room, but messier: a stack of printed lab emails, a disposable coffee cup, and a tissue box pushed to the far corner. Nadia Reyes sits forward, elbows close to her body, speaking too fast. She looks like she came straight from a lab—hair pulled back, hoodie under work-appropriate layers. When the detective repeats a question, she blinks hard and backtracks, caught between what policy says and what actually happens after hours.",
+      "time_of_day": "Afternoon, approximately 15:05",
+      "lighting": "Overhead fluorescent; slightly warmer than Room 2 but still harsh",
+      "notable_objects": [
+        "printed email snippets with highlighted times",
+        "paper cup with cold coffee",
+        "tissue box",
+        "lab badge lanyard partially tucked into a pocket",
+        "a door access policy printout on the detective’s side"
+      ],
+      "atmosphere": "Nervous honesty in bursts—she’s terrified of paperwork and punishment, not skilled at concealment."
+    },
+    {
+      "for_doc": "B3",
+      "location": "Cambridge Police Department — Interview Room 1 (Tom Briggs)",
+      "visual_description": "A cramped room with a scuffed table and a clipped, administrative feel. Tom Briggs sits squared to the detective, shoulders tight. He looks like someone who lives on incident tickets: practical haircut, work shirt, tired irritation. A diagram of a paging flow is sketched on a legal pad, and Briggs keeps pointing at it—trying to make the absence of a call feel like proof.",
+      "time_of_day": "Late afternoon, approximately 17:10",
+      "lighting": "Overhead fluorescent; bright and flat",
+      "notable_objects": [
+        "legal pad with a rough paging-flow sketch",
+        "building badge reader printout references",
+        "Facilities on-call phone placed face-up",
+        "folder labeled ‘BUILDING 7 — ALARMS’",
+        "pen tapping marks near the words ‘MAINT’ and ‘SILENCE’"
+      ],
+      "atmosphere": "Defensive procedure—someone trying to keep negligence from becoming intent in the story the case will tell."
+    },
+    {
+      "for_doc": "B4",
+      "location": "Cambridge Police Department — Interview Room 2 (Raina Patel)",
+      "visual_description": "The same interview room as Kline’s, but the energy is different. Raina Patel sits upright and composed, hands still, gaze steady. Her clothes are immaculate. She speaks with the confidence of someone who believes the record can be managed—SOPs, audit trails, ‘process.’ The detective’s folder is thicker here, and Patel’s eyes flick once toward the page showing the words ‘EXPORT’ and ‘23:36,’ then back to neutral.",
+      "time_of_day": "Evening, approximately 19:05",
+      "lighting": "Overhead fluorescent; stark, with no flattering angle",
+      "notable_objects": [
+        "thick case folder with QA-related tabs",
+        "printed email header reading ‘DEV-102-17’",
+        "a timestamp list on a sticky note",
+        "water glass untouched",
+        "recording device at table edge"
+      ],
+      "atmosphere": "Chilling control—the sense that the most dangerous weapon in the room is someone’s certainty that documentation can be curated."
+    },
+    {
+      "for_doc": "B5",
+      "location": "Helixure Biologics — Building 7 security office (badge system export context)",
+      "visual_description": "A security back office with two monitors showing access-control dashboards and a printer churning out a spreadsheet-like export. The room is practical and slightly cluttered: key hooks, visitor badges, a laminated ‘ESCORT MODE’ procedure sheet. The log itself looks dead and numeric—columns of timestamps, reader names, and credential IDs—except for a handful of highlighted rows around 22:39 that suddenly make the building feel like a stage.",
+      "time_of_day": "Morning export; data covers the night of 2026-03-20 to early 2026-03-21",
+      "lighting": "Cool overhead office fluorescent; monitor glow",
+      "notable_objects": [
+        "access-control dashboard monitors",
+        "printed Lenel OnGuard-style log pages",
+        "laminated procedure card about escort exceptions",
+        "highlighter marks around ‘EXEC-0441’ and ‘ESCORT MODE ENABLED’",
+        "security badge hooks and a shared credential envelope"
+      ],
+      "atmosphere": "Bureaucratic loopholes made physical—proof that ambiguity can be built into a system on purpose."
+    },
+    {
+      "for_doc": "B6",
+      "location": "Cambridge PD — Digital forensics desk (carrier records exhibit context)",
+      "visual_description": "A desk covered in carrier printouts: dense tables of times, numbers, and abbreviations. Most rows are meaningless noise—verification codes and short calls—but three highlighted lines form a sharp corner in the timeline: a deviation-folder exchange, a last outgoing message near Stairwell 4B, then the sudden cliff of unanswered calls. The paper looks ordinary, which makes it worse.",
+      "time_of_day": "Subpoena return review (daytime)",
+      "lighting": "Desk lamp plus overhead fluorescent; warm spot lighting on papers",
+      "notable_objects": [
+        "carrier call/SMS table pages",
+        "yellow highlights on 22:06 and 23:11:52 entries",
+        "cell-site label indicating Building 7 Level 4 sector",
+        "sticky note reading ‘last activity’",
+        "evidence sleeve edges visible under pages"
+      ],
+      "atmosphere": "The quiet brutality of metadata—proof that a life can stop in a single minute without anyone hearing a sound."
+    },
+    {
+      "for_doc": "B7",
+      "location": "Helixure Biologics — corporate email thread context (Ellison’s desk / eDiscovery printout)",
+      "visual_description": "A clean email printout with reply headers stacked like a slow-moving argument: Ellison’s blunt request for the full deviation folder, Kline’s careful pressure to move ‘off email,’ Patel’s process-heavy replies offering only curated PDFs. The whole thing reads like polite corporate language, but the tension is in what’s being avoided. An attachment list placeholder sits empty, as if the most important files were never meant to exist on paper.",
+      "time_of_day": "Evening (thread active around 18:30–20:27)",
+      "lighting": "N/A (document exhibit); implied office lighting and monitor glow",
+      "notable_objects": [
+        "subject line ‘GF-102 Data Integrity & Safety Review (Mon 09:00)’",
+        "deviation ID ‘DEV-102-17’ and ‘Batch 14C’ references",
+        "phrases like ‘raw audit-trail export’ and ‘regulator-facing package’",
+        "CC line including a regulatory alias",
+        "margin highlight marks around ‘stop back in’ / ‘pull exports tonight’"
+      ],
+      "atmosphere": "Polite panic—professionals trying to keep fear inside the boundaries of email etiquette."
+    },
+    {
+      "for_doc": "B8",
+      "location": "Helixure Biologics — Building 7, Level 4 hallway near Safety Panel SP-4B (Instagram story context)",
+      "visual_description": "A glossy white hallway with clean corners and acoustic ceiling tiles. A wall-mounted safety/control panel sits in a recess, a printed label ‘SP-4B’ taped beside it. The panel’s screen shows a bold banner: ‘MAINT.’ Someone frames it like a joke—an exhausted employee’s humor—while the corridor behind them looks empty and after-hours quiet.",
+      "time_of_day": "Night, approximately 22:50",
+      "lighting": "Bright but lonely overhead corridor lighting; the panel screen adds a cold glow",
+      "notable_objects": [
+        "safety/control panel in wall recess",
+        "printed physical label ‘SP-4B’",
+        "screen banner ‘MAINT’ visible",
+        "empty corridor with restricted doors",
+        "phone UI elements of a story capture (progress bar, handle, geotag)"
+      ],
+      "atmosphere": "Dark comedy with teeth—the kind of workplace joke that becomes evidence once someone is dead."
+    },
+    {
+      "for_doc": "C1",
+      "location": "Middlesex County OCME — examination suite (forensic report context)",
+      "visual_description": "A clinical examination suite with stainless steel surfaces and bright, shadowless lighting. Paperwork is clipped to a clipboard beside a sealed evidence bag. The mood is all procedure, but the highlighted line—hypoxia before impact—turns the space into a hinge point: the moment the story becomes homicide.",
+      "time_of_day": "Afternoon, approximately 15:50 (report issued)",
+      "lighting": "Clinical overhead surgical lighting; bright and even",
+      "notable_objects": [
+        "clipboard with case number",
+        "sealed evidence bags",
+        "toxicology table printout",
+        "injury diagram reference sheet",
+        "highlighted ‘Cause of Death’ line"
+      ],
+      "atmosphere": "Cold certainty—the kind of evidence that doesn’t negotiate."
+    },
+    {
+      "for_doc": "C2",
+      "location": "Helixure Biologics — Facilities/BMS server room and DR node export context",
+      "visual_description": "A locked facilities systems room with server racks and a dedicated terminal labeled B7-BMS-DR01. Fans whirr constantly. An engineer prints an append-only event log that reads like pure machinery: device IDs, state changes, timestamps down to the second. One line in the middle is the betrayal—O2-MON-4B switched to MAINT/SILENCE—followed by the nitrogen purge and the O2 drop that looks like a cliff.",
+      "time_of_day": "Late morning (log extracted for investigators)",
+      "lighting": "Cool LED rack lights and overhead fluorescents; monitor glow",
+      "notable_objects": [
+        "server rack labeled with Building 7 identifiers",
+        "terminal monitor showing event log rows",
+        "printed append-only export pages",
+        "integrity hash/checksum line on header",
+        "highlighted rows at 22:48, 23:12, and 23:36"
+      ],
+      "atmosphere": "Relentless and inhuman—the building telling the truth in a language that doesn’t care who it ruins."
+    },
+    {
+      "for_doc": "C3",
+      "location": "Helixure Biologics — EHS dashboard export context (primary UI print-to-PDF)",
+      "visual_description": "A polished internal dashboard view, the kind executives like: a tidy summary box, a small line chart, a reassuring classification label. The chart shows a dip in oxygen that is framed as brief and self-resolving. The export timestamp sits in the header like a signature. The document feels like a story someone wrote for the record—too clean for what actually happened.",
+      "time_of_day": "Late night, approximately 23:36 (generated)",
+      "lighting": "N/A (dashboard PDF context); implied office monitor glow",
+      "notable_objects": [
+        "report ID EHS-4B-20260320-2336",
+        "small O2 line chart with a visible dip",
+        "classification ‘TRANSIENT SENSOR FAULT’",
+        "‘Generated by’ field with a named user role",
+        "footer disclaimer about snapshot state"
+      ],
+      "atmosphere": "Corporate sanitization—the calm language of a cover story produced minutes after something lethal."
+    },
+    {
+      "for_doc": "R1",
+      "location": "Cambridge PD — case closure paperwork context (Disposition Addendum)",
+      "visual_description": "A neat stack of closure memos with exhibit citations penciled in the margins. The final timeline is written in plain language now: silenced monitor, purge, collapse, staged fall, export. The pages are ordinary, but the way they’re stapled together feels like a verdict.",
+      "time_of_day": "Afternoon, approximately 15:10",
+      "lighting": "Office fluorescent with a desk lamp pooling light on the memo header",
+      "notable_objects": [
+        "case disposition memo with exhibit references (C1, C2, C3)",
+        "staples and evidence tabs",
+        "handwritten note: ‘Homicide determination’",
+        "timeline strip finalized",
+        "detective’s signature line"
+      ],
+      "atmosphere": "Catharsis through paperwork—the moment the case becomes a story the system can act on."
+    },
+    {
+      "for_doc": "R5",
+      "location": "Cambridge PD — prosecutor-facing probable cause packet assembly",
+      "visual_description": "A thicker, more formal packet with a cover sheet marked ‘PROBABLE CAUSE.’ Printed logs and charts are clipped behind the narrative summary. The same timestamps appear again and again, each time harder to deny. A single name sits at the center, not because it’s dramatic, but because the records refuse to point anywhere else.",
+      "time_of_day": "Late afternoon, approximately 16:02",
+      "lighting": "Neutral office lighting; bright enough for photocopy clarity",
+      "notable_objects": [
+        "probable cause summary cover sheet",
+        "exhibit list (B5, B7, C1, C2, C3)",
+        "paper clips and evidence tabs",
+        "highlighted timestamps in multiple documents",
+        "a sealed evidence envelope on the side of the table"
+      ],
+      "atmosphere": "A quiet win—the kind that feels less like triumph and more like inevitability once the machine logs are read correctly."
+    }
+  ]
+}

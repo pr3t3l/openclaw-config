@@ -1,0 +1,1117 @@
+{
+  "slug": "the-influencer-who-erased-herself",
+  "documents": [
+    {
+      "doc_id": "A1",
+      "envelope": "A",
+      "sequence_number": 1,
+      "type_id": 5,
+      "type_key": "official_memo",
+      "in_world_title": "Miami Police Department — Case Initiation Memo: Suspicious Death at Brickell Sky Residences",
+      "owner_source": "Miami Police Department, Homicide Division",
+      "timestamp": "2026-03-10T09:45:00",
+      "filename_base": "A1_official_memo_case_initiation",
+      "player_purpose": "case_introduction",
+      "reveals": "Camila Reyes (28, lifestyle influencer) was found unresponsive in the rooftop pool at 1401 Brickell Ave at 6:42 AM on March 10, 2026 by building concierge Rodrigo Santos. The memo classifies the death as suspicious, notes that her digital accounts were wiped overnight, and assigns the case to Detective unit for investigation.",
+      "player_inference": "This is not an accident or suicide — the simultaneous deletion of all digital accounts alongside the body discovery points to someone covering their tracks.",
+      "document_justification": "Official memos are the canonical case-opening document in physical detective kits — they frame the institutional reality, establish timeline anchor, and immediately signal foul play.",
+      "pois_referenced": [
+        "POI-01"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [],
+      "production_brief_writing": {
+        "summary": "Miami PD internal memo initiating the Camila Reyes suspicious death investigation, summarizing the discovery, preliminary facts, and case assignment.",
+        "tone": "Bureaucratic, clipped, institutional. Passive voice throughout. The horror of the situation is understated by the clinical language.",
+        "min_words": 250,
+        "key_mandatory_line": "At 06:42 hours on 10 March 2026, building concierge Rodrigo Santos reported an unresponsive female subject located face-down in the rooftop amenity pool at 1401 Brickell Avenue — simultaneously, automated notifications from three digital platforms flagged account-deletion events linked to the subject's verified creator accounts.",
+        "key_information_to_include": [
+          "Body discovered by concierge Rodrigo Santos at 6:42 AM during morning amenity check",
+          "Subject identified as Camila Reyes, 28, 3.2M Instagram / 4.1M TikTok creator",
+          "Rooftop CCTV offline for scheduled maintenance at time of discovery",
+          "Three platform account-deletion events auto-flagged by digital monitoring systems overnight",
+          "Valentina Ochoa called non-emergency line at 9:15 AM — escalated case to homicide",
+          "Case assigned to Homicide Division, case number to be populated"
+        ],
+        "voice_notes": "Detective memo voice — precise, no adjectives, just facts. Use MPD memo letterhead tone. Include TO/FROM/RE/DATE header fields. Camila's name should appear once early; thereafter 'the subject.'"
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false
+    },
+    {
+      "doc_id": "A2",
+      "envelope": "A",
+      "sequence_number": 2,
+      "type_id": 1,
+      "type_key": "poi_sheet",
+      "in_world_title": "Persons of Interest — Case #MIA-2026-0310-H",
+      "owner_source": "Miami Police Department, Homicide Division",
+      "timestamp": "2026-03-10T11:00:00",
+      "filename_base": "A2_poi_sheet_persons_of_interest",
+      "player_purpose": "context_setting",
+      "reveals": "Four living persons of interest are identified: Derek Voss (talent manager, had manager-level admin access to all Camila's accounts), Natasha Kline (NovaSkin brand rep who sent a contract default notice days before death), Marcus Delray (on-off romantic partner seen on CCTV the night of death), and Valentina Ochoa (best friend who filed the missing person alert and has access to Camila's backup Gmail).",
+      "player_inference": "Every POI had some form of access to Camila's world — financial, digital, physical, or personal. The friend who raised the alarm also had account access. The manager had full admin credentials.",
+      "document_justification": "The POI sheet is mandatory second document per pipeline spec — players need faces, names, and connections before reading any evidence.",
+      "pois_referenced": [
+        "POI-02",
+        "POI-03",
+        "POI-04",
+        "POI-05"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1"
+      ],
+      "production_brief_writing": {
+        "summary": "Standard MPD POI classification sheet with photo, bio, and case connection for all four living persons of interest.",
+        "tone": "Clinical, official law enforcement dossier style. Each entry neutral but detail-rich.",
+        "min_words": 100,
+        "key_mandatory_line": "All four subjects had direct access to the victim's digital platforms, physical location, or financial records within the 72 hours preceding her death.",
+        "key_information_to_include": [
+          "POI-02 Derek Voss: 37, talent manager, had retained admin OAuth tokens after verbal termination on March 9",
+          "POI-03 Natasha Kline: 32, NovaSkin brand partnerships rep, confirmed alibi 8-11 PM at dinner",
+          "POI-04 Marcus Delray: 31, videographer/editor, seen on lobby CCTV at 9:47 PM on March 9",
+          "POI-05 Valentina Ochoa: 27, best friend/makeup artist, received forwarded deletion email at 1:47 AM"
+        ],
+        "voice_notes": "Each POI entry should feel like it was pulled from a law enforcement database — height, weight, DOB, occupation. Connection to case field should be two sentences: factual and slightly ominous."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Four POI portrait images. POI-02 Derek Voss: corporate headshot style, 37yo white male, tailored blazer, polished but slightly predatory smile. POI-03 Natasha Kline: professional corporate photo, 32yo woman, sharp blazer, NovaSkin aesthetic. POI-04 Marcus Delray: creative professional, 31yo Black male, relaxed but guarded expression, camera equipment visible in background. POI-05 Valentina Ochoa: warm but worried expression, 27yo Latina woman, makeup artist aesthetic.",
+      "image_requirements": [
+        "POI-02 mugshot/portrait",
+        "POI-03 portrait",
+        "POI-04 portrait",
+        "POI-05 portrait"
+      ],
+      "audio": false
+    },
+    {
+      "doc_id": "A3",
+      "envelope": "A",
+      "sequence_number": 3,
+      "type_id": 7,
+      "type_key": "evidence_mosaic",
+      "in_world_title": "Evidence Mosaic — Courier Intake Slip & Building Package Log: February 28, 2026",
+      "owner_source": "Brickell Sky Residences Building Management / MPD Evidence Collection",
+      "timestamp": "2026-02-28T14:30:00",
+      "filename_base": "A3_evidence_mosaic_courier_intake_slip",
+      "player_purpose": "red_herring",
+      "reveals": "A NovaSkin PR package courier intake slip for Unit 2204 dated February 28 is countersigned by 'D. Voss — Building Liaison' — but Camila had no knowledge of this visit. The building's authorized visitor log for that date contains no entry for Derek Voss, placing him at the building on a visit he concealed from everyone.",
+      "player_inference": "Derek Voss made an unauthorized visit to Camila's building weeks before the murder — his 'building liaison' signature gives him apparent legitimacy, but his absence from the authorized visitor log proves the visit was concealed. The question is: why was he there?",
+      "document_justification": "This is Trojan horse document #1 — appears to be routine brand logistics admin but contains the critical premeditation link. Players who cross-reference this with C1 will realize Derek used this February 28 visit to scout the CCTV maintenance schedule.",
+      "pois_referenced": [
+        "POI-02"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-07"
+      ],
+      "resolves_contradictions": [],
+      "depends_on": [],
+      "production_brief_writing": {
+        "summary": "Evidence mosaic of the NovaSkin courier intake slip for February 28, a building package receipt log, and a visitor sign-in comparison showing Voss's unauthorized presence at the Brickell Sky Residences building — three weeks before the murder.",
+        "tone": "Neutral evidence collection — three distinct physical item panels. The intake slip looks mundane at first glance; the anomaly is the mismatch between the signature and the visitor log gap.",
+        "min_words": 150,
+        "key_mandatory_line": "Intake slip counter-signature reads: 'D. Voss — Building Liaison, Voss Creative Management LLC' — however, February 28 authorized visitor log page contains no corresponding entry for this individual, indicating an unregistered and unacknowledged visit to the building.",
+        "key_information_to_include": [
+          "NovaSkin PR package addressed to Unit 2204 — Camila Reyes, delivered Feb 28",
+          "Signature block on intake slip: 'D. Voss — Building Liaison, Voss Creative Management LLC'",
+          "Building authorized visitor log for Feb 28 — no 'Voss' entry",
+          "Package contents listed: NovaSkin campaign media kit, product samples (3 units)",
+          "Relevance tag for each item showing why it matters forensically"
+        ],
+        "voice_notes": "Three evidence mosaic panels. Panel 1: the courier intake slip with handwritten signature visible. Panel 2: the building package receipt log with Feb 28 entries. Panel 3: the visitor log page with visible gaps. An analyst note in red reads: 'Signature on intake — not in visitor log. Cross-reference maintenance schedule.'"
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Three-panel evidence mosaic showing physical documents: courier intake slip with 'D. Voss' signature, building package log, and visitor sign-in sheet showing blank where Voss should be. Slightly crumpled, scan quality.",
+      "image_requirements": [
+        "courier intake slip scan",
+        "visitor log page with gap"
+      ],
+      "audio": false
+    },
+    {
+      "doc_id": "A4",
+      "envelope": "A",
+      "sequence_number": 4,
+      "type_id": 19,
+      "type_key": "floor_plan",
+      "in_world_title": "Brickell Sky Residences — Floor 22 & Rooftop Level: MPD Forensic Site Map",
+      "owner_source": "Miami PD Forensics Unit / Brickell Sky Residences Building Management",
+      "timestamp": "2026-03-10T14:00:00",
+      "filename_base": "A4_floor_plan_brickell_sky_residences",
+      "player_purpose": "context_setting",
+      "reveals": "The building layout shows Unit 2204, elevator banks, and service stairwell access points on floor 22 connecting to the rooftop pool deck. The annotated map marks camera positions — the rooftop camera zone is marked OFFLINE (scheduled maintenance), and the service stairwell is the only route from floor 22 to the rooftop that bypasses all active cameras.",
+      "player_inference": "Whoever moved the body to the rooftop pool had to use the service stairwell — the elevator camera was operational. This means the killer knew the rooftop camera was offline in advance.",
+      "document_justification": "Spatial tool is REQUIRED for NORMAL tier. The floor plan is essential for players to understand how the body was moved without being captured on camera — it transforms the abstract crime into a concrete spatial puzzle.",
+      "pois_referenced": [
+        "POI-01"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1"
+      ],
+      "production_brief_writing": {
+        "summary": "MPD forensic site map of floor 22 and rooftop level showing camera zones, stairwell access, and annotated crime scene points — establishing the only camera-free route from the apartment to the rooftop pool.",
+        "tone": "Technical, forensic. Architectural precision. Annotations are written in detective shorthand — clipped, urgent.",
+        "min_words": 100,
+        "key_mandatory_line": "Service stairwell (marked SW-22-R) provides unmonitored access between Floor 22 and Rooftop Pool Deck — only route not covered by active CCTV at time of incident.",
+        "key_information_to_include": [
+          "Floor 22: Unit 2204 layout, elevator bank with camera (operational), service stairwell access (SW-22-R, no camera)",
+          "Rooftop level: pool deck, camera zone marked OFFLINE — scheduled maintenance window March 9-11",
+          "Body discovery location marked with forensic marker",
+          "Parking garage access from lobby level shown for cross-reference",
+          "Legend: camera operational (green), camera offline (red X), body location (star), access points"
+        ],
+        "voice_notes": "The plan image should look like a hand-annotated architectural blueprint — blue lines, red forensic annotations, sticky note callouts. Include compass rose and scale bar. Annotations should feel like they were added by a detective on-scene."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Annotated architectural floor plan of Brickell luxury high-rise floor 22 and rooftop level. Shows Unit 2204, elevator banks, service stairwell SW-22-R (highlighted as camera-free route), rooftop pool, camera positions (one marked OFFLINE in red), and forensic discovery markers. Blueprint aesthetic with police forensic annotations overlaid in red.",
+      "image_requirements": [
+        "floor plan with camera annotations",
+        "service stairwell highlighted"
+      ],
+      "audio": false
+    },
+    {
+      "doc_id": "A5",
+      "envelope": "A",
+      "sequence_number": 5,
+      "type_id": 8,
+      "type_key": "entry_exit_log",
+      "in_world_title": "Brickell Sky Residences — Concierge Visitor & Access Log: March 9–10, 2026",
+      "owner_source": "Brickell Sky Residences, Front Desk Concierge",
+      "timestamp": "2026-03-10T08:00:00",
+      "filename_base": "A5_entry_exit_log_concierge_access",
+      "player_purpose": "clue_delivery",
+      "reveals": "The manual concierge log shows Marcus Delray signing in at 9:47 PM and out at 10:06 PM on March 9. Notably, there is NO entry for Derek Voss — yet the separate electronic keycard access report (appended) shows a guest access code was triggered at 11:14 PM at the main entrance, issued to 'NovaSkin Courier / contract delivery.'",
+      "player_inference": "Derek Voss deliberately bypassed the manual concierge sign-in to avoid creating a paper record of his presence — the electronic keycard system is his only forensic trace in the building that night.",
+      "document_justification": "The entry/exit log introduces CONTRA-02 (Voss not in manual log but electronic record shows his entry) and CONTRA-05 (Marcus's lobby camera vs his stated purpose). Two contradictions in one document makes it high value.",
+      "pois_referenced": [
+        "POI-02",
+        "POI-04"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-02",
+        "CONTRA-05"
+      ],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1"
+      ],
+      "production_brief_writing": {
+        "summary": "Brickell Sky Residences manual concierge visitor log for March 9-10 night, showing all logged entries and the suspicious gap where Derek Voss should appear — plus the electronic keycard access appendix.",
+        "tone": "Official log format — rows and columns, handwritten signatures. The absence of a record is the most important content.",
+        "min_words": 100,
+        "key_mandatory_line": "No manual sign-in entry recorded for any visitor between 22:15 and 06:00 — however, electronic access control log (Appendix A) confirms guest access code activation at 23:14 at Main Entrance, credential: NovaSkin Courier/Contract Del.",
+        "key_information_to_include": [
+          "Full log entries for evening of March 9 — routine residents and delivery personnel",
+          "Marcus Delray entry: 21:47, 'Content Crew,' signed in, exited 22:06",
+          "Gap: no visitor entries between 22:15 and building lockout at midnight",
+          "Electronic keycard appendix: 23:14 guest code activation — 'NovaSkin Courier / contract delivery' — Main Entrance",
+          "Concierge supervisor signature on log",
+          "Concierge note: 'Lobby camera timestamp verified by security supervisor'"
+        ],
+        "voice_notes": "The log should look hand-filled with at least 12-15 entries across the full day. The critical gap is late evening. An MPD analyst has highlighted the 23:14 electronic entry in yellow with a handwritten note: 'No manual log match — electronic only.'"
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Scan of building concierge log book — ruled paper, handwritten entries, supervisor signature at bottom. The late-night section has a visible gap in entries. A stapled appendix page shows the electronic keycard access printout with the 11:14 PM entry highlighted.",
+      "image_requirements": [
+        "building entrance photo or card reader"
+      ],
+      "audio": false
+    },
+    {
+      "doc_id": "A6",
+      "envelope": "A",
+      "sequence_number": 6,
+      "type_id": 9,
+      "type_key": "email_export",
+      "in_world_title": "NovaSkin Contract Default Notice — Email from Natasha Kline to Camila Reyes, March 7, 2026",
+      "owner_source": "NovaSkin Cosmetics / Digital forensic export from Camila Reyes's Gmail",
+      "timestamp": "2026-03-07T14:22:00",
+      "filename_base": "A6_email_export_novaskin_default_notice",
+      "player_purpose": "red_herring",
+      "reveals": "Natasha Kline sent a formal 'Contract Default Notice' to Camila on March 7, citing a 'brand safety clause' violation due to unapproved personal content. The email threatens contract termination and financial penalties totaling up to $85,000. The aggressive legal language establishes a financial motive and Natasha's access to Camila's professional obligations.",
+      "player_inference": "Natasha had both motive (protecting a $340k campaign) and extensive knowledge of Camila's content schedule and personal life through brand integration planning docs — she is a credible red herring suspect worth investigating before her alibi clears her.",
+      "document_justification": "Social media plan designates A6 as the NovaSkin email platform document. The email_export template delivers maximum institutional menace with full email headers establishing authenticity. Natasha is the designed red herring and this email is her entry point.",
+      "pois_referenced": [
+        "POI-03",
+        "POI-01"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [],
+      "production_brief_writing": {
+        "summary": "Formal NovaSkin contract default notice from Natasha Kline threatening $85k penalties and contract termination, sent three days before Camila's death — plants Natasha as a compelling suspect before her alibi clears her.",
+        "tone": "Corporate-legal aggression masked by professional language. Sentences are carefully constructed to sound reasonable while being deeply threatening. Natasha's voice: precise, controlled, slightly cold.",
+        "min_words": 250,
+        "key_mandatory_line": "Per Section 14.3(b) of the Reyes Digital LLC x NovaSkin Brand Partnership Agreement (executed February 14, 2026), Camila Reyes is in material breach of the Brand Safety Clause — unauthorized personal content published March 4-6 constitutes grounds for immediate contract default and recovery of advance payments.",
+        "key_information_to_include": [
+          "From: natasha.kline@novaskin.com / To: camila@reyesdigital.com",
+          "Subject: FORMAL NOTICE — Contract Default: Brand Safety Clause Violation",
+          "References specific content published March 4-6 as violating brand safety clauses",
+          "Threatens recovery of up to $85,000 in advance payments already disbursed",
+          "States NovaSkin reserves the right to pursue additional damages",
+          "CC'd to 'Legal Affairs' — showing this is official escalation",
+          "Signature block: Natasha Kline, Sr. Brand Partnerships Manager, NovaSkin Cosmetics"
+        ],
+        "voice_notes": "The email tone should feel like it was written by someone who enjoys having leverage. Very controlled. Note that Natasha CC'd Legal but did NOT CC Derek Voss — this detail matters because it implies she communicated with Camila directly without going through the manager first. Include a formal email signature block with NovaSkin logo reference."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Email client screenshot showing Natasha Kline's formal contract default notice email, with full headers visible, NovaSkin corporate email aesthetic, legal language in body, signature block with NovaSkin branding.",
+      "image_requirements": [
+        "device screenshot of email client"
+      ],
+      "audio": false
+    },
+    {
+      "doc_id": "A7",
+      "envelope": "A",
+      "sequence_number": 7,
+      "type_id": 2,
+      "type_key": "social_posts",
+      "in_world_title": "Account Deletion Archive — Camila Reyes Digital Erasure Documentation",
+      "owner_source": "Platform automated notifications / Fan-captured screenshots / Valentina Ochoa forwarded email",
+      "timestamp": "2026-03-10T02:00:00",
+      "filename_base": "A7_social_posts_account_deletion_archive",
+      "player_purpose": "tension_builder",
+      "reveals": "A collage of account deletion notices, fan-captured 'last posts,' and an automated email notification screenshot showing a platform deletion confirmation forwarded to Camila's backup Gmail at 1:47 AM on March 10. The timestamp proves the account wipes occurred while Camila was already dead in the pool — she could not have deleted them herself.",
+      "player_inference": "The 1:47 AM deletion notification timestamp combined with the 6:42 AM body discovery destroys the voluntary-disappearance theory — Camila could not have deleted her own accounts after she was already dead. Someone with retained admin credentials acted after her death.",
+      "document_justification": "This is Trojan horse document #2 — appears to be fan archaeology grieving Camila's digital absence, but the 1:47 AM forwarded email timestamp embedded in one screenshot is the critical timeline anchor that eliminates suicide and voluntary disappearance.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-05"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-06"
+      ],
+      "resolves_contradictions": [],
+      "depends_on": [],
+      "production_brief_writing": {
+        "summary": "Social post collage document showing platform deletion notices, fan screenshots of Camila's last posts, and the automated email notification screenshot with the 1:47 AM timestamp — the hidden forensic anchor that proves account deletion happened after Camila was already dead.",
+        "tone": "Fragmented — a mix of fan grief, platform boilerplate, and one devastating data point. The emotional register is public mourning; the forensic value is hidden in metadata.",
+        "min_words": 150,
+        "key_mandatory_line": "Forwarded notification received 01:47:22 — Subject: 'Your linked account [camilareyes_official] content has been permanently removed' — Original automated send: 01:47:09. Forward rule: ALL MAIL → camilareyes.backup@gmail.com.",
+        "key_information_to_include": [
+          "Instagram 'Account No Longer Available' error page screenshot (fan-captured)",
+          "TikTok 'This account has been removed' screen (fan-captured, 12:22 AM timestamp visible)",
+          "Fan posts on Twitter: '@camilareyes where are you??' — posted 8 AM March 10",
+          "Forwarded email notification screenshot: platform deletion confirmation at 1:47 AM",
+          "Email forward rule visible in metadata: camilareyes.backup@gmail.com",
+          "One fan screenshot with Camila's last Instagram post: NovaSkin promo content, March 8"
+        ],
+        "voice_notes": "This document should feel like a detective printout of screenshot evidence assembled by Valentina Ochoa when she reported to police — a mix of her own screenshots and platform-generated notifications. The 1:47 AM email screenshot is the most important panel. It should look slightly blurry/zoomed as if captured from a phone screen."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Multi-panel social media evidence collage: Instagram 'account not found' error, TikTok account removal screen, Twitter fan posts, and a phone screenshot of the forwarded deletion email notification at 1:47 AM showing the forward rule. Mobile UI aesthetic, slightly distressed scan quality.",
+      "image_requirements": [
+        "social media platform screenshots",
+        "email notification screenshot"
+      ],
+      "audio": false
+    },
+    {
+      "doc_id": "B1",
+      "envelope": "B",
+      "sequence_number": 1,
+      "type_id": 11,
+      "type_key": "interrogation_transcript",
+      "in_world_title": "Interview Transcript — Derek Voss, Talent Manager (POI-02)",
+      "owner_source": "Miami Police Department, Homicide Division",
+      "timestamp": "2026-03-10T15:30:00",
+      "filename_base": "B1_interrogation_transcript_derek_voss",
+      "player_purpose": "clue_delivery",
+      "reveals": "Derek Voss claims he last saw Camila at a lunch meeting that 'ran to 7 PM' on March 9. He says he attended the NovaSkin dinner from 8 PM to midnight. He insists their professional relationship ended amicably and denies any dispute over commissions. He claims he was home and asleep by midnight — with no explanation for why the manager OAuth token performed deletion actions at 12:22 AM.",
+      "player_inference": "Derek's timeline is internally inconsistent — no restaurant record supports a 7 PM lunch, and his midnight alibi is directly contradicted by the platform deletion timestamps. He is hiding the 1 PM confrontation that was his real motive trigger.",
+      "document_justification": "B1 is Derek's interview — the primary suspect's first formal statement. It introduces CONTRA-01 (his false lunch timeline) and primes the CONTRA-03 alibi gap for resolution in C3.",
+      "pois_referenced": [
+        "POI-02"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-01"
+      ],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A2",
+        "A5"
+      ],
+      "production_brief_writing": {
+        "summary": "Derek Voss's police interview — calm and professional on the surface but full of strategic omissions, a false timeline, and a barely concealed contempt for Camila's financial concerns.",
+        "tone": "Derek is controlled, practiced, slightly condescending. He treats the detective like a minor inconvenience. He volunteers small concessions to appear cooperative while concealing the 1 PM confrontation. Under pressure, he pivots to legal language.",
+        "min_words": 350,
+        "key_mandatory_line": "I was at the dinner until midnight, officer. I'm sure you can verify that with NovaSkin — it's a brand event, there were photographers. After that I went straight home. I haven't been inside Camila's building in weeks.",
+        "key_information_to_include": [
+          "Derek admits he was Camila's manager for 4 years but claims the relationship ended professionally, not personally",
+          "He claims last contact was a 'late lunch on March 9 that ran to around 7' — vague on the restaurant name",
+          "States he was at Zuma Miami for the NovaSkin dinner from 8 PM until midnight",
+          "When asked about the commission structure, deflects to 'contractual matters I'd prefer to discuss with counsel present'",
+          "When confronted with the access code guest entry at 11:14 PM, claims he 'may have sent a courier' but denies being there himself",
+          "When asked about the OAuth token deletion actions, shows apparent surprise: 'I don't understand how that system works'"
+        ],
+        "voice_notes": "Derek has a habit of using the detective's name early in answers — 'Detective, I appreciate your thoroughness...' — it's a manipulation technique. He pauses before answering financial questions. His slip (the_slip) is mentioning the 'maintenance window' for the building's cameras without being asked — a detail only someone who had studied the building schedule would know."
+      },
+      "production_brief_interview": {
+        "subject_poi_id": "POI-02",
+        "phases": [
+          {
+            "phase": 1,
+            "label": "Establishing rapport and baseline",
+            "description": "Detective opens with neutral questions about Derek's professional relationship with Camila. He is cooperative, expansive, paints himself as Camila's advocate and career builder. Establishes his false version of events before being confronted."
+          },
+          {
+            "phase": 2,
+            "label": "The timeline probe",
+            "description": "Detective asks about March 9 movements. Derek gives the false '7 PM lunch that ran late' story. Detective notes vagueness about the restaurant. Derek pivots to the NovaSkin dinner as his alibi anchor."
+          },
+          {
+            "phase": 3,
+            "label": "Financial confrontation",
+            "description": "Detective presents documents showing commission discrepancies. Derek goes cold and formal — 'I'd prefer to have counsel present for any discussion of contract terms.' His body language shifts. He stops using the detective's name."
+          },
+          {
+            "phase": 4,
+            "label": "The access code and OAuth pressure",
+            "description": "Detective presents the 11:14 PM electronic keycard entry. Derek claims he 'may have sent a courier with paperwork.' When the OAuth token deletion logs are mentioned, Derek expresses performed shock. The slip occurs here."
+          }
+        ],
+        "min_exchanges": 18,
+        "the_lie": "Derek claims he was at the NovaSkin dinner from 8 PM until midnight and went straight home — his actual departure was 10:52 PM (75-minute gap before Camila's death) and he entered her building at 11:14 PM.",
+        "the_slip": {
+          "what": "Derek mentions that 'the rooftop camera system was down for maintenance around that time anyway' — this was not mentioned by the detective and is not public information.",
+          "how": "Detective asks 'Were you aware of the camera status in the building that evening?' and Derek says 'The rooftop system was on a maintenance window — those things are scheduled months in advance' before catching himself."
+        }
+      },
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Derek Voss mugshot/portrait for interview header — professional headshot of a polished, 37yo white male talent manager. Well-groomed, blazer, controlled expression that reads as confident bordering on arrogant.",
+      "image_requirements": [
+        "POI-02 portrait for interview header"
+      ],
+      "audio": false
+    },
+    {
+      "doc_id": "B2",
+      "envelope": "B",
+      "sequence_number": 2,
+      "type_id": 11,
+      "type_key": "interrogation_transcript",
+      "in_world_title": "Interview Transcript — Natasha Kline, NovaSkin Senior Brand Partnerships Manager (POI-03)",
+      "owner_source": "Miami Police Department, Homicide Division",
+      "timestamp": "2026-03-10T17:00:00",
+      "filename_base": "B2_interrogation_transcript_natasha_kline",
+      "player_purpose": "tension_builder",
+      "reveals": "Natasha Kline confirms she was at the NovaSkin pre-launch dinner at Zuma Miami from 8 PM but states the event 'wound down around 11:30.' She confirms Derek Voss left the dinner early — 'I assumed he had a call.' Her access to Camila's calendar through the brand content app is confirmed. Her contract default notice is discussed, and she frames it as standard procedure.",
+      "player_inference": "Natasha is the witness who inadvertently breaks Derek's alibi — she confirms he left the dinner before 11 PM, destroying his 'midnight' claim. Her own alibi (8 PM dinner, others saw her) checks out. She is a credible red herring but clears.",
+      "document_justification": "Natasha's interview serves dual purpose: it eliminates her as the primary suspect while simultaneously providing the corroboration that destroys Derek's alibi for the 10:52 PM departure from Zuma.",
+      "pois_referenced": [
+        "POI-03",
+        "POI-02"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-03"
+      ],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A2",
+        "A6"
+      ],
+      "production_brief_writing": {
+        "summary": "Natasha Kline's police interview — she is cooperative and precise, treats this as a professional matter, and inadvertently confirms Derek left the dinner early while establishing her own solid alibi.",
+        "tone": "Natasha is crisp, efficient, and professional — the same controlled manner as her email. She's not hiding anything material but she is protecting NovaSkin's brand interests in her answers. Slightly guarded about the default notice, insisting it was 'standard contract compliance.'",
+        "min_words": 350,
+        "key_mandatory_line": "Derek? He left before dessert. I remember because I wanted to go over the morning timeline with him and he said he had a call. That was maybe — 10:45, 11 o'clock? The rest of us stayed until the restaurant closed.",
+        "key_information_to_include": [
+          "Natasha confirms NovaSkin dinner at Zuma Miami, 8 PM to approximately 11:30 PM",
+          "Confirms Derek Voss left 'before dessert' — around 10:45-11 PM",
+          "Confirms she remained at the dinner with two other NovaSkin colleagues until restaurant closed",
+          "Addresses the contract default notice: standard procedure, triggered automatically by content analytics",
+          "Reveals she had access to Camila's shared content calendar through brand content management app",
+          "Confirms Camila did not attend the dinner — sent an apology text at 7:45 PM",
+          "When asked about the financial relationship, refers all questions to NovaSkin legal"
+        ],
+        "voice_notes": "Natasha is the most truthful interview subject but she answers only what is asked and nothing more. Her slip is revealing that Derek looked 'tense all evening' at the dinner — she noticed something was off with him but didn't think it was her business to mention it initially."
+      },
+      "production_brief_interview": {
+        "subject_poi_id": "POI-03",
+        "phases": [
+          {
+            "phase": 1,
+            "label": "Professional context",
+            "description": "Detective establishes Natasha's role at NovaSkin and her professional relationship with Camila. Natasha is cooperative and precise."
+          },
+          {
+            "phase": 2,
+            "label": "March 9 alibi verification",
+            "description": "Detective asks about the NovaSkin dinner. Natasha provides a solid, detailed account — her alibi is verifiable. Key moment: she mentions Derek leaving early."
+          },
+          {
+            "phase": 3,
+            "label": "The default notice and access",
+            "description": "Detective presents the March 7 contract default email. Natasha defends it as standard procedure. When asked about her access to Camila's calendar, she confirms it through the brand content app."
+          },
+          {
+            "phase": 4,
+            "label": "Observations about Derek",
+            "description": "Detective circles back to Derek's demeanor at the dinner. Natasha reveals she noticed he seemed distracted and tense — volunteering a key observational detail that corroborates the timeline."
+          }
+        ],
+        "min_exchanges": 18,
+        "the_lie": "Natasha initially says Derek left 'around 11:30' before correcting herself to 'before dessert, maybe 10:45-11' — she initially softened the departure time to protect the event's professional image.",
+        "the_slip": {
+          "what": "Natasha mentions that Derek seemed 'relieved when Camila sent her apologies for the dinner — like he was glad she wouldn't be there' — an observation that implies he knew the dinner was a cover, not a conflict.",
+          "how": "When detective asks 'How did the team react when Camila didn't show?' Natasha says Derek's reaction seemed unusual — 'most managers would be embarrassed, but he looked... I don't know, less stressed? That struck me.'"
+        }
+      },
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Natasha Kline portrait for interview header — 32yo woman, professional headshot, NovaSkin corporate aesthetic, sharp blazer, controlled expression. Not threatening, but precise.",
+      "image_requirements": [
+        "POI-03 portrait for interview header"
+      ],
+      "audio": false
+    },
+    {
+      "doc_id": "B3",
+      "envelope": "B",
+      "sequence_number": 3,
+      "type_id": 11,
+      "type_key": "interrogation_transcript",
+      "in_world_title": "Interview Transcript — Marcus Delray, Videographer & Content Editor (POI-04)",
+      "owner_source": "Miami Police Department, Homicide Division",
+      "timestamp": "2026-03-11T10:00:00",
+      "filename_base": "B3_interrogation_transcript_marcus_delray",
+      "player_purpose": "tension_builder",
+      "reveals": "Marcus claims he entered the building at 9:47 PM only to pick up a hard drive left at the front desk. However, when confronted with lobby CCTV evidence showing him walking past the front desk directly toward the elevator, his story falls apart. He eventually admits he went up to Camila's unit briefly and had an argument — but he left before 10:06 PM, over an hour before the estimated time of death.",
+      "player_inference": "Marcus lied about his reason for being in the building, but his 10:06 PM exit time clears him from the window of death. His emotional reaction and profit-share stake make him a strong red herring, but the timeline exonerates him.",
+      "document_justification": "Marcus's interview resolves CONTRA-05 — his story about the hard drive is exposed as false, but the CCTV timestamps clear him from the murder window. He becomes a confirmed red herring.",
+      "pois_referenced": [
+        "POI-04"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [
+        "CONTRA-05"
+      ],
+      "depends_on": [
+        "A2",
+        "A5"
+      ],
+      "production_brief_writing": {
+        "summary": "Marcus Delray's interview — emotional, defensive, caught in a small lie about his building visit, but ultimately cleared by his 10:06 PM exit timestamp. His emotional state makes him the most compelling red herring.",
+        "tone": "Marcus is not a practiced liar — he's someone who had a private argument with Camila and is embarrassed/grieving/scared. His voice cracks under pressure. He gets defensive when his story is challenged with evidence. When the exit timestamp clears him, his relief is palpable — and pitiable.",
+        "min_words": 350,
+        "key_mandatory_line": "I was there for like fifteen minutes. We argued. I left. I was not going to — I would never — she was alive when I left. The cameras have to show that. Check the exit time. Please check the exit time.",
+        "key_information_to_include": [
+          "Marcus initially claims he entered only to pick up a hard drive from the front desk",
+          "Detective presents CCTV showing him going past the desk toward the elevator",
+          "Marcus breaks and admits he went up to Camila's unit — apartment 2204",
+          "He confirms they argued about her decision to stop featuring him in content and the profit-share agreement impact",
+          "He is adamant he left the building at 10:06 PM — confirmed by CCTV exit timestamp",
+          "He had a key to the unit but used the elevator (camera functional) — placing him clearly on record",
+          "He did not go to the rooftop and was unaware of the pool area layout"
+        ],
+        "voice_notes": "Marcus speaks in incomplete sentences when emotional. He uses 'like' and 'you know' as verbal tics. When the detective shows him the CCTV screenshot, there's a long silence before he speaks. His slip is mentioning that 'Camila had changed the lock code on the roof access pad last month' — implying he knew about a roof access code, which surprises the detective, though it is ultimately cleared as innocuous."
+      },
+      "production_brief_interview": {
+        "subject_poi_id": "POI-04",
+        "phases": [
+          {
+            "phase": 1,
+            "label": "Initial statement — the cover story",
+            "description": "Marcus presents his story about picking up a hard drive. He is slightly nervous but sticks to the story. Detective takes notes without revealing the CCTV evidence yet."
+          },
+          {
+            "phase": 2,
+            "label": "CCTV confrontation",
+            "description": "Detective presents the CCTV still showing Marcus bypassing the front desk. Marcus pauses, shifts — then admits he went upstairs."
+          },
+          {
+            "phase": 3,
+            "label": "The argument confession",
+            "description": "Marcus describes the argument with Camila about his role in her content and the profit-share implications. Emotional, genuine, and clearly grieving."
+          },
+          {
+            "phase": 4,
+            "label": "Exit timeline and clearance",
+            "description": "Marcus insists on his 10:06 PM exit. Detective confirms with CCTV data. The tension breaks as his alibi is established for the critical window."
+          }
+        ],
+        "min_exchanges": 18,
+        "the_lie": "Marcus claims he entered the building only to pick up a hard drive at the front desk — he actually went upstairs to Camila's unit for an emotional confrontation about being cut from her content.",
+        "the_slip": {
+          "what": "Marcus references that 'Camila changed the roof access pad code last month' — a specific building security detail not disclosed to the detective, suggesting prior awareness of the building's access control points.",
+          "how": "When detective asks if Marcus was familiar with the building layout, he says 'I knew my way around — I'd shot content up on the pool deck before. She changed the roof pad code in February, I remember being annoyed about it.'"
+        }
+      },
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Marcus Delray portrait for interview header — 31yo Black male, videographer aesthetic, slightly disheveled from emotional distress, guarded expression, creative professional energy. Not criminal-looking, but clearly under stress.",
+      "image_requirements": [
+        "POI-04 portrait for interview header"
+      ],
+      "audio": false
+    },
+    {
+      "doc_id": "B4",
+      "envelope": "B",
+      "sequence_number": 4,
+      "type_id": 11,
+      "type_key": "interrogation_transcript",
+      "in_world_title": "Interview Transcript — Valentina Ochoa, Best Friend & Former Collaborator (POI-05)",
+      "owner_source": "Miami Police Department, Homicide Division",
+      "timestamp": "2026-03-10T13:00:00",
+      "filename_base": "B4_interrogation_transcript_valentina_ochoa",
+      "player_purpose": "clue_delivery",
+      "reveals": "Valentina explains how she received the forwarded platform deletion email at 1:47 AM on March 10 and called police at 9:15 AM after Camila missed the NovaSkin prep call. She reveals she was helping Camila research new management agencies and knew about the revenue discrepancy concerns. She confirms Camila had shared her backup Gmail credentials with her 'in case of emergency.' She explicitly names Derek Voss as the person Camila most feared would retaliate.",
+      "player_inference": "Valentina is the unwitting pivot witness — her forwarded email establishes the post-mortem account deletion timeline and her knowledge of Camila's agency-switch research directly implicates Derek as the one with the most to lose.",
+      "document_justification": "Valentina's interview introduces the emotional core of the case — she knew Camila best and provides the human context around the digital evidence. Her testimony anchors the 1:47 AM timestamp as the key forensic anchor.",
+      "pois_referenced": [
+        "POI-05",
+        "POI-01",
+        "POI-02"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A2",
+        "A7"
+      ],
+      "production_brief_writing": {
+        "summary": "Valentina Ochoa's interview — grief-raw and genuine, she provides the emotional context for Camila's final weeks, confirms the forwarded deletion email timeline, and points toward Derek Voss as the person Camila feared.",
+        "tone": "Valentina speaks quickly, moves between grief and urgency. She knows what the forwarded email means and is frustrated the police don't already have Derek in custody. Her love for Camila is evident in every answer. Occasional tearful pauses.",
+        "min_words": 350,
+        "key_mandatory_line": "She told me if anything ever happened to her, to check that backup address. She said Derek controlled everything — the accounts, the contracts, the money. She was scared of what he'd do when she officially switched agencies.",
+        "key_information_to_include": [
+          "Valentina describes receiving the forwarded deletion email at 1:47 AM and initially thinking it was a platform error",
+          "Confirms she called police at 9:15 AM after Camila missed the 8 AM NovaSkin launch prep call",
+          "Reveals she had been helping Camila research new management agencies for 6 weeks",
+          "Describes Camila's specific revenue discrepancy concern — 'she printed out a spreadsheet, she had highlighted every overage'",
+          "States Camila explicitly feared Derek's reaction to being fired — 'he controlled everything digital'",
+          "Confirms the backup Gmail setup: 'She set it up herself, a forwarding rule. She called it her black box.'",
+          "Describes Camila as frightened but determined in their final conversation on March 8"
+        ],
+        "voice_notes": "Valentina is the most emotionally authentic voice in the case. She uses Camila's name often and naturally — she still speaks of her in the present tense before catching herself. Her anger at Derek is obvious. Her slip is mentioning that Camila had emailed a forensic accountant on March 7 — a detail not in any other document, which the detective follows up on."
+      },
+      "production_brief_interview": {
+        "subject_poi_id": "POI-05",
+        "phases": [
+          {
+            "phase": 1,
+            "label": "The discovery and the call",
+            "description": "Valentina explains how she received the forwarded email, her initial confusion, and her decision to call police when Camila missed the NovaSkin call. Emotional opening."
+          },
+          {
+            "phase": 2,
+            "label": "The last weeks — agency research and the discrepancy",
+            "description": "Valentina describes helping Camila research new management, the spreadsheet of commission overages, and Camila's growing fear."
+          },
+          {
+            "phase": 3,
+            "label": "The backup email system",
+            "description": "Detective asks about the backup Gmail. Valentina explains Camila set it up herself and called it 'her black box' — confirming she never expected Valentina to receive a deletion notice through it, only personal backups."
+          },
+          {
+            "phase": 4,
+            "label": "Derek Voss — the fear",
+            "description": "Detective asks Valentina to describe her perception of Derek. She provides specific, damning details about his control over Camila's digital life and Camila's explicit fear."
+          }
+        ],
+        "min_exchanges": 18,
+        "the_lie": "Valentina initially says she 'had no access' to Camila's accounts — she later clarifies she had the backup Gmail login credentials, which she minimized initially because she worried it made her look suspicious.",
+        "the_slip": {
+          "what": "Valentina mentions Camila had emailed 'a forensic accountant in Coral Gables' on March 7 to start an audit review — a document not yet in the detective's evidence file.",
+          "how": "When asked how serious Camila was about the agency switch, Valentina says 'She wasn't just planning it, she'd already emailed a forensic accountant. She texted me the confirmation. That was March 7th.'"
+        }
+      },
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Valentina Ochoa portrait for interview header — 27yo Latina woman, warm but visibly distressed, makeup artist aesthetic (subtle professional makeup), genuine grief evident in expression. Not a suspect portrait — more like a formal witness photo.",
+      "image_requirements": [
+        "POI-05 portrait for interview header"
+      ],
+      "audio": false
+    },
+    {
+      "doc_id": "B5",
+      "envelope": "B",
+      "sequence_number": 5,
+      "type_id": 13,
+      "type_key": "lab_report",
+      "in_world_title": "Financial Forensics Analysis Report — Reyes Digital LLC Revenue Statements 2024–2026",
+      "owner_source": "MPD Financial Crimes Unit / Forensic Accountant Referral",
+      "timestamp": "2026-03-12T16:00:00",
+      "filename_base": "B5_lab_report_financial_forensics_reyes_digital",
+      "player_purpose": "clue_delivery",
+      "reveals": "The financial forensics report reveals Derek Voss systematically billed 22% commission on brand deals instead of the contracted 15%, routing the 7% surplus to VCM Holdings LLC — a shell company he controlled. Total unauthorized transfers: $187,000 over 18 months. A $64,000 wire transfer on March 10 at 1:30 AM was labeled 'NovaSkin contract termination fee' — but NovaSkin records show no such termination was executed.",
+      "player_inference": "The $187,000 embezzlement confirms Derek's financial motive — Camila's agency switch would have triggered an audit exposing the scheme. The fraudulent March 10 post-death transfer proves he exploited her accounts after killing her.",
+      "document_justification": "The financial forensics report is the motive document — it quantifies what Derek stood to lose and proves the post-death theft. Uses lab_report template for clinical authority appropriate to financial forensics.",
+      "pois_referenced": [
+        "POI-02",
+        "POI-01"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-04"
+      ],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A2",
+        "B1"
+      ],
+      "production_brief_writing": {
+        "summary": "Financial forensics lab report analyzing Reyes Digital LLC revenue statements, identifying $187k in unauthorized commission transfers to VCM Holdings LLC and a suspicious $64k post-death wire.",
+        "tone": "Clinical, precise, financial forensics language. Numbers, percentages, transaction IDs. The conclusions are devastating but delivered in the driest possible professional register.",
+        "min_words": 400,
+        "key_mandatory_line": "Analysis of Reyes Digital LLC bank records for the period January 2024 through March 2026 reveals systematic commission over-billing of 7.0 percentage points above the contracted rate of 15.0%, totaling $187,224.18 in unauthorized disbursements to VCM Holdings LLC — a registered Florida LLC with sole director: Derek Aaron Voss.",
+        "key_information_to_include": [
+          "Contracted commission rate: 15% per Voss Creative Management LLC engagement agreement",
+          "Actual billed rate: 22% — consistent across all 23 brand deal transactions reviewed",
+          "Total unauthorized surplus: $187,224.18 routed to VCM Holdings LLC",
+          "VCM Holdings LLC registration: sole director Derek Aaron Voss, registered address: Fort Lauderdale FL",
+          "March 10 wire: $64,000 from Reyes Digital LLC to VCM Holdings LLC, memo: 'NovaSkin contract termination fee'",
+          "NovaSkin contract status on March 10: ACTIVE — no termination executed per NovaSkin records",
+          "Forensic accountant signature and methodology certification"
+        ],
+        "voice_notes": "This reads like an IRS audit combined with a fraud investigation referral. Include specific transaction dates and amounts for at least 5 transactions to make the pattern unmistakable. The report should feel like the accountant is building a criminal referral case, not just flagging irregularities."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Financial document scan showing a spreadsheet excerpt with commission rate comparison table, highlighting the 15% vs 22% discrepancy across multiple transactions, with total overcharge calculation visible.",
+      "image_requirements": [
+        "financial records scan or spreadsheet screenshot"
+      ],
+      "audio": false
+    },
+    {
+      "doc_id": "B6",
+      "envelope": "B",
+      "sequence_number": 6,
+      "type_id": 10,
+      "type_key": "forensic_report",
+      "in_world_title": "Forensic Autopsy Report — Camila Reyes, Case #MIA-2026-0310-H",
+      "owner_source": "Miami-Dade County Medical Examiner's Office",
+      "timestamp": "2026-03-11T14:00:00",
+      "filename_base": "B6_forensic_report_autopsy_camila_reyes",
+      "player_purpose": "revelation",
+      "reveals": "The autopsy confirms Camila Reyes died from manual strangulation (asphyxiation), not drowning. The body showed petechial hemorrhaging, hyoid bone fracture, and bilateral neck contusions consistent with manual compression — but no water in the lungs, proving she was already dead before being placed in the pool. Estimated time of death: 11:30 PM–12:00 AM on March 9-10.",
+      "player_inference": "The body was staged in the pool after death — this was a deliberate staging of an accidental drowning. The estimated time of death window (11:30 PM–midnight) precisely aligns with Derek's known building entry at 11:14 PM.",
+      "document_justification": "The forensic autopsy is the definitive document that reframes the entire case — it transforms 'suspicious death' into confirmed murder and eliminates accident, suicide, and drowning as explanations.",
+      "pois_referenced": [
+        "POI-01"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1",
+        "A4"
+      ],
+      "production_brief_writing": {
+        "summary": "Autopsy report for Camila Reyes confirming manual strangulation as cause of death and staged drowning, with time of death window pointing directly at Derek Voss's building entry time.",
+        "tone": "Clinical passive voice, forensic precision. The horror is in the clinical language — 'bilateral manual compression' and 'staged submersion' delivered without emotion. This document should be deeply unsettling in its detachment.",
+        "min_words": 500,
+        "key_mandatory_line": "Absence of pulmonary edema and absence of diatoms in lung parenchyma confirm subject was not alive at time of submersion — manner of death is homicide; cause of death is asphyxia by manual strangulation.",
+        "key_information_to_include": [
+          "Petechial hemorrhaging of bilateral conjunctivae — consistent with acute asphyxiation",
+          "Hyoid bone fracture consistent with manual laryngeal compression",
+          "Bilateral anterior neck contusions — hand-width measurement approximately 18-20 cm",
+          "No pulmonary edema or diatoms — subject was NOT alive when placed in pool",
+          "Estimated time of death: 23:30–24:00 on March 9, 2026 (body temperature analysis)",
+          "Body discovery time: 06:42 — estimated 6+ hours in pool post-mortem",
+          "Body moved: scuff marks on heels and poolside concrete consistent with body drag via service stairwell",
+          "Toxicology: pending 48-hour analysis — no immediate indicators of chemical incapacitation"
+        ],
+        "voice_notes": "The examiner is Dr. Carmen Valdes, Miami-Dade County ME. The report follows the standard forensic autopsy format: External Examination, Internal Examination, Cause of Death, Manner of Death, Time of Death Estimation. Include a body diagram reference noting the injury markers. The 'staged submersion' conclusion should land in the middle of the report — not at the end."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Clinical body diagram (front and back outline) with forensic injury markers — petechial hemorrhaging marked on eye areas, hyoid fracture marked at throat, contusion measurements at neck, heel abrasions marked at feet. Black and white line-art medical illustration with examiner annotations.",
+      "image_requirements": [
+        "body diagram with injury markers",
+        "forensic autopsy imagery"
+      ],
+      "audio": false
+    },
+    {
+      "doc_id": "C1",
+      "envelope": "C",
+      "sequence_number": 1,
+      "type_id": 7,
+      "type_key": "evidence_mosaic",
+      "in_world_title": "Evidence Mosaic — Building Maintenance Log & CCTV Schedule: Brickell Sky Residences, Feb–March 2026",
+      "owner_source": "Brickell Sky Residences Building Management / MPD Evidence Collection",
+      "timestamp": "2026-02-28T09:00:00",
+      "filename_base": "C1_evidence_mosaic_maintenance_log_cctv_schedule",
+      "player_purpose": "revelation",
+      "reveals": "The building maintenance log shows the rooftop CCTV was scheduled offline for maintenance from March 9-11, 2026. The log is annotated: on February 28, the maintenance schedule board was accessed by a 'building liaison from Voss Creative Management LLC' who coordinated a courier delivery. This is the document that proves Derek Voss knew about the CCTV offline window six weeks before the murder.",
+      "player_inference": "Derek did not stumble upon the camera-free window by chance — he specifically identified it during his February 28 building visit and used it to plan the murder. This is premeditation, not opportunism.",
+      "document_justification": "C1 resolves CONTRA-07 (the unauthorized February 28 building visit) by establishing WHY Derek was there — he was studying the maintenance schedule to identify the CCTV gap. This is the premeditation anchor document.",
+      "pois_referenced": [
+        "POI-02"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [
+        "CONTRA-07"
+      ],
+      "depends_on": [
+        "A3",
+        "A4"
+      ],
+      "production_brief_writing": {
+        "summary": "Building maintenance log mosaic showing the scheduled CCTV offline window and the February 28 schedule-board access by Voss Creative Management's 'building liaison' — the premeditation proof document confirming Derek planned this weeks in advance.",
+        "tone": "Official building management records — dry, bureaucratic, entirely routine-looking. The horror is that the maintenance schedule is standard information that Derek actively sought out and weaponized.",
+        "min_words": 150,
+        "key_mandatory_line": "Maintenance Schedule Access Record — Feb 28, 14:37: Building Liaison (Voss Creative Management LLC) accessed schedule board in building management office during package courier coordination. Rooftop Camera System (CAMS-4 through CAMS-7) scheduled offline: March 9-11 for firmware update.",
+        "key_information_to_include": [
+          "Maintenance calendar showing CAMS-4 through CAMS-7 (rooftop cluster) offline March 9-11",
+          "Building management office access log for February 28 showing 'Voss Creative Management LLC representative' accessed schedule board at 2:37 PM",
+          "Building supervisor note: 'Representative asked about camera coverage schedules during package coordination'",
+          "Cross-reference marker to A3 (courier intake slip) showing same February 28 date",
+          "Other maintenance entries showing this was a routine scheduled event not a reactive fix"
+        ],
+        "voice_notes": "Three panels: the maintenance calendar with the March 9-11 CCTV offline window highlighted, the schedule-board access log showing Voss's representative, and a building supervisor's incident report note from March 10 retrospectively flagging the access. The retrospective nature of the supervisor's concern — written AFTER the murder was discovered — adds authenticity."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Three-panel mosaic: building maintenance calendar with March 9-11 block highlighted in red (rooftop camera offline), schedule board access log with 'VCM LLC Building Liaison' entry highlighted, and building supervisor's retrospective note. Official paper documents, slightly worn, with MPD evidence stickers.",
+      "image_requirements": [
+        "maintenance schedule documents",
+        "building management records scan"
+      ],
+      "audio": false
+    },
+    {
+      "doc_id": "C2",
+      "envelope": "C",
+      "sequence_number": 2,
+      "type_id": 2,
+      "type_key": "social_posts",
+      "in_world_title": "Platform OAuth Token Audit Report — Forensic Digital Evidence Export",
+      "owner_source": "MPD Digital Forensics Unit / Platform API Records",
+      "timestamp": "2026-03-10T12:00:00",
+      "filename_base": "C2_social_posts_oauth_token_audit_report",
+      "player_purpose": "revelation",
+      "reveals": "A forensic export of Instagram and TikTok account management API logs shows Voss Creative Management LLC OAuth token performing content deletion, account deactivation, and API revocation actions beginning at 12:22 AM on March 10. IP geolocation for the actions: Brickell neighborhood, Miami — consistent with mobile data, not home WiFi. The $64,000 wire transfer platform action is also logged at 1:30 AM from the same token session.",
+      "player_inference": "Derek Voss used his retained manager OAuth credentials to delete Camila's accounts from his phone while driving away from her building — the IP geolocation, mobile data signature, and token identity converge to name him as the digital eraser.",
+      "document_justification": "C2 is the pivot document that resolves CONTRA-06 (OAuth deletions vs. Derek's 'home asleep' claim) and directly ties Derek to the account wipes via retained manager credentials. The social_posts template renders the digital forensics export as a series of API log panels.",
+      "pois_referenced": [
+        "POI-02"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [
+        "CONTRA-01",
+        "CONTRA-04",
+        "CONTRA-06"
+      ],
+      "depends_on": [
+        "A7",
+        "B1",
+        "B5"
+      ],
+      "production_brief_writing": {
+        "summary": "Forensic OAuth token audit report showing Voss Creative Management LLC's retained manager credentials performing all account deletion actions at 12:22 AM from a Brickell-neighborhood mobile IP — the digital fingerprint that names Derek Voss as Camila's killer.",
+        "tone": "Technical forensic export — API log format, timestamps to the millisecond, geolocation data. Rendered as a digital forensics interface screenshot. Cold, precise, irrefutable.",
+        "min_words": 200,
+        "key_mandatory_line": "Token ID: VCM_MGMT_OAUTH_7741 [Voss Creative Management LLC] — Session initiated 00:22:14 UTC-4, IP: 172.16.88.204 (Mobile carrier: T-Mobile, Cell tower: Brickell Ave / SE 8th St, Miami FL) — Total actions logged: 847 API calls over 68-minute session.",
+        "key_information_to_include": [
+          "Token identifier: VCM_MGMT_OAUTH_7741 — registered to Voss Creative Management LLC",
+          "Session start: 12:22 AM, March 10 — from mobile data connection (not home WiFi)",
+          "Cell tower geolocation: Brickell Ave / SE 8th St — consistent with leaving building parking garage",
+          "Actions: Instagram content deletion (847 assets), account deactivation, API token revocation",
+          "TikTok parallel session at 12:38 AM — same token, same cell tower ping",
+          "Wire transfer authorization at 1:30 AM from creator management platform — VCM token session",
+          "Derek Voss's home WiFi (previously obtained warrant) shows NO device activity from 11 PM onward"
+        ],
+        "voice_notes": "This document should look like a forensic digital evidence export displayed in a law enforcement system — dark interface, log format, timestamps in military time, color-coded action types. The cell tower geolocation map (Brickell neighborhood) should be visible as a secondary panel. An analyst has highlighted the token identifier in yellow and written 'HOME WIFI DARK = MOBILE ONLY.'"
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Digital forensics interface showing OAuth token audit log — dark UI, timestamp columns, action type columns (DELETE, DEACTIVATE, REVOKE), IP geolocation panel showing Brickell neighborhood map with cell tower ping. Professional law enforcement forensics tool aesthetic.",
+      "image_requirements": [
+        "forensic digital evidence interface screenshot",
+        "geolocation map panel"
+      ],
+      "audio": false
+    },
+    {
+      "doc_id": "C3",
+      "envelope": "C",
+      "sequence_number": 3,
+      "type_id": 7,
+      "type_key": "evidence_mosaic",
+      "in_world_title": "Evidence Mosaic — Parking Garage CCTV Stills & Restaurant Departure Records: March 9–10, 2026",
+      "owner_source": "Brickell Sky Residences Building Security / Zuma Miami Restaurant / MPD Digital Forensics",
+      "timestamp": "2026-03-10T02:00:00",
+      "filename_base": "C3_evidence_mosaic_parking_garage_cctv_restaurant_records",
+      "player_purpose": "revelation",
+      "reveals": "Three evidence panels: (1) Zuma Miami restaurant seating log showing Derek Voss's table departure at 10:52 PM — 75 minutes earlier than his claimed 'midnight' exit, leaving him unaccounted for during Camila's death window. (2) Parking garage CCTV still from Brickell Sky Residences showing Derek's vehicle (2022 black BMW M4, plate FL-3AQR, registered VCM Holdings LLC) exiting at 12:15 AM. (3) Cell tower records confirming his phone's Brickell location at 12:22 AM when account deletions began.",
+      "player_inference": "Derek's alibi has a 75-minute gap from 10:52 PM to midnight that precisely covers his 11:14 PM building entry and the estimated time of death. His parking garage exit at 12:15 AM is the moment he began deleting accounts from his phone. The alibi is destroyed.",
+      "document_justification": "C3 is the case-breaker — it resolves CONTRA-02, CONTRA-03, and provides the final physical evidence linking Derek to the building during the murder window. The parking garage footage that was noted as 'recovered later' in the case plan delivers here.",
+      "pois_referenced": [
+        "POI-02"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [
+        "CONTRA-02",
+        "CONTRA-03"
+      ],
+      "depends_on": [
+        "A5",
+        "B1",
+        "B2",
+        "C2"
+      ],
+      "production_brief_writing": {
+        "summary": "Three-panel evidence mosaic: restaurant departure log showing Derek left at 10:52 PM (not midnight), parking garage CCTV still of his BMW exiting at 12:15 AM, and cell tower records placing him in Brickell when account deletions began — the final convergence that destroys his alibi.",
+        "tone": "Evidence collection — three discrete, irrefutable physical records assembled by MPD. Each panel is a different source but they converge on one conclusion: Derek's alibi is false and his physical movements are now fully documented.",
+        "min_words": 200,
+        "key_mandatory_line": "Zuma Miami table log — Table 14 (Voss party): departure stamped 22:52. Parking garage camera — Brickell Sky Residences, Level P1, Camera C: 2022 BMW M4 (FL-3AQR, registered VCM Holdings LLC) exits 00:15, March 10.",
+        "key_information_to_include": [
+          "Panel 1: Zuma Miami restaurant departure record — Table 14, Derek Voss, departure 10:52 PM, confirmed by table server Alejandra Reyes (different person, coincidental name noted)",
+          "Panel 2: Parking garage CCTV still — timestamp 00:15:44, Derek's BMW M4 visible, plate FL-3AQR confirmed by DMV records as VCM Holdings LLC vehicle",
+          "Panel 3: Cell carrier records — phone associated with Derek Voss account, Brickell cell tower ping at 00:22, consistent with driving south on Brickell Ave toward Coconut Grove",
+          "Timeline overlay: 22:52 dinner departure → 23:14 building entry (electronic log) → 00:15 parking garage exit → 00:22 account deletion begins",
+          "MPD annotation: '75-minute gap between dinner departure and parking garage exit — covers entire death window'"
+        ],
+        "voice_notes": "The three panels should feel like they were assembled by a detective who is laying the trap shut. The CCTV still is grainy but the plate is visible. The restaurant departure record has a handwritten server note. The cell tower record is a phone carrier printout. Together they form the physical timeline that destroys Derek's alibi completely."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Three-panel evidence mosaic: (1) restaurant table departure log scan with 10:52 PM highlighted, (2) grainy parking garage CCTV still showing black BMW M4, timestamp 00:15:44 visible, (3) cell carrier tower record printout with Brickell Ave tower highlighted. MPD evidence stickers on each panel.",
+      "image_requirements": [
+        "CCTV still of BMW in parking garage",
+        "restaurant departure record",
+        "cell tower record"
+      ],
+      "audio": false
+    },
+    {
+      "doc_id": "R1",
+      "envelope": "R",
+      "sequence_number": 1,
+      "type_id": 5,
+      "type_key": "official_memo",
+      "in_world_title": "Case Resolution Summary — Derek Voss (POI-02): GUILTY",
+      "owner_source": "Miami Police Department, Homicide Division",
+      "timestamp": "2026-03-13T10:00:00",
+      "filename_base": "R1_official_memo_resolution_derek_voss",
+      "player_purpose": "resolution",
+      "reveals": "Derek Voss is confirmed as the perpetrator. The resolution memo details the convergence of motive (embezzlement exposure via pending agency switch), means (retained OAuth credentials + guest access code + prior knowledge of CCTV maintenance window), and opportunity (documented 11:14 PM building entry, 75-minute alibi gap, 12:15 AM parking garage exit). Arrest warrant issued March 13, 2026.",
+      "player_inference": "Every element of the case — financial, digital, and physical — converges on Derek Voss. His attempt to use Camila's own digital infrastructure to erase her failed because the automated email forwarding rule she had put in place as a precaution outlasted him.",
+      "document_justification": "R1 is the guilty-verdict document for the culprit — mandatory resolution envelope first document confirming the murder and naming Derek as the killer with full evidence summary.",
+      "pois_referenced": [
+        "POI-02",
+        "POI-01"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "B1",
+        "B5",
+        "C1",
+        "C2",
+        "C3"
+      ],
+      "production_brief_writing": {
+        "summary": "MPD case resolution memo confirming Derek Voss as the perpetrator, summarizing all evidence categories and announcing the arrest warrant. Also closes the case file on victim Camila Reyes — her proactive digital security setup was the fail-safe that caught her killer.",
+        "tone": "Official, authoritative, final. The institutional satisfaction of a closed case. Every sentence refers to a specific piece of evidence. The weight of the fraud and the murder are treated with equal gravity.",
+        "min_words": 300,
+        "key_mandatory_line": "The preponderance of forensic, digital, and physical evidence establishes beyond reasonable doubt that Derek Aaron Voss committed the murder of Camila Reyes on March 9–10, 2026 and subsequently exploited his retained digital access to her accounts to conceal the crime and effect post-mortem financial theft of $64,000.",
+        "key_information_to_include": [
+          "Motive: $187,224 embezzlement scheme facing imminent exposure through pending agency switch audit",
+          "Means: Retained VCM OAuth token credentials performing all deletion actions; guest access code for building entry",
+          "Prior knowledge: February 28 building visit established CCTV maintenance window — confirms premeditation",
+          "Opportunity: 11:14 PM building entry (electronic log) covering estimated 11:30 PM–midnight death window",
+          "Post-death actions: $64,000 wire transfer and account deletions performed from mobile device, Brickell location, 12:22 AM",
+          "Arrest warrant issued March 13, 2026 — charges: Murder in the First Degree, Financial Fraud",
+          "Reference: contradictions CONTRA-01 through CONTRA-07 each resolved by the evidence"
+        ],
+        "voice_notes": "This document should feel like the official close-out of the case. It does not editorialize — it simply lists evidence with case document references. But the cumulative weight of the evidence list is devastating. A detective's handwritten note at the bottom: 'She set up that email forward for exactly this reason. She was right to be afraid.'"
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false
+    },
+    {
+      "doc_id": "R2",
+      "envelope": "R",
+      "sequence_number": 2,
+      "type_id": 5,
+      "type_key": "official_memo",
+      "in_world_title": "Case Resolution Summary — Natasha Kline (POI-03): NOT GUILTY",
+      "owner_source": "Miami Police Department, Homicide Division",
+      "timestamp": "2026-03-13T10:00:00",
+      "filename_base": "R2_official_memo_resolution_natasha_kline",
+      "player_purpose": "resolution",
+      "reveals": "Natasha Kline is cleared. Her alibi — confirmed presence at Zuma Miami from 8 PM with two NovaSkin colleagues until the restaurant closed at 11:30 PM — is corroborated by restaurant records and witness statements. She had no access to Camila's residential building or digital account credentials. The contract default notice, while aggressive, was standard NovaSkin legal procedure triggered by automated content analytics.",
+      "player_inference": "Natasha was a compelling red herring — financial motive, aggressive legal action, and access to Camila's calendar — but the verified alibi and absence of technical means eliminate her. Her inadvertent testimony about Derek's early dinner departure was the most valuable contribution to the case.",
+      "document_justification": "R2 clears POI-03 with specific evidence references — mandatory resolution doc for each living POI.",
+      "pois_referenced": [
+        "POI-03",
+        "POI-02"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A6",
+        "B2"
+      ],
+      "production_brief_writing": {
+        "summary": "MPD resolution memo clearing Natasha Kline with full alibi documentation and evidence review — noting her inadvertent key testimony about Derek's dinner departure that helped break the case.",
+        "tone": "Official and measured. Natasha is cleared without apology for suspecting her. A professional assessment of a credible suspect who did not commit the crime.",
+        "min_words": 200,
+        "key_mandatory_line": "Alibi corroborated: Natasha Kline confirmed at Zuma Miami from 20:00 to 23:30 by restaurant table log, server witness statement, and independent NovaSkin colleague corroboration — no physical access to victim's residence or digital accounts established.",
+        "key_information_to_include": [
+          "Alibi confirmed: Zuma Miami, 8 PM to 11:30 PM, multiple corroborating witnesses",
+          "No digital access: Kline had no credentials for Camila's personal accounts or building access code",
+          "Contract default notice: confirmed as standard NovaSkin procedure per compliance review",
+          "Her testimony regarding Derek Voss's early dinner departure (10:52 PM) was key corroborating evidence",
+          "NovaSkin brand relationship — financial motive noted but insufficient without means or opportunity"
+        ],
+        "voice_notes": "Neutral, factual resolution. Note that Kline cooperated fully with the investigation. A brief mention that her observation about Derek's 'relieved' demeanor when Camila cancelled the dinner was retrospectively significant."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false
+    },
+    {
+      "doc_id": "R3",
+      "envelope": "R",
+      "sequence_number": 3,
+      "type_id": 5,
+      "type_key": "official_memo",
+      "in_world_title": "Case Resolution Summary — Marcus Delray (POI-04): NOT GUILTY",
+      "owner_source": "Miami Police Department, Homicide Division",
+      "timestamp": "2026-03-13T10:00:00",
+      "filename_base": "R3_official_memo_resolution_marcus_delray",
+      "player_purpose": "resolution",
+      "reveals": "Marcus Delray is cleared. CCTV footage confirms his exit from the building at 10:06 PM — more than 75 minutes before the estimated time of death. His apartment key gave him no rooftop access; the roof requires a separate access code. His lie about the hard drive pickup is noted as obstruction, but his emotional argument with Camila was unrelated to her death. His profit-share stake and emotional state were compelling motive indicators, but opportunity was definitively eliminated.",
+      "player_inference": "Marcus was the most emotionally compelling suspect — he lied, had financial and personal motive, and was physically in the building. But the CCTV timestamps are definitive, and his clearance is both correct and deeply humanizing.",
+      "document_justification": "R3 clears POI-04 — mandatory resolution doc. His clearance is the most satisfying because it requires trusting the CCTV evidence over his suspicious behavior.",
+      "pois_referenced": [
+        "POI-04",
+        "POI-01"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A5",
+        "B3"
+      ],
+      "production_brief_writing": {
+        "summary": "MPD resolution memo clearing Marcus Delray, confirming his 10:06 PM exit alibi, noting his false cover story about the hard drive, and acknowledging financial and personal motive that was defeated by definitively clear opportunity evidence.",
+        "tone": "Measured, slightly human. The detective writing this one may have suspected Marcus longest — the clearing has a note of reluctant conviction rather than satisfied elimination.",
+        "min_words": 200,
+        "key_mandatory_line": "CCTV timestamp confirms Marcus Delray exited Brickell Sky Residences at 22:06:31 — 84 minutes prior to the earliest estimated time of death. He is cleared on the basis of opportunity; the false cover story regarding the package pickup is noted for obstruction review.",
+        "key_information_to_include": [
+          "CCTV exit timestamp: 22:06 — 84 minutes before earliest estimated time of death",
+          "No rooftop access: Marcus had apartment key but not roof access code (changed February — confirmed building management)",
+          "False cover story: stated he was retrieving a package; CCTV showed he bypassed desk. Obstruction noted.",
+          "Motive acknowledged: profit-share stake worth estimated $40-60k annually; planned removal from content",
+          "The emotional argument with Camila (admitted in interview) was unrelated to death — last physical contact confirmed 10:06 PM",
+          "Marcus has been cooperative post-initial interview; obstruction charge decision deferred"
+        ],
+        "voice_notes": "This resolution has a note of tragedy — Marcus was genuinely in love with Camila in a complicated way and his grief is real. The memo is professional but the facts have a kind of sadness: he was there, he argued with her, he left, and an hour later she was dead. Include a reference to Camila Reyes as victim to close out her case file narrative alongside Marcus's clearance."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false
+    },
+    {
+      "doc_id": "R4",
+      "envelope": "R",
+      "sequence_number": 4,
+      "type_id": 5,
+      "type_key": "official_memo",
+      "in_world_title": "Case Resolution Summary — Valentina Ochoa (POI-05): NOT GUILTY / KEY WITNESS",
+      "owner_source": "Miami Police Department, Homicide Division",
+      "timestamp": "2026-03-13T10:00:00",
+      "filename_base": "R4_official_memo_resolution_valentina_ochoa",
+      "player_purpose": "resolution",
+      "reveals": "Valentina Ochoa is cleared and designated as Key Witness. Her alibi is confirmed (no building access, home in Wynwood all night). Her possession of Camila's backup Gmail credentials is noted as circumstantially suspicious but ultimately explains how the 1:47 AM deletion notification was discovered. Valentina's decision to preserve the forwarded email and call police was instrumental in breaking the voluntary-disappearance narrative. She is credited as the proximate cause of the case being solved.",
+      "player_inference": "Valentina is the reason the case was solved — Camila's 'black box' email setup and her best friend's decision to call police destroyed Derek's plan to make this look like a voluntary digital erasure. Camila anticipated the threat and built in a fail-safe that outlasted her killer's cover story.",
+      "document_justification": "R4 clears POI-05 and closes the emotional arc — Valentina's clearance carries the thematic weight of the case: Camila protected herself even in death through the email forward she had set up in anticipation of danger.",
+      "pois_referenced": [
+        "POI-05",
+        "POI-01"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A7",
+        "B4"
+      ],
+      "production_brief_writing": {
+        "summary": "MPD resolution memo clearing Valentina Ochoa as Key Witness, detailing how her preservation of the forwarded deletion email and timely police report were instrumental in solving the case — and how Camila Reyes essentially solved her own murder by anticipating her killer.",
+        "tone": "The most human of the four resolution memos. There is institutional gratitude here — the bureaucratic language cannot quite contain the weight of what Valentina's friendship meant. This document provides the emotional catharsis of the resolution envelope.",
+        "min_words": 200,
+        "key_mandatory_line": "Ochoa's preservation of the forwarded account-deletion notification — combined with Reyes's proactive email forwarding rule ('the black box') — established the post-mortem digital erasure timeline that dismantled the voluntary-disappearance hypothesis and elevated this case to homicide classification.",
+        "key_information_to_include": [
+          "Valentina's alibi: confirmed home in Wynwood, no building access record, no digital credentials for Camila's active accounts",
+          "Backup Gmail access: legitimate, explained by Camila's explicit instructions — 'check here if anything happens to me'",
+          "Her police report at 9:15 AM was the action that elevated the case from missing person to suspicious death",
+          "The forwarded email she preserved at 1:47 AM was the single document that proved the accounts were deleted post-mortem",
+          "Designated: Key Witness, to be called in prosecution of Derek Aaron Voss",
+          "A note: Camila Reyes anticipated retaliation and built in a digital fail-safe. It worked."
+        ],
+        "voice_notes": "This resolution memo should end with something slightly unusual for police documentation — an acknowledgment that Camila essentially solved her own case by anticipating her killer. It can be framed as an investigative note rather than emotional editorializing: 'Subject's proactive digital security measures were instrumental in establishing the timeline of death.' But the implication is clear and devastating."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false
+    }
+  ]
+}

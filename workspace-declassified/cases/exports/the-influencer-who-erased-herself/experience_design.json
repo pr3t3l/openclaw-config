@@ -1,0 +1,707 @@
+{
+  "slug": "the-influencer-who-erased-herself",
+  "experiential_style": "digital_corporate",
+  "detective_persona": {
+    "name": "Detective (Lead Investigator, MPD Homicide)",
+    "annotation_voice": "Terse, abbreviated, data-driven. Prefers timestamps over descriptions. Uses ALL CAPS for flagged discrepancies. Obsessive about cross-referencing doc IDs. Ends questions with a doc reference in brackets. Never writes full sentences — fragments and imperatives only.",
+    "handwriting_style": "careful_print"
+  },
+  "document_experience_map": {
+    "A1": {
+      "emotional_beat": "Disorientation mixed with morbid curiosity — the clinical MPD memo juxtaposes a glamorous victim (3.2M followers) with bureaucratic death language, and the casual line about simultaneous digital account deletion makes the player's skin crawl. The world went dark at 6:42 AM and nobody noticed for hours.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "Account wipes flagged by platform monitoring at same window as body discovery. Coincidence? Zero chance.",
+          "position": "beside_platform_deletion_paragraph",
+          "style_hint": "yellow digital highlight with callout box"
+        },
+        {
+          "type": "sticky_note",
+          "content": "Rodrigo Santos — routine check. Why routine? Who authorized morning pool check? Get schedule.",
+          "position": "top_right_corner",
+          "style_hint": "blue digital sticky note"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Valentina Ochoa called 9:15 AM — she knew something was wrong BEFORE police called her. Flag B4.",
+          "position": "bottom_margin",
+          "style_hint": "careful print, underlined"
+        }
+      ],
+      "immersion_elements": [
+        "agency_letterhead",
+        "case_number_header",
+        "confidential_stamp",
+        "official_seal"
+      ],
+      "reading_order_note": "First document — sets the institutional frame. Player must read A1 before any other doc to understand the MPD case number referenced throughout."
+    },
+    "A2": {
+      "emotional_beat": "Cognitive overload and sharp attention — four faces, four names, four sets of access. The player feels the weight of 'everyone had something' and the first real suspicion sharpens when they notice the manager had admin credentials to all her digital accounts.",
+      "detective_annotations": [
+        {
+          "type": "circled_text",
+          "content": "RETAINED admin OAuth tokens after verbal termination — check what 'retained' means legally. Can he still act as admin?",
+          "position": "beside_poi_02_entry",
+          "style_hint": "red digital circle with arrow"
+        },
+        {
+          "type": "arrow_connection",
+          "content": "Valentina has backup Gmail access. Could she have deleted from the backup address? Confirm with platform logs [C2].",
+          "position": "beside_poi_05_entry",
+          "style_hint": "careful print, blue ink"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Marcus at building 9:47 PM — no alarm yet. But why go at night for a hard drive?",
+          "position": "beside_poi_04_entry",
+          "style_hint": "question mark, hasty scrawl"
+        }
+      ],
+      "immersion_elements": [
+        "agency_letterhead",
+        "case_number_header",
+        "subject_photo_header",
+        "forensic_barcode"
+      ],
+      "reading_order_note": "Must follow A1. Player needs faces before encountering the evidence documents."
+    },
+    "A3": {
+      "emotional_beat": "Mild frustration that this looks like boring logistics paperwork — followed by a creeping wrongness when the player notices 'D. Voss — Building Liaison' on a document that has no corresponding visitor log entry. The trojan horse is working as designed: the player files it away half-interested, not yet understanding its significance.",
+      "detective_annotations": [
+        {
+          "type": "circled_text",
+          "content": "D. Voss signs as 'Building Liaison' — but no visitor log entry for Feb 28. He was there OFF the record.",
+          "position": "beside_signature_block",
+          "style_hint": "red digital circle, double-underlined"
+        },
+        {
+          "type": "sticky_note",
+          "content": "Why is a talent manager signing courier intake? Managers don't do package runs. Something else happened on Feb 28. Check C1.",
+          "position": "top_right_corner",
+          "style_hint": "yellow digital sticky, urgent tone"
+        },
+        {
+          "type": "margin_comment",
+          "content": "NovaSkin PR kit — standard campaign media. Contents aren't suspicious. The VISIT is suspicious.",
+          "position": "beside_package_contents",
+          "style_hint": "careful print"
+        }
+      ],
+      "immersion_elements": [
+        "evidence_tag",
+        "chain_of_custody_stamp",
+        "forensic_barcode"
+      ],
+      "reading_order_note": "Trojan horse #1. Players won't understand the full significance until C1. The annotation pointing to C1 is intentional — it seeds the cross-reference without spoiling the reveal."
+    },
+    "A4": {
+      "emotional_beat": "A satisfying spatial click — the building layout makes the abstract crime concrete. Players feel like real investigators when they trace the service stairwell route and realize the rooftop camera is the only one that was offline. Then the chill arrives: someone planned around that camera.",
+      "detective_annotations": [
+        {
+          "type": "arrow_connection",
+          "content": "SW-22-R is the only camera-dead route to the roof. Killer knew this. This was NOT improvised.",
+          "position": "beside_service_stairwell_marker",
+          "style_hint": "red arrow, ALL CAPS annotation"
+        },
+        {
+          "type": "highlight",
+          "content": "CAMS-4 through CAMS-7 — OFFLINE March 9-11. How far in advance was this scheduled? [C1]",
+          "position": "beside_rooftop_camera_zone",
+          "style_hint": "yellow highlight with callout"
+        },
+        {
+          "type": "sticky_note",
+          "content": "Parking garage access from lobby level — could someone exit without passing main lobby CCTV? Yes. Garage has separate camera. Get that footage.",
+          "position": "bottom_left_corner",
+          "style_hint": "blue sticky, careful print"
+        }
+      ],
+      "immersion_elements": [
+        "agency_letterhead",
+        "forensic_barcode",
+        "case_number_header",
+        "evidence_tag"
+      ],
+      "reading_order_note": "Best read after A1 and A3 — the CCTV offline zone on the map should connect to the Trojan horse courier visit. Players who read A3 closely will immediately ask: did the person on the Feb 28 visit see this map?"
+    },
+    "A5": {
+      "emotional_beat": "The quiet shock of an absence — the concierge log is full of routine entries until the late-night gap. When players see the electronic keycard appendix and the 11:14 PM 'NovaSkin Courier' activation with no matching manual log entry, the gap feels deliberate and menacing. Someone erased themselves from the paper trail.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "Electronic entry 23:14 — 'NovaSkin Courier / Contract Del.' NO manual log to match. He bypassed the desk intentionally.",
+          "position": "beside_electronic_appendix_entry",
+          "style_hint": "yellow highlight, red callout box"
+        },
+        {
+          "type": "circled_text",
+          "content": "Marcus signed in properly at 21:47. The 23:14 person did NOT. Why? — [B1]",
+          "position": "beside_marcus_entry_row",
+          "style_hint": "red circle with arrow pointing down to gap"
+        },
+        {
+          "type": "sticky_note",
+          "content": "Guest access code issued to 'NovaSkin Courier' on March 7. Who requested this code? NovaSkin? Or their manager?",
+          "position": "top_right_corner",
+          "style_hint": "urgent yellow sticky, hasty scrawl"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Marcus goes PAST the front desk toward elevator — not to the package shelf. Hard drive story is already wrong. [B3]",
+          "position": "beside_marcus_entry_row",
+          "style_hint": "careful print, underlined twice"
+        }
+      ],
+      "immersion_elements": [
+        "evidence_tag",
+        "chain_of_custody_stamp",
+        "agency_letterhead"
+      ],
+      "reading_order_note": "Key document — introduces both CONTRA-02 and CONTRA-05. Players should read this before B1 (Derek's interview) and B3 (Marcus's interview) to feel the maximum impact when both suspects' stories are challenged."
+    },
+    "A6": {
+      "emotional_beat": "Natasha Kline becomes a real suspect here — the cold legal aggression of the email, the $85,000 threat, the CC to Legal, all paint her as someone with motive and leverage. Players who haven't yet seen her alibi will genuinely consider her the killer. This productive misdirection is the red herring working as designed.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "Section 14.3(b) — brand safety clause. She threatened $85k recovery. That's a serious financial motive.",
+          "position": "beside_penalty_paragraph",
+          "style_hint": "yellow highlight"
+        },
+        {
+          "type": "sticky_note",
+          "content": "CC'd Legal but NOT Derek Voss. Why cut out the manager? Did she know Camila was switching agencies?",
+          "position": "top_right_corner",
+          "style_hint": "blue sticky, careful print — NOTE: this interpretation is wrong; Natasha simply followed standard NovaSkin protocol"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Natasha had access to Camila's content calendar via brand app. She knew where Camila would be on March 9. [B2]",
+          "position": "bottom_margin",
+          "style_hint": "careful print"
+        }
+      ],
+      "immersion_elements": [
+        "browser_chrome",
+        "app_interface",
+        "notification_banner"
+      ],
+      "reading_order_note": "This email is the red herring anchor — it's most effective when read BEFORE Natasha's interview (B2), when the player still suspects her. The annotation suggesting she knew Camila's calendar is intentionally slightly misleading — she knew it via the brand app, not for sinister reasons."
+    },
+    "A7": {
+      "emotional_beat": "Digital grief made tangible — the fan screenshots and error messages feel like an obituary for an internet presence. The emotional register is public mourning. Then the player spots the 1:47 AM forwarded email timestamp, and something shifts: this isn't just grief documentation. This is forensic evidence hiding inside a eulogy.",
+      "detective_annotations": [
+        {
+          "type": "circled_text",
+          "content": "01:47:22 — forwarded deletion notification. TOD estimated 23:30-00:00. Camila was dead for 90+ minutes when this sent. She did NOT delete her own accounts.",
+          "position": "beside_forwarded_email_screenshot",
+          "style_hint": "red circle, double underline, ALL CAPS"
+        },
+        {
+          "type": "highlight",
+          "content": "Forward rule: ALL MAIL → camilareyes.backup@gmail.com. She set this up herself. Who has access to that backup address? [B4]",
+          "position": "beside_forward_rule_metadata",
+          "style_hint": "yellow highlight with arrow to B4 reference"
+        },
+        {
+          "type": "sticky_note",
+          "content": "TikTok deletion timestamp: 12:22 AM visible in fan capture. Matches OAuth log in C2 exactly. This is the same action.",
+          "position": "beside_tiktok_screenshot_panel",
+          "style_hint": "blue sticky, careful print"
+        }
+      ],
+      "immersion_elements": [
+        "phone_frame",
+        "app_interface",
+        "notification_banner",
+        "browser_chrome"
+      ],
+      "reading_order_note": "Trojan horse #2. Players initially read this as fan archaeology. The 1:47 AM timestamp is the hidden pivot — it destroys the voluntary-disappearance theory. Must be read before B4 (Valentina's interview) for maximum impact when Valentina confirms she received that exact notification."
+    },
+    "B1": {
+      "emotional_beat": "Controlled unease — Derek Voss is too polished. Every answer is slightly too complete, slightly too ready. Players feel the uncanny valley of a practiced liar, and then the slip arrives: he mentions the rooftop camera maintenance window without being prompted. The player who catches it feels the floor drop.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "He says lunch 'ran to around 7' — no restaurant name. Vague on purpose. Check credit cards, phone location for March 9 afternoon.",
+          "position": "beside_timeline_statement",
+          "style_hint": "yellow highlight"
+        },
+        {
+          "type": "circled_text",
+          "content": "THE SLIP: 'rooftop system was on a maintenance window — those things are scheduled months in advance.' DETECTIVE DID NOT MENTION CAMERAS. He knows the schedule. HOW? [A3] [C1]",
+          "position": "beside_slip_exchange",
+          "style_hint": "red circle, triple underline, ALL CAPS urgent"
+        },
+        {
+          "type": "sticky_note",
+          "content": "Departed dinner 'midnight' per his account. Natasha says before dessert [B2]. Check restaurant log [C3].",
+          "position": "top_right_corner",
+          "style_hint": "yellow sticky, hasty scrawl"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Uses detective's name as rapport technique — 'Detective, I appreciate...' Classic deflection. Note when he stops using the name: financial questions. That's the tell.",
+          "position": "beside_financial_confrontation_phase",
+          "style_hint": "careful print, underlined"
+        }
+      ],
+      "immersion_elements": [
+        "interview_room_header",
+        "recording_device_notice",
+        "subject_photo_header",
+        "case_number_header"
+      ],
+      "reading_order_note": "Should be read after A5 (concierge log) so players already know about the 11:14 PM keycard entry when Derek claims he never entered the building. The contradiction lands harder when the reader already has the electronic log in hand."
+    },
+    "B2": {
+      "emotional_beat": "The alibi-breaker disguised as a witness interview — Natasha is cooperative and precise, and players initially feel reassured she is being truthful. Then she mentions Derek left 'before dessert' and the entire timeline shifts. The most important revelation in this interview is delivered as an offhand observational detail.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "Derek left 'before dessert — maybe 10:45, 11 o'clock.' HE SAID MIDNIGHT. This is a 75-minute gap. [B1] [C3]",
+          "position": "beside_derek_departure_statement",
+          "style_hint": "yellow highlight, red callout box — double exclamation"
+        },
+        {
+          "type": "circled_text",
+          "content": "Natasha: Derek seemed 'less stressed' when Camila didn't show. Not embarrassed. Relieved. That is not normal manager behavior.",
+          "position": "beside_dinner_reaction_exchange",
+          "style_hint": "red circle"
+        },
+        {
+          "type": "sticky_note",
+          "content": "She had access to Camila's content calendar via brand app — confirmed. But she's not hiding it. No evasion on tech access.",
+          "position": "bottom_margin",
+          "style_hint": "blue sticky, careful print"
+        }
+      ],
+      "immersion_elements": [
+        "interview_room_header",
+        "recording_device_notice",
+        "subject_photo_header",
+        "case_number_header"
+      ],
+      "reading_order_note": "Most impactful when read immediately after B1 — Derek claims midnight, Natasha immediately contradicts it. The player should feel the whiplash of the two accounts colliding."
+    },
+    "B3": {
+      "emotional_beat": "Cathartic clarity mixed with sympathy — Marcus is caught in his lie almost immediately, and watching him break and admit the truth is both satisfying and heartbreaking. His emotional panic feels genuinely human. His desperate 'please check the exit time' lands as the most authentic moment in the case — and it clears him.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "CCTV: bypassed front desk, went toward elevator. His 'hard drive' story is false. But exit time 22:06 is 84 minutes before TOD minimum.",
+          "position": "beside_cctv_confrontation_exchange",
+          "style_hint": "yellow highlight"
+        },
+        {
+          "type": "sticky_note",
+          "content": "THE SLIP: 'She changed the roof pad code in February.' How does Marcus know the roof had a separate pad code? Building management confirmed code change. Check if Marcus had prior rooftop access. — Ultimately cleared by exit time, but flag.",
+          "position": "top_right_corner",
+          "style_hint": "yellow sticky, careful print"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Profit-share worth $40-60k annually. Real motive. But CCTV exit 22:06 is definitive — he left before it happened.",
+          "position": "bottom_margin",
+          "style_hint": "careful print, underlined once"
+        }
+      ],
+      "immersion_elements": [
+        "interview_room_header",
+        "recording_device_notice",
+        "subject_photo_header",
+        "case_number_header"
+      ],
+      "reading_order_note": "Read after A5 — the CCTV evidence Marcus is confronted with comes from A5. Players who remember A5's lobby timestamps will feel the trap close during the B3 confrontation."
+    },
+    "B4": {
+      "emotional_beat": "Grief and urgency, intercut with forensic revelation — Valentina's raw emotion is the emotional counterweight to Derek's cold performance in B1. Her frustration that the police are slower than she is mirrors the player's own impatience. When she explains Camila's 'black box' email setup, the elegance of Camila's self-protection is both beautiful and devastating.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "Camila set up the forwarding rule herself — called it 'her black box.' She anticipated this threat specifically. Probable she feared Derek specifically.",
+          "position": "beside_black_box_explanation",
+          "style_hint": "yellow highlight, blue callout"
+        },
+        {
+          "type": "sticky_note",
+          "content": "THE SLIP: Camila emailed a forensic accountant in Coral Gables on March 7. That email doesn't exist in our evidence file yet. Get it. She was building a paper trail.",
+          "position": "top_right_corner",
+          "style_hint": "urgent yellow sticky, hasty scrawl"
+        },
+        {
+          "type": "circled_text",
+          "content": "Valentina initially says 'no access' to accounts — then clarifies backup Gmail. Note: she minimized it. But her explanation checks out. Not hiding — protecting herself from appearing suspicious.",
+          "position": "beside_access_correction_exchange",
+          "style_hint": "red circle, careful print note"
+        }
+      ],
+      "immersion_elements": [
+        "interview_room_header",
+        "recording_device_notice",
+        "subject_photo_header",
+        "case_number_header"
+      ],
+      "reading_order_note": "Most powerful when read after A7 — Valentina's explanation of the forwarded email system makes the 1:47 AM timestamp from A7 click fully into place. The player understands both the digital mechanism and the human relationship behind it."
+    },
+    "B5": {
+      "emotional_beat": "Clinical devastation — the financial forensics report is dry on purpose, and the dryness makes the numbers more damning. $187,224.18. Not a round number — a real fraud total. Players feel the quiet anger of watching a 4-year professional betrayal reduced to a spreadsheet. The fraudulent March 10 wire transfer is the moment greed outpaced panic.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "22% vs 15% contracted — 7% skimmed on EVERY deal for 18 months. Systematic. Not accidental. Premeditated financial theft.",
+          "position": "beside_commission_comparison_table",
+          "style_hint": "yellow highlight, red border"
+        },
+        {
+          "type": "circled_text",
+          "content": "March 10 wire $64k labeled 'NovaSkin contract termination fee' — NovaSkin says NO termination executed. This is theft disguised as a legit payment. He did this AFTER she was dead.",
+          "position": "beside_march10_wire_entry",
+          "style_hint": "red circle, ALL CAPS annotation"
+        },
+        {
+          "type": "sticky_note",
+          "content": "VCM Holdings LLC — sole director Derek Aaron Voss, Ft. Lauderdale. Shell company. He built the entire fraud infrastructure in advance. [C2]",
+          "position": "top_right_corner",
+          "style_hint": "blue sticky, careful print"
+        }
+      ],
+      "immersion_elements": [
+        "agency_letterhead",
+        "case_number_header",
+        "forensic_barcode",
+        "evidence_tag"
+      ],
+      "reading_order_note": "Most impactful after B1 — players who heard Derek deflect all financial questions with 'I'd prefer to discuss with counsel' will feel the vindication of this report arriving with cold precision."
+    },
+    "B6": {
+      "emotional_beat": "The gut punch that reframes everything — the autopsy's clinical language delivers the most disturbing revelation of the case: no water in the lungs. She was already dead when placed in the pool. The staging was deliberate. The phrase 'staged submersion' drops like a stone. Players feel both the horror of premeditation and the cold intelligence of it.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "NO pulmonary edema. NO diatoms. She was NOT breathing when placed in water. This is a staged scene. He moved her after.",
+          "position": "beside_drowning_exclusion_finding",
+          "style_hint": "yellow highlight, urgent red callout"
+        },
+        {
+          "type": "circled_text",
+          "content": "TOD: 23:30-00:00. Building entry for '23:14 NovaSkin courier' [A5]. Gap is 16 minutes from entry to estimated earliest TOD. He was up there by 23:30.",
+          "position": "beside_time_of_death_section",
+          "style_hint": "red circle, arrow connecting to A5 reference"
+        },
+        {
+          "type": "sticky_note",
+          "content": "Heel scuff marks consistent with body drag via service stairwell [A4 — SW-22-R]. He carried her up the stairs to avoid elevator camera.",
+          "position": "bottom_margin",
+          "style_hint": "blue sticky, careful print"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Hand-width contusions 18-20cm. Bare hands. No gloves. He strangled her barehanded — confident, impulsive execution despite planned access. Emotional violence.",
+          "position": "beside_contusion_measurements",
+          "style_hint": "careful print, underlined"
+        }
+      ],
+      "immersion_elements": [
+        "agency_letterhead",
+        "case_number_header",
+        "forensic_barcode",
+        "chain_of_custody_stamp",
+        "evidence_tag"
+      ],
+      "reading_order_note": "The revelation document — should arrive after all four interviews so players have fully formed theories about each suspect. The TOD window immediately maps against every alibi already encountered."
+    },
+    "C1": {
+      "emotional_beat": "The premeditation click — this is the moment the case transforms from 'opportunistic crime' to 'planned murder.' Derek didn't get lucky with the cameras being offline. He found the maintenance window six weeks in advance and scheduled the murder around it. Players feel the cold intelligence of that calculation and a new, deeper revulsion.",
+      "detective_annotations": [
+        {
+          "type": "circled_text",
+          "content": "'VCM LLC Building Liaison accessed schedule board at 14:37 on Feb 28' — this is Derek. He asked about camera coverage while doing a package courier run. He was SCOUTING. [A3]",
+          "position": "beside_schedule_access_log_entry",
+          "style_hint": "red circle, double underline"
+        },
+        {
+          "type": "highlight",
+          "content": "CAMS-4 through CAMS-7 offline March 9-11. Derek saw this on Feb 28. He had 9 days to plan around it after Camila fired him on March 9.",
+          "position": "beside_maintenance_calendar_panel",
+          "style_hint": "yellow highlight, timeline callout"
+        },
+        {
+          "type": "sticky_note",
+          "content": "Building supervisor flagged the Feb 28 access RETROSPECTIVELY — only after murder investigation. Nobody thought it was odd at the time. Classic advance scouting.",
+          "position": "top_right_corner",
+          "style_hint": "blue sticky, careful print"
+        }
+      ],
+      "immersion_elements": [
+        "evidence_tag",
+        "chain_of_custody_stamp",
+        "forensic_barcode",
+        "agency_letterhead"
+      ],
+      "reading_order_note": "The full significance of A3 only lands when read alongside C1. Players who caught the A3 annotation pointing here will feel significant satisfaction. This document resolves CONTRA-07 and converts A3 from a logistics anomaly into a premeditation anchor."
+    },
+    "C2": {
+      "emotional_beat": "Digital certainty — the OAuth audit log is cold, technical, and irrefutable. VCM_MGMT_OAUTH_7741 performed 847 deletion actions from a Brickell cell tower at 12:22 AM. Players feel the satisfaction of a purely technical case: no ambiguity, no 'he said/she said.' Just a token ID, a cell tower, and a timestamp that destroys his alibi.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "VCM_MGMT_OAUTH_7741 — Voss Creative Management LLC. This is Derek's retained manager token. He still had it 13 days after Camila verbally fired him. Deliberate retention.",
+          "position": "beside_token_identifier",
+          "style_hint": "yellow highlight, red border callout"
+        },
+        {
+          "type": "circled_text",
+          "content": "Cell tower: Brickell Ave / SE 8th St at 00:22. He left the building parking garage at 00:15 [C3]. He was driving when he deleted her accounts. 7 minutes and 4 blocks.",
+          "position": "beside_geolocation_panel",
+          "style_hint": "red circle with timeline note"
+        },
+        {
+          "type": "sticky_note",
+          "content": "HOME WIFI DARK from 11 PM. Mobile data only. He knew home WiFi logs could be subpoenaed. Used mobile data. Except cell towers log too. He missed that.",
+          "position": "top_right_corner",
+          "style_hint": "urgent yellow sticky, ALL CAPS title"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Wire transfer at 01:30 AM — same token session. He stole $64k from her account 90 minutes after killing her. The greed is staggering.",
+          "position": "beside_wire_transfer_log_entry",
+          "style_hint": "careful print, underlined twice"
+        }
+      ],
+      "immersion_elements": [
+        "app_interface",
+        "browser_chrome",
+        "notification_banner",
+        "forensic_barcode"
+      ],
+      "reading_order_note": "Maximum impact when read after A7 (deletion archive), B1 (Derek claims home asleep), and B5 (financial forensics). All three documents are directly resolved here. This is the pivot — every prior contradiction snaps into place."
+    },
+    "C3": {
+      "emotional_beat": "The alibi collapses in three panels — the restaurant departure record at 10:52 PM, the parking garage CCTV still of his BMW at 12:15 AM, and the cell tower record at 12:22 AM form an airtight triangle. Players feel the particular satisfaction of physical evidence filling a gap that testimony tried to cover. The 75-minute timeline overlay is the case's most satisfying visual.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "Table 14 departure: 22:52. He said midnight to both Detective and the night of B1 interview. 68-minute lie. Gap covers ENTIRE death window.",
+          "position": "beside_restaurant_departure_panel",
+          "style_hint": "yellow highlight, red timeline callout"
+        },
+        {
+          "type": "circled_text",
+          "content": "BMW M4 FL-3AQR — registered to VCM Holdings LLC. His shell company. He drove to the murder in his business car. Either arrogance or certainty he'd never be found.",
+          "position": "beside_vehicle_registration_note",
+          "style_hint": "red circle, careful print annotation"
+        },
+        {
+          "type": "sticky_note",
+          "content": "Timeline: 22:52 dinner exit → 23:14 building entry [A5] → 00:15 garage exit → 00:22 account deletion [C2]. No gaps. No ambiguity. He did this.",
+          "position": "top_right_corner",
+          "style_hint": "blue sticky, printed timeline — definitive tone"
+        }
+      ],
+      "immersion_elements": [
+        "evidence_tag",
+        "chain_of_custody_stamp",
+        "forensic_barcode",
+        "app_interface"
+      ],
+      "reading_order_note": "The case-breaker. Should be read after C2 so players have the OAuth cell tower data before seeing the physical CCTV placing his car at the building. The convergence of digital and physical evidence in C2+C3 together is the intended aha moment."
+    },
+    "R1": {
+      "emotional_beat": "Institutional vindication — the MPD memo listing every piece of evidence by name feels like a closing argument. Players feel the quiet weight of a system catching someone who almost got away. The detective's handwritten note about the email forward — 'She was right to be afraid' — is the emotional grace note that the bureaucratic language couldn't carry on its own.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "CONTRA-01 through CONTRA-07 — all resolved. Seven contradictions, all pointing the same direction. This is not coincidence. This is a case.",
+          "position": "beside_evidence_summary_section",
+          "style_hint": "yellow highlight"
+        },
+        {
+          "type": "sticky_note",
+          "content": "She set up that email forward for exactly this reason. She was right to be afraid.",
+          "position": "bottom_margin",
+          "style_hint": "handwritten blue ink — the only personal note in the resolution documents"
+        }
+      ],
+      "immersion_elements": [
+        "agency_letterhead",
+        "case_number_header",
+        "confidential_stamp",
+        "official_seal"
+      ]
+    },
+    "R2": {
+      "emotional_beat": "The clean clearing of a credible suspect — Natasha's alibi is solid and her cooperation genuine. Players may feel a trace of regret that such a compelling red herring turned out to be innocent. The note about her inadvertent testimony breaking Derek's alibi reframes her from suspect to unlikely hero.",
+      "detective_annotations": [
+        {
+          "type": "margin_comment",
+          "content": "Her observation about Derek's 'relieved' reaction when Camila cancelled was a slip she didn't know was a slip. Key corroboration came from someone with no stake in the outcome.",
+          "position": "beside_testimony_reference",
+          "style_hint": "careful print, blue ink"
+        }
+      ],
+      "immersion_elements": [
+        "agency_letterhead",
+        "case_number_header",
+        "official_seal"
+      ]
+    },
+    "R3": {
+      "emotional_beat": "Complicated relief — Marcus lied, had motive, and was emotionally raw throughout. Clearing him requires trusting the CCTV numbers over the narrative weight of his behavior. Players who suspected him feel both vindicated and humanized when the memo acknowledges the tragedy of his situation: he argued with Camila an hour before she was killed and walked away without knowing.",
+      "detective_annotations": [
+        {
+          "type": "margin_comment",
+          "content": "He was there. He argued with her. He left. And 84 minutes later she was dead. He'll carry that for the rest of his life regardless of what the timestamp says.",
+          "position": "bottom_margin",
+          "style_hint": "careful print — more personal than typical detective notes"
+        }
+      ],
+      "immersion_elements": [
+        "agency_letterhead",
+        "case_number_header",
+        "official_seal"
+      ]
+    },
+    "R4": {
+      "emotional_beat": "Catharsis through elegance — the case closes with the realization that Camila essentially solved her own murder. She anticipated the threat, set up the email forward, told Valentina about the backup address, and created a fail-safe that outlasted her killer's plan. Players feel a profound bittersweet admiration alongside the grief.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "The 'black box' — she named it herself. She knew what she was protecting against. She built in the fail-safe months before he killed her.",
+          "position": "beside_black_box_reference",
+          "style_hint": "yellow highlight"
+        },
+        {
+          "type": "sticky_note",
+          "content": "Camila Reyes solved this case. We just followed the path she left.",
+          "position": "bottom_margin",
+          "style_hint": "blue sticky — final note of the case file"
+        }
+      ],
+      "immersion_elements": [
+        "agency_letterhead",
+        "case_number_header",
+        "official_seal",
+        "confidential_stamp"
+      ]
+    }
+  },
+  "clue_proximity_check": [
+    {
+      "contradiction_id": "CONTRA-01",
+      "introduced_in": "B1",
+      "resolved_in": "C2",
+      "distance_docs": 7,
+      "status": "optimal",
+      "note": "B1 is sequence position 8, C2 is position 15 — 7 documents apart. Optimal tension arc: player carries Derek's false timeline through all of Envelope B and into C."
+    },
+    {
+      "contradiction_id": "CONTRA-02",
+      "introduced_in": "A5",
+      "resolved_in": "C3",
+      "distance_docs": 11,
+      "status": "proximity_warning",
+      "note": "A5 is position 5, C3 is position 16 — 11 documents apart. Exceeds 8-document target. Mitigated by annotations in A5 and B1 actively maintaining player awareness of the electronic keycard gap throughout Envelope B."
+    },
+    {
+      "contradiction_id": "CONTRA-03",
+      "introduced_in": "B2",
+      "resolved_in": "C3",
+      "distance_docs": 7,
+      "status": "optimal",
+      "note": "B2 is position 9, C3 is position 16 — 7 documents apart. Natasha introduces Derek's early departure, C3 proves it with restaurant records."
+    },
+    {
+      "contradiction_id": "CONTRA-04",
+      "introduced_in": "B5",
+      "resolved_in": "C2",
+      "distance_docs": 3,
+      "status": "optimal",
+      "note": "B5 is position 12, C2 is position 15 — 3 documents apart. Short but effective: financial motive established, then digital forensics immediately shows the post-death theft execution."
+    },
+    {
+      "contradiction_id": "CONTRA-05",
+      "introduced_in": "A5",
+      "resolved_in": "B3",
+      "distance_docs": 5,
+      "status": "optimal",
+      "note": "A5 is position 5, B3 is position 10 — 5 documents apart. Marcus's lobby misdirection is resolved mid-Envelope B, keeping his clearance from feeling delayed."
+    },
+    {
+      "contradiction_id": "CONTRA-06",
+      "introduced_in": "A7",
+      "resolved_in": "C2",
+      "distance_docs": 8,
+      "status": "optimal",
+      "note": "A7 is position 7, C2 is position 15 — 8 documents apart. At the far edge of optimal range. The deletion timeline question is kept active through B1 (Derek's 'home asleep' claim) and B4 (Valentina's forwarded email testimony)."
+    },
+    {
+      "contradiction_id": "CONTRA-07",
+      "introduced_in": "A3",
+      "resolved_in": "C1",
+      "distance_docs": 11,
+      "status": "proximity_warning",
+      "note": "A3 is position 3, C1 is position 14 — 11 documents apart. Exceeds 8-document target. This is the Trojan horse contradiction — its long distance is structurally intentional. The A3 annotation directs players to C1, and B1 (Derek's slip about the maintenance window) serves as a midpoint reactivation keeping the thread alive."
+    }
+  ],
+  "pacing_analysis": {
+    "A": {
+      "document_count": 7,
+      "estimated_reading_minutes": 22,
+      "emotional_intensity": "medium",
+      "notes": "Seven documents is at the high end for an opening envelope but each serves a distinct purpose: case intro, POI sheet, two trojan horses, floor plan, access log, and red-herring email. Pacing is dense but varied in document type — official memo, poi_sheet, evidence_mosaic, floor_plan, entry_exit_log, email_export, social_posts. No back-to-back same-format documents."
+    },
+    "B": {
+      "document_count": 6,
+      "estimated_reading_minutes": 28,
+      "emotional_intensity": "high",
+      "notes": "Four interviews plus financial forensics plus autopsy — heaviest reading load in the case. The interview sequence sustains momentum. Financial forensics and autopsy land in the second half of Envelope B for maximum impact after suspects are established. Estimate 350-500 words per interview, 400+ for forensics, 500+ for autopsy."
+    },
+    "C": {
+      "document_count": 3,
+      "estimated_reading_minutes": 10,
+      "emotional_intensity": "peak",
+      "notes": "Three tight documents, all revelations. Fast reading pace after the dense Envelope B. C1 reframes A3, C2 is the digital pivot, C3 is the physical timeline collapse. The envelope is intentionally short — it should feel like a sprint to the finish."
+    },
+    "R": {
+      "document_count": 4,
+      "estimated_reading_minutes": 10,
+      "emotional_intensity": "resolution",
+      "notes": "Four resolution memos — one per living POI. Uniform format provides closure rhythm. Derek's guilty resolution first, then three clearances in order of emotional complexity (Natasha clean, Marcus complicated, Valentina thematic). Total estimated reading: 70 minutes for full case."
+    }
+  },
+  "pacing_warnings": [
+    {
+      "warning_type": "front_loaded_warning",
+      "detail": "Envelope A has 7 documents vs Envelope B's 6 — A is slightly larger than B. However, A documents are shorter in average word count (evidence mosaics, floor plan, entry log average 100-200 words) while B documents are significantly longer (interviews 350+ words, autopsy 500+ words). Actual reading time: A ≈ 22 min, B ≈ 28 min. The imbalance is in document count only, not reading load. Recommend Production Engine ensures A documents stay crisp to avoid pacing drag before interviews begin.",
+      "severity": "low"
+    },
+    {
+      "warning_type": "proximity_warning_note",
+      "detail": "CONTRA-02 (A5→C3, distance 11) and CONTRA-07 (A3→C1, distance 11) both exceed the 8-document optimal range. Both are structurally intentional: CONTRA-07 is the Trojan horse planted in A3 with deferred resolution by design, and CONTRA-02 is reactivated by B1's slip and the annotations thread. Recommend Production Engine ensure B1 explicitly reactivates both threads through Derek's slip dialogue.",
+      "severity": "low"
+    }
+  ],
+  "trojan_horse_verification": [
+    {
+      "doc_id": "A3",
+      "appears_as": "Routine NovaSkin PR package courier intake slip for Unit 2204 dated February 28 — standard brand logistics paperwork filed with building management. Type: evidence_mosaic of physical documents.",
+      "actually_proves": "Derek Voss made an unauthorized unregistered visit to Brickell Sky Residences on February 28 — his 'Building Liaison' signature on the intake slip with no visitor log match is the physical anchor for CONTRA-07 and the premeditation link resolved in C1 (he accessed the maintenance schedule during this visit).",
+      "verified": true,
+      "type_key_match": "evidence_mosaic — confirmed in clue_catalog",
+      "contradiction_link": "CONTRA-07",
+      "evidence_chain_step": 2
+    },
+    {
+      "doc_id": "A7",
+      "appears_as": "Fan-compiled screenshot collage of Camila's deleted accounts and cached last posts — grieving followers documenting her digital disappearance. Type: social_posts archive of platform notifications and screenshots.",
+      "actually_proves": "The embedded automated email forwarding notification timestamp of 1:47 AM on March 10 proves account deletions occurred after Camila's estimated time of death (23:30–00:00), destroying the voluntary-disappearance theory and confirming a third party with retained admin credentials deleted her accounts.",
+      "verified": true,
+      "type_key_match": "social_posts — confirmed in clue_catalog",
+      "contradiction_link": "CONTRA-06",
+      "evidence_chain_step": 3
+    }
+  ]
+}

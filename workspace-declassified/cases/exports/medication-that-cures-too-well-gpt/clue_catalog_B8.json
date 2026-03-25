@@ -1,0 +1,63 @@
+{
+  "envelope": "B",
+  "documents": [
+    {
+      "doc_id": "B8",
+      "envelope": "B",
+      "sequence_number": 8,
+      "type_id": 2,
+      "type_key": "social_posts",
+      "in_world_title": "Digital Evidence Capture — Instagram Story: @helixurelife ‘Night Audit’ (Building 7, 22:50)",
+      "owner_source": "Cambridge Police Department — Digital Forensics (OSINT Capture / Anonymous Tip)",
+      "timestamp": "2026-03-20T22:50:00",
+      "filename_base": "B8_Instagram_Story_Night_Audit",
+      "player_purpose": "tension_builder",
+      "reveals": "An OSINT-captured Instagram story posted at 22:50 on 2026-03-20 from a Helixure employee-adjacent account (@helixurelife) shows a wall-mounted safety/control panel labeled ‘SP-4B’ on Level 4 with a visible on-screen banner reading ‘MAINT.’ The caption overlay jokes, ‘night audit — don’t page Facilities,’ and the geotag places the post at ‘Helixure Building 7 (Kendall Square)’ before the story is deleted by morning.",
+      "player_inference": "A person was physically at Stairwell 4B’s control panel during the critical window and understood how to keep paging quiet, reinforcing that ‘no alarm page’ can be intentionally manufactured.",
+      "document_justification": "Gives the player a human, off-the-books corroboration to sterile logs and interviews: someone posted about SP-4B being in a maintenance-like state around the same night and location as the engineered stairwell incident. It heightens dread and primes the player to treat the later BMS backup (C2) as a confirmation, not a surprise.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-04",
+        "POI-05"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A4",
+        "B3"
+      ],
+      "production_brief_writing": {
+        "summary": "A phone-screenshot style digital evidence capture of an Instagram story that looks like mundane workplace humor, but quietly places Safety Panel SP-4B in ‘MAINT’ at 22:50 on the night Dr. Mara Ellison dies.",
+        "tone": "OSINT evidence capture — authentic Instagram Story UI inside a phone frame, with a terse analyst note strip outside the frame",
+        "min_words": 170,
+        "key_mandatory_line": "STORY METADATA: Posted 2026-03-20 22:50 EDT | Geotag: Helixure Building 7 (Kendall Square) | Visible label: SP-4B | Screen banner: MAINT | Overlay text: ‘night audit — don’t page Facilities’",
+        "key_information_to_include": [
+          "Instagram Story UI elements: handle @helixurelife, story progress bar, and a timestamp indicator (22:50)",
+          "A clear geotag line reading ‘Helixure Building 7 (Kendall Square)’ to anchor location",
+          "The story image: a sterile hallway/utility alcove with a wall-mounted panel; a printed physical label ‘SP-4B’ adjacent to the panel",
+          "A readable on-screen panel status banner ‘MAINT’ (do not explain what it means; let the player connect it to B3/C2)",
+          "An analyst note stating the story was captured via tip, appears deleted by ~07:30 on 2026-03-21, and is relevant to the Stairwell 4B timeline"
+        ],
+        "voice_notes": "Keep it plausible and not too on-the-nose: the poster sounds like a tired employee making a joke, not a conspirator. The incriminating value is the combination of time (22:50), place (Building 7), and the visible ‘MAINT’ state on SP-4B. The analyst note should use evidence-room language and avoid accusing any POI outright."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Render as a phone-frame Instagram Story OSINT capture. The story photo should show the SP-4B safety/control panel in a clean biotech hallway/utility alcove with a visible status banner ‘MAINT’ and the caption overlay ‘night audit — don’t page Facilities.’ Outside the phone frame, include a small ‘DIGITAL EVIDENCE’ label and an analyst note about deletion by morning.",
+      "image_requirements": [
+        {
+          "type": "device_screenshot",
+          "subject": "Instagram story OSINT capture",
+          "brief": "Instagram Story UI with @helixurelife, geotag Helixure Building 7 (Kendall Square), and a story image of Safety Panel SP-4B showing a ‘MAINT’ status banner. Add a small analyst note outside the phone frame referencing relevance to Stairwell 4B and deletion the next morning."
+        }
+      ],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,231 @@
+{
+  "envelope": "B",
+  "experiential_style": "digital_corporate",
+  "document_experience_map": {
+    "B1": {
+      "emotional_beat": "A tight, irritated unease as Evan Kline sounds rehearsed—then the ‘EXEC-0441’ slip at 22:39 makes it feel like he’s been thinking about that exact record all day.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "‘EXEC-0441’ + ‘22:39’ volunteered BEFORE exhibits shown — why does Kline know the label?",
+          "position": "next_to_line_where_KLINE_mentions_EXEC-0441",
+          "style_hint": "digital yellow highlight with a crisp callout"
+        },
+        {
+          "type": "margin_comment",
+          "content": "He anchors to 20:03 call → ‘straight home.’ But keeps circling back to access policy. Cross-check B5 for 22:39 event details.",
+          "position": "right_margin_near_timeline_walkthrough",
+          "style_hint": "sans-serif note, slightly compressed like typed-in haste"
+        },
+        {
+          "type": "question_mark",
+          "content": "(Maybe wrong) If EXEC-0441 hit is real access, was Kline physically in Bldg 7 at 22:39? Don’t assume—verify.",
+          "position": "bottom_margin",
+          "style_hint": "small blue question icon + short note"
+        }
+      ],
+      "immersion_elements": [
+        "interview_transcript_header_bar",
+        "audio_recording_notice_line",
+        "timestamp_column_every_exchange",
+        "exhibit_placeholder_stamp_CPD-MCU-26-0319"
+      ],
+      "reading_order_note": "Pairs best BEFORE B5: the impact is feeling sure Kline lied—then letting B5 complicate what ‘EXEC-0441’ actually proves."
+    },
+    "B2": {
+      "emotional_beat": "A tug of empathy that curdles into suspicion when Nadia Reyes insists ‘badge-only’ at 21:55—then admits executive escort piggybacking makes the whole building timeline slippery.",
+      "detective_annotations": [
+        {
+          "type": "circled_text",
+          "content": "‘Left at 21:55’ — lock this. Compare against any movement after 22:39 in B5.",
+          "position": "beside_departure_time_statement",
+          "style_hint": "thin red digital circle"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Key admission: ‘unless someone’s using executive escort… people slip through.’ That’s how you get bodies without badge hits.",
+          "position": "right_margin_near_escort_piggyback_line",
+          "style_hint": "grey callout box, understated"
+        }
+      ],
+      "immersion_elements": [
+        "interview_room_header_strip",
+        "verbatim_transcript_formatting",
+        "bracketed_emotion_stage_directions",
+        "case_id_footer_watermark"
+      ],
+      "reading_order_note": "Read after B1 so ‘executive escort’ feels like a second witness independently describing the same loophole."
+    },
+    "B3": {
+      "emotional_beat": "A creeping dread as Tom Briggs casually explains that ‘no page’ can be manufactured with a MAINT/SILENCED state—turning A1’s reassuring ‘no alarms’ line into something weaponizable.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "BRIGGS: ‘If it’s in maintenance, it won’t page me.’ This makes A1 ‘no alarm pages’ meaningless.",
+          "position": "next_to_maintenance_state_explanation",
+          "style_hint": "digital neon highlight + bolded excerpt"
+        },
+        {
+          "type": "arrow_connection",
+          "content": "Connect: ‘maintenance/silenced’ (B3) → verify actual state in system logs later (C2).",
+          "position": "between_maintenance_paragraph_and_footer_notes",
+          "style_hint": "straight blue arrow with small label"
+        },
+        {
+          "type": "question_mark",
+          "content": "Who can set Stairwell 4B monitor to MAINT? Facilities only—or does QA/EHS admin have access too?",
+          "position": "bottom_right_corner",
+          "style_hint": "compact question badge"
+        }
+      ],
+      "immersion_elements": [
+        "interview_transcript_header_bar",
+        "policy_language_callouts",
+        "speaker_tags_in_caps",
+        "digital_redaction_bars_for_internal_phone_numbers"
+      ],
+      "reading_order_note": "Works best right before B8 so the player recognizes ‘MAINT’ as a loaded word when it appears on the story capture."
+    },
+    "B4": {
+      "emotional_beat": "A cold, controlled tension: Raina Patel’s 19:05 alibi sounds immaculate, but her fixation on ‘audit trails’ and ‘exports’ makes it feel like she’s negotiating evidence, not telling truth.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "Patel locks in: ‘Left at 19:05.’ Circle this—anything timestamped after-hours breaks her clean story.",
+          "position": "next_to_1905_alibi_line",
+          "style_hint": "pale yellow highlight + small clock icon"
+        },
+        {
+          "type": "margin_comment",
+          "content": "She keeps steering to ‘authenticated session’ + ‘export’ language. Feels preemptive. Compare with B7 (review email) + later system export evidence.",
+          "position": "right_margin_near_audit_trail_discussion",
+          "style_hint": "tight sans-serif note in a light-blue callout"
+        }
+      ],
+      "immersion_elements": [
+        "interview_room_header_strip",
+        "formal_transcript_layout",
+        "evidence_exhibit_stamp",
+        "clean_typographic_hierarchy_like_legal_transcript"
+      ],
+      "reading_order_note": "Read after B7 if possible; Patel’s evasions land harder once the DEV-102-17 request is fresh in mind."
+    },
+    "B5": {
+      "emotional_beat": "An ‘oh no’ realization: the boring Lenel export doesn’t name a killer—it proves the building can be navigated on shared credentials and escort exceptions, meaning every confident alibi suddenly needs rechecking.",
+      "detective_annotations": [
+        {
+          "type": "circled_text",
+          "content": "22:39:03 ACCESS GRANTED — CRED: EXEC-0441 (shared). This resolves CONTRA-01 but does NOT equal Kline.",
+          "position": "beside_row_2026-03-20_223903",
+          "style_hint": "red circle + bolded time"
+        },
+        {
+          "type": "highlight",
+          "content": "‘ESCORT MODE ENABLED’ + Host badge: QA-ADMIN-7719 (15 min). This matches Reyes’s ‘people slip through’ (B2).",
+          "position": "next_to_escort_mode_event_row",
+          "style_hint": "digital yellow highlight with a pinned callout"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Look for any reader/location strings near Stairwell 4B / L4 corridor. Tie to A4 route + B6 cell sector STW4B.",
+          "position": "left_margin_near_location_column",
+          "style_hint": "small grey note like an analyst sidebar"
+        }
+      ],
+      "immersion_elements": [
+        "spreadsheet_gridlines",
+        "monospace_system_font",
+        "subpoena_return_cover_note_block",
+        "barcode_case_number_label",
+        "row_highlighting_as_if_done_in_pdf_viewer"
+      ],
+      "reading_order_note": "This doc should land after B1 + B2 so it feels like a forensic ‘reality check’ on both interviews’ claims."
+    },
+    "B6": {
+      "emotional_beat": "A tightening, claustrophobic urgency as Ellison’s last outgoing SMS at 23:11:52 (Sector: STW4B) is followed by a wall of missed calls—like a signal cutting off mid-sentence.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "23:11:52 OUT — ‘Heading to the garage’ — Cell: HLX-B7-FEMTO-L4 (Sector: STW4B). This is minutes before 23:12.",
+          "position": "next_to_row_2026-03-20_231152",
+          "style_hint": "bright highlight + digital sticky marker"
+        },
+        {
+          "type": "arrow_connection",
+          "content": "22:06 SMS w/ ‘R. Patel’ re: ‘deviation folder’ → motive pressure. Pair with B7 DEV-102-17 language.",
+          "position": "between_rows_2206_and_thread_summary",
+          "style_hint": "thin arrow with tiny label tag"
+        },
+        {
+          "type": "margin_comment",
+          "content": "First ‘NO ANSWER/VM’ after 23:12 — treat as incapacitation window marker, not a random missed call.",
+          "position": "right_margin_near_first_missed_call_row",
+          "style_hint": "compact note in a white callout box"
+        }
+      ],
+      "immersion_elements": [
+        "carrier_subpoena_boilerplate",
+        "dense_table_with_column_legend",
+        "highlighted_rows_with_pdf_markup_handles",
+        "exhibit_tag_top_right"
+      ],
+      "reading_order_note": "Place before Envelope C: it primes the player to care about the 23:12 minute and recognize it when system logs appear."
+    },
+    "B7": {
+      "emotional_beat": "A slow burn of anger and dread as Ellison demands raw audit-trail access (DEV-102-17 / Batch 14C) while Kline pushes to ‘take it off email’—and Patel offers only a curated ‘regulator-facing PDF package.’",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "ELLISON 18:30 — ‘full DEV-102-17 folder’ + ‘raw audit-trail export’ + ‘before Monday 09:00.’ This is the fuse.",
+          "position": "next_to_ellison_email_request_block",
+          "style_hint": "digital highlight with underlined deviation ID"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Kline after the 20:03 call: ‘off email’ pressure = fear of discoverability. Matches his tone in B1.",
+          "position": "right_margin_near_kline_off_email_reply",
+          "style_hint": "light-blue callout, clean sans-serif"
+        },
+        {
+          "type": "circled_text",
+          "content": "Patel offers ‘regulator-facing PDF package’ (curated). Compare to her 19:05 alibi claims in B4.",
+          "position": "beside_patel_pdf_package_line",
+          "style_hint": "thin red circle + small ‘!’ in the margin"
+        }
+      ],
+      "immersion_elements": [
+        "email_client_frame",
+        "legal_hold_export_banner",
+        "nested_reply_indentation",
+        "attachment_list_placeholder",
+        "message_header_blocks_with_from_to_cc_date"
+      ],
+      "reading_order_note": "Read after B4 if possible: Patel’s interview becomes immediately suspect once you’ve seen how she frames ‘exports’ and ‘regulator-facing’ packages here."
+    },
+    "B8": {
+      "emotional_beat": "A prickling sense of being watched as a jokey Instagram story places someone at Safety Panel SP-4B at 22:50 with a visible ‘MAINT’ banner—then the post vanishes by morning.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "METADATA: 2026-03-20 22:50 + label ‘SP-4B’ + banner ‘MAINT.’ That’s inside the critical period.",
+          "position": "next_to_metadata_strip_outside_phone_frame",
+          "style_hint": "digital highlighter with a small pin icon"
+        },
+        {
+          "type": "question_mark",
+          "content": "Overlay: ‘night audit — don’t page Facilities’ → sounds like the exact ‘maintenance/silenced’ trick Briggs described in B3. Who posted, and why delete by ~07:30?",
+          "position": "bottom_margin_beneath_story_capture",
+          "style_hint": "compact question callout with muted purple border"
+        }
+      ],
+      "immersion_elements": [
+        "phone_frame_instagram_story_ui",
+        "osint_capture_header_label",
+        "screenshot_compression_artifacts",
+        "metadata_strip_with_time_and_geotag",
+        "analyst_note_box_about_deletion_time"
+      ],
+      "reading_order_note": "Best after B3 so ‘MAINT’ reads as a functional system state, not just a vague caption."
+    }
+  }
+}

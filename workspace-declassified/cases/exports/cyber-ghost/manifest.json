@@ -1,0 +1,505 @@
+{
+  "case_id": "",
+  "slug": "cyber-ghost",
+  "tier": "NORMAL",
+  "status": "paused",
+  "created_at": "2026-03-20T02:28:35Z",
+  "updated_at": "2026-03-20T04:54:59.676521Z",
+  "pois": [],
+  "documents": {},
+  "images": {},
+  "audio": {},
+  "pipeline_state": {
+    "narrative_architect": "completed",
+    "narrative_qa": "passed",
+    "art_director": "completed",
+    "experience_designer": "completed",
+    "production_envelopes": {
+      "A": "approved",
+      "B": "completed",
+      "C": "completed",
+      "R": "completed"
+    },
+    "playthrough_qa": "completed",
+    "image_generation": "completed",
+    "tts_scripting": "not_applicable",
+    "tts_generation": "not_applicable",
+    "layout_planning": "pending",
+    "render": "paused",
+    "distribution": "pending"
+  },
+  "cost_tracking": {
+    "phases": {
+      "narrative_architect": {
+        "calls": [
+          {
+            "timestamp": "2026-03-19T22:31:23.534036",
+            "agent": "narrative-architect",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 12709,
+            "output_tokens": 7919,
+            "cost_usd": 0.1569,
+            "artifact": "case-plan.json"
+          },
+          {
+            "timestamp": "2026-03-19T22:52:34.029448",
+            "agent": "narrative-architect",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 84528,
+            "output_tokens": 28677,
+            "cost_usd": 0.6837,
+            "artifact": "clue_catalog.json"
+          }
+        ],
+        "total_cost": 0.8406,
+        "total_input_tokens": 97237,
+        "total_output_tokens": 36596
+      },
+      "art_director": {
+        "calls": [
+          {
+            "timestamp": "2026-03-19T23:15:28.463646",
+            "agent": "art-director",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 40512,
+            "output_tokens": 8945,
+            "cost_usd": 0.2557,
+            "artifacts": [
+              "art_briefs.json",
+              "scene_descriptions.json",
+              "manifest.json"
+            ]
+          }
+        ],
+        "total_cost": 0.2557,
+        "total_input_tokens": 40512,
+        "total_output_tokens": 8945
+      },
+      "experience_designer": {
+        "calls": [
+          {
+            "timestamp": "2026-03-19T23:21:17.702960",
+            "agent": "experience-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 50104,
+            "output_tokens": 10654,
+            "cost_usd": 0.3101,
+            "artifacts": [
+              "experience_design.json"
+            ]
+          }
+        ],
+        "total_cost": 0.3101,
+        "total_input_tokens": 50104,
+        "total_output_tokens": 10654
+      },
+      "production_engine": {
+        "calls": [
+          {
+            "timestamp": "2026-03-19T23:31:38.888497",
+            "agent": "production-engine",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 61229,
+            "output_tokens": 11679,
+            "cost_usd": 0.3589,
+            "artifacts": [
+              "envelope_A/A1_content.md",
+              "envelope_A/A2_content.md",
+              "envelope_A/A3_content.md",
+              "envelope_A/A4_content.md",
+              "envelope_A/A5_content.md",
+              "envelope_A/A6_content.md"
+            ]
+          },
+          {
+            "timestamp": "2026-03-19T23:47:54.531560",
+            "agent": "production-engine",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 61754,
+            "output_tokens": 16384,
+            "cost_usd": 0.431,
+            "artifacts": [
+              "envelope_B/B1_content.md",
+              "envelope_B/B2_content.md",
+              "envelope_B/B3_content.md",
+              "envelope_B/B4_content.md",
+              "envelope_B/B5_content.md",
+              "envelope_B/B6_content.md",
+              "envelope_B/B7_content.md"
+            ]
+          },
+          {
+            "timestamp": "2026-03-19T23:48:42.544408",
+            "agent": "production-engine",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 62105,
+            "output_tokens": 1420,
+            "cost_usd": 0.2076,
+            "artifacts": [
+              "envelope_B/B7_content.md"
+            ]
+          },
+          {
+            "timestamp": "2026-03-19T23:51:55.073010",
+            "agent": "production-engine",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 62037,
+            "output_tokens": 7979,
+            "cost_usd": 0.3058,
+            "artifacts": [
+              "envelope_C/C1_content.md",
+              "envelope_C/C2_content.md",
+              "envelope_C/C3_content.md"
+            ]
+          },
+          {
+            "timestamp": "2026-03-19T23:55:13.653292",
+            "agent": "production-engine",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 62183,
+            "output_tokens": 7544,
+            "cost_usd": 0.2997,
+            "artifacts": [
+              "envelope_R/R1_content.md",
+              "envelope_R/R2_content.md",
+              "envelope_R/R3_content.md",
+              "envelope_R/R4_content.md"
+            ]
+          },
+          {
+            "timestamp": "2026-03-20T01:32:54.520170",
+            "agent": "production-engine",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 65363,
+            "output_tokens": 13301,
+            "cost_usd": 0.3956,
+            "artifacts": [
+              "envelope_A/A1_content.md",
+              "envelope_A/A2_content.md",
+              "envelope_A/A3_content.md",
+              "envelope_A/A4_content.md",
+              "envelope_A/A5_content.md",
+              "envelope_A/A6_content.md"
+            ]
+          },
+          {
+            "timestamp": "2026-03-20T07:38:21.823629",
+            "agent": "production-engine",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 65502,
+            "output_tokens": 16384,
+            "cost_usd": 0.4423,
+            "artifacts": [
+              "envelope_B/B1_content.md",
+              "envelope_B/B2_content.md",
+              "envelope_B/B3_content.md",
+              "envelope_B/B4_content.md",
+              "envelope_B/B5_content.md",
+              "envelope_B/B6_content.md",
+              "envelope_B/B7_content.md"
+            ]
+          },
+          {
+            "timestamp": "2026-03-20T14:13:22.823512",
+            "agent": "production-engine",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 65724,
+            "output_tokens": 16384,
+            "cost_usd": 0.4429,
+            "artifacts": [
+              "envelope_B/B1_content.md",
+              "envelope_B/B2_content.md",
+              "envelope_B/B3_content.md",
+              "envelope_B/B4_content.md",
+              "envelope_B/B5_content.md",
+              "envelope_B/B6_content.md",
+              "envelope_B/B7_content.md"
+            ]
+          },
+          {
+            "timestamp": "2026-03-21T22:13:46.043823",
+            "agent": "production-engine",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 65871,
+            "output_tokens": 9338,
+            "cost_usd": 0.3377,
+            "artifacts": [
+              "envelope_C/C1_content.md",
+              "envelope_C/C2_content.md",
+              "envelope_C/C3_content.md"
+            ]
+          },
+          {
+            "timestamp": "2026-03-22T22:08:53.817034",
+            "agent": "production-engine",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 66017,
+            "output_tokens": 10846,
+            "cost_usd": 0.3607,
+            "artifacts": [
+              "envelope_R/R1_content.md",
+              "envelope_R/R2_content.md",
+              "envelope_R/R3_content.md",
+              "envelope_R/R4_content.md"
+            ]
+          }
+        ],
+        "total_cost": 3.5822,
+        "total_input_tokens": 637785,
+        "total_output_tokens": 111259
+      },
+      "quality_auditor": {
+        "calls": [
+          {
+            "timestamp": "2026-03-19T23:37:28.856878",
+            "agent": "quality-auditor",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 62216,
+            "output_tokens": 14760,
+            "cost_usd": 0.408,
+            "artifacts": [
+              "clue_catalog.json"
+            ]
+          },
+          {
+            "timestamp": "2026-03-19T23:39:13.317390",
+            "agent": "quality-auditor",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 62326,
+            "output_tokens": 3521,
+            "cost_usd": 0.2398,
+            "artifacts": [
+              "envelope_A_narrative_depth.json"
+            ]
+          },
+          {
+            "timestamp": "2026-03-20T00:03:44.181929",
+            "agent": "quality-auditor",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 63143,
+            "output_tokens": 8997,
+            "cost_usd": 0.3244,
+            "artifacts": [
+              "block_0.json",
+              "block_1.json"
+            ]
+          }
+        ],
+        "total_cost": 0.9722,
+        "total_input_tokens": 187685,
+        "total_output_tokens": 27278
+      },
+      "image_generator": {
+        "calls": [
+          {
+            "timestamp": "2026-03-20T00:04:52.890641",
+            "agent": "image-generator",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 60585,
+            "output_tokens": 3615,
+            "cost_usd": 0.236,
+            "artifacts": [
+              "block_0.json",
+              "block_1.json",
+              "block_2.json"
+            ]
+          }
+        ],
+        "total_cost": 0.236,
+        "total_input_tokens": 60585,
+        "total_output_tokens": 3615
+      },
+      "document_rendering": {
+        "calls": [
+          {
+            "timestamp": "2026-03-20T00:25:23.613530",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 2406,
+            "output_tokens": 8191,
+            "cost_usd": 0.1301,
+            "retry": false,
+            "doc_id": "A1"
+          },
+          {
+            "timestamp": "2026-03-20T00:27:08.212689",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 4092,
+            "output_tokens": 8192,
+            "cost_usd": 0.1352,
+            "retry": false,
+            "doc_id": "A2"
+          },
+          {
+            "timestamp": "2026-03-20T00:28:56.430406",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 2506,
+            "output_tokens": 8191,
+            "cost_usd": 0.1304,
+            "retry": false,
+            "doc_id": "A3"
+          },
+          {
+            "timestamp": "2026-03-20T00:30:38.568596",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 2494,
+            "output_tokens": 8192,
+            "cost_usd": 0.1304,
+            "retry": false,
+            "doc_id": "A4"
+          },
+          {
+            "timestamp": "2026-03-20T00:32:13.711751",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 5162,
+            "output_tokens": 8192,
+            "cost_usd": 0.1384,
+            "retry": false,
+            "doc_id": "A5"
+          },
+          {
+            "timestamp": "2026-03-20T00:33:47.212253",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 4101,
+            "output_tokens": 8191,
+            "cost_usd": 0.1352,
+            "retry": false,
+            "doc_id": "A6"
+          },
+          {
+            "timestamp": "2026-03-20T00:35:40.272366",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 3878,
+            "output_tokens": 8192,
+            "cost_usd": 0.1345,
+            "retry": false,
+            "doc_id": "B1"
+          },
+          {
+            "timestamp": "2026-03-20T00:37:30.318388",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 4346,
+            "output_tokens": 8192,
+            "cost_usd": 0.1359,
+            "retry": false,
+            "doc_id": "B2"
+          },
+          {
+            "timestamp": "2026-03-20T00:39:13.758206",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 3910,
+            "output_tokens": 8192,
+            "cost_usd": 0.1346,
+            "retry": false,
+            "doc_id": "B3"
+          },
+          {
+            "timestamp": "2026-03-20T00:41:07.846080",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 3879,
+            "output_tokens": 8192,
+            "cost_usd": 0.1345,
+            "retry": false,
+            "doc_id": "B4"
+          },
+          {
+            "timestamp": "2026-03-20T00:42:48.238227",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 4658,
+            "output_tokens": 8192,
+            "cost_usd": 0.1369,
+            "retry": false,
+            "doc_id": "B5"
+          },
+          {
+            "timestamp": "2026-03-20T00:44:28.024353",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 4888,
+            "output_tokens": 8192,
+            "cost_usd": 0.1375,
+            "retry": false,
+            "doc_id": "B6"
+          },
+          {
+            "timestamp": "2026-03-20T00:46:03.559438",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 3898,
+            "output_tokens": 8192,
+            "cost_usd": 0.1346,
+            "retry": false,
+            "doc_id": "B7"
+          },
+          {
+            "timestamp": "2026-03-20T00:47:49.648781",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 5296,
+            "output_tokens": 8192,
+            "cost_usd": 0.1388,
+            "retry": false,
+            "doc_id": "C1"
+          },
+          {
+            "timestamp": "2026-03-20T00:49:35.264651",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 3096,
+            "output_tokens": 8192,
+            "cost_usd": 0.1322,
+            "retry": false,
+            "doc_id": "C2"
+          },
+          {
+            "timestamp": "2026-03-20T00:51:11.840743",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 5369,
+            "output_tokens": 8192,
+            "cost_usd": 0.139,
+            "retry": false,
+            "doc_id": "C3"
+          },
+          {
+            "timestamp": "2026-03-20T00:53:21.123749",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 3012,
+            "output_tokens": 8192,
+            "cost_usd": 0.1319,
+            "retry": false,
+            "doc_id": "R1"
+          }
+        ],
+        "total_cost": 2.2901,
+        "total_input_tokens": 66991,
+        "total_output_tokens": 139261
+      }
+    },
+    "images": {
+      "generated": 0,
+      "failed": 4,
+      "model": "dall-e-3",
+      "total_cost": 0.0
+    },
+    "totals": {
+      "input_tokens": 1140899,
+      "output_tokens": 337608,
+      "wasted_tokens_retries": 0,
+      "images_generated": 0,
+      "estimated_total_usd": 8.4869,
+      "api_calls": 35
+    }
+  }
+}

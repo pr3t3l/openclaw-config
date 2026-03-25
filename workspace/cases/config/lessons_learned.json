@@ -1,0 +1,299 @@
+{
+  "lessons": [
+    {
+      "id": "LL-001",
+      "date": "2026-03-12",
+      "case_slug": "el-asesinato-en-la-casa-inteligente",
+      "phase": "narrative_architect",
+      "category": "clue_catalog_quality",
+      "problem": "Narrative Architect produced detailed case-plan.json but stub entries in clue_catalog.json. DOC-02 through DOC-16 had type_key='some_type', reveals='Reveals something about DOC-XX', player_inference='Player infers something'",
+      "root_cause": "SKILL.md did not enforce that clue_catalog entries must be as detailed as case-plan document assignments. No validation caught these stubs before production started.",
+      "fix_applied": "validate_narrative.py now checks: type_key must match template_registry, reveals must be >30 chars and not generic, player_inference must be >20 chars and not generic, production_brief must have real content",
+      "applies_to": [
+        "narrative-architect",
+        "validate_narrative"
+      ]
+    },
+    {
+      "id": "LL-002",
+      "date": "2026-03-12",
+      "case_slug": "el-asesinato-en-la-casa-inteligente",
+      "phase": "production_engine",
+      "category": "schema_mismatch",
+      "problem": "Envelope B failed 3 times: HTML tags in Markdown content, wrong JSON schema, missing required template vars",
+      "root_cause": "Production Engine SKILL.md did not include a concrete JSON example. Agent guessed the structure and guessed wrong.",
+      "fix_applied": "SKILL.md now includes exact JSON example per document type. Rule added: _content.md must be plain Markdown with no HTML tags.",
+      "applies_to": [
+        "production-engine",
+        "validate_document"
+      ]
+    },
+    {
+      "id": "LL-003",
+      "date": "2026-03-12",
+      "case_slug": "el-asesinato-en-la-casa-inteligente",
+      "phase": "production_engine",
+      "category": "placeholder_passthrough",
+      "problem": "Multiple documents contained {{CONTENT_FROM_MD_FILE}} in rendered output, {CONTENT_FROM_MD_FILE} in witness statements, and 'Internal QC anchor for DOC-XX' as key_mandatory_line",
+      "root_cause": "No placeholder scanning existed in validation. key_mandatory_line in clue_catalog was itself a placeholder.",
+      "fix_applied": "validate_placeholders.py added as mandatory scan. validate_narrative.py now rejects known placeholder patterns in key_mandatory_line.",
+      "applies_to": [
+        "production-engine",
+        "validate_document",
+        "validate_placeholders",
+        "narrative-architect"
+      ]
+    },
+    {
+      "id": "LL-004",
+      "date": "2026-03-12",
+      "case_slug": "el-asesinato-en-la-casa-inteligente",
+      "phase": "art_director",
+      "category": "incomplete_image_coverage",
+      "problem": "Art Director produced only 4 mugshot briefs. No evidence photos, scene images, body diagrams, CCTV stills, or document scans were planned.",
+      "root_cause": "SKILL.md only mentioned mugshots explicitly. Other image types were implied but not required.",
+      "fix_applied": "Art Director SKILL.md now requires briefs for ALL document types with needs_image=true in template_registry. Image categories explicitly listed.",
+      "applies_to": [
+        "art-director",
+        "validate_art"
+      ]
+    },
+    {
+      "id": "LL-005",
+      "date": "2026-03-12",
+      "case_slug": "el-asesinato-en-la-casa-inteligente",
+      "phase": "production_engine",
+      "category": "content_quality",
+      "problem": "Forensic reports had 1-line method sections. Lab reports had no narrative. Entry/exit logs had too few entries. Missing person report was empty form fields. Word count 'passed' because it counted form labels.",
+      "root_cause": "Word count checked total words including empty form labels, metadata headers, and template structure. No per-type quality floor existed.",
+      "fix_applied": "validate_document.py now counts narrative words only (excludes form labels, headers, placeholders). Per-type quality floors added to template_registry.json.",
+      "applies_to": [
+        "production-engine",
+        "validate_document"
+      ]
+    },
+    {
+      "id": "LL-006",
+      "date": "2026-03-12",
+      "case_slug": "el-asesinato-en-la-casa-inteligente",
+      "phase": "render",
+      "category": "hardcoded_template_data",
+      "problem": "evidence_mosaic.html contained hardcoded pharmacy receipt and taxi receipt from '03/18/1990' — completely unrelated to the case. Newspaper template showed broken image links.",
+      "root_cause": "HTML templates had static sample content that was meant for development but shipped to production. No guard against hardcoded case data in templates.",
+      "fix_applied": "All templates refactored to be 100% data-driven via Handlebars. No static text that pretends to be case data. Layout Planner agent maps content to template structure.",
+      "applies_to": [
+        "evidence_mosaic.html",
+        "all templates",
+        "layout-planner"
+      ]
+    },
+    {
+      "id": "LL-007",
+      "date": "2026-03-12",
+      "case_slug": "el-asesinato-en-la-casa-inteligente",
+      "phase": "infrastructure",
+      "category": "missing_tools",
+      "problem": "zip not installed, PDF merge tools missing, Google auth expired mid-pipeline",
+      "root_cause": "No pre-flight check for required system tools before starting a case",
+      "fix_applied": "start_new_case.sh now checks for required tools (zip, node, python3, chromium) before creating case folder",
+      "applies_to": [
+        "start_new_case.sh"
+      ]
+    },
+    {
+      "id": "LL-008",
+      "date": "2026-03-13",
+      "case_slug": "el-asesinato-en-la-casa-automatizada",
+      "phase": "art_director",
+      "category": "inconsistent_poi_imagery",
+      "problem": "Art briefs requested separate mugshots for the same POI across multiple docs (A2 POI sheet, B1/B2/B3 interview headers, and resolution), causing multiple inconsistent face variants after generation.",
+      "root_cause": "Art Director treated each doc image requirement as unique instead of defining a canonical POI portrait library and reusing it across documents.",
+      "fix_applied": "Policy: generate exactly one canonical portrait per POI (stored under A2 / a shared canonical path) and reuse/copy it for every doc header that needs that POI image. Art briefs should reference the canonical asset via reusable_from_library + library_path (or shared filename) rather than new prompts.",
+      "applies_to": [
+        "art-director",
+        "image-generator",
+        "validate_art"
+      ]
+    },
+    {
+      "id": "LL-009",
+      "date": "2026-03-13",
+      "case_slug": "el-asesinato-en-la-casa-automatizada",
+      "phase": "art_director",
+      "category": "victim_photo_style",
+      "problem": "Victim POI-01 (deceased) was planned/produced as a police mugshot, which is tone-wrong for a victim profile and looks inconsistent in the POI sheet.",
+      "root_cause": "No rule differentiating victim imagery style (victim should usually be a normal portrait) vs suspect mugshots.",
+      "fix_applied": "Policy: victim image should be a normal portrait (corporate/headshot or candid) unless the story explicitly calls for an actual booking photo. Update Art Director guidance accordingly.",
+      "applies_to": [
+        "art-director",
+        "image-generator"
+      ]
+    },
+    {
+      "id": "LL-010",
+      "date": "2026-03-13",
+      "case_slug": "el-asesinato-en-la-casa-automatizada",
+      "phase": "state_management",
+      "category": "invalid_envelope_folder",
+      "problem": "Image outputs were written to a non-existent/invalid envelope folder (envelope_P) due to an art brief envelope value that was not in {A,B,C,R}.",
+      "root_cause": "No validation enforcing envelope letter set for image briefs; Image Generator assumed envelope folder exists.",
+      "fix_applied": "Add validation: art_briefs envelope must be one of {A,B,C,R}. Treat any other value as FAIL. Also ensure art briefs use correct doc_id (for_doc must be a real doc_id) rather than POI ids.",
+      "applies_to": [
+        "art-director",
+        "validate_art",
+        "image-generator"
+      ]
+    },
+    {
+      "id": "LL-011",
+      "date": "2026-03-13",
+      "case_slug": "el-asesinato-en-la-casa-automatizada",
+      "phase": "art_director",
+      "category": "image_usage_planning",
+      "problem": "Art planning did not specify WHERE each image is used in the final documents (which doc sections/slots), and did not plan evidence/scene images beyond POI portraits. This caused inconsistent reuse and limited visual value.",
+      "root_cause": "Art Director output schema focuses on generating prompts but lacks an explicit usage map per doc/template slot; Layout planning happens later without a clear image placement plan.",
+      "fix_applied": "New rule: during planning, Art Director must (1) create a canonical image set per POI, (2) plan scenes from scene_descriptions as usable doc images, (3) add evidence/device/CCTV/log screenshots for key clue docs, and (4) include per-brief usage_notes mapping image -> doc_id + template slot/section. Layout Planner then consumes usage_notes to place images consistently.",
+      "applies_to": [
+        "art-director",
+        "layout-planner",
+        "document-assembler",
+        "image-generator"
+      ]
+    },
+    {
+      "id": "LL-012",
+      "date": "2026-03-13",
+      "case_slug": "el-asesinato-en-la-casa-automatizada",
+      "phase": "production_engine",
+      "category": "consistency",
+      "problem": "Minor labeling/continuity: some interview headers use placeholder-like POI identifiers (e.g., POI-??) while other materials use fixed POI IDs. This can momentarily distract players trying to map suspects across docs.",
+      "root_cause": "Production Engine did not normalize all interview subject lines to the established POI IDs (Arthur=POI-02, Chloe=POI-03, Marcus=POI-04).",
+      "fix_applied": "Normalize all interview subject lines to the established POI IDs and ensure consistent naming across all envelopes.",
+      "applies_to": [
+        "production-engine",
+        "validate_document"
+      ]
+    },
+    {
+      "id": "LL-013",
+      "date": "2026-03-13",
+      "case_slug": "el-asesinato-en-la-casa-automatizada",
+      "phase": "narrative_architect",
+      "category": "consistency",
+      "problem": "A couple of case-plan references appear slightly mis-pointed relative to the produced documents (e.g., timeline citing a doc that does not contain the referenced event; contradiction ‘introduced/resolved’ markers that are shifted by one document).",
+      "root_cause": "Narrative Architect did not perfectly align the timeline source_docs for the emergency-lockdown trigger and contradiction doc IDs with the evidence.",
+      "fix_applied": "In case-plan.json: verify the timeline source_docs and align CONTRA introduced/resolved doc IDs with where the clue is first proven vs. where tool possession is proven.",
+      "applies_to": [
+        "narrative-architect",
+        "validate_narrative"
+      ]
+    },
+    {
+      "id": "LL-014",
+      "date": "2026-03-13",
+      "case_slug": "el-asesinato-en-la-casa-automatizada",
+      "phase": "cost_tracking",
+      "category": "telemetry_missing",
+      "problem": "manifest.json cost_tracking totals and phases remained zero/empty despite a completed pipeline (status=distributed).",
+      "root_cause": "Token/cost usage was not recorded after sub-agent runs; no validation or final check enforces non-zero telemetry for completed cases.",
+      "fix_applied": "Add a final validation/checklist item: after each sessions_spawn, capture usage and append to manifest.json cost_tracking.phases + recompute totals; on render/distribution completion, FAIL if totals are all zero (unless explicitly marked telemetry_disabled).",
+      "applies_to": [
+        "orchestrator",
+        "manifest.json",
+        "validate_final"
+      ]
+    },
+    {
+      "id": "LL-015",
+      "date": "2026-03-15",
+      "case_slug": "the-last-livestream",
+      "phase": "narrative_architect",
+      "category": "cross_reference_integrity",
+      "problem": "When converting a document from one template type to another (e.g., evidence_mosaic → interrogation_transcript), cross-references were left stale (contradictions, timeline, evidence_chain), causing logic/validator mismatches.",
+      "root_cause": "Doc type was changed late (post-generation/normalization) without updating all doc_id references that depend on that doc’s semantics and placement.",
+      "fix_applied": "Policy: any doc type conversion requires updating ALL cross-references: contradictions introduced_in/resolved_in, timeline source_docs, evidence_chain docs_needed, POI interview_doc, and any depends_on. Add a checklist/normalizer step to re-link references after conversions.",
+      "applies_to": [
+        "narrative-architect",
+        "normalize_output",
+        "validate_narrative",
+        "orchestrator"
+      ]
+    },
+    {
+      "id": "LL-016",
+      "date": "2026-03-15",
+      "case_slug": "the-last-livestream",
+      "phase": "narrative_architect",
+      "category": "trojan_horse_pacing",
+      "problem": "The Trojan horse DoorDash receipt (A4) revealed the key implicating detail in its reveals field, collapsing the mystery too early and reducing the impact of the pivot document (C3).",
+      "root_cause": "Reveals fields were written too explicitly for early-envelope trojan documents; the intended reveal split (ambiguous early, explicit later) was not enforced.",
+      "fix_applied": "Rule: Trojan horse docs in early envelopes must be ambiguous in reveals (no full addresses/unique identifiers). The pivot document (Envelope C) should deliver the complete, explicit detail. Validate pacing: if A-envelope doc reveals the C-envelope pivot fact, rewrite or move detail.",
+      "applies_to": [
+        "narrative-architect",
+        "quality-auditor",
+        "validate_narrative"
+      ]
+    },
+    {
+      "id": "LL-017",
+      "date": "2026-03-15",
+      "case_slug": "the-last-livestream",
+      "phase": "narrative_architect",
+      "category": "interview_slip_specificity",
+      "problem": "Interview slips were initially vague (e.g., “remembers the timestamp perfectly”) instead of concrete details only an involved person could know, weakening realism and deductive power.",
+      "root_cause": "Slip design guidance did not force concrete, case-specific technical/physical details; agents defaulted to generic “knows too much” tells.",
+      "fix_applied": "Rule: Slips must be concrete and verifiable (specific device states, UI labels, lane numbers, door names, network switch behavior, etc.) and tied to a later corroborating doc. Add QA check: reject any slip that could apply to any case.",
+      "applies_to": [
+        "narrative-architect",
+        "production-engine",
+        "quality-auditor"
+      ]
+    },
+    {
+      "id": "LL-018",
+      "date": "2026-03-16",
+      "case_slug": "the-last-livestream",
+      "phase": "art-director",
+      "severity": "high",
+      "title": "Art Director must generate contextual images for ALL visual document types",
+      "problem": "Art Director only generated portraits + 1 building + 1 floor plan for 18 documents. Digital evidence docs (social_posts, evidence_mosaic, email_export, calls_sms_log, entry_exit_log) got zero images. Visual support scored 7/10 instead of 9/10.",
+      "root_cause": "template_registry.json had needs_image=false for digital doc types (social_posts, evidence_mosaic, email_export, calls_sms_log, entry_exit_log). Art Director correctly followed the registry but the registry was wrong.",
+      "fix": "Updated template_registry to mark all visual doc types as needs_image=true with appropriate image_type. Added MINIMUM IMAGE COVERAGE RULE to art-director SKILL.md with self-check.",
+      "prevention": "Art Director self-check now requires counting docs with needs_image=true vs briefs generated. validate_art.py can enforce this."
+    },
+    {
+      "id": "LL-019",
+      "date": "2026-03-16",
+      "case_slug": "the-last-livestream",
+      "phase": "layout-render",
+      "severity": "medium",
+      "title": "Render output must go directly to envelope folders, not layout_specs",
+      "problem": "inject_and_render.js outputs HTML/PDF to layout_specs/ but validate_final.py and the packager expect them in envelope_X/<doc_id>.html and envelope_X/<doc_id>.pdf.",
+      "root_cause": "Phase 8 has no SKILL.md — the render was done ad-hoc without output path conventions.",
+      "fix": "Updated AGENTS.md Phase 8 to specify output paths: envelope_X/<doc_id>.html and envelope_X/<doc_id>.pdf. layout_specs/ is intermediate only.",
+      "prevention": "When Layout Planner SKILL.md is created, enforce output path convention. validate_final.py already checks the correct paths."
+    }
+  ],
+  "anti_patterns": [
+    "Never use 'some_type' as type_key — always use exact key from template_registry.json",
+    "Never use 'Reveals something about DOC-XX' — always write the actual revelation",
+    "Never use 'Player infers something' — always write the actual player inference",
+    "Never use 'Write this doc.' as a production brief summary",
+    "Never use 'Info' as key_information_to_include",
+    "Never use 'Internal QC anchor for DOC-XX' as key_mandatory_line",
+    "Never count template/form field words toward content quality minimums",
+    "Never include HTML tags (<p>, <div>) in _content.md files — use plain Markdown only",
+    "Never retry with identical parameters — always include failure diagnosis in retry prompt",
+    "Never include a document type that doesn't serve the story (no forensics in a financial fraud case)",
+    "Never hardcode case-specific data in HTML templates — all content comes from JSON vars",
+    "Normalize all interview subject lines to established POI IDs to avoid placeholder-like POI identifiers.",
+    "Verify timeline source_docs and contradiction introduced/resolved doc IDs in case-plan.json exactly match the evidence."
+  ],
+  "model_notes": [
+    "gemini31pro-thinking hits rate limits after approximately 15 spawns in 2 hours",
+    "gpt52-thinking is a reliable fallback for playthrough QA and narrative architect",
+    "nano-banana-2-gemini needs exponential backoff (2s, 5s, 10s) for RESOURCE_EXHAUSTED errors",
+    "Sub-agents via sessions_spawn start with fresh context — token tracking per sub-agent is reliable",
+    "Robotin main session context compounds with each spawn — keep orchestration messages concise"
+  ]
+}

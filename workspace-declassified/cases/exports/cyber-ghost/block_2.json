@@ -1,0 +1,79 @@
+{
+  "manifest_patch": {
+    "pipeline_state": {
+      "image_generation": "completed"
+    },
+    "images": {
+      "poi_01_jordan_mercer_portrait": {
+        "canonical_path": "visuals/canonical/poi_01_jordan_mercer_portrait.png",
+        "type": "portrait",
+        "poi": "POI-01",
+        "model": "dall-e-3",
+        "used_in": [
+          "A2"
+        ]
+      },
+      "poi_02_aldric_voss_mugshot": {
+        "canonical_path": "visuals/canonical/poi_02_aldric_voss_mugshot.png",
+        "type": "mugshot",
+        "poi": "POI-02",
+        "model": "dall-e-3",
+        "used_in": [
+          "A2",
+          "B2"
+        ]
+      },
+      "poi_03_nadia_osei_mugshot": {
+        "canonical_path": "visuals/canonical/poi_03_nadia_osei_mugshot.png",
+        "type": "mugshot",
+        "poi": "POI-03",
+        "model": "dall-e-3",
+        "used_in": [
+          "A2",
+          "B3"
+        ]
+      },
+      "poi_04_serena_cho_mugshot": {
+        "canonical_path": "visuals/canonical/poi_04_serena_cho_mugshot.png",
+        "type": "mugshot",
+        "poi": "POI-04",
+        "model": "dall-e-3",
+        "used_in": [
+          "A2",
+          "B4"
+        ]
+      }
+    },
+    "cost_tracking": {
+      "phases": {
+        "image_generator": {
+          "calls": [
+            {
+              "timestamp": "2026-03-20T05:12:00Z",
+              "agent": "image-generator",
+              "model": "dall-e-3",
+              "images_generated": 4,
+              "images_reused": 3,
+              "images_failed": 0,
+              "cost_usd": 0.16,
+              "artifacts": [
+                "visuals/canonical/poi_01_jordan_mercer_portrait.png",
+                "visuals/canonical/poi_02_aldric_voss_mugshot.png",
+                "visuals/canonical/poi_03_nadia_osei_mugshot.png",
+                "visuals/canonical/poi_04_serena_cho_mugshot.png"
+              ]
+            }
+          ],
+          "total_cost": 0.16,
+          "total_images_generated": 4,
+          "total_images_reused": 3,
+          "total_images_failed": 0
+        }
+      },
+      "totals": {
+        "images_generated": 4,
+        "estimated_total_usd_delta": 0.16
+      }
+    }
+  }
+}

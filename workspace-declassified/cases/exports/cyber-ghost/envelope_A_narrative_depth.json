@@ -1,0 +1,118 @@
+{
+  "mode": "narrative_depth",
+  "envelope": "A",
+  "documents": [
+    {
+      "doc_id": "A1",
+      "result": "PASS",
+      "issues": [
+        {
+          "severity": "NOTE",
+          "detail": "The production brief specifies the pill organizer anomaly should appear in a sub-table labeled 'SCENE INVENTORY — NOTABLE ABSENCES' so it feels discovered rather than flagged. Verify the rendered content buries this in an appendix table rather than the narrative body — if it appears in the main prose, it loses its Trojan-horse quality.",
+          "suggested_fix": "Confirm the key_mandatory_line appears only in an appendix/sub-table section. If it appears in the narrative body, move it to a formatted table at the document's end with a dry header like 'APPENDIX B — SCENE INVENTORY NOTABLE ABSENCES' and ensure no narrative sentence draws attention to it."
+        }
+      ]
+    },
+    {
+      "doc_id": "A2",
+      "result": "PASS",
+      "issues": [
+        {
+          "severity": "NOTE",
+          "detail": "The key_mandatory_line references '340% ($52K to $180K annually)' for Voss. Confirm the rendered content preserves this specificity — the emotional beat depends on the 340% number feeling like a grenade in bureaucratic language, not a vague 'significant increase.'",
+          "suggested_fix": "Verify the Voss entry contains the exact figures: '$52K to $180K annually' and '340%' in the REASON FOR INTEREST field. If softened to 'substantial increase,' restore to exact numbers."
+        },
+        {
+          "severity": "NOTE",
+          "detail": "The brief specifies the Voss entry is 'the most terse' of the four, implying the detective is being careful. If the content treats all four entries with equal length and register, this interpretive signal is lost.",
+          "suggested_fix": "Ensure the Voss entry is noticeably shorter in narrative elaboration than the Osei and Cho entries — the terseness IS the signal. Nadia's entry should quote the forum threat verbatim; Serena's should explicitly note 'relationship to deceased under active review.'"
+        }
+      ]
+    },
+    {
+      "doc_id": "A3",
+      "result": "NEEDS_DEPTH",
+      "issues": [
+        {
+          "severity": "BLOCKER",
+          "detail": "The Trojan horse effectiveness of A3 depends entirely on the Suite 440 entry appearing in the ACCESS LOG TABLE with identical formatting to all other entries — no flag, no annotation, no italic marker. The production brief specifies 'A footnote at the bottom of the table reads: All access events logged automatically. Manual review annotations are in italics. The Suite 440 access has no italic annotation — meaning it was never manually reviewed or flagged.' If the rendered content does not include this footnote, the player has no framework to understand WHY the absence of annotation is significant.",
+          "suggested_fix": "Add the following footnote beneath the access log table: 'All access events are logged automatically by the CHWS audit system. Manual review annotations appear in italics below the relevant entry. Unannotated entries have not been reviewed by IT Security personnel.' Then ensure ENTRY 7 (Suite 440, CHWS-0112) has no italic annotation beneath it, while all other entries do. This makes the anomaly discoverable by reading the footnote's own logic."
+        },
+        {
+          "severity": "BLOCKER",
+          "detail": "The annotation in experience_design.json states: 'Cross-ref C2 — who occupies Suite 440?' at top_right_corner. The detective annotation must reference C2 by document ID, not just 'confirm suite occupant.' If the annotation only says 'confirm suite occupant' without the C2 cross-reference, players have no breadcrumb to the resolution document.",
+          "suggested_fix": "Ensure the top-right corner annotation reads explicitly: 'Suite 440 occupant — confirm via C2.' Box 'C2' in the annotation. This is the scaffolding that bridges the 10-document gap identified in clue_proximity_check (CONTRA-03, status: proximity_warning)."
+        },
+        {
+          "severity": "WARNING",
+          "detail": "The production brief specifies the memo body is a 'dry, technical summary' and that the Suite 440 entry 'is in the table but not mentioned in the memo narrative body — Bannister didn't think it was significant.' If the content renders the memo body mentioning or summarizing the second access, the Trojan horse quality collapses — the player is told it matters rather than discovering it.",
+          "suggested_fix": "Verify the memo narrative body paragraph(s) describe only the official IT Security review (CHWS-0003 and CHWS-0009 on October 13) and makes no reference to ENTRY 7 or the Suite 440 access. The Suite 440 entry must exist only in the table, invisible to anyone who reads the memo summary without reading the table rows."
+        },
+        {
+          "severity": "WARNING",
+          "detail": "The emotional beat requires the player to 'almost move on' from this document before the Suite 440 entry stops them cold. This requires the document to feel genuinely boring for its first 70-80% — dense IT log language, routine entries, numbered sessions. If the content is too short or too neatly formatted to feel like real bureaucratic filler, the discovery moment loses its impact.",
+          "suggested_fix": "Ensure the document has at least 6-7 ACCESS LOG TABLE entries before ENTRY 7, with the earlier entries having routine annotations in italics (e.g., 'Reviewed — T. Bannister 10/13', 'Cross-referenced with print session data'). The density of unremarkable entries is what makes ENTRY 7's silence stand out. If there are fewer than 5 preceding entries, add 2-3 routine ones."
+        }
+      ]
+    },
+    {
+      "doc_id": "A4",
+      "result": "PASS",
+      "issues": [
+        {
+          "severity": "WARNING",
+          "detail": "The production brief specifies the 'Content Divergence' section contains the Finance Division position description matching Serena Cho's role — but the position description must NOT name Cho. If the rendered content names 'Serena Cho' or 'City IT/Finance Systems Administrator, Harwick City Hall' with enough specificity to make the connection trivial, it collapses the deductive step from planted-misdirection to obvious frame-up.",
+          "suggested_fix": "Verify the position description in the Content Divergence section reads something like 'Finance Division procurement systems access, secondary authorization credentials, 11+ years tenure' — enough to match Cho's profile when the player cross-references A2, but not a direct name or title match. Qui's note should say 'selective editing consistent with intent to redirect attribution' without specifying the target."
+        },
+        {
+          "severity": "WARNING",
+          "detail": "The annotation in experience_design.json cross-references B7 with 'JM's estimated TOD is Oct 19 ~23:08 per B7. PGP key was used AFTER death.' The player won't have B7 yet when reading A4. If the annotation gives away the TOD explicitly, it undercuts the deductive build. The annotation should prime without resolving.",
+          "suggested_fix": "Revise the annotation to read: 'Credential use: 02:17:44 Oct 20. If estimated TOD is before 02:17 — someone had the key. Cross-ref B7 for TOD.' The conditional 'if' preserves the deductive gap while still planting the cross-reference."
+        }
+      ]
+    },
+    {
+      "doc_id": "A5",
+      "result": "NEEDS_DEPTH",
+      "issues": [
+        {
+          "severity": "BLOCKER",
+          "detail": "The Instagram timestamp math is the primary suspicion-builder for Nadia in Envelope A, setting up the red herring that pays off in B3. The math must be explicit enough for a player to do it: Nadia uploaded at 00:52 (Oct 20), but a tagged comment from @mweinberg_dev is timestamped 23:47 (Oct 19) — meaning mweinberg commented BEFORE the post existed, which is impossible, OR the post was uploaded later than Nadia was physically at the hackathon. The experience_design annotation correctly identifies this but the content must make the timestamps clearly legible and on the same document section so the player can actually do the arithmetic.",
+          "suggested_fix": "In the Instagram section, format it so both timestamps appear within 3 lines of each other: the upload timestamp ('Posted: Oct 20, 2024 · 12:52 AM') must appear directly beneath the post image description, and @mweinberg_dev's comment timestamp ('Oct 19, 2024 · 11:47 PM') must appear immediately below the comment text. Add an HPD analyst note: 'Upload timestamp 00:52 Oct 20 — 65 minutes AFTER the tagged comment at 23:47 Oct 19. Poster was not at the hackathon when this comment was made.' Without this proximity, most players will miss the arithmetic."
+        },
+        {
+          "severity": "BLOCKER",
+          "detail": "The Reddit throwaway comment is the most important text element in this document for Envelope A (it primes players to read A3 more carefully). The production brief specifies it is 'buried several replies deep' — but it must still be readable in the compiled evidence package. If the rendering makes it genuinely hard to find (small text, nested too deep, truncated), it fails its purpose as a tension-builder and A3 cross-reference primer.",
+          "suggested_fix": "The throwaway comment should appear 2-3 comments deep (not 5+), with the HPD analyst annotation beside it visible in the same visual section: 'Account created Oct 20, deleted Oct 21. Specific knowledge of 847-page print session. Source unknown — cross-ref A3.' The comment text itself must contain the key_mandatory_line verbatim: 'Check the queue logs for Oct 8-11.'"
+        },
+        {
+          "severity": "WARNING",
+          "detail": "The Facebook deleted comment section has a 'screenshot-within-screenshot' structure that can be confusing if not clearly labeled. The HarwickProspers2024 account link to Voss's political network is described as appearing 'in a metadata note' — if this metadata note is too subtle or not present, the atmospheric menace of the deleted comment is lost.",
+          "suggested_fix": "Add a clearly formatted HPD analyst note adjacent to the screenshot-within-screenshot: '[Analyst note: HarwickProspers2024 account metadata — registered email domain matches Harwick Civic Advancement PAC donor mailing list. PAC associated with Aldric Voss campaign donor network per public FEC filings. Comment posted 14:23, deleted 20:11 same day — 6-hour window.]' The metadata connection must be stated explicitly, not implied."
+        },
+        {
+          "severity": "NOTE",
+          "detail": "The four-platform structure risks feeling choppy if each section is too short. The minimum word count is 400 total, which is thin for four distinct platform UIs. The X/Twitter section must feel like a real live-thread (multiple posts, timestamps, reply nesting), not a single post.",
+          "suggested_fix": "Ensure the X/Twitter section contains at least 4 posts from @PriyaNairHWK with timestamps showing the thread evolving over 30-60 minutes, plus the council staffer's quote-reply. If the section is a single tweet plus one reply, expand it to show the journalistic arc of the story developing."
+        }
+      ]
+    },
+    {
+      "doc_id": "A6",
+      "result": "PASS",
+      "issues": [
+        {
+          "severity": "WARNING",
+          "detail": "The floor plan's primary function is explaining how the killer exited without appearing on camera. The ANALYST NOTE about the secondary stairwell ('no external keycard reader, no camera, no alarm during hours 18:00-07:00') is the key_mandatory_line and must be visually prominent. If this note is buried in small text at the bottom of a dense diagram, players who skim the floor plan will miss the exit mechanism.",
+          "suggested_fix": "Format the ANALYST NOTE as a visually distinct callout box (bordered, slightly larger font than surrounding annotations) positioned directly adjacent to the secondary stairwell label on the diagram. The phrase 'no camera coverage, no alarm 18:00-07:00' should be bold or highlighted within the callout."
+        },
+        {
+          "severity": "NOTE",
+          "detail": "The experience_design annotation references the death window '22:08-23:34 (see C1)' — but C1 hasn't been read yet. This cross-reference is intentionally forward-pointing (the annotation is meant to reward re-reading). Verify the annotation says 'see C1' explicitly so players know to return to this floor plan when they reach C1.",
+          "suggested_fix": "Confirm the stairwell annotation includes the text 'Death window 22:08-23:34 — cross-ref C1 router log.' If the annotation only references the stairwell mechanics without the C1 forward-pointer, add it."
+        }
+      ]
+    }
+  ],
+  "overall_notes": "Envelope A is structurally sound with a strong document selection rationale and well-calibrated emotional arc. A1 and A2 are solid case-openers. A6 is an effective spatial tool. The two NEEDS_DEPTH documents (A3 and A5) are both critical to the case's Trojan-horse architecture: A3 is Trojan Horse #1 and its effectiveness depends on precise table formatting and the absence-of-annotation mechanic being legible; A5's Instagram timestamp math is the primary red-herring setup for Nadia and must be arithmetically obvious to players. Neither failure is a content gap — both are execution precision failures that, if left unaddressed, would cause players to miss the two most important planted seeds in Envelope A. Priority fix order: A3 ENTRY 7 footnote mechanic (BLOCKER), A5 Instagram timestamp proximity (BLOCKER), A3 C2 annotation cross-reference (BLOCKER), A5 Reddit comment placement (BLOCKER). All other issues are WARNING or NOTE level and do not block envelope production."
+}

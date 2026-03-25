@@ -1,0 +1,130 @@
+{
+  "phase": "image_generator",
+  "model": "dall-e-3",
+  "images_generated": 4,
+  "images_failed": 0,
+  "images_reused": 3,
+  "fallback_used": false,
+  "primary_model_attempted": "gemini-3.1-flash-image-preview",
+  "primary_model_result": "routed_to_dalle3_per_workspace_config",
+  "generation_log": [
+    {
+      "image_id": "img_poi_01_portrait",
+      "for_poi": "POI-01",
+      "type": "portrait",
+      "model": "dall-e-3",
+      "quality": "hd",
+      "size": "1024x1024",
+      "output_path": "cases/exports/cyber-ghost/visuals/canonical/poi_01_jordan_mercer_portrait.png",
+      "envelope_copy": "cases/exports/cyber-ghost/visuals/envelope_A/final/poi_01_jordan_mercer_portrait.png",
+      "status": "success",
+      "file_size_kb": 847,
+      "retries": 0,
+      "notes": "Victim portrait — candid/social media style per LL-009 policy (not mugshot)"
+    },
+    {
+      "image_id": "img_poi_02_mugshot",
+      "for_poi": "POI-02",
+      "type": "mugshot",
+      "model": "dall-e-3",
+      "quality": "hd",
+      "size": "1024x1024",
+      "output_path": "cases/exports/cyber-ghost/visuals/canonical/poi_02_aldric_voss_mugshot.png",
+      "envelope_copy": "cases/exports/cyber-ghost/visuals/envelope_A/final/poi_02_aldric_voss_mugshot.png",
+      "status": "success",
+      "file_size_kb": 912,
+      "retries": 0,
+      "notes": "Police booking portrait — Aldric Voss, culprit/suspect"
+    },
+    {
+      "image_id": "img_poi_03_mugshot",
+      "for_poi": "POI-03",
+      "type": "mugshot",
+      "model": "dall-e-3",
+      "quality": "hd",
+      "size": "1024x1024",
+      "output_path": "cases/exports/cyber-ghost/visuals/canonical/poi_03_nadia_osei_mugshot.png",
+      "envelope_copy": "cases/exports/cyber-ghost/visuals/envelope_A/final/poi_03_nadia_osei_mugshot.png",
+      "status": "success",
+      "file_size_kb": 778,
+      "retries": 0,
+      "notes": "Police booking portrait — Nadia Osei, red herring suspect"
+    },
+    {
+      "image_id": "img_poi_04_mugshot",
+      "for_poi": "POI-04",
+      "type": "mugshot",
+      "model": "dall-e-3",
+      "quality": "hd",
+      "size": "1024x1024",
+      "output_path": "cases/exports/cyber-ghost/visuals/canonical/poi_04_serena_cho_mugshot.png",
+      "envelope_copy": "cases/exports/cyber-ghost/visuals/envelope_A/final/poi_04_serena_cho_mugshot.png",
+      "status": "success",
+      "file_size_kb": 803,
+      "retries": 0,
+      "notes": "Police booking portrait — Serena Cho, false lead suspect"
+    },
+    {
+      "image_id": "img_poi_02_mugshot_reuse_B2",
+      "for_poi": "POI-02",
+      "type": "reuse",
+      "model": "none",
+      "output_path": "cases/exports/cyber-ghost/visuals/envelope_B/final/poi_02_aldric_voss_mugshot.png",
+      "source_path": "cases/exports/cyber-ghost/visuals/canonical/poi_02_aldric_voss_mugshot.png",
+      "status": "copied",
+      "retries": 0,
+      "notes": "Reuse from canonical for B2 interrogation transcript header"
+    },
+    {
+      "image_id": "img_poi_03_mugshot_reuse_B3",
+      "for_poi": "POI-03",
+      "type": "reuse",
+      "model": "none",
+      "output_path": "cases/exports/cyber-ghost/visuals/envelope_B/final/poi_03_nadia_osei_mugshot.png",
+      "source_path": "cases/exports/cyber-ghost/visuals/canonical/poi_03_nadia_osei_mugshot.png",
+      "status": "copied",
+      "retries": 0,
+      "notes": "Reuse from canonical for B3 interrogation transcript header"
+    },
+    {
+      "image_id": "img_poi_04_mugshot_reuse_B4",
+      "for_poi": "POI-04",
+      "type": "reuse",
+      "model": "none",
+      "output_path": "cases/exports/cyber-ghost/visuals/envelope_B/final/poi_04_serena_cho_mugshot.png",
+      "source_path": "cases/exports/cyber-ghost/visuals/canonical/poi_04_serena_cho_mugshot.png",
+      "status": "copied",
+      "retries": 0,
+      "notes": "Reuse from canonical for B4 interrogation transcript header"
+    }
+  ],
+  "verification": {
+    "all_briefs_satisfied": true,
+    "files_verified_above_10kb": true,
+    "canonical_files_present": [
+      "visuals/canonical/poi_01_jordan_mercer_portrait.png",
+      "visuals/canonical/poi_02_aldric_voss_mugshot.png",
+      "visuals/canonical/poi_03_nadia_osei_mugshot.png",
+      "visuals/canonical/poi_04_serena_cho_mugshot.png"
+    ],
+    "envelope_A_files": [
+      "visuals/envelope_A/final/poi_01_jordan_mercer_portrait.png",
+      "visuals/envelope_A/final/poi_02_aldric_voss_mugshot.png",
+      "visuals/envelope_A/final/poi_03_nadia_osei_mugshot.png",
+      "visuals/envelope_A/final/poi_04_serena_cho_mugshot.png"
+    ],
+    "envelope_B_files": [
+      "visuals/envelope_B/final/poi_02_aldric_voss_mugshot.png",
+      "visuals/envelope_B/final/poi_03_nadia_osei_mugshot.png",
+      "visuals/envelope_B/final/poi_04_serena_cho_mugshot.png"
+    ]
+  },
+  "estimated_cost_usd": 0.16,
+  "cost_breakdown": {
+    "dall_e_3_hd_1024x1024_per_image": 0.04,
+    "images_generated": 4,
+    "subtotal": 0.16,
+    "reuse_copies": 3,
+    "reuse_cost": 0.0
+  }
+}

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        @page { margin: 18mm; size: letter; }
+        body {
+            font-family: "Arial", sans-serif;
+            font-size: 10pt;
+            line-height: 1.4;
+            color: #000;
+            background: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+        .alert-banner {
+            background: #dc143c;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 18pt;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+        }
+        .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 15px;
+        }
+        .agency-info { flex: 1; }
+        .agency-name { font-size: 12pt; font-weight: bold; margin-bottom: 3px; }
+        .agency-address { font-size: 8pt; color: #666; }
+        .case-box {
+            border: 2px solid #000; padding: 8px; background: #f8f8f8;
+            font-size: 8pt; min-width: 140px;
+        }
+        .case-number { font-weight: bold; font-size: 9pt; }
+        .photo-section {
+            float: right;
+            margin: 0 0 15px 20px;
+            text-align: center;
+        }
+        .missing-photo {
+            width: 140px; height: 175px;
+            border: 3px solid #dc143c;
+            object-fit: cover;
+        }
+        .photo-label {
+            font-size: 8pt; font-weight: bold;
+            color: #dc143c; margin-top: 4px;
+        }
+        .form-section {
+            border: 1px solid #999;
+            margin-bottom: 15px;
+            padding: 12px;
+            clear: none;
+        }
+        .section-title {
+            font-size: 10pt; font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 4px;
+            color: #333;
+        }
+        .field-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .field-grid.three-col { grid-template-columns: 1fr 1fr 1fr; }
+        .field-row { margin-bottom: 6px; }
+        .field-label {
+            font-weight: bold; font-size: 9pt;
+            display: inline-block; width: 100px;
+        }
+        .field-value {
+            border-bottom: 1px solid #000;
+            display: inline-block;
+            min-width: 120px;
+            padding-bottom: 1px;
+        }
+        .description-box {
+            border: 1px solid #999;
+            padding: 12px;
+            margin-bottom: 15px;
+            min-height: 80px;
+        }
+        .circumstances-box {
+            border: 1px solid #999;
+            padding: 12px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        .circumstances-text { text-indent: 15px; }
+        .clothing-desc {
+            font-size: 9pt; line-height: 1.5;
+            padding: 8px; background: #f8f8f8;
+            border: 1px solid #ddd;
+        }
+        .contact-box {
+            background: #f0f0f0;
+            border: 2px solid #333;
+            padding: 12px;
+            text-align: center;
+            margin: 15px 0;
+        }
+        .contact-title { font-weight: bold; font-size: 11pt; margin-bottom: 6px; }
+        .contact-number { font-size: 14pt; font-weight: bold; color: #dc143c; }
+        .reporting-section { margin-top: 15px; }
+        .signature-area {
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .sig-block { width: 45%; }
+        .sig-line { border-bottom: 1px solid #000; height: 25px; margin-bottom: 4px; }
+        .sig-label { font-size: 8pt; color: #666; }
+        .page-indicator {
+            text-align: center; font-size: 8pt;
+            color: #999; margin-top: 10px;
+        }
+        .footer-info {
+            margin-top: 20px; text-align: center;
+            font-size: 8pt; color: #666;
+            border-top: 1px solid #ccc; padding-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="alert-banner">MISSING PERSON</div>
+
+    <div class="report-header">
+        <div class="agency-info">
+            {{#if letterhead}}
+            <img src="{{letterhead}}" alt="Agency" style="max-width:100px;height:auto;margin-bottom:8px">
+            {{else}}
+            <div class="agency-name">{{agency}}</div>
+            {{/if}}
+        </div>
+        <div class="case-box">
+            <div class="case-number">CASE #: {{caseNumber}}</div>
+            <div>DOC ID: {{docId}}</div>
+            <div>DATE: {{date}}</div>
+            <div>{{classification}}</div>
+        </div>
+    </div>
+
+    {{#if missingPhoto}}
+    <div class="photo-section">
+        <img src="{{missingPhoto}}" class="missing-photo" alt="{{missingName}}">
+        <div class="photo-label">MISSING</div>
+    </div>
+    {{/if}}
+
+    <div class="form-section">
+        <div class="section-title">Missing Person Information</div>
+        <div class="field-grid">
+            <div class="field-row">
+                <span class="field-label">NAME:</span>
+                <span class="field-value">{{missingName}}</span>
+            </div>
+            <div class="field-row">
+                <span class="field-label">AGE:</span>
+                <span class="field-value">{{missingAge}}</span>
+            </div>
+            <div class="field-row">
+                <span class="field-label">DOB:</span>
+                <span class="field-value">{{missingDOB}}</span>
+            </div>
+            <div class="field-row">
+                <span class="field-label">SEX:</span>
+                <span class="field-value">{{missingSex}}</span>
+            </div>
+            <div class="field-row">
+                <span class="field-label">RACE:</span>
+                <span class="field-value">{{missingRace}}</span>
+            </div>
+            <div class="field-row">
+                <span class="field-label">HEIGHT:</span>
+                <span class="field-value">{{missingHeight}}</span>
+            </div>
+            <div class="field-row">
+                <span class="field-label">WEIGHT:</span>
+                <span class="field-value">{{missingWeight}}</span>
+            </div>
+            <div class="field-row">
+                <span class="field-label">EYES:</span>
+                <span class="field-value">{{missingEyes}}</span>
+            </div>
+            <div class="field-row">
+                <span class="field-label">HAIR:</span>
+                <span class="field-value">{{missingHair}}</span>
+            </div>
+            <div class="field-row">
+                <span class="field-label">ID MARKS:</span>
+                <span class="field-value">{{missingMarks}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-section">
+        <div class="section-title">Last Known Details</div>
+        <div class="field-grid">
+            <div class="field-row">
+                <span class="field-label">LAST SEEN:</span>
+                <span class="field-value">{{lastSeenDate}}</span>
+            </div>
+            <div class="field-row">
+                <span class="field-label">TIME:</span>
+                <span class="field-value">{{lastSeenTime}}</span>
+            </div>
+        </div>
+        <div class="field-row" style="margin-top:8px">
+            <span class="field-label">LOCATION:</span>
+            <span class="field-value" style="min-width:300px">{{lastSeenLocation}}</span>
+        </div>
+        {{#if lastSeenClothing}}
+        <div style="margin-top:10px">
+            <span class="field-label">CLOTHING:</span>
+            <div class="clothing-desc">{{lastSeenClothing}}</div>
+        </div>
+        {{/if}}
+    </div>
+
+    <div class="circumstances-box">
+        <div class="section-title">Circumstances of Disappearance</div>
+        <div class="circumstances-text">{{{circumstances}}}</div>
+    </div>
+
+    <div class="form-section">
+        <div class="section-title">Reporting Person</div>
+        <div class="field-grid">
+            <div class="field-row">
+                <span class="field-label">NAME:</span>
+                <span class="field-value">{{reportingPerson}}</span>
+            </div>
+            <div class="field-row">
+                <span class="field-label">RELATION:</span>
+                <span class="field-value">{{relationship}}</span>
+            </div>
+            <div class="field-row">
+                <span class="field-label">PHONE:</span>
+                <span class="field-value">{{reportingPhone}}</span>
+            </div>
+            <div class="field-row">
+                <span class="field-label">ADDRESS:</span>
+                <span class="field-value">{{reportingAddress}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-box">
+        <div class="contact-title">IF YOU HAVE ANY INFORMATION, CONTACT:</div>
+        <div class="contact-number">{{contactNumber}}</div>
+        <div style="font-size:9pt;margin-top:4px">{{agency}} — Reference Case #{{caseNumber}}</div>
+    </div>
+
+    <div class="signature-area">
+        <div class="sig-block">
+            <div class="sig-line"></div>
+            <div class="sig-label">REPORTING PERSON SIGNATURE</div>
+        </div>
+        <div class="sig-block">
+            <div class="sig-line"></div>
+            <div class="sig-label">RECEIVING OFFICER / DATE</div>
+        </div>
+    </div>
+
+    <div class="footer-info">
+        <strong>{{caseTitle}}</strong><br>
+        Prepared for training / investigative simulation. All persons depicted are fictional within this case universe.
+    </div>
+</body>
+</html>

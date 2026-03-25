@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        @page { margin: 15mm; size: letter; }
+        body { font-family: "Times New Roman", serif; font-size: 10pt; line-height: 1.4; color: #000; background: #fff; margin: 0; padding: 20px; }
+        .evidence-header { text-align: center; margin-bottom: 25px; border-bottom: 1px solid #999; padding-bottom: 12px; }
+        .evidence-title { font-size: 16pt; font-weight: bold; margin-bottom: 8px; text-transform: uppercase; }
+        .case-info { font-size: 9pt; color: #666; }
+        .mosaic-container { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px; }
+        .evidence-item { position: relative; background: rgba(255,255,255,0.95); padding: 0; box-shadow: 3px 3px 12px rgba(0,0,0,0.25); border: 1px solid #ddd; }
+        .evidence-item:nth-child(odd) { transform: rotate(-1.5deg); }
+        .evidence-item:nth-child(even) { transform: rotate(1.2deg); }
+        .evidence-label { position: absolute; top: -12px; left: 10px; background: #c0392b; color: white; font-size: 7pt; padding: 2px 8px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        .item-receipt { font-family: "Courier New", monospace; font-size: 8pt; padding: 15px; background: #f8f8f8; border: none; max-width: 280px; }
+        .item-phone { background: #000; border-radius: 25px; padding: 8px; max-width: 220px; }
+        .phone-screen { background: #fff; border-radius: 20px; padding: 15px; font-family: "Helvetica", sans-serif; font-size: 8pt; min-height: 150px; }
+        .app-header { font-weight: bold; font-size: 9pt; margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px solid #eee; }
+        .item-document { padding: 15px; font-family: "Courier New", monospace; font-size: 8pt; background: #fafaf0; border: 1px solid #ccc; }
+        .item-photo { padding: 5px; background: #fff; }
+        .item-photo img { width: 100%; height: auto; display: block; }
+        .receipt-line { display: flex; justify-content: space-between; padding: 2px 0; border-bottom: 1px dotted #ccc; }
+        .receipt-header { font-weight: bold; text-align: center; margin-bottom: 8px; padding-bottom: 4px; border-bottom: 2px solid #333; }
+        .receipt-total { font-weight: bold; border-top: 2px solid #333; margin-top: 4px; padding-top: 4px; }
+        .timestamp { font-size: 7pt; color: #666; margin-top: 8px; text-align: right; }
+        .relevance-tag { font-size: 7pt; color: #c0392b; font-style: italic; margin-top: 4px; }
+        .content-line { padding: 2px 0; }
+        .analysis-section { margin-top: 25px; padding: 15px; border: 1px solid #ddd; background: #f9f9f9; font-size: 9pt; line-height: 1.6; }
+        .analysis-section h3 { font-size: 11pt; margin: 0 0 10px 0; }
+        .evidence-footer { text-align: center; font-size: 8pt; color: #999; margin-top: 20px; padding-top: 10px; border-top: 1px solid #ddd; }
+        .classification-stamp { position: absolute; top: 20px; right: 20px; color: rgba(192,57,43,0.3); font-size: 24pt; font-weight: bold; transform: rotate(-15deg); font-family: "Impact", sans-serif; letter-spacing: 3px; }
+    </style>
+</head>
+<body>
+    {{#if classification}}<div class="classification-stamp">{{classification}}</div>{{/if}}
+
+    <div class="evidence-header">
+        <div class="evidence-title">{{title}}</div>
+        <div class="case-info">
+            Case #: {{caseNumber}} | Doc ID: {{docId}} | Date: {{date}}
+            {{#if caseTitle}} | {{caseTitle}}{{/if}}
+        </div>
+    </div>
+
+    <div class="mosaic-container">
+        {{#each evidence_items}}
+        <div class="evidence-item {{#if (eq this.type 'receipt')}}item-receipt{{/if}}{{#if (eq this.type 'phone_screen')}}item-phone{{/if}}{{#if (eq this.type 'document_scan')}}item-document{{/if}}{{#if (eq this.type 'photo')}}item-photo{{/if}}">
+            <div class="evidence-label">{{this.label}}</div>
+
+            {{#if (eq this.type 'receipt')}}
+                <div class="receipt-header">{{this.title}}</div>
+                {{#each this.content_lines}}
+                <div class="content-line">{{this}}</div>
+                {{/each}}
+                <div class="timestamp">{{this.timestamp}}</div>
+            {{/if}}
+
+            {{#if (eq this.type 'phone_screen')}}
+            <div class="phone-screen">
+                <div class="app-header">{{this.title}}</div>
+                {{#each this.content_lines}}
+                <div class="content-line">{{this}}</div>
+                {{/each}}
+                <div class="timestamp">{{this.timestamp}}</div>
+            </div>
+            {{/if}}
+
+            {{#if (eq this.type 'document_scan')}}
+                <div style="font-weight:bold; margin-bottom:8px;">{{this.title}}</div>
+                {{#each this.content_lines}}
+                <div class="content-line">{{this}}</div>
+                {{/each}}
+                <div class="timestamp">{{this.timestamp}}</div>
+            {{/if}}
+
+            {{#if (eq this.type 'photo')}}
+                {{#if this.image_path}}<img src="{{this.image_path}}" alt="{{this.title}}">{{/if}}
+                <div style="padding:8px; font-size:8pt;">{{this.title}}</div>
+            {{/if}}
+
+            {{#if this.relevance_tag}}<div class="relevance-tag">{{this.relevance_tag}}</div>{{/if}}
+        </div>
+        {{/each}}
+    </div>
+
+    {{#if analysisContent}}
+    <div class="analysis-section">
+        <h3>Analysis Notes</h3>
+        {{{analysisContent}}}
+    </div>
+    {{/if}}
+
+    <div class="evidence-footer">
+        Prepared for investigative review. All items cataloged and chain of custody maintained.
+    </div>
+</body>
+</html>

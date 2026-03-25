@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+<style>
+        @page {
+            margin: 18mm;
+            size: letter;
+        }
+        
+        body {
+            font-family: "Times New Roman", serif;
+            font-size: 11pt;
+            line-height: 1.4;
+            color: #000;
+            background: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .form-header {
+            text-align: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .letterhead {
+            margin-bottom: 15px;
+        }
+        
+        .letterhead img {
+            max-width: 100px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .agency-name {
+            font-size: 14pt;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .form-title {
+            font-size: 18pt;
+            font-weight: bold;
+            margin: 15px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .form-section {
+            border: 2px solid #000;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(248, 248, 248, 0.5);
+        }
+        
+        .section-title {
+            font-size: 12pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 4px;
+        }
+        
+        .field-row {
+            display: flex;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        
+        .field-label {
+            font-weight: bold;
+            width: 120px;
+            flex-shrink: 0;
+        }
+        
+        .field-value {
+            flex-grow: 1;
+            border-bottom: 1px solid #000;
+            min-height: 18px;
+            padding-bottom: 2px;
+            margin-left: 10px;
+        }
+        
+        .statement-narrative {
+            border: 2px solid #000;
+            padding: 15px;
+            background: #fff;
+            min-height: 200px;
+            margin-bottom: 20px;
+        }
+        
+        .narrative-title {
+            font-size: 12pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            text-align: center;
+            border-bottom: 1px solid #333;
+            padding-bottom: 8px;
+        }
+        
+        .narrative-content {
+            line-height: 1.6;
+            text-align: justify;
+            text-indent: 20px;
+        }
+        
+        .narrative-content p {
+            margin-bottom: 12px;
+        }
+        
+        .checkbox-section {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
+        
+        .checkbox {
+            width: 15px;
+            height: 15px;
+            border: 2px solid #000;
+            margin-right: 10px;
+            display: inline-block;
+            text-align: center;
+            line-height: 11px;
+            font-weight: bold;
+        }
+        
+        .checkbox.checked {
+            background: #000;
+            color: #fff;
+        }
+        
+        .signature-section {
+            margin-top: 30px;
+            border-top: 1px solid #999;
+            padding-top: 20px;
+        }
+        
+        .signature-line {
+            border-bottom: 2px solid #000;
+            height: 40px;
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .signature-label {
+            font-size: 10pt;
+            color: #666;
+            text-transform: uppercase;
+        }
+        
+        .date-line {
+            width: 150px;
+            display: inline-block;
+            margin-left: 50px;
+        }
+        
+        .official-stamp {
+            position: absolute;
+            bottom: 80px;
+            right: 50px;
+            opacity: 0.8;
+        }
+        
+        .official-stamp img {
+            width: 80px;
+            height: auto;
+        }
+        
+        .case-reference {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border: 1px solid #000;
+            padding: 5px;
+            font-size: 9pt;
+            background: #fff;
+        }
+        
+        .investigator-notes {
+            margin-top: 25px;
+            border: 1px solid #999;
+            border-left: 4px solid #0066cc;
+            padding: 12px;
+            background: rgba(230, 240, 255, 0.3);
+        }
+        
+        .notes-header {
+            font-weight: bold;
+            color: #0066cc;
+            margin-bottom: 8px;
+            font-size: 10pt;
+        }
+        
+        .notes-content {
+            font-size: 10pt;
+            line-height: 1.4;
+        }
+        
+        .footer-info {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 8pt;
+            color: #666;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="case-reference">
+        CASE #: {{caseNumber}}<br>
+        DOC ID: {{docId}}<br>
+        DATE: {{date}}
+    </div>
+    
+    <div class="form-header">
+        {{#if letterhead}}
+        <div class="letterhead">
+            <img src="{{letterhead}}" alt="Agency letterhead">
+        </div>
+        {{else}}
+        <div class="agency-name">{{agency}}</div>
+        {{/if}}
+        
+        <div class="form-title">Voluntary Witness Statement</div>
+    </div>
+    
+    <div class="form-section">
+        <div class="section-title">Witness / Reporting Person Details</div>
+        <div class="field-row">
+            <div class="field-label">NAME:</div>
+            <div class="field-value">{{witnessName}}</div>
+        </div>
+        <div class="field-row">
+            <div class="field-label">DATE OF BIRTH:</div>
+            <div class="field-value">{{witnessDOB}}</div>
+        </div>
+        <div class="field-row">
+            <div class="field-label">ADDRESS:</div>
+            <div class="field-value">{{witnessAddress}}</div>
+        </div>
+        <div class="field-row">
+            <div class="field-label">PHONE:</div>
+            <div class="field-value">{{witnessPhone}}</div>
+        </div>
+        <div class="field-row">
+            <div class="field-label">EMAIL:</div>
+            <div class="field-value">{{witnessEmail}}</div>
+        </div>
+    </div>
+    
+    <div class="form-section">
+        <div class="section-title">Incident Details</div>
+        <div class="field-row">
+            <div class="field-label">DATE/TIME:</div>
+            <div class="field-value">{{incidentDateTime}}</div>
+        </div>
+        <div class="field-row">
+            <div class="field-label">LOCATION:</div>
+            <div class="field-value">{{incidentLocation}}</div>
+        </div>
+        <div class="field-row">
+            <div class="field-label">OFFICER:</div>
+            <div class="field-value">{{receivingOfficer}}</div>
+        </div>
+    </div>
+    
+    <div class="statement-narrative">
+        <div class="narrative-title">Statement Summary</div>
+        <div class="narrative-content">
+            {{{statementContent}}}
+        </div>
+    </div>
+    
+    <div class="checkbox-section">
+        <div class="checkbox {{#if willingToTestify}}checked{{/if}}">{{#if willingToTestify}}✓{{/if}}</div>
+        <span>Willing to testify: <strong>{{#if willingToTestify}}YES{{else}}NO{{/if}}</strong></span>
+    </div>
+    
+    <div class="checkbox-section">
+        <div class="checkbox {{#if statementTrue}}checked{{/if}}">{{#if statementTrue}}✓{{/if}}</div>
+        <span>I certify that this statement is true and complete to the best of my knowledge</span>
+    </div>
+    
+    <div class="signature-section">
+        <div class="signature-line"></div>
+        <div class="signature-label">WITNESS SIGNATURE</div>
+        <span class="date-line">
+            <span style="border-bottom: 1px solid #000; display: inline-block; width: 100px; margin-left: 20px;"></span>
+            <div class="signature-label" style="margin-top: 5px; margin-left: 20px;">DATE</div>
+        </span>
+        
+        <br><br>
+        
+        <div class="signature-line"></div>
+        <div class="signature-label">OFFICER SIGNATURE</div>
+        <span class="date-line">
+            <span style="border-bottom: 1px solid #000; display: inline-block; width: 100px; margin-left: 20px;"></span>
+            <div class="signature-label" style="margin-top: 5px; margin-left: 20px;">DATE</div>
+        </span>
+    </div>
+    
+    {{#if investigatorNotes}}
+    <div class="investigator-notes">
+        <div class="notes-header">INVESTIGATOR NOTES</div>
+        <div class="notes-content">{{{investigatorNotes}}}</div>
+    </div>
+    {{/if}}
+    
+    {{#if officialStamp}}
+    <div class="official-stamp">
+        <img src="{{officialStamp}}" alt="Official stamp">
+    </div>
+    {{/if}}
+    
+    <div class="footer-info">
+        <strong>{{caseTitle}}</strong><br>
+        Prepared for training / investigative simulation. All persons depicted are fictional within this case universe.
+    </div>
+</body>
+</html>

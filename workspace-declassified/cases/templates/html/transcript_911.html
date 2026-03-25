@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        @page {
+            margin: 18mm;
+            size: letter;
+        }
+        
+        body {
+            font-family: "Courier New", monospace;
+            font-size: 10pt;
+            line-height: 1.4;
+            color: #000;
+            background: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .form-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 2px solid #000;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .agency-info {
+            flex: 1;
+        }
+        
+        .agency-logo img {
+            width: 60px;
+            height: auto;
+            margin-bottom: 8px;
+        }
+        
+        .agency-name {
+            font-size: 12pt;
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+        
+        .case-box {
+            border: 2px solid #000;
+            padding: 8px;
+            background: rgba(240, 240, 240, 0.8);
+            min-width: 150px;
+        }
+        
+        .case-field {
+            font-size: 8pt;
+            margin-bottom: 3px;
+        }
+        
+        .case-number {
+            font-weight: bold;
+            font-size: 9pt;
+        }
+        
+        .transcript-title {
+            font-size: 14pt;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            text-transform: uppercase;
+        }
+        
+        .call-metadata {
+            background: rgba(248, 248, 248, 0.8);
+            border: 1px solid #999;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 9pt;
+        }
+        
+        .metadata-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .metadata-field {
+            margin-bottom: 5px;
+        }
+        
+        .field-label {
+            font-weight: bold;
+            display: inline-block;
+            width: 80px;
+        }
+        
+        .field-value {
+            border-bottom: 1px solid #666;
+            display: inline-block;
+            min-width: 100px;
+            padding-bottom: 1px;
+        }
+        
+        .transcript-content {
+            font-size: 10pt;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            margin-bottom: 25px;
+        }
+        
+        .speaker {
+            font-weight: bold;
+            color: #000;
+            margin-right: 5px;
+        }
+        
+        .timestamp {
+            color: #666;
+            font-size: 8pt;
+            margin-right: 10px;
+        }
+        
+        .call-end {
+            text-align: center;
+            margin: 20px 0;
+            font-weight: bold;
+            font-size: 11pt;
+            border-top: 1px solid #999;
+            border-bottom: 1px solid #999;
+            padding: 8px 0;
+        }
+        
+        .notes-section {
+            border: 1px solid #999;
+            border-left: 4px solid #dc143c;
+            padding: 12px;
+            background: rgba(255, 240, 240, 0.3);
+            margin-top: 20px;
+        }
+        
+        .notes-header {
+            font-weight: bold;
+            color: #dc143c;
+            margin-bottom: 8px;
+            font-size: 10pt;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 8pt;
+            color: #666;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-header">
+        <div class="agency-info">
+            {{#if agencyLogo}}
+            <div class="agency-logo">
+                <img src="{{agencyLogo}}" alt="Agency logo">
+            </div>
+            {{/if}}
+            <div class="agency-name">{{agency}}</div>
+        </div>
+        
+        <div class="case-box">
+            <div class="case-field">CASE No:</div>
+            <div class="case-number">{{caseNumber}}</div>
+            <div class="case-field">DOC ID: {{docId}}</div>
+            <div class="case-field">DATE: {{date}}</div>
+            <div class="case-field">{{classification}}</div>
+        </div>
+    </div>
+    
+    <div class="transcript-title">{{title}}</div>
+    
+    <div class="call-metadata">
+        <div class="metadata-grid">
+            <div class="metadata-field">
+                <span class="field-label">Call Date:</span>
+                <span class="field-value">{{callDate}}</span>
+            </div>
+            <div class="metadata-field">
+                <span class="field-label">Call Time:</span>
+                <span class="field-value">{{callTime}}</span>
+            </div>
+            <div class="metadata-field">
+                <span class="field-label">Duration:</span>
+                <span class="field-value">{{duration}}</span>
+            </div>
+            <div class="metadata-field">
+                <span class="field-label">Operator:</span>
+                <span class="field-value">{{operator}}</span>
+            </div>
+            <div class="metadata-field">
+                <span class="field-label">Caller ID:</span>
+                <span class="field-value">{{callerId}}</span>
+            </div>
+            <div class="metadata-field">
+                <span class="field-label">Location:</span>
+                <span class="field-value">{{callerLocation}}</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="transcript-content">{{content}}</div>
+    
+    <div class="call-end">— END OF CALL —</div>
+    
+    {{#if operatorNotes}}
+    <div class="notes-section">
+        <div class="notes-header">OPERATOR NOTES</div>
+        <div>{{operatorNotes}}</div>
+    </div>
+    {{/if}}
+    
+    <div class="footer">
+        <strong>{{caseTitle}}</strong><br>
+        Prepared for training / investigative simulation. All events and persons depicted are fictional within this case universe.
+    </div>
+</body>
+</html>

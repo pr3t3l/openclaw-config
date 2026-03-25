@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        @page {
+            margin: 12mm;
+            size: letter;
+        }
+        
+        body {
+            font-family: "Times New Roman", serif;
+            font-size: 10pt;
+            line-height: 1.3;
+            color: #000;
+            background: #fff;
+            margin: 0;
+            padding: 15px;
+        }
+        
+        .newspaper-header {
+            text-align: center;
+            border-bottom: 3px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .masthead {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 8px;
+        }
+        
+        .date-info {
+            font-size: 9pt;
+            color: #666;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-story {
+            margin-bottom: 25px;
+        }
+        
+        .headline {
+            font-size: 24pt;
+            font-weight: bold;
+            line-height: 1.2;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        
+        .subheadline {
+            font-size: 14pt;
+            font-weight: normal;
+            font-style: italic;
+            margin-bottom: 15px;
+            text-align: center;
+            color: #333;
+        }
+        
+        .main-photo {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            display: block;
+            margin: 15px auto;
+            border: 1px solid #ccc;
+        }
+        
+        .photo-caption {
+            font-size: 8pt;
+            font-style: italic;
+            text-align: center;
+            margin: 5px auto 15px auto;
+            max-width: 400px;
+            color: #666;
+        }
+        
+        .story-content {
+            column-count: 2;
+            column-gap: 20px;
+            column-rule: 1px solid #ddd;
+            text-align: justify;
+            line-height: 1.4;
+        }
+        
+        .byline {
+            font-weight: bold;
+            font-size: 9pt;
+            margin-bottom: 8px;
+        }
+        
+        .story-text {
+            font-size: 10pt;
+            line-height: 1.4;
+        }
+        
+        .story-text p {
+            margin: 0 0 12px 0;
+            text-indent: 15px;
+        }
+        
+        .story-text p:first-child {
+            text-indent: 0;
+        }
+        
+        .sidebar {
+            border: 1px solid #333;
+            padding: 10px;
+            margin: 15px 0;
+            background: #f9f9f9;
+            break-inside: avoid;
+        }
+        
+        .sidebar-title {
+            font-weight: bold;
+            font-size: 11pt;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        
+        .footer-info {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 8pt;
+            color: #999;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+        
+        .section-divider {
+            border-top: 2px solid #000;
+            margin: 20px 0;
+        }
+        
+        /* Breaking news box */
+        .breaking-news {
+            background: #000;
+            color: #fff;
+            padding: 8px 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 12pt;
+            margin-bottom: 15px;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body>
+    <div class="newspaper-header">
+        {{#if masthead}}
+        <img src="{{masthead}}" class="masthead" alt="Newspaper masthead">
+        {{/if}}
+        <div class="date-info">
+            <span>{{location}}</span>
+            <span>{{date}}</span>
+            <span>{{price}}</span>
+        </div>
+    </div>
+    
+    {{#if isBreaking}}
+    <div class="breaking-news">BREAKING NEWS</div>
+    {{/if}}
+    
+    <div class="main-story">
+        <div class="headline">{{headline}}</div>
+        
+        {{#if subheadline}}
+        <div class="subheadline">{{subheadline}}</div>
+        {{/if}}
+        
+        {{#if mainPhoto}}
+        <img src="{{mainPhoto}}" class="main-photo" alt="Main story photo">
+        {{#if photoCaption}}
+        <div class="photo-caption">{{photoCaption}}</div>
+        {{/if}}
+        {{/if}}
+        
+        <div class="story-content">
+            {{#if byline}}
+            <div class="byline">By {{byline}}</div>
+            {{/if}}
+            
+            <div class="story-text">
+                {{{storyContent}}}
+            </div>
+            
+            {{#if sidebar}}
+            <div class="sidebar">
+                <div class="sidebar-title">{{sidebar.title}}</div>
+                <div>{{{sidebar.content}}}</div>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+    
+    {{#if additionalStories}}
+    <div class="section-divider"></div>
+    {{#each additionalStories}}
+    <div class="additional-story">
+        <h3 style="font-size: 14pt; margin-bottom: 8px;">{{title}}</h3>
+        <p style="font-size: 9pt; line-height: 1.3;">{{{content}}}</p>
+    </div>
+    {{/each}}
+    {{/if}}
+    
+    <div class="footer-info">
+        {{#if caseInfo}}
+        <strong>{{caseInfo.title}}</strong><br>
+        {{/if}}
+        Prepared for training / investigative simulation. All events and persons depicted are fictional within this case universe.
+    </div>
+</body>
+</html>

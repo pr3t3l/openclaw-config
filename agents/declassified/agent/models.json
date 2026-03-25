@@ -14,7 +14,14 @@
             "image"
           ],
           "contextWindow": 400000,
-          "maxTokens": 8192
+          "maxTokens": 8192,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "api": "openai-completions"
         },
         {
           "id": "gpt52-medium",
@@ -25,7 +32,14 @@
             "image"
           ],
           "contextWindow": 400000,
-          "maxTokens": 8192
+          "maxTokens": 8192,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "api": "openai-completions"
         },
         {
           "id": "gpt52-thinking",
@@ -36,7 +50,14 @@
             "image"
           ],
           "contextWindow": 400000,
-          "maxTokens": 8192
+          "maxTokens": 8192,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "api": "openai-completions"
         },
         {
           "id": "gpt52-xhigh",
@@ -47,7 +68,14 @@
             "image"
           ],
           "contextWindow": 400000,
-          "maxTokens": 8192
+          "maxTokens": 8192,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "api": "openai-completions"
         },
         {
           "id": "gpt53-codex",
@@ -58,7 +86,14 @@
             "image"
           ],
           "contextWindow": 192000,
-          "maxTokens": 16384
+          "maxTokens": 16384,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "api": "openai-completions"
         },
         {
           "id": "gpt5-mini",
@@ -69,7 +104,14 @@
             "image"
           ],
           "contextWindow": 128000,
-          "maxTokens": 8192
+          "maxTokens": 8192,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "api": "openai-completions"
         },
         {
           "id": "gpt41",
@@ -80,7 +122,14 @@
             "image"
           ],
           "contextWindow": 266000,
-          "maxTokens": 8192
+          "maxTokens": 8192,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "api": "openai-completions"
         },
         {
           "id": "gemini31pro-none",
@@ -91,7 +140,14 @@
             "image"
           ],
           "contextWindow": 1000000,
-          "maxTokens": 8192
+          "maxTokens": 8192,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "api": "openai-completions"
         },
         {
           "id": "gemini31pro-medium",
@@ -102,7 +158,14 @@
             "image"
           ],
           "contextWindow": 1000000,
-          "maxTokens": 8192
+          "maxTokens": 8192,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "api": "openai-completions"
         },
         {
           "id": "gemini31pro-thinking",
@@ -113,7 +176,14 @@
             "image"
           ],
           "contextWindow": 1000000,
-          "maxTokens": 8192
+          "maxTokens": 8192,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "api": "openai-completions"
         },
         {
           "id": "gemini31lite-none",
@@ -124,7 +194,14 @@
             "image"
           ],
           "contextWindow": 1000000,
-          "maxTokens": 65536
+          "maxTokens": 65536,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "api": "openai-completions"
         },
         {
           "id": "gemini31lite-low",
@@ -135,7 +212,14 @@
             "image"
           ],
           "contextWindow": 1000000,
-          "maxTokens": 65536
+          "maxTokens": 65536,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "api": "openai-completions"
         },
         {
           "id": "gemini31lite-medium",
@@ -146,7 +230,14 @@
             "image"
           ],
           "contextWindow": 1000000,
-          "maxTokens": 65536
+          "maxTokens": 65536,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "api": "openai-completions"
         },
         {
           "id": "gemini31lite-high",
@@ -157,7 +248,14 @@
             "image"
           ],
           "contextWindow": 1000000,
-          "maxTokens": 65536
+          "maxTokens": 65536,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "api": "openai-completions"
         },
         {
           "id": "claude-sonnet46",
@@ -168,7 +266,14 @@
             "image"
           ],
           "contextWindow": 200000,
-          "maxTokens": 64000
+          "maxTokens": 64000,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "api": "openai-completions"
         },
         {
           "id": "claude-sonnet46-thinking",
@@ -179,7 +284,14 @@
             "image"
           ],
           "contextWindow": 200000,
-          "maxTokens": 64000
+          "maxTokens": 64000,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "api": "openai-completions"
         },
         {
           "id": "claude-opus46",
@@ -190,7 +302,14 @@
             "image"
           ],
           "contextWindow": 200000,
-          "maxTokens": 128000
+          "maxTokens": 128000,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "api": "openai-completions"
         },
         {
           "id": "claude-opus46-thinking",
@@ -201,7 +320,67 @@
             "image"
           ],
           "contextWindow": 200000,
-          "maxTokens": 128000
+          "maxTokens": 128000,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "api": "openai-completions"
+        },
+        {
+          "id": "minimax-m27",
+          "name": "MiniMax M2.7",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 1000000,
+          "maxTokens": 16384,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "api": "openai-completions"
+        },
+        {
+          "id": "step35-flash",
+          "name": "Step 3.5 Flash",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "contextWindow": 256000,
+          "maxTokens": 16384,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "api": "openai-completions"
+        },
+        {
+          "id": "kimi-k25",
+          "name": "Kimi K2.5",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 131072,
+          "maxTokens": 16384,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "api": "openai-completions"
         }
       ]
     },
@@ -209,6 +388,63 @@
       "baseUrl": "https://chatgpt.com/backend-api",
       "api": "openai-codex-responses",
       "models": []
+    },
+    "openrouter": {
+      "baseUrl": "https://openrouter.ai/api/v1",
+      "api": "openai-completions",
+      "models": [
+        {
+          "id": "auto",
+          "name": "OpenRouter Auto",
+          "reasoning": false,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 200000,
+          "maxTokens": 8192
+        },
+        {
+          "id": "openrouter/hunter-alpha",
+          "name": "Hunter Alpha",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 1048576,
+          "maxTokens": 65536
+        },
+        {
+          "id": "openrouter/healer-alpha",
+          "name": "Healer Alpha",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 262144,
+          "maxTokens": 65536
+        }
+      ],
+      "apiKey": "OPENROUTER_API_KEY"
     }
   }
 }

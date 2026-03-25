@@ -1,0 +1,142 @@
+{
+  "envelope": "A",
+  "experiential_style": "digital_corporate",
+  "document_experience_map": {
+    "A1": {
+      "emotional_beat": "A slow unease settles in when the memo calls Mara Ellison’s death a likely ‘accidental fall’ yet confidently notes ‘no active oxygen alarm pages’ in Stairwell 4B—an oddly tidy detail for a badge-locked cGMP facility.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "‘DISCOVERY TIME: 06:14’ + ‘Stairwell 4B (outside cGMP)’ — lock this location.",
+          "position": "next_to_paragraph_1",
+          "style_hint": "digital yellow highlight with a thin black outline"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Facilities says ‘no O₂ alarm pages’… does that mean nothing happened, or that paging was OFF? Ask Briggs (POI-04).",
+          "position": "right_margin_beside_key_mandatory_line",
+          "style_hint": "typed callout box, small sans-serif, slightly angled"
+        },
+        {
+          "type": "sticky_note",
+          "content": "(Maybe just a missed page / system glitch?) Don’t assume intent yet — but a ‘quiet’ stairwell death in Building 7 feels wrong.",
+          "position": "bottom_margin",
+          "style_hint": "pale-blue digital sticky, skeptical tone"
+        }
+      ],
+      "immersion_elements": [
+        "agency_letterhead",
+        "case_number_header",
+        "pdf_printout_footer",
+        "timestamp_footer",
+        "digital_signature_block"
+      ],
+      "reading_order_note": "Read first. This is the ‘official accident’ baseline that later documents (especially C1/C2) will undercut."
+    },
+    "A2": {
+      "emotional_beat": "The case snaps into focus as a suspect map: four living POIs with overlapping pressure and permissions, and the realization that ‘QA sign-off’ (Raina Patel) is as dangerous a lever as security access or money.",
+      "detective_annotations": [
+        {
+          "type": "circled_text",
+          "content": "QA SIGN-OFF PATH → Patel (POI-05). Deviation ownership + release authority = leverage.",
+          "position": "beside_section_QA_signoff_path",
+          "style_hint": "thin red digital circle with a small arrow"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Kline (POI-02): money + deal pressure. Reyes (POI-03): access + fear. Briggs (POI-04): alarms/logs. Patel (POI-05): audit trail. Where do pressure + permissions overlap?",
+          "position": "right_margin_next_to_poi_grid",
+          "style_hint": "clean gray callout box with bullet-like line breaks"
+        }
+      ],
+      "immersion_elements": [
+        "case_number_header",
+        "mugshot_grid_layout",
+        "barcode_case_tag",
+        "thumbnail_portraits",
+        "section_dividers"
+      ],
+      "reading_order_note": "Best read immediately after A1 so names (Ellison, Kline, Reyes, Briggs, Patel) stick before you hit the noisier public/OSINT material in A3."
+    },
+    "A3": {
+      "emotional_beat": "The ‘miracle cure’ hype turns sour when a semi-insider voice drops specific language—‘QA deviation’ and ‘cleaning PDFs since January’—making it feel like the real crime might be paperwork first, violence second.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "@bench2board: ‘QA logged a deviation’ + ‘cleaning PDFs since January’ — too specific for random trolling.",
+          "position": "next_to_post_with_key_mandatory_line",
+          "style_hint": "digital neon highlight (cyan) on dark-mode UI"
+        },
+        {
+          "type": "question_mark",
+          "content": "If this is real, what’s the deviation ID? DEV-??? Request internal email exports / eQMS history.",
+          "position": "top_right_corner",
+          "style_hint": "small red question mark icon + short callout"
+        }
+      ],
+      "immersion_elements": [
+        "phone_frame",
+        "app_interface",
+        "dark_mode_ui",
+        "screenshot_timestamp_overlay",
+        "osint_capture_banner"
+      ],
+      "reading_order_note": "Read before A5 so the Ledger’s polished language lands as a contrast to the rumor of ‘cleaned’ documentation."
+    },
+    "A4": {
+      "emotional_beat": "Handling the floor plan makes the death feel engineered: Stairwell 4B isn’t just a place—it’s a controllable pocket with a keyed Utility Closet U-4B, an O₂ monitor, and a camera blind spot big enough to hide a decision.",
+      "detective_annotations": [
+        {
+          "type": "circled_text",
+          "content": "Blind spot at landing (CAM-4B-LND) — whoever picked 4B knew this gap.",
+          "position": "beside_camera_coverage_legend",
+          "style_hint": "red digital circle + dashed outline"
+        },
+        {
+          "type": "arrow_connection",
+          "content": "O₂ Monitor ↔ Utility Closet U-4B (KEYED) — access list? key control logs?",
+          "position": "between_o2_monitor_callout_and_utility_closet_label",
+          "style_hint": "straight red arrow with a boxed label"
+        },
+        {
+          "type": "margin_comment",
+          "content": "‘SP-4B’ / ‘Paging relay panel’ mentioned — match exact device names if/when we pull system history.",
+          "position": "bottom_margin",
+          "style_hint": "compact digital annotation, monospace for device IDs"
+        }
+      ],
+      "immersion_elements": [
+        "architectural_grid_lines",
+        "investigator_callout_boxes",
+        "highlighted_route_arrow",
+        "camera_coverage_overlay",
+        "evidence_exhibit_label"
+      ],
+      "reading_order_note": "Read after A1 (so Stairwell 4B matters) and before any deep log documents later; this is the spatial key that makes timestamps feel physically plausible."
+    },
+    "A5": {
+      "emotional_beat": "The business press optimism becomes eerie because it’s timestamped (2026-03-20) and full of careful compliance phrasing—especially Kline’s line about ‘any deviation is assessed and documented’—words that feel like a pre-written defense once you remember Ellison is dead by morning.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "Printed 2026-03-20 09:10 — THIS is the narrative Helixure needed to protect.",
+          "position": "top_margin_near_dateline",
+          "style_hint": "yellow highlight + thin black underline"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Kline quote: ‘any deviation is assessed and documented’ — flag this. If docs were ‘cleaned,’ the lie is in what’s missing, not what’s said.",
+          "position": "right_margin_beside_pull_quote",
+          "style_hint": "digital callout box with a small ‘!’ tag"
+        }
+      ],
+      "immersion_elements": [
+        "newspaper_masthead",
+        "column_layout",
+        "pull_quote_highlight",
+        "photo_caption_box",
+        "byline_dateline"
+      ]
+    }
+  }
+}

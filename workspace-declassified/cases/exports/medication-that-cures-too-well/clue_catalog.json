@@ -1,0 +1,442 @@
+{
+  "slug": "medication-that-cures-too-well",
+  "documents": [
+    {
+      "doc_id": "A1",
+      "type_id": 14,
+      "type_key": "newspaper_front",
+      "player_purpose": "case_introduction",
+      "sequence_number": 1,
+      "production_brief_writing": {
+        "summary": "Front page article from the Boston Chronicle detailing the tragic death of Dr. Aris Thorne and the simultaneous, shocking withdrawal of Horizon's miracle drug.",
+        "tone": "Journalistic, urgent, slightly sensationalized but reporting facts.",
+        "min_words": 200,
+        "key_mandatory_line": "The dual shock of Dr. Thorne's sudden death and the immediate withdrawal of Horizon's flagship drug has sent the biotech world reeling.",
+        "key_information_to_include": [
+          "Dr. Aris Thorne found dead in her lab annex parking area at Horizon Therapeutics.",
+          "Cause of death initially reported as carbon monoxide poisoning from a vehicle exhaust 'accident'.",
+          "Horizon Therapeutics abruptly pulled their highly anticipated cure from the market the same morning.",
+          "Stock prices for Horizon are in freefall."
+        ],
+        "voice_notes": "Use standard journalistic inverted pyramid structure. Headline should be bold and grab attention."
+      },
+      "reveals": "The death was caused by CO buildup due to a supposed HVAC failure.",
+      "image_requirements": [],
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "A2",
+      "type_id": 1,
+      "type_key": "poi_sheet",
+      "player_purpose": "context_setting",
+      "sequence_number": 2,
+      "production_brief_writing": {
+        "summary": "Internal police briefing sheet listing the four main individuals connected to Dr. Thorne and the Horizon drug trial.",
+        "tone": "Clinical, objective, law enforcement internal.",
+        "min_words": 150,
+        "key_mandatory_line": "All individuals below had access to the Sub-Level 2 facility and executive-level insight into the Phase III trials.",
+        "key_information_to_include": [
+          "Dr. Aris Thorne (Victim/Deceased) - Lead Scientist.",
+          "Elias Vance (Alive) - CEO, pushing for $2B acquisition.",
+          "Dr. Julian Mercer (Alive) - Head of Regulatory Affairs, handles FDA submissions.",
+          "Sarah Chen (Alive) - Lead Investor/Board Member, pushing the acquisition."
+        ],
+        "voice_notes": "Keep descriptions brief and focused on their roles and immediate connections to the victim or the company."
+      },
+      "reveals": "Establishes the identities, roles, and basic connections of the victim and three primary living suspects.",
+      "image_requirements": [],
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "A3",
+      "type_id": 4,
+      "type_key": "email_export",
+      "player_purpose": "clue_planting",
+      "sequence_number": 3,
+      "production_brief_writing": {
+        "summary": "Email chain between Thorne and Vance from the morning of her death, showing a heated confrontation over trial data.",
+        "tone": "Tense, professional but escalating to confrontational.",
+        "min_words": 150,
+        "key_mandatory_line": "Elias, I know what you did to the Phase III reports. The raw data tells a very different, fatal story.",
+        "key_information_to_include": [
+          "Timestamp must be 2026-10-13T10:00:00.",
+          "Thorne clearly states she has found anomalies in the data that point to a severe issue.",
+          "Vance replies dismissively, urging her to wait until after the acquisition is finalized.",
+          "Thorne threatens to take her findings to the FDA."
+        ],
+        "voice_notes": "Thorne should sound uncompromising and righteous. Vance should sound slick, trying to manage her while hiding his panic."
+      },
+      "reveals": "Thorne confronted Vance about hidden, fatal anomalies in the Phase III trial data, establishing Vance's motive.",
+      "image_requirements": [],
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "A4",
+      "type_id": 15,
+      "type_key": "official_memo",
+      "player_purpose": "timeline_anchor",
+      "sequence_number": 4,
+      "production_brief_writing": {
+        "summary": "Internal urgent memo drafted by Julian Mercer announcing the immediate withdrawal of the drug.",
+        "tone": "Formal, panicked but trying to sound legally covered.",
+        "min_words": 150,
+        "key_mandatory_line": "Effective immediately, all preparations for the market launch of the Phase III therapeutic are suspended pending further internal review.",
+        "key_information_to_include": [
+          "Draft timestamp must be clearly visible as 2026-10-13T18:45:00.",
+          "Memo cites 'unforeseen strategic reassessments' as the reason for withdrawal.",
+          "Shows it was drafted hours before Thorne actually died.",
+          "Sent to Vance and Chen."
+        ],
+        "voice_notes": "Mercer uses heavy corporate jargon to mask the suddenness of the decision. It reads like a preemptive legal defense."
+      },
+      "reveals": "The company planned to withdraw the drug before Thorne died, suggesting a massive cover-up.",
+      "contradiction_resolved": "CONTRA-03",
+      "image_requirements": [],
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "A5",
+      "type_id": 8,
+      "type_key": "floor_plan",
+      "player_purpose": "spatial_reference",
+      "sequence_number": 5,
+      "production_brief_writing": {
+        "summary": "Schematic of Horizon Sub-Level 2, showing Thorne's parking spot and the HVAC ventilation zones.",
+        "tone": "Technical, architectural.",
+        "min_words": 80,
+        "key_mandatory_line": "Sector 4 Ventilation Array: Primary exhaust for enclosed garage spaces; tied to central administrative override.",
+        "key_information_to_include": [
+          "Location of Thorne's lab annex.",
+          "Location of Thorne's parking spot in Sector 4.",
+          "Clearly marked HVAC ventilation zones for Sector 4.",
+          "Location of the CEO's private elevator access."
+        ],
+        "voice_notes": "Labels should be clear and descriptive. Include investigator annotations pointing out the key areas."
+      },
+      "reveals": "The death was caused by CO buildup due to a supposed HVAC failure in Sector 4.",
+      "contradiction_introduced": "CONTRA-02",
+      "image_requirements": [],
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "R1",
+      "type_id": 5,
+      "type_key": "resolution_doc",
+      "in_world_title": "Resolution: Dr. Aris Thorne",
+      "sequence_number": 19,
+      "player_purpose": "resolution",
+      "owner_source": "Horizon Therapeutics Case File",
+      "timestamp": "2026-10-18T10:00:00Z",
+      "filename_base": "Resolution_Thorne",
+      "pois_referenced": [
+        "POI-01"
+      ],
+      "document_justification": "Confirms the victim's status and role in the events.",
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [],
+      "player_inference": "The player confirms Aris Thorne was murdered to prevent her from whistleblowing.",
+      "production_brief_writing": {
+        "summary": "A formal resolution document stating Dr. Aris Thorne is the deceased victim, murdered because she intended to expose the fatal flaws in the Phase III trial data.",
+        "tone": "Formal, objective, conclusive.",
+        "key_mandatory_line": "Status: Deceased. Cause of death confirmed as homicide via deliberate carbon monoxide poisoning to prevent disclosure of altered Phase III clinical trial data.",
+        "key_information_to_include": []
+      },
+      "production_brief_interrogation": null,
+      "production_brief_article": null,
+      "production_brief_log": null,
+      "production_brief_social": null,
+      "production_brief_mosaic": null,
+      "production_brief_board": null,
+      "image_needed": true,
+      "image_brief": "A standard resolution header with a 'DECEASED' stamp over Thorne's canonical portrait.",
+      "image_requirements": [
+        "canonical portrait of POI-01",
+        "DECEASED overlay/stamp"
+      ],
+      "audio": null,
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "R2",
+      "type_id": 5,
+      "type_key": "resolution_doc",
+      "in_world_title": "Resolution: Elias Vance",
+      "sequence_number": 20,
+      "player_purpose": "resolution",
+      "owner_source": "Horizon Therapeutics Case File",
+      "timestamp": "2026-10-18T10:05:00Z",
+      "filename_base": "Resolution_Vance",
+      "pois_referenced": [
+        "POI-02"
+      ],
+      "document_justification": "Identifies the culprit and summarizes the evidence against him.",
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "C1",
+        "C2"
+      ],
+      "player_inference": "The player confirms Elias Vance is the murderer, having manipulated the HVAC system to kill Thorne and protect his $400M payout.",
+      "production_brief_writing": {
+        "summary": "A formal resolution document declaring Elias Vance guilty of first-degree murder. It cites his motive (protecting the acquisition by hiding fatal drug data) and means (admin override of the HVAC system while present in the building).",
+        "tone": "Formal, objective, conclusive.",
+        "key_mandatory_line": "Status: Guilty. Evidence confirms Vance utilized an administrative override to disable Sector 4 ventilation, causing fatal CO buildup, motivated by the preservation of a $2 billion corporate acquisition.",
+        "key_information_to_include": []
+      },
+      "production_brief_interrogation": null,
+      "production_brief_article": null,
+      "production_brief_log": null,
+      "production_brief_social": null,
+      "production_brief_mosaic": null,
+      "production_brief_board": null,
+      "image_needed": true,
+      "image_brief": "A standard resolution header with a 'GUILTY' stamp over Vance's canonical portrait.",
+      "image_requirements": [
+        "canonical portrait of POI-02",
+        "GUILTY overlay/stamp"
+      ],
+      "audio": null,
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "R3",
+      "type_id": 5,
+      "type_key": "resolution_doc",
+      "in_world_title": "Resolution: Dr. Julian Mercer",
+      "sequence_number": 21,
+      "player_purpose": "resolution",
+      "owner_source": "Horizon Therapeutics Case File",
+      "timestamp": "2026-10-18T10:10:00Z",
+      "filename_base": "Resolution_Mercer",
+      "pois_referenced": [
+        "POI-03"
+      ],
+      "document_justification": "Clears Mercer of murder while acknowledging his complicity in the fraud.",
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A4"
+      ],
+      "player_inference": "The player confirms Mercer is not the murderer, though he faces charges for his role in the regulatory cover-up.",
+      "production_brief_writing": {
+        "summary": "A formal resolution document clearing Dr. Julian Mercer of murder charges. He lacks the technical access to perform the HVAC override, though he faces federal fraud charges for ignoring the altered trial data.",
+        "tone": "Formal, objective, conclusive.",
+        "key_mandatory_line": "Status: Cleared of Homicide. While lacking the administrative access required for the fatal HVAC override, subject faces pending federal indictment for regulatory fraud.",
+        "key_information_to_include": []
+      },
+      "production_brief_interrogation": null,
+      "production_brief_article": null,
+      "production_brief_log": null,
+      "production_brief_social": null,
+      "production_brief_mosaic": null,
+      "production_brief_board": null,
+      "image_needed": true,
+      "image_brief": "A standard resolution header with a 'CLEARED' stamp over Mercer's canonical portrait.",
+      "image_requirements": [
+        "canonical portrait of POI-03",
+        "CLEARED overlay/stamp"
+      ],
+      "audio": null,
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "R4",
+      "type_id": 5,
+      "type_key": "resolution_doc",
+      "in_world_title": "Resolution: Sarah Chen",
+      "sequence_number": 22,
+      "player_purpose": "resolution",
+      "owner_source": "Horizon Therapeutics Case File",
+      "timestamp": "2026-10-18T10:15:00Z",
+      "filename_base": "Resolution_Chen",
+      "pois_referenced": [
+        "POI-04"
+      ],
+      "document_justification": "Clears Chen of murder and explains her true motivations.",
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "B3"
+      ],
+      "player_inference": "The player confirms Chen is innocent of the murder; her suspicious behavior was due to secret corporate negotiations.",
+      "production_brief_writing": {
+        "summary": "A formal resolution document clearing Sarah Chen of murder. Her aggressive behavior and timeline gaps are attributed to secret negotiations to sell her shares, not involvement in Thorne's death.",
+        "tone": "Formal, objective, conclusive.",
+        "key_mandatory_line": "Status: Cleared. Investigation confirms subject's timeline anomalies were related to undisclosed equity negotiations with rival firms, with no evidence linking her to the fatal HVAC incident.",
+        "key_information_to_include": []
+      },
+      "production_brief_interrogation": null,
+      "production_brief_article": null,
+      "production_brief_log": null,
+      "production_brief_social": null,
+      "production_brief_mosaic": null,
+      "production_brief_board": null,
+      "image_needed": true,
+      "image_brief": "A standard resolution header with a 'CLEARED' stamp over Chen's canonical portrait.",
+      "image_requirements": [
+        "canonical portrait of POI-04",
+        "CLEARED overlay/stamp"
+      ],
+      "audio": null,
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "B1",
+      "type_id": 11,
+      "type_key": "interrogation_transcript",
+      "player_purpose": "contradict_alibi",
+      "production_brief_writing": {
+        "summary": "Transcript of the police interview with Elias Vance (POI-02), establishing his alibi and planting his lie about when he left the building.",
+        "key_mandatory_line": "I left my office right around 10:00 PM and took my usual car service home. I was exhausted.",
+        "tone": "Polished, corporate, slightly condescending but cooperative.",
+        "key_information_to_include": []
+      },
+      "production_brief_interview": {
+        "subject_poi_id": "POI-02",
+        "phases": [
+          "Establish baseline cooperation and corporate spin regarding the acquisition.",
+          "Discuss the victim and the delayed Phase III data.",
+          "Establish timeline and alibi for the night of the incident.",
+          "Apply light pressure regarding his access to the sub-level garage."
+        ],
+        "min_exchanges": 18,
+        "the_lie": "He claims he left the building at 22:00 in his car service.",
+        "the_slip": {
+          "what": "He knows the exact sector (Sector 4) where Thorne parked, despite claiming he hasn't been to that level in months.",
+          "how": "When asked if he saw her car, he says 'I don't even go down to Sector 4', but her parking spot assignment isn't public knowledge and wasn't mentioned by the detective."
+        }
+      },
+      "image_requirements": [],
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "B2",
+      "type_id": 11,
+      "type_key": "interrogation_transcript",
+      "player_purpose": "establish_motive",
+      "production_brief_writing": {
+        "summary": "Transcript of the police interview with Dr. Julian Mercer (POI-03), revealing his rigid nature and his knowledge of the impending drug withdrawal.",
+        "key_mandatory_line": "The withdrawal memo was a necessary precaution drafted only after we learned of the tragedy. Standard protocol.",
+        "tone": "Dry, clinical, defensive, relying on regulatory jargon.",
+        "key_information_to_include": []
+      },
+      "production_brief_interview": {
+        "subject_poi_id": "POI-03",
+        "phases": [
+          "Establish his role in regulatory affairs and relationship with the victim.",
+          "Discuss the FDA submission process and the Phase III data.",
+          "Question him about leaving the industry dinner early (his alibi).",
+          "Confront him about the 'Urgent Product Withdrawal' memo."
+        ],
+        "min_exchanges": 18,
+        "the_lie": "He claims the withdrawal memo was drafted in response to Thorne's death.",
+        "the_slip": {
+          "what": "He mentions the specific fatal immune cascade issue before the autopsy results are public.",
+          "how": "He states 'we couldn't risk the immune cascade liability', a detail only someone who saw the suppressed data would know."
+        }
+      },
+      "image_requirements": [],
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "B3",
+      "type_id": 11,
+      "type_key": "interrogation_transcript",
+      "player_purpose": "introduce_red_herring",
+      "production_brief_writing": {
+        "summary": "Transcript of the police interview with Sarah Chen (POI-04), detailing her argument with Thorne and her high-stakes financial motives.",
+        "key_mandatory_line": "Yes, we argued. She was threatening to derail a two-billion-dollar deal over statistical noise. I told her to get perspective.",
+        "tone": "Direct, impatient, icy under pressure.",
+        "key_information_to_include": []
+      },
+      "production_brief_interview": {
+        "subject_poi_id": "POI-04",
+        "phases": [
+          "Establish her financial stake in the acquisition.",
+          "Address the heated argument in the garage at 14:30.",
+          "Discuss her flight back from London and her whereabouts during the incident.",
+          "Deflect suspicion by pointing to Vance's control over the data."
+        ],
+        "min_exchanges": 18,
+        "the_lie": "She claims she went straight home after her flight landed at 19:30.",
+        "the_slip": {
+          "what": "She complains about the traffic near Kendall Square around 21:00.",
+          "how": "She says 'The traffic around Kendall is impossible at night, it took forever to get past the campus', placing her near the scene during the critical window."
+        }
+      },
+      "image_requirements": [],
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "B4",
+      "type_id": 9,
+      "type_key": "forensic_report",
+      "player_purpose": "establish_timeline",
+      "production_brief_writing": {
+        "summary": "Medical Examiner's initial forensic report on Dr. Aris Thorne, establishing the exact cause and estimated time of death.",
+        "key_mandatory_line": "Carboxyhemoglobin levels indicate prolonged exposure to high concentrations of carbon monoxide. Estimated time of death: 22:15.",
+        "tone": "Clinical, precise, objective medical terminology.",
+        "key_information_to_include": []
+      },
+      "image_requirements": [],
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "C1",
+      "type_key": "email_export",
+      "player_purpose": "resolving_contradiction",
+      "reveals": "The HVAC system did not fail mechanically; it was manually shut down via an administrative override at 21:30, proving Thorne was murdered.",
+      "production_brief_writing": {
+        "summary": "An automated spam-like email from the secondary environmental monitoring system, showing an admin override shutdown.",
+        "key_mandatory_line": "[SYSTEM LOG] 21:30:00 - Zone: Sector 4 - Event: Admin-Override-Shutdown initiated.",
+        "tone": "Automated, sterile, technical",
+        "key_information_to_include": []
+      },
+      "image_requirements": [],
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "C2",
+      "type_key": "expense_report",
+      "design_hint": "A corporate expense report form with tabular data, showing date, service provider, passenger, wait times, and total cost, with a mundane corporate header.",
+      "player_purpose": "verifying_alibi",
+      "reveals": "Vance's private car service arrived at 22:00 but waited until 23:15, placing him at the scene during the time of death.",
+      "production_brief_writing": {
+        "summary": "A routine executive expense report for car services, detailing the wait time for Elias Vance's ride home.",
+        "key_mandatory_line": "Oct 13 - Passenger E. Vance - Wait Time: 75 minutes (22:00-23:15) - Additional Charge Applied.",
+        "tone": "Bureaucratic, financial, mundane",
+        "key_information_to_include": []
+      },
+      "image_requirements": [],
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "case_slug": "the-influencer-who-erased-herself",
+  "scenes": [
+    {
+      "for_doc": "A3",
+      "location": "Building management package intake area, Brickell Sky Residences lobby, 1401 Brickell Ave, Miami FL",
+      "visual_description": "A narrow building management alcove off the lobby, institutional and functional against the luxury of the rest of the building. A metal shelving unit holds courier packages sorted by unit number. A clipboard intake log hangs on a hook beside it. The courier intake slip for Unit 2204 sits filed in slot 2204 — signed in blue ballpoint. The visitor sign-in log nearby shows a gap on the February 28 page where Derek Voss's entry should appear.",
+      "time_of_day": "Afternoon, approximately 2:30 PM on February 28",
+      "lighting": "Fluorescent lobby lighting, warm ambient from the atrium. Cold and functional in the package area.",
+      "notable_objects": [
+        "NovaSkin PR package addressed to Unit 2204",
+        "Courier intake slip with 'D. Voss — Building Liaison' signature in blue ballpoint",
+        "Building visitor sign-in log with a blank line on February 28",
+        "Package sorting shelf with unit number labels",
+        "MPD evidence tags on collected documents"
+      ],
+      "atmosphere": "The mundane paperwork of a luxury building. Nothing looks wrong until you look for the name that should be in the visitor log and isn't there. The signature on the intake slip is too neat — practiced, not casual."
+    },
+    {
+      "for_doc": "A4",
+      "location": "Brickell Sky Residences, Floor 22 and Rooftop Level, 1401 Brickell Ave, Miami FL",
+      "visual_description": "Floor 22: a long residential corridor with numbered units, elevator bank at the center with a security camera mounted above the doors (operational, green light visible), and a service door at the far end marked SW-22-R (no camera, no light). Unit 2204 is midway down the corridor. The service stairwell beyond the door connects directly to the rooftop without any camera coverage. Rooftop level: open pool deck with blue-lit infinity pool, lounge chairs, planters. The rooftop CCTV dome camera mounted on a north-facing pillar has a small maintenance lockout tag and no recording light.",
+      "time_of_day": "Rendered as forensic daylight documentation — bright, flat, technical",
+      "lighting": "Daylight forensic documentation lighting. On the rooftop, Miami sun would be harsh but the camera shows the pool deck stripped of its glamour by crime scene context.",
+      "notable_objects": [
+        "Elevator bank camera — operational, green recording light",
+        "Service stairwell door SW-22-R — no camera, no monitoring",
+        "Rooftop CCTV dome camera with maintenance lockout tag",
+        "Pool deck with forensic discovery marker at poolside",
+        "Parking garage access level shown in cross-section",
+        "Forensic markers: numbered evidence tags along stairwell path"
+      ],
+      "atmosphere": "The floor plan reveals what the killer understood: a perfect camera-free corridor from Unit 2204 to the rooftop pool, if you knew which door to take. The building's elegance becomes a liability — the service stairwell was designed to be invisible, and it was."
+    },
+    {
+      "for_doc": "A5",
+      "location": "Brickell Sky Residences main entrance and lobby, 1401 Brickell Ave, Miami FL — nighttime, March 9",
+      "visual_description": "The lobby at night: marble floors, soft amber pendant lighting, a concierge desk with a leather-bound log. Glass front doors with an electronic keycard panel to the right — small LED glowing amber. The lobby camera is positioned above the elevator bank. The concierge desk has the night log open, a pen resting across it. Through the glass doors, the Miami night is wet and blue-dark.",
+      "time_of_day": "Late evening to midnight, March 9, 2026",
+      "lighting": "Warm amber lobby pendant lights, cool blue from exterior through glass doors. The contrast between warm inside and dark outside creates a threshold feeling.",
+      "notable_objects": [
+        "Concierge log open on the desk — entries visible",
+        "Electronic keycard access panel beside front doors",
+        "Lobby security camera above elevator bank",
+        "Package desk shelf to the right — Marcus bypassed it",
+        "Front desk — empty during the critical window",
+        "Elevator call button area where Marcus went instead of the package shelf"
+      ],
+      "atmosphere": "At 11:14 PM, the lobby is quiet — the concierge may have stepped away. The electronic keycard panel registers an access code silently. No manual log entry is made. The gap in the handwritten log is the absence that breaks the case open."
+    },
+    {
+      "for_doc": "A6",
+      "location": "NovaSkin Cosmetics headquarters, corporate email environment — rendered as a digital document",
+      "visual_description": "Not a physical location — this document is rendered as an email client screenshot. The NovaSkin corporate email interface: clean, modern, light mode. The contract default notice fills the email body with dense paragraph blocks of legal prose. The subject line is in bold-weight font. The signature block at the bottom includes NovaSkin brand identity elements. The email was sent at 2:22 PM on a Tuesday — business hours, deliberate.",
+      "time_of_day": "2:22 PM, March 7, 2026 — business hours",
+      "lighting": "Screen glow on a desk in a corporate office environment, soft ambient daylight from behind.",
+      "notable_objects": [
+        "NovaSkin corporate email header with brand colors",
+        "Subject line in bold: formal contract default notice",
+        "Dense legal prose body text with section references",
+        "CC field showing Legal Affairs",
+        "Natasha Kline signature block with Sr. Brand Partnerships Manager title",
+        "NovaSkin logo in email signature"
+      ],
+      "atmosphere": "This email reads like a weapon deployed through corporate protocol. The politeness of the language makes it more threatening, not less — every sentence is legally precise. Natasha wrote this knowing exactly what it would do to Camila's week."
+    },
+    {
+      "for_doc": "A7",
+      "location": "Digital space — social media platforms and Valentina Ochoa's phone, late night March 9-10, 2026",
+      "visual_description": "A collage of mobile screenshots assembled by Valentina when she went to the police: Instagram showing the account-not-found error page in the characteristic app aesthetic. TikTok showing a gray account-removed state. A phone notification tray at 1:47 AM showing a Gmail forwarded message flag. The forwarded email notification itself visible: a platform service message about content removal, with the forward rule metadata visible in the header. All screenshots carry the visual noise of being captured under low light from a phone screen.",
+      "time_of_day": "1:47 AM, March 10, 2026 — deep night",
+      "lighting": "Phone screen glow only. Very low ambient light. The blue-white of OLED screens in a dark room.",
+      "notable_objects": [
+        "Instagram account-not-found error page",
+        "TikTok account-removed notice with grayed-out profile",
+        "Gmail app notification at 1:47 AM",
+        "Forwarded email showing platform deletion confirmation",
+        "Email forward rule metadata visible: camilareyes.backup@gmail.com",
+        "Timestamp 01:47:22 on the forwarded notification"
+      ],
+      "atmosphere": "Valentina received this in her sleep. By the time she saw it in the morning, Camila had been dead for hours. The screenshots look like fan archaeology but one of them is the key to the whole case — the forwarding timestamp that proves a third party deleted those accounts after Camila was already in the rooftop pool."
+    },
+    {
+      "for_doc": "B5",
+      "location": "MPD Financial Crimes Unit analysis room — forensic accountant's workspace",
+      "visual_description": "A forensic accountant's examination table: printed bank statements and commission records spread out, a printed spreadsheet comparison showing two columns of percentages with a difference calculated. Yellow highlighter marks multiple rows. A forensic accountant's red pen has annotated the margins. The documents are organized by date, with sticky tabs marking key months. A calculator sits to the right with a running total visible on the display.",
+      "time_of_day": "Afternoon, March 12, 2026 — analysis report completion day",
+      "lighting": "Bright overhead examination room lighting, flat and even. A desk lamp adds directional light for reading fine print.",
+      "notable_objects": [
+        "Printed Reyes Digital LLC bank statements marked with sticky tabs",
+        "Commission comparison spreadsheet — 15% vs 22% columns highlighted",
+        "Red pen forensic accounting annotations in margins",
+        "VCM Holdings LLC registration document in the pile",
+        "Calculator with running total on display",
+        "Wire transfer confirmation for March 10 $64,000 transfer with misleading memo"
+      ],
+      "atmosphere": "Financial fraud, when laid out on paper, has a particular quality: the numbers are undeniable and the scale only becomes clear when you add the column. The $187,224.18 total sits at the bottom of the page like a verdict already written. The forensic accountant's red pen annotations are the only editorial voice — precise, damning, and clinical."
+    },
+    {
+      "for_doc": "B6",
+      "location": "Miami-Dade County Medical Examiner's Office, examination suite — March 11, 2026",
+      "visual_description": "A clinical autopsy suite: stainless steel examination table, overhead surgical lighting, tiled walls. The body has been examined and documented — the examination is complete when this report is written. The body diagram worksheet on a clipboard to the side shows annotated injury markers in red ballpoint. Dr. Carmen Valdes's report is typed on medical examiner letterhead, pages clipped together. Evidence samples are bagged on the side counter. The room is coldly functional, every surface reflecting the overhead lights.",
+      "time_of_day": "Morning of March 11, 2026 — examination conducted, report being finalized",
+      "lighting": "Surgical overhead lighting — harsh, bright, even. No shadows. Clinical white.",
+      "notable_objects": [
+        "Stainless steel autopsy table with drainage channels",
+        "Body diagram worksheet showing injury marker annotations in red",
+        "Petechial hemorrhaging noted at conjunctiva on diagram",
+        "Hyoid bone fracture marker at throat area on diagram",
+        "Bilateral neck contusion measurements marked with scale",
+        "Heel abrasion markers at feet",
+        "Dr. Carmen Valdes typed report on ME letterhead",
+        "Evidence sample bags on counter — tox pending"
+      ],
+      "atmosphere": "The clinical detachment of the medical examiner's report makes the violence more legible, not less. 'Absence of pulmonary edema' — four words that mean Camila was dead before she entered the water. The hyoid bone fracture measured and documented with the same precision as any other physical property. The distance between clinical language and what those words mean is where the horror of this document lives."
+    },
+    {
+      "for_doc": "C1",
+      "location": "Brickell Sky Residences building management office — ground floor, February 28 / retrospectively March 10, 2026",
+      "visual_description": "A functional building management back office: a wall-mounted maintenance schedule board with a monthly calendar grid showing work orders by date. A three-ring binder log book for office access lies open on the desk — the February 28 page visible. A filing cabinet behind the desk holds building records. The supervisor's retrospective incident report is handwritten on official letterhead and left on top of the binder. An MPD detective has been through the room — a yellow evidence tape mark shows where a document was removed for copying.",
+      "time_of_day": "The document reflects February 28 afternoon — but the retrospective note was written March 10, after the murder was discovered",
+      "lighting": "Fluorescent office overhead lighting. Functional, slightly institutional. A window in the corner shows the building's service courtyard.",
+      "notable_objects": [
+        "Wall-mounted maintenance calendar with March 9-11 block marked for CCTV firmware update",
+        "Building management office access log binder — February 28 page",
+        "VCM LLC Building Liaison entry: 14:37, courier coordination purpose",
+        "Building supervisor's retrospective incident report dated March 10",
+        "Supervisor notation: 'Representative inquired specifically about camera coverage schedules'",
+        "MPD evidence copy marker where documents were photographed"
+      ],
+      "atmosphere": "This room is where the murder was planned, unknowingly. Derek stood here on February 28 and looked at the maintenance board. He saw March 9-11 highlighted for the rooftop camera cluster. He noted it and made his plan. The building supervisor wrote the retrospective incident note in a shaken hand after learning what that conversation had been reconnaissance for."
+    },
+    {
+      "for_doc": "C2",
+      "location": "MPD Digital Forensics Unit analysis suite — March 10-12, 2026",
+      "visual_description": "A digital forensics analysis station: a large monitor showing the forensic log analysis software in dark mode. Log table with colored rows — red for destructive API actions, amber for account modification, gray for read-only operations. A cell tower geolocation map panel on the right sidebar shows a satellite view of Brickell neighborhood with a single pin marked at a specific intersection. The analyst's desk has printed session summaries, a router log print from Derek's home address, and a sticky note on the monitor bezel.",
+      "time_of_day": "Analysis conducted over March 10-12 following the warrant",
+      "lighting": "Dark analysis room lit primarily by monitor glow — blue-white screen light with no overhead ambient. The kind of lighting that makes you feel you're looking at evidence in the dark.",
+      "notable_objects": [
+        "Dark-mode forensics software interface with log table",
+        "Red-flagged rows: DELETE, DEACTIVATE, REVOKE action types",
+        "Token identifier column showing VCM_MGMT_OAUTH_7741",
+        "IP address column showing mobile carrier IP with tower location",
+        "Brickell neighborhood map with Brickell Ave / SE 8th St cell tower pin",
+        "Home router log print showing no activity from 11 PM onward",
+        "Analyst sticky note on monitor bezel: HOME WIFI DARK"
+      ],
+      "atmosphere": "The forensics screen tells the story in timestamps: 00:22:14, the session opens. 847 API calls over 68 minutes. A phone in a moving car, somewhere in Brickell, systematically dismantling a dead woman's digital presence. The home router logs sit dark. The mobile IP is alive. The cell tower doesn't move — it's on Brickell Ave, exactly where the parking garage exit leads."
+    },
+    {
+      "for_doc": "C3",
+      "location": "Brickell Sky Residences parking garage Level P1 / Zuma Miami restaurant / T-Mobile cell tower records",
+      "visual_description": "Three evidence sources converging on one story: the parking garage camera angle looking down toward the exit ramp — concrete pillars, yellow painted lines, a black luxury coupe mid-exit with a Florida plate partially visible. A Zuma Miami restaurant table log document on quality paper with a handwritten server note in the margin beside a departure time stamp. A carrier network printout showing a phone's cell tower history for the night of March 9-10 — one tower ping at 00:22 in Brickell, then progressively moving south.",
+      "time_of_day": "10:52 PM March 9 (restaurant), 12:15 AM March 10 (parking garage), 12:22 AM (cell tower ping)",
+      "lighting": "Parking garage: harsh fluorescent with grainy CCTV quality. Restaurant: warm upscale dining. Cell carrier printout: neutral document photography.",
+      "notable_objects": [
+        "Parking garage CCTV still — timestamp 00:15:44, BMW M4 exiting",
+        "Florida license plate partially visible — FL-3AQR, motion blur",
+        "Camera ID burned into upper left of CCTV image",
+        "Restaurant table log — Table 14, party departure 22:52",
+        "Handwritten server note in margin of restaurant log",
+        "Cell carrier tower history printout — Brickell Ave tower ping 00:22",
+        "MPD timeline overlay annotation: 75-minute gap between dinner departure and parking garage exit"
+      ],
+      "atmosphere": "Three documents, three sources, one truth: Derek left dinner at 10:52. He entered the building at 11:14. He exited in his car at 12:15. He deleted the accounts from his phone 7 minutes later while still on Brickell Ave. The parking garage camera recorded the exact moment he left a crime scene. He didn't know it was still working. He only knew about the rooftop camera schedule."
+    }
+  ]
+}

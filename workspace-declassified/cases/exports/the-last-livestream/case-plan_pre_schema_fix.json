@@ -1,0 +1,246 @@
+{
+  "tier": "NORMAL",
+  "slug": "the-last-livestream",
+  "title": "The Last Livestream",
+  "logline": "A popular tech YouTuber is found dead mid-24-hour charity livestream after the stream cuts out at 2:47 AM and viewers capture a shadow in the doorway.",
+  "setting": {
+    "city": "Austin",
+    "neighborhood": "Tech District",
+    "time_period": "Present Day",
+    "atmosphere": "Neon-lit, hyper-connected, and claustrophobic. The soundproof studio feels like a digital panopticon where everything is recorded but the truth remains hidden."
+  },
+  "victim": {
+    "name": "Alex Vance",
+    "age": 32,
+    "occupation": "Tech YouTuber (2.3M subscribers)",
+    "cause_of_death": "Lethal dose of a prescription stimulant mixed into an energy drink",
+    "found_by": "Building Security",
+    "found_at": "Soundproofed creator studio with adjacent control room",
+    "found_when": "2026-03-10T06:30:00"
+  },
+  "culprit": {
+    "poi_id": "POI-02",
+    "motive": "The Editor (Sam Miller) discovered Alex was secretly cutting him out of a massive multi-million dollar exclusivity deal, leaving him with nothing after years of building the channel.",
+    "motive_specificity_test": "Only Sam had access to the private contract drafts on Alex's local network and the technical skill to perfectly time the stream outage to cover his tracks.",
+    "method_steps": [
+      "Sam slipped the stimulant into Alex's specific brand of energy drink before the stream.",
+      "Sam triggered a pre-planned network switch overload from the control room at 2:47 AM to cut the feed.",
+      "Sam entered the studio in the dark, verifying Alex was dead, creating the 'shadow' seen in the final frames."
+    ],
+    "the_almost": "The DoorDash receipt at 2:51 AM provides an ironclad alibi, but the delivery address specifies 'Control Room Side Entrance'—proving Sam was in the control room right next to the studio when the stream died, not at his apartment."
+  },
+  "pois": [
+    {
+      "id": "POI-01",
+      "name": "Alex Vance",
+      "role": "Victim",
+      "status": "deceased"
+    },
+    {
+      "id": "POI-02",
+      "name": "Sam Miller",
+      "role": "The Editor",
+      "status": "living"
+    },
+    {
+      "id": "POI-03",
+      "name": "Jordan Hayes",
+      "role": "The Ex-Business Partner",
+      "status": "living"
+    },
+    {
+      "id": "POI-04",
+      "name": "Chloe Bennett",
+      "role": "The Girlfriend",
+      "status": "living"
+    },
+    {
+      "id": "POI-05",
+      "name": "Tyler 'Ty' Riggs",
+      "role": "The Superfan Moderator",
+      "status": "living"
+    }
+  ],
+  "timeline": [
+    {
+      "time": "2026-03-09T20:00:00",
+      "event": "Charity livestream begins. Alex is in high spirits.",
+      "source_docs": [
+        "A1"
+      ]
+    },
+    {
+      "time": "2026-03-09T22:30:00",
+      "event": "Chloe Bennett drops off a case of energy drinks and leaves.",
+      "source_docs": [
+        "B2",
+        "B3"
+      ]
+    },
+    {
+      "time": "2026-03-10T02:47:00",
+      "event": "Stream abruptly cuts out. Last frame shows a shadow in the doorway.",
+      "source_docs": [
+        "A3",
+        "A5"
+      ]
+    },
+    {
+      "time": "2026-03-10T02:51:00",
+      "event": "Food delivery arrives for Sam Miller.",
+      "source_docs": [
+        "A4"
+      ]
+    },
+    {
+      "time": "2026-03-10T06:30:00",
+      "event": "Building security finds Alex dead in the studio.",
+      "source_docs": [
+        "A1"
+      ]
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "CONTRA-01",
+      "description": "Chloe claims she bought the drinks right before dropping them off, but the receipt shows she bought them hours earlier.",
+      "introduced_in": "B2",
+      "resolved_in": "B5",
+      "resolution": "She bought them earlier to meet a friend, not to poison Alex. She is innocent."
+    },
+    {
+      "id": "CONTRA-02",
+      "description": "Jordan's lawsuit claims he had no contact with Alex, but phone records show a 12-minute call the day before.",
+      "introduced_in": "B1",
+      "resolved_in": "C2",
+      "resolution": "The call was a settlement negotiation, not a threat. Jordan was moving on."
+    },
+    {
+      "id": "CONTRA-03",
+      "description": "Ty Riggs claims he was moderating from home all night, but a geolocated social media post puts him near the studio.",
+      "introduced_in": "A5",
+      "resolved_in": "C1",
+      "resolution": "He was outside hoping to get a shoutout, but building access logs prove he never entered."
+    },
+    {
+      "id": "CONTRA-04",
+      "description": "Sam's DoorDash receipt provides an alibi (he was eating), but the location contradicts his statement that he was home.",
+      "introduced_in": "A4",
+      "resolved_in": "C3",
+      "resolution": "The delivery was to the studio's control room, placing him at the scene during the murder window."
+    },
+    {
+      "id": "CONTRA-05",
+      "description": "The shadow in the doorway appears to be entering from the main hall, but the control room door is the only one without a squeaky hinge.",
+      "introduced_in": "A3",
+      "resolved_in": "C4",
+      "resolution": "The shadow wasn't entering from the hall; it was stepping out from the control room."
+    }
+  ],
+  "evidence_chain": [
+    "A3 establishes the stream cutout at 2:47 AM and the shadow.",
+    "A4 provides Sam's delivery alibi at 2:51 AM.",
+    "B4 (Autopsy) confirms the stimulant was in the energy drink.",
+    "C3 proves Sam's delivery was to the control room, not his apartment.",
+    "C4 (Floor Plan / Spatial) shows the control room connects directly to the studio, allowing Sam to poison the drink and cut the stream without entering the main hall."
+  ],
+  "envelopes": {
+    "A": {
+      "description": "Scene Setup & Initial Anomalies",
+      "docs": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5"
+      ]
+    },
+    "B": {
+      "description": "Interviews & Forensics",
+      "docs": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5"
+      ]
+    },
+    "C": {
+      "description": "The Digital Trail & Spatial Reality",
+      "docs": [
+        "C1",
+        "C2",
+        "C3",
+        "C4"
+      ]
+    },
+    "R": {
+      "description": "Resolution",
+      "docs": [
+        "R1",
+        "R2",
+        "R3",
+        "R4"
+      ]
+    }
+  },
+  "experiential_style": "digital_corporate",
+  "emotional_arc": {
+    "A": "Curiosity and digital voyeurism",
+    "B": "Suspicion and shifting blame",
+    "C": "Aha! moment assembling the digital timeline with physical space",
+    "R": "Satisfying closure"
+  },
+  "trojan_horse_docs": [
+    "A4",
+    "C3"
+  ],
+  "social_media_plan": [
+    "A5",
+    "C1",
+    "C2"
+  ],
+  "spatial_tool": {
+    "type": "floor_plan",
+    "doc_id": "C4",
+    "description": "Floor plan of the creator studio and adjacent control room, showing sightlines, camera angles, and the hidden connecting door."
+  },
+  "hint_system": {
+    "levels": [
+      {
+        "level": 1,
+        "label": "Nudge",
+        "hints": [
+          "Look closely at the timeline of the livestream.",
+          "Who had access to the studio besides Alex?",
+          "Review the food delivery receipt carefully."
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Direction",
+        "hints": [
+          "The shadow in the doorway is key. Where could it have come from?",
+          "Compare the delivery address on the receipt to the suspects' statements.",
+          "Check the building access logs for Ty Riggs."
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Reveal",
+        "hints": [
+          "Sam Miller's alibi depends on where he received his food.",
+          "The control room is adjacent to the studio and has a connecting door.",
+          "The timing of the stream cutout aligns with the delivery."
+        ]
+      },
+      {
+        "level": 4,
+        "label": "Solution",
+        "hints": [
+          "Sam Miller poisoned the energy drink and cut the stream from the control room at 2:47 AM, receiving his food delivery there at 2:51 AM."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,422 @@
+{
+  "art_briefs": [
+    {
+      "image_id": "img_canonical_poi_01_camila_reyes",
+      "for_doc": "A2",
+      "for_poi": "POI-01",
+      "envelope": "A",
+      "type": "mugshot",
+      "filename": "visuals/canonical/poi_01_camila_reyes.png",
+      "dall_e_prompt": "Professional lifestyle portrait of a 28-year-old Latina woman with long dark brown wavy hair, warm brown eyes, wearing a light silk blouse and minimal gold jewelry. Soft confident expression, natural radiance, not forced smile. Studio lighting on white or soft cream background. This is a talent/influencer professional photo \u2014 polished, aspirational. photorealistic, shot on Canon EOS R5, soft studio portrait lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no text overlays, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A2",
+          "template_slot": "mugshot_POI-01",
+          "placement_notes": "Victim portrait on POI sheet \u2014 professional lifestyle photo, not police booking"
+        }
+      ]
+    },
+    {
+      "image_id": "img_canonical_poi_02_derek_voss",
+      "for_doc": "A2",
+      "for_poi": "POI-02",
+      "envelope": "A",
+      "type": "mugshot",
+      "filename": "visuals/canonical/poi_02_derek_voss.png",
+      "dall_e_prompt": "Police booking mugshot photograph of a 37-year-old white male with neatly combed dark brown hair, slightly graying at temples, clean-shaven with a square jaw, wearing a dark navy blazer and white dress shirt, no tie. Expression is controlled and flat \u2014 neither smiling nor distressed, a practiced neutrality. Direct eye contact with the camera, slight tension around the eyes. Standard police booking photo setup: plain gray background, straight-on front-facing shot, even flat lighting. photorealistic, shot on Canon EOS R5, flat even studio lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no text overlays, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A2",
+          "template_slot": "mugshot_POI-02",
+          "placement_notes": "Primary suspect mugshot on POI sheet"
+        },
+        {
+          "doc_id": "B1",
+          "template_slot": "subjectPhoto",
+          "placement_notes": "Interview header portrait \u2014 reuse canonical"
+        }
+      ]
+    },
+    {
+      "image_id": "img_canonical_poi_03_natasha_kline",
+      "for_doc": "A2",
+      "for_poi": "POI-03",
+      "envelope": "A",
+      "type": "mugshot",
+      "filename": "visuals/canonical/poi_03_natasha_kline.png",
+      "dall_e_prompt": "Police booking mugshot photograph of a 32-year-old woman with shoulder-length auburn hair, sharp hazel eyes, high cheekbones, wearing a structured charcoal blazer. Expression is composed and professional \u2014 she treats this exactly like a compliance exercise, no visible distress. Direct gaze, chin level. Standard police booking photo setup: plain gray background, front-facing, flat even lighting. photorealistic, shot on Canon EOS R5, flat even studio lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no text overlays, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A2",
+          "template_slot": "mugshot_POI-03",
+          "placement_notes": "NovaSkin brand rep mugshot on POI sheet"
+        },
+        {
+          "doc_id": "B2",
+          "template_slot": "subjectPhoto",
+          "placement_notes": "Interview header portrait \u2014 reuse canonical"
+        }
+      ]
+    },
+    {
+      "image_id": "img_canonical_poi_04_marcus_delray",
+      "for_doc": "A2",
+      "for_poi": "POI-04",
+      "envelope": "A",
+      "type": "mugshot",
+      "filename": "visuals/canonical/poi_04_marcus_delray.png",
+      "dall_e_prompt": "Police booking mugshot photograph of a 31-year-old Black male with a close-cropped fade haircut, dark brown eyes, short beard, wearing a gray henley shirt. Expression shows guarded grief \u2014 he is not defiant but he is barely holding himself together, eyes slightly red-rimmed from crying, jaw tense. Not performing calm. Standard police booking photo setup: plain gray background, front-facing, flat even lighting. photorealistic, shot on Canon EOS R5, flat even studio lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no text overlays, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A2",
+          "template_slot": "mugshot_POI-04",
+          "placement_notes": "Videographer/partner mugshot on POI sheet"
+        },
+        {
+          "doc_id": "B3",
+          "template_slot": "subjectPhoto",
+          "placement_notes": "Interview header portrait \u2014 reuse canonical"
+        }
+      ]
+    },
+    {
+      "image_id": "img_canonical_poi_05_valentina_ochoa",
+      "for_doc": "A2",
+      "for_poi": "POI-05",
+      "envelope": "A",
+      "type": "mugshot",
+      "filename": "visuals/canonical/poi_05_valentina_ochoa.png",
+      "dall_e_prompt": "Police booking mugshot photograph of a 27-year-old Latina woman with long dark hair pulled back from her face, dark eyes visibly swollen from crying, wearing a simple black fitted top. Expression is raw grief mixed with urgent frustration \u2014 not hiding her feelings, not composed. She has clearly been crying and is barely managing. Standard police booking photo setup: plain gray background, front-facing, flat even lighting. photorealistic, shot on Canon EOS R5, flat even studio lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no text overlays, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A2",
+          "template_slot": "mugshot_POI-05",
+          "placement_notes": "Best friend/key witness mugshot on POI sheet"
+        },
+        {
+          "doc_id": "B4",
+          "template_slot": "subjectPhoto",
+          "placement_notes": "Interview header portrait \u2014 reuse canonical"
+        }
+      ]
+    },
+    {
+      "image_id": "img_a3_courier_intake_mosaic",
+      "for_doc": "A3",
+      "for_poi": null,
+      "envelope": "A",
+      "type": "document_scan",
+      "filename": "visuals/envelope_A/final/a3_courier_intake_mosaic.png",
+      "dall_e_prompt": "Three-panel evidence document scan collage arranged side by side on a neutral evidence lab surface. Left panel: a building courier intake slip form with handwritten signature 'D. Voss - Building Liaison' in blue ballpoint pen at the bottom signature line, NovaSkin sender logo in the top corner, addressed to Unit 2204. Center panel: a building package receipt log page with printed tabular rows showing February 28 package entries, rows visible, slightly crumpled edges. Right panel: a visitor sign-in log page showing February 28 entries with a visible gap \u2014 a line where an entry should appear but is blank. Each document has a small yellow MPD evidence adhesive label in the corner. Slight scanner distortion and paper texture visible. photorealistic, shot on Canon EOS R5, flat even overhead document lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A3",
+          "template_slot": "evidence_mosaic_main",
+          "placement_notes": "Primary evidence image for courier intake slip mosaic \u2014 three-panel document scan showing intake slip, package log, visitor log gap"
+        }
+      ]
+    },
+    {
+      "image_id": "img_a4_floor_plan",
+      "for_doc": "A4",
+      "for_poi": null,
+      "envelope": "A",
+      "type": "scene",
+      "filename": "visuals/envelope_A/final/a4_floor_plan_brickell_sky.png",
+      "dall_e_prompt": "Architectural floor plan blueprint of a luxury high-rise building floor layout, top-down overhead view. Shows an open-plan apartment unit in the upper left with room labels, a central elevator bank with a camera icon marked in green, a service stairwell corridor marked with bold dashed lines and labeled SW-22-R with a red X through a camera icon indicating no camera coverage. The right side shows a rooftop pool deck level with a pool rectangle, deck furniture outlines, and a camera symbol crossed out in red with a handwritten annotation reading 'OFFLINE \u2014 MAINT 3/9-3/11'. A star forensic marker indicates body discovery location at poolside. Blue technical drawing lines on white paper background with red and yellow hand-annotation overlays in detective handwriting style. Compass rose in corner, scale bar along bottom edge. photorealistic, shot on Canon EOS R5, flat overhead document photography lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1792x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A4",
+          "template_slot": "planImage",
+          "placement_notes": "Primary floor plan image for the spatial tool document \u2014 annotated blueprint showing camera positions, service stairwell, rooftop CCTV offline zone, and body discovery marker"
+        }
+      ]
+    },
+    {
+      "image_id": "img_a5_building_entrance",
+      "for_doc": "A5",
+      "for_poi": null,
+      "envelope": "A",
+      "type": "building",
+      "filename": "visuals/envelope_A/final/a5_brickell_sky_entrance.png",
+      "dall_e_prompt": "Modern luxury residential high-rise building entrance in Miami's Brickell neighborhood at night. Glass lobby doors with brushed steel framing, electronic keycard access panel mounted to the right of the entrance with a small LED status light, marble lobby visible through glass, building concierge desk visible inside. Warm amber lobby lighting contrasts with the blue-toned Miami night exterior. Wet pavement reflecting lobby lights. Lush tropical plantings flanking the entrance. photorealistic, shot on Canon EOS R5, mixed ambient and warm interior lighting at night, no illustration, no cartoon, no anime, no vector art, no watermark, no text overlays, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1792x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A5",
+          "template_slot": "building_access_photo",
+          "placement_notes": "Building entrance photo for concierge log document \u2014 shows electronic keycard access panel and luxury lobby entrance"
+        }
+      ]
+    },
+    {
+      "image_id": "img_a6_email_screenshot",
+      "for_doc": "A6",
+      "for_poi": null,
+      "envelope": "A",
+      "type": "device_screenshot",
+      "filename": "visuals/envelope_A/final/a6_novaskin_email_screenshot.png",
+      "dall_e_prompt": "Laptop screen showing an email client application with a corporate email open. The email interface shows a clean modern email client in light mode. The sender field shows a corporate cosmetics company email address, the subject line is in bold indicating an unread urgent message about contract compliance, the email body shows dense formal legal prose in a sans-serif font with paragraph breaks. The email signature block at the bottom shows a corporate cosmetics brand identity. The laptop is on a desk with soft ambient office lighting. The screen fills most of the frame. photorealistic, shot on Canon EOS R5, soft ambient desk lamp lighting with screen glow, no illustration, no cartoon, no anime, no vector art, no watermark, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A6",
+          "template_slot": "device_screenshot",
+          "placement_notes": "Email client screenshot for NovaSkin contract default notice document"
+        }
+      ]
+    },
+    {
+      "image_id": "img_a7_social_media_deletion_collage",
+      "for_doc": "A7",
+      "for_poi": null,
+      "envelope": "A",
+      "type": "device_screenshot",
+      "filename": "visuals/envelope_A/final/a7_account_deletion_collage.png",
+      "dall_e_prompt": "Composite collage of four mobile phone screenshots arranged in a 2x2 grid on a dark background. Top-left: Instagram app error screen showing account not found message in white text on dark gradient background. Top-right: TikTok app showing account removed notice with gray icon. Bottom-left: a phone screenshot of a text notification with a timestamp showing early morning hours, notification from a Gmail app about a forwarded email. Bottom-right: a phone screen showing a forwarded email notification from a platform service about account deletion with a timestamp showing 01:47 AM. Each screenshot has authentic mobile UI chrome \u2014 battery indicator, signal bars. The screenshots appear slightly blurry as if photographed from a phone screen. Muted, low-light quality consistent with screenshots taken at 2 AM. photorealistic, shot on Canon EOS R5, low ambient light, screen glow only, no illustration, no cartoon, no anime, no vector art, no watermark, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A7",
+          "template_slot": "device_screenshot",
+          "placement_notes": "Multi-panel social media evidence collage \u2014 Instagram account not found, TikTok removal, forwarded deletion email notification at 1:47 AM"
+        }
+      ]
+    },
+    {
+      "image_id": "img_b5_financial_records_scan",
+      "for_doc": "B5",
+      "for_poi": null,
+      "envelope": "B",
+      "type": "evidence_photo",
+      "filename": "visuals/envelope_B/final/b5_financial_records_spreadsheet.png",
+      "dall_e_prompt": "Printed financial spreadsheet document placed on a flat examination surface, photographed overhead. The spreadsheet shows two clearly labeled columns comparing commission percentage rates across multiple transaction rows \u2014 one column showing 15 percent and another showing 22 percent, with a difference column and running totals. Dollar amounts in five and six figures visible in each row. Several rows are highlighted in yellow highlighter marker. The bottom of the sheet shows a bold total line with a six-figure sum. The document has been folded and unfolded \u2014 visible crease lines. A forensic accountant's red pen annotation in the margin points to the total. photorealistic, shot on Canon EOS R5, flat overhead evidence photography lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "B5",
+          "template_slot": "evidencePhoto",
+          "placement_notes": "Financial forensics report image \u2014 printed spreadsheet showing commission rate discrepancy across transactions with forensic accountant annotations"
+        }
+      ]
+    },
+    {
+      "image_id": "img_b6_body_diagram_front",
+      "for_doc": "B6",
+      "for_poi": null,
+      "envelope": "B",
+      "type": "body_diagram",
+      "filename": "cases/assets/body-diagrams/asylummedicine/FWB.png",
+      "dall_e_prompt": null,
+      "dall_e_params": null,
+      "reusable_from_library": true,
+      "library_path": "cases/assets/body-diagrams/asylummedicine/FWB.png",
+      "usage_map": [
+        {
+          "doc_id": "B6",
+          "template_slot": "body_diagram",
+          "placement_notes": "Forensic autopsy body diagram \u2014 female full body front/back view for injury marker overlay. Injury markers: petechial hemorrhaging at eyes, hyoid fracture at throat, bilateral neck contusions, heel abrasions."
+        }
+      ]
+    },
+    {
+      "image_id": "img_b6_body_diagram_torso",
+      "for_doc": "B6",
+      "for_poi": null,
+      "envelope": "B",
+      "type": "body_diagram",
+      "filename": "cases/assets/body-diagrams/asylummedicine/Ftorso.png",
+      "dall_e_prompt": null,
+      "dall_e_params": null,
+      "reusable_from_library": true,
+      "library_path": "cases/assets/body-diagrams/asylummedicine/Ftorso.png",
+      "usage_map": [
+        {
+          "doc_id": "B6",
+          "template_slot": "body_diagram_secondary",
+          "placement_notes": "Secondary torso detail diagram for neck and throat injury markers \u2014 hyoid fracture and bilateral manual compression contusions."
+        }
+      ]
+    },
+    {
+      "image_id": "img_c1_maintenance_log_mosaic",
+      "for_doc": "C1",
+      "for_poi": null,
+      "envelope": "C",
+      "type": "document_scan",
+      "filename": "visuals/envelope_C/final/c1_maintenance_log_mosaic.png",
+      "dall_e_prompt": "Three-panel document scan collage of official building management papers arranged on a flat surface. Left panel: a wall-mounted maintenance calendar printout showing March with a highlighted block covering March 9 through 11, labeled with camera system maintenance notation in typed text. Center panel: a building management office access log binder page showing February 28 entries \u2014 one row has 'VCM LLC Building Liaison' handwritten in the name column with a 2:37 PM timestamp, and the purpose field reads 'courier coordination.' Right panel: a building supervisor's handwritten incident report on official letterhead, dated March 10, with a note indicating the February 28 schedule access was retrospectively flagged as suspicious. Each document has small MPD orange evidence stickers. Paper shows wear and institutional use. photorealistic, shot on Canon EOS R5, flat overhead document photography lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "C1",
+          "template_slot": "evidence_mosaic_main",
+          "placement_notes": "Maintenance log mosaic \u2014 three-panel showing CCTV offline calendar, VCM LLC building access record, and supervisor's retrospective incident note"
+        }
+      ]
+    },
+    {
+      "image_id": "img_c2_oauth_forensics_interface",
+      "for_doc": "C2",
+      "for_poi": null,
+      "envelope": "C",
+      "type": "device_screenshot",
+      "filename": "visuals/envelope_C/final/c2_oauth_forensics_interface.png",
+      "dall_e_prompt": "Laptop screen displaying a dark-themed law enforcement digital forensics software interface. The main panel shows a log table with columns for timestamp, action type, IP address, and device signature. Log rows show deletion, deactivation, and revocation entries in different color codes \u2014 red for destructive actions. One row is highlighted in yellow showing a mobile IP address entry. A sidebar panel on the right shows a map view of a city neighborhood with a cell tower location pin marked. The screen fills most of the frame, the laptop is on a dark desk in a dim analysis room with only screen glow for ambient light. An analyst's handwritten sticky note is visible on the bezel reading HOME WIFI DARK. photorealistic, shot on Canon EOS R5, dark ambient with strong screen glow, no illustration, no cartoon, no anime, no vector art, no watermark, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "C2",
+          "template_slot": "device_screenshot",
+          "placement_notes": "Digital forensics interface screenshot for OAuth token audit report \u2014 dark UI showing deletion log entries, mobile IP geolocation, Brickell neighborhood map panel"
+        }
+      ]
+    },
+    {
+      "image_id": "img_c3_parking_garage_cctv",
+      "for_doc": "C3",
+      "for_poi": null,
+      "envelope": "C",
+      "type": "cctv_still",
+      "filename": "visuals/envelope_C/final/c3_parking_garage_cctv_still.png",
+      "dall_e_prompt": "Grainy security camera still photograph from a parking garage interior camera mounted high on a concrete pillar. Low angle looking down and outward toward the exit ramp. A black sport luxury sedan is visible driving toward the exit, slightly motion-blurred. The car is a 2022-era BMW coupe body style with Florida license plate visible but slightly blurred by motion. The image has the characteristic quality of a compressed security camera capture: visible noise grain, slight fisheye distortion, timestamp burned into the lower right corner showing 00:15:44 in white digital font, and a camera ID label burned into the upper left. Concrete walls, yellow painted lines on floor, fluorescent overhead lighting casting harsh shadows. photorealistic, shot on security CCTV camera, harsh fluorescent lighting, grainy compressed surveillance quality, no illustration, no cartoon, no anime, no vector art, no watermark, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "C3",
+          "template_slot": "evidence_mosaic_cctv",
+          "placement_notes": "Parking garage CCTV still showing Derek's BMW M4 exiting at 00:15:44 \u2014 primary physical evidence image for C3 mosaic panel 2"
+        }
+      ]
+    },
+    {
+      "image_id": "img_c3_restaurant_departure_record",
+      "for_doc": "C3",
+      "for_poi": null,
+      "envelope": "C",
+      "type": "document_scan",
+      "filename": "visuals/envelope_C/final/c3_restaurant_departure_log.png",
+      "dall_e_prompt": "Restaurant table log document scan on a flat surface. A printed table management sheet from a high-end restaurant showing reservation entries for the evening. The document has a header in stylized restaurant typography. Rows list table numbers, party names, reservation times, and departure times. One row for Table 14 is visible with a handwritten server note in pencil in the margin and a departure time stamp showing 22:52. The document is on high-quality restaurant stationery, slightly creased from being handled, with a small MPD evidence adhesive label in the corner. photorealistic, shot on Canon EOS R5, flat overhead document photography lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "C3",
+          "template_slot": "evidence_mosaic_document",
+          "placement_notes": "Restaurant table departure log for C3 mosaic panel 1 \u2014 showing Table 14 departure at 10:52 PM, breaking Derek's midnight alibi claim"
+        }
+      ]
+    }
+  ]
+}

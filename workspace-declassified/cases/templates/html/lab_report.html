@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        @page {
+            margin: 18mm;
+            size: letter;
+        }
+        
+        body {
+            font-family: "Arial", sans-serif;
+            font-size: 10pt;
+            line-height: 1.4;
+            color: #000;
+            background: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .lab-header {
+            text-align: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .lab-name {
+            font-size: 14pt;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .lab-address {
+            font-size: 9pt;
+            color: #666;
+        }
+        
+        .report-title {
+            font-size: 16pt;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            text-transform: uppercase;
+        }
+        
+        .case-info {
+            background: rgba(240, 240, 240, 0.8);
+            border: 1px solid #999;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 9pt;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .info-field {
+            margin-bottom: 5px;
+        }
+        
+        .field-label {
+            font-weight: bold;
+            display: inline-block;
+            width: 100px;
+        }
+        
+        .report-section {
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            font-size: 12pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .evidence-photo {
+            float: right;
+            margin: 0 0 15px 15px;
+            border: 2px solid #ccc;
+            padding: 5px;
+            background: #fff;
+            max-width: 200px;
+        }
+        
+        .evidence-photo img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .photo-caption {
+            font-size: 8pt;
+            text-align: center;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        
+        .findings-list {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .findings-list li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        .conclusion-box {
+            border: 2px solid #333;
+            padding: 15px;
+            background: rgba(255, 255, 240, 0.8);
+            margin: 20px 0;
+        }
+        
+        .conclusion-title {
+            font-weight: bold;
+            font-size: 11pt;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .confidential-stamp {
+            position: absolute;
+            top: 80px;
+            right: 50px;
+            transform: rotate(25deg);
+            opacity: 0.8;
+        }
+        
+        .confidential-stamp img {
+            width: 100px;
+            height: auto;
+        }
+        
+        .signature-section {
+            margin-top: 30px;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+        }
+        
+        .signature-line {
+            border-bottom: 1px solid #000;
+            width: 200px;
+            height: 30px;
+            margin: 10px 0;
+        }
+        
+        .signature-label {
+            font-size: 8pt;
+            color: #666;
+            text-transform: uppercase;
+        }
+        
+        .footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 8pt;
+            color: #666;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="lab-header">
+        <div class="lab-name">{{labName}}</div>
+        <div class="lab-address">{{labAddress}}</div>
+    </div>
+    
+    <div class="report-title">{{title}}</div>
+    
+    <div class="case-info">
+        <div class="info-grid">
+            <div class="info-field">
+                <span class="field-label">Case Number:</span> {{caseNumber}}
+            </div>
+            <div class="info-field">
+                <span class="field-label">Lab Report #:</span> {{reportNumber}}
+            </div>
+            <div class="info-field">
+                <span class="field-label">Date Received:</span> {{dateReceived}}
+            </div>
+            <div class="info-field">
+                <span class="field-label">Date Analyzed:</span> {{dateAnalyzed}}
+            </div>
+            <div class="info-field">
+                <span class="field-label">Evidence Item:</span> {{evidenceItem}}
+            </div>
+            <div class="info-field">
+                <span class="field-label">Analyst:</span> {{analyst}}
+            </div>
+        </div>
+    </div>
+    
+    {{#if evidencePhoto}}
+    <div class="evidence-photo">
+        <img src="{{evidencePhoto}}" alt="Evidence item">
+        <div class="photo-caption">Item: {{evidenceItem}}</div>
+    </div>
+    {{/if}}
+    
+    <div class="report-section">
+        <div class="section-title">Method</div>
+        <p>{{method}}</p>
+    </div>
+    
+    <div class="report-section">
+        <div class="section-title">Findings</div>
+        <ul class="findings-list">
+            {{#each findings}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ul>
+    </div>
+    
+    <div class="conclusion-box">
+        <div class="conclusion-title">Conclusion</div>
+        <p>{{conclusion}}</p>
+    </div>
+    
+    {{#if confidentialStamp}}
+    <div class="confidential-stamp">
+        <img src="{{confidentialStamp}}" alt="Confidential stamp">
+    </div>
+    {{/if}}
+    
+    <div class="signature-section">
+        <div class="signature-line"></div>
+        <div class="signature-label">Lab Director Signature</div>
+        
+        <div style="margin-top: 15px;">
+            <div class="signature-line"></div>
+            <div class="signature-label">Date</div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <strong>{{caseTitle}}</strong><br>
+        Prepared for training / investigative simulation. All evidence and analysis are fictional within this case universe.
+    </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+{
+  "version": "1.0",
+  "description": "Visual design system for Declassified Cases documents. All documents share this language.",
+  "page": {
+    "size": "letter",
+    "margins": "12mm",
+    "background": "#fafaf8"
+  },
+  "typography": {
+    "body": "'Georgia', 'Times New Roman', serif",
+    "mono": "'Courier New', 'Consolas', monospace",
+    "sans": "'Helvetica Neue', 'Arial', sans-serif",
+    "display": "'Impact', 'Arial Black', sans-serif",
+    "handwritten": "'Caveat', 'Patrick Hand', cursive"
+  },
+  "colors": {
+    "ink": "#1a1a1a",
+    "muted": "#666666",
+    "light_gray": "#999999",
+    "accent_red": "#c41e3a",
+    "accent_blue": "#1a3a5c",
+    "stamp_red": "#cc0000",
+    "highlight_yellow": "#fff59d",
+    "paper_cream": "#f5f0e8",
+    "paper_white": "#fafaf8",
+    "evidence_dark": "#1a1a1a",
+    "classified_red": "#8b0000",
+    "police_blue": "#003366",
+    "legal_navy": "#1a2744",
+    "medical_green": "#006644",
+    "digital_cyan": "#0088aa"
+  },
+  "stamps": {
+    "confidential": "Text 'CONFIDENTIAL' rotated -15deg, color #cc0000, opacity 0.25, font Impact 28pt, positioned bottom-right",
+    "evidence": "Text 'EVIDENCE' in bordered rectangle, color #cc0000, opacity 0.8, font mono 10pt, centered top",
+    "restricted": "Text 'RESTRICTED' top-right corner, mono 8pt, bordered box, color #8b0000",
+    "declassified": "Text 'DECLASSIFIED' diagonal across page, font Impact 48pt, color #cc0000, opacity 0.08",
+    "digital_evidence": "Text 'DIGITAL EVIDENCE' in bordered rectangle, color #cc0000, centered"
+  },
+  "effects": {
+    "paper_texture": "Use CSS: background-image with subtle repeating noise pattern or set background-color to #f5f0e8 for cream paper feel",
+    "coffee_stain": "Optional: circular radial-gradient in brown (#8B4513) at 0.04 opacity, random position, 60-80px diameter",
+    "fold_lines": "Optional: very subtle 1px lines at 33% and 66% height, color rgba(0,0,0,0.03)",
+    "tape": "Semi-transparent yellow (#fff59d) rectangles at corners, slight rotation, 40x15px, opacity 0.6",
+    "staple": "Small 3x8px dark gray rectangle at top-left, with slight shadow",
+    "redaction_bar": "Black rectangle over text, sometimes with visible text underneath at low opacity"
+  },
+  "evidence_header": {
+    "format": "Case: {caseNumber} | Document: {docId} | Date: {date}",
+    "style": "font-family mono, font-size 9pt, text-align center, color #999, padding 8px, border-bottom 1px solid #ddd"
+  },
+  "footer": {
+    "text": "Prepared for training / investigative simulation. All content is fictional within this case universe.",
+    "style": "font-size 8pt, text-align center, color #999, padding-top 16px, border-top 1px solid #eee, margin-top 24px"
+  },
+  "rules": {
+    "all_css_inline": "ALL CSS must be in a <style> block. No external stylesheets.",
+    "all_images_base64": "ALL images must be embedded as base64 data URIs in <img src='data:image/png;base64,...'>",
+    "no_javascript": "No JavaScript. Static HTML/CSS only.",
+    "print_friendly": "Must render correctly with Chromium printBackground: true",
+    "max_pages": "Most documents should be 1-2 pages. Interviews/transcripts may be 3-8 pages.",
+    "text_never_in_images": "ALL text must be HTML text. Never rely on text rendered inside AI-generated images.",
+    "every_doc_unique": "Each document should have subtle visual variations — no two documents should look identical even if same type"
+  }
+}

@@ -1,0 +1,464 @@
+{
+  "tier": "NORMAL",
+  "slug": "cyber-ghost",
+  "title": "Cyber Ghost",
+  "logline": "A hacker who exposed city council corruption is found dead ten days after the leak — and the evidence suggests the whistleblower was silenced from the inside.",
+  "setting": {
+    "city": "Harwick, USA",
+    "neighborhood": "Civic District / Midtown co-working corridor",
+    "time_period": "Present day — October 2024",
+    "atmosphere": "A mid-sized city where civic trust is already fractured. Rain-slicked streets, fluorescent government offices, and a co-working space that smells like cold brew and paranoia."
+  },
+  "victim": {
+    "name": "Jordan Mercer",
+    "age": 31,
+    "occupation": "Freelance web developer / anonymous hacktivist operating as 'Cyber Ghost'",
+    "cause_of_death": "Fatal fentanyl overdose — initially ruled accidental, but toxicology and scene anomalies suggest staging",
+    "found_by": "Building superintendent Remy Salazar",
+    "found_at": "Apartment 4C, 812 Kellner Street, Harwick",
+    "found_when": "2024-10-22T08:15:00"
+  },
+  "culprit": {
+    "poi_id": "POI-02",
+    "motive": "Aldric Voss, the Council Fixer, had personally brokered the kickback scheme exposed in the leak — specifically the $2.3M in fraudulent vendor payments to shell company Briarfield Solutions LLC, of which he held a concealed 40% ownership stake. Exposure would mean federal racketeering charges, loss of his $180K city consulting contract, and the collapse of a decade-long political career built on being the man who makes problems disappear. He could not allow Jordan Mercer to be identified, debriefed, or protected — the leak trail had to end with the leaker.",
+    "motive_specificity_test": "Only Voss had a direct financial ownership stake in Briarfield Solutions LLC — the specific shell company named in the leaked documents. Every other suspect is implicated at most as a co-conspirator or bystander; Voss alone faces personal federal racketeering exposure that no plea deal could eliminate without naming him.",
+    "method_steps": [
+      "Step 1 (Oct 14-17): Voss used his access to city IT contractor accounts to trace the metadata in the leaked PDFs back to a specific print queue session at City Hall, which pointed to Jordan Mercer's co-working space badge record. He hired off-books investigator to confirm Jordan's identity and apartment address.",
+      "Step 2 (Oct 19, ~21:00): Voss visited Jordan's apartment under the pretense of offering a 'negotiated silence deal.' He laced a drink with fentanyl obtained through a street-level contact, staged the scene with Jordan's own laptop to suggest a despondent hacker who overdosed after the pressure of exposure, and planted a handwritten note that mimicked Jordan's journaling style.",
+      "Step 3 (Oct 19-22): Voss remotely triggered a secondary leak of selectively edited documents — using credentials he had copied from Jordan's laptop — designed to reframe Cyber Ghost as a disgruntled city employee (pointing suspicion toward POI-04, the Insider), creating a false trail and buying time before Jordan's body was discovered."
+    ],
+    "the_almost": "When Voss staged Jordan's laptop, he failed to notice that Jordan's home router kept a DHCP lease log showing a second, unrecognized MAC address — Voss's burner phone had auto-connected to the apartment WiFi. This MAC address appears in the router's admin export (envelope C) and does not match any device Jordan owned, placing an unidentified device inside the apartment on the night of death."
+  },
+  "pois": [
+    {
+      "id": "POI-01",
+      "name": "Jordan Mercer",
+      "role": "Freelance web developer and anonymous hacktivist",
+      "status": "deceased",
+      "description": "31-year-old freelance developer who operated as 'Cyber Ghost' — published the Briarfield Solutions leak on October 12, 2024. Known in hacktivist circles as meticulous and privacy-obsessed. Found dead in apartment on October 22.",
+      "voice_profile": {
+        "speech_pattern": "N/A — deceased",
+        "under_pressure": "N/A",
+        "verbal_tics": "N/A"
+      },
+      "surface_motive": "Victim",
+      "alibi": {
+        "claim": "N/A",
+        "verifiable": false,
+        "holes": "N/A"
+      },
+      "hiding": "Jordan had a second, encrypted backup of the full document cache stored on a remote server — the published leak was only 60% of the total files. Jordan was in contact with a federal journalist and had planned to release the remainder after securing immunity.",
+      "interview_doc": null,
+      "is_culprit": false,
+      "red_herring_reason": null
+    },
+    {
+      "id": "POI-02",
+      "name": "Aldric Voss",
+      "role": "City Council political consultant and fixer",
+      "status": "alive",
+      "description": "48-year-old political operator with 15 years managing the Harwick City Council's public affairs. Smooth, well-connected, and described by colleagues as 'the man who makes problems disappear.' Undisclosed ownership stake in Briarfield Solutions LLC.",
+      "voice_profile": {
+        "speech_pattern": "Measured, precise, rarely uses contractions in formal settings. Redirects questions with counter-questions. Speaks in complete paragraphs.",
+        "under_pressure": "Speech slows rather than accelerates — deliberate pauses before answering. Begins using 'hypothetically' and 'in a scenario like that' to distance himself from specifics.",
+        "verbal_tics": "Repeats the interviewer's last word as a stall tactic. Says 'that's a fair point' before deflecting."
+      },
+      "surface_motive": "Publicly has no direct motive — his role is purely advisory. But financial records show his consulting fees spiked 340% in the same fiscal year as the Briarfield contracts.",
+      "alibi": {
+        "claim": "Attended a fundraiser dinner at the Harwick Grand Hotel until 10:30pm on October 19, then went home alone.",
+        "verifiable": true,
+        "holes": "Hotel parking garage exit log shows his vehicle left at 9:47pm — 43 minutes before he claims to have left the dinner. Ride-share and credit card records show no activity after 9:47pm until 7:15am the next morning."
+      },
+      "hiding": "His 40% concealed ownership stake in Briarfield Solutions LLC, registered under his wife's maiden name Aldric Voss has never disclosed this in council filings.",
+      "interview_doc": "B2",
+      "is_culprit": true,
+      "red_herring_reason": null
+    },
+    {
+      "id": "POI-03",
+      "name": "Nadia Osei",
+      "role": "Rival hacktivist and cybersecurity researcher",
+      "status": "alive",
+      "description": "27-year-old self-taught security researcher who operates under the alias 'NullRoute.' Claims Jordan stole a zero-day exploit from her private repository and used it in the City Hall breach, exposing her tools and endangering her anonymous network of sources.",
+      "voice_profile": {
+        "speech_pattern": "Fast, technical, uses hacker slang casually. Impatient with people who don't keep up. Speaks in short declarative sentences.",
+        "under_pressure": "Becomes sarcastic and condescending. Starts correcting the interviewer's terminology. May go silent for long pauses mid-sentence.",
+        "verbal_tics": "Says 'look' at the start of almost every sentence when frustrated. Uses 'trivially' to mean 'obviously.'"
+      },
+      "surface_motive": "Jordan allegedly stole her exploit and burned her operational security — she had publicly threatened Cyber Ghost on forums two weeks before the death.",
+      "alibi": {
+        "claim": "Was at a 48-hour hackathon at Meridian Co-Works (Jordan's own co-working space) from October 18 6pm through October 20 6pm.",
+        "verifiable": true,
+        "holes": "Hackathon check-in log shows she badged out at 11:14pm on October 19 and did not badge back in until 1:02am October 20 — an 108-minute gap that covers the estimated time of death window."
+      },
+      "hiding": "The exploit she claims Jordan stole was itself derived from a proof-of-concept she found in a public security forum — she doesn't actually own it. Her real anger is that Jordan succeeded where she had tried and failed to breach City Hall six months earlier.",
+      "interview_doc": "B3",
+      "is_culprit": false,
+      "red_herring_reason": "Her public threats, technical capability, and gap in the hackathon alibi make her the most obvious suspect — but she spent the 108-minute gap at a 24-hour diner three blocks away (captured on diner CCTV, receipt timestamped 11:31pm-12:47am), which places her too far from the apartment."
+    },
+    {
+      "id": "POI-04",
+      "name": "Serena Cho",
+      "role": "City IT and finance department systems administrator",
+      "status": "alive",
+      "description": "36-year-old city employee with 11 years in the IT division and secondary access to the finance procurement system. Known to have been Jordan Mercer's close friend since college and the person who originally gave Jordan the access credentials used to pull the Briarfield documents.",
+      "voice_profile": {
+        "speech_pattern": "Careful, deliberate, answers only what is asked. Uses bureaucratic language when nervous ('per protocol,' 'as a matter of procedure'). Long pauses before answering sensitive questions.",
+        "under_pressure": "Voice drops in volume. Begins qualifying everything: 'I think,' 'I believe,' 'I may have.' Tears up when Jordan is mentioned directly.",
+        "verbal_tics": "Clears her throat before difficult answers. Often says 'that's not something I was aware of' even when she clearly was."
+      },
+      "surface_motive": "She provided the credentials — if Jordan is identified, she faces federal charges for unauthorized access and obstruction. She had every reason to ensure Jordan was silenced before a full investigation could trace the leak back to her.",
+      "alibi": {
+        "claim": "Home all evening on October 19 — ordered food delivery, watched streaming video, did not leave the apartment.",
+        "verifiable": true,
+        "holes": "Delivery and streaming records confirm presence at home. However, Signal message logs recovered from Jordan's phone show Serena sent a message at 8:47pm on October 19 saying 'don't let him in tonight — something feels wrong.' This message was never explained and suggests she knew something was about to happen."
+      },
+      "hiding": "She sent the warning message after receiving an anonymous tip (actually from Voss's investigator, designed to spook her) warning her that 'someone is moving on Ghost tonight.' She chose not to call the police because doing so would have exposed her own role in the leak.",
+      "interview_doc": "B4",
+      "is_culprit": false,
+      "red_herring_reason": "Her access to Jordan's life, foreknowledge of danger on the night of death, and criminal exposure from the leak all make her look complicit — but she was home with confirmed alibi and the warning message, once explained, reveals she was also a victim of Voss's manipulation."
+    }
+  ],
+  "timeline": [
+    {
+      "datetime": "2024-10-12T14:32:00",
+      "event": "Cyber Ghost publishes the Briarfield Solutions leak on a Tor-accessible mirror site. The cache includes 847 pages of City Hall procurement records, invoices, and internal emails showing $2.3M in fraudulent vendor payments.",
+      "source_docs": [
+        "A1"
+      ],
+      "is_critical_period": false
+    },
+    {
+      "datetime": "2024-10-13T09:00:00",
+      "event": "City Hall IT department begins an internal audit of printing and document access logs in response to the leak. Print queue log for October 8-11 is pulled and reviewed by Aldric Voss's assistant.",
+      "source_docs": [
+        "A3"
+      ],
+      "is_critical_period": false
+    },
+    {
+      "datetime": "2024-10-14T16:45:00",
+      "event": "Print queue audit log is accessed a second time — from an unauthorized workstation in the council fixer's suite — and metadata is cross-referenced with co-working space badge records. Voss has identified Jordan Mercer.",
+      "source_docs": [
+        "A3",
+        "B5"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2024-10-15T19:00:00",
+      "event": "Nadia Osei posts a threatening message on a private hacktivist forum: 'Ghost burned my tools and my people. That debt doesn't go away.' Screenshot circulates on social media.",
+      "source_docs": [
+        "A5"
+      ],
+      "is_critical_period": false
+    },
+    {
+      "datetime": "2024-10-17T11:20:00",
+      "event": "Jordan Mercer sends an encrypted email to investigative journalist Priya Nair offering a second document cache and requesting guidance on federal whistleblower immunity. Email is sent from the Meridian Co-Works secure terminal.",
+      "source_docs": [
+        "B1"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2024-10-19T20:47:00",
+      "event": "Serena Cho sends Jordan a Signal message: 'don't let him in tonight — something feels wrong.' Jordan does not respond. Voss's vehicle exits the Harwick Grand Hotel parking garage at 21:47 — 43 minutes before his claimed departure time.",
+      "source_docs": [
+        "B4",
+        "B6"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2024-10-19T22:15:00",
+      "event": "Estimated time of death window begins. An unidentified MAC address connects to Jordan's home WiFi router. Voss visits the apartment, laces a drink with fentanyl, and stages the scene to resemble an accidental overdose.",
+      "source_docs": [
+        "C1",
+        "C2"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2024-10-19T23:08:00",
+      "event": "Estimated time of death. Jordan Mercer dies from fentanyl intoxication. The unidentified device disconnects from the apartment router at 23:34.",
+      "source_docs": [
+        "C1",
+        "B7"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2024-10-20T02:17:00",
+      "event": "A second, selectively edited version of the Briarfield documents is published using Jordan's own Cyber Ghost credentials — framing the leak as originating from a disgruntled city IT employee. The post metadata is traced to a VPN exit node in Harwick.",
+      "source_docs": [
+        "A4",
+        "C3"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2024-10-22T08:15:00",
+      "event": "Building superintendent Remy Salazar finds Jordan Mercer unresponsive in apartment 4C after neighbors reported no activity for two days. 911 is called. Scene is initially treated as an accidental overdose.",
+      "source_docs": [
+        "A1",
+        "A6"
+      ],
+      "is_critical_period": false
+    },
+    {
+      "datetime": "2024-10-22T14:30:00",
+      "event": "Detective assigned. Harwick PD begins canvassing. Hotel parking log subpoenaed after Voss's name appears on city council contact list. Hotel record contradicts Voss's stated departure time.",
+      "source_docs": [
+        "B2",
+        "B6"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2024-10-23T10:00:00",
+      "event": "Toxicology confirms fentanyl overdose. Scene analyst notes the pill organizer is open but Jordan was not prescribed any opioids — no prescription record exists. Death reclassified as suspicious.",
+      "source_docs": [
+        "B7"
+      ],
+      "is_critical_period": true
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "CONTRA-01",
+      "what": "Voss claims he stayed at the Harwick Grand Hotel fundraiser until 10:30pm on October 19, but the hotel parking garage exit log shows his vehicle left the premises at 9:47pm — a 43-minute discrepancy that places him free during the estimated death window.",
+      "introduced_in": "B2",
+      "resolved_in": "B6",
+      "player_inference": "Voss lied about when he left the fundraiser. His vehicle was free for the entire estimated time-of-death window, and no alibi accounts for his movements from 9:47pm to at least 7:15am the next morning."
+    },
+    {
+      "id": "CONTRA-02",
+      "what": "The second Briarfield document post at 2:17am on October 20 used Jordan's Cyber Ghost credentials — but Jordan was already dead by approximately 11:08pm on October 19. Someone else had copied and used those credentials after Jordan's death.",
+      "introduced_in": "A4",
+      "resolved_in": "C3",
+      "player_inference": "The second leak was posted by the killer using credentials copied from Jordan's laptop during the staged scene. The '2:17am leak' was not Jordan's work — it was a misdirection operation run by Voss."
+    },
+    {
+      "id": "CONTRA-03",
+      "what": "The City Hall print queue log was marked as 'reviewed by IT security only' on October 13, but a second access from an unauthorized workstation in Suite 440 (the council fixer's office suite) is logged on October 14 — this access was never disclosed to the investigating detective.",
+      "introduced_in": "A3",
+      "resolved_in": "C2",
+      "player_inference": "Voss personally accessed the print queue metadata to identify the leaker — weeks before police had any lead. This proves premeditation and means Voss knew Jordan's identity before the murder."
+    },
+    {
+      "id": "CONTRA-04",
+      "what": "Serena Cho's Signal message at 8:47pm ('don't let him in tonight') implies foreknowledge of a threat on the night of October 19, but her interview states she sent no unusual messages that evening and was not aware of any danger to Jordan.",
+      "introduced_in": "B4",
+      "resolved_in": "C3",
+      "player_inference": "Serena lied about her knowledge of that night's danger — she received an anonymous warning and chose to pass it on rather than call police. When confronted with the recovered Signal log, the anonymous message source traces back to a number linked to Voss's investigator, revealing Voss orchestrated even the warning to paralyze Serena."
+    },
+    {
+      "id": "CONTRA-05",
+      "what": "The toxicology report confirms a lethal fentanyl dose, but Jordan's pharmacy records and emergency contacts confirm no opioid prescription, no known drug use, and Jordan's own messages describe an allergy to opioids — directly contradicting the 'accidental overdose' framing.",
+      "introduced_in": "B7",
+      "resolved_in": "C1",
+      "player_inference": "The overdose was staged. Someone who knew Jordan's apartment layout and had access to fentanyl placed the drug deliberately — making this a homicide disguised as an accidental death."
+    },
+    {
+      "id": "CONTRA-06",
+      "what": "Jordan's home WiFi router DHCP log shows an unidentified MAC address (a4:c3:f0:88:12:7e) connected to the network between 22:08 and 23:34 on October 19 — but Jordan lived alone and no guests were noted in building entry records for that evening.",
+      "introduced_in": "C1",
+      "resolved_in": "C1",
+      "player_inference": "Someone entered Jordan's apartment on the night of death without using the building's main entry — consistent with the building's secondary stairwell exit which has no camera coverage. The unidentified device is the pivot clue connecting Voss to the scene."
+    }
+  ],
+  "evidence_chain": [
+    {
+      "step": 1,
+      "docs_needed": [
+        "A1",
+        "A2"
+      ],
+      "reveals": "Jordan Mercer is identified as Cyber Ghost, the death is treated as suspicious, and the four persons of interest are introduced — each with a plausible surface motive tied to the leak."
+    },
+    {
+      "step": 2,
+      "docs_needed": [
+        "A3",
+        "A4"
+      ],
+      "reveals": "The City Hall print queue log establishes that someone inside City Hall accessed leak metadata days after the breach — and the second 'Cyber Ghost' post went live hours after Jordan's estimated time of death, proving someone else controlled Jordan's credentials."
+    },
+    {
+      "step": 3,
+      "docs_needed": [
+        "A5",
+        "B3"
+      ],
+      "reveals": "Nadia Osei's public threats and the hackathon badge gap make her look like the prime suspect — but her interview reveals the diner alibi and exposes that her real grievance was professional jealousy, not a credible murder motive."
+    },
+    {
+      "step": 4,
+      "docs_needed": [
+        "B2",
+        "B6"
+      ],
+      "reveals": "Voss's alibi collapses: the hotel parking garage exit log proves he left 43 minutes before he claimed. His movements on the night of October 19 are completely unaccounted for during the death window."
+    },
+    {
+      "step": 5,
+      "docs_needed": [
+        "B4",
+        "B7"
+      ],
+      "reveals": "Serena's warning Signal message and the toxicology report establish two facts: Jordan's death was not accidental (no opioid history, stated allergy), and someone in Jordan's circle knew danger was coming that night."
+    },
+    {
+      "step": 6,
+      "docs_needed": [
+        "C1"
+      ],
+      "reveals": "The router DHCP log reveals an unidentified device was inside Jordan's apartment from 22:08 to 23:34 on the night of death. This is the pivot clue — someone was physically present and the MAC address does not match any of Jordan's registered devices."
+    },
+    {
+      "step": 7,
+      "docs_needed": [
+        "C2",
+        "A3"
+      ],
+      "reveals": "The unauthorized workstation access to the City Hall print queue on October 14 is traced to Suite 440 — Voss's office suite. This means Voss identified Jordan as the leaker 17 days before the murder, establishing premeditation and connecting CONTRA-03."
+    },
+    {
+      "step": 8,
+      "docs_needed": [
+        "C3",
+        "B4"
+      ],
+      "reveals": "The second Briarfield post's VPN metadata and the anonymous warning tip to Serena both trace back to infrastructure controlled by Voss's off-books investigator. This resolves CONTRA-02 and CONTRA-04: Voss staged the second leak, and he also staged the warning message to neutralize Serena."
+    }
+  ],
+  "envelopes": {
+    "A": {
+      "description": "Scene setup — establish the death, introduce all POIs, plant the print queue anomaly and the mysterious second leak",
+      "docs": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "A6"
+      ]
+    },
+    "B": {
+      "description": "Evidence and interviews — Voss's alibi fractures, Nadia's gap is explained, Serena's warning message surfaces, toxicology rules out accident",
+      "docs": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7"
+      ]
+    },
+    "C": {
+      "description": "The pivot — the router DHCP log places an unknown device in Jordan's apartment; the Suite 440 access and second leak metadata converge on Voss",
+      "docs": [
+        "C1",
+        "C2",
+        "C3"
+      ]
+    },
+    "R": {
+      "description": "Resolution — one document per POI establishing guilt, innocence, and consequences",
+      "docs": [
+        "R1",
+        "R2",
+        "R3",
+        "R4"
+      ]
+    }
+  },
+  "experiential_style": "digital_corporate",
+  "emotional_arc": {
+    "envelope_A": "Curiosity and civic unease — a whistleblower is dead and the documents they died for are still online. The player feels the weight of a cover-up already in motion, and every document feels like it could be tampered.",
+    "envelope_B": "Suspicion fracturing in three directions — Nadia's threats, Serena's cryptic warning, and Voss's suspiciously clean public image all pull the player toward different conclusions. Each interview generates empathy then doubt.",
+    "envelope_C": "Cold shock and vindication — the router log places an invisible visitor in a dead man's apartment. The pivot from 'overdose' to 'premeditated murder by a political fixer' reframes every document the player has already read.",
+    "envelope_R": "Exhausted satisfaction and moral weight — justice feels bureaucratic and incomplete, but the evidence chain is airtight. The player feels the specific tragedy of a whistleblower killed not for being wrong, but for being right."
+  },
+  "trojan_horse_docs": [
+    {
+      "doc_id": "A3",
+      "appears_as": "A routine City Hall IT audit log — a boring internal spreadsheet listing who accessed the print queue after the leak. Looks like background paperwork establishing that the city investigated the breach.",
+      "actually_proves": "The log records a second, unauthorized access on October 14 from a workstation in Suite 440 (Voss's office suite) — proving Voss personally identified Jordan as the leaker 17 days before the murder, establishing premeditation."
+    },
+    {
+      "doc_id": "B6",
+      "appears_as": "A subpoenaed hotel parking garage exit record — looks like a minor administrative document confirming Voss attended the fundraiser, seemingly supporting his alibi.",
+      "actually_proves": "Voss's vehicle exited the garage at 9:47pm — 43 minutes before his stated departure time of 10:30pm — placing him free and unaccounted for during the entire estimated time-of-death window for Jordan Mercer."
+    },
+    {
+      "doc_id": "C1",
+      "appears_as": "A technical router admin export — dense with MAC addresses, IP lease timestamps, and DHCP handshake data. Looks like jargon-heavy forensic filler that a non-technical player might skim.",
+      "actually_proves": "MAC address a4:c3:f0:88:12:7e connected to Jordan's home WiFi between 22:08 and 23:34 on October 19 — placing an unidentified device physically inside the apartment during the death window. This is the pivot clue of the entire case."
+    }
+  ],
+  "social_media_plan": [
+    {
+      "platform": "X/Twitter",
+      "content_type": "thread",
+      "case_purpose": "A local journalist live-threads the Briarfield leak story — plants the timeline of the original publication, introduces Cyber Ghost as a persona, and includes a reply from a suspected city council staffer that looks like damage control but actually confirms a key detail about the Briarfield vendor list."
+    },
+    {
+      "platform": "Reddit",
+      "content_type": "thread",
+      "case_purpose": "A post in r/Harwick titled 'Did the city just kill Cyber Ghost?' — citizen speculation that mixes genuine deductive reasoning with wild conspiracy theories. One comment from a throwaway account accurately describes the print queue as the leak's origin vector, which the player must evaluate as either a genuine insider leak or a red herring."
+    },
+    {
+      "platform": "Instagram",
+      "content_type": "post",
+      "case_purpose": "Nadia Osei's personal account — a post timestamped during the hackathon showing her at a whiteboard, establishing her presence at Meridian Co-Works. Comments include a timestamp from a tagged attendee that corroborates part of her alibi, but the post itself was uploaded at 12:52am — after she had badged back in."
+    },
+    {
+      "platform": "Facebook",
+      "content_type": "post",
+      "case_purpose": "A community post from the Harwick Civic Watch group reacting to the death — includes a comment from Remy Salazar (the building super who found Jordan) that adds texture to the scene discovery, and a reply from an account linked to Voss's political network that was deleted within 6 hours but is preserved in a screenshot."
+    }
+  ],
+  "spatial_tool": {
+    "type": "floor_plan",
+    "doc_id": "A6",
+    "description": "Floor plan of 812 Kellner Street, Apartment 4C and building entry points. Shows the main lobby entry (keycard + camera), secondary stairwell exit (no camera, push-bar exit only), Jordan's apartment layout including the desk where the laptop was staged, the kitchen where the fentanyl-laced drink was prepared, and the window overlooking the alley. Players use this to understand how the killer entered and exited without appearing on building cameras."
+  },
+  "hint_system": {
+    "levels": [
+      {
+        "level": 1,
+        "label": "Nudge",
+        "hints": [
+          "The print queue log isn't just background paperwork — look at who accessed it and when, not just the first time.",
+          "Voss's alibi depends entirely on when he left the hotel. Is there a record that could verify or contradict that?"
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Direction",
+        "hints": [
+          "The second Briarfield post went live at 2:17am on October 20. Jordan was already dead by then. Who had access to the Cyber Ghost credentials?",
+          "The router export in envelope C contains a MAC address that doesn't belong to any of Jordan's devices. What does that mean about who was in the apartment?"
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Reveal",
+        "hints": [
+          "Suite 440 in City Hall is the office suite used by Aldric Voss. The unauthorized print queue access on October 14 came from that suite — Voss identified Jordan as the leaker 17 days before the murder.",
+          "Cross-reference the hotel parking log (B6) with Voss's stated alibi in his interview (B2). His car left at 9:47pm. The death window opens at 10:15pm. His movements are unaccounted for the entire night."
+        ]
+      },
+      {
+        "level": 4,
+        "label": "Full Chain",
+        "hints": [
+          "Aldric Voss killed Jordan Mercer. He identified Jordan through the print queue metadata (A3, Suite 440 access), left the fundraiser early (B6, 9:47pm exit), visited the apartment and laced a drink with fentanyl, then staged the second leak using Jordan's credentials to misdirect the investigation. The router DHCP log (C1) places his burner phone inside the apartment from 22:08 to 23:34 — the exact death window confirmed by toxicology (B7)."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "title": "Cyber Ghost",
+  "logline": "A hacker known as \"Cyber Ghost\" leaks proof of city council corruption, then vanishes. Days later, the whistleblower is found dead — and the leak trail looks deliberately staged.",
+  "setting": {
+    "primary_location": "A mid-sized U.S. city (present day) — City Hall, a co-working space, a data center/ISP hub, and the victim’s apartment",
+    "timeframe": "Present day; critical 10-day window from leak to death"
+  },
+  "premise": {
+    "victim_profile": "Anonymous whistleblower/hacker operating under the alias \"Cyber Ghost\"",
+    "cause_of_death": "Suspicious death initially framed as overdose/suicide",
+    "inciting_event": "Cyber Ghost publishes a cache of financial records exposing a corrupt city council’s kickback scheme, then goes silent"
+  },
+  "suspects": [
+    { "name": "The Council Fixer", "role": "Political operator tasked with containing scandals, known for off-the-books intimidation" },
+    { "name": "The Rival Hacker", "role": "Competing hacktivist who claims Cyber Ghost stole their exploit and endangered their network" },
+    { "name": "The Insider", "role": "City IT/finance employee with privileged access who may have fed the documents" },
+    { "name": "The Close Contact", "role": "Someone in the victim’s personal life who knew the alias and had access to their devices" }
+  ],
+  "digital_evidence_targets": [
+    "Leak site mirror + takedown notices",
+    "Blockchain/crypto payment trail or donation wallet metadata",
+    "Email headers / secure message transcripts (Signal/Matrix) with redactions",
+    "City procurement PDFs, invoices, and vendor payment summaries",
+    "ISP or co-working access logs / keycard timestamps",
+    "Device forensics summary (laptop/phone) + browser history anomalies",
+    "Social media rumor thread / local journalist DMs",
+    "911 call transcript + dispatch log",
+    "Coroner/toxicology and scene photos (minimal, respectful)"
+  ],
+  "spatial_tool": {
+    "required": false,
+    "concept": "Optional: simplified floor plan of the victim’s apartment + building entry camera coverage"
+  },
+  "trojan_horse": {
+    "concept": "A boring municipal document (print queue log / copier audit page / routine IT ticket) that proves the leak files were accessed from inside City Hall after the public ‘leak’ went live",
+    "purpose": "Creates a hard timestamp contradiction that reframes motive and reveals an internal cleanup operation"
+  },
+  "tone": {
+    "genre": "Modern techno-thriller / civic corruption mystery",
+    "style": "procedural, document-driven, grounded cyber details (no magic hacking)"
+  },
+  "tier": "NORMAL",
+  "idea": "A hacker known as \"Cyber Ghost\" exposes a corrupt city council's financial records, then disappears. Days later, the whistleblower is found dead. Was it revenge from the politicians, a rival hacker, or something more personal?"
+}

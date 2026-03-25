@@ -1,0 +1,172 @@
+{
+  "briefs": [
+    {
+      "image_id": "img_poi_01_portrait",
+      "for_doc": "A2",
+      "for_poi": "POI-01",
+      "envelope": "A",
+      "type": "mugshot",
+      "filename": "visuals/canonical/poi_01_jordan_mercer_portrait.png",
+      "dall_e_prompt": "Candid portrait of a 31-year-old person with androgynous presentation, dark brown hair slightly tousled, wearing a gray fitted crewneck and small stud earrings, neutral-to-guarded expression with watchful dark eyes, slight tension at the corners of the mouth, casual tech-worker aesthetic, soft natural window light from the left, light gray background. photorealistic, shot on Canon EOS R5, natural diffused lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no text overlays, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A2",
+          "template_slot": "poi_card_POI-01",
+          "placement_notes": "POI sheet portrait for victim Jordan Mercer"
+        }
+      ]
+    },
+    {
+      "image_id": "img_poi_02_mugshot",
+      "for_doc": "A2",
+      "for_poi": "POI-02",
+      "envelope": "A",
+      "type": "mugshot",
+      "filename": "visuals/canonical/poi_02_aldric_voss_mugshot.png",
+      "dall_e_prompt": "Police booking portrait of a 48-year-old white male with silver-grey hair neatly combed back, sharp angular features, thin lips pressed together, wearing a pressed charcoal dress shirt with top button open, calm and composed expression with a slight hardness behind the eyes, slight clench at the jaw, police booking room neutral backdrop, flat even institutional lighting. photorealistic, shot on Canon EOS R5, flat institutional overhead lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no text overlays, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A2",
+          "template_slot": "poi_card_POI-02",
+          "placement_notes": "POI sheet portrait for suspect Aldric Voss"
+        },
+        {
+          "doc_id": "B2",
+          "template_slot": "mugshot_header_POI-02",
+          "placement_notes": "Interrogation transcript header photo for Voss"
+        }
+      ]
+    },
+    {
+      "image_id": "img_poi_02_mugshot_reuse_B2",
+      "for_doc": "B2",
+      "for_poi": "POI-02",
+      "envelope": "B",
+      "type": "mugshot",
+      "filename": "visuals/canonical/poi_02_aldric_voss_mugshot.png",
+      "dall_e_prompt": null,
+      "dall_e_params": null,
+      "reusable_from_library": true,
+      "library_path": "visuals/canonical/poi_02_aldric_voss_mugshot.png",
+      "usage_map": [
+        {
+          "doc_id": "B2",
+          "template_slot": "subject_photo_header",
+          "placement_notes": "Interrogation transcript top-right subject photo for Voss interview"
+        }
+      ]
+    },
+    {
+      "image_id": "img_poi_03_mugshot",
+      "for_doc": "A2",
+      "for_poi": "POI-03",
+      "envelope": "A",
+      "type": "mugshot",
+      "filename": "visuals/canonical/poi_03_nadia_osei_mugshot.png",
+      "dall_e_prompt": "Police booking portrait of a 27-year-old Black woman with natural coily hair pulled back loosely, sharp dark eyes with a direct confrontational gaze, wearing a dark olive graphic hoodie, slight smirk at the corner of the mouth suggesting impatience, strong confident posture, police booking room neutral backdrop, flat even institutional lighting. photorealistic, shot on Canon EOS R5, flat institutional overhead lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no text overlays, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A2",
+          "template_slot": "poi_card_POI-03",
+          "placement_notes": "POI sheet portrait for suspect Nadia Osei"
+        },
+        {
+          "doc_id": "B3",
+          "template_slot": "subject_photo_header",
+          "placement_notes": "Interrogation transcript top-right subject photo for Osei interview"
+        }
+      ]
+    },
+    {
+      "image_id": "img_poi_03_mugshot_reuse_B3",
+      "for_doc": "B3",
+      "for_poi": "POI-03",
+      "envelope": "B",
+      "type": "mugshot",
+      "filename": "visuals/canonical/poi_03_nadia_osei_mugshot.png",
+      "dall_e_prompt": null,
+      "dall_e_params": null,
+      "reusable_from_library": true,
+      "library_path": "visuals/canonical/poi_03_nadia_osei_mugshot.png",
+      "usage_map": [
+        {
+          "doc_id": "B3",
+          "template_slot": "subject_photo_header",
+          "placement_notes": "Interrogation transcript top-right subject photo for Osei interview"
+        }
+      ]
+    },
+    {
+      "image_id": "img_poi_04_mugshot",
+      "for_doc": "A2",
+      "for_poi": "POI-04",
+      "envelope": "A",
+      "type": "mugshot",
+      "filename": "visuals/canonical/poi_04_serena_cho_mugshot.png",
+      "dall_e_prompt": "Police booking portrait of a 36-year-old Korean-American woman with straight black hair cut at the shoulder, wearing a plain dark navy collared work blouse, minimal makeup, tired eyes with visible fatigue and slight redness at the rims, tight controlled expression that suggests suppressed emotion, slight downward cast to the gaze, police booking room neutral backdrop, flat even institutional lighting. photorealistic, shot on Canon EOS R5, flat institutional overhead lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no text overlays, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A2",
+          "template_slot": "poi_card_POI-04",
+          "placement_notes": "POI sheet portrait for suspect Serena Cho"
+        },
+        {
+          "doc_id": "B4",
+          "template_slot": "subject_photo_header",
+          "placement_notes": "Interrogation transcript top-right subject photo for Cho interview"
+        }
+      ]
+    },
+    {
+      "image_id": "img_poi_04_mugshot_reuse_B4",
+      "for_doc": "B4",
+      "for_poi": "POI-04",
+      "envelope": "B",
+      "type": "mugshot",
+      "filename": "visuals/canonical/poi_04_serena_cho_mugshot.png",
+      "dall_e_prompt": null,
+      "dall_e_params": null,
+      "reusable_from_library": true,
+      "library_path": "visuals/canonical/poi_04_serena_cho_mugshot.png",
+      "usage_map": [
+        {
+          "doc_id": "B4",
+          "template_slot": "subject_photo_header",
+          "placement_notes": "Interrogation transcript top-right subject photo for Cho interview"
+        }
+      ]
+    }
+  ]
+}

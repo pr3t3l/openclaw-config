@@ -1,0 +1,81 @@
+{
+  "case_id": "",
+  "slug": "the-last-livestream",
+  "tier": "NORMAL",
+  "status": "distributed",
+  "created_at": "2026-03-14T11:36:00Z",
+  "updated_at": "2026-03-18T22:48:39Z",
+  "pois": [],
+  "documents": {},
+  "images": {},
+  "audio": {},
+  "pipeline_state": {
+    "narrative_architect": "completed",
+    "narrative_qa": "passed",
+    "art_director": "completed",
+    "production_envelopes": {
+      "A": "completed",
+      "B": "completed",
+      "C": "completed",
+      "R": "completed",
+      "A_validation": "passed_with_warnings",
+      "B_validation": "passed_with_warnings",
+      "B_retry_reason": "Interviews below 600 narrative words; add specified exchanges to deepen without changing core facts",
+      "C_validation": "passed_with_warnings",
+      "R_validation": "passed_with_warnings"
+    },
+    "playthrough_qa": "passed",
+    "image_generation": "completed",
+    "tts_scripting": "not_applicable",
+    "tts_generation": "not_applicable",
+    "layout_planning": "in_progress",
+    "render": "completed",
+    "distribution": "completed",
+    "experience_designer": "completed",
+    "narrative_qa_status_note": "QA subagent returned wrong artifact; retry with explicit read+write instructions",
+    "narrative_qa_attempts": 1,
+    "narrative_qa_human_gate": "Need new Gemini/Vertex key or change model routing to GPT fallback",
+    "narrative_qa_model": "litellm/gpt52-thinking",
+    "human_gate_1": "approved",
+    "art_director_model": "litellm/gpt52-medium",
+    "art_director_fix_LL008": "applied_reusable_canonical_for_interview_headers",
+    "human_gate_3_art": "pending",
+    "human_gate_envelope_A": "approved",
+    "human_gate_envelope_C": "approved",
+    "case_content_validation": "passed_with_warnings",
+    "case_placeholders_validation": "passed",
+    "human_gate_2": "approved",
+    "image_generation_note": "exec-based Nano Banana generation + canonical copy",
+    "image_generation_generated": 12,
+    "image_generation_copied": 4,
+    "image_generation_failed": 0,
+    "phase_8_note": "No layout planner implemented; using heuristic layout_specs + inject_and_render.js"
+  },
+  "cost_tracking": {
+    "phases": {
+      "image_generator": {
+        "phase": "image_generator",
+        "model": "gemini-3.1-flash-image-preview",
+        "images_generated": 12,
+        "images_failed": 0,
+        "images_reused": 5,
+        "fallback_used": false,
+        "estimated_cost_usd": 0
+      }
+    },
+    "images": {},
+    "totals": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "wasted_tokens_retries": 0,
+      "images_generated": 12,
+      "estimated_total_usd": 0
+    }
+  },
+  "distribution": {
+    "drive_file_id": "1_hYi09sNGVWmEPMaa8UENOwzJV5i16Qm",
+    "drive_link": "https://drive.google.com/file/d/1_hYi09sNGVWmEPMaa8UENOwzJV5i16Qm/view?usp=drivesdk",
+    "zip_name": "The_Last_Livestream_NORMAL.zip",
+    "zip_bytes": 19969248
+  }
+}

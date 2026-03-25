@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        @page { margin: 18mm; size: letter; }
+        body {
+            font-family: "Arial", sans-serif;
+            font-size: 10pt;
+            line-height: 1.3;
+            color: #000;
+            background: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+        .form-header {
+            border-bottom: 2px solid #000;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+        .form-title {
+            font-size: 14pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .form-meta {
+            font-size: 9pt;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .meta-field { margin-bottom: 4px; }
+        .meta-label { font-weight: bold; display: inline-block; width: 90px; }
+        .meta-value { border-bottom: 1px solid #333; display: inline-block; min-width: 150px; padding-bottom: 1px; }
+        .log-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+            margin: 20px 0;
+        }
+        .log-table th {
+            background: #333;
+            color: #fff;
+            padding: 6px 8px;
+            text-align: left;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        .log-table td {
+            border: 1px solid #999;
+            padding: 5px 8px;
+            vertical-align: top;
+        }
+        .log-table tr:nth-child(even) { background: rgba(240,240,240,0.5); }
+        .signature-cell {
+            font-family: "Brush Script MT", "Comic Sans MS", cursive;
+            font-size: 10pt;
+            color: #333;
+        }
+        .time-cell { font-family: "Courier New", monospace; font-size: 9pt; }
+        .badge-cell { font-family: "Courier New", monospace; font-size: 8pt; color: #666; }
+        .notes-section {
+            margin-top: 20px;
+            border: 1px solid #999;
+            padding: 10px;
+            font-size: 9pt;
+            min-height: 60px;
+        }
+        .notes-title { font-weight: bold; margin-bottom: 6px; text-transform: uppercase; font-size: 8pt; }
+        .stamp-section {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .supervisor-sig {
+            border-top: 1px solid #000;
+            width: 200px;
+            padding-top: 4px;
+            font-size: 8pt;
+            color: #666;
+        }
+        .received-stamp {
+            border: 2px solid #006600;
+            color: #006600;
+            padding: 6px 14px;
+            font-weight: bold;
+            font-size: 10pt;
+            transform: rotate(8deg);
+            letter-spacing: 0.08em;
+        }
+        .footer-info {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 8pt;
+            color: #666;
+            border-top: 1px solid #ccc;
+            padding-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-header">
+        <div class="form-title">{{title}}</div>
+        <div class="form-meta">
+            <div class="meta-field">
+                <span class="meta-label">FACILITY:</span>
+                <span class="meta-value">{{location}}</span>
+            </div>
+            <div class="meta-field">
+                <span class="meta-label">DATE:</span>
+                <span class="meta-value">{{date}}</span>
+            </div>
+            <div class="meta-field">
+                <span class="meta-label">CASE #:</span>
+                <span class="meta-value">{{caseNumber}}</span>
+            </div>
+            <div class="meta-field">
+                <span class="meta-label">SUPERVISOR:</span>
+                <span class="meta-value">{{supervisor}}</span>
+            </div>
+            <div class="meta-field">
+                <span class="meta-label">DOC ID:</span>
+                <span class="meta-value">{{docId}}</span>
+            </div>
+            <div class="meta-field">
+                <span class="meta-label">CLASS:</span>
+                <span class="meta-value">{{classification}}</span>
+            </div>
+        </div>
+    </div>
+
+    <table class="log-table">
+        <thead>
+            <tr>
+                <th style="width:65px">Time In</th>
+                <th style="width:65px">Time Out</th>
+                <th style="width:140px">Name</th>
+                <th style="width:70px">Badge/ID</th>
+                <th>Purpose of Visit</th>
+                <th style="width:80px">Signature</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each entries}}
+            <tr>
+                <td class="time-cell">{{time_in}}</td>
+                <td class="time-cell">{{time_out}}</td>
+                <td>{{{name}}}</td>
+                <td class="badge-cell">{{{badge_id}}}</td>
+                <td>{{{purpose}}}</td>
+                <td class="signature-cell">{{{signature}}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    {{#if notes}}
+    <div class="notes-section">
+        <div class="notes-title">Supervisor Notes</div>
+        {{{notes}}}
+    </div>
+    {{/if}}
+
+    <div class="stamp-section">
+        <div class="supervisor-sig">SUPERVISOR ON DUTY</div>
+        {{#if officialStamp}}
+        <div class="received-stamp">FILE COPY</div>
+        {{/if}}
+    </div>
+
+    <div class="footer-info">
+        <strong>{{caseTitle}}</strong><br>
+        Prepared for training / investigative simulation. All entries are fictional within this case universe.
+    </div>
+</body>
+</html>

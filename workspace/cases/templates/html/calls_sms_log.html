@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        @page {
+            margin: 15mm;
+            size: letter;
+        }
+        
+        body {
+            font-family: "Arial", sans-serif;
+            font-size: 9pt;
+            line-height: 1.3;
+            color: #000;
+            background: #fff;
+            margin: 0;
+            padding: 15px;
+        }
+        
+        .report-header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 15px;
+        }
+        
+        .report-title {
+            font-size: 14pt;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .report-subtitle {
+            font-size: 10pt;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .disclaimer {
+            font-size: 8pt;
+            color: #999;
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+        
+        .case-info {
+            font-size: 9pt;
+            margin-bottom: 15px;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 8pt;
+            margin-bottom: 20px;
+        }
+        
+        .data-table th {
+            background: rgba(200, 200, 200, 0.5);
+            border: 1px solid #666;
+            padding: 6px 4px;
+            font-weight: bold;
+            text-align: left;
+        }
+        
+        .data-table td {
+            border: 1px solid #999;
+            padding: 4px;
+            vertical-align: top;
+        }
+        
+        .data-table tr:nth-child(even) {
+            background: rgba(248, 248, 248, 0.5);
+        }
+        
+        .call-type {
+            font-weight: bold;
+        }
+        
+        .call-in {
+            color: #006600;
+        }
+        
+        .call-out {
+            color: #cc0000;
+        }
+        
+        .sms-type {
+            color: #0066cc;
+        }
+        
+        .phone-number {
+            font-family: "Courier New", monospace;
+            font-size: 8pt;
+        }
+        
+        .message-snippet {
+            font-style: italic;
+            max-width: 150px;
+            word-wrap: break-word;
+        }
+        
+        .duration {
+            text-align: right;
+        }
+        
+        .summary-box {
+            border: 1px solid #999;
+            padding: 10px;
+            background: rgba(240, 240, 240, 0.5);
+            margin-top: 15px;
+        }
+        
+        .summary-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .summary-stats {
+            font-size: 8pt;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 7pt;
+            color: #666;
+            border-top: 1px solid #ccc;
+            padding-top: 8px;
+        }
+        
+        .officer-signature {
+            margin-top: 20px;
+            font-size: 8pt;
+        }
+        
+        .signature-line {
+            border-bottom: 1px solid #000;
+            width: 200px;
+            height: 25px;
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="report-header">
+        <div class="report-title">{{title}}</div>
+        <div class="report-subtitle">Communication Records Analysis</div>
+        <div class="disclaimer">Some messages/calls omitted for brevity and relevance to investigation</div>
+        <div class="case-info">
+            Case: {{caseNumber}} | Subject: {{subjectName}} | Period: {{dateRange}}<br>
+            Officer in charge: {{officer}} | Report Date: {{date}}
+        </div>
+    </div>
+    
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th style="width: 70px;">Date</th>
+                <th style="width: 50px;">Time</th>
+                <th style="width: 40px;">Type</th>
+                <th style="width: 30px;">Dir.</th>
+                <th style="width: 100px;">Contact</th>
+                <th style="width: 80px;">Phone #</th>
+                <th style="width: 180px;">Message/Notes</th>
+                <th style="width: 50px;">Duration</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each records}}
+            <tr>
+                <td>{{date}}</td>
+                <td>{{time}}</td>
+                <td class="call-type {{#if (eq type 'SMS')}}sms-type{{/if}}">{{type}}</td>
+                <td class="{{#if (eq direction 'IN')}}call-in{{else}}call-out{{/if}}">{{direction}}</td>
+                <td>{{contactName}}</td>
+                <td class="phone-number">{{phoneNumber}}</td>
+                <td class="message-snippet">{{message}}</td>
+                <td class="duration">{{duration}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    
+    <div class="summary-box">
+        <div class="summary-title">COMMUNICATION SUMMARY</div>
+        <div class="summary-stats">
+            <div>
+                <strong>Total Calls:</strong> {{totalCalls}}<br>
+                <strong>Incoming:</strong> {{incomingCalls}}<br>
+                <strong>Outgoing:</strong> {{outgoingCalls}}
+            </div>
+            <div>
+                <strong>Total SMS:</strong> {{totalSMS}}<br>
+                <strong>Received:</strong> {{receivedSMS}}<br>
+                <strong>Sent:</strong> {{sentSMS}}
+            </div>
+            <div>
+                <strong>Unique Contacts:</strong> {{uniqueContacts}}<br>
+                <strong>Most Frequent:</strong> {{mostFrequentContact}}<br>
+                <strong>Period Covered:</strong> {{dateRange}}
+            </div>
+        </div>
+    </div>
+    
+    <div class="officer-signature">
+        <div>Prepared by: {{officer}}</div>
+        <div class="signature-line"></div>
+        <div style="font-size: 7pt; color: #666;">OFFICER SIGNATURE</div>
+    </div>
+    
+    <div class="footer">
+        <strong>{{caseTitle}}</strong><br>
+        Prepared for training / investigative simulation. All communications are fictional within this case universe.
+    </div>
+</body>
+</html>

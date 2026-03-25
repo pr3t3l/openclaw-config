@@ -1,0 +1,232 @@
+{
+  "envelope": "B",
+  "documents": [
+    {
+      "doc_id": "B5",
+      "envelope": "B",
+      "sequence_number": 5,
+      "type_id": 8,
+      "type_key": "entry_exit_log",
+      "in_world_title": "Helixure Biologics \u2014 Building 7 Badge Access & Escort Exception Log (2026-03-20 to 2026-03-21)",
+      "owner_source": "Helixure Biologics Physical Security \u2014 Lenel OnGuard Export (Subpoena Return to Cambridge PD)",
+      "timestamp": "2026-03-22T09:12:00",
+      "filename_base": "B5_Building7_Access_Escort_Log",
+      "player_purpose": "clue_delivery",
+      "reveals": "A raw security export shows an after-hours entry at 22:39 tied to the shared executive pool credential \u2018EXEC-0441\u2019 and a concurrent \u2018ESCORT MODE ENABLED\u2019 event tied to a QA-admin host badge. The log explicitly notes that escort mode can allow additional persons to pass controlled doors without generating their own badge events, explaining why late-night movement may not map cleanly to one person.",
+      "player_inference": "The 22:39 \u2018EXEC-0441\u2019 hit is not proof Evan Kline was present; it\u2019s a shared credential used alongside escort exceptions. The killer likely exploited escort-mode/piggybacking to move through Building 7 while keeping the access trail ambiguous.",
+      "document_justification": "This is the case\u2019s \u2018boring spine\u2019 document: it resolves CONTRA-01 and CONTRA-02 by showing exactly how a late-night \u2018executive credential\u2019 record can be real while still not identifying a single individual. It converts interviews (B1/B2) into a testable access-control mechanism and anchors the critical 22:39 timestamp in the investigation timeline.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-02",
+        "POI-03",
+        "POI-04",
+        "POI-05"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [
+        "CONTRA-01",
+        "CONTRA-02"
+      ],
+      "depends_on": [
+        "A4",
+        "B1",
+        "B2"
+      ],
+      "production_brief_writing": {
+        "summary": "A tabular access-control event log exported from Helixure\u2019s Lenel OnGuard system for Building 7 covering the evening of 2026-03-20 through the morning of 2026-03-21. It should look like a cold, timestamp-precise spreadsheet printout with a short analyst cover note that defines \u2018EXEC-0441\u2019 as a shared executive pool credential and explains \u2018ESCORT MODE\u2019 behavior in plain security-admin language.",
+        "tone": "raw security system export \u2014 table-forward, minimal narrative; one short cover note written by a security systems admin",
+        "min_words": 220,
+        "key_mandatory_line": "2026-03-20 22:39:03 \u2014 READER: L4 ELEV VESTIBULE (BLDG7) \u2014 ACCESS GRANTED \u2014 CRED: EXEC-0441 \u2014 NOTE: ESCORT MODE ENABLED (Host badge: QA-ADMIN-7719; duration: 00:15:00)",
+        "key_information_to_include": [
+          "Header fields: case reference (CPD-MCU-26-0319), export request ID, date range, system name (Lenel OnGuard)",
+          "A highlighted event at 22:39:03 showing \u2018EXEC-0441\u2019 access granted at the Level 4 elevator vestibule reader",
+          "A linked system event line immediately after: \u2018ESCORT MODE ENABLED\u2019 with a host credential labeled as QA-admin (do NOT present this as a named person; present it as a badge/role label)",
+          "A short cover-note definition: EXEC-0441 is a shared executive pool credential kept at Security (not assigned to one employee)",
+          "A short cover-note definition: Escort mode allows additional entrants to pass subsequent controlled doors without their own badge events (explains why badge logs can\u2019t always identify every body)",
+          "At least 3 additional rows within 22:39\u201323:36 showing controlled-door traversals (e.g., cGMP corridor reader events) that are attributable only to EXEC-0441/escort context",
+          "A mundane but telling policy footer: \u2018Anti-passback disabled for EXEC pool credentials\u2019 or similar, to underline the loophole"
+        ],
+        "voice_notes": "Keep the bulk of the document as machine-like rows (time, reader, event, credential, result). The only human voice is a brief cover note from a Security Systems Administrator explaining the meaning of the labels because detectives asked. Make the loophole feel real: boring, institutional, and exactly the kind of thing a planner would exploit. Mention Stairwell 4B as a nearby location in a reader/location column or in the detective highlight note, tying the log to A4\u2019s layout without solving the whole case."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "B6",
+      "envelope": "B",
+      "sequence_number": 6,
+      "type_id": 18,
+      "type_key": "calls_sms_log",
+      "in_world_title": "Phone Records (Subpoena Return) \u2014 Dr. Mara Ellison, Helixure Biologics (Line: 617-555-0194)",
+      "owner_source": "Verizon Law Enforcement Support \u2014 Subpoena Return to Cambridge PD (Case CPD-MCU-26-0319)",
+      "timestamp": "2026-03-22T09:18:00",
+      "filename_base": "B6_Phone_Records_Mara_Ellison",
+      "player_purpose": "clue_delivery",
+      "reveals": "Carrier-style call/SMS detail records show Ellison texting Nadia Reyes at 21:58 about finishing documentation, exchanging terse SMS with Raina Patel at 22:06 regarding the \u2018GF-102 deviation folder,\u2019 and then sending her last outgoing message at 23:11:52 (from Helixure\u2019s Building 7 Level-4 femtocell sector labeled STW4B) moments before the nitrogen purge window. After 23:12, multiple inbound calls go unanswered and voicemail is auto-generated, tightening Ellison\u2019s incapacitation to minutes rather than hours.",
+      "player_inference": "Ellison was alive and actively using her phone right up to the critical 23:12 timeframe, then abruptly stopped responding\u2014supporting the theory that the stairwell incident happened during the engineered low-O2 window, not as a later accidental fall.",
+      "document_justification": "B6 looks like mundane subpoena paperwork but functions as a timeline clamp: it anchors Ellison\u2019s last known conscious activity to the exact late-night window the building systems later implicate (C2). It also quietly establishes that Patel was being contacted about deviations the same night, sharpening the compliance motive without \u2018solving\u2019 it yet.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-03",
+        "POI-05"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1",
+        "B2"
+      ],
+      "production_brief_writing": {
+        "summary": "A printed carrier subpoena return with a dense table of calls and texts. Most rows should be banal (two-factor codes, calendar pings), but three highlighted rows create the investigative value: the 22:06 deviation-folder exchange with Patel, the 23:11 last outgoing SMS from the STW4B femtocell sector, and the first unanswered inbound call after 23:12.",
+        "tone": "dry telecom data export \u2014 mono font tables, abbreviations, and exhibit-style labeling",
+        "min_words": 180,
+        "key_mandatory_line": "2026-03-20 23:11:52 | SMS (OUT) | To: N. Reyes (857-555-0133) | Preview: \u2018Heading to the garage\u2014call me if you need anything.\u2019 | Cell Site: HLX-B7-FEMTO-L4 (Sector: STW4B)",
+        "key_information_to_include": [
+          "Header block with case number (CPD-MCU-26-0319), subscriber line (617-555-0194), and date range (2026-03-20 18:00 to 2026-03-21 08:00)",
+          "A highlighted SMS exchange at ~22:06 with contact saved as \u2018R. Patel\u2019 referencing \u2018deviation folder\u2019 in a short preview (e.g., \u2018Need full GF-102 deviation folder by Monday 09:00\u2019)",
+          "A highlighted last outgoing SMS at 23:11:52 with Cell Site/Sector indicating Building 7 Level 4 / Stairwell 4B coverage",
+          "At least one inbound call after 23:12 that is not answered (Duration 00:00; result: NO ANSWER/VM), showing abrupt silence",
+          "A small summary statistics box (total calls/SMS, unique contacts) that makes the highlights feel like needle-in-haystack discoveries"
+        ],
+        "voice_notes": "Make it feel like a real subpoena exhibit: include carrier boilerplate, abbreviations (MO/MT, SMS/MMS), and a legend for columns. The \u2018reveals\u2019 should come from highlighted rows and the cell-site label, not from narration; keep the rest of the table realistically boring."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "B7",
+      "envelope": "B",
+      "sequence_number": 7,
+      "type_id": 9,
+      "type_key": "email_export",
+      "in_world_title": "Helixure Biologics \u2014 Email Thread Export: \u2018GF-102 Data Integrity & Safety Review (Mon 09:00)\u2019",
+      "owner_source": "Helixure Biologics \u2014 IT eDiscovery / Legal Hold Export (Mailbox: Mara Ellison)",
+      "timestamp": "2026-03-20T20:27:00",
+      "filename_base": "B7_Email_Thread_GF102_Data_Integrity_Safety_Review",
+      "player_purpose": "clue_delivery",
+      "reveals": "An internal email thread shows Dr. Mara Ellison scheduling a Monday 09:00 \u2018Data Integrity & Safety Review\u2019 and demanding the complete deviation folder \u2018DEV-102-17\u2019 (including raw audit-trail exports) for GF-102 Batch 14C; Evan Kline repeatedly pushes to move the discussion \u2018off email,\u2019 while QA Director Raina Patel offers only a \u2018regulator-facing PDF package\u2019 and implies she will return to site later to pull \u2018clean\u2019 exports.",
+      "player_inference": "Helixure\u2019s public \u2018operational pause\u2019 narrative is a containment strategy: someone in QA is actively controlling what documentation exists, and Ellison\u2019s insistence on raw audit trails created the kind of panic that can motivate murder.",
+      "document_justification": "This is the documentary bridge between the miracle-drug hype (A3) and the corporate pressure behind Ellison\u2019s death: it resolves CONTRA-06 by proving GF-102\u2019s withdrawal was driven by a specific, named deviation and fear of regulator review, not routine operations. It also clarifies why Patel (POI-05) would treat audit-trail metadata as existential.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-02",
+        "POI-05",
+        "POI-03"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [
+        "CONTRA-06"
+      ],
+      "depends_on": [
+        "A3",
+        "B1",
+        "B4"
+      ],
+      "production_brief_writing": {
+        "summary": "A printed \u2018subpoena style\u2019 email export of a real-looking thread from Ellison\u2019s Helixure account. It should read like corporate email with reply headers, timestamps, and cautious language, but the buried details (deviation ID, audit-trail request, \u2018off email\u2019 pressure) should feel damning when noticed.",
+        "tone": "corporate-compliance cautious \u2014 professional phrasing, risk-avoidant hedging, and a palpable fear of anything that will be discoverable",
+        "min_words": 520,
+        "key_mandatory_line": "ELLISON (18:30): Please provide the full DEV-102-17 folder for GF-102 Batch 14C, including the raw audit-trail export and original eQMS attachments, before Monday 09:00.",
+        "key_information_to_include": [
+          "Thread subject and calendar context: \u2018GF-102 Data Integrity & Safety Review (Mon 09:00)\u2019",
+          "Mara Ellison\u2019s direct request for a specific deviation folder (DEV-102-17) and \u2018raw audit-trail\u2019 language",
+          "Evan Kline\u2019s attempt to control the record (e.g., \u2018take this off email\u2019 / \u2018avoid loaded terms in writing\u2019) shortly after the 20:03 investor-prep call",
+          "Raina Patel\u2019s offer of a \u2018regulator-facing PDF package\u2019 instead of raw records, implying curation/sanitization",
+          "A brief CC list that plausibly includes Nadia Reyes and a generic Regulatory Affairs alias (e.g., regulatory@helixurebio.com)",
+          "At least one line hinting that Patel will \u2018stop back in\u2019 or \u2018pull exports tonight,\u2019 foreshadowing after-hours activity without fully proving it"
+        ],
+        "voice_notes": "Ellison writes plainly and urgently, not theatrically. Kline writes like he\u2019s on an earnings call\u2014careful, reframing, asking to \u2018align messaging.\u2019 Patel writes in regulatory-SOP language and avoids direct yes/no commitments; her evasiveness should feel like process talk used as a shield. Make the thread formatting authentic (From/To/CC/Date/Subject blocks, nested quoting, and an attachment list placeholder)."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "B8",
+      "envelope": "B",
+      "sequence_number": 8,
+      "type_id": 2,
+      "type_key": "social_posts",
+      "in_world_title": "Digital Evidence Capture \u2014 Instagram Story: @helixurelife \u2018Night Audit\u2019 (Building 7, 22:50)",
+      "owner_source": "Cambridge Police Department \u2014 Digital Forensics (OSINT Capture / Anonymous Tip)",
+      "timestamp": "2026-03-20T22:50:00",
+      "filename_base": "B8_Instagram_Story_Night_Audit",
+      "player_purpose": "tension_builder",
+      "reveals": "An OSINT-captured Instagram story posted at 22:50 on 2026-03-20 from a Helixure employee-adjacent account (@helixurelife) shows a wall-mounted safety/control panel labeled \u2018SP-4B\u2019 on Level 4 with a visible on-screen banner reading \u2018MAINT.\u2019 The caption overlay jokes, \u2018night audit \u2014 don\u2019t page Facilities,\u2019 and the geotag places the post at \u2018Helixure Building 7 (Kendall Square)\u2019 before the story is deleted by morning.",
+      "player_inference": "A person was physically at Stairwell 4B\u2019s control panel during the critical window and understood how to keep paging quiet, reinforcing that \u2018no alarm page\u2019 can be intentionally manufactured.",
+      "document_justification": "Gives the player a human, off-the-books corroboration to sterile logs and interviews: someone posted about SP-4B being in a maintenance-like state around the same night and location as the engineered stairwell incident. It heightens dread and primes the player to treat the later BMS backup (C2) as a confirmation, not a surprise.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-04",
+        "POI-05"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A4",
+        "B3"
+      ],
+      "production_brief_writing": {
+        "summary": "A phone-screenshot style digital evidence capture of an Instagram story that looks like mundane workplace humor, but quietly places Safety Panel SP-4B in \u2018MAINT\u2019 at 22:50 on the night Dr. Mara Ellison dies.",
+        "tone": "OSINT evidence capture \u2014 authentic Instagram Story UI inside a phone frame, with a terse analyst note strip outside the frame",
+        "min_words": 170,
+        "key_mandatory_line": "STORY METADATA: Posted 2026-03-20 22:50 EDT | Geotag: Helixure Building 7 (Kendall Square) | Visible label: SP-4B | Screen banner: MAINT | Overlay text: \u2018night audit \u2014 don\u2019t page Facilities\u2019",
+        "key_information_to_include": [
+          "Instagram Story UI elements: handle @helixurelife, story progress bar, and a timestamp indicator (22:50)",
+          "A clear geotag line reading \u2018Helixure Building 7 (Kendall Square)\u2019 to anchor location",
+          "The story image: a sterile hallway/utility alcove with a wall-mounted panel; a printed physical label \u2018SP-4B\u2019 adjacent to the panel",
+          "A readable on-screen panel status banner \u2018MAINT\u2019 (do not explain what it means; let the player connect it to B3/C2)",
+          "An analyst note stating the story was captured via tip, appears deleted by ~07:30 on 2026-03-21, and is relevant to the Stairwell 4B timeline"
+        ],
+        "voice_notes": "Keep it plausible and not too on-the-nose: the poster sounds like a tired employee making a joke, not a conspirator. The incriminating value is the combination of time (22:50), place (Building 7), and the visible \u2018MAINT\u2019 state on SP-4B. The analyst note should use evidence-room language and avoid accusing any POI outright."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Render as a phone-frame Instagram Story OSINT capture. The story photo should show the SP-4B safety/control panel in a clean biotech hallway/utility alcove with a visible status banner \u2018MAINT\u2019 and the caption overlay \u2018night audit \u2014 don\u2019t page Facilities.\u2019 Outside the phone frame, include a small \u2018DIGITAL EVIDENCE\u2019 label and an analyst note about deletion by morning.",
+      "image_requirements": [
+        {
+          "type": "device_screenshot",
+          "subject": "Instagram story OSINT capture",
+          "brief": "Instagram Story UI with @helixurelife, geotag Helixure Building 7 (Kendall Square), and a story image of Safety Panel SP-4B showing a \u2018MAINT\u2019 status banner. Add a small analyst note outside the phone frame referencing relevance to Stairwell 4B and deletion the next morning."
+        }
+      ],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    }
+  ]
+}

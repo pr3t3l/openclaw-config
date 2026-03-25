@@ -1,0 +1,269 @@
+{
+  "case_id": "",
+  "slug": "medication-that-cures-too-well-gpt",
+  "tier": "NORMAL",
+  "status": "distributed",
+  "created_at": "2026-03-24T19:19:52Z",
+  "updated_at": "2026-03-25T00:57:00Z",
+  "pois": [],
+  "documents": {},
+  "images": {},
+  "audio": {},
+  "pipeline_state": {
+    "narrative_architect": "completed",
+    "narrative_qa": "completed",
+    "art_director": "completed",
+    "experience_designer": "completed",
+    "production_envelopes": {
+      "A": "completed",
+      "B": "completed",
+      "C": "completed",
+      "R": "completed"
+    },
+    "playthrough_qa": "completed",
+    "image_generation": "completed",
+    "tts_scripting": "not_applicable",
+    "tts_generation": "not_applicable",
+    "layout_planning": "completed",
+    "render": "completed",
+    "distribution": "completed"
+  },
+  "cost_tracking": {
+    "phases": {
+      "document_rendering": {
+        "calls": [
+          {
+            "timestamp": "2026-03-24T18:51:32.169422",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 19090,
+            "output_tokens": 20414,
+            "cost_usd": 0.3635,
+            "retry": false,
+            "doc_id": "A2"
+          },
+          {
+            "timestamp": "2026-03-24T18:53:29.692935",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 3659,
+            "output_tokens": 8694,
+            "cost_usd": 0.1414,
+            "retry": false,
+            "doc_id": "A3"
+          },
+          {
+            "timestamp": "2026-03-24T18:56:23.415564",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 3418,
+            "output_tokens": 13012,
+            "cost_usd": 0.2054,
+            "retry": false,
+            "doc_id": "A4"
+          },
+          {
+            "timestamp": "2026-03-24T18:58:22.635417",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 3303,
+            "output_tokens": 8273,
+            "cost_usd": 0.134,
+            "retry": false,
+            "doc_id": "A5"
+          },
+          {
+            "timestamp": "2026-03-24T19:04:02.109733",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 8939,
+            "output_tokens": 26399,
+            "cost_usd": 0.4228,
+            "retry": false,
+            "doc_id": "B1"
+          },
+          {
+            "timestamp": "2026-03-24T19:10:25.370428",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 7716,
+            "output_tokens": 20487,
+            "cost_usd": 0.3305,
+            "retry": false,
+            "doc_id": "B2"
+          },
+          {
+            "timestamp": "2026-03-24T19:15:41.170338",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 6931,
+            "output_tokens": 18080,
+            "cost_usd": 0.292,
+            "retry": false,
+            "doc_id": "B3"
+          },
+          {
+            "timestamp": "2026-03-24T19:19:28.758353",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 6702,
+            "output_tokens": 16820,
+            "cost_usd": 0.2724,
+            "retry": false,
+            "doc_id": "B4"
+          },
+          {
+            "timestamp": "2026-03-24T19:21:59.682116",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 4277,
+            "output_tokens": 10996,
+            "cost_usd": 0.1778,
+            "retry": false,
+            "doc_id": "B5"
+          },
+          {
+            "timestamp": "2026-03-24T19:24:35.134874",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 4638,
+            "output_tokens": 12556,
+            "cost_usd": 0.2023,
+            "retry": false,
+            "doc_id": "B6"
+          },
+          {
+            "timestamp": "2026-03-24T19:26:45.383224",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 4513,
+            "output_tokens": 9525,
+            "cost_usd": 0.1564,
+            "retry": false,
+            "doc_id": "B7"
+          },
+          {
+            "timestamp": "2026-03-24T19:31:27.521569",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 3990,
+            "output_tokens": 12748,
+            "cost_usd": 0.2032,
+            "retry": false,
+            "doc_id": "C1"
+          },
+          {
+            "timestamp": "2026-03-24T19:34:01.434385",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 4442,
+            "output_tokens": 12611,
+            "cost_usd": 0.2025,
+            "retry": false,
+            "doc_id": "C2"
+          },
+          {
+            "timestamp": "2026-03-24T19:36:46.540819",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 3312,
+            "output_tokens": 12387,
+            "cost_usd": 0.1957,
+            "retry": false,
+            "doc_id": "C3"
+          },
+          {
+            "timestamp": "2026-03-24T19:38:57.381549",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 1858,
+            "output_tokens": 9480,
+            "cost_usd": 0.1478,
+            "retry": false,
+            "doc_id": "R1"
+          },
+          {
+            "timestamp": "2026-03-24T19:43:08.121932",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 2144,
+            "output_tokens": 6795,
+            "cost_usd": 0.1084,
+            "retry": false,
+            "doc_id": "A1"
+          },
+          {
+            "timestamp": "2026-03-24T19:45:34.634889",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 3342,
+            "output_tokens": 11451,
+            "cost_usd": 0.1818,
+            "retry": false,
+            "doc_id": "B8"
+          },
+          {
+            "timestamp": "2026-03-24T19:47:45.141438",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 1802,
+            "output_tokens": 9233,
+            "cost_usd": 0.1439,
+            "retry": false,
+            "doc_id": "R2"
+          },
+          {
+            "timestamp": "2026-03-24T19:49:14.820966",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 1738,
+            "output_tokens": 6961,
+            "cost_usd": 0.1096,
+            "retry": false,
+            "doc_id": "R3"
+          },
+          {
+            "timestamp": "2026-03-24T19:50:48.814347",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 1627,
+            "output_tokens": 7102,
+            "cost_usd": 0.1114,
+            "retry": false,
+            "doc_id": "R4"
+          },
+          {
+            "timestamp": "2026-03-24T19:53:05.674663",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 2205,
+            "output_tokens": 9993,
+            "cost_usd": 0.1565,
+            "retry": false,
+            "doc_id": "R5"
+          }
+        ],
+        "total_cost": 4.2593,
+        "total_input_tokens": 99646,
+        "total_output_tokens": 264017
+      }
+    },
+    "images": {
+      "generated": 5,
+      "failed": 0,
+      "model": "dall-e-3",
+      "total_cost": 0.2
+    },
+    "totals": {
+      "input_tokens": 99646,
+      "output_tokens": 264017,
+      "wasted_tokens_retries": 0,
+      "images_generated": 5,
+      "estimated_total_usd": 4.4593,
+      "api_calls": 21
+    }
+  },
+  "distribution": {
+    "drive_link": "https://drive.google.com/file/d/1aMPdhZQ0Kp9hufnixWpCHWOh_j3nJDKH/view?usp=drivesdk"
+  }
+}

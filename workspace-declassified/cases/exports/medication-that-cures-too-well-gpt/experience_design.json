@@ -1,0 +1,757 @@
+{
+  "telemetry": {
+    "model": "litellm/gpt52-thinking",
+    "input_tokens": null,
+    "output_tokens": null
+  },
+  "slug": "medication-that-cures-too-well-gpt",
+  "experiential_style": "digital_corporate",
+  "detective_persona": {
+    "name": "Det. Harlan Torres",
+    "annotation_voice": "Terse, systems-minded notes; underlines timestamps and access-control terms; uses arrows to connect doc_ids.",
+    "handwriting_style": "mixed"
+  },
+  "document_experience_map": {
+    "A1": {
+      "emotional_beat": "A slow unease settles in when the memo calls Mara Ellison\u2019s death a likely \u2018accidental fall\u2019 yet confidently notes \u2018no active oxygen alarm pages\u2019 in Stairwell 4B\u2014an oddly tidy detail for a badge-locked cGMP facility.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "\u2018DISCOVERY TIME: 06:14\u2019 + \u2018Stairwell 4B (outside cGMP)\u2019 \u2014 lock this location.",
+          "position": "next_to_paragraph_1",
+          "style_hint": "digital yellow highlight with a thin black outline"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Facilities says \u2018no O\u2082 alarm pages\u2019\u2026 does that mean nothing happened, or that paging was OFF? Ask Briggs (POI-04).",
+          "position": "right_margin_beside_key_mandatory_line",
+          "style_hint": "typed callout box, small sans-serif, slightly angled"
+        },
+        {
+          "type": "sticky_note",
+          "content": "(Maybe just a missed page / system glitch?) Don\u2019t assume intent yet \u2014 but a \u2018quiet\u2019 stairwell death in Building 7 feels wrong.",
+          "position": "bottom_margin",
+          "style_hint": "pale-blue digital sticky, skeptical tone"
+        }
+      ],
+      "immersion_elements": [
+        "agency_letterhead",
+        "case_number_header",
+        "pdf_printout_footer",
+        "timestamp_footer",
+        "digital_signature_block"
+      ],
+      "reading_order_note": "Read first. This is the \u2018official accident\u2019 baseline that later documents (especially C1/C2) will undercut."
+    },
+    "A2": {
+      "emotional_beat": "The case snaps into focus as a suspect map: four living POIs with overlapping pressure and permissions, and the realization that \u2018QA sign-off\u2019 (Raina Patel) is as dangerous a lever as security access or money.",
+      "detective_annotations": [
+        {
+          "type": "circled_text",
+          "content": "QA SIGN-OFF PATH \u2192 Patel (POI-05). Deviation ownership + release authority = leverage.",
+          "position": "beside_section_QA_signoff_path",
+          "style_hint": "thin red digital circle with a small arrow"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Kline (POI-02): money + deal pressure. Reyes (POI-03): access + fear. Briggs (POI-04): alarms/logs. Patel (POI-05): audit trail. Where do pressure + permissions overlap?",
+          "position": "right_margin_next_to_poi_grid",
+          "style_hint": "clean gray callout box with bullet-like line breaks"
+        }
+      ],
+      "immersion_elements": [
+        "case_number_header",
+        "mugshot_grid_layout",
+        "barcode_case_tag",
+        "thumbnail_portraits",
+        "section_dividers"
+      ],
+      "reading_order_note": "Best read immediately after A1 so names (Ellison, Kline, Reyes, Briggs, Patel) stick before you hit the noisier public/OSINT material in A3."
+    },
+    "A3": {
+      "emotional_beat": "The \u2018miracle cure\u2019 hype turns sour when a semi-insider voice drops specific language\u2014\u2018QA deviation\u2019 and \u2018cleaning PDFs since January\u2019\u2014making it feel like the real crime might be paperwork first, violence second.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "@bench2board: \u2018QA logged a deviation\u2019 + \u2018cleaning PDFs since January\u2019 \u2014 too specific for random trolling.",
+          "position": "next_to_post_with_key_mandatory_line",
+          "style_hint": "digital neon highlight (cyan) on dark-mode UI"
+        },
+        {
+          "type": "question_mark",
+          "content": "If this is real, what\u2019s the deviation ID? DEV-??? Request internal email exports / eQMS history.",
+          "position": "top_right_corner",
+          "style_hint": "small red question mark icon + short callout"
+        }
+      ],
+      "immersion_elements": [
+        "phone_frame",
+        "app_interface",
+        "dark_mode_ui",
+        "screenshot_timestamp_overlay",
+        "osint_capture_banner"
+      ],
+      "reading_order_note": "Read before A5 so the Ledger\u2019s polished language lands as a contrast to the rumor of \u2018cleaned\u2019 documentation."
+    },
+    "A4": {
+      "emotional_beat": "Handling the floor plan makes the death feel engineered: Stairwell 4B isn\u2019t just a place\u2014it\u2019s a controllable pocket with a keyed Utility Closet U-4B, an O\u2082 monitor, and a camera blind spot big enough to hide a decision.",
+      "detective_annotations": [
+        {
+          "type": "circled_text",
+          "content": "Blind spot at landing (CAM-4B-LND) \u2014 whoever picked 4B knew this gap.",
+          "position": "beside_camera_coverage_legend",
+          "style_hint": "red digital circle + dashed outline"
+        },
+        {
+          "type": "arrow_connection",
+          "content": "O\u2082 Monitor \u2194 Utility Closet U-4B (KEYED) \u2014 access list? key control logs?",
+          "position": "between_o2_monitor_callout_and_utility_closet_label",
+          "style_hint": "straight red arrow with a boxed label"
+        },
+        {
+          "type": "margin_comment",
+          "content": "\u2018SP-4B\u2019 / \u2018Paging relay panel\u2019 mentioned \u2014 match exact device names if/when we pull system history.",
+          "position": "bottom_margin",
+          "style_hint": "compact digital annotation, monospace for device IDs"
+        }
+      ],
+      "immersion_elements": [
+        "architectural_grid_lines",
+        "investigator_callout_boxes",
+        "highlighted_route_arrow",
+        "camera_coverage_overlay",
+        "evidence_exhibit_label"
+      ],
+      "reading_order_note": "Read after A1 (so Stairwell 4B matters) and before any deep log documents later; this is the spatial key that makes timestamps feel physically plausible."
+    },
+    "A5": {
+      "emotional_beat": "The business press optimism becomes eerie because it\u2019s timestamped (2026-03-20) and full of careful compliance phrasing\u2014especially Kline\u2019s line about \u2018any deviation is assessed and documented\u2019\u2014words that feel like a pre-written defense once you remember Ellison is dead by morning.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "Printed 2026-03-20 09:10 \u2014 THIS is the narrative Helixure needed to protect.",
+          "position": "top_margin_near_dateline",
+          "style_hint": "yellow highlight + thin black underline"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Kline quote: \u2018any deviation is assessed and documented\u2019 \u2014 flag this. If docs were \u2018cleaned,\u2019 the lie is in what\u2019s missing, not what\u2019s said.",
+          "position": "right_margin_beside_pull_quote",
+          "style_hint": "digital callout box with a small \u2018!\u2019 tag"
+        }
+      ],
+      "immersion_elements": [
+        "newspaper_masthead",
+        "column_layout",
+        "pull_quote_highlight",
+        "photo_caption_box",
+        "byline_dateline"
+      ]
+    },
+    "B1": {
+      "emotional_beat": "A tight, irritated unease as Evan Kline sounds rehearsed\u2014then the \u2018EXEC-0441\u2019 slip at 22:39 makes it feel like he\u2019s been thinking about that exact record all day.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "\u2018EXEC-0441\u2019 + \u201822:39\u2019 volunteered BEFORE exhibits shown \u2014 why does Kline know the label?",
+          "position": "next_to_line_where_KLINE_mentions_EXEC-0441",
+          "style_hint": "digital yellow highlight with a crisp callout"
+        },
+        {
+          "type": "margin_comment",
+          "content": "He anchors to 20:03 call \u2192 \u2018straight home.\u2019 But keeps circling back to access policy. Cross-check B5 for 22:39 event details.",
+          "position": "right_margin_near_timeline_walkthrough",
+          "style_hint": "sans-serif note, slightly compressed like typed-in haste"
+        },
+        {
+          "type": "question_mark",
+          "content": "(Maybe wrong) If EXEC-0441 hit is real access, was Kline physically in Bldg 7 at 22:39? Don\u2019t assume\u2014verify.",
+          "position": "bottom_margin",
+          "style_hint": "small blue question icon + short note"
+        }
+      ],
+      "immersion_elements": [
+        "interview_transcript_header_bar",
+        "audio_recording_notice_line",
+        "timestamp_column_every_exchange",
+        "exhibit_placeholder_stamp_CPD-MCU-26-0319"
+      ],
+      "reading_order_note": "Pairs best BEFORE B5: the impact is feeling sure Kline lied\u2014then letting B5 complicate what \u2018EXEC-0441\u2019 actually proves."
+    },
+    "B2": {
+      "emotional_beat": "A tug of empathy that curdles into suspicion when Nadia Reyes insists \u2018badge-only\u2019 at 21:55\u2014then admits executive escort piggybacking makes the whole building timeline slippery.",
+      "detective_annotations": [
+        {
+          "type": "circled_text",
+          "content": "\u2018Left at 21:55\u2019 \u2014 lock this. Compare against any movement after 22:39 in B5.",
+          "position": "beside_departure_time_statement",
+          "style_hint": "thin red digital circle"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Key admission: \u2018unless someone\u2019s using executive escort\u2026 people slip through.\u2019 That\u2019s how you get bodies without badge hits.",
+          "position": "right_margin_near_escort_piggyback_line",
+          "style_hint": "grey callout box, understated"
+        }
+      ],
+      "immersion_elements": [
+        "interview_room_header_strip",
+        "verbatim_transcript_formatting",
+        "bracketed_emotion_stage_directions",
+        "case_id_footer_watermark"
+      ],
+      "reading_order_note": "Read after B1 so \u2018executive escort\u2019 feels like a second witness independently describing the same loophole."
+    },
+    "B3": {
+      "emotional_beat": "A creeping dread as Tom Briggs casually explains that \u2018no page\u2019 can be manufactured with a MAINT/SILENCED state\u2014turning A1\u2019s reassuring \u2018no alarms\u2019 line into something weaponizable.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "BRIGGS: \u2018If it\u2019s in maintenance, it won\u2019t page me.\u2019 This makes A1 \u2018no alarm pages\u2019 meaningless.",
+          "position": "next_to_maintenance_state_explanation",
+          "style_hint": "digital neon highlight + bolded excerpt"
+        },
+        {
+          "type": "arrow_connection",
+          "content": "Connect: \u2018maintenance/silenced\u2019 (B3) \u2192 verify actual state in system logs later (C2).",
+          "position": "between_maintenance_paragraph_and_footer_notes",
+          "style_hint": "straight blue arrow with small label"
+        },
+        {
+          "type": "question_mark",
+          "content": "Who can set Stairwell 4B monitor to MAINT? Facilities only\u2014or does QA/EHS admin have access too?",
+          "position": "bottom_right_corner",
+          "style_hint": "compact question badge"
+        }
+      ],
+      "immersion_elements": [
+        "interview_transcript_header_bar",
+        "policy_language_callouts",
+        "speaker_tags_in_caps",
+        "digital_redaction_bars_for_internal_phone_numbers"
+      ],
+      "reading_order_note": "Works best right before B8 so the player recognizes \u2018MAINT\u2019 as a loaded word when it appears on the story capture."
+    },
+    "B4": {
+      "emotional_beat": "A cold, controlled tension: Raina Patel\u2019s 19:05 alibi sounds immaculate, but her fixation on \u2018audit trails\u2019 and \u2018exports\u2019 makes it feel like she\u2019s negotiating evidence, not telling truth.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "Patel locks in: \u2018Left at 19:05.\u2019 Circle this\u2014anything timestamped after-hours breaks her clean story.",
+          "position": "next_to_1905_alibi_line",
+          "style_hint": "pale yellow highlight + small clock icon"
+        },
+        {
+          "type": "margin_comment",
+          "content": "She keeps steering to \u2018authenticated session\u2019 + \u2018export\u2019 language. Feels preemptive. Compare with B7 (review email) + later system export evidence.",
+          "position": "right_margin_near_audit_trail_discussion",
+          "style_hint": "tight sans-serif note in a light-blue callout"
+        }
+      ],
+      "immersion_elements": [
+        "interview_room_header_strip",
+        "formal_transcript_layout",
+        "evidence_exhibit_stamp",
+        "clean_typographic_hierarchy_like_legal_transcript"
+      ],
+      "reading_order_note": "Read after B7 if possible; Patel\u2019s evasions land harder once the DEV-102-17 request is fresh in mind."
+    },
+    "B5": {
+      "emotional_beat": "An \u2018oh no\u2019 realization: the boring Lenel export doesn\u2019t name a killer\u2014it proves the building can be navigated on shared credentials and escort exceptions, meaning every confident alibi suddenly needs rechecking.",
+      "detective_annotations": [
+        {
+          "type": "circled_text",
+          "content": "22:39:03 ACCESS GRANTED \u2014 CRED: EXEC-0441 (shared). This resolves CONTRA-01 but does NOT equal Kline.",
+          "position": "beside_row_2026-03-20_223903",
+          "style_hint": "red circle + bolded time"
+        },
+        {
+          "type": "highlight",
+          "content": "\u2018ESCORT MODE ENABLED\u2019 + Host badge: QA-ADMIN-7719 (15 min). This matches Reyes\u2019s \u2018people slip through\u2019 (B2).",
+          "position": "next_to_escort_mode_event_row",
+          "style_hint": "digital yellow highlight with a pinned callout"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Look for any reader/location strings near Stairwell 4B / L4 corridor. Tie to A4 route + B6 cell sector STW4B.",
+          "position": "left_margin_near_location_column",
+          "style_hint": "small grey note like an analyst sidebar"
+        }
+      ],
+      "immersion_elements": [
+        "spreadsheet_gridlines",
+        "monospace_system_font",
+        "subpoena_return_cover_note_block",
+        "barcode_case_number_label",
+        "row_highlighting_as_if_done_in_pdf_viewer"
+      ],
+      "reading_order_note": "This doc should land after B1 + B2 so it feels like a forensic \u2018reality check\u2019 on both interviews\u2019 claims."
+    },
+    "B6": {
+      "emotional_beat": "A tightening, claustrophobic urgency as Ellison\u2019s last outgoing SMS at 23:11:52 (Sector: STW4B) is followed by a wall of missed calls\u2014like a signal cutting off mid-sentence.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "23:11:52 OUT \u2014 \u2018Heading to the garage\u2019 \u2014 Cell: HLX-B7-FEMTO-L4 (Sector: STW4B). This is minutes before 23:12.",
+          "position": "next_to_row_2026-03-20_231152",
+          "style_hint": "bright highlight + digital sticky marker"
+        },
+        {
+          "type": "arrow_connection",
+          "content": "22:06 SMS w/ \u2018R. Patel\u2019 re: \u2018deviation folder\u2019 \u2192 motive pressure. Pair with B7 DEV-102-17 language.",
+          "position": "between_rows_2206_and_thread_summary",
+          "style_hint": "thin arrow with tiny label tag"
+        },
+        {
+          "type": "margin_comment",
+          "content": "First \u2018NO ANSWER/VM\u2019 after 23:12 \u2014 treat as incapacitation window marker, not a random missed call.",
+          "position": "right_margin_near_first_missed_call_row",
+          "style_hint": "compact note in a white callout box"
+        }
+      ],
+      "immersion_elements": [
+        "carrier_subpoena_boilerplate",
+        "dense_table_with_column_legend",
+        "highlighted_rows_with_pdf_markup_handles",
+        "exhibit_tag_top_right"
+      ],
+      "reading_order_note": "Place before Envelope C: it primes the player to care about the 23:12 minute and recognize it when system logs appear."
+    },
+    "B7": {
+      "emotional_beat": "A slow burn of anger and dread as Ellison demands raw audit-trail access (DEV-102-17 / Batch 14C) while Kline pushes to \u2018take it off email\u2019\u2014and Patel offers only a curated \u2018regulator-facing PDF package.\u2019",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "ELLISON 18:30 \u2014 \u2018full DEV-102-17 folder\u2019 + \u2018raw audit-trail export\u2019 + \u2018before Monday 09:00.\u2019 This is the fuse.",
+          "position": "next_to_ellison_email_request_block",
+          "style_hint": "digital highlight with underlined deviation ID"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Kline after the 20:03 call: \u2018off email\u2019 pressure = fear of discoverability. Matches his tone in B1.",
+          "position": "right_margin_near_kline_off_email_reply",
+          "style_hint": "light-blue callout, clean sans-serif"
+        },
+        {
+          "type": "circled_text",
+          "content": "Patel offers \u2018regulator-facing PDF package\u2019 (curated). Compare to her 19:05 alibi claims in B4.",
+          "position": "beside_patel_pdf_package_line",
+          "style_hint": "thin red circle + small \u2018!\u2019 in the margin"
+        }
+      ],
+      "immersion_elements": [
+        "email_client_frame",
+        "legal_hold_export_banner",
+        "nested_reply_indentation",
+        "attachment_list_placeholder",
+        "message_header_blocks_with_from_to_cc_date"
+      ],
+      "reading_order_note": "Read after B4 if possible: Patel\u2019s interview becomes immediately suspect once you\u2019ve seen how she frames \u2018exports\u2019 and \u2018regulator-facing\u2019 packages here."
+    },
+    "B8": {
+      "emotional_beat": "A prickling sense of being watched as a jokey Instagram story places someone at Safety Panel SP-4B at 22:50 with a visible \u2018MAINT\u2019 banner\u2014then the post vanishes by morning.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "METADATA: 2026-03-20 22:50 + label \u2018SP-4B\u2019 + banner \u2018MAINT.\u2019 That\u2019s inside the critical period.",
+          "position": "next_to_metadata_strip_outside_phone_frame",
+          "style_hint": "digital highlighter with a small pin icon"
+        },
+        {
+          "type": "question_mark",
+          "content": "Overlay: \u2018night audit \u2014 don\u2019t page Facilities\u2019 \u2192 sounds like the exact \u2018maintenance/silenced\u2019 trick Briggs described in B3. Who posted, and why delete by ~07:30?",
+          "position": "bottom_margin_beneath_story_capture",
+          "style_hint": "compact question callout with muted purple border"
+        }
+      ],
+      "immersion_elements": [
+        "phone_frame_instagram_story_ui",
+        "osint_capture_header_label",
+        "screenshot_compression_artifacts",
+        "metadata_strip_with_time_and_geotag",
+        "analyst_note_box_about_deletion_time"
+      ],
+      "reading_order_note": "Best after B3 so \u2018MAINT\u2019 reads as a functional system state, not just a vague caption."
+    },
+    "C1": {
+      "emotional_beat": "A cold snap of certainty: this wasn\u2019t a bad fall\u2014Ellison was deprived of oxygen first, and the \u2018accident\u2019 story collapses into something planned.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "Hypoxia BEFORE impact \u2014 this flips A1\u2019s \u2018accident\u2019 assumption.",
+          "position": "next_to_cause_of_death_line",
+          "style_hint": "yellow digital highlight with a tight callout box"
+        },
+        {
+          "type": "circled_text",
+          "content": "Time window ~23:10\u201323:30. Compare to B6 last activity + any system events.",
+          "position": "beside_time_of_death_window",
+          "style_hint": "red circle; underlined twice"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Bruising on both upper arms = handled/dragged? Staging after collapse.",
+          "position": "right_margin_near_external_findings",
+          "style_hint": "small sans-serif note; clipped, matter-of-fact"
+        }
+      ],
+      "immersion_elements": [
+        "ocme_letterhead",
+        "official_seal",
+        "toxicology_table",
+        "digital_signature_block",
+        "exhibit_footer_case_number"
+      ],
+      "reading_order_note": "Best read immediately before C2 so the player is primed to interpret \u2018maintenance/silence\u2019 and purge events as a homicide method, not a safety glitch."
+    },
+    "C2": {
+      "emotional_beat": "An exacting, stomach-dropping aha: the timeline is engineered\u2014silenced monitor, purge event, then a tidy export\u2014each timestamp tightening the trap.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "22:48 MAINT/SILENCE \u2192 paging disabled. This is the answer to \u2018my phone never rang\u2019 (B3).",
+          "position": "beside_row_2248_state_change",
+          "style_hint": "cyan highlight with a rectangular callout"
+        },
+        {
+          "type": "arrow_connection",
+          "content": "23:12 purge \u2192 O2 drop \u2192 aligns with C1 window. Method, not accident.",
+          "position": "from_row_2312_purge_to_sensor_readings_block",
+          "style_hint": "thin black arrow; timestamp tags"
+        },
+        {
+          "type": "question_mark",
+          "content": "Could \u2018MAINT\u2019 be a routine nightly test? If so, why paired with a purge + late export?",
+          "position": "bottom_margin_under_event_table",
+          "style_hint": "small gray note; intentionally skeptical"
+        },
+        {
+          "type": "circled_text",
+          "content": "DR node / checksum = harder to tamper with. Treat as \u2018source of truth.\u2019",
+          "position": "near_header_integrity_hash_line",
+          "style_hint": "tight circle; bolded words"
+        }
+      ],
+      "immersion_elements": [
+        "server_node_header",
+        "monospace_log_table",
+        "checksum_line",
+        "forensic_barcode",
+        "column_sorted_timestamp"
+      ],
+      "reading_order_note": "Read before C3: C2 establishes the raw, append-only \u2018what happened\u2019 record; C3 then shows the polished narrative someone tried to publish on top of it."
+    },
+    "C3": {
+      "emotional_beat": "Rage and disbelief: someone generated a clean, regulator-friendly \u2018sensor fault\u2019 story minutes after the dangerous window\u2014before anyone \u2018found\u2019 the body.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "Generated at 23:36\u2026 same night. Why writing the story BEFORE discovery at 06:14 (A1)?",
+          "position": "next_to_generated_at_timestamp",
+          "style_hint": "pink highlight with a bold timestamp callout"
+        },
+        {
+          "type": "circled_text",
+          "content": "\u2018Transient sensor fault\u2019 \u2014 but C2 shows a purge + O2 drop. This reads like damage control.",
+          "position": "around_classification_box",
+          "style_hint": "red circle with a short side-note"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Generated by account label \u2260 person. Confirm who \u2018RPATEL (QA-DIR)\u2019 maps to + whether it\u2019s shared.",
+          "position": "right_margin_near_generated_by_line",
+          "style_hint": "clean sans-serif note; cautious phrasing"
+        }
+      ],
+      "immersion_elements": [
+        "dashboard_ui_header",
+        "line_chart_widget",
+        "internal_distribution_banner",
+        "pdf_print_timestamp",
+        "report_id_footer"
+      ],
+      "reading_order_note": "Works best as the last C doc: after the player trusts C2\u2019s raw log, this \u2018print to PDF\u2019 summary feels like a deliberate attempt to overwrite reality."
+    },
+    "R1": {
+      "emotional_beat": "A sober click of certainty: the \u2018accident\u2019 framing finally dies when the 23:12 nitrogen purge and pre-impact hypoxia line up on one timeline.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "This sentence ends the \u2018routine fall\u2019 theory from A1 \u2014 officially homicide now.",
+          "position": "next_to_final_determination_paragraph",
+          "style_hint": "yellow highlight with a tight digital callout box"
+        },
+        {
+          "type": "circled_text",
+          "content": "Anchor time: 23:12 purge (C2). Use this to sanity-check every alibi claim.",
+          "position": "beside_timestamp_2312",
+          "style_hint": "thin red circle; timestamp underlined twice"
+        }
+      ],
+      "immersion_elements": [
+        "agency_letterhead",
+        "case_number_header",
+        "homicide_reclassification_stamp",
+        "digital_signature_block",
+        "exhibit_citations_footer"
+      ],
+      "reading_order_note": "Read this first in Envelope R. It sets the final, evidence-anchored timeline (C1 + C2) before you evaluate the POI disposition memos."
+    },
+    "R2": {
+      "emotional_beat": "Relief mixed with irritation: Kline had the sleazy motive and corporate evasions, but the method evidence won\u2019t stay pinned to him once the shared credential loophole is stated plainly.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "Key takeaway: EXEC-0441 is a record, not a person. Shared credential \u2260 physical presence.",
+          "position": "next_to_b5_note_section",
+          "style_hint": "blue highlight; clean sans-serif callout"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Still\u2026 his \u2018EXEC-0441\u2019 slip in B1 felt too fast. Not murder\u2014maybe optics/obstruction.",
+          "position": "right_margin_near_interview_reference",
+          "style_hint": "small gray text box; cautious tone"
+        }
+      ],
+      "immersion_elements": [
+        "agency_letterhead",
+        "clearance_status_banner",
+        "evidence_weighting_bullets",
+        "document_revision_footer"
+      ],
+      "reading_order_note": "This plays best after R1. The emotional release depends on the player remembering how suspicious B1 felt before B5/C2 reframed it."
+    },
+    "R3": {
+      "emotional_beat": "A gentler kind of closure: Reyes is guilty of fear-driven \u2018paper sins,\u2019 but the 22:48\u201323:17 engineered window makes it clear she\u2019s not the one who turned the building into a weapon.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "\u2018Paper liar\u2019 vs. murderer \u2014 her audit panic explains B2, not C2.",
+          "position": "next_to_clearance_basis_sentence",
+          "style_hint": "yellow highlight; short note pinned to the margin"
+        },
+        {
+          "type": "circled_text",
+          "content": "Critical window called out again: 22:48 (silence) \u2192 23:12 (purge) \u2192 ~23:17 (collapse).",
+          "position": "beside_time_window_reference",
+          "style_hint": "tight circle with an arrow pointing to \u2018engineered-event window\u2019"
+        }
+      ],
+      "immersion_elements": [
+        "agency_letterhead",
+        "cleared_stamp",
+        "internal_referral_note_box",
+        "case_number_header"
+      ],
+      "reading_order_note": "Read after R2 if you want a clean \u2018suspect triage\u2019 feeling: finance motive cleared (R2), then messy-but-human lab motive cleared (R3)."
+    },
+    "R4": {
+      "emotional_beat": "Uncomfortable accountability: Briggs isn\u2019t the killer, but his \u2018this is normal\u2019 security culture reads like the open door the offender walked through.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "\u2018Phone never rang\u2019 (B3) isn\u2019t an alibi when MAINT/SILENT exists (C2 @ 22:48).",
+          "position": "next_to_system_finding_paragraph",
+          "style_hint": "orange highlight; bolded timestamp"
+        },
+        {
+          "type": "sticky_note",
+          "content": "Policy fix: escort/override after-hours needs written approval + auto-expire. B5 shouldn\u2019t be this ambiguous.",
+          "position": "top_right_corner",
+          "style_hint": "digital sticky note; \u2018Action Item\u2019 label"
+        }
+      ],
+      "immersion_elements": [
+        "agency_letterhead",
+        "administrative_accountability_section",
+        "recommendations_box",
+        "confidential_stamp"
+      ],
+      "reading_order_note": "This memo lands hardest if read right before R5: it clarifies how the system could be exploited, then R5 shows who did exploit it."
+    },
+    "R5": {
+      "emotional_beat": "Catharsis with a chill: the motive (DEV-102-17 and audit-trail exposure) and the method (silence + purge + export) converge into a timestamp chain that feels too engineered to deny.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "Four timestamps, one narrative: 22:39 (return) \u2192 22:48 (silence) \u2192 23:12 (purge) \u2192 23:36 (export).",
+          "position": "next_to_probable_cause_paragraph",
+          "style_hint": "green highlight; bracketed timeline in the margin"
+        },
+        {
+          "type": "arrow_connection",
+          "content": "B7 (DEV-102-17 panic) \u2192 C2/C3 (RPATEL session) = motive meets method.",
+          "position": "between_exhibit_list_and_motive_section",
+          "style_hint": "thin black arrow with labeled endpoints"
+        },
+        {
+          "type": "margin_comment",
+          "content": "The cover-story move is the 23:36 \u2018sensor fault\u2019 export. That\u2019s consciousness of guilt, not confusion.",
+          "position": "right_margin_near_c3_reference",
+          "style_hint": "clean digital callout; \u2018why it matters\u2019 tone"
+        }
+      ],
+      "immersion_elements": [
+        "probable_cause_header",
+        "exhibit_list_table",
+        "da_routing_stamp",
+        "digital_signature_block",
+        "confidential_stamp"
+      ],
+      "reading_order_note": "Read this last in Envelope R. The payoff depends on having R1\u2019s homicide determination and the cleared-POI logic (R2\u2013R4) already in your head."
+    }
+  },
+  "clue_proximity_analysis": [
+    {
+      "contradiction_id": "CONTRA-01",
+      "introduced_in": "B1",
+      "resolved_in": "B5",
+      "distance_docs": 4,
+      "flag": null
+    },
+    {
+      "contradiction_id": "CONTRA-02",
+      "introduced_in": "B2",
+      "resolved_in": "B5",
+      "distance_docs": 3,
+      "flag": null
+    },
+    {
+      "contradiction_id": "CONTRA-03",
+      "introduced_in": "B3",
+      "resolved_in": "C2",
+      "distance_docs": 7,
+      "flag": null
+    },
+    {
+      "contradiction_id": "CONTRA-04",
+      "introduced_in": "B4",
+      "resolved_in": "C2",
+      "distance_docs": 6,
+      "flag": null
+    },
+    {
+      "contradiction_id": "CONTRA-05",
+      "introduced_in": "A1",
+      "resolved_in": "C1",
+      "distance_docs": 13,
+      "flag": "proximity_warning"
+    },
+    {
+      "contradiction_id": "CONTRA-06",
+      "introduced_in": "A3",
+      "resolved_in": "B7",
+      "distance_docs": 9,
+      "flag": "proximity_warning"
+    }
+  ],
+  "pacing_analysis": {
+    "A": {
+      "estimated_reading_minutes": 5.6,
+      "document_count": 5,
+      "emotional_intensity": "medium",
+      "docs": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5"
+      ]
+    },
+    "B": {
+      "estimated_reading_minutes": 22.7,
+      "document_count": 8,
+      "emotional_intensity": "high",
+      "docs": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7",
+        "B8"
+      ]
+    },
+    "C": {
+      "estimated_reading_minutes": 4.1,
+      "document_count": 3,
+      "emotional_intensity": "peak",
+      "docs": [
+        "C1",
+        "C2",
+        "C3"
+      ]
+    },
+    "R": {
+      "estimated_reading_minutes": 6.3,
+      "document_count": 5,
+      "emotional_intensity": "medium",
+      "docs": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5"
+      ]
+    }
+  },
+  "trojan_horse_verification": [
+    {
+      "doc_id": "B5",
+      "appears_as": "A routine entry/exit and badge-access log export collected \u2018for completeness.\u2019",
+      "actually_proves": "A specific after-hours access exception (escort/override behavior) aligns with the murder window, showing the killer relied on procedural loopholes to obscure identity.",
+      "links_to": "case-plan.trojan_horse_docs"
+    },
+    {
+      "doc_id": "B6",
+      "appears_as": "A boring carrier-style calls/SMS log from Ellison\u2019s phone\u2014mostly verification codes and mundane contacts.",
+      "actually_proves": "Ellison\u2019s last authenticated activity and phone movement patterns tighten the time-of-incapacitation and contradict assumptions about when she \u2018fell.\u2019",
+      "links_to": "case-plan.trojan_horse_docs"
+    }
+  ],
+  "clue_proximity_check": [
+    {
+      "contradiction_id": "CONTRA-01",
+      "introduced_in": "B1",
+      "resolved_in": "B5",
+      "distance_docs": 4,
+      "status": "ok"
+    },
+    {
+      "contradiction_id": "CONTRA-02",
+      "introduced_in": "B2",
+      "resolved_in": "B5",
+      "distance_docs": 3,
+      "status": "ok"
+    },
+    {
+      "contradiction_id": "CONTRA-03",
+      "introduced_in": "B3",
+      "resolved_in": "C2",
+      "distance_docs": 7,
+      "status": "ok"
+    },
+    {
+      "contradiction_id": "CONTRA-04",
+      "introduced_in": "B4",
+      "resolved_in": "C2",
+      "distance_docs": 6,
+      "status": "ok"
+    },
+    {
+      "contradiction_id": "CONTRA-05",
+      "introduced_in": "A1",
+      "resolved_in": "C1",
+      "distance_docs": 13,
+      "status": "proximity_warning"
+    },
+    {
+      "contradiction_id": "CONTRA-06",
+      "introduced_in": "A3",
+      "resolved_in": "B7",
+      "distance_docs": 9,
+      "status": "proximity_warning"
+    }
+  ]
+}

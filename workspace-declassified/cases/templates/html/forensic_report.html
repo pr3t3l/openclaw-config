@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        @page { margin: 18mm; size: letter; }
+        body {
+            font-family: "Times New Roman", serif;
+            font-size: 10pt;
+            line-height: 1.4;
+            color: #000;
+            background: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+        .report-header {
+            text-align: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .office-name { font-size: 13pt; font-weight: bold; margin-bottom: 3px; }
+        .office-address { font-size: 9pt; color: #666; margin-bottom: 10px; }
+        .report-title {
+            font-size: 16pt; font-weight: bold; text-transform: uppercase;
+            letter-spacing: 0.05em; margin: 15px 0;
+        }
+        .case-info-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+            background: #f8f8f8; border: 1px solid #999; padding: 12px;
+            font-size: 9pt; margin-bottom: 20px;
+        }
+        .info-field { margin-bottom: 3px; }
+        .info-label { font-weight: bold; display: inline-block; width: 120px; }
+        .section { margin-bottom: 20px; }
+        .section-title {
+            font-size: 11pt; font-weight: bold; text-transform: uppercase;
+            border-bottom: 1px solid #333; padding-bottom: 4px; margin-bottom: 10px;
+            letter-spacing: 0.03em;
+        }
+        .section-content { font-size: 10pt; line-height: 1.6; }
+        .section-content p { margin: 0 0 8px 0; }
+        .two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .body-diagram-container {
+            border: 1px solid #ccc; padding: 10px; background: #fafafa;
+            text-align: center; position: relative;
+        }
+        .body-diagram-container img {
+            max-width: 100%; max-height: 300px; height: auto;
+        }
+        .diagram-title {
+            font-size: 8pt; font-weight: bold; text-transform: uppercase;
+            margin-bottom: 8px; color: #666;
+        }
+        .injury-list { font-size: 9pt; }
+        .injury-item {
+            display: flex; gap: 8px; margin-bottom: 6px;
+            padding: 4px 0; border-bottom: 1px dotted #ddd;
+        }
+        .injury-number {
+            background: #dc143c; color: #fff; width: 18px; height: 18px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 7pt; font-weight: bold; flex-shrink: 0;
+        }
+        .tox-table {
+            width: 100%; border-collapse: collapse; font-size: 9pt; margin: 10px 0;
+        }
+        .tox-table th {
+            background: #f0f0f0; border: 1px solid #999; padding: 5px 8px;
+            text-align: left; font-size: 8pt; text-transform: uppercase;
+        }
+        .tox-table td { border: 1px solid #999; padding: 5px 8px; }
+        .tox-positive { color: #dc143c; font-weight: bold; }
+        .tox-negative { color: #006600; }
+        .conclusion-box {
+            border: 2px solid #333; padding: 15px; margin: 20px 0;
+            background: #fffff0;
+        }
+        .conclusion-title { font-weight: bold; font-size: 11pt; margin-bottom: 8px; text-transform: uppercase; }
+        .manner-box {
+            display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;
+            margin: 10px 0; font-size: 8pt; text-align: center;
+        }
+        .manner-option {
+            border: 1px solid #999; padding: 6px 4px; text-transform: uppercase;
+        }
+        .manner-option.selected {
+            background: #333; color: #fff; border-color: #333; font-weight: bold;
+        }
+        .confidential-stamp {
+            position: absolute; top: 80px; right: 40px;
+            transform: rotate(25deg); opacity: 0.7;
+        }
+        .confidential-stamp img { width: 90px; height: auto; }
+        .signature-section {
+            margin-top: 30px; border-top: 1px solid #ccc; padding-top: 15px;
+        }
+        .sig-line { border-bottom: 1px solid #000; width: 200px; height: 30px; margin: 8px 0; }
+        .sig-label { font-size: 8pt; color: #666; }
+        .footer-info {
+            margin-top: 25px; text-align: center; font-size: 8pt;
+            color: #666; border-top: 1px solid #ccc; padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="report-header">
+        <div class="office-name">{{officeName}}</div>
+        <div class="office-address">{{officeAddress}}</div>
+        <div class="report-title">{{title}}</div>
+    </div>
+
+    <div class="case-info-grid">
+        <div class="info-field"><span class="info-label">Case Number:</span> {{caseNumber}}</div>
+        <div class="info-field"><span class="info-label">Report Number:</span> {{reportNumber}}</div>
+        <div class="info-field"><span class="info-label">Decedent:</span> {{subjectName}}</div>
+        <div class="info-field"><span class="info-label">Age/Sex:</span> {{subjectDetails}}</div>
+        <div class="info-field"><span class="info-label">Date of Exam:</span> {{dateExam}}</div>
+        <div class="info-field"><span class="info-label">Date of Death:</span> {{dateDeath}}</div>
+        <div class="info-field"><span class="info-label">Examiner:</span> {{examiner}}</div>
+        <div class="info-field"><span class="info-label">Doc ID:</span> {{docId}}</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">External Examination</div>
+        <div class="section-content">{{{externalExam}}}</div>
+    </div>
+
+    <div class="two-column">
+        {{#if bodyDiagram}}
+        <div class="body-diagram-container">
+            <div class="diagram-title">Injury Diagram</div>
+            <img src="{{bodyDiagram}}" alt="Body diagram">
+        </div>
+        {{/if}}
+        <div class="injury-list">
+            <div class="diagram-title">Observed Injuries</div>
+            {{#each injuries}}
+            <div class="injury-item">
+                <div class="injury-number">{{number}}</div>
+                <div>{{description}}</div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Internal Examination</div>
+        <div class="section-content">{{{internalExam}}}</div>
+    </div>
+
+    {{#if toxicology}}
+    <div class="section">
+        <div class="section-title">Toxicology</div>
+        <table class="tox-table">
+            <thead>
+                <tr><th>Substance</th><th>Result</th><th>Level</th><th>Reference Range</th></tr>
+            </thead>
+            <tbody>
+                {{#each toxicology}}
+                <tr>
+                    <td>{{substance}}</td>
+                    <td class="{{#if positive}}tox-positive{{else}}tox-negative{{/if}}">{{result}}</td>
+                    <td>{{level}}</td>
+                    <td>{{reference}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    {{/if}}
+
+    <div class="section">
+        <div class="section-title">Time of Death</div>
+        <div class="section-content">{{{timeOfDeath}}}</div>
+    </div>
+
+    <div class="conclusion-box">
+        <div class="conclusion-title">Cause of Death</div>
+        <p>{{causeOfDeath}}</p>
+        <div class="conclusion-title" style="margin-top:15px">Manner of Death</div>
+        <div class="manner-box">
+            <div class="manner-option {{#if (eq mannerOfDeath 'Natural')}}selected{{/if}}">Natural</div>
+            <div class="manner-option {{#if (eq mannerOfDeath 'Accident')}}selected{{/if}}">Accident</div>
+            <div class="manner-option {{#if (eq mannerOfDeath 'Suicide')}}selected{{/if}}">Suicide</div>
+            <div class="manner-option {{#if (eq mannerOfDeath 'Homicide')}}selected{{/if}}">Homicide</div>
+            <div class="manner-option {{#if (eq mannerOfDeath 'Undetermined')}}selected{{/if}}">Undetermined</div>
+        </div>
+    </div>
+
+    {{#if confidentialStamp}}
+    <div class="confidential-stamp">
+        <img src="{{confidentialStamp}}" alt="Confidential">
+    </div>
+    {{/if}}
+
+    <div class="signature-section">
+        <div class="sig-line"></div>
+        <div class="sig-label">{{examiner}}, M.D. — Medical Examiner</div>
+        <div style="margin-top:15px"><div class="sig-line"></div>
+        <div class="sig-label">Date</div></div>
+    </div>
+
+    <div class="footer-info">
+        <strong>{{caseTitle}}</strong><br>
+        Prepared for training / investigative simulation. All medical findings are fictional within this case universe.
+    </div>
+</body>
+</html>

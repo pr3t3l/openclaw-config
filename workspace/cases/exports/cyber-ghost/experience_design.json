@@ -1,0 +1,672 @@
+{
+  "slug": "cyber-ghost",
+  "experiential_style": "digital_corporate",
+  "detective_persona": {
+    "name": "Det. R. Holt",
+    "annotation_voice": "Terse, abbreviated, heavy on question marks and underlines. Uses initials for recurring names (V=Voss, N=Nadia, SC=Serena, JM=Jordan). Obsessively timestamps cross-references. Draws arrows between doc IDs in margins. Occasionally writes a full sentence when something genuinely shocks them, then crosses half of it out.",
+    "handwriting_style": "mixed"
+  },
+  "document_experience_map": {
+    "A1": {
+      "emotional_beat": "The player feels the uncanny wrongness of a death scene that is TOO tidy — no forced entry, no struggle, a laptop blinking in sleep mode like nothing happened. The pill organizer open to Tuesday is the first hook under the skin: something was placed here, not left here.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "No opioid Rx on file — confirmed pharmacy query 09:47. Open pill organizer means nothing without a prescription to fill it.",
+          "position": "beside_SCENE_INVENTORY_table",
+          "style_hint": "cyan digital highlight with callout box"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Deadbolt locked FROM INSIDE — how? If he let someone in, they didn't use the front door to leave. See A6 stairwell.",
+          "position": "bottom_margin",
+          "style_hint": "dark blue sans-serif, underlined twice"
+        },
+        {
+          "type": "question_mark",
+          "content": "Pemberton notes 'no signs of distress or struggle' — or scene was cleaned after?",
+          "position": "top_right_corner",
+          "style_hint": "red digital callout, large question mark prefix"
+        }
+      ],
+      "immersion_elements": [
+        "agency_letterhead",
+        "case_number_header",
+        "confidential_stamp",
+        "official_seal"
+      ],
+      "reading_order_note": "Must be read first — establishes Jordan's death as suspicious and plants the pill organizer anomaly that pays off in B7. The deadbolt note primes players to study A6 carefully."
+    },
+    "A2": {
+      "emotional_beat": "The player confronts four faces and four reasons to want Jordan Mercer dead. No one looks innocent. Voss's 340% fee spike sits in plain bureaucratic language like a grenade with the pin already pulled — the player feels the pressure of not knowing which fuse is real.",
+      "detective_annotations": [
+        {
+          "type": "circled_text",
+          "content": "340% fee spike — same fiscal year as $2.3M Briarfield payments. Coincidence threshold exceeded.",
+          "position": "beside_VOSS_entry",
+          "style_hint": "red circle, double-underline on '340%'"
+        },
+        {
+          "type": "sticky_note",
+          "content": "NullRoute's forum threat is PUBLIC — means either she's confident she won't be caught, or she's posturing. Which?",
+          "position": "beside_OSEI_entry",
+          "style_hint": "yellow digital sticky, left-border red"
+        },
+        {
+          "type": "margin_comment",
+          "content": "SC had Jordan's access — she is either accomplice or next target. Do NOT let her leave city.",
+          "position": "beside_CHO_entry",
+          "style_hint": "dark blue sans-serif, urgent caps"
+        }
+      ],
+      "immersion_elements": [
+        "case_number_header",
+        "app_interface",
+        "confidential_stamp"
+      ]
+    },
+    "A3": {
+      "emotional_beat": "The player reads a dry IT log and almost moves on — then the Suite 440 entry stops them cold. That second access has no annotation, no name, no flag. Someone moved through this system invisibly, and the IT officer who wrote the memo never even mentioned it. The player feels the chill of a clue hiding in plain bureaucratic sight.",
+      "detective_annotations": [
+        {
+          "type": "circled_text",
+          "content": "ENTRY 7 — CHWS-0112, Suite 440. Unregistered guest session. Who authorized this? Bannister's memo doesn't mention it AT ALL.",
+          "position": "beside_ACCESS_LOG_TABLE_ENTRY_7",
+          "style_hint": "red digital circle, bold callout arrow pointing left"
+        },
+        {
+          "type": "highlight",
+          "content": "Suite 440 is NOT in IT Security directory — confirm suite occupant. This was not a routine review.",
+          "position": "beside_cross_reference_footnote",
+          "style_hint": "cyan highlight with annotation flag"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Memo signed Oct 13. Suite 440 access Oct 14 16:45 — AFTER memo finalized. Bannister never knew.",
+          "position": "bottom_margin",
+          "style_hint": "dark blue sans-serif, timeline arrow drawn by hand"
+        },
+        {
+          "type": "arrow_connection",
+          "content": "Cross-ref C2 — who occupies Suite 440?",
+          "position": "top_right_corner",
+          "style_hint": "red digital arrow, 'C2' boxed"
+        }
+      ],
+      "immersion_elements": [
+        "agency_letterhead",
+        "case_number_header",
+        "digital_evidence"
+      ],
+      "reading_order_note": "This is Trojan Horse #1. Most players will log it as background IT paperwork and move on. Suite 440 means nothing until C2 names the occupant. The annotation pointing to C2 is intentionally placed to reward players who return to A3 after C2 lands."
+    },
+    "A4": {
+      "emotional_beat": "A dead person's credentials used three hours after their death to publish a doctored document designed to frame someone else. The player feels the stomach-drop of realizing the investigation was being steered from the moment Jordan died — this was not a leak, it was a cleanup operation.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "02:17:44 Oct 20 — JM's estimated TOD is Oct 19 ~23:08 per B7. PGP key was used AFTER death. Someone had the key.",
+          "position": "beside_CREDENTIAL_AUTHENTICATION_block",
+          "style_hint": "red highlight, 'AFTER DEATH' in caps annotation"
+        },
+        {
+          "type": "sticky_note",
+          "content": "Position desc. in second cache = Finance Div Systems Admin. That is Serena Cho's exact role. This was engineered to point at SC.",
+          "position": "top_right_corner",
+          "style_hint": "yellow digital sticky, red border"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Qui's note: 'selective editing consistent with intent to redirect attribution.' Not a journalist protecting sources. Someone buying time.",
+          "position": "beside_Content_Divergence_section",
+          "style_hint": "dark blue sans-serif, underlined twice"
+        }
+      ],
+      "immersion_elements": [
+        "agency_letterhead",
+        "digital_evidence",
+        "case_number_header",
+        "forensic_barcode"
+      ],
+      "reading_order_note": "The impossible posthumous post is planted here in Envelope A, but the player won't have the time-of-death confirmation (B7) yet. The annotation explicitly cross-references B7 to prime the player for the connection without giving it away."
+    },
+    "A5": {
+      "emotional_beat": "The player feels the disorientation of watching a city react in real time to a death it doesn't know is a murder — grief, conspiracy, civic rage, and one deleted comment that someone scrubbed too fast. The Instagram timestamp math creates a slow-burn suspicion about Nadia that the player will carry into B3.",
+      "detective_annotations": [
+        {
+          "type": "circled_text",
+          "content": "Throwaway account created Oct 20, deleted Oct 21 — knew about 847-page print session. Either insider or lucky. Neither is comfortable. Cross-ref A3.",
+          "position": "beside_REDDIT_COMMENT_throwaway_hwk_truth",
+          "style_hint": "orange digital circle, 'insider?' annotation flag"
+        },
+        {
+          "type": "highlight",
+          "content": "nullroute_nadia uploaded at 00:52 Oct 20. Tagged comment from mweinberg_dev at 23:47 Oct 19. She was NOT at the hackathon when that comment was posted.",
+          "position": "beside_INSTAGRAM_section",
+          "style_hint": "red highlight, arrow pointing to timestamp delta"
+        },
+        {
+          "type": "sticky_note",
+          "content": "HarwickProspers2024 deleted within 6hrs of posting. That's not a grief response — that's someone walking back a mistake. Voss network link in metadata?",
+          "position": "beside_FACEBOOK_deleted_comment_screenshot",
+          "style_hint": "yellow digital sticky, dark border"
+        }
+      ],
+      "immersion_elements": [
+        "phone_frame",
+        "app_interface",
+        "digital_evidence",
+        "notification_banner"
+      ]
+    },
+    "A6": {
+      "emotional_beat": "The floor plan makes the impossible entrance suddenly possible — the secondary stairwell is a one-way exit that cameras cannot see. The player feels the cold clarity of understanding exactly how the killer vanished from an apartment that appeared locked from the inside. The gap in the surveillance net was already there.",
+      "detective_annotations": [
+        {
+          "type": "arrow_connection",
+          "content": "Stairwell exit: no camera, no alarm 18:00-07:00. Anyone let into lobby could exit here without another access log entry. Death window: 22:08-23:34 (see C1).",
+          "position": "beside_secondary_stairwell_label",
+          "style_hint": "red digital arrow, bold callout"
+        },
+        {
+          "type": "circled_text",
+          "content": "Kitchen glass (item 4) + desk laptop (item 1) — two staged evidence points. Killer prepared a drink, placed the laptop in sleep mode, left via alley.",
+          "position": "beside_Apartment_4C_interior",
+          "style_hint": "cyan circle, numbered annotation callouts"
+        }
+      ],
+      "immersion_elements": [
+        "case_number_header",
+        "forensic_barcode",
+        "chain_of_custody_stamp"
+      ],
+      "reading_order_note": "Best read immediately after A1. The deadbolt-from-inside detail in A1 is explained here by the stairwell exit. Players who catch this in Envelope A will feel ahead of the investigation. Players who miss it will have an aha moment when C1's router log forces them back."
+    },
+    "B1": {
+      "emotional_beat": "Jordan was alive, careful, and looking forward five days before death — planning a second document release, pursuing federal immunity, still fighting. The player feels the weight of a life that was interrupted mid-sentence: this was not a person who overdosed, this was a person with plans.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "'Remaining 40%' — documents the ownership structure of Briarfield Solutions LLC directly. Whoever killed JM needed to prevent this from reaching federal hands.",
+          "position": "beside_CG_message_paragraph_2",
+          "style_hint": "red highlight, 'MOTIVE ACCELERATOR' annotation tag"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Nair never got a Signal callback. JM was dead before she could reply. Timeline: email Oct 17, death Oct 19. 48-hour window.",
+          "position": "bottom_margin",
+          "style_hint": "dark blue sans-serif"
+        },
+        {
+          "type": "sticky_note",
+          "content": "ProtonMail terminal 3B IP — same co-working space where Nadia's hackathon ran Oct 18-20. JM was using this space days before the hackathon. Who else knew JM's routine there?",
+          "position": "top_right_corner",
+          "style_hint": "yellow digital sticky — this annotation is a deliberate red herring, pointing toward Nadia without basis"
+        }
+      ],
+      "immersion_elements": [
+        "app_interface",
+        "digital_evidence",
+        "forensic_barcode"
+      ]
+    },
+    "B2": {
+      "emotional_beat": "Voss is almost convincing. His alibi is specific, his composure is professional, and his deflections are elegant. The player finishes reading and is slightly unsure — then the phrase 'I didn't go looking for anything myself' lands like a door closing on a room that was never supposed to be opened.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "VOSS: 'Left at approximately 10:30 — retrieved vehicle from valet, drove home via Route 9.' Specific route. Specific time. Get the parking log. NOW.",
+          "position": "beside_phase_2_departure_claim",
+          "style_hint": "red highlight, bold callout — 'VERIFY B6'"
+        },
+        {
+          "type": "circled_text",
+          "content": "'I didn't go looking for anything myself.' — Reyes never suggested he went looking. Voluntary denial. Consciousness of guilt re: Suite 440 access?",
+          "position": "beside_the_slip_exchange",
+          "style_hint": "red digital circle, double underline"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Asked for water twice in 45 min — no other stress indicators. This is NOT a nervous man. This is a rehearsed man.",
+          "position": "beside_Reyes_bracketed_aside",
+          "style_hint": "dark blue sans-serif, arrow pointing to exchange"
+        },
+        {
+          "type": "sticky_note",
+          "content": "V says 'Briarfield? I'm aware there's been media attention.' He repeated the word back to buy time. What does he need 1.5 seconds to decide about Briarfield?",
+          "position": "top_right_corner",
+          "style_hint": "yellow digital sticky, red left-border"
+        }
+      ],
+      "immersion_elements": [
+        "interview_room_header",
+        "recording_device_notice",
+        "subject_photo_header",
+        "confidential_stamp"
+      ],
+      "reading_order_note": "Read before B6. Voss's alibi must be believed — or at least credible — before B6 destroys it. The annotation cross-referencing B6 should feel like a detective's instinct, not a spoiler."
+    },
+    "B3": {
+      "emotional_beat": "Nadia is abrasive, impatient, and technically fluent — everything that makes her look guilty. The player spends most of the interview convinced she did it. Then 'Kosta's, obviously' lands, and the 108-minute gap collapses from suspicious to banal. The player feels the intellectual deflation of eliminating the obvious suspect.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "Badge out 23:14, back in 01:02 — 108 minutes. Covers estimated death window 22:15-23:08. This is the primary suspect window.",
+          "position": "beside_badge_gap_exchange",
+          "style_hint": "red highlight with timeline annotation"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Kosta's Diner — Meridian and 5th. Pull CCTV. Verify card receipt timestamp. If this checks out, gap is explained.",
+          "position": "beside_diner_alibi_exchange",
+          "style_hint": "dark blue sans-serif, action item format"
+        },
+        {
+          "type": "sticky_note",
+          "content": "'I sent a message through the usual channels — it was ignored.' Reyes hadn't asked about private contact. N had direct communication with JM before going public. More than she admitted initially.",
+          "position": "top_right_corner",
+          "style_hint": "yellow digital sticky"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Exploit was from public Defcon PoC — she admits it when pressed. Real motive was professional jealousy, not legal theft. Motive weaker than forum post suggested.",
+          "position": "beside_exploit_admission_exchange",
+          "style_hint": "dark blue sans-serif, 'MOTIVE DEFLATED' tag"
+        }
+      ],
+      "immersion_elements": [
+        "interview_room_header",
+        "recording_device_notice",
+        "subject_photo_header",
+        "confidential_stamp"
+      ]
+    },
+    "B4": {
+      "emotional_beat": "Serena's interview is soaked in guilt that isn't murder guilt — the player can feel the difference but can't quite articulate it yet. The Signal message surfaces like something surfacing from water: 'don't let him in tonight — something feels wrong.' Eight words that should have saved Jordan's life and didn't. The player feels the specific horror of a warning that arrived and was ignored.",
+      "detective_annotations": [
+        {
+          "type": "circled_text",
+          "content": "SC: 'I don't believe I sent any unusual messages that evening.' Signal log says otherwise. 20:47, Oct 19: 'don't let him in tonight — something feels wrong.' Lying or dissociating?",
+          "position": "beside_Signal_message_exchange",
+          "style_hint": "red digital circle, 'CONTRADICTION' annotation tag"
+        },
+        {
+          "type": "highlight",
+          "content": "'Something feels wrong' — SC knew specific danger was coming. Not a vague anxiety. Someone told her something that night. Who?",
+          "position": "beside_warning_message_text",
+          "style_hint": "red highlight, bold annotation"
+        },
+        {
+          "type": "margin_comment",
+          "content": "SC provided access credentials. Faces federal exposure if JM is identified. Clear motive to silence. But delivery and streaming records confirm she was home. Alibi solid — guilt is different from murder.",
+          "position": "bottom_margin",
+          "style_hint": "dark blue sans-serif"
+        },
+        {
+          "type": "sticky_note",
+          "content": "Who sent SC the anonymous warning? She said she received 'information' but won't say from where. Source of that tip is critical — cross-ref C3.",
+          "position": "top_right_corner",
+          "style_hint": "yellow digital sticky, 'FOLLOW TIP SOURCE' flag"
+        }
+      ],
+      "immersion_elements": [
+        "interview_room_header",
+        "recording_device_notice",
+        "subject_photo_header",
+        "confidential_stamp"
+      ],
+      "reading_order_note": "Read after B3 — Nadia's clearance makes Serena's foreknowledge hit harder. If Nadia didn't do it and Serena knew danger was coming, who told Serena?"
+    },
+    "B5": {
+      "emotional_beat": "The co-working badge log is procedural paperwork — until the player maps Jordan's access record against the October 11 print session at City Hall and realizes the connection. Someone traced this same trail and arrived at Jordan Mercer's name before police had any lead at all. The player feels the retroactive dread of understanding that Jordan was already identified as a target before anyone was looking.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "JM badged into Meridian Co-Works on Oct 8, 10, 11 — same days as CHWS-0047 Finance Division print session. Someone cross-referencing these two logs could identify JM as the printer.",
+          "position": "beside_Jordan_Mercer_badge_entries",
+          "style_hint": "cyan highlight with cross-reference arrow"
+        },
+        {
+          "type": "margin_comment",
+          "content": "This is how Suite 440 found JM. Print session Oct 11 → co-working badge record → JM's identity. Cross-ref A3 entry 7.",
+          "position": "bottom_margin",
+          "style_hint": "dark blue sans-serif, 'A3 → B5 → JM IDENTIFIED' chain notation"
+        }
+      ],
+      "immersion_elements": [
+        "case_number_header",
+        "chain_of_custody_stamp",
+        "digital_evidence"
+      ],
+      "reading_order_note": "Functions as the connective tissue between A3 and C2. Players who already noted the Suite 440 anomaly in A3 will feel a click of confirmation here. Players who missed A3 will be prompted to return."
+    },
+    "B6": {
+      "emotional_beat": "A parking garage log. A timestamp. 21:47:03. The player watches Voss's alibi — the thing he staked his entire polished interview on — crack along a single 43-minute lie. The relief of catching a specific, verifiable deception is immediate and almost physical.",
+      "detective_annotations": [
+        {
+          "type": "circled_text",
+          "content": "VOSS vehicle exit: 21:47:03. Claimed departure: 22:30. Gap: 43 minutes. Vehicle was free from 21:47 — well within death window 22:08-23:34. HE LIED.",
+          "position": "beside_exit_timestamp_21:47:03",
+          "style_hint": "red digital circle, 'ALIBI COLLAPSE' bold annotation"
+        },
+        {
+          "type": "highlight",
+          "content": "No valet return record after 21:47. No credit card activity after 21:47 until 07:15 next morning. 9+ hours unaccounted for.",
+          "position": "beside_valet_records_section",
+          "style_hint": "red highlight, timeline gap annotation"
+        },
+        {
+          "type": "arrow_connection",
+          "content": "Cross-ref B2 — 'retrieved my vehicle from the valet, drove home via Route 9.' Valet has no record of that retrieval. Where did the car actually go?",
+          "position": "top_right_corner",
+          "style_hint": "red digital arrow pointing to 'B2' boxed reference"
+        }
+      ],
+      "immersion_elements": [
+        "chain_of_custody_stamp",
+        "digital_evidence",
+        "forensic_barcode",
+        "case_number_header"
+      ],
+      "reading_order_note": "This is Trojan Horse #2's payoff. Must be read after B2 (Voss's alibi interview). The parking log appears to be administrative confirmation of attendance — it destroys the alibi instead. The juxtaposition of B2 and B6 is the central deductive moment of Envelope B."
+    },
+    "B7": {
+      "emotional_beat": "Fentanyl at 18.4 ng/mL. No prescription. No known drug use. A documented opioid allergy on file since 2022. The death that was treated as accidental is reclassified by a single toxicology result, and the player feels the reclassification like a door locking behind them — everything before this was about a suspicious death, everything after is about a murder.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "18.4 ng/mL fentanyl — lethal threshold. No opioid Rx ever. Emergency contact confirms opioid allergy stated to provider 2022. This was NOT accidental.",
+          "position": "beside_toxicology_results_section",
+          "style_hint": "red highlight, 'HOMICIDE' annotation in caps"
+        },
+        {
+          "type": "circled_text",
+          "content": "No drug paraphernalia consistent with recreational use. Open pill organizer in A1 was STAGED. Someone put it there.",
+          "position": "beside_paraphernalia_absence_notation",
+          "style_hint": "red circle, arrow connecting to 'A1 — pill organizer staging'"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Kitchen glass (A6, evidence item 4) — this is how fentanyl was delivered. Drink laced, glass left in place. Deliberate staging of the whole scene.",
+          "position": "bottom_margin",
+          "style_hint": "dark blue sans-serif, connects to A6 kitchen layout"
+        }
+      ],
+      "immersion_elements": [
+        "agency_letterhead",
+        "chain_of_custody_stamp",
+        "forensic_barcode",
+        "official_seal"
+      ],
+      "reading_order_note": "Read after A4 — the impossible posthumous post at 02:17 Oct 20 now has its time anchor confirmed. Jordan was dead by ~23:08 Oct 19; the credential use at 02:17 was definitively post-mortem."
+    },
+    "C1": {
+      "emotional_beat": "MAC address a4:c3:f0:88:12:7e. Connected 22:08:14. Disconnected 23:34:47. The player stares at a string of hexadecimal characters and understands that this is a person — physically present in Jordan's apartment while Jordan was dying. The router didn't lie. Someone was there.",
+      "detective_annotations": [
+        {
+          "type": "circled_text",
+          "content": "a4:c3:f0:88:12:7e — NOT one of JM's registered devices. OUI lookup: mobile phone type. Connected 22:08, disconnected 23:34. That is the ENTIRE death window.",
+          "position": "beside_unidentified_MAC_entry",
+          "style_hint": "red circle, bold 'UNIDENTIFIED DEVICE — PIVOT CLUE' annotation"
+        },
+        {
+          "type": "highlight",
+          "content": "Device auto-connected — consistent with a phone that had connected to this network before, or with 'auto-join open networks' enabled on a burner. Physical presence confirmed.",
+          "position": "beside_connection_method_notation",
+          "style_hint": "cyan highlight with technical annotation"
+        },
+        {
+          "type": "arrow_connection",
+          "content": "Building entry log — main lobby only. If this device was inside the apartment, its owner entered the building. How? Cross-ref A6 stairwell blind spot.",
+          "position": "bottom_margin",
+          "style_hint": "red digital arrow, 'A6 stairwell' boxed"
+        },
+        {
+          "type": "sticky_note",
+          "content": "Run MAC a4:c3:f0:88:12:7e against all devices registered to Voss, Osei, and Cho. Also any device registered to Voss's off-books contractor contacts.",
+          "position": "top_right_corner",
+          "style_hint": "yellow digital sticky, action item format"
+        }
+      ],
+      "immersion_elements": [
+        "digital_evidence",
+        "forensic_barcode",
+        "chain_of_custody_stamp",
+        "case_number_header"
+      ],
+      "reading_order_note": "This is the pivot document. Best read after B6 and B7 — Voss's unaccounted window (B6) and confirmed murder (B7) make the unidentified device's timing devastating. The player should arrive at C1 already suspecting Voss and find the physical proof of presence."
+    },
+    "C2": {
+      "emotional_beat": "Suite 440. Aldric Voss, Political Consultant, contracted through the Council Affairs Office. The directory entry confirms what A3 couldn't say explicitly — the person who accessed the print queue 17 days before the murder was Voss, and he used an unregistered guest session so his name would never appear in the log. Premeditation, proven.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "Suite 440 primary occupant: ALDRIC VOSS, Political Consultant. CHWS-0112 guest session Oct 14 16:45 — he accessed the print queue audit log personally. Knew JM's identity 17 days before murder.",
+          "position": "beside_suite_directory_entry",
+          "style_hint": "red highlight, 'PREMEDITATION ESTABLISHED' bold annotation"
+        },
+        {
+          "type": "circled_text",
+          "content": "Guest session token — no named user ID. V used a temporary credential deliberately. This was not accidental access. He covered his tracks inside the system.",
+          "position": "beside_session_token_notation",
+          "style_hint": "red circle, 'INTENTIONAL CONCEALMENT' annotation"
+        },
+        {
+          "type": "arrow_connection",
+          "content": "A3 entry 7 → C2 suite occupant → VOSS. He found JM. He planned it. Cross-ref B5 badge records — same trail he followed.",
+          "position": "bottom_margin",
+          "style_hint": "red digital arrow, 'A3 + B5 + C2 = premeditation chain' notation"
+        }
+      ],
+      "immersion_elements": [
+        "agency_letterhead",
+        "digital_evidence",
+        "case_number_header",
+        "official_seal"
+      ],
+      "reading_order_note": "This resolves CONTRA-03. Must be read after A3 (where the Suite 440 access was planted without a name) and after B2 (where Voss denied going looking for anything himself). The combination of C2 and the B2 slip is the premeditation proof."
+    },
+    "C3": {
+      "emotional_beat": "Both threads — the staged second leak and the anonymous warning to Serena — run back to the same off-books investigative contractor. Voss didn't just kill Jordan. He staged the digital aftermath to frame Serena and used a third-party intermediary to paralyze her with a warning she wouldn't dare act on. The player feels the architectural complexity of a man who built a cover story inside the crime itself.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "VPN metadata from second leak + anonymous tip phone number — both trace to Delaware-registered investigative contractor. Single client active municipal contract: Harwick Council Affairs Office.",
+          "position": "beside_contractor_network_map",
+          "style_hint": "red highlight, 'CONVERGENCE POINT' bold annotation"
+        },
+        {
+          "type": "circled_text",
+          "content": "Contractor sent SC the 'someone is moving on Ghost tonight' warning — designed to spook her into silence, not action. SC couldn't call police without exposing her own credential access. V knew this.",
+          "position": "beside_anonymous_tip_trace_section",
+          "style_hint": "red circle, 'CONTRA-04 RESOLVED' annotation"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Second leak (A4) used JM's PGP key — copied from JM's laptop during the staging. Edited to point at SC. V orchestrated the post-death misdirection and the Serena paralysis simultaneously.",
+          "position": "bottom_margin",
+          "style_hint": "dark blue sans-serif, 'CONTRA-02 RESOLVED' tag"
+        }
+      ],
+      "immersion_elements": [
+        "digital_evidence",
+        "forensic_barcode",
+        "case_number_header",
+        "app_interface"
+      ],
+      "reading_order_note": "Resolves CONTRA-02 and CONTRA-04 simultaneously. Read after A4 (second leak) and B4 (Serena's warning message). The player who has held these two loose threads since Envelope A and B will feel them snap into place here."
+    },
+    "R1": {
+      "emotional_beat": "The evidence web is complete. The player sees the corkboard fully assembled — Voss at the center, every thread running to him. Jordan Mercer's photo in the upper left, connected to everything by a single line, is the player's reminder that this was not an abstract puzzle. A person died so that a financial crime could stay buried.",
+      "detective_annotations": [
+        {
+          "type": "sticky_note",
+          "content": "Full chain confirmed: A3 suite access → B5 badge cross-ref → B2 alibi lie → B6 parking exit → C1 MAC address → C2 Suite 440 → C3 contractor. Every link holds.",
+          "position": "beside_evidence_web_center",
+          "style_hint": "yellow digital sticky, green border — resolution confidence"
+        },
+        {
+          "type": "margin_comment",
+          "content": "JM had 40% of the files that were never published. Federal journalist contact Priya Nair (B1) — those files still exist on the remote server. This case is not finished.",
+          "position": "bottom_margin",
+          "style_hint": "dark blue sans-serif, 'ONGOING' notation"
+        }
+      ],
+      "immersion_elements": [
+        "case_number_header",
+        "confidential_stamp",
+        "official_seal"
+      ]
+    },
+    "R2": {
+      "emotional_beat": "Aldric Voss in a creased suit on an arraignment bench, his city contract shredded, facing federal racketeering charges. The player feels the specific satisfaction of watching a person who built their career on managing consequences face a consequence he cannot manage away. It is not triumphant. It is bureaucratic and correct.",
+      "detective_annotations": [
+        {
+          "type": "circled_text",
+          "content": "Federal racketeering — Briarfield 40% ownership stake under wife's maiden name. This was always a federal matter. HPD handed off to US Attorney.",
+          "position": "beside_charge_sheet_notation",
+          "style_hint": "red circle, 'FEDERAL JURISDICTION' annotation"
+        }
+      ],
+      "immersion_elements": [
+        "official_seal",
+        "case_number_header",
+        "confidential_stamp"
+      ]
+    },
+    "R3": {
+      "emotional_beat": "Nadia Osei, cleared. The same diner booth, the same window, the CCTV still showing her exactly where she said she was. The player feels the clean finality of an alibi that was always true — and the lingering awareness that Nadia's anger at Jordan was real, even if it didn't lead to murder.",
+      "detective_annotations": [
+        {
+          "type": "margin_comment",
+          "content": "Kosta's CCTV confirmed. Card receipt 23:31-00:47. NOsei cleared. Her attempted City Hall breach six months prior was noted in federal referral but is outside this case scope.",
+          "position": "bottom_margin",
+          "style_hint": "dark blue sans-serif, 'CLEARED' green notation"
+        }
+      ],
+      "immersion_elements": [
+        "case_number_header",
+        "digital_evidence"
+      ]
+    },
+    "R4": {
+      "emotional_beat": "Serena Cho at her desk, city badge on, federal cooperation agreement in her bag. She gave Jordan the credentials, received the warning, and chose silence over a phone call that might have saved Jordan's life. The player feels the weight of a person who is not charged with murder but cannot escape what she did and did not do.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "SC cooperation agreement — US Attorney accepted. Briarfield expanded audit running. She provided credentials. She did not provide a phone call. Two separate moral and legal failures.",
+          "position": "beside_cooperation_agreement_notation",
+          "style_hint": "cyan highlight, 'COOPERATION ACCEPTED' annotation"
+        },
+        {
+          "type": "margin_comment",
+          "content": "SC will remain in her IT role pending federal oversight review. She sees JM's name in the case header on her monitor every day. I don't know if that's just or simply true.",
+          "position": "bottom_margin",
+          "style_hint": "dark blue sans-serif — this annotation is the detective's only moment of personal reflection, deliberately left unedited"
+        }
+      ],
+      "immersion_elements": [
+        "case_number_header",
+        "official_seal",
+        "digital_evidence"
+      ]
+    }
+  },
+  "clue_proximity_check": [
+    {
+      "contradiction_id": "CONTRA-01",
+      "introduced_in": "B2",
+      "resolved_in": "B6",
+      "distance_docs": 4,
+      "status": "optimal"
+    },
+    {
+      "contradiction_id": "CONTRA-02",
+      "introduced_in": "A4",
+      "resolved_in": "C3",
+      "distance_docs": 11,
+      "status": "proximity_warning"
+    },
+    {
+      "contradiction_id": "CONTRA-03",
+      "introduced_in": "A3",
+      "resolved_in": "C2",
+      "distance_docs": 10,
+      "status": "proximity_warning"
+    },
+    {
+      "contradiction_id": "CONTRA-04",
+      "introduced_in": "B4",
+      "resolved_in": "C3",
+      "distance_docs": 3,
+      "status": "optimal"
+    },
+    {
+      "contradiction_id": "CONTRA-05",
+      "introduced_in": "B7",
+      "resolved_in": "C1",
+      "distance_docs": 1,
+      "status": "optimal"
+    },
+    {
+      "contradiction_id": "CONTRA-06",
+      "introduced_in": "C1",
+      "resolved_in": "C1",
+      "distance_docs": 0,
+      "status": "too_easy_warning"
+    }
+  ],
+  "clue_proximity_notes": {
+    "CONTRA-02_mitigation": "Although A4 and C3 are 11 documents apart, detective annotations in A4 explicitly cross-reference the posthumous credential use, and annotations in B7 reinforce the time-of-death anchor. The connection is scaffolded across the gap rather than expected to be held cold.",
+    "CONTRA-03_mitigation": "A3 plants the Suite 440 anomaly without naming an occupant. B5 reinforces the identification trail. C2 delivers the name. The 10-document gap is bridged by two intermediate stepping stones, each with annotations pointing forward.",
+    "CONTRA-06_note": "CONTRA-06 is introduced and resolved within C1 by design — the MAC address contradiction (unknown device present) is self-contained in the router log. The deeper resolution (connecting the MAC to Voss's burner phone) requires cross-referencing C2 and C3. Distance-0 is not a mystery collapse because the identification layer requires additional documents."
+  },
+  "pacing_analysis": {
+    "A": {
+      "document_count": 6,
+      "estimated_reading_minutes": 19,
+      "emotional_intensity": "medium"
+    },
+    "B": {
+      "document_count": 7,
+      "estimated_reading_minutes": 29,
+      "emotional_intensity": "high"
+    },
+    "C": {
+      "document_count": 3,
+      "estimated_reading_minutes": 8,
+      "emotional_intensity": "peak"
+    },
+    "R": {
+      "document_count": 4,
+      "estimated_reading_minutes": 7,
+      "emotional_intensity": "resolution"
+    }
+  },
+  "pacing_warnings": [
+    {
+      "warning_type": "balance_advisory",
+      "detail": "Envelope B has 7 documents versus Envelope C's 3 — ratio is within acceptable range (under 2x) but Envelope B is dense. The three interview transcripts in B2/B3/B4 each require 500-700 words minimum. Estimated reading time for Envelope B is the longest of any envelope. Consider ensuring B5 and B6 are designed to read quickly (tabular/log formats) to provide pacing relief between interview documents."
+    }
+  ],
+  "trojan_horse_verification": [
+    {
+      "doc_id": "A3",
+      "appears_as": "A routine City Hall IT audit log — boring internal spreadsheet listing print queue access events after the leak. Looks like background paperwork establishing that the city investigated the breach.",
+      "actually_proves": "The log records a second unauthorized access on October 14 at 16:45 from workstation CHWS-0112 in Suite 440 — proving someone outside IT Security accessed the leak metadata after the official review, establishing the identification trail that links to CONTRA-03 and C2's revelation of Voss as Suite 440's occupant.",
+      "verified": true
+    },
+    {
+      "doc_id": "B6",
+      "appears_as": "A subpoenaed hotel parking garage exit record — administrative document confirming Voss attended the fundraiser, seemingly corroborating his stated alibi from B2.",
+      "actually_proves": "Voss's vehicle exited the garage at 21:47:03 — 43 minutes before his stated 22:30 departure — placing him free and unaccounted for from 21:47 through 07:15 the next morning, covering the entire death window and resolving CONTRA-01.",
+      "verified": true
+    },
+    {
+      "doc_id": "C1",
+      "appears_as": "A technical router admin export — dense with MAC addresses, IP lease timestamps, and DHCP handshake data. Looks like jargon-heavy forensic filler that a non-technical player might skim past.",
+      "actually_proves": "MAC address a4:c3:f0:88:12:7e connected to Jordan's home WiFi between 22:08:14 and 23:34:47 on October 19 — physically placing an unidentified device inside the apartment during the confirmed death window. This is the pivot clue of the entire case and resolves CONTRA-05 by confirming staged homicide.",
+      "verified": true
+    }
+  ]
+}

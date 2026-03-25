@@ -1,0 +1,51 @@
+model_list:
+- model_name: oc-fast
+  litellm_params:
+    model: gemini/gemini-3-flash
+    api_key: os.environ/GOOGLE_API_KEY
+- model_name: oc-balanced
+  litellm_params:
+    model: gemini/gemini-3-pro
+    api_key: os.environ/GOOGLE_API_KEY
+- model_name: oc-premium
+  litellm_params:
+    model: gpt-5.2
+    api_key: os.environ/OPENAI_API_KEY
+- model_name: oc-code
+  litellm_params:
+    model: openai-codex/gpt-5.3-codex
+    api_key: os.environ/OPENAI_API_KEY
+- model_name: oc-image
+  litellm_params:
+    model: gpt-image-1
+    api_key: os.environ/OPENAI_API_KEY
+- model_name: oc-kimi-fast
+  litellm_params:
+    model: moonshotai/kimi-k2-instruct
+    api_key: os.environ/MOONSHOT_API_KEY
+- model_name: oc-default
+  litellm_params:
+    model: gemini/gemini-3-flash
+    api_key: os.environ/GOOGLE_API_KEY
+- model_name: oc-critical
+  litellm_params:
+    model: gpt-5.2
+    api_key: os.environ/OPENAI_API_KEY
+- model_name: oc-claude-opus-46
+  litellm_params:
+    model: claude/claude-opus-4.6
+    api_key: os.environ/ANTHROPIC_API_KEY
+- model_name: oc-claude-opus-45
+  litellm_params:
+    model: claude/claude-opus-4.5
+    api_key: os.environ/ANTHROPIC_API_KEY
+- model_name: oc-fallback
+  litellm_params:
+    model: gpt-4o-mini
+    api_key: os.environ/OPENAI_API_KEY
+litellm_settings:
+  set_verbose: false
+  success_callback:
+  - langfuse
+general_settings:
+  master_key: ${LITELLM_MASTER_KEY}

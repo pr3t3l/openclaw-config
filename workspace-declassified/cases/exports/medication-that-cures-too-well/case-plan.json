@@ -1,0 +1,354 @@
+{
+  "tier": "NORMAL",
+  "slug": "medication-that-cures-too-well",
+  "title": "Medication That Cures Too Well",
+  "logline": "A biotech scientist announces a breakthrough drug that cures a chronic disease—then dies days later in a staged ‘accident’ as her company abruptly withdraws the product from the market.",
+  "setting": {
+    "city": "Boston",
+    "neighborhood": "Kendall Square Tech Corridor",
+    "time_period": "October 2026",
+    "atmosphere": "Sterile, high-stakes corporate biotech where billions of dollars hinge on clinical trial results and regulatory secrets."
+  },
+  "victim": {
+    "name": "Dr. Aris Thorne",
+    "age": 42,
+    "occupation": "Lead Scientist, Horizon Therapeutics",
+    "cause_of_death": "Carbon monoxide poisoning in enclosed lab garage (initially ruled accidental vehicle exhaust exposure)",
+    "found_by": "Night Security",
+    "found_at": "Horizon Therapeutics Sub-Level 2 Parking Garage",
+    "found_when": "2026-10-14T02:15:00"
+  },
+  "culprit": {
+    "poi_id": "POI-02",
+    "motive": "The breakthrough drug actually caused latent, fatal immune system cascades in 15% of trial subjects. Dr. Thorne discovered the CEO suppressed this data to secure a $2B acquisition by a pharma giant. She was preparing a whistleblower report to the FDA the morning she died.",
+    "motive_specificity_test": "Only the CEO had the authority to alter the finalized clinical trial reports sent to the acquiring company and the FDA, and only the CEO stood to personally lose $400M in equity if the acquisition fell through.",
+    "method_steps": [
+      "Accessed the sub-level garage control system using a master administrative override at 21:30.",
+      "Disabled the automated exhaust ventilation fans for Sector 4 where Thorne parked.",
+      "Used a modified remote starter frequency to keep Thorne's hybrid vehicle running its combustion engine while she was locked inside her nearby private lab office, filling the adjacent enclosed space with CO.",
+      "Deleted the HVAC override logs, making the fan failure appear as a routine mechanical fault."
+    ],
+    "the_almost": "The CEO forgot that the building's secondary environmental monitoring system (used for clean-room pressure differentials) independently logs rapid CO2/CO spikes and cannot be edited by the standard HVAC admin account."
+  },
+  "pois": [
+    {
+      "id": "POI-01",
+      "name": "Dr. Aris Thorne",
+      "role": "Lead Scientist, Horizon Therapeutics",
+      "status": "deceased",
+      "description": "Brilliant but uncompromising researcher. Co-inventor of the drug. Had become increasingly isolated from management in her final weeks.",
+      "voice_profile": {
+        "speech_pattern": "N/A — deceased",
+        "under_pressure": "N/A",
+        "verbal_tics": "N/A"
+      },
+      "surface_motive": "Victim",
+      "alibi": {
+        "claim": "N/A",
+        "verifiable": false,
+        "holes": "N/A"
+      },
+      "hiding": "She had secretly downloaded the raw, unedited trial data to a personal encrypted drive.",
+      "interview_doc": null,
+      "is_culprit": false,
+      "red_herring_reason": null
+    },
+    {
+      "id": "POI-02",
+      "name": "Elias Vance",
+      "role": "CEO, Horizon Therapeutics",
+      "status": "alive",
+      "description": "Charismatic biotech executive driving a $2 billion acquisition. Obsessed with market timing and controlling the corporate narrative.",
+      "voice_profile": {
+        "speech_pattern": "Polished, uses corporate buzzwords, deflects specific questions with broad visionary statements.",
+        "under_pressure": "Becomes overly precise and condescending; repeats the interviewer's name.",
+        "verbal_tics": "Uses 'frankly' before telling a lie."
+      },
+      "surface_motive": "Thorne was stalling the product launch, threatening the acquisition timeline.",
+      "alibi": {
+        "claim": "Working late in his top-floor executive suite, then took a private car service home at 22:00.",
+        "verifiable": true,
+        "holes": "He was in the building, but the car service log shows he didn't leave until 23:15, giving him ample time to stage the scene."
+      },
+      "hiding": "He altered the Phase III clinical trial data to hide the fatal immune response rate.",
+      "interview_doc": "B1",
+      "is_culprit": true,
+      "red_herring_reason": null
+    },
+    {
+      "id": "POI-03",
+      "name": "Dr. Julian Mercer",
+      "role": "Head of Regulatory Affairs",
+      "status": "alive",
+      "description": "Meticulous and cautious. Responsible for all FDA submissions. Known for being a rigid rule-follower.",
+      "voice_profile": {
+        "speech_pattern": "Dry, clinical, relies heavily on jargon and acronyms.",
+        "under_pressure": "Stutters slightly, quotes regulatory guidelines.",
+        "verbal_tics": "Clears throat before answering difficult questions."
+      },
+      "surface_motive": "Signed off on the flawed FDA submission. If Thorne blew the whistle, Mercer would face federal prison for fraud.",
+      "alibi": {
+        "claim": "At a pharmaceutical industry networking dinner downtown until midnight.",
+        "verifiable": false,
+        "holes": "Left the dinner early at 21:00 complaining of a migraine; unaccounted for during the time of death."
+      },
+      "hiding": "He suspected the data was altered but chose to ignore it to protect his career and impending bonus.",
+      "interview_doc": "B2",
+      "is_culprit": false,
+      "red_herring_reason": "He drafted the urgent withdrawal memo before Thorne was even found dead, making it look like he knew she was going to die and preemptively pulled the drug."
+    },
+    {
+      "id": "POI-04",
+      "name": "Sarah Chen",
+      "role": "Lead Investor / Board Member",
+      "status": "alive",
+      "description": "Ruthless venture capitalist. Holds the largest external stake in Horizon and orchestrated the acquisition deal.",
+      "voice_profile": {
+        "speech_pattern": "Direct, impatient, speaks in bullet points. Interrupts frequently.",
+        "under_pressure": "Threatens legal action, becomes icy and silent.",
+        "verbal_tics": "Taps her ring on the table when irritated."
+      },
+      "surface_motive": "Needs the acquisition to go through to save her struggling VC fund. Thorne's hesitation was a major roadblock.",
+      "alibi": {
+        "claim": "On a flight back from a conference in London.",
+        "verifiable": true,
+        "holes": "Flight landed at 19:30, giving her time to reach the campus before the murder."
+      },
+      "hiding": "She was secretly negotiating to sell her shares to a rival company if the FDA delayed approval.",
+      "interview_doc": "B3",
+      "is_culprit": false,
+      "red_herring_reason": "She was seen arguing aggressively with Thorne in the parking garage earlier that day."
+    }
+  ],
+  "timeline": [
+    {
+      "datetime": "2026-10-13T10:00:00",
+      "event": "Thorne confronts Vance about the hidden Phase III data anomalies.",
+      "source_docs": [
+        "A3"
+      ],
+      "is_critical_period": false
+    },
+    {
+      "datetime": "2026-10-13T14:30:00",
+      "event": "Chen and Thorne have a heated argument in the garage.",
+      "source_docs": [
+        "B3"
+      ],
+      "is_critical_period": false
+    },
+    {
+      "datetime": "2026-10-13T18:45:00",
+      "event": "Mercer drafts the 'Urgent Product Withdrawal' memo.",
+      "source_docs": [
+        "A4"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-10-13T21:00:00",
+      "event": "Mercer leaves the industry dinner early.",
+      "source_docs": [
+        "B2"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-10-13T21:30:00",
+      "event": "Garage Sector 4 ventilation fans disabled via admin override.",
+      "source_docs": [
+        "C1"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-10-13T22:15:00",
+      "event": "Thorne succumbs to CO poisoning in her lab annex.",
+      "source_docs": [
+        "B4"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-10-13T23:15:00",
+      "event": "Vance leaves the building via private car service.",
+      "source_docs": [
+        "C2"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-10-14T02:15:00",
+      "event": "Security finds Thorne's body; HVAC system logs show 'mechanical fault'.",
+      "source_docs": [
+        "A1"
+      ],
+      "is_critical_period": false
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "CONTRA-01",
+      "what": "Vance claims he left at 22:00, but the car service log shows 23:15.",
+      "introduced_in": "B1",
+      "resolved_in": "C2",
+      "player_inference": "Vance lied about his alibi and was present during the time of death."
+    },
+    {
+      "id": "CONTRA-02",
+      "what": "HVAC logs show a mechanical failure, but environmental sensors show a manual shutdown sequence.",
+      "introduced_in": "A5",
+      "resolved_in": "C1",
+      "player_inference": "The fan failure was intentionally triggered by an administrator, not an accident."
+    },
+    {
+      "id": "CONTRA-03",
+      "what": "Mercer claims the drug withdrawal was a reaction to Thorne's death, but the memo metadata shows it was drafted hours before she died.",
+      "introduced_in": "B2",
+      "resolved_in": "A4",
+      "player_inference": "The company knew the drug was doomed before the 'accident' happened."
+    }
+  ],
+  "evidence_chain": [
+    {
+      "step": 1,
+      "docs_needed": [
+        "A1",
+        "A5"
+      ],
+      "reveals": "The death was caused by CO buildup due to a supposed HVAC failure."
+    },
+    {
+      "step": 2,
+      "docs_needed": [
+        "A4"
+      ],
+      "reveals": "The company planned to withdraw the drug before Thorne died, suggesting a massive cover-up."
+    },
+    {
+      "step": 3,
+      "docs_needed": [
+        "B1",
+        "C2"
+      ],
+      "reveals": "Vance lied about his whereabouts during the crucial window of the murder."
+    },
+    {
+      "step": 4,
+      "docs_needed": [
+        "C1"
+      ],
+      "reveals": "The HVAC failure was a deliberate, admin-level override, proving murder."
+    },
+    {
+      "step": 5,
+      "docs_needed": [
+        "A3",
+        "C1"
+      ],
+      "reveals": "Only Vance had the motive (the hidden data) and the admin access to execute the override."
+    }
+  ],
+  "envelopes": {
+    "A": {
+      "description": "Scene Setup — establish crime, introduce POIs, plant initial contradictions",
+      "docs": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5"
+      ]
+    },
+    "B": {
+      "description": "Contradictory Evidence — interviews reveal lies, forensics deepen mystery",
+      "docs": [
+        "B1",
+        "B2",
+        "B3",
+        "B4"
+      ]
+    },
+    "C": {
+      "description": "The Pivot — the document that breaks the case open, resolves main contradiction",
+      "docs": [
+        "C1",
+        "C2"
+      ]
+    },
+    "R": {
+      "description": "Resolution — one document per POI with guilty/not-guilty reasoning + evidence refs",
+      "docs": [
+        "R1",
+        "R2",
+        "R3"
+      ]
+    }
+  },
+  "experiential_style": "digital_corporate",
+  "emotional_arc": {
+    "envelope_A": "Curiosity and unease — a brilliant scientist dies just as her life's work is pulled. What did she find?",
+    "envelope_B": "Suspicion and conflicting empathy — the corporate executives are all lying to protect their wealth, but who is capable of murder?",
+    "envelope_C": "Aha! and shock — the realization that the 'accident' was a calculated, digital assassination.",
+    "envelope_R": "Catharsis and satisfaction — the digital paper trail proves the CEO's guilt, exposing the massive fraud."
+  },
+  "trojan_horse_docs": [
+    {
+      "doc_id": "C2",
+      "appears_as": "A routine corporate expense report for executive car services.",
+      "actually_proves": "Shows Vance's car waited from 22:00 to 23:15, destroying his alibi and placing him at the scene during the murder window."
+    },
+    {
+      "doc_id": "C1",
+      "appears_as": "An automated clean-room environmental status alert email (spam).",
+      "actually_proves": "Contains the raw sensor data showing a manual 'Admin-Override-Shutdown' command for Sector 4, contradicting the official 'mechanical failure' log."
+    }
+  ],
+  "social_media_plan": [
+    {
+      "platform": "X/Twitter",
+      "content_type": "thread",
+      "case_purpose": "A biotech analyst noting the bizarre timing of the drug withdrawal and Thorne's death, planting the idea of a cover-up."
+    },
+    {
+      "platform": "LinkedIn",
+      "content_type": "post",
+      "case_purpose": "Vance's overly-polished memorial post for Thorne, which rings false and establishes his carefully managed public persona."
+    },
+    {
+      "platform": "Reddit",
+      "content_type": "comments",
+      "case_purpose": "r/Biotech speculation about Horizon's Phase III data, hinting at the fatal immune response flaw."
+    }
+  ],
+  "spatial_tool": {
+    "type": "floor_plan",
+    "doc_id": "A5",
+    "description": "Schematic of Horizon Sub-Level 2, showing Thorne's lab annex, her parking spot in Sector 4, the HVAC ventilation zones, and the location of the CEO's private elevator access."
+  },
+  "hint_system": {
+    "levels": [
+      {
+        "level": 1,
+        "label": "Nudge",
+        "hints": [
+          "Look closely at the timing of the drug withdrawal memo."
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Direction",
+        "hints": [
+          "Compare Vance's interview statement about when he went home with the executive expense reports."
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Reveal",
+        "hints": [
+          "The clean-room alert email shows the HVAC system didn't break; it was turned off by an admin."
+        ]
+      }
+    ]
+  }
+}

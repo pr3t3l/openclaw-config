@@ -1,36 +1,21 @@
-# API keys (NUNCA en git)
+# =============================================
+# OpenClaw Unified Repo — .gitignore
+# Everything tracked under one repo.
+# Last updated: 2026-03-24
+# =============================================
+
+# === SECRETS (NEVER in git) ===
 .env
 *.env
 litellm.env
+credentials/
+identity/
+agents/*/agent/auth.json
+agents/*/agent/auth-profiles.json
 
-# Session data (regenerable)
+# === RUNTIME (regenerable, not needed in git) ===
 agents/*/sessions/
 agents/*/qmd/
-
-# Case exports (producto, en repo separado)
-workspace-declassified/cases/exports/*/
-
-# Node
-node_modules/
-package-lock.json
-
-# Python
-__pycache__/
-*.pyc
-litellm-venv/
-
-# Temp
-*.log
-*.tmp
-media/inbound/
-
-# Workspaces archivados (ya no existen aquí)
-workspace-art-director/
-workspace-image-generator/
-workspace-narrative-architect/
-workspace-org/
-
-# OpenClaw runtime (regenerable, no necesita backup)
 browser/
 canvas/
 completions/
@@ -40,34 +25,70 @@ exec-approvals.json
 update-check.json
 logs/
 subagents/
-credentials/
+media/
+media/inbound/
 
-# Backups de config viejos
-*.backup_*
+# === ZOMBIE WORKSPACES (OpenClaw recreates these on sessions_spawn) ===
+# These are NOT real workspaces — they're artifacts of subagent spawning.
+# If they reappear, ignore them.
+workspace-art-director/
+workspace-experience-designer/
+workspace-image-generator/
+workspace-narrative-architect/
+workspace-production-engine/
+workspace-quality-auditor/
+workspace-org/
+workspace-content-distribution/
 
-# Workspaces tienen su propio git
-workspace/
-workspace-declassified/
+# === CASE EXPORTS (heavy: PDFs, images, HTML renders) ===
+# The case data (exports/) contains generated PDFs, images, and renders.
+# These are the PRODUCT — too heavy for git, backed up separately.
+# Applies to both workspace-declassified/ and workspace/ (CEO)
+workspace-declassified/cases/exports/*/visuals/
+workspace-declassified/cases/exports/*/layout_specs/
+workspace-declassified/cases/exports/*/final/
+workspace-declassified/cases/exports/*/qa/
+workspace-declassified/cases/exports/*/envelope_*/
+workspace/cases/exports/*/visuals/
+workspace/cases/exports/*/layout_specs/
+workspace/cases/exports/*/final/
+workspace/cases/exports/*/qa/
+workspace/cases/exports/*/envelope_*/
+# Keep manifest.json and case_config.json (small, useful for tracking)
+# Keep the case-plan.json and clue_catalog.json (the creative core)
 
-# SQLite binarios
+# === META-PLANNER RUNS (generated data, not code) ===
+workspace-meta-planner/runs/*/
+!workspace-meta-planner/runs/.gitkeep
+
+# === NODE / PYTHON / BUILD ===
+node_modules/
+package-lock.json
+__pycache__/
+*.pyc
+litellm-venv/
+.venv/
+.bun/
+
+# === TEMP / LOGS / DEBUG ===
+*.log
+*.tmp
+*.bak
+debug_*_response.txt
+debug_*_response*.txt
+
+# === OPENCLAW WORKSPACE STATE (regenerable) ===
+.openclaw/workspace-state.json
+*/.openclaw/workspace-state.json
+
+# === SQLITE BINARIES (regenerable by QMD) ===
 *.sqlite
 *.sqlite-journal
-
-# Cron backups
-*.bak
-
-# Sessions (pesadas, regenerables, contienen logs con secrets)
-agents/*/sessions/
-
-# Identity tokens
-identity/
-
-# Memory SQLite (binario, regenerable por QMD)
 memory/*.sqlite
 
-# Media (runtime)
-media/
+# === OLD BACKUPS ===
+*.backup_*
 
-# Auth tokens (OAuth, refresh tokens - SECRETS)
-agents/*/agent/auth.json
-agents/*/agent/auth-profiles.json
+# === OS FILES ===
+.DS_Store
+Thumbs.db

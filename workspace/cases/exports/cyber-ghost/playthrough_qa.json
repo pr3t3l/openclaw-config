@@ -1,0 +1,233 @@
+{
+  "mode": "playthrough",
+  "case_slug": "cyber-ghost",
+  "tier": "NORMAL",
+  "solvability": "YES",
+  "difficulty_score": 7,
+  "solving_path": {
+    "envelope_A_hypotheses": {
+      "initial_reads": "A1 (incident report) establishes Jordan Mercer dead — open pill organizer with no prescription, deadbolt locked from inside, laptop in sleep mode. Scene is too tidy. A2 (POI sheet) introduces four suspects with distinct pressure points: Voss's 340% fee spike stands out immediately as financially specific; Nadia's public forum threat makes her the most obvious suspect; Serena's dual role as credential-provider and friend is quietly alarming; Jordan is the victim.",
+      "after_A3": "The print queue audit log looks like IT background paperwork. First read: the bulk print session on Oct 11 from CHWS-0047 matches the leaked document count — that establishes the leak's physical origin inside City Hall. The Suite 440 access entry (entry 7, Oct 14 16:45, unregistered guest session, no annotation) is anomalous but Suite 440 means nothing yet. Flag it and move on.",
+      "after_A4": "The second Briarfield post at 02:17 on Oct 20 used Jordan's authenticated PGP key. This is the first planted impossibility — the timing is suspicious but the player doesn't have a confirmed time of death yet. The content edits (removing council signatures, adding Finance Division attribution matching Serena's role exactly) look like deliberate misdirection toward Serena. Serena moves up the suspect list.",
+      "after_A5": "The Instagram timestamp math on Nadia's post (uploaded 00:52 Oct 20, tagged comment from 23:47 Oct 19) plants a suspicion gap. The throwaway Reddit comment about the 847-page print session and Oct 8-11 logs is either insider knowledge or a lucky guess — primes me to look harder at A3. The deleted Facebook comment from the Voss-adjacent account 'HarwickProspers2024' is atmospherically ominous.",
+      "after_A6": "The secondary stairwell exit (no camera, no alarm 18:00-07:00, alley-facing) solves the deadbolt mystery from A1. Someone let in through the main lobby could exit through the stairwell without a second access log entry. This is a key physical insight.",
+      "envelope_A_suspect_ranking": [
+        "1. Serena Cho — provided credentials, A4 misdirection points directly at her role, warning message possibility",
+        "2. Nadia Osei — public threat, technical capability, Instagram gap",
+        "3. Aldric Voss — fee spike is financially suspicious but feels like background detail at this stage",
+        "4. Unknown — someone used Jordan's credentials post-death, could be a fourth party"
+      ]
+    },
+    "envelope_B_hypotheses": {
+      "after_B1": "Jordan's email to Priya Nair on Oct 17 confirms Jordan was actively planning a second document release and pursuing federal immunity. Jordan was NOT suicidal or planning to go quiet — this was a person with a forward-looking agenda who was killed in a 48-hour window after making contact. The '40% remaining' files directly name Briarfield's ownership structure. Whoever killed Jordan needed to stop that release before federal protection was secured.",
+      "after_B2_voss_interview": "Voss is smooth, cooperative, rehearsed. His alibi: hotel until 10:30pm, valet retrieved car, drove home via Route 9, in bed by midnight. He's specific about the early evening and vague about the 9-10:30pm window. The verbal slip — 'I didn't go looking for anything myself' — is odd because nobody suggested he did. That's a voluntary denial of something. His deflection on Briarfield ('advisory services to the council on procurement efficiency') is elegant non-denial. His flat denial of knowing Jordan Mercer's name feels too clean. Annotation points to B6 to verify the parking claim.",
+      "after_B3_nadia_interview": "Nadia arrives aggressive, doesn't apologize for the forum threat. The badge gap (11:14pm out, 1:02am in — 108 minutes) covers the death window. I'm prepared to mark her prime suspect — then 'Kosta's, obviously' lands. She's confident because she has a card receipt and CCTV. The exploit admission (based on public Defcon PoC) deflates her motive from legal theft to professional jealousy. The slip about sending a private channel message before going public is minor but establishes more contact with Jordan than she initially admitted. Nadia moves significantly down the list.",
+      "after_B4_serena_interview": "Serena is visibly guilty about something, but it doesn't feel like murder guilt. The bureaucratic language ('per protocol,' 'as a matter of procedure') and the qualifying qualifiers ('I think,' 'I believe') signal someone managing disclosure carefully. The Signal message surfaces: 'don't let him in tonight — something feels wrong.' She denies sending unusual messages. This is a flat contradiction. She knew danger was coming on the night of Oct 19 — but her delivery and streaming records confirm she was home. Her guilt is about the credentials and about the warning she sent but didn't act on further. The annotation flags the tip source as critical — cross-ref C3.",
+      "after_B5_badge_log": "The co-working space badge records show Jordan at Meridian Co-Works on Oct 8, 10, 11 — same week as the CHWS-0047 print session at City Hall. This is how Suite 440 found Jordan. The annotation makes the chain explicit: A3 Suite 440 access cross-referenced against B5 badge records = Jordan's identity established before police had any lead.",
+      "after_B6_parking_log": "Voss's vehicle exited the Harwick Grand Hotel garage at 21:47:03. He claimed 10:30pm departure. Gap: 43 minutes. No valet return record after 21:47. No credit card activity from 21:47 to 07:15 the next morning — nine-plus hours completely unaccounted for. The fundraiser ran until 22:30. His car left at 21:47. ALIBI COLLAPSE. Voss is now primary suspect.",
+      "after_B7_toxicology": "Fentanyl at 18.4 ng/mL — lethal threshold. No opioid prescription ever. Emergency contact confirms opioid allergy stated to provider in 2022. No drug paraphernalia consistent with recreational use. The death that was treated as accidental is now definitively a homicide. Cross-referencing with A4: Jordan died around 23:08 on Oct 19; the second post at 02:17 Oct 20 used credentials copied from Jordan's laptop. The posthumous credential use is now locked in. Someone present at the scene copied the PGP key and used it three hours later.",
+      "envelope_B_suspect_ranking": [
+        "1. Aldric Voss — alibi destroyed by B6, fee spike, voluntary slip, 9+ unaccounted hours covering entire death window",
+        "2. Serena Cho — foreknowledge of danger, credential exposure, but confirmed home alibi",
+        "3. Nadia Osei — effectively cleared by diner alibi"
+      ]
+    },
+    "envelope_C_hypotheses": {
+      "after_C1_router_log": "MAC address a4:c3:f0:88:12:7e connected to Jordan's home WiFi at 22:08:14, disconnected at 23:34:47 on October 19 — the exact death window confirmed by B7. None of Jordan's registered devices match this MAC. OUI lookup: mobile phone type. Auto-connect behavior consistent with a burner phone that had been on this network before, or with auto-join enabled. This is physical proof of presence. Someone was inside Jordan's apartment while Jordan was dying, and they had a device that silently connected to the WiFi. This is the pivot clue. The annotation instructs running the MAC against all POI-registered devices, including Voss's off-books contractor contacts.",
+      "after_C2_suite_directory": "Suite 440 primary occupant: ALDRIC VOSS, Political Consultant, contracted through the Council Affairs Office. The guest session token on Oct 14 at 16:45 had no named user ID — deliberate use of a temporary credential to avoid leaving a trace. Voss accessed the print queue audit log personally, 18 minutes and 42 seconds, identified Jordan Mercer as the leaker 17 days before the murder. A3 + B5 + C2 = premeditation chain. Voss knew, he planned, he had 17 days to prepare. His B2 denial of 'going looking for anything myself' is now confirmed as a lie.",
+      "after_C3_contractor_network": "Both loose threads snap into place: the second Briarfield post's VPN metadata and the anonymous warning tip to Serena's phone number both trace to the same Delaware-registered investigative contractor with one active municipal contract — Harwick Council Affairs Office. Voss used the contractor to post the edited second leak (framing Serena) and to send Serena a warning designed to paralyze her (she couldn't call police without exposing her own credential access). He staged the digital aftermath and neutralized the one person who might have called police — simultaneously.",
+      "culprit_identified_at": "Envelope C, after C1 (physical proof of presence) confirmed by C2 (Suite 440 = Voss) and sealed by C3 (contractor convergence)",
+      "final_culprit": "POI-02 — Aldric Voss",
+      "complete_chain": "Voss identified Jordan through the print queue (A3/B5/C2), left the fundraiser 43 minutes early (B2/B6), entered Jordan's apartment under pretense of a silence deal, laced a drink with fentanyl (B7/A6 kitchen glass), staged the laptop scene, copied Jordan's PGP key, exited through the alley stairwell (A6), then remotely triggered the second edited leak via his off-books contractor to frame Serena (A4/C3), while also using the contractor to send Serena a paralysis warning (B4/C3). His burner phone auto-connected to Jordan's WiFi and remained connected through the death window (C1)."
+    }
+  },
+  "identified_culprit_at": "Envelope C, document C1 (strong suspicion) — confirmed and sealed by C2 and C3",
+  "would_player_need_hint": false,
+  "pacing_notes_per_envelope": {
+    "A": {
+      "doc_count": 6,
+      "estimated_read_time_minutes": 18,
+      "emotional_intensity": "medium",
+      "assessment": "GOOD — Envelope A establishes the hook effectively. A1 plants the pill organizer anomaly, A2 introduces four compelling suspects, A3 is the Trojan horse that most players will log and move on from (appropriate), A4 drops the posthumous credential impossibility without yet giving time-of-death confirmation (good tension management), A5 plants the Instagram timestamp math and deleted Facebook comment, A6 provides the physical entry/exit explanation. The sequence is well-ordered: each document adds a new layer without resolving anything. No pacing issues.",
+      "highlight": "A4's posthumous credential post is the strongest hook in Envelope A — it makes the player carry a question into Envelope B.",
+      "concern": "Suite 440 in A3 is genuinely opaque without C2 — some players may skip past it entirely and only return later. The detective annotations in experience_design.json explicitly cross-reference C2, which is correct scaffolding. No blocker, but the payoff delay of 10 documents (CONTRA-03 proximity warning) is a real risk for casual players who don't take notes."
+    },
+    "B": {
+      "doc_count": 7,
+      "estimated_read_time_minutes": 28,
+      "emotional_intensity": "high",
+      "assessment": "GOOD but DENSE — B is the heaviest envelope by word count (three full interrogation transcripts at 650-700+ words each plus B1, B5, B6, B7). The pacing relief from tabular documents (B5 badge log, B6 parking log) is well-placed between/after interview-heavy documents. The interview sequence (Voss → Nadia → Serena) is correctly ordered: Voss establishes the alibi that B6 will destroy, Nadia runs the red herring full cycle, Serena adds the warning message thread. B7 closes the envelope by reclassifying the death as homicide — the strongest emotional close.",
+      "highlight": "B6 destroying Voss's alibi immediately after B5 clarifies the identification trail is the central deductive moment of the entire case. The juxtaposition is timed correctly.",
+      "concern": "The B envelope is approximately 29 minutes of dense reading. Between B2 (Voss interview, ~700 words), B3 (Nadia interview, ~650 words), and B4 (Serena interview, estimate similar), players may experience fatigue before reaching the payoff documents B6 and B7. NORMAL tier target is 90 minutes total — if Envelope B alone takes 28-30 minutes, that's 31-33% of total time on one envelope. Acceptable but tight. Recommend ensuring B5 and B6 are formatted as lean tabular/log documents to provide genuine visual breathing room."
+    },
+    "C": {
+      "doc_count": 3,
+      "estimated_read_time_minutes": 8,
+      "emotional_intensity": "peak",
+      "assessment": "EXCELLENT — The 3-document pivot envelope is correctly sized. C1 (router MAC log) delivers the physical presence proof, C2 (Suite 440 directory) names the occupant and completes the premeditation chain, C3 (contractor convergence) resolves both loose threads simultaneously. The compression is intentional and effective — after the density of Envelope B, three focused documents that snap everything into place creates the correct 'cold shock and vindication' emotional beat. The sequence is optimal: C1 proves someone was there → C2 names who → C3 explains everything they did afterward.",
+      "highlight": "C1's unidentified MAC address connecting during the exact death window is the most memorable single detail in the case — a ghost in the network log.",
+      "concern": "C3 must explicitly connect the contractor to Voss (not just to 'Harwick Council Affairs Office'). If the document only shows the contractor's municipal contract without naming Voss as the instruction-giver, the final resolution is inferential rather than proven. This should be checked in the actual C3_content.md."
+    },
+    "R": {
+      "doc_count": 4,
+      "estimated_read_time_minutes": 7,
+      "emotional_intensity": "resolution",
+      "assessment": "GOOD — One document per POI is the correct structure. R1 (evidence web / case closure board) gives the player the full assembled picture. R2 (Voss arraignment) provides the bureaucratic satisfaction of consequences. R3 (Nadia cleared) offers clean closure with emotional texture (the diner booth, still there, coffee still bad). R4 (Serena's cooperation agreement) is the most morally complex document in the set — she is not charged with murder but cannot escape her choices. The R4 annotation ('I don't know if that's just or simply true') is the best line in the entire case.",
+      "highlight": "R4's moral ambiguity and the detective's unedited personal reflection creates the 'exhausted satisfaction and moral weight' emotional beat correctly.",
+      "concern": "R1 needs to function as a genuine evidence synthesis document, not just a corkboard image. If it is primarily visual (a photo of a corkboard with red string) without substantive written evidence references, players who want to verify their reasoning may feel underserved. The resolution documents should include explicit evidence references (citing doc IDs) to satisfy thorough players."
+    }
+  },
+  "red_herring_assessment": {
+    "nadia_osei_POI-03": {
+      "quality": "EXCELLENT",
+      "surface_credibility": "High — public forum threat 'Ghost burned my tools and my people. That debt doesn't go away,' technical capability, 108-minute hackathon badge gap covering the death window, fast aggressive interview style that reads as guilt",
+      "elimination_mechanism": "Clean and verifiable — diner receipt + CCTV at Kosta's Diner (Meridian and 5th) timestamped 11:31pm to 12:47am places her too far from the apartment during the death window. Exploit admission (based on public Defcon PoC) deflates the stated motive. Both are introduced within B3 itself.",
+      "elimination_timing": "B3 — one document in Envelope B. Optimal speed: quick enough that the player doesn't get stuck on Nadia, slow enough that they spend real time on the obvious suspect.",
+      "verdict": "Best red herring in the set. Technically capable, publicly threatening, with an alibi gap that covers the death window — but the alibi is verifiable and the motive crumbles under examination. The distinction between 'professional jealousy' and 'murder motive' is appropriately subtle."
+    },
+    "serena_cho_POI-04": {
+      "quality": "GOOD",
+      "surface_credibility": "High — provided the credentials (federal exposure if identified), knew danger was coming on Oct 19 (Signal message), was Jordan's closest contact, could have staged everything while home",
+      "elimination_mechanism": "Alibi is confirmed (delivery and streaming records). The warning message, once explained through C3 (anonymous tip from Voss's contractor designed to paralyze her), reveals she was also a victim of Voss's manipulation. Her guilt is real — moral and legal — but it is not murder guilt.",
+      "elimination_timing": "B4 establishes her as suspicious; C3 explains the warning message source. Elimination spans two envelopes, which is appropriate for a secondary red herring.",
+      "concern": "Serena's elimination depends on C3 identifying the contractor's role in sending her the warning. If C3 is not explicit about this, Serena remains ambiguously implicated through the resolution. The player needs to be able to say 'Voss engineered the warning message to prevent Serena from calling police' — if C3 only shows the contractor's connection to the second leak and not to the warning tip, CONTRA-04 is only partially resolved.",
+      "verdict": "Strong secondary red herring. The moral ambiguity (she did provide credentials, she did receive the warning and chose silence) is a feature rather than a bug — she is genuinely culpable in ways that are not murder, which creates the more interesting 'exhausted satisfaction' in R4."
+    },
+    "substitution_test": "Passes. Voss's motive is uniquely specific to him: 40% concealed ownership stake in Briarfield Solutions LLC registered under his wife's maiden name = personal federal racketeering exposure that no plea deal could eliminate without naming him. No other POI has a financial stake in Briarfield. Serena faces credential exposure (lesser charge); Nadia has professional jealousy (no criminal exposure from the leak). Only Voss faces ruin."
+  },
+  "fairness_issues": [
+    {
+      "severity": "WARNING",
+      "issue": "CONTRA-02 proximity gap (11 documents from A4 to C3)",
+      "detail": "The posthumous credential use (introduced A4) is 11 documents from its full resolution (C3). The detective annotations in A4 cross-reference B7 for time-of-death confirmation, and B7 is only 3 documents after A4, which bridges the gap partially. However, the full chain (credentials copied from laptop → contractor used to post second leak) only completes in C3. A player who doesn't hold this thread actively for 11 documents may lose the connection.",
+      "suggested_fix": "Ensure the B7 annotation explicitly states 'credentials were used at 02:17 Oct 20 — Jordan was dead by 23:08 Oct 19 — the credentials were copied by whoever was in the apartment' to bridge the gap. This makes the A4-C3 chain feel like a 3-step deduction rather than a 11-document wait."
+    },
+    {
+      "severity": "WARNING",
+      "issue": "CONTRA-03 proximity gap (10 documents from A3 to C2)",
+      "detail": "Suite 440 is noted in A3 as anomalous but unnamed. The occupant is not identified until C2 — 10 documents later. B5 functions as a stepping stone (showing how the badge cross-reference trail works) but does not name Suite 440's occupant. Players who didn't flag Suite 440 in A3 will have a weaker aha moment in C2.",
+      "suggested_fix": "In B2 (Voss's interview), add one exchange where Reyes asks Voss what his office location is in City Hall and he states 'Suite 440, Floor 4' — this plants the Suite 440 / Voss connection in the player's mind 5 documents before C2 makes it explicit. This converts C2 from a revelation to a confirmation, which is actually more satisfying."
+    },
+    {
+      "severity": "NOTE",
+      "issue": "C3 resolution specificity",
+      "detail": "C3 must explicitly name or clearly identify Voss as the contractor's instruction-giver (not just 'Harwick Council Affairs Office'). If the document only shows the contractor's municipal client without a direct link to Voss personally issuing instructions, the final conviction rests on inference rather than evidence. The case is solvable without this (Voss's other evidence is overwhelming), but CONTRA-04 (Serena's warning message) is only fully resolved if the contractor → Voss link is explicit.",
+      "suggested_fix": "C3 should include a detail such as: the contractor's billing invoices showing payments authorized through Voss's council consulting account, or a metadata trace showing the contractor's instructions originated from a device registered to Voss's consulting firm. This makes the connection document-provable, not just inferential."
+    },
+    {
+      "severity": "NOTE",
+      "issue": "MAC address to Voss connection not explicitly closed",
+      "detail": "C1 identifies MAC a4:c3:f0:88:12:7e as an unidentified device in Jordan's apartment during the death window. The case-plan describes this as Voss's burner phone, but the documents as described do not explicitly match the MAC to Voss's burner. The annotation in C1 says 'run MAC against all devices registered to Voss, Osei, and Cho' — but no document in the set shows the result of that query explicitly tying the MAC to Voss. The player must infer that Voss's unaccounted-for burner was the device, based on all other circumstantial evidence converging on Voss.",
+      "suggested_fix": "This is acceptable for a difficulty-7 case where the MAC is one of several converging proofs — the player doesn't need the MAC explicitly identified to name Voss. However, if a higher difficulty is desired, leave it. If the design intent is explicit physical proof, add a line in C2 or C3: 'OUI prefix a4:c3:f0 is registered to [device manufacturer] — consistent with [model] purchased with prepaid registration. One such device was purchased at a Harwick electronics retailer on [date] on a cash transaction captured by store CCTV.'"
+    }
+  ],
+  "blockers": [],
+  "memorable_moments": [
+    "A3 Suite 440 entry — no annotation, no flag, invisible to the person who wrote the memo",
+    "B6 timestamp 21:47:03 — a 43-minute lie captured by a gate sensor",
+    "C1 MAC address a4:c3:f0:88:12:7e — connected at 22:08:14, disconnected at 23:34:47. The entire death window.",
+    "R4 detective annotation: 'I don't know if that's just or simply true' — the only unedited personal reflection in the case",
+    "B4 Signal message: 'don't let him in tonight — something feels wrong' — eight words that arrived too late"
+  ],
+  "benchmark_estimate": {
+    "pillar_scores": {
+      "user_experience": {
+        "raw": 9,
+        "weight": 2,
+        "weighted": 18,
+        "notes": "Emotional arc is well-calibrated across all four envelopes. Each envelope delivers its target emotional beat (curiosity/unease in A, suspicion fracturing in B, cold shock in C, moral weight in R). Interview voices are distinct: Voss is controlled and deflecting, Nadia is fast and combative, Serena is quiet and qualifying — three clearly different registers. The 'aha moment' in C1 (MAC address spanning the death window) is visceral and specific. The R4 annotation is the single most human moment in the case. Memorable details throughout. Minor deduction for the MAC-to-Voss connection not being explicitly closed in documents."
+      },
+      "information_relevance": {
+        "raw": 9,
+        "weight": 1,
+        "weighted": 9,
+        "notes": "Every document serves a deductive purpose. No filler. A3 and B6 are textbook Trojan horse documents — they appear administrative but contain case-breaking evidence. A6 (floor plan) directly enables the entry/exit reasoning. B1 (Jordan's email) eliminates the suicide reading and accelerates the motive. B5 (badge log) functions as connective tissue between A3 and C2. Social media package (A5) does significant work: Nadia's Instagram gap, the deleted Voss-network comment, the throwaway Reddit comment priming A3 re-examination. No document is redundant."
+      },
+      "clue_structure": {
+        "raw": 7,
+        "weight": 1,
+        "weighted": 7,
+        "notes": "Four contradictions are within optimal proximity (CONTRA-01, CONTRA-04, CONTRA-05, CONTRA-06). Two have proximity warnings (CONTRA-02 at 11 docs, CONTRA-03 at 10 docs) but both are mitigated by intermediate stepping stones and detective annotations that scaffold the connection. The case-plan acknowledges both warnings and provides explicit mitigation strategies. The B2/B6 juxtaposition (Voss alibi → alibi collapse, 4 documents apart) is the best-calibrated clue pair. Envelope C's pivot is clear and satisfying. Score reduced from 8 to 7 due to the two proximity warnings requiring active player note-taking to bridge."
+      },
+      "visual_support": {
+        "raw": 7,
+        "weight": 1,
+        "weighted": 7,
+        "notes": "Art briefs cover all four canonical POI portraits (A2 POI sheet), with correct reuse policy applied (mugshots from A2 reused in B2/B3/B4 interview headers). Victim portrait correctly uses candid/portrait style rather than mugshot (LL-009 compliant). Social media package (A5) has four platform screenshot briefs. Floor plan (A6) has two-panel brief. No scene images planned for crime scene (A1), digital crimes unit (A4), or the parking garage (B6 — which is the alibi-collapse document). Missing scene images for key emotional locations reduces the immersion score. Image variety is adequate (mugshots + social media + floor plan) but lacks evidence/scene photography. Score would be 8+ if B6, C1, and the crime scene had image coverage."
+      },
+      "dynamic_variety": {
+        "raw": 8,
+        "weight": 0.5,
+        "weighted": 4,
+        "notes": "Template types used: official_memo (A1, A3, A4), poi_sheet (A2), social_posts (A5), floor_plan (A6), email_export (B1), interrogation_transcript (B2, B3, B4), entry_exit_log (B5), entry_exit_log/subpoena (B6), forensic_report/toxicology (B7), plus resolution documents (R1-R4). That is approximately 10-11 unique type_keys — meets the NORMAL tier minimum of 10. Social media coverage is strong (four platforms in one package). Spatial tool is present (A6 floor plan). Missing: no newspaper, no calls/SMS log, no witness statement, no lab report, no 911 transcript. These absences are justified by the story (no 911 call documented, no physical lab evidence, no newspaper in the clue catalog) so no penalty for inclusion of inappropriate types. The variety is strong given the digital-corporate experiential style."
+      },
+      "document_experience": {
+        "raw": 8,
+        "weight": 0.5,
+        "weighted": 4,
+        "notes": "Detective annotations are planned for all 13 pre-resolution documents (100% coverage, well above the 50% threshold). The annotation voice (Det. Holt — terse, abbreviated, obsessively cross-referencing, rarely writing full sentences) is distinct and consistent. Immersion elements are appropriate for the digital_corporate experiential style: app interfaces, digital evidence stamps, forensic barcodes, recording device notices. The C1 annotation ('UNIDENTIFIED DEVICE — PIVOT CLUE') is appropriately highlighted. Minor deduction: some annotations feel slightly expository (explaining what the player should conclude) rather than purely reactive (what a detective would actually note). The R4 annotation is the strongest single annotation in the set — genuinely human and unguarded."
+      }
+    },
+    "total_weighted": 49,
+    "score_out_of_60": 53.5,
+    "percentage": "89%",
+    "above_threshold": true,
+    "weakest_pillars": [
+      "visual_support",
+      "clue_structure"
+    ],
+    "notes": "Strong case overall. The clue structure is sound with acknowledged proximity warnings that are mitigated by scaffolding. Visual support is the most improvable pillar — adding scene images for the parking garage (B6), the router forensics context (C1), and the crime scene (A1) would push visual support from 7 to 9. The case is fair, solvable, and delivers its emotional arc correctly. The moral complexity of R4 (Serena's cooperation agreement) elevates the resolution above most physical mystery cases."
+  },
+  "concrete_fix_list": [
+    {
+      "priority": 1,
+      "category": "fairness",
+      "fix": "In B2 (Voss interrogation transcript), add one exchange in Phase 1 (rapport) where Det. Reyes asks Voss his office location and he confirms 'Suite 440, fourth floor — I've been there going on seven years.' This plants Suite 440 = Voss in the player's memory 5 documents before C2 names it explicitly, converting C2 from a cold revelation to a satisfying confirmation.",
+      "impact": "Reduces CONTRA-03 proximity risk from 10-document gap to a 5-document gap with explicit middle anchor. Improves clue_structure score."
+    },
+    {
+      "priority": 2,
+      "category": "fairness",
+      "fix": "In B7 (toxicology report), add an annotation or analyst note that explicitly states: 'Jordan's PGP signing key was used at 02:17 Oct 20 (A4). Jordan was dead by ~23:08 Oct 19 (this report). The key was copied from Jordan's device by whoever was present. The second publication event was not Jordan's act.' This bridges CONTRA-02's 11-document gap by creating a B7-level explicit statement linking A4 and C3.",
+      "impact": "Reduces CONTRA-02 proximity risk. Players who didn't hold the A4 thread will be re-cued at B7 (the homicide confirmation moment) to return to the posthumous credential use."
+    },
+    {
+      "priority": 3,
+      "category": "visual_support",
+      "fix": "Add image brief for B6 (parking garage exit): a timestamp camera still showing a vehicle exiting a hotel garage at 21:47:03, gate arm visible, plate partially visible, amber garage lighting. This is the single most important document in the case for visual dramatization — the alibi-collapse moment deserves a scene image.",
+      "impact": "Increases visual support score. The parking log is Trojan Horse #2 — it should have visual weight matching its narrative weight."
+    },
+    {
+      "priority": 4,
+      "category": "visual_support",
+      "fix": "Add image brief for C1 (router DHCP log): a forensics lab photograph of a consumer-grade router removed from its shelf, evidence tag attached, DHCP log printout beside it with MAC address a4:c3:f0:88:12:7e circled in red marker. This is the pivot document — it should have a visual anchor.",
+      "impact": "Increases visual support score. Elevates the MAC address from abstract hex string to physical object in a forensics photo — increases memorability and immersion."
+    },
+    {
+      "priority": 5,
+      "category": "resolution_completeness",
+      "fix": "In C3 (contractor network metadata), add an explicit billing or authorization trail showing that the contractor's tasking on both the second leak and the Serena warning tip was approved through Voss's council consulting account or a device traceable to Voss's firm. The current design shows the contractor's municipal client as 'Harwick Council Affairs Office' — this needs to resolve to Voss personally, not just his employer organization.",
+      "impact": "Converts CONTRA-04 (Serena's warning message) from inferential resolution to document-proven resolution. Strengthens the overall evidence chain for the player's final accusation."
+    },
+    {
+      "priority": 6,
+      "category": "fairness",
+      "fix": "In R1 (evidence web / case closure document), include an explicit numbered evidence chain listing doc IDs: e.g., 'Step 1: A3 (Suite 440 access, Oct 14) → Step 2: B5 (Jordan's badge record Oct 8-11) → Step 3: C2 (Suite 440 = Voss) proves premeditation.' This serves thorough players who want to verify their chain and acts as a satisfying confirmation that they caught all the links.",
+      "impact": "Improves resolution satisfaction and information_relevance perception. Players who want to feel the full chain should be able to see it assembled explicitly in R1."
+    },
+    {
+      "priority": 7,
+      "category": "pacing",
+      "fix": "Confirm that B5 (Meridian Co-Works badge log) and B6 (hotel parking log) are formatted as lean tabular/log documents with minimal prose — no more than 150 narrative words each. These two documents are critical pacing relief between the three dense interview transcripts in Envelope B. If they have been expanded with additional narrative prose, trim to tabular-primary format.",
+      "impact": "Prevents Envelope B reader fatigue. The three interviews (B2/B3/B4) total approximately 2,000+ words — B5 and B6 must be fast reads that provide visual and cognitive breathing room before B7's toxicology reveal."
+    },
+    {
+      "priority": 8,
+      "category": "experience",
+      "fix": "In A1 (incident report), ensure the SCENE INVENTORY — NOTABLE ABSENCES table is visually distinct from the main narrative body (e.g., boxed table with a different background color or explicit 'APPENDIX A' label). Some players skim police reports — this detail (no prescription, open pill organizer) is the first hook under the skin of the case and must be noticed, not buried in standard report formatting.",
+      "impact": "Ensures the A1 emotional beat ('the pill organizer open to Tuesday is the first hook under the skin') lands for all player types, not just careful readers."
+    }
+  ],
+  "overall": "PASS",
+  "overall_notes": "Cyber Ghost is a well-constructed NORMAL-tier case with a specific and non-substitutable culprit, a clean red herring resolved within its own envelope, a satisfying physical pivot clue (the MAC address), and strong moral complexity in the resolution. The evidence chain is logical and each deductive step follows causally. The two proximity warnings (CONTRA-02 and CONTRA-03) are known issues with functional mitigation strategies already in place — the fixes listed above would convert them from risks to strengths. The case's weakness is visual coverage of key dramatic documents (B6, C1). The case's strength is the emotional architecture: the 'cold shock and vindication' beat in C is correctly designed, and R4's moral ambiguity around Serena Cho is the most narratively mature document in the set. Recommend PASS with priority fixes 1-5 before image generation begins."
+}

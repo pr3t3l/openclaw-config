@@ -1,0 +1,65 @@
+{
+  "envelope": "B",
+  "documents": [
+    {
+      "doc_id": "B5",
+      "envelope": "B",
+      "sequence_number": 5,
+      "type_id": 8,
+      "type_key": "entry_exit_log",
+      "in_world_title": "Helixure Biologics — Building 7 Badge Access & Escort Exception Log (2026-03-20 to 2026-03-21)",
+      "owner_source": "Helixure Biologics Physical Security — Lenel OnGuard Export (Subpoena Return to Cambridge PD)",
+      "timestamp": "2026-03-22T09:12:00",
+      "filename_base": "B5_Building7_Access_Escort_Log",
+      "player_purpose": "clue_delivery",
+      "reveals": "A raw security export shows an after-hours entry at 22:39 tied to the shared executive pool credential ‘EXEC-0441’ and a concurrent ‘ESCORT MODE ENABLED’ event tied to a QA-admin host badge. The log explicitly notes that escort mode can allow additional persons to pass controlled doors without generating their own badge events, explaining why late-night movement may not map cleanly to one person.",
+      "player_inference": "The 22:39 ‘EXEC-0441’ hit is not proof Evan Kline was present; it’s a shared credential used alongside escort exceptions. The killer likely exploited escort-mode/piggybacking to move through Building 7 while keeping the access trail ambiguous.",
+      "document_justification": "This is the case’s ‘boring spine’ document: it resolves CONTRA-01 and CONTRA-02 by showing exactly how a late-night ‘executive credential’ record can be real while still not identifying a single individual. It converts interviews (B1/B2) into a testable access-control mechanism and anchors the critical 22:39 timestamp in the investigation timeline.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-02",
+        "POI-03",
+        "POI-04",
+        "POI-05"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [
+        "CONTRA-01",
+        "CONTRA-02"
+      ],
+      "depends_on": [
+        "A4",
+        "B1",
+        "B2"
+      ],
+      "production_brief_writing": {
+        "summary": "A tabular access-control event log exported from Helixure’s Lenel OnGuard system for Building 7 covering the evening of 2026-03-20 through the morning of 2026-03-21. It should look like a cold, timestamp-precise spreadsheet printout with a short analyst cover note that defines ‘EXEC-0441’ as a shared executive pool credential and explains ‘ESCORT MODE’ behavior in plain security-admin language.",
+        "tone": "raw security system export — table-forward, minimal narrative; one short cover note written by a security systems admin",
+        "min_words": 220,
+        "key_mandatory_line": "2026-03-20 22:39:03 — READER: L4 ELEV VESTIBULE (BLDG7) — ACCESS GRANTED — CRED: EXEC-0441 — NOTE: ESCORT MODE ENABLED (Host badge: QA-ADMIN-7719; duration: 00:15:00)",
+        "key_information_to_include": [
+          "Header fields: case reference (CPD-MCU-26-0319), export request ID, date range, system name (Lenel OnGuard)",
+          "A highlighted event at 22:39:03 showing ‘EXEC-0441’ access granted at the Level 4 elevator vestibule reader",
+          "A linked system event line immediately after: ‘ESCORT MODE ENABLED’ with a host credential labeled as QA-admin (do NOT present this as a named person; present it as a badge/role label)",
+          "A short cover-note definition: EXEC-0441 is a shared executive pool credential kept at Security (not assigned to one employee)",
+          "A short cover-note definition: Escort mode allows additional entrants to pass subsequent controlled doors without their own badge events (explains why badge logs can’t always identify every body)",
+          "At least 3 additional rows within 22:39–23:36 showing controlled-door traversals (e.g., cGMP corridor reader events) that are attributable only to EXEC-0441/escort context",
+          "A mundane but telling policy footer: ‘Anti-passback disabled for EXEC pool credentials’ or similar, to underline the loophole"
+        ],
+        "voice_notes": "Keep the bulk of the document as machine-like rows (time, reader, event, credential, result). The only human voice is a brief cover note from a Security Systems Administrator explaining the meaning of the labels because detectives asked. Make the loophole feel real: boring, institutional, and exactly the kind of thing a planner would exploit. Mention Stairwell 4B as a nearby location in a reader/location column or in the detective highlight note, tying the log to A4’s layout without solving the whole case." 
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    }
+  ]
+}

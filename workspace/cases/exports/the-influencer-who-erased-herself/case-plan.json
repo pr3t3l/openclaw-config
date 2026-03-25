@@ -1,0 +1,515 @@
+{
+  "tier": "NORMAL",
+  "slug": "the-influencer-who-erased-herself",
+  "title": "The Influencer Who Erased Herself",
+  "logline": "When Miami lifestyle creator Camila Reyes vanishes mid-campaign and her entire digital identity is wiped within hours, detectives must untangle a parasocial empire of brand deals, secret debt, and someone who needed her gone — or needed to become her.",
+  "setting": {
+    "city": "Miami, Florida",
+    "neighborhood": "Brickell / Edgewater — luxury high-rise apartment building, brand event space, creator studio",
+    "time_period": "Present day — March 2026",
+    "atmosphere": "Sun-drenched surfaces hiding financial rot; the aesthetic of curated abundance masking desperation. Brand activations, glass lobbies, poolside shoots — everything designed for the camera, nothing designed for the truth."
+  },
+  "victim": {
+    "name": "Camila Reyes",
+    "age": 28,
+    "occupation": "Lifestyle and beauty influencer (3.2M Instagram followers, 4.1M TikTok); sole proprietor of Reyes Digital LLC",
+    "cause_of_death": "Asphyxiation (manual strangulation) staged to appear as an accidental drowning in the apartment rooftop pool",
+    "found_by": "Rodrigo Santos, building concierge, during routine morning check of the rooftop amenity deck",
+    "found_at": "Brickell Sky Residences, Unit 2204 rooftop pool deck, 1401 Brickell Ave, Miami FL",
+    "found_when": "2026-03-10T06:42:00"
+  },
+  "culprit": {
+    "poi_id": "POI-02",
+    "motive": "Derek Voss, Camila's talent manager, had been secretly siphoning 22% of her brand deal revenue above his contracted 15% commission since 2024 — a total of $187,000 in unauthorized transfers to a shell company he controlled. When Camila discovered the discrepancy while preparing to switch agencies, she confronted him privately on March 9. Derek knew a formal audit would expose criminal fraud, end his career, and potentially trigger civil litigation. He staged her death and then remotely wiped her accounts using manager-level access credentials he had retained after she verbally fired him.",
+    "motive_specificity_test": "Only Derek Voss had both the financial motive (he alone knew the embezzlement would surface in a pending agency transfer audit) and the technical means (retained OAuth tokens to Camila's brand management accounts, platform admin credentials she had shared). No other POI had access to both the financial records AND the account deletion tools simultaneously.",
+    "method_steps": [
+      "Derek arrived at the Brickell Sky Residences at 11:14 PM on March 9 using a guest access code he obtained from Camila under the pretense of dropping off signed contracts for the NovaSkin campaign launch the next morning.",
+      "After confronting Camila in her unit and strangling her in the living room, he carried her body up the service stairs (bypassing the elevator camera) to the rooftop pool deck and submerged her to simulate drowning. He relied on the rooftop CCTV camera being offline for scheduled maintenance — a date he knew because he had reviewed the building's maintenance schedule when setting up the courier delivery for her PR packages.",
+      "Between 11:50 PM and 1:30 AM on March 10, Derek remotely logged into Camila's Instagram, TikTok, and creator management platform using retained admin credentials, deleted her posts and account content, revoked brand API tokens, and initiated a wire transfer of $64,000 from her Reyes Digital LLC business account to a holding account he controlled — framing it as a legitimate contract kill-fee payout."
+    ],
+    "the_almost": "Derek forgot that Camila had enabled two-factor authentication backup codes stored in her iCloud Keychain, and that her automated email forwarding rule was still active. One platform deletion notification was forwarded to her backup Gmail address, which her best friend Valentina Ochoa accessed on March 10 — triggering Valentina's call to police and establishing that the account wipes happened AFTER Camila was last seen alive, not before. This breaks Derek's claim that Camila erased herself voluntarily."
+  },
+  "pois": [
+    {
+      "name": "Camila Reyes",
+      "role": "Victim",
+      "age": 28,
+      "occupation": "Lifestyle influencer, Reyes Digital LLC founder",
+      "status": "deceased",
+      "connection_to_case": "Victim — found deceased on building rooftop pool deck on March 10, 2026. Her digital accounts were wiped in the hours surrounding her death.",
+      "interview_doc": null,
+      "known_facts": [
+        "Was preparing to switch management agencies at the time of death",
+        "Had discovered irregularities in her revenue statements weeks before her death",
+        "Had an active NovaSkin brand launch scheduled for March 10",
+        "Had enabled iCloud Keychain backup codes with email forwarding to a secondary Gmail account"
+      ],
+      "id": "POI-01",
+      "description": "Victim - Camila Reyes",
+      "voice_profile": {
+        "speech_pattern": "N/A — deceased victim; no interview conducted",
+        "under_pressure": "N/A — deceased victim",
+        "verbal_tics": "N/A — deceased victim"
+      }
+    },
+    {
+      "name": "Derek Voss",
+      "role": "Talent Manager — Voss Creative Management LLC",
+      "age": 37,
+      "occupation": "Talent manager representing 6 mid-to-large digital creators",
+      "status": "alive",
+      "connection_to_case": "Camila's manager of 4 years; had admin-level access to all her brand accounts, contracts, and financial platforms. Was verbally fired by Camila on the afternoon of March 9. Visited building that evening.",
+      "interview_doc": "B1",
+      "known_facts": [
+        "Retained OAuth management tokens after Camila verbally fired him",
+        "Had reviewed building maintenance schedule for a PR package coordination in February",
+        "Owns a shell company — VCM Holdings LLC — that received unauthorized transfers",
+        "Claimed he last saw Camila at 7 PM on March 9 for a 'contract review' lunch meeting"
+      ],
+      "id": "POI-02",
+      "description": "Talent Manager — Voss Creative Management LLC - Derek Voss",
+      "voice_profile": {
+        "speech_pattern": "Corporate-smooth, declarative sentences, uses the detective's name as a control technique. Volunteers context and backstory to appear cooperative while never directly answering the core question.",
+        "under_pressure": "Goes cold and formal, pivots to legal language, stops using first names. Sentence length drops — short, clipped statements. The charm evaporates and something harder shows underneath.",
+        "verbal_tics": "Begins sensitive answers with 'Look, [detective's name]...' or 'I appreciate your thoroughness.' Often restates the question in slightly softer terms before answering it."
+      }
+    },
+    {
+      "name": "Natasha Kline",
+      "role": "Brand Partnership Representative — NovaSkin Cosmetics",
+      "age": 32,
+      "occupation": "Senior Brand Partnerships Manager at NovaSkin, overseeing the Reyes Digital LLC campaign",
+      "status": "alive",
+      "connection_to_case": "Managed Camila's $340,000 NovaSkin launch contract. Sent increasingly threatening emails about NDA compliance in the week before Camila's death. Had access to Camila's content schedule and was at the pre-launch brand dinner on March 9.",
+      "interview_doc": "B2",
+      "known_facts": [
+        "Sent a 'contract default notice' to Camila on March 7 citing 'brand safety clause' violations",
+        "Was at the NovaSkin pre-launch dinner at Zuma Miami on March 9 from 8 PM to 11 PM — confirmed alibi window",
+        "Had knowledge of Camila's personal life through brand integration content planning documents",
+        "Her access to Camila's calendar and location was through a shared brand content management app"
+      ],
+      "id": "POI-03",
+      "description": "Brand Partnership Representative — NovaSkin Cosmetics - Natasha Kline",
+      "voice_profile": {
+        "speech_pattern": "Crisp and efficient — answers only exactly what is asked, no more. Short declarative sentences. She treats the interview like a compliance exercise: accurate, bounded, professionally neutral.",
+        "under_pressure": "Deflects to NovaSkin legal protocol and contract language. Becomes more precise, not more emotional. If pushed on personal observations she redirects to documentation: 'What I can confirm is what's in the records.'",
+        "verbal_tics": "Ends answers with a slight uptick, as if expecting a follow-up she has already prepared for. Occasionally uses corporate softeners: 'From NovaSkin's perspective...' or 'In terms of the contract relationship...'"
+      }
+    },
+    {
+      "name": "Marcus Delray",
+      "role": "On-and-off romantic partner",
+      "age": 31,
+      "occupation": "Freelance videographer and content editor; works primarily for Reyes Digital LLC",
+      "status": "alive",
+      "connection_to_case": "Appeared in Camila's content regularly; their relationship was partly a professional arrangement with blurred personal lines. Has a financial stake in Reyes Digital LLC through an informal profit-share agreement signed in 2025 that was never formally dissolved.",
+      "interview_doc": "B3",
+      "known_facts": [
+        "Had a key to Camila's apartment for content production use",
+        "Was seen on building lobby CCTV at 9:47 PM on March 9 — claims he was picking up a hard drive",
+        "Had recently discovered Camila was planning to stop appearing in content with him",
+        "Profit-share agreement would expire if Reyes Digital LLC was sold or transferred"
+      ],
+      "id": "POI-04",
+      "description": "On-and-off romantic partner - Marcus Delray",
+      "voice_profile": {
+        "speech_pattern": "Incomplete sentences when emotional, heavy use of 'like' and 'you know,' long pauses before hard truths. Speaks in sensory details — concrete, physical, visual. Storyteller instinct even in distress.",
+        "under_pressure": "Gets defensive and physical in expression — leans forward, uses volume. Anchors himself in physical facts: 'I was RIGHT THERE. I saw her.' Voice cracks when Camila's name comes up unexpectedly.",
+        "verbal_tics": "Trails off mid-sentence when a realization hits him in real time; restarts with 'No, I mean —'. Uses 'we' reflexively when talking about Camila, then corrects to 'she' with visible effort."
+      }
+    },
+    {
+      "name": "Valentina Ochoa",
+      "role": "Best friend and former collaborator",
+      "age": 27,
+      "occupation": "Nano-influencer and makeup artist; occasionally assisted with Camila's content production",
+      "status": "alive",
+      "connection_to_case": "Reported Camila missing after receiving forwarded account deletion emails on March 10. Had access to Camila's backup Gmail credentials. Had publicly feuded with Camila in 2024 over uncredited collaboration content before reconciling.",
+      "interview_doc": "B4",
+      "known_facts": [
+        "Received the forwarded platform deletion notification at 1:47 AM on March 10",
+        "Called police non-emergency line at 9:15 AM after Camila missed her 8 AM NovaSkin prep call",
+        "Knew about the agency switch plan — was helping Camila research new management options",
+        "Was aware of the revenue discrepancy concerns Camila had raised in private"
+      ],
+      "id": "POI-05",
+      "description": "Best friend and former collaborator - Valentina Ochoa",
+      "voice_profile": {
+        "speech_pattern": "Speaks quickly, pivots between grief and urgency without warning. Uses Camila's name often and naturally — she cannot distance herself into professional language. Her interview feels like testimony from someone who already knows the answer and is furious that the process is slower than she is.",
+        "under_pressure": "Frustration surfaces as impatience — she is not hiding anything and has no patience for questions she sees as distractions from the obvious. 'I've been saying it since 9 AM. Derek did this.'",
+        "verbal_tics": "Catches herself using present tense for Camila and visibly corrects it — a grief tell she cannot suppress. Also uses 'she would have' constructions to explain Camila's choices as if still advocating for her."
+      }
+    }
+  ],
+  "timeline": [
+    {
+      "datetime": "2026-02-14T00:00:00",
+      "event": "Camila Reyes signs the NovaSkin 90-day brand campaign contract for $340,000 through Voss Creative Management LLC. Derek Voss countersigns on her behalf.",
+      "source_docs": [
+        "A1"
+      ],
+      "is_critical_period": false
+    },
+    {
+      "datetime": "2026-02-28T00:00:00",
+      "event": "Derek Voss reviews Brickell Sky Residences maintenance schedule while coordinating a NovaSkin PR package courier delivery to Camila's building. He notes the rooftop CCTV scheduled offline maintenance window: March 9–11.",
+      "source_docs": [
+        "C1"
+      ],
+      "is_critical_period": false
+    },
+    {
+      "datetime": "2026-03-01T00:00:00",
+      "event": "Camila Reyes begins reviewing her Reyes Digital LLC revenue statements for 2024–2025 in preparation for switching agencies. She notices recurring unexplained commission overages totaling $187,000.",
+      "source_docs": [
+        "B5"
+      ],
+      "is_critical_period": false
+    },
+    {
+      "datetime": "2026-03-07T14:22:00",
+      "event": "Natasha Kline sends a formal 'Contract Default Notice' to Camila citing a 'brand safety clause' violation related to unapproved personal content. Camila does not respond.",
+      "source_docs": [
+        "A6"
+      ],
+      "is_critical_period": false
+    },
+    {
+      "datetime": "2026-03-09T13:00:00",
+      "event": "Camila Reyes meets privately with Derek Voss at Zest Cafe (not the dinner venue). She presents him with a printed revenue discrepancy summary and verbally fires him effective immediately, indicating she will involve an attorney.",
+      "source_docs": [
+        "B1",
+        "C2"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-03-09T19:00:00",
+      "event": "NovaSkin pre-launch brand dinner at Zuma Miami. Natasha Kline, Derek Voss, and Camila were all invited. Camila does not attend — sends apologies via text. Natasha and Derek are both present 8 PM–11 PM per restaurant reservation records.",
+      "source_docs": [
+        "B2",
+        "C3"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-03-09T21:47:00",
+      "event": "Marcus Delray is captured on Brickell Sky Residences lobby CCTV entering the building at 9:47 PM and exiting at 10:06 PM. Building concierge log shows he signed in as a 'content crew' visitor.",
+      "source_docs": [
+        "A5",
+        "C3"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-03-09T23:14:00",
+      "event": "Derek Voss enters Brickell Sky Residences using a guest access code at 11:14 PM. He does not sign the concierge log. Access code was issued to 'NovaSkin Courier / contract delivery' on March 7.",
+      "source_docs": [
+        "A5",
+        "C1"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-03-09T23:50:00",
+      "event": "Estimated time of death for Camila Reyes based on forensic and body temperature analysis. Manual strangulation. Body moved to rooftop pool within approximately 20 minutes.",
+      "source_docs": [
+        "B6"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-03-10T00:15:00",
+      "event": "Derek Voss exits Brickell Sky Residences via parking garage — no exit captured on main lobby CCTV. Parking garage camera is functional but output is only recovered later.",
+      "source_docs": [
+        "C3"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-03-10T00:22:00",
+      "event": "First remote deletion action logged against Camila's Instagram account from a registered manager OAuth token. Token belongs to Voss Creative Management LLC application.",
+      "source_docs": [
+        "A7",
+        "C2"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-03-10T01:30:00",
+      "event": "Wire transfer of $64,000 initiated from Reyes Digital LLC business account to VCM Holdings LLC — logged as 'NovaSkin contract termination fee.'",
+      "source_docs": [
+        "B5",
+        "C2"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-03-10T01:47:00",
+      "event": "Platform deletion notification email automatically forwarded from Camila's primary Gmail to her backup Gmail address (known to Valentina Ochoa). Valentina receives it but does not check her phone until morning.",
+      "source_docs": [
+        "A7",
+        "B4"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-03-10T06:42:00",
+      "event": "Building concierge Rodrigo Santos discovers Camila Reyes unresponsive in the rooftop pool during morning amenity check. Emergency services called at 6:44 AM.",
+      "source_docs": [
+        "A1"
+      ],
+      "is_critical_period": false
+    },
+    {
+      "datetime": "2026-03-10T09:15:00",
+      "event": "Valentina Ochoa calls Miami PD non-emergency line after reviewing the forwarded deletion email and Camila failing to respond to NovaSkin prep call. Escalated to homicide when body is confirmed.",
+      "source_docs": [
+        "A1",
+        "B4"
+      ],
+      "is_critical_period": false
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "CONTRA-01",
+      "what": "Derek Voss claims he last saw Camila at 7 PM on March 9 at a lunch meeting that 'ran late,' but restaurant records and Camila's phone log show no March 9 meeting — only a private 1 PM confrontation that Voss omits from his account entirely.",
+      "introduced_in": "B1",
+      "resolved_in": "C2",
+      "player_inference": "Derek is hiding the 1 PM confrontation — the moment Camila fired him — which is the true motive trigger event."
+    },
+    {
+      "id": "CONTRA-02",
+      "what": "Building concierge entry log shows no sign-in for Derek Voss on the night of March 9, but the keycard access system log records his guest code being used at 11:14 PM at the main entrance.",
+      "introduced_in": "A5",
+      "resolved_in": "C3",
+      "player_inference": "Derek deliberately bypassed the manual concierge log to avoid a paper trace — the electronic log is the only record of his entry."
+    },
+    {
+      "id": "CONTRA-03",
+      "what": "Derek Voss claims he was at the NovaSkin brand dinner from 8 PM to midnight on March 9, but restaurant records confirm he departed the Zuma Miami event at 10:52 PM — leaving over an hour unaccounted for before Camila's estimated time of death.",
+      "introduced_in": "B2",
+      "resolved_in": "C3",
+      "player_inference": "Derek's alibi has a 75-minute gap that precisely overlaps with the time of death window and his building entry timestamp."
+    },
+    {
+      "id": "CONTRA-04",
+      "what": "The wire transfer of $64,000 is logged in Reyes Digital LLC bank records as a 'NovaSkin contract termination fee' — but NovaSkin's own contract records show no termination was executed and no such fee was authorized.",
+      "introduced_in": "B5",
+      "resolved_in": "C2",
+      "player_inference": "The transfer is a post-death theft disguised as a legitimate transaction, demonstrating premeditation and financial motive."
+    },
+    {
+      "id": "CONTRA-05",
+      "what": "Marcus Delray states he entered Camila's building only to pick up a hard drive left at the front desk — but the concierge log and lobby CCTV show him proceeding past the front desk directly toward the elevator, not stopping at the desk package shelf.",
+      "introduced_in": "A5",
+      "resolved_in": "B3",
+      "player_inference": "Marcus did not pick up a package — he went upstairs, possibly knowing or suspecting something, but his timeline clears him before the estimated time of death."
+    },
+    {
+      "id": "CONTRA-06",
+      "what": "The Instagram and TikTok account deletions are timestamped at 12:22 AM on March 10 — but Derek Voss claims he was home and asleep by midnight. His home WiFi router logs, obtained via warrant, show no connected device activity after 11 PM.",
+      "introduced_in": "A7",
+      "resolved_in": "C2",
+      "player_inference": "The deletions were performed via mobile data (not home WiFi), consistent with Derek using his phone from a vehicle — specifically the building's parking garage exit recorded at 12:15 AM."
+    },
+    {
+      "id": "CONTRA-07",
+      "what": "The NovaSkin courier delivery intake slip for Unit 2204, dated February 28, is signed by Derek Voss as 'building liaison' — but Camila had no knowledge of this visit and the building's authorized visitor log shows no entry for Voss on that date.",
+      "introduced_in": "A3",
+      "resolved_in": "C1",
+      "player_inference": "Derek made an unauthorized visit to the building weeks before the murder to physically review access and scout the rooftop maintenance schedule — the intake slip is the trojan horse placing him there."
+    }
+  ],
+  "evidence_chain": [
+    {
+      "step": 1,
+      "docs_needed": [
+        "A1",
+        "A2"
+      ],
+      "reveals": "Player learns Camila Reyes was found dead and meets the four POIs — each with motive, means, and access to Camila's world."
+    },
+    {
+      "step": 2,
+      "docs_needed": [
+        "A3",
+        "A4",
+        "A5"
+      ],
+      "reveals": "The building floor plan and access logs establish that the rooftop pool was only reachable without camera exposure via the service stairwell. The courier receipt intake slip places Derek Voss in the building on February 28 — weeks before the murder."
+    },
+    {
+      "step": 3,
+      "docs_needed": [
+        "A6",
+        "A7"
+      ],
+      "reveals": "The NovaSkin contract default notice and platform deletion log establish the digital erasure timeline — account wipes began AFTER Camila was last seen alive, eliminating the voluntary-disappearance theory."
+    },
+    {
+      "step": 4,
+      "docs_needed": [
+        "B1",
+        "B2",
+        "B3",
+        "B4"
+      ],
+      "reveals": "Interviews with all four living POIs surface Derek's alibi gap, Marcus's lobby visit inconsistency, Natasha's confirmed presence at the dinner, and Valentina's account of the forwarded deletion email — narrowing focus to Derek."
+    },
+    {
+      "step": 5,
+      "docs_needed": [
+        "B5",
+        "B6"
+      ],
+      "reveals": "Revenue statement analysis reveals the $187,000 embezzlement pattern and the fraudulent $64,000 post-death transfer. Forensic report confirms strangulation — not drowning — establishing murder and ruling out accident."
+    },
+    {
+      "step": 6,
+      "docs_needed": [
+        "C1",
+        "C2",
+        "C3"
+      ],
+      "reveals": "The building maintenance log confirms the CCTV offline window Derek had prior knowledge of. The platform OAuth token audit traces all account deletions to Derek's retained manager credentials. Parking garage CCTV places Derek exiting the building at 12:15 AM — after the estimated time of death."
+    },
+    {
+      "step": 7,
+      "docs_needed": [
+        "R1",
+        "R2",
+        "R3",
+        "R4"
+      ],
+      "reveals": "Resolution documents for each POI consolidate evidence. Derek's guilt is confirmed by the convergence of motive (embezzlement exposure), means (OAuth credentials + guest access code), and opportunity (documented building entry + 75-minute alibi gap)."
+    }
+  ],
+  "envelopes": {
+    "A": {
+      "description": "Scene Setup — the discovery, the victim's world, and the first digital fingerprints. Players meet Camila's empire and realize someone is actively erasing her.",
+      "docs": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "A6",
+        "A7"
+      ]
+    },
+    "B": {
+      "description": "Contradictory Evidence — four interviews, financial forensics, and the autopsy that reframes the death. Suspects collide with the evidence.",
+      "docs": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6"
+      ]
+    },
+    "C": {
+      "description": "The Pivot — three documents that break the case open: the maintenance log that proves premeditation, the OAuth audit trail that names the account-wiper, and the parking garage footage that destroys the alibi.",
+      "docs": [
+        "C1",
+        "C2",
+        "C3"
+      ]
+    },
+    "R": {
+      "description": "Resolution — one document per living POI with case file summary and evidence-backed guilty/not-guilty determination.",
+      "docs": [
+        "R1",
+        "R2",
+        "R3",
+        "R4"
+      ]
+    }
+  },
+  "experiential_style": "digital_corporate",
+  "emotional_arc": {
+    "envelope_A": "Intrigue and unease — a glamorous world goes dark. Players feel the eerie normalcy of Camila's apartment set against the digital void being carved around her. By the end of A, the voluntary-disappearance theory collapses and murder is suspected.",
+    "envelope_B": "Tension and suspicion — four people, four versions of the night. Players feel the cognitive load of contradicting accounts and the first real anger at realizing someone is lying. The autopsy confirmation that this is murder lands like a gut punch.",
+    "envelope_C": "Momentum and clarity — the case snaps into focus. Three documents converge on one name. Players feel the satisfaction of a solved mechanism and the dread of understanding just how planned this was.",
+    "envelope_R": "Catharsis and weight — closing out each POI. Relief at eliminating the innocent. Sadness for Camila. Anger at the audacity of using her own accounts against her legacy."
+  },
+  "trojan_horse_docs": [
+    {
+      "doc_id": "A3",
+      "appears_as": "Routine NovaSkin PR package courier intake slip for Unit 2204 dated February 28 — standard brand logistics paperwork filed with building management",
+      "actually_proves": "Derek Voss was inside Brickell Sky Residences on February 28, signing as 'Building Liaison' for a visit Camila never authorized — placing him at the building weeks before the murder to scout the CCTV maintenance schedule"
+    },
+    {
+      "doc_id": "A7",
+      "appears_as": "Fan-compiled screenshot collage of Camila's deleted accounts and cached last posts — looks like grieving followers documenting her digital disappearance",
+      "actually_proves": "The embedded automated email forwarding timestamp of 1:47 AM on March 10 proves account deletions occurred after Camila's estimated time of death, destroying the voluntary-disappearance theory and confirming a third party wiped her accounts"
+    }
+  ],
+  "social_media_plan": [
+    {
+      "doc_id": "A7",
+      "platform": "Instagram / Platform Deletion Archive",
+      "description": "Collage of account deletion notices, fan-captured last posts, and the automated email notification screenshot showing the 1:47 AM account-wipe confirmation forwarded to Camila's backup Gmail.",
+      "case_value": "Establishes the digital erasure timeline and destroys the voluntary-disappearance theory via timestamp evidence."
+    },
+    {
+      "doc_id": "A6",
+      "platform": "Email platform (official NovaSkin comms)",
+      "description": "The formal NovaSkin contract default notice email from Natasha Kline, rendered in the email_export template showing full headers and aggressive legal language.",
+      "case_value": "Introduces Natasha as a suspect with motive and establishes the brand contract pressure Camila was under in her final week."
+    },
+    {
+      "doc_id": "C2",
+      "platform": "Platform OAuth Token Audit Log (digital forensics export)",
+      "description": "A forensic export of the Instagram and TikTok account management token activity, showing Voss Creative Management LLC OAuth token performing deletion actions at 12:22 AM on March 10 — from a non-home-WiFi IP geolocation consistent with the Brickell neighborhood.",
+      "case_value": "The pivot document — directly links Derek Voss's retained manager credentials to the account deletion actions, from a location matching his post-building-exit movements."
+    }
+  ],
+  "spatial_tool": {
+    "type": "floor_plan",
+    "doc_id": "A4",
+    "description": "Official building layout of Brickell Sky Residences floors 22 and rooftop level, prepared by the Miami PD forensics unit. Shows: Unit 2204 floor plan, elevator bank, service stairwell access points, rooftop pool deck, camera positions (including the offline rooftop camera zone), and lobby/parking garage access points. Key annotation: the service stairwell is the ONLY route from floor 22 to the rooftop that bypasses all active cameras. Players use this to understand how the body was moved without being seen."
+  },
+  "hint_system": {
+    "levels": [
+      {
+        "level": 1,
+        "label": "Nudge",
+        "hints": [
+          "Look carefully at the timestamps on the platform deletion emails — when did they arrive, and what was Camila doing at that time?",
+          "The building's entry-exit log seems to be missing someone. Is there another record of who entered that night?",
+          "Compare the commission percentages in Camila's contracts to what was actually transferred to Voss Creative Management."
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Direction",
+        "hints": [
+          "The rooftop CCTV was offline for scheduled maintenance on the night of the murder. How would someone know that schedule in advance?",
+          "One of the POIs was officially 'at the dinner' all night — but check the restaurant's seating log for exact departure time.",
+          "The OAuth token that deleted Camila's accounts was registered to a management company application. Which POI ran a management company with admin access to her platforms?"
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Reveal",
+        "hints": [
+          "Derek Voss visited the Brickell Sky Residences on February 28 — six weeks before the murder — and signed a courier receipt as 'building liaison.' That visit put him in range of the maintenance schedule board in the building management office.",
+          "The platform deletions at 12:22 AM on March 10 were made from a mobile device using the Voss Creative Management OAuth token — not from home WiFi. The parking garage CCTV places Derek's vehicle leaving the building at 12:15 AM.",
+          "Derek's motive: he had been over-billing Camila by 7% for two years — $187,000 total. On March 9 she confronted him with printed proof and threatened legal action. He had one way out."
+        ]
+      },
+      {
+        "level": 4,
+        "label": "Confession",
+        "hints": [
+          "Derek Voss is the killer. He entered Brickell Sky Residences at 11:14 PM on March 9 using a guest access code he obtained under the pretense of a contract delivery. He strangled Camila in her unit and staged her body in the rooftop pool — using the service stairwell to bypass all active cameras on a route he had scouted six weeks earlier when the rooftop CCTV maintenance window was scheduled.",
+          "After leaving the building at 12:15 AM (captured on parking garage CCTV), Derek used the Voss Creative Management OAuth credentials he retained after Camila fired him to remotely delete her Instagram and TikTok accounts from his phone — via mobile data, not home WiFi, which is why his home router logs show no activity. He then initiated a fraudulent $64,000 wire transfer logged as a 'contract termination fee.'",
+          "The case breaks on an automated email forwarding rule Camila had set up herself. The platform deletion notification was forwarded to her backup Gmail at 1:47 AM — which Valentina accessed in the morning. This proved the accounts were wiped after Camila was already dead, destroying Derek's cover story that she had erased herself and disappeared voluntarily."
+        ]
+      }
+    ]
+  }
+}

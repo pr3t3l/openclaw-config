@@ -1,0 +1,150 @@
+{
+  "telemetry": {
+    "model": "litellm/gpt52-medium",
+    "input_tokens": null,
+    "output_tokens": null
+  },
+  "case_slug": "medication-that-cures-too-well-gpt",
+  "briefs": [
+    {
+      "image_id": "img_poi_01_headshot",
+      "for_doc": "A2",
+      "for_poi": "POI-01",
+      "envelope": "A",
+      "type": "mugshot",
+      "filename": "poi_01_mara_ellison_headshot.png",
+      "dall_e_prompt": "Professional corporate headshot of Dr. Mara Ellison, a 41-year-old woman, principal research scientist in biotech. Medium-length chestnut-brown hair in a neat side part, subtle under-eye fatigue, intelligent focused eyes, minimal natural makeup, no heavy jewelry. Wardrobe: charcoal blazer over a muted teal blouse (lab-adjacent professional). Expression: calm, serious, slightly guarded. Background: clean light gray seamless. Lighting: soft even studio light, gentle catchlights, no harsh shadows. Photorealistic, high detail, centered head-and-shoulders framing, Canon EOS R5 look. No text, no watermark, no logos, no illustration, no cartoon, no anime, no painterly style.",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A2",
+          "template_slot": "poi_card_POI-01",
+          "placement_notes": "Victim portrait on POI sheet; should read as a normal corporate headshot, not a police booking photo."
+        }
+      ]
+    },
+    {
+      "image_id": "img_poi_02_mugshot",
+      "for_doc": "A2",
+      "for_poi": "POI-02",
+      "envelope": "A",
+      "type": "mugshot",
+      "filename": "poi_02_evan_kline_mugshot.png",
+      "dall_e_prompt": "Police interview/booking-style mugshot portrait of Evan Kline, a late-40s white male CFO (approx. 48). Salt-and-pepper hair neatly styled, clean-shaven, sharp cheekbones, tired eyes that still look practiced and confident. Wardrobe: dark navy suit jacket with open-collar white shirt (no tie). Expression: controlled, slightly defensive. Background: neutral off-white/gray police backdrop. Lighting: flat institutional fluorescent, minimal shadows, front-facing head-and-shoulders framing. Photorealistic, high detail, Canon EOS R5 look. No text, no watermark, no badges, no logos, no illustration, no cartoon, no anime, no painterly style.",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A2",
+          "template_slot": "poi_card_POI-02",
+          "placement_notes": "POI sheet portrait for Evan Kline (CFO)."
+        },
+        {
+          "doc_id": "B1",
+          "template_slot": "subject_photo_header",
+          "placement_notes": "Interview transcript header photo for Evan Kline."
+        }
+      ]
+    },
+    {
+      "image_id": "img_poi_03_mugshot",
+      "for_doc": "A2",
+      "for_poi": "POI-03",
+      "envelope": "A",
+      "type": "mugshot",
+      "filename": "poi_03_nadia_reyes_mugshot.png",
+      "dall_e_prompt": "Police interview/booking-style mugshot portrait of Nadia Reyes, a Latina woman in her late-20s/early-30s (approx. 30), research associate. Dark brown hair pulled back into a practical low ponytail with a few flyaways, faint under-eye circles, honest anxious eyes. Wardrobe: simple dark zip hoodie under a plain blazer (looks like she came from work). Expression: stressed, apologetic, trying to be believed. Background: neutral off-white/gray police backdrop. Lighting: flat institutional fluorescent, front-facing head-and-shoulders framing. Photorealistic, high detail, Canon EOS R5 look. No text, no watermark, no logos, no illustration, no cartoon, no anime, no painterly style.",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A2",
+          "template_slot": "poi_card_POI-03",
+          "placement_notes": "POI sheet portrait for Nadia Reyes (lab associate)."
+        },
+        {
+          "doc_id": "B2",
+          "template_slot": "subject_photo_header",
+          "placement_notes": "Interview transcript header photo for Nadia Reyes."
+        }
+      ]
+    },
+    {
+      "image_id": "img_poi_04_mugshot",
+      "for_doc": "A2",
+      "for_poi": "POI-04",
+      "envelope": "A",
+      "type": "mugshot",
+      "filename": "poi_04_tom_briggs_mugshot.png",
+      "dall_e_prompt": "Police interview/booking-style mugshot portrait of Tom Briggs, a white male in his late-30s/early-40s (approx. 40), facilities and security operations manager. Short-cropped hair, slight five o'clock shadow, practical rugged features, faint forehead lines. Wardrobe: work button-down shirt (light blue or gray) with the collar slightly wrinkled, no tie. Expression: blunt, annoyed, defensive; jaw set. Background: neutral off-white/gray police backdrop. Lighting: flat institutional fluorescent, front-facing head-and-shoulders framing. Photorealistic, high detail, Canon EOS R5 look. No text, no watermark, no logos, no illustration, no cartoon, no anime, no painterly style.",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A2",
+          "template_slot": "poi_card_POI-04",
+          "placement_notes": "POI sheet portrait for Tom Briggs (Facilities/Security ops)."
+        },
+        {
+          "doc_id": "B3",
+          "template_slot": "subject_photo_header",
+          "placement_notes": "Interview transcript header photo for Tom Briggs."
+        }
+      ]
+    },
+    {
+      "image_id": "img_poi_05_mugshot",
+      "for_doc": "A2",
+      "for_poi": "POI-05",
+      "envelope": "A",
+      "type": "mugshot",
+      "filename": "poi_05_raina_patel_mugshot.png",
+      "dall_e_prompt": "Police interview/booking-style mugshot portrait of Raina Patel, a South Asian woman in her late-30s/early-40s (approx. 39), Director of Quality Assurance. Dark hair neatly pulled into a low bun, precise grooming, minimal jewelry (small stud earrings), composed face with steady unblinking eyes. Wardrobe: tailored black blazer over a cream blouse. Expression: calm, controlled, slightly chilling; no visible panic. Background: neutral off-white/gray police backdrop. Lighting: flat institutional fluorescent, front-facing head-and-shoulders framing. Photorealistic, high detail, Canon EOS R5 look. No text, no watermark, no logos, no illustration, no cartoon, no anime, no painterly style.",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A2",
+          "template_slot": "poi_card_POI-05",
+          "placement_notes": "POI sheet portrait for Raina Patel (QA director)."
+        },
+        {
+          "doc_id": "B4",
+          "template_slot": "subject_photo_header",
+          "placement_notes": "Interview transcript header photo for Raina Patel."
+        }
+      ]
+    }
+  ]
+}

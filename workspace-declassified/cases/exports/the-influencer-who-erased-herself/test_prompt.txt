@@ -1,0 +1,261 @@
+=== SYSTEM PROMPT ===
+
+You are a document designer for Declassified Cases, a physical detective mystery game sold as printed case file kits.
+
+You create complete, self-contained HTML pages that render to PDF via headless Chromium.
+
+DESIGN SYSTEM:
+{
+  "version": "1.0",
+  "description": "Visual design system for Declassified Cases documents. All documents share this language.",
+  "page": {
+    "size": "letter",
+    "margins": "12mm",
+    "background": "#fafaf8"
+  },
+  "typography": {
+    "body": "'Georgia', 'Times New Roman', serif",
+    "mono": "'Courier New', 'Consolas', monospace",
+    "sans": "'Helvetica Neue', 'Arial', sans-serif",
+    "display": "'Impact', 'Arial Black', sans-serif",
+    "handwritten": "'Comic Sans MS', 'Segoe Script', cursive"
+  },
+  "colors": {
+    "ink": "#1a1a1a",
+    "muted": "#666666",
+    "light_gray": "#999999",
+    "accent_red": "#c41e3a",
+    "accent_blue": "#1a3a5c",
+    "stamp_red": "#cc0000",
+    "highlight_yellow": "#fff59d",
+    "paper_cream": "#f5f0e8",
+    "paper_white": "#fafaf8",
+    "evidence_dark": "#1a1a1a",
+    "classified_red": "#8b0000",
+    "police_blue": "#003366",
+    "legal_navy": "#1a2744",
+    "medical_green": "#006644",
+    "digital_cyan": "#0088aa"
+  },
+  "stamps": {
+    "confidential": "Text 'CONFIDENTIAL' rotated -15deg, color #cc0000, opacity 0.25, font Impact 28pt, positioned bottom-right",
+    "evidence": "Text 'EVIDENCE' in bordered rectangle, color #cc0000, opacity 0.8, font mono 10pt, centered top",
+    "restricted": "Text 'RESTRICTED' top-right corner, mono 8pt, bordered box, color #8b0000",
+    "declassified": "Text 'DECLASSIFIED' diagonal across page, font Impact 48pt, color #cc0000, opacity 0.08",
+    "digital_evidence": "Text 'DIGITAL EVIDENCE' in bordered rectangle, color #cc0000, centered"
+  },
+  "effects": {
+    "paper_texture": "Use CSS: background-image with subtle repeating noise pattern or set background-color to #f5f0e8 for cream paper feel",
+    "coffee_stain": "Optional: circular radial-gradient in brown (#8B4513) at 0.04 opacity, random position, 60-80px diameter",
+    "fold_lines": "Optional: very subtle 1px lines at 33% and 66% height, color rgba(0,0,0,0.03)",
+    "tape": "Semi-transparent yellow (#fff59d) rectangles at corners, slight rotation, 40x15px, opacity 0.6",
+    "staple": "Small 3x8px dark gray rectangle at top-left, with slight shadow",
+    "redaction_bar": "Black rectangle over text, sometimes with visible text underneath at low opacity"
+  },
+  "evidence_header": {
+    "format": "Case: {caseNumber} | Document: {docId} | Date: {date}",
+    "style": "font-family mono, font-size 9pt, text-align center, color #999, padding 8px, border-bottom 1px solid #ddd"
+  },
+  "footer": {
+    "text": "Prepared for training / investigative simulation. All content is fictional within this case universe.",
+    "style": "font-size 8pt, text-align center, color #999, padding-top 16px, border-top 1px solid #eee, margin-top 24px"
+  },
+  "rules": {
+    "all_css_inline": "ALL CSS must be in a <style> block. No external stylesheets.",
+    "all_images_base64": "ALL images must be embedded as base64 data URIs in <img src='data:image/png;base64,...'>",
+    "no_javascript": "No JavaScript. Static HTML/CSS only.",
+    "print_friendly": "Must render correctly with Chromium printBackground: true",
+    "max_pages": "Most documents should be 1-2 pages. Interviews/transcripts may be 3-8 pages.",
+    "text_never_in_images": "ALL text must be HTML text. Never rely on text rendered inside AI-generated images.",
+    "every_doc_unique": "Each document should have subtle visual variations \u2014 no two documents should look identical even if same type"
+  }
+}
+
+DOCUMENT TYPE DESIGN:
+{
+  "feel": "Government office. Formal legal/institutional document.",
+  "layout": "Agency letterhead at top (text-based, bold). TO/FROM/DATE/RE/CLASSIFICATION block. Horizontal rule. Body in formal prose with numbered sections or headed subsections. Signature block at bottom.",
+  "typography": "Serif for body text. Sans-serif bold for letterhead and field labels. 11pt body.",
+  "special_elements": [
+    "CONFIDENTIAL stamp overlay",
+    "agency letterhead",
+    "signature line",
+    "classification marking"
+  ],
+  "page_estimate": "1-2 pages",
+  "background": "White, formal"
+}
+
+CRITICAL RULES:
+1. Output ONLY the complete HTML document. No explanation, no markdown fences.
+2. Start with <!DOCTYPE html> and end with </html>
+3. ALL CSS in a <style> block inside <head>. No external stylesheets.
+4. ALL images provided as base64 data URIs — use them directly in <img src="...">.
+5. Page setup: @page { size: letter; margin: 12mm; }
+6. ALL text must be HTML text. Never rely on text inside images.
+7. Include the evidence header (case number, doc ID, date) at top.
+8. Include the training simulation disclaimer footer at bottom.
+9. No JavaScript. Static HTML/CSS only.
+10. Make it look like a REAL document of this type — authentic, immersive, detailed.
+11. Use print-friendly CSS (printBackground: true in Chromium).
+12. Each document should feel unique — vary details, effects, and micro-styling.
+
+=== USER PROMPT ===
+
+Design document A1 (type: official_memo) for this case.
+
+CASE: CASE
+DOCUMENT ID: A1
+ENVELOPE: A
+TITLE: Miami Police Department — Case Initiation Memo: Suspicious Death at Brickell Sky Residences
+DATE: 2026-03-10
+
+CONTENT (this is the narrative content — incorporate ALL of it into the document design):
+---
+# A1 — Official Memo: Miami Police Department — Case Initiation Memo: Suspicious Death at Brickell Sky Residences
+
+**DOCUMENT TYPE:** official_memo
+**DOC ID:** A1
+**CASE NUMBER:** MIA-2026-0310-H
+**DATE:** 2026-03-10
+**TIMESTAMP:** 09:45 hours
+**CLASSIFICATION:** RESTRICTED — HOMICIDE DIVISION USE ONLY
+
+---
+
+## TEMPLATE VARIABLES
+
+```
+TO: Lieutenant D. Morales, Homicide Division — Miami Police Department
+FROM: Det. Sgt. R. Alvarez, Homicide Unit 4
+RE: SUSPICIOUS DEATH — Unit 2204, 1401 Brickell Avenue (Brickell Sky Residences)
+DATE: March 10, 2026
+CASE NUMBER: MIA-2026-0310-H
+CLASSIFICATION: Restricted — Homicide Division
+```
+
+---
+
+## MEMO BODY
+
+**MIAMI POLICE DEPARTMENT**
+**HOMICIDE DIVISION — INTERNAL CASE INITIATION MEMORANDUM**
+
+**TO:** Lieutenant D. Morales, Homicide Division
+**FROM:** Det. Sgt. R. Alvarez, Homicide Unit 4
+**DATE:** March 10, 2026 — 09:45 hours
+**RE:** Suspicious Death — 1401 Brickell Avenue, Unit 2204 / Rooftop Pool Deck
+**CASE NUMBER:** MIA-2026-0310-H
+
+---
+
+### I. DISCOVERY
+
+At 06:42 hours on 10 March 2026, building concierge Rodrigo Santos reported an unresponsive female subject located face-down in the rooftop amenity pool at 1401 Brickell Avenue — simultaneously, automated notifications from three digital platforms flagged account-deletion events linked to the subject's verified creator accounts.
+
+Miami-Dade Fire Rescue responded at 06:44 hours. Subject was pronounced deceased at scene at 07:02 hours. Preliminary assessment: possible drowning, circumstances unclear. Case elevated to suspicious death at 07:38 hours upon initial examination by responding officer.
+
+Notification to Homicide Division: 07:50 hours. This unit assumed primary jurisdiction at 08:15 hours.
+
+---
+
+### II. SUBJECT IDENTIFICATION
+
+Subject identified as: **Camila Reyes**, DOB April 12, 1997. Age 28.
+
+Occupation: Lifestyle and beauty content creator. Sole proprietor, Reyes Digital LLC (registered Florida LLC, Miami-Dade County). Social media presence at time of death: 3.2 million Instagram followers (account: @camilareyes\_official), 4.1 million TikTok followers (account: @camila.reyes). Active brand partnership with NovaSkin Cosmetics — campaign launch scheduled for March 10, 2026 (day of discovery).
+
+Residence: Unit 2204, Brickell Sky Residences, 1401 Brickell Avenue, Miami FL 33131. Subject had occupied unit under lease since January 2024.
+
+---
+
+### III. SCENE SUMMARY
+
+**Location of discovery:** Rooftop pool deck, Brickell Sky Residences, 1401 Brickell Avenue. Rooftop amenity level accessed via elevator bank (floor 22 to rooftop) or service stairwell (designated SW-22-R).
+
+**Rooftop CCTV status at time of discovery:** OFFLINE. Scheduled maintenance window confirmed by building management — rooftop camera cluster (CAMS-4 through CAMS-7) offline for firmware update, March 9–11, 2026.
+
+**Lobby and elevator cameras:** Operational. Footage secured and under review.
+
+**Subject's apartment (Unit 2204):** Entry door found unlocked. Interior inspected — no signs of forced entry. Scene secured by responding officers at 07:15 hours. Forensics Unit dispatched; on-scene documentation completed by 14:00 hours.
+
+**Body position:** Subject found face-down in rooftop pool, submerged to shoulder depth. Concierge Santos stated body was not present when he locked the rooftop at approximately 21:30 hours on the evening of March 9 during a routine amenity check. Discovery occurred during the morning amenity check at 06:42 hours.
+
+---
+
+### IV. DIGITAL ACCOUNT STATUS
+
+Beginning at approximately 00:22 hours on March 10, 2026, automated platform monitoring systems detected the following events linked to subject's verified accounts:
+
+- **Instagram (@camilareyes\_official):** Account content deletion initiated at 00:22 hours. Account deactivated by 00:38 hours. Notification auto-generated.
+- **TikTok (@camila.reyes):** Account deletion initiated at 00:38 hours. Profile removed by 00:51 hours.
+- **Creator management platform (brand partnership portal):** API tokens revoked, account access terminated at 01:15 hours.
+
+Three platform notifications were generated automatically as a result of these actions. One notification was forwarded via automated email rule from the subject's primary Gmail address to a designated backup address. Platform review and digital forensics referral initiated.
+
+---
+
+### V. REPORTING OF SUSPICIOUS CIRCUMSTANCES
+
+At 09:15 hours, a civilian caller — **Valentina Ochoa**, identified as close associate of the subject — contacted MPD non-emergency line. Caller reported: (a) receipt of an automated forwarded email notification at approximately 01:47 hours indicating account deletion; (b) failure of the subject to respond to a scheduled professional call at 08:00 hours; (c) caller's concern that the account deletions were not initiated voluntarily by the subject.
+
+Case elevated from suspicious death to suspected homicide investigation at 09:30 hours following review of Ochoa's report in conjunction with preliminary scene assessment.
+
+---
+
+### VI. PERSONS OF INTEREST — INITIAL IDENTIFICATION
+
+The following individuals have been identified for immediate interview. See attached POI Classification Sheet (A2).
+
+- **Derek Voss**, 37 — talent manager, Voss Creative Management LLC. Served as subject's manager of record for approximately 4 years. Had administrative access to subject's brand accounts and financial platforms.
+- **Natasha Kline**, 32 — Senior Brand Partnerships Manager, NovaSkin Cosmetics. Managed subject's $340,000 brand campaign contract. Sent a formal contract default notice to the subject on March 7, 2026.
+- **Marcus Delray**, 31 — freelance videographer and content editor; professional and personal associate of the subject. Observed on building lobby CCTV entering the building at 21:47 hours on March 9, exiting at 22:06 hours.
+- **Valentina Ochoa**, 27 — personal associate and former collaborator of the subject. Filed initial missing person concern and provided forwarded deletion notification email as evidence.
+
+---
+
+### VII. CASE ASSIGNMENT
+
+**Lead:** Det. Sgt. R. Alvarez — Homicide Unit 4
+**Support:** Digital Forensics Unit (platform deletion logs and OAuth access review)
+**Medical Examiner Referral:** Miami-Dade County ME — Dr. Carmen Valdes (autopsy scheduled March 11)
+**Financial Crimes Referral:** Pending — pending review of subject's financial records
+
+**Immediate priorities:**
+1. Secure and review all available CCTV footage — lobby, elevator, parking garage
+2. Obtain electronic access control logs from building management (keycard and guest code records)
+3. Initiate digital forensics warrant for platform account deletion records and OAuth token logs
+4. Conduct interviews of all four identified persons of interest
+5. Obtain financial records for Reyes Digital LLC
+
+This unit will provide supplemental reporting as investigation progresses.
+
+— Det. Sgt. R. Alvarez
+Homicide Division, Unit 4
+Miami Police Department
+March 10, 2026
+
+---
+
+## DETECTIVE ANNOTATIONS
+
+**[YELLOW HIGHLIGHT — beside platform deletion paragraph]**
+Account wipes flagged by platform monitoring at same window as body discovery. Coincidence? Zero chance.
+
+**[BLUE STICKY — top right corner]**
+Rodrigo Santos — routine check. Why routine? Who authorized morning pool check? Get schedule.
+
+**[CAREFUL PRINT — bottom margin, underlined]**
+Valentina Ochoa called 9:15 AM — she knew something was wrong BEFORE police called her. Flag B4.
+
+---
+
+*RESTRICTED — MIAMI POLICE DEPARTMENT — HOMICIDE DIVISION*
+*Case #MIA-2026-0310-H — Not for distribution outside investigative unit*
+
+---
+
+IMAGES (embed these using the base64 data URIs provided):
+(No images for this document — use text and layout only)
+
+Generate the complete HTML document now. Start with <!DOCTYPE html>.

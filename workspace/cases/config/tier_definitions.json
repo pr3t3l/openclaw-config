@@ -1,0 +1,188 @@
+{
+  "SHORT": {
+    "envelopes": ["A", "B", "R"],
+    "total_docs": { "min": 8, "max": 12 },
+    "min_unique_template_types": 6,
+    "pois": { "min": 3, "max": 4 },
+    "contradictions": { "min": 3, "max": 4 },
+    "interviews": {
+      "rule": "1 per living POI",
+      "min_exchanges": 16,
+      "note": "A SHORT case with 2 living POIs = 2 interview documents. This is a MULTIPLIER — do NOT count interviews as '1 unique type = 1 document'."
+    },
+    "social_media_docs": { "min": 1, "max": 2 },
+    "spatial_tool_required": false,
+    "spatial_tool_note": "Optional but recommended. Floor plan, city map, or location diagram.",
+    "scene_images": { "min": 1, "max": 2 },
+    "evidence_images": { "min": 2, "max": 3 },
+    "has_audio": false,
+    "has_interactive": false,
+    "hint_levels": 3,
+    "target_pages_pdf": 25,
+    "target_duration_min": 60,
+    "mandatory_docs": [
+      { "sequence": 1, "purpose": "case_introduction", "description": "First document player reads. Sets the scene: what happened, where, when. Can be any type that fits the story (memo, 911 call, newspaper, forensic report). Must hook the player immediately." },
+      { "sequence": 2, "type_id": 1, "purpose": "context_setting", "description": "Persons of Interest sheet. Always second. Player needs to know who is involved before reading evidence." }
+    ],
+    "document_selection_rules": {
+      "principle": "Every document must justify its existence through case value AND experience value. Never include a type just for diversity.",
+      "multiplier_types": {
+        "interrogation_transcript": "1 per living POI — 2 living POIs = 2 interview documents",
+        "social_posts": "1-2 per case — different platforms or threads",
+        "resolution_docs": "1 per POI in envelope R — mandatory",
+        "newspaper_front": "1 per case usually",
+        "calls_sms_log": "1 per case usually",
+        "email_export": "1-2 per case",
+        "witness_statement": "0-2 per case"
+      },
+      "critical_clarification": "min_unique_template_types measures template VARIETY (how many different type_keys). total_docs is the ACTUAL document count the player receives. A case with 6 unique types might have 10 total documents because interviews multiply per POI and resolution docs multiply per POI.",
+      "per_document_requirements": [
+        "What specific fact does this document reveal? (must be concrete, not 'reveals something')",
+        "Why this document TYPE and not another? (a lab report makes no sense in a financial fraud case)",
+        "What will the player feel after reading it? (suspense, curiosity, aha, frustration, relief)",
+        "Could this information be delivered more impactfully through a different type?"
+      ],
+      "anti_patterns": [
+        "Never include a forensic report if there is no physical evidence to analyze",
+        "Never include a lab report if there is no substance/material to test",
+        "Never include an entry/exit log if the location has no access control",
+        "Never include a missing person report unless someone actually disappears",
+        "Never pad with empty documents to meet doc count — reduce total_docs instead",
+        "Never interpret 'min_unique_template_types' as 'produce exactly that many documents' — it measures variety, not total count"
+      ]
+    },
+    "envelope_themes": {
+      "A": "Scene Setup — establish crime, introduce POIs, plant initial contradictions",
+      "B": "Evidence & Investigation — deeper evidence, eliminate suspects, tighten the net",
+      "R": "Resolution — one document per POI with guilty/not-guilty reasoning + evidence refs"
+    }
+  },
+  "NORMAL": {
+    "envelopes": ["A", "B", "C", "R"],
+    "total_docs": { "min": 15, "max": 22 },
+    "min_unique_template_types": 10,
+    "pois": { "min": 4, "max": 5 },
+    "contradictions": { "min": 5, "max": 7 },
+    "interviews": {
+      "rule": "1 per living POI",
+      "min_exchanges": 18,
+      "note": "A NORMAL case with 3-4 living POIs = 3-4 interview documents. Each uses the interrogation_transcript template but with completely different content, voice, and character dynamics."
+    },
+    "social_media_docs": { "min": 3, "max": 4 },
+    "spatial_tool_required": true,
+    "spatial_tool_note": "REQUIRED. At least 1 geographic/spatial document: city map, floor plan, building layout, sensor diagram, or property perimeter. Players need to visualize movement and location.",
+    "scene_images": { "min": 3, "max": 5 },
+    "evidence_images": { "min": 4, "max": 6 },
+    "has_audio": false,
+    "has_interactive": false,
+    "hint_levels": 4,
+    "target_pages_pdf": 50,
+    "target_duration_min": 90,
+    "mandatory_docs": [
+      { "sequence": 1, "purpose": "case_introduction", "description": "First document player reads. Sets the scene: what happened, where, when. Can be any type that fits the story. Must hook the player immediately." },
+      { "sequence": 2, "type_id": 1, "purpose": "context_setting", "description": "Persons of Interest sheet. Always second. Player needs to know who is involved before reading evidence." }
+    ],
+    "document_selection_rules": {
+      "principle": "Every document must justify its existence through case value AND experience value. Never include a type just for diversity.",
+      "multiplier_types": {
+        "interrogation_transcript": "1 per living POI — 3-4 living POIs = 3-4 interview documents",
+        "social_posts": "3-4 per case — different platforms (Instagram, X/Twitter, Facebook, Reddit)",
+        "resolution_docs": "1 per POI in envelope R — mandatory",
+        "newspaper_front": "1-2 per case — one about the crime, optionally one about context (corporate scandal, local history)",
+        "calls_sms_log": "1-2 per case — victim's phone + optionally a suspect's phone",
+        "email_export": "1-3 per case — different senders/threads",
+        "witness_statement": "0-3 per case — non-suspect witnesses"
+      },
+      "critical_clarification": "min_unique_template_types measures template VARIETY (how many different type_keys). total_docs is the ACTUAL document count the player receives. A NORMAL case with 10 unique types and 4 living POIs will typically have 18-20 total documents.",
+      "trojan_horse_requirement": "At least 2 documents must be 'Trojan horse' evidence — they APPEAR mundane (receipt, log entry, app notification) but CONTAIN critical deductive links (alibi proof, timeline contradiction, identity reveal).",
+      "per_document_requirements": [
+        "What specific fact does this document reveal?",
+        "Why this document TYPE and not another?",
+        "What will the player feel after reading it?",
+        "Could this information be delivered more impactfully through a different type?"
+      ],
+      "clue_proximity_rule": "If Clue A and Clue B must be connected by the player, they should appear within 3 documents of each other within the same envelope or adjacent envelopes.",
+      "anti_patterns": [
+        "Never include a forensic report if there is no physical evidence to analyze",
+        "Never include a lab report if there is no substance/material to test",
+        "Never include an entry/exit log if the location has no access control",
+        "Never include a missing person report unless someone actually disappears",
+        "Never pad with empty documents to meet doc count",
+        "Never interpret 'min_unique_template_types' as 'produce exactly that many documents'"
+      ]
+    },
+    "envelope_themes": {
+      "A": "Scene Setup — establish crime, introduce POIs, plant initial contradictions",
+      "B": "Contradictory Evidence — interviews reveal lies, forensics deepen mystery",
+      "C": "The Pivot — the document that breaks the case open, resolves main contradiction",
+      "R": "Resolution — one document per POI with guilty/not-guilty reasoning + evidence refs"
+    }
+  },
+  "PREMIUM": {
+    "envelopes": ["A", "B", "C", "D", "R"],
+    "total_docs": { "min": 25, "max": 35 },
+    "min_unique_template_types": 14,
+    "pois": { "min": 6, "max": 8 },
+    "contradictions": { "min": 8, "max": 12 },
+    "interviews": {
+      "rule": "1 per living POI",
+      "min_exchanges": 20,
+      "note": "A PREMIUM case with 5-7 living POIs = 5-7 interview documents, each with audio. Each interview is a 2-page standalone scene with full character dynamics."
+    },
+    "social_media_docs": { "min": 4, "max": 6 },
+    "spatial_tool_required": true,
+    "spatial_tool_note": "REQUIRED. At least 1-2 geographic/spatial documents. Premium cases often benefit from both a city/neighborhood map AND an interior floor plan.",
+    "scene_images": { "min": 5, "max": 8 },
+    "evidence_images": { "min": 6, "max": 10 },
+    "has_audio": true,
+    "has_interactive": true,
+    "hint_levels": 4,
+    "target_pages_pdf": 100,
+    "target_duration_min": 120,
+    "audio_scope": {
+      "911_calls": 1,
+      "interviews": "all_living_pois",
+      "note": "One audio per 911 call + one per living POI interview"
+    },
+    "mandatory_docs": [
+      { "sequence": 1, "purpose": "case_introduction", "description": "First document player reads. Sets the scene. Must hook the player immediately." },
+      { "sequence": 2, "type_id": 1, "purpose": "context_setting", "description": "Persons of Interest sheet. Always second." }
+    ],
+    "document_selection_rules": {
+      "principle": "Every document must justify its existence through case value AND experience value. Never include a type just for diversity.",
+      "multiplier_types": {
+        "interrogation_transcript": "1 per living POI — 5-7 living POIs = 5-7 interview documents with audio",
+        "social_posts": "4-6 per case — multiple platforms, conspiracy threads, viral posts",
+        "resolution_docs": "1 per POI in envelope R — mandatory",
+        "newspaper_front": "1-3 per case — news coverage evolves as story deepens",
+        "calls_sms_log": "1-2 per case",
+        "email_export": "2-4 per case — corporate email chains, personal messages",
+        "witness_statement": "1-4 per case"
+      },
+      "critical_clarification": "min_unique_template_types measures template VARIETY. total_docs is the ACTUAL count. A PREMIUM case with 14 unique types and 7 living POIs will have 28-32 total documents.",
+      "trojan_horse_requirement": "At least 3 documents must be 'Trojan horse' evidence.",
+      "per_document_requirements": [
+        "What specific fact does this document reveal?",
+        "Why this document TYPE and not another?",
+        "What will the player feel after reading it?",
+        "Could this information be delivered more impactfully through a different type?"
+      ],
+      "clue_proximity_rule": "If Clue A and Clue B must be connected by the player, they should appear within 3 documents of each other.",
+      "anti_patterns": [
+        "Never include a forensic report if there is no physical evidence to analyze",
+        "Never include a lab report if there is no substance/material to test",
+        "Never include an entry/exit log if the location has no access control",
+        "Never include a missing person report unless someone actually disappears",
+        "Never pad with empty documents to meet doc count",
+        "Never interpret 'min_unique_template_types' as 'produce exactly that many documents'"
+      ]
+    },
+    "envelope_themes": {
+      "A": "The Scene — establish crime, introduce 6-8 POIs, plant contradictions, set institutional context",
+      "B": "Witness Accounts — interviews reveal lies, witnesses contradict each other",
+      "C": "Forensic Anchor — lab results, redacted memos, the pivot document",
+      "D": "Deep Analysis — digital trail, communication logs, pattern analysis",
+      "R": "Resolution — one document per POI with guilty/not-guilty reasoning + evidence refs"
+    }
+  }
+}

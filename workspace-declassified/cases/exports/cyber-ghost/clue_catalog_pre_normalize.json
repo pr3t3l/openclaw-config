@@ -1,0 +1,1162 @@
+{
+  "slug": "cyber-ghost",
+  "documents": [
+    {
+      "doc_id": "A1",
+      "envelope": "A",
+      "sequence_number": 1,
+      "type_id": 5,
+      "type_key": "official_memo",
+      "in_world_title": "Harwick Police Department — Incident Report #2024-10836",
+      "owner_source": "HPD Patrol Division / Detective Bureau",
+      "timestamp": "2024-10-22T10:45:00",
+      "filename_base": "A1_Incident_Report",
+      "player_purpose": "case_introduction",
+      "reveals": "Jordan Mercer, 31, was found unresponsive in Apartment 4C at 812 Kellner Street on October 22 at 08:15 by building superintendent Remy Salazar. Initial scene assessment noted an open pill organizer, a laptop in sleep mode, and no signs of forced entry. Death is treated as suspicious pending toxicology.",
+      "player_inference": "A hacker who just leaked a massive corruption scandal is dead under circumstances that look almost too tidy — no forced entry, a conveniently staged scene. Someone may have wanted this to look like an accident.",
+      "document_justification": "Opens the case with the core facts: who is dead, where, when, and who found them. Plants the first anomaly (open pill organizer, no prescription on file) and introduces the building entry question that becomes critical when players examine the floor plan in A6.",
+      "pois_referenced": [
+        "POI-01"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [],
+      "production_brief_writing": {
+        "summary": "Standard HPD patrol incident report filed by the first responding officer, later annotated by the assigned detective. The report covers discovery circumstances, initial scene observations, and disposition. The key buried detail is a notation in the scene inventory appendix: Jordan's pill organizer (Monday through Sunday) was open to the Tuesday slot, but no prescription opioids or controlled substances were located in the medicine cabinet or pharmacy records query. This anomaly should appear in a sub-table labeled 'SCENE INVENTORY — NOTABLE ABSENCES' so it feels like the player discovered it rather than having it flagged.",
+        "tone": "Police bureaucratic — passive voice, incident codes, officer badge numbers, timestamps in 24-hour format. Dry and procedural. First responder's notes are clipped and observational; detective annotation is slightly more analytical.",
+        "min_words": 280,
+        "key_mandatory_line": "SCENE INVENTORY — NOTABLE ABSENCES: Pill organizer (7-day, generic brand) found open at Tuesday compartment. No prescription opioids, controlled substances, or related packaging located on premises. No pharmacy records on file for deceased as of query time 09:47.",
+        "key_information_to_include": [
+          "Discovery time: 08:15, October 22, 2024 — Remy Salazar, building superintendent",
+          "Location: Apartment 4C, 812 Kellner Street, Harwick",
+          "No signs of forced entry; door locked from inside via deadbolt",
+          "Laptop found on desk in sleep mode, screen locked",
+          "Incident number: 2024-10836",
+          "Death classification at time of filing: Suspicious — pending toxicology",
+          "Responding officer: Ofc. D. Pemberton, Badge #3341"
+        ],
+        "voice_notes": "First section written by Officer Pemberton — short, factual, no speculation. Detective annotation (initialed 'Det. R. Holt') added at 10:45 — slightly more analytical, notes the absence of any signs of distress or struggle. The pill organizer detail is in the appendix table, not the narrative body."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false
+    },
+    {
+      "doc_id": "A2",
+      "envelope": "A",
+      "sequence_number": 2,
+      "type_id": 1,
+      "type_key": "poi_sheet",
+      "in_world_title": "Persons of Interest — Case #2024-10836 (Jordan Mercer / 'Cyber Ghost')",
+      "owner_source": "HPD Detective Bureau — Det. R. Holt",
+      "timestamp": "2024-10-22T16:00:00",
+      "filename_base": "A2_POI_Sheet",
+      "player_purpose": "context_setting",
+      "reveals": "Four persons of interest are identified: Aldric Voss (city political consultant with unexplained financial ties to the Briarfield vendor period), Nadia Osei (rival hacktivist who publicly threatened Cyber Ghost), Serena Cho (city IT administrator and Jordan's college friend who provided access credentials), and Jordan Mercer (the victim, identified as Cyber Ghost based on device metadata).",
+      "player_inference": "Every POI has a reason to want Jordan silenced — the political fixer, the rival hacker, and the insider accomplice all had stakes in the leak. But the motives point in completely different directions, and someone is lying about their connection to Jordan.",
+      "document_justification": "Required A2 document — gives the player the full cast before evidence arrives. Each entry plants a distinct suspicion seed: Voss's financial anomaly, Nadia's public threat, Serena's insider access. Deliberately avoids naming Briarfield ownership at this stage so that discovery lands harder in envelope B.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-02",
+        "POI-03",
+        "POI-04"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1"
+      ],
+      "production_brief_writing": {
+        "summary": "Standard detective bureau POI dossier with four entries plus the victim. Each entry includes a photo placeholder, bio summary, connection to the case, and a 'reason for interest' field. The Voss entry notes his consulting fees spiked 340% during the Briarfield contract period but does not yet name his ownership stake. The Nadia entry quotes her public threat verbatim. The Serena entry notes her dual role as Jordan's college friend and city IT administrator. The victim entry confirms the Cyber Ghost identification via device metadata.",
+        "tone": "Police dossier — compact, factual, slightly clipped. Each entry follows the same template: Name / DOB / Occupation / Connection to deceased / Reason for interest / Current status. No speculation, just documented facts.",
+        "min_words": 200,
+        "key_mandatory_line": "VOSS, Aldric M. — REASON FOR INTEREST: City consulting contract fees increased 340% ($52K to $180K annually) during fiscal year 2022-2023, the same period in which Briarfield Solutions LLC received $2.3M in City Hall procurement payments. No conflict-of-interest disclosure on file.",
+        "key_information_to_include": [
+          "POI-01 Jordan Mercer: 31yo freelance developer, confirmed as Cyber Ghost via device metadata recovered at scene",
+          "POI-02 Aldric Voss: 48yo political consultant, 15 years advising Harwick City Council, 340% fee spike flagged",
+          "POI-03 Nadia Osei: 27yo security researcher, alias NullRoute, posted public threat against Cyber Ghost on Oct 15",
+          "POI-04 Serena Cho: 36yo city IT/finance systems administrator, identified as Jordan's college friend, access credentials under review",
+          "All four POIs interviewed or scheduled for interview as of Oct 22"
+        ],
+        "voice_notes": "Compiled by Det. Holt — professional, neutral tone. The Voss entry is the most terse, which creates an implicit sense that the detective is being careful. The Nadia entry quotes the exact forum threat. The Serena entry notes 'relationship to deceased under active review' — suggesting the detective already suspects she's more than a friend."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Dossier-style photo for each of the four POIs — professionally sourced or social media profile quality, not mugshots",
+      "image_requirements": [
+        {
+          "type": "dossier_photo",
+          "subject": "POI-01",
+          "brief": "Jordan Mercer — 31yo, androgynous presentation, dark hair, casual tech worker aesthetic, slightly guarded expression. Could be a social media profile photo."
+        },
+        {
+          "type": "dossier_photo",
+          "subject": "POI-02",
+          "brief": "Aldric Voss — 48yo male, silver-templed, well-groomed, wearing a collared shirt. Confident, polished look. Could be a LinkedIn headshot."
+        },
+        {
+          "type": "dossier_photo",
+          "subject": "POI-03",
+          "brief": "Nadia Osei — 27yo female, natural hair, wearing a hoodie or t-shirt, sharp eyes, slight smirk. Tech/hacker aesthetic. Could be a conference badge photo."
+        },
+        {
+          "type": "dossier_photo",
+          "subject": "POI-04",
+          "brief": "Serena Cho — 36yo female, professional attire, tired eyes, minimal makeup. Could be a city employee directory photo."
+        }
+      ],
+      "audio": false
+    },
+    {
+      "doc_id": "A3",
+      "envelope": "A",
+      "sequence_number": 3,
+      "type_id": 5,
+      "type_key": "official_memo",
+      "in_world_title": "City Hall IT Security — Print Queue Audit Log, October 8–14, 2024",
+      "owner_source": "Harwick City Hall — IT Security Division",
+      "timestamp": "2024-10-13T09:00:00",
+      "filename_base": "A3_Print_Queue_Audit",
+      "player_purpose": "clue_delivery",
+      "reveals": "The City Hall print queue log for October 8–11 shows a bulk print session on October 11 at 14:23 from workstation CHWS-0047 (Finance Division, Floor 3) — 847 pages of procurement records matching the leaked document count. The log was first reviewed by IT Security on October 13, then accessed a second time on October 14 at 16:45 from workstation CHWS-0112, located in Suite 440.",
+      "player_inference": "Someone in Suite 440 — not IT Security — accessed this audit log a second time on October 14. That second access happened after the official IT review was complete, and Suite 440 is not an IT department workspace. Why would someone outside IT be reading the leak's paper trail?",
+      "document_justification": "This is Trojan Horse #1 — it appears to be routine IT paperwork establishing that the city investigated the breach, but the buried second-access entry on October 14 from Suite 440 is the premeditation proof. Cross-referenced with C2, it places Voss personally identifying Jordan 17 days before the murder. Introduces CONTRA-03.",
+      "pois_referenced": [
+        "POI-02",
+        "POI-04"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-03"
+      ],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1"
+      ],
+      "production_brief_writing": {
+        "summary": "An internal IT security audit log formatted as a memo with attached spreadsheet table. The memo header explains the purpose (post-leak document access review). The main body is a dry, technical summary. The critical content is in the attached table showing print queue sessions and subsequent log access events. The second access entry — workstation CHWS-0112, Suite 440, October 14 at 16:45 — appears in the same formatting as all other entries, with no flag or annotation. It is the only access from outside the IT Security division. A footnote at the bottom of the table reads: 'All access events logged automatically. Manual review annotations are in italics.' The Suite 440 access has no italic annotation — meaning it was never manually reviewed or flagged.",
+        "tone": "Internal IT bureaucratic — technical, impersonal, formatted as a memo with a data table. Uses field names like 'Workstation ID,' 'User Session Token,' 'Access Type,' and 'Duration.' The memo body is a paragraph summary; the table is the substance.",
+        "min_words": 260,
+        "key_mandatory_line": "ACCESS LOG TABLE — ENTRY 7: Date: 2024-10-14 | Time: 16:45:03 | Workstation: CHWS-0112 | Location: Suite 440, Floor 4 | Session Token: [UNREGISTERED — guest session] | Access Type: READ | Duration: 00:18:42 | Annotation: [none]",
+        "key_information_to_include": [
+          "Print queue session on Oct 11 at 14:23 from CHWS-0047, Finance Division, Floor 3 — 847 pages, document set matches leaked cache",
+          "First audit access: Oct 13, 09:00, IT Security workstations CHWS-0003 and CHWS-0009 — official review, annotated",
+          "Second access: Oct 14, 16:45, CHWS-0112, Suite 440 — unregistered guest session, no annotation, 18 minutes 42 seconds",
+          "Suite 440 is not listed in the IT Security department directory (this detail appears in a cross-reference footnote)",
+          "Memo signed by IT Security Officer T. Bannister, dated October 13 — meaning the second access occurred after the memo was finalized"
+        ],
+        "voice_notes": "Written by IT Security Officer T. Bannister — efficient, technical, clearly written for internal record-keeping rather than investigation. The Suite 440 entry is in the table but not mentioned in the memo narrative body — Bannister didn't think it was significant. The guest session token is a clue that someone used a temporary credential to access the system, leaving no named user ID."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false
+    },
+    {
+      "doc_id": "A4",
+      "envelope": "A",
+      "sequence_number": 4,
+      "type_id": 5,
+      "type_key": "official_memo",
+      "in_world_title": "HPD Digital Crimes Unit — Preliminary Web Activity Report: 'Cyber Ghost' Second Publication Event",
+      "owner_source": "HPD Digital Crimes Unit — Analyst M. Quiñones",
+      "timestamp": "2024-10-23T11:30:00",
+      "filename_base": "A4_Second_Leak_Report",
+      "player_purpose": "clue_delivery",
+      "reveals": "At 02:17 on October 20, a second cache of Briarfield documents was published to a Tor mirror site using Cyber Ghost's authenticated credentials. The post contained selectively edited records that appeared to implicate a city IT employee as the leak source. HPD's Digital Crimes Unit traced the publishing session to a VPN exit node in Harwick but could not identify the originating IP.",
+      "player_inference": "Jordan Mercer died around 23:08 on October 19. The second post went live three hours later using Jordan's own credentials. Either Jordan somehow published documents after death, or the killer had copied those credentials and used them to misdirect the investigation toward a city IT employee — specifically designed to point at Serena Cho.",
+      "document_justification": "Introduces CONTRA-02 — the impossible posthumous post. This is the earliest planted impossibility in the case: a dead person's credentials used after their death to frame someone else. The player won't have the time-of-death confirmation yet (that comes in B7), but the timeline math becomes obvious when cross-referenced later. Also sets up the misdirection toward Serena that Voss engineered.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-02",
+        "POI-04"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-02"
+      ],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1",
+        "A3"
+      ],
+      "production_brief_writing": {
+        "summary": "A preliminary report from HPD's Digital Crimes Unit summarizing their analysis of the second Briarfield publication event on October 20. The report covers the credential authentication (confirmed as Jordan's Cyber Ghost PGP signing key), the timing, the content differences between the first and second leaks, and the VPN tracing effort. A key detail is in the 'Content Divergence' section: the second cache removed all references to vendor payment approvals signed by council members and added annotations that appear to show a Finance Division employee (no name, but a position description matching Serena Cho exactly) as the document originator.",
+        "tone": "Technical police report — structured with numbered sections, field labels, and technical annotations. More analytical than the incident report (A1). The analyst's voice is methodical and careful, noting limitations in the VPN tracing clearly.",
+        "min_words": 300,
+        "key_mandatory_line": "CREDENTIAL AUTHENTICATION: Publishing session authenticated via Cyber Ghost's PGP signing key (fingerprint: 8A4F 2C11 E903 77BD 4A21). Key was not revoked or reported compromised as of publication time 02:17:44, October 20, 2024. Session originated from VPN exit node HWK-VPN-Exit-07 (Harwick Metro area). Originating IP: masked.",
+        "key_information_to_include": [
+          "Second post timestamp: 02:17:44, October 20, 2024 — approximately 3 hours after estimated death window closes",
+          "Credentials used: Cyber Ghost's authenticated PGP signing key, valid and unrevoked",
+          "Content difference: second cache removed council member approval signatures; added annotations implying a Finance Division employee as originator",
+          "The position description in the added annotations matches the role of a City IT/Finance Systems Administrator (not named in the report)",
+          "VPN exit node traced to Harwick Metro area — no further IP resolution possible without ISP subpoena",
+          "Analyst notes: 'Selective editing pattern is consistent with intent to redirect attribution rather than expand disclosure'"
+        ],
+        "voice_notes": "Written by Digital Crimes Analyst M. Quiñones — technically precise, careful about what can and cannot be concluded. The 'Content Divergence' section is the most analytical part and contains the observation about the Finance Division position description. Quiñones does not speculate about who made the edits — that's for the detective to infer."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false
+    },
+    {
+      "doc_id": "A5",
+      "envelope": "A",
+      "sequence_number": 5,
+      "type_id": 17,
+      "type_key": "social_posts",
+      "in_world_title": "Social Media Evidence Package — Cyber Ghost Case #2024-10836",
+      "owner_source": "HPD Digital Crimes Unit — compiled from X/Twitter, Reddit, Instagram, Facebook",
+      "timestamp": "2024-10-22T17:00:00",
+      "filename_base": "A5_Social_Media_Package",
+      "player_purpose": "tension_builder",
+      "reveals": "Four social media documents compiled into one evidence package: (1) A local journalist's X/Twitter thread live-covering the Briarfield leak on October 12, including a reply from a council staffer account that accidentally confirms the Briarfield vendor list is authentic. (2) A Reddit r/Harwick post titled 'Did the city just kill Cyber Ghost?' with citizen speculation — one throwaway-account comment accurately identifies the City Hall print queue as the leak's origin vector. (3) Nadia Osei's Instagram post from October 19 at a hackathon whiteboard, uploaded at 12:52am October 20, with a tagged attendee comment timestamped 11:47pm confirming her presence — but creating a gap between 11:14pm and 1:02am. (4) A Harwick Civic Watch Facebook post reacting to Jordan's death, including Remy Salazar's comment about the scene and a since-deleted reply from an account linked to Voss's political network.",
+      "player_inference": "Nadia's Instagram post was uploaded after she badged back into the hackathon — the 11:47pm tag comment and her 11:14pm badge-out create a gap. The Reddit comment about the print queue is either an insider leak or a lucky guess. And someone connected to Voss's network tried to shape the public narrative on Facebook before deleting their comment.",
+      "document_justification": "Satisfies the social_media_plan requirement for X/Twitter, Reddit, Instagram, and Facebook coverage. Introduces Nadia's alibi gap visually (the Instagram timestamp math) and plants the print queue suspicion through the Reddit comment — priming the player to read A3 more carefully. The deleted Facebook comment from Voss's network associate adds atmospheric menace without being explicit.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-02",
+        "POI-03"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1",
+        "A2"
+      ],
+      "production_brief_writing": {
+        "summary": "A compiled social media evidence document presenting four platform captures. Each platform section has a clear header label. The content should feel authentically platform-specific: the X/Twitter thread has short posts with quote-replies; the Reddit post has upvote counts and nested comment threads; the Instagram entry is a photo description with caption and comments; the Facebook entry is a group post with comment chain including a screenshot-preserved deleted comment. The four sections are assembled by HPD Digital Crimes as a single PDF evidence package, with a cover note from Analyst Quiñones explaining the compilation.",
+        "tone": "Each platform section mimics the authentic voice and format of that platform. The HPD cover note is dry and procedural. The social media content itself ranges from journalist-professional (X/Twitter) to conspiratorial-civic (Reddit) to casual-personal (Instagram/Facebook).",
+        "min_words": 400,
+        "key_mandatory_line": "REDDIT COMMENT — User: throwaway_hwk_truth (account created October 20, 2024, deleted October 21): 'The files came from a print session inside City Hall. Someone printed 847 pages and walked out. Check the queue logs for Oct 8-11. This is not a hack from outside.'",
+        "key_information_to_include": [
+          "X/Twitter: journalist @PriyaNairHWK live-thread starting Oct 12 14:32; council staffer reply '@PriyaNairHWK the vendor list is being reviewed by legal — no comment on authenticity' [this implicitly confirms it]",
+          "Reddit r/Harwick: post titled 'Did the city just kill Cyber Ghost?' posted Oct 22; throwaway comment about print queue logs Oct 8-11 and 847 pages",
+          "Instagram: @nullroute_nadia post showing hackathon whiteboard, caption 'day 2, still going', uploaded 2024-10-20 00:52 (12:52am); tagged comment from @mweinberg_dev: 'great session tonight! [heart emoji]' timestamped 23:47 Oct 19",
+          "Facebook Harwick Civic Watch: post 'RIP to the person who tried to hold our city accountable'; Remy Salazar comment: 'I found him. The door was locked. I still can't sleep.'; screenshot of deleted comment from account 'HarwickProspers2024' reading 'Let's not turn a personal tragedy into a political witch hunt' — account linked to Voss campaign donor network in metadata note"
+        ],
+        "voice_notes": "The X/Twitter thread uses short, urgent journalist syntax. The Reddit post is earnest civic outrage with the throwaway comment buried several replies deep. The Instagram caption is casual and brief — the timestamp math is what matters, not the words. The Facebook section emphasizes the human weight of Remy Salazar's comment before the deleted reply's screenshot shifts the tone to something darker."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Screenshot-style renders of each of the four social media platforms showing authentic UI layout for X/Twitter thread, Reddit post with comments, Instagram photo post with comments, and Facebook group post with comment chain including screenshot of deleted comment",
+      "image_requirements": [
+        {
+          "type": "social_media_screenshot",
+          "subject": "X/Twitter thread",
+          "brief": "Journalist @PriyaNairHWK thread from Oct 12 — multiple posts, quote-reply from council staffer account. Dark mode or light mode X/Twitter UI. Show thread structure with engagement numbers."
+        },
+        {
+          "type": "social_media_screenshot",
+          "subject": "Reddit r/Harwick post",
+          "brief": "Post titled 'Did the city just kill Cyber Ghost?' with upvotes, several comment chains, throwaway account comment visible in thread. Reddit default UI."
+        },
+        {
+          "type": "social_media_screenshot",
+          "subject": "Instagram post",
+          "brief": "@nullroute_nadia post showing a whiteboard at a hackathon. Upload timestamp visible (12:52am). Comments below including @mweinberg_dev timestamped comment at 11:47pm prior day. Standard Instagram UI."
+        },
+        {
+          "type": "social_media_screenshot",
+          "subject": "Facebook group post + deleted comment screenshot",
+          "brief": "Harwick Civic Watch group post with Remy Salazar comment and a lower screenshot showing the 'HarwickProspers2024' deleted comment preserved as a screenshot-within-screenshot. Standard Facebook UI."
+        }
+      ],
+      "audio": false
+    },
+    {
+      "doc_id": "A6",
+      "envelope": "A",
+      "sequence_number": 6,
+      "type_id": 8,
+      "type_key": "floor_plan",
+      "in_world_title": "812 Kellner Street — Building Entry Points and Apartment 4C Layout",
+      "owner_source": "HPD Crime Scene Unit — Det. R. Holt / Scene Analyst K. Farris",
+      "timestamp": "2024-10-22T13:00:00",
+      "filename_base": "A6_Floor_Plan_Kellner",
+      "player_purpose": "context_setting",
+      "reveals": "The floor plan shows 812 Kellner Street has two entry points: a main lobby with keycard reader and overhead camera (full coverage), and a secondary stairwell exit on the alley side with a push-bar door (no camera, exit only from inside — no external keycard reader). Apartment 4C is accessible from both the elevator bank and the stairwell. Inside the apartment: the desk with the laptop is in the northeast corner, the kitchen where a glass was recovered is adjacent to the entry hall, and a window overlooking the alley is above the secondary stairwell exit.",
+      "player_inference": "The secondary stairwell has no camera and no external keycard — someone who was let into the apartment or who entered through the main lobby earlier in the day could exit through the stairwell without appearing on any camera footage after entry. The building entry log would only show main lobby keycard events, not stairwell exits.",
+      "document_justification": "Required spatial tool for NORMAL tier. Players need to understand how the killer entered and exited without triggering building cameras. The stairwell gap explains why there is no camera evidence of the killer's exit, and the apartment layout connects the kitchen (where the fentanyl was administered in a drink) to the desk (where the laptop was staged). Referenced in multiple timeline events and the evidence chain.",
+      "pois_referenced": [
+        "POI-01"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1"
+      ],
+      "production_brief_writing": {
+        "summary": "Crime scene unit diagram of the building entry points and Apartment 4C interior. The floor plan is annotated with labels for: Main Lobby (keycard + camera coverage zone marked), Secondary Stairwell Exit (no camera — labeled explicitly), Elevator bank, Apartment 4C door, and interior room layout. Inside the apartment: Entry Hall, Kitchen, Living Area, Desk/Workspace (NE corner), Bedroom, Bathroom, Alley-side window. Key annotations include: 'GLASS RECOVERED — Kitchen counter, near sink (evidence item 4),' 'LAPTOP FOUND — Desk, NE corner, sleep mode (evidence item 1),' and 'CAMERA BLIND SPOT — Secondary stairwell, alley exit.' A scale bar and north arrow should be included for authenticity. The document header should include the HPD case number and scene analyst's initials.",
+        "tone": "Crime scene technical diagram — architectural line-art style with clear label annotations. The written component (legend and analyst notes) is terse and factual. One analyst note at the bottom reads: 'Secondary stairwell exit has no external keycard reader — can be exited from inside without credentials. No camera coverage on alley side. Building management confirmed this door is not alarmed during evening hours.'",
+        "min_words": 150,
+        "key_mandatory_line": "ANALYST NOTE: Secondary stairwell exit (alley side) — no external keycard reader, no camera coverage, no alarm during hours 18:00–07:00 per building management. Any individual admitted through main lobby could exit via stairwell without generating additional access log entry.",
+        "key_information_to_include": [
+          "Main lobby: keycard reader + overhead camera, full coverage from street to elevator bank",
+          "Secondary stairwell: push-bar exit only, alley-facing, no camera, no alarm 6pm-7am",
+          "Apartment 4C location: fourth floor, accessible from elevator and stairwell",
+          "Kitchen: glass recovered (evidence item 4), position near entry hall",
+          "Desk NE corner: laptop recovered (evidence item 1), sleep mode",
+          "Alley-side window: overlooks secondary stairwell exit below"
+        ],
+        "voice_notes": "This is a visual document — the writing is minimal and functional. The analyst note about the secondary stairwell is the most important text element and should be visually prominent. The diagram should be clean enough for players to trace movement routes between entry points and the apartment."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Annotated architectural floor plan of 812 Kellner Street showing building entry points and Apartment 4C interior layout with crime scene annotations",
+      "image_requirements": [
+        {
+          "type": "floor_plan",
+          "subject": "Building entry points overview",
+          "brief": "Simple architectural diagram showing the building footprint with main lobby entry (camera icon, keycard symbol) and secondary stairwell alley exit (red X for no camera, push-bar symbol). Alley labeled. Scale bar included."
+        },
+        {
+          "type": "floor_plan",
+          "subject": "Apartment 4C interior",
+          "brief": "Interior layout of a one-bedroom apartment: entry hall, kitchen (glass marker), living area, desk/workspace in NE corner (laptop marker), bedroom, bathroom. Window on alley side labeled. Crime scene evidence item labels (item 1 laptop, item 4 glass). Clean line-art style with annotation labels."
+        }
+      ],
+      "audio": false
+    },
+    {
+      "doc_id": "B1",
+      "envelope": "B",
+      "sequence_number": 1,
+      "type_id": 9,
+      "type_key": "email_export",
+      "in_world_title": "Recovered Email Thread — Jordan Mercer to Priya Nair, October 17, 2024",
+      "owner_source": "Harwick PD Digital Forensics — Jordan Mercer device extraction",
+      "timestamp": "2024-10-17T11:20:00",
+      "filename_base": "B1_Email_Mercer_to_Nair",
+      "player_purpose": "clue_delivery",
+      "reveals": "Jordan Mercer sent an encrypted email from the Meridian Co-Works secure terminal on October 17 offering journalist Priya Nair access to a second document cache — 40% of the Briarfield files that were never published — and explicitly requesting guidance on federal whistleblower immunity. The email confirms Jordan planned to go further, not disappear.",
+      "player_inference": "Jordan was not suicidal or planning to vanish — five days before death, Jordan was actively pursuing federal protection and had more documents ready to release. Someone had strong motivation to stop that second release before immunity could be secured.",
+      "document_justification": "Establishes that Jordan's death was strategically timed — it occurred in the window between the immunity request and any federal response. Directly contradicts the 'accidental overdose' narrative by showing Jordan's forward-planning mindset and introduces the unpublished 40% cache as a motive accelerator for the killer.",
+      "pois_referenced": [
+        "POI-01"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1",
+        "A2",
+        "A4"
+      ],
+      "production_brief_writing": {
+        "summary": "An exported email thread showing Jordan's outreach to Priya Nair at the Harwick Courier-Tribune. The email was sent via ProtonMail from the Meridian Co-Works secure terminal (IP logged). Jordan's message is careful, measured, and shows someone operating with tradecraft — no real name used in the body, only 'C.G.' — but the terminal IP ties it to Jordan's co-working account. Nair's reply acknowledges receipt and requests a secure channel callback. The thread ends without Jordan responding to that callback request, because Jordan was dead four days later.",
+        "tone": "Careful, semi-formal whistleblower correspondence — controlled paranoia, professional language, strategic omissions. Nair's reply is warmer, journalistically eager but appropriately cautious.",
+        "min_words": 300,
+        "key_mandatory_line": "C.G. (Oct 17, 11:20): 'The published cache is approximately 60% of what I recovered. The remainder documents the ownership structure of Briarfield Solutions LLC directly. Before I release it, I need to understand my legal exposure. I am willing to speak with the right federal contact.'",
+        "key_information_to_include": [
+          "Email sent from ProtonMail account 'meridian_secure_7@proton.me' — IP traces to Meridian Co-Works terminal 3B",
+          "Jordan references 'the remaining 40%' of the Briarfield files explicitly",
+          "Specific mention of whistleblower immunity inquiry and federal journalist contact",
+          "Nair's reply asking for a Signal callback number — Jordan never responded",
+          "Email header metadata showing timestamp 11:20:44 on October 17, 2024"
+        ],
+        "voice_notes": "Jordan writes in tight, declarative sentences. No flourish. Every word is considered. Nair writes like an excited journalist trying to stay professionally calm — she knows this is big."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false
+    },
+    {
+      "doc_id": "B2",
+      "envelope": "B",
+      "sequence_number": 2,
+      "type_id": 10,
+      "type_key": "interrogation_transcript",
+      "in_world_title": "Interrogation Transcript — Aldric Voss (POI-02), October 23, 2024",
+      "owner_source": "Harwick PD Homicide Division — Interview Room A",
+      "timestamp": "2024-10-23T10:30:00",
+      "filename_base": "B2_Interrogation_Voss",
+      "player_purpose": "clue_delivery",
+      "reveals": "Aldric Voss states he remained at the Harwick Grand Hotel fundraiser until 10:30pm on October 19 and went home directly afterward — but his account of the fundraiser details is suspiciously precise about early-evening events and vague about anything after 9pm. He denies any knowledge of Briarfield Solutions LLC beyond his publicly disclosed advisory role and claims he has never heard the name Jordan Mercer.",
+      "player_inference": "Voss's alibi for the night of October 19 places him at the hotel until 10:30pm — but this is the claim the parking garage exit log will directly contradict. His over-precision about the early evening and vagueness about the 9-10:30pm window suggests he is constructing a story, not recalling one.",
+      "document_justification": "Introduces CONTRA-01 from Voss's side — the alibi he is staking everything on. The transcript plants specific claims (hotel until 10:30pm, drove home alone, no stops) that become the exact points contradicted by B6. Voss's smooth deflection style makes him seem credible on first read, which is why B6 hits harder.",
+      "pois_referenced": [
+        "POI-02"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-01"
+      ],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1",
+        "A2"
+      ],
+      "production_brief_writing": {
+        "summary": "Full interrogation transcript of Aldric Voss, conducted by Detective Reyes. Voss is cooperative, articulate, and projects the confident calm of someone who has managed difficult conversations professionally for 15 years. He volunteers information strategically — mentioning the fundraiser before being asked, naming the hotel and the charity without prompting — as if he has rehearsed these details. His alibi is airtight by his own telling: hotel until 10:30pm, valet retrieved his car, drove home on Route 9, in bed by 11:15pm. The cracks are subtle: he cannot name who he spoke to after 9pm at the dinner, he describes the menu in detail but not the people, and when asked about Briarfield Solutions, his speech slows and he begins deploying 'hypothetically.'",
+        "tone": "Polished corporate calm with micro-fractures under sustained questioning. Voss speaks in complete, rehearsed paragraphs. The detective's questions are straightforward; the tension comes from what Voss is not saying.",
+        "min_words": 700,
+        "key_mandatory_line": "VOSS: I left the Grand Hotel at approximately 10:30 — the dinner had wound down, I said my goodbyes to Councilmember Fitch, retrieved my vehicle from the valet, and drove directly home via Route 9. I was in bed well before midnight.",
+        "key_information_to_include": [
+          "Voss names the Harwick Grand Hotel, the charity (Harwick Children's Foundation), and Councilmember Fitch as his last conversation partner",
+          "Voss claims 10:30pm departure — the specific time that will be contradicted by B6",
+          "Voss states he drove home 'directly' via Route 9 with no stops",
+          "Voss denies knowing Jordan Mercer by name or Cyber Ghost by reputation",
+          "Voss's answer on Briarfield: 'I've provided advisory services to the council on procurement efficiency — I'm not familiar with every vendor on every contract'",
+          "Detective Reyes notes in a bracketed aside that Voss asked for water twice in a 45-minute interview but showed no other visible stress indicators"
+        ],
+        "voice_notes": "Voss repeats the interviewer's last word as a stall tactic: 'Briarfield? Yes, I'm aware there's been media attention on that contract.' He says 'that's a fair point' before every deflection. His verbal tics should feel charming, not suspicious, on first read."
+      },
+      "production_brief_interview": {
+        "subject_poi_id": "POI-02",
+        "interviewer_name": "Det. Camila Reyes",
+        "min_exchanges": 22,
+        "phases": [
+          {
+            "phase": 1,
+            "label": "Rapport and background",
+            "tactic": "Ask about Voss's role on the council, how long he has worked in city government, his relationship with current councilmembers",
+            "goal": "Establish his public persona — competent, respected, unflappable. Let him feel in control.",
+            "exchanges": 5
+          },
+          {
+            "phase": 2,
+            "label": "October 19 timeline",
+            "tactic": "Walk through his entire evening chronologically — where he went, who he saw, what he ate, when he left",
+            "goal": "Lock him into the 10:30pm departure claim with as much specific detail as possible",
+            "exchanges": 7
+          },
+          {
+            "phase": 3,
+            "label": "Briarfield and the leak",
+            "tactic": "Ask about his knowledge of Briarfield Solutions and his reaction to the Cyber Ghost leak",
+            "goal": "Force him to minimize his connection to Briarfield on the record. Capture the 'advisory services' deflection.",
+            "exchanges": 5
+          },
+          {
+            "phase": 4,
+            "label": "Jordan Mercer",
+            "tactic": "Introduce Jordan's name directly and ask if Voss has ever heard it",
+            "goal": "Get a flat denial on record — 'I've never heard that name' — which becomes significant when C2 shows Voss accessed the print queue to identify Jordan",
+            "exchanges": 5
+          }
+        ],
+        "the_lie": "Claims he was at the Harwick Grand Hotel fundraiser until 10:30pm on October 19 and drove home directly afterward — hotel parking garage exit log (B6) shows his vehicle left at 9:47pm",
+        "the_slip": {
+          "what": "When asked if he had spoken to any city IT staff about the leak investigation, Voss says 'I was briefed through the normal channels — I didn't go looking for anything myself.' The phrase 'go looking' is an odd, specific denial for someone who claims no involvement in the internal investigation.",
+          "how": "The interviewer had not suggested Voss went looking for anything — he volunteered the denial, suggesting consciousness of the October 14 unauthorized workstation access that will be revealed in C2."
+        }
+      },
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Professional headshot-style photo of Aldric Voss for transcript header — polished, mid-50s affect, well-dressed",
+      "image_requirements": [
+        {
+          "type": "mugshot",
+          "subject": "POI-02",
+          "brief": "48-year-old male, silver-grey hair, sharp features, wearing a pressed dress shirt. Calm, composed expression. Interview room lighting."
+        }
+      ],
+      "audio": false
+    },
+    {
+      "doc_id": "B3",
+      "envelope": "B",
+      "sequence_number": 3,
+      "type_id": 10,
+      "type_key": "interrogation_transcript",
+      "in_world_title": "Interrogation Transcript — Nadia Osei (POI-03), October 23, 2024",
+      "owner_source": "Harwick PD Homicide Division — Interview Room B",
+      "timestamp": "2024-10-23T14:00:00",
+      "filename_base": "B3_Interrogation_Osei",
+      "player_purpose": "red_herring",
+      "reveals": "Nadia Osei acknowledges her public threats against Cyber Ghost and does not apologize for them. She claims she was at the Meridian Co-Works hackathon continuously from October 18 through October 20 — but when pressed on the 108-minute badge gap on the night of October 19, she explains she went to Kosta's Diner three blocks away for food and a coffee, alone, around 11:15pm. She also reveals that the exploit she accused Jordan of stealing was itself derived from a public proof-of-concept, not original proprietary work.",
+      "player_inference": "Nadia had motive, capability, and a suspicious gap in her alibi — but her explanation for the gap (diner receipt, CCTV) is verifiable, and her admission that the exploit wasn't truly hers undercuts her stated motive. She is the most obvious suspect who is actually innocent.",
+      "document_justification": "Serves as the primary red herring resolution — Nadia looks guilty on paper but the interview dismantles her as a suspect. The diner alibi and exploit admission redirect the player away from the most obvious suspect and toward the less visible Voss, who gave a smoother interview.",
+      "pois_referenced": [
+        "POI-03"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1",
+        "A2",
+        "A5"
+      ],
+      "production_brief_writing": {
+        "summary": "Full interrogation of Nadia Osei, who arrives aggressive and impatient. She immediately addresses the forum post — 'I assume that's why I'm here' — and doesn't back down from the sentiment behind it. She is technically fluent and slightly contemptuous of the detective's terminology corrections. The interview's pivot comes when she is shown the hackathon badge log and the 108-minute gap: she exhales, says 'Kosta's, obviously,' and explains she left for diner food and a coffee. She is confident because she knows the receipt and the CCTV will back her up. The second pivot is her admission about the exploit: pushed on exactly what was stolen, she concedes it was 'a technique — something that was in the public domain, technically.' Her anger at Jordan was real, but the legal basis for it was shaky and she knew it.",
+        "tone": "Combative and technically precise — Nadia speaks fast, corrects terminology, starts sentences with 'look.' Becomes briefly vulnerable only when the diner explanation comes out, then returns to controlled irritation.",
+        "min_words": 650,
+        "key_mandatory_line": "OSEI: Kosta's Diner, 24-hour place on Meridian and 5th. I was there from maybe 11:20 to 12:45. I paid with my card. They have cameras. Look, I'm not stupid enough to go murder someone during a hackathon with 40 witnesses three blocks away.",
+        "key_information_to_include": [
+          "Nadia acknowledges the forum post threats verbatim: 'Ghost burned my tools and my people. That debt doesn't go away.'",
+          "Badge gap confirmed: badged out at 11:14pm, back in at 1:02am — 108 minutes",
+          "Nadia's diner alibi: Kosta's Diner, Meridian and 5th, card payment, CCTV — timestamped 11:31pm to 12:47am per receipt",
+          "Exploit admission: 'It was based on a public PoC from a Defcon talk. I had refined it, but — look, it wasn't patented. Nothing in this field is.'",
+          "Nadia reveals she had attempted her own breach of City Hall's procurement system six months before Jordan's successful leak and failed — her real anger was professional",
+          "Detective notes that Nadia never asks about Jordan's cause of death or expresses condolence"
+        ],
+        "voice_notes": "Nadia opens every frustrated sentence with 'look.' Uses 'trivially' to mean 'obviously.' Goes completely silent for 4-5 seconds twice during the interview — once when shown the badge log, once when the exploit question is pressed. These pauses feel like guilt but are actually calculation."
+      },
+      "production_brief_interview": {
+        "subject_poi_id": "POI-03",
+        "interviewer_name": "Det. Camila Reyes",
+        "min_exchanges": 20,
+        "phases": [
+          {
+            "phase": 1,
+            "label": "Forum post confrontation",
+            "tactic": "Open by presenting the forum post screenshot directly — no warm-up",
+            "goal": "Let Nadia respond to the threat on her own terms, which she does without remorse, establishing her aggressive baseline",
+            "exchanges": 5
+          },
+          {
+            "phase": 2,
+            "label": "Hackathon timeline",
+            "tactic": "Walk through the hackathon — when she arrived, who she was with, what she was working on",
+            "goal": "Get her to commit to a continuous presence, then present the badge gap",
+            "exchanges": 6
+          },
+          {
+            "phase": 3,
+            "label": "The badge gap",
+            "tactic": "Present the exact badge log times — 11:14pm out, 1:02am in — and ask where she was",
+            "goal": "Capture her confident diner alibi and the specific verifiable details (card payment, receipt, CCTV)",
+            "exchanges": 5
+          },
+          {
+            "phase": 4,
+            "label": "The exploit question",
+            "tactic": "Ask her to describe exactly what Jordan stole and why it was hers to claim",
+            "goal": "Force the admission that the exploit was derived from public domain work — undermining her stated motive",
+            "exchanges": 4
+          }
+        ],
+        "the_lie": "Implies through omission that she had a strong legal claim to the exploit — she never volunteers that it was based on a public Defcon proof-of-concept until directly pressed",
+        "the_slip": {
+          "what": "When asked if she had contacted Cyber Ghost directly before the forum post, Nadia says 'I sent a message through the usual channels — it was ignored.' She had not been asked about private contact, only public posts. This slip reveals she attempted direct communication before going public with the threat.",
+          "how": "She assumes the detective already knows about the private channel message and answers defensively — but the detective hadn't mentioned it yet. The slip is minor but establishes she had more direct engagement with Jordan than her public persona suggests."
+        }
+      },
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Photo of Nadia Osei for transcript header — young, sharp-eyed, wearing a graphic hoodie, slightly impatient expression",
+      "image_requirements": [
+        {
+          "type": "mugshot",
+          "subject": "POI-03",
+          "brief": "27-year-old woman, natural hair pulled back, wearing a dark hoodie, direct eye contact with slight defiance. Interview room lighting."
+        }
+      ],
+      "audio": false
+    },
+    {
+      "doc_id": "B4",
+      "envelope": "B",
+      "sequence_number": 4,
+      "type_id": 10,
+      "type_key": "interrogation_transcript",
+      "in_world_title": "Interrogation Transcript — Serena Cho (POI-04), October 24, 2024",
+      "owner_source": "Harwick PD Homicide Division — Interview Room A",
+      "timestamp": "2024-10-24T09:00:00",
+      "filename_base": "B4_Interrogation_Cho",
+      "player_purpose": "tension_builder",
+      "reveals": "Serena Cho admits she provided Jordan with the login credentials used to access the city's procurement system, framing it as helping a friend expose genuine wrongdoing. She claims she was home all evening on October 19. When shown a partial Signal log, she denies sending any unusual messages that night — a direct lie, since the recovered log shows her 8:47pm warning message 'don't let him in tonight.' Her alibi (delivery records, streaming log) is solid, but her denial of the warning message introduces CONTRA-04.",
+      "player_inference": "Serena is hiding something about the night of October 19 — her flat denial of the warning message is an obvious lie to anyone who reads B7 alongside B4. But her home alibi is airtight. She is concealing knowledge, not guilt — the question is what she knew and why she didn't call the police.",
+      "document_justification": "Creates CONTRA-04 by capturing Serena's on-record denial of the Signal message, which the recovered message log will contradict. Her emotional credibility makes the lie feel protective rather than predatory — she becomes a sympathetic figure hiding something damning, not a killer. This sustains player suspicion while leaving room for the C3 resolution.",
+      "pois_referenced": [
+        "POI-04"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-04"
+      ],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1",
+        "A2"
+      ],
+      "production_brief_writing": {
+        "summary": "Interrogation of Serena Cho — the most emotionally difficult interview in the case. She arrives cooperative and visibly grieving. She volunteers the credential admission early, framing it as a principled act: 'I gave Jordan access because what was happening was wrong, and I didn't have the courage to do it myself.' Her alibi for October 19 is clean and she provides delivery order confirmation and Netflix account log without being asked. The turn comes when the detective shows her a partially redacted Signal log — only the timestamp and that a message was sent to Jordan on October 19 at 8:47pm is visible, not the content. Serena says she doesn't recall sending anything unusual that night. The detective does not push further. The player is left knowing Serena is lying about the message while her alibi confirms she did not commit the murder.",
+        "tone": "Quiet, controlled grief with institutional bureaucratic patterns under stress. Serena speaks carefully, uses qualifiers constantly, tears up when Jordan is mentioned by name. Her lie about the Signal message is delivered in the same flat tone as everything else — which makes it more unsettling.",
+        "min_words": 650,
+        "key_mandatory_line": "CHO: I don't recall sending anything out of the ordinary on the 19th. I was home all evening — I ordered from Lotus Garden, I watched TV. I wasn't in contact with Jordan that night.",
+        "key_information_to_include": [
+          "Serena's credential admission: 'I provided the login to the procurement archive. I knew what Jordan was going to do with it.'",
+          "Home alibi: Lotus Garden delivery order #HW-48821 placed at 7:34pm, delivered 8:10pm; Netflix account shows 3h22m of playback beginning 8:30pm on October 19",
+          "Serena does not leave the apartment — alibi is verifiable and confirmed",
+          "Partial Signal log shown: timestamp 8:47pm October 19, recipient Jordan Mercer, content redacted — Serena says she doesn't recall sending anything unusual",
+          "Serena tears up when asked directly: 'Was Jordan afraid of something in the days before October 19?' — she says 'Jordan was always careful. That was the point.'",
+          "Detective notes: Subject's denial of Signal message is the only statement inconsistent with her otherwise cooperative demeanor"
+        ],
+        "voice_notes": "Serena clears her throat before difficult answers. Uses 'per my recollection' and 'as far as I'm aware' even for things she clearly knows. Her bureaucratic verbal armor cracks only when Jordan's name is spoken directly — then volume drops, and she pauses before answering."
+      },
+      "production_brief_interview": {
+        "subject_poi_id": "POI-04",
+        "interviewer_name": "Det. Camila Reyes",
+        "min_exchanges": 20,
+        "phases": [
+          {
+            "phase": 1,
+            "label": "Relationship to Jordan",
+            "tactic": "Ask how she knew Jordan, how long they had been friends, what Jordan was like",
+            "goal": "Establish emotional baseline and her genuine grief — this makes her later lie more jarring",
+            "exchanges": 5
+          },
+          {
+            "phase": 2,
+            "label": "Credential admission",
+            "tactic": "Ask directly about the procurement system access — did she provide credentials",
+            "goal": "Capture the admission on record. Serena volunteers this — she has clearly decided that confessing the credential share is safer than being caught in a lie about it.",
+            "exchanges": 5
+          },
+          {
+            "phase": 3,
+            "label": "October 19 alibi",
+            "tactic": "Walk through her evening — where she was, when, what she ordered, who she spoke to",
+            "goal": "Lock in the solid home alibi with verifiable specifics: Lotus Garden delivery, Netflix log",
+            "exchanges": 5
+          },
+          {
+            "phase": 4,
+            "label": "The Signal log",
+            "tactic": "Present the partial Signal log showing an 8:47pm message to Jordan on October 19 — do not reveal the content yet",
+            "goal": "Capture the flat denial on record: 'I don't recall sending anything out of the ordinary.' This is CONTRA-04.",
+            "exchanges": 5
+          }
+        ],
+        "the_lie": "Denies sending any unusual Signal messages to Jordan on the evening of October 19 — the recovered message log shows she sent 'don't let him in tonight — something feels wrong' at 8:47pm",
+        "the_slip": {
+          "what": "When asked if Jordan had mentioned anyone making contact or 'showing up unannounced' in the days before October 19, Serena says 'Jordan didn't tell me anything specific — just that things were moving faster than expected.' The phrase 'faster than expected' implies Serena knew a timeline was in motion, even if not the specifics.",
+          "how": "Serena intended to give a non-answer but the specific phrase 'faster than expected' reveals she had been in communication with Jordan about something scheduled or anticipated — not just casual friendship."
+        }
+      },
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Photo of Serena Cho for transcript header — professional, composed, but visibly tired",
+      "image_requirements": [
+        {
+          "type": "mugshot",
+          "subject": "POI-04",
+          "brief": "36-year-old woman, East Asian features, neat professional attire, dark circles under eyes suggesting sleep deprivation. Expression controlled but sad. Interview room lighting."
+        }
+      ],
+      "audio": false
+    },
+    {
+      "doc_id": "B5",
+      "envelope": "B",
+      "sequence_number": 5,
+      "type_id": 8,
+      "type_key": "entry_exit_log",
+      "in_world_title": "Meridian Co-Works — Badge Access Log, October 12–20, 2024 (Jordan Mercer account + Nadia Osei account)",
+      "owner_source": "Meridian Co-Works LLC — Security Systems Export, subpoenaed by Harwick PD",
+      "timestamp": "2024-10-25T09:00:00",
+      "filename_base": "B5_Meridian_Badge_Log",
+      "player_purpose": "clue_delivery",
+      "reveals": "Jordan Mercer's badge record shows regular access October 12-17, then complete absence from October 18 onward — Jordan stopped going to the co-working space entirely in the five days before death. Nadia Osei's record confirms she badged into the hackathon on October 18 at 6:02pm and out at 11:14pm on October 19, with a return at 1:02am — confirming the 108-minute gap in her alibi.",
+      "player_inference": "Jordan's sudden absence from the co-working space after October 17 — the same day as the email to journalist Nair — suggests Jordan was deliberately going to ground, aware of some threat. Nadia's badge gap is precisely documented, giving investigators the window to investigate her alibi, and cross-referencing with her diner claim in B3 either confirms or eliminates her.",
+      "document_justification": "Serves as the factual anchor for both Jordan's behavioral change in the final five days and Nadia's alibi gap. The log is referenced in the timeline for October 14 (Voss's second access to the print queue cross-referenced against co-working records) and provides the Meridian terminal IP that anchors B1's email origin. It is also the document that makes Nadia's 108-minute gap a matter of record rather than assertion.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-03"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A3",
+        "B1",
+        "B3"
+      ],
+      "production_brief_writing": {
+        "summary": "A tabular badge access log exported from Meridian Co-Works' security system. Two accounts are highlighted: Jordan Mercer (member #MCW-4471) and Nadia Osei (event guest, hackathon badge #HKT-039). Jordan's entries run daily through October 17 with consistent morning arrivals at Terminal 3B — then nothing. October 18, 19, 20: no entries. Nadia's hackathon entries are a single block — badge in October 18 18:02, badge out October 19 23:14, badge in October 20 01:02, badge out October 20 18:07. The 108-minute gap is plain in the timestamp column. A footnote from the Meridian security manager notes that the October 14 remote access to the co-working terminal database (referenced in A3's IT audit) originated from an external IP matching a City Hall municipal VPN node.",
+        "tone": "Raw security system export — tabular, timestamp-precise, minimal formatting. The footnote from the security manager is the only human voice in the document.",
+        "min_words": 200,
+        "key_mandatory_line": "MCW-4471 (MERCER, J): Last badge-in event: 2024-10-17 09:44:22 — Terminal 3B. No subsequent access events recorded through account suspension date 2024-10-22.",
+        "key_information_to_include": [
+          "Jordan Mercer badge log: Oct 12-17 daily entries, all Terminal 3B, morning arrival pattern",
+          "Jordan's last badge: October 17 at 09:44:22 — same morning as the email to Nair (11:20)",
+          "No Jordan badge entries October 18, 19, 20",
+          "Nadia Osei hackathon badge: in 18:02 Oct 18, out 23:14 Oct 19, in 01:02 Oct 20, out 18:07 Oct 20",
+          "Footnote: October 14 external database query of co-working member records from IP block 10.44.7.x — confirmed Harwick municipal VPN",
+          "Footnote source: Meridian Security Manager Gil Santos, badge log export request #HPD-2024-1022-03"
+        ],
+        "voice_notes": "The document itself is mechanical. The security manager's footnote about the October 14 remote query is written in casual IT-department language — he doesn't know what it means for the investigation, he's just noting it as an anomaly."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false
+    },
+    {
+      "doc_id": "B6",
+      "envelope": "B",
+      "sequence_number": 6,
+      "type_id": 8,
+      "type_key": "entry_exit_log",
+      "in_world_title": "Harwick Grand Hotel — Parking Garage Exit Log, October 19, 2024 (Subpoena #HPD-2024-1023-01)",
+      "owner_source": "Harwick Grand Hotel Security — Automated Plate Recognition Export",
+      "timestamp": "2024-10-23T16:00:00",
+      "filename_base": "B6_Hotel_Parking_Log",
+      "player_purpose": "revelation",
+      "reveals": "The Harwick Grand Hotel parking garage's automated plate recognition system logged Aldric Voss's vehicle (2023 Lexus ES, plate HRW-4419) exiting at 21:47:03 on October 19 — 43 minutes before his stated departure time of 10:30pm. No re-entry of that plate is recorded for the remainder of the evening. Voss's vehicle was free of the hotel by 9:47pm.",
+      "player_inference": "Voss lied about his departure time from the fundraiser. His vehicle was unaccounted for from 9:47pm onward — the entire death window for Jordan Mercer (estimated 22:15 to 23:08). Combined with B2, this makes his alibi structurally false: he had the time, the freedom of movement, and no corroborating witness for the critical period.",
+      "document_justification": "This is the Trojan horse document that collapses CONTRA-01. It reads like a minor administrative subpoena return — a parking log — but the single line showing plate HRW-4419 exiting at 21:47 is the most damaging timestamp in envelope B. Players who cross-reference B6 with B2 get the alibi collapse. This is the intended Step 4 of the evidence chain.",
+      "pois_referenced": [
+        "POI-02"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [
+        "CONTRA-01"
+      ],
+      "depends_on": [
+        "B2"
+      ],
+      "production_brief_writing": {
+        "summary": "A formatted export from the Harwick Grand Hotel parking garage's automated plate recognition (APR) system, returned in response to a Harwick PD subpoena. The document covers all vehicle exits on October 19 from 7:00pm to 11:59pm. Most entries are unremarkable — valets cycling vehicles for arriving guests. The critical entry is line 47 of 89: plate HRW-4419, make/model 2023 Lexus ES Silver, exit timestamp 21:47:03. A single-page cover letter from the hotel's security director confirms the APR system was functioning normally and timestamps are synchronized to NTP. No re-entry of plate HRW-4419 is recorded after 21:47:03. The document also shows that the hotel valet system closed for self-service at 10:00pm — meaning any vehicle leaving after that would show as a self-service exit, not a valet exit. Plate HRW-4419's exit at 21:47 is logged as a self-service exit, confirming Voss drove himself out.",
+        "tone": "Dry automated system export with a brief human cover letter from the hotel security director. The APR data is tabular and timestamp-precise — the kind of document that looks like background paperwork until a single row jumps out.",
+        "min_words": 250,
+        "key_mandatory_line": "Row 47: DATE 2024-10-19 | TIME 21:47:03 | PLATE HRW-4419 | MAKE Lexus ES | COLOR Silver | EXIT TYPE Self-Service | LANE Gate-2-East | NOTE: No re-entry event recorded for this plate.",
+        "key_information_to_include": [
+          "Full APR log header: Harwick Grand Hotel, 1 Grand Civic Plaza, parking structure B, October 19 2024 19:00–23:59",
+          "Subpoena reference: HPD-2024-1023-01",
+          "Security director cover note: 'APR system operational, NTP-synced to NIST time server, zero outages on October 19'",
+          "Plate HRW-4419 exit at 21:47:03 — self-service, Gate 2 East",
+          "No re-entry recorded for HRW-4419 through end of log",
+          "Valet system closed at 22:00 — context note from security director"
+        ],
+        "voice_notes": "The cover letter from security director Patricia Holm is two paragraphs, formal and cooperative — standard subpoena response language. The APR data itself has no human voice. The document's impact comes entirely from a single timestamp in a 89-row table."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false
+    },
+    {
+      "doc_id": "B7",
+      "envelope": "B",
+      "sequence_number": 7,
+      "type_id": 12,
+      "type_key": "forensic_report",
+      "in_world_title": "Harwick County Medical Examiner — Toxicology and Scene Analysis Report, Case #ME-2024-1089",
+      "owner_source": "Harwick County Medical Examiner's Office — Dr. Anita Ferreira",
+      "timestamp": "2024-10-23T10:00:00",
+      "filename_base": "B7_Toxicology_Report",
+      "player_purpose": "clue_delivery",
+      "reveals": "Toxicology confirms a lethal fentanyl dose (serum concentration 47.3 ng/mL, well above the 3-7 ng/mL therapeutic range). Crucially, Jordan Mercer had no opioid prescription, no prior substance use in medical records, and a medical intake form from 2022 lists a self-reported opioid allergy. Scene analysis notes the drug was delivered orally via a beverage — a glass with fentanyl residue was recovered from the kitchen counter. The manner of death is reclassified from accidental to suspicious.",
+      "player_inference": "Jordan Mercer was killed — not by accident and not by choice. The opioid allergy combined with the absence of any prescription or prior use history means Jordan would not have voluntarily consumed fentanyl. The beverage delivery method means someone prepared a laced drink, which requires physical presence in the apartment. This is a homicide staged as an overdose.",
+      "document_justification": "Resolves CONTRA-05 — the contradiction between the initial 'accidental overdose' ruling and Jordan's known opioid allergy and clean medical history. This document officially upgrades the case from accidental to suspicious/homicidal, which also recontextualizes every interview in B2, B3, and B4: the player is now looking for a murderer, not just investigating a suspicious death.",
+      "pois_referenced": [
+        "POI-01"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-05"
+      ],
+      "resolves_contradictions": [
+        "CONTRA-05"
+      ],
+      "depends_on": [
+        "A1",
+        "A6"
+      ],
+      "production_brief_writing": {
+        "summary": "Full medical examiner toxicology and scene analysis report for Jordan Mercer, Case #ME-2024-1089. Written by Dr. Anita Ferreira. The report has two sections: the toxicology findings (blood and urine analysis, fentanyl concentration, absence of other substances) and the scene analysis observations (body position, environmental factors, physical evidence). The critical findings are: fentanyl serum level 47.3 ng/mL (lethal threshold approximately 7 ng/mL), no prescription opioids in pharmacy records, 2022 intake form opioid allergy notation, and fentanyl residue in the glass recovered from the kitchen counter. Scene analysis notes the glass was positioned on the kitchen counter rather than near the body — inconsistent with a person who collapsed while drinking. The ME concludes: manner of death reclassified from accidental to undetermined pending investigation; homicide not excluded.",
+        "tone": "Formal medical examiner prose — precise, passive voice, clinical terminology. The scene analysis section is more observational and slightly less formal. The conclusion paragraph is the most direct section of the document.",
+        "min_words": 400,
+        "key_mandatory_line": "CONCLUSION: Serum fentanyl concentration of 47.3 ng/mL is inconsistent with therapeutic or recreational opioid use by an individual with a documented opioid allergy and no opioid prescription history. The oral delivery vector (beverage residue, kitchen counter recovery) and scene geometry are inconsistent with self-administration in the location of collapse. Manner of death is reclassified from ACCIDENTAL to UNDETERMINED. Homicide is not excluded.",
+        "key_information_to_include": [
+          "Decedent: Jordan Mercer, 31, Case #ME-2024-1089",
+          "Cause of death: acute fentanyl intoxication, serum concentration 47.3 ng/mL",
+          "No opioid prescription in pharmacy records (Harwick County pharmacy database query attached)",
+          "2022 urgent care intake form: patient self-reported allergy to opioids — documented by Dr. R. Thakkar, Harwick Urgent Care",
+          "Physical evidence item 4: glass recovered from kitchen counter, fentanyl residue confirmed via GC-MS",
+          "Scene note: glass location on counter is 14 feet from body location — inconsistent with collapse while drinking",
+          "No signs of forced entry, no defensive wounds, no struggle indicators",
+          "Estimated time of death: 22:45–23:30 on October 19, 2024, based on liver temperature and rigor progression"
+        ],
+        "voice_notes": "Dr. Ferreira writes with deliberate restraint — she does not say 'murder' anywhere in the report. She uses 'undetermined' and 'not excluded.' The clinical caution makes the conclusion feel more damning, not less."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false
+    },
+    {
+      "doc_id": "C1",
+      "envelope": "C",
+      "sequence_number": 1,
+      "type_id": 14,
+      "type_key": "forensic_report",
+      "design_hint": "Rendered as a monospaced technical export from a home router's admin panel — raw DHCP lease table with timestamps, MAC addresses, assigned IPs, and lease durations. Header shows router model (ASUS RT-AX88U), IP range, and export timestamp. Looks exactly like a screenshot-to-PDF of a router's admin UI: grid layout, alternating row shading, no graphic design. A handwritten sticky note annotation in the margin circles the anomalous MAC entry in red pen.",
+      "in_world_title": "DHCP Lease History Export — ASUS RT-AX88U, 812 Kellner St Apt 4C — Forensic Copy, Harwick PD Case #HW-2024-09917",
+      "owner_source": "Harwick PD Digital Forensics Unit — extracted from Jordan Mercer's home router, October 23, 2024",
+      "timestamp": "2024-10-23T15:44:00",
+      "filename_base": "C1_Router_DHCP_Export",
+      "player_purpose": "revelation",
+      "reveals": "The router's DHCP log shows MAC address a4:c3:f0:88:12:7e connected to Jordan Mercer's home WiFi at 22:08:14 on October 19, received IP 192.168.1.9, and disconnected at 23:34:07 — a 85-minute session that brackets the estimated time of death. A second forensic annotation confirms this MAC address does not match Jordan's MacBook Pro (c8:89:f3:11:44:a2), Jordan's iPhone (02:1a:7f:44:bc:09), or any other device registered to Apartment 4C. The unidentified device auto-connected — meaning it had previously been on this network, or the network was unsecured — and remained active through and past the estimated time of death at 23:08.",
+      "player_inference": "Someone carrying an unidentified device was physically inside Jordan's apartment from 10:08pm to 11:34pm on the night of death — exactly the window toxicology places as the fatal dose window. The device had either been in the apartment before or auto-joined an open network, and it disconnected 26 minutes after Jordan's estimated time of death. This is not an accidental overdose: there was a visitor.",
+      "document_justification": "This is the pivot document of the entire case. It transforms the death from a plausible accidental overdose into a confirmed homicide with a physical trace. It introduces CONTRA-06, establishes that someone was present in the apartment during the death window, and forces the player to reconsider every alibi and every timeline entry. The MAC address becomes the thread that, once pulled, unravels Voss's entire staged scene.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-02"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-06"
+      ],
+      "resolves_contradictions": [
+        "CONTRA-05",
+        "CONTRA-06"
+      ],
+      "depends_on": [
+        "A6",
+        "B7"
+      ],
+      "production_brief_writing": {
+        "summary": "This document is a forensic-quality export of Jordan Mercer's home router DHCP lease table, formatted to look exactly like a raw admin panel printout. The key entry — MAC a4:c3:f0:88:12:7e, connected 22:08:14, disconnected 23:34:07 — should appear mid-table, not highlighted, so that a careful player discovers it by scanning the rows. A single handwritten red-pen circle and the annotation 'UNIDENTIFIED — NOT MERCER DEVICE' should appear in the margin, added by the digital forensics technician. The document includes a device inventory table at the bottom listing all confirmed Jordan-owned devices with their MAC addresses, making the unidentified entry unmistakable by contrast. Include a forensic technician's case note at the bottom: 'Network was WPA2-secured. Auto-join requires prior connection or saved credentials. Recommend MAC trace via manufacturer prefix lookup.' The manufacturer prefix a4:c3:f0 traces to a Chinese OEM that produces burner/prepaid Android phones — include this as a one-line note.",
+        "tone": "Technical forensic export — no narrative, only data tables, timestamps, and brief case notes. The power is in the data, not the prose. Annotations should be sparse and clinical.",
+        "min_words": 280,
+        "key_mandatory_line": "LEASE RECORD: MAC a4:c3:f0:88:12:7e | IP 192.168.1.9 | CONNECTED 2024-10-19 22:08:14 | DISCONNECTED 2024-10-19 23:34:07 | STATUS: UNIDENTIFIED — NOT IN MERCER DEVICE REGISTRY",
+        "key_information_to_include": [
+          "Full DHCP lease table for October 19-22, 2024 showing all connected devices",
+          "Jordan's three registered devices with their MAC addresses for comparison",
+          "The anomalous MAC a4:c3:f0:88:12:7e with its full connection window",
+          "OEM prefix lookup note identifying the MAC as a prepaid/burner Android manufacturer",
+          "Forensic technician's note that WPA2 network requires saved credentials or prior access",
+          "Router model, serial number, and extraction date for chain-of-custody integrity",
+          "Case number HW-2024-09917 in header"
+        ],
+        "voice_notes": "No narrative voice — this is raw data with sparse annotations. The forensic tech's handwritten note in the margin is the only interpretive element. Let the table speak. The player should feel the chill of realizing what the numbers mean."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Scan of a router admin panel DHCP table printout with a red-pen circle around the anomalous MAC entry and handwritten margin note 'UNIDENTIFIED — NOT MERCER DEVICE'",
+      "image_requirements": [
+        {
+          "type": "document_scan",
+          "subject": "Router DHCP table with anomalous MAC highlighted",
+          "brief": "Monospaced table on white paper, slightly askew scan, red ballpoint pen circle around the row for MAC a4:c3:f0:88:12:7e, cramped handwriting in the margin. Looks like a forensic technician's working copy."
+        }
+      ],
+      "audio": false
+    },
+    {
+      "doc_id": "C2",
+      "envelope": "C",
+      "sequence_number": 2,
+      "type_id": 7,
+      "type_key": "official_memo",
+      "in_world_title": "Internal Affairs Referral Memo — Unauthorized Workstation Access, City Hall Suite 440 — Case #HW-2024-09917",
+      "owner_source": "Harwick City IT Security Division — forwarded to Harwick PD Detective R. Vance, October 24, 2024",
+      "timestamp": "2024-10-24T09:15:00",
+      "filename_base": "C2_Suite440_Access_Memo",
+      "player_purpose": "revelation",
+      "reveals": "City Hall IT Security confirms that on October 14, 2024 at 16:43, the print queue audit log for October 8-11 was accessed a second time from Workstation ID CH-SW4-014, physically located in Suite 440 — the office suite assigned to Aldric Voss's consulting team. The access was made using a service account credential (IT-SVC-PRINTAUDIT) that was not assigned to any staff member in Suite 440. The memo notes this access was not disclosed in the city's initial breach investigation summary submitted to police on October 13. Attached is a workstation assignment roster confirming Suite 440 is exclusively occupied by Aldric Voss's political consulting operation under city contract #HWC-2022-0047.",
+      "player_inference": "Aldric Voss, or someone in his office, used a stolen service account to secretly access the print queue metadata on October 14 — two days after the leak went public — and this access was deliberately hidden from the police investigation. This means Voss had Jordan Mercer's identity 17 days before the murder, establishing premeditation. Combined with his fractured alibi, this is no longer circumstantial.",
+      "document_justification": "This document resolves CONTRA-03 by providing the official confirmation that the Suite 440 workstation access was unauthorized and undisclosed. It transforms the trojan horse planted in A3 into a direct evidentiary link to Voss. The memo format — dry, bureaucratic, almost apologetic — makes the revelation land harder because it comes from inside the city's own systems.",
+      "pois_referenced": [
+        "POI-02"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [
+        "CONTRA-03"
+      ],
+      "depends_on": [
+        "A3",
+        "B2"
+      ],
+      "production_brief_writing": {
+        "summary": "This is an official interdepartmental memo from City Hall IT Security to Harwick PD, written in the clipped language of an IT department covering itself after discovering an internal breach. The memo should read as slightly uncomfortable — the IT Security chief is documenting something that implicates a senior city contractor, and the bureaucratic formality is doing a lot of emotional work. The memo must include: (1) the specific workstation ID and its location in Suite 440, (2) the service account used (IT-SVC-PRINTAUDIT) and confirmation it was not assigned to Suite 440 staff, (3) a timeline of the unauthorized access at 16:43 on October 14, (4) the statement that this access was omitted from the breach investigation summary forwarded to police on October 13, and (5) the attached workstation assignment roster showing Suite 440 as exclusively Voss's consulting operation. The final paragraph should note that IT Security is unable to determine whether the service account credentials were obtained via phishing, physical access to an IT terminal, or inside assistance — this preserves ambiguity while still pointing firmly at Suite 440.",
+        "tone": "Bureaucratic and formal, with an undercurrent of institutional anxiety. The IT chief is writing carefully, using passive voice throughout ('the access was logged,' 'the omission has been identified') to avoid direct accusation while making the facts unavoidable.",
+        "min_words": 320,
+        "key_mandatory_line": "Workstation CH-SW4-014, assigned to Suite 440 (Voss Political Consulting, Contract #HWC-2022-0047), accessed print audit log file PQAUDIT-OCT08-11.xlsx at 16:43:22 on October 14, 2024 using service account IT-SVC-PRINTAUDIT — an account with no authorized users in the fourth-floor wing.",
+        "key_information_to_include": [
+          "Workstation ID: CH-SW4-014, Suite 440, 4th Floor, City Hall West Wing",
+          "Service account used: IT-SVC-PRINTAUDIT — not assigned to any Suite 440 personnel",
+          "Access timestamp: October 14, 2024 at 16:43:22",
+          "File accessed: PQAUDIT-OCT08-11.xlsx (the same print queue log from A3)",
+          "Confirmation this access was not included in the breach summary provided to Harwick PD on October 13",
+          "Suite 440 occupancy roster: Aldric Voss Consulting under city contract #HWC-2022-0047",
+          "IT Security's three-scenario note on how credentials may have been obtained",
+          "Referral header addressed to Detective R. Vance, Harwick PD Homicide"
+        ],
+        "voice_notes": "The memo author — Deputy IT Security Director Tomás Erlich — writes like someone who has just realized the document they are producing may be evidence in a murder investigation. Formal throughout, no editorializing, but the selection of facts and the phrase 'this omission has been identified' in the concluding paragraph carries unmistakable weight."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false
+    },
+    {
+      "doc_id": "C3",
+      "envelope": "C",
+      "sequence_number": 3,
+      "type_id": 9,
+      "type_key": "email_export",
+      "in_world_title": "Email Thread & VPN Metadata Analysis — Second Briarfield Post Origin Trace / Anonymous Warning Source — Harwick PD Digital Forensics, Case #HW-2024-09917",
+      "owner_source": "Harwick PD Digital Forensics Unit — compiled from VPN provider subpoena response and Signal metadata analysis, October 25, 2024",
+      "timestamp": "2024-10-25T16:30:00",
+      "filename_base": "C3_VPN_Signal_Metadata_Analysis",
+      "player_purpose": "revelation",
+      "reveals": "Two parallel findings compiled by digital forensics: (1) The VPN exit node used to post the second Briarfield document cache at 02:17 on October 20 — using Jordan's Cyber Ghost credentials — resolves to a commercial VPN account (ProtonVPN, account ref PVN-4471829) that was created on October 16, 2024 and paid via a Harwick-issued Visa prepaid card purchased at a CVS on Meridian Ave. CCTV at the CVS on October 16 at 14:22 shows a figure matching Aldric Voss's description making the purchase. (2) The anonymous Signal message that Serena Cho received at approximately 20:30 on October 19 — warning her 'someone is moving on Ghost tonight' — was sent from a prepaid SIM registered to 'A. Blanchard,' a name linked to an investigative services contractor paid $8,400 via Voss's personal LLC (Voss Strategic Advisors LLC) on September 28, 2024. The phone number has since been deactivated.",
+      "player_inference": "Voss created the VPN account six days before the murder to stage the second Briarfield leak using Jordan's stolen credentials — deliberate premeditation that reframes the second post as a cover-up tool, not Jordan's work. He also hired a private investigator who sent Serena the anonymous warning, not to protect Jordan, but to ensure Serena would not call police that night — neutralizing the one person who might have intervened. Both CONTRA-02 and CONTRA-04 are resolved: Jordan did not post the second cache, and Serena's warning was a manipulation, not foreknowledge.",
+      "document_justification": "This document resolves CONTRA-02 and CONTRA-04 simultaneously, completing the evidence chain against Voss by connecting the staged second leak and the anonymous warning tip to his direct financial and operational infrastructure. It answers the final open question — who sent Serena the warning and why — and closes the loop on the credential theft.",
+      "pois_referenced": [
+        "POI-02",
+        "POI-04"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [
+        "CONTRA-02",
+        "CONTRA-04"
+      ],
+      "depends_on": [
+        "A4",
+        "B4",
+        "C1"
+      ],
+      "production_brief_writing": {
+        "summary": "This document is a forensic compilation memo — not a single email, but an email thread and VPN subpoena response formatted as a digital forensics case addendum. It should be presented as two sections within one document: Section A covers the VPN trace for the 2:17am Briarfield post, and Section B covers the Signal anonymous message source trace. Section A should include the ProtonVPN subpoena response (account creation date, payment method, Visa prepaid card number ending in 4419), a summary of the CVS CCTV finding (figure matching Voss's description, October 16 at 14:22, Meridian Ave location), and the forensic analyst's conclusion that the account was created solely to post the misdirection cache. Section B should include the Signal metadata recovered from Jordan's phone backup, the prepaid SIM trace to 'A. Blanchard,' the $8,400 payment from Voss Strategic Advisors LLC to the contractor via ACH transfer on September 28, and the analyst's note that the warning was sent at 20:30 — approximately 90 minutes before the estimated time of death — consistent with Voss ensuring Serena would be paralyzed rather than proactive. The memo closes with a summary paragraph explicitly connecting both findings to Aldric Voss as the common point of origin.",
+        "tone": "Forensic-analytical — structured report language, numbered findings, evidence reference tags (e.g., [EVT-C3-001], [EVT-C3-002]). Clinical but with the unmistakable momentum of a case closing. The analyst's summary paragraph at the end is the only moment where the language sharpens from 'consistent with' to 'indicates.'",
+        "min_words": 420,
+        "key_mandatory_line": "ProtonVPN account PVN-4471829, used to publish the secondary Briarfield document cache at 02:17:43 on October 20, 2024 using credentials linked to the 'Cyber Ghost' alias, was created on October 16, 2024 and funded via Visa prepaid card #XXXX-XXXX-XXXX-4419 purchased at CVS Meridian Ave, Harwick, at 14:22 on October 16 — six days before Jordan Mercer's body was discovered.",
+        "key_information_to_include": [
+          "ProtonVPN account PVN-4471829: creation date October 16, payment via prepaid Visa ending 4419",
+          "CVS Meridian Ave CCTV: figure matching Voss's description purchasing prepaid card at 14:22 on October 16",
+          "Confirmation that the second Briarfield post used Jordan's Cyber Ghost credentials but originated from this VPN account — not Jordan's known devices",
+          "Signal message metadata: anonymous sender prepaid SIM registered to 'A. Blanchard,' message sent at 20:30 on October 19 to Serena Cho",
+          "ACH payment of $8,400 from Voss Strategic Advisors LLC to A. Blanchard (investigative services) on September 28, 2024",
+          "Analyst note: the warning message was sent 90 minutes before estimated time of death, consistent with neutralizing a potential witness",
+          "Analyst summary: both findings share Aldric Voss as the common financial and operational origin point",
+          "Case number HW-2024-09917 and detective referral header"
+        ],
+        "voice_notes": "The lead forensic analyst is Senior Digital Examiner Kenji Park. His writing is precise and deliberately restrained — he documents facts and draws only the most defensible inferences. But the final summary paragraph, after two sections of careful hedge language, ends with a sentence that contains no qualifiers: 'Both operational threads originate with Aldric Voss.' That sentence should feel like a door closing."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false
+    },
+    {
+      "doc_id": "R1",
+      "envelope": "R",
+      "sequence_number": 1,
+      "type_id": 5,
+      "type_key": "official_memo",
+      "in_world_title": "Harwick Police Department — Case Closure Summary: Jordan Mercer (Case #HPD-2024-10841) — Subject: Jordan Mercer / POI-01",
+      "owner_source": "Harwick PD Homicide Division — Det. L. Ramirez",
+      "timestamp": "2024-11-04T09:00:00",
+      "filename_base": "R1_Case_Closure_Jordan_Mercer",
+      "player_purpose": "resolution",
+      "reveals": "Jordan Mercer is formally reclassified from accidental overdose to homicide victim. The memo confirms that the 'Cyber Ghost' alias belonged to Jordan, that the opioid allergy documentation in Jordan's medical record directly contradicts the overdose narrative, and that Jordan had been in contact with federal journalist Priya Nair about a second document cache — confirming Jordan died not because the leak failed, but because it succeeded. The FBI has taken custody of the encrypted backup server identified in Jordan's correspondence.",
+      "player_inference": "Jordan was murdered precisely because the Briarfield leak was going to get bigger — the second cache would have been the killing blow for the council's scheme. Voss had to act before the federal immunity deal could be finalized.",
+      "document_justification": "This resolution document closes the Jordan Mercer thread by confirming the homicide reclassification and acknowledging the larger civic stakes of the case. It gives players the satisfaction of seeing the 'accidental overdose' framing officially dismantled, and reveals that Jordan's work will outlast the murder attempt.",
+      "pois_referenced": [
+        "POI-01"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1",
+        "B7",
+        "C1"
+      ],
+      "production_brief_writing": {
+        "summary": "An official Harwick PD homicide division case closure memo reclassifying Jordan Mercer's death from accidental to homicide. The memo should feel institutional and restrained — bureaucratic language that nonetheless carries moral weight. Key beats: (1) formal reclassification effective date, (2) the opioid allergy documentation that invalidates the overdose framing, (3) confirmation that Jordan was Cyber Ghost, (4) the status of the second document cache and FBI involvement, (5) a line acknowledging Jordan's cooperation with federal journalist Priya Nair. The memo should close with the phrase 'This case is referred to the Harwick County District Attorney's Office for prosecution.' The tone should feel like justice grinding forward, impersonally but inevitably.",
+        "tone": "Formal police administrative memo — passive voice, case number citations, department headers. Restrained emotion. The weight of the document comes from what it officially acknowledges, not from editorializing.",
+        "min_words": 280,
+        "key_mandatory_line": "RECLASSIFICATION: Death of Jordan Mercer (DOB 1993-03-17), Case #HPD-2024-10841, is hereby reclassified from ACCIDENTAL (fentanyl intoxication) to HOMICIDE effective November 4, 2024, on the basis of toxicological evidence, router forensics (Exhibit C-1), and the absence of any opioid prescription or documented use history in subject's medical record (cf. Harwick General Hospital allergy flag, on file).",
+        "key_information_to_include": [
+          "Formal reclassification from accidental to homicide, effective November 4, 2024",
+          "Jordan Mercer confirmed as the individual operating under alias 'Cyber Ghost'",
+          "Jordan's stated opioid allergy (from medical record) directly contradicts accidental overdose finding",
+          "FBI Cyber Division has taken custody of the encrypted remote backup server identified in Jordan's email to journalist Priya Nair",
+          "Case referred to Harwick County District Attorney's Office for prosecution",
+          "Reference to router DHCP log exhibit (C1) and toxicology report as basis for reclassification"
+        ],
+        "voice_notes": "Written by Det. L. Ramirez, the lead detective. The memo is procedural but carries the weight of a detective who had to fight to get the reclassification approved. No flourishes — but the final line ('This case is referred to the DA') should feel like a door closing on the cover-up."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false
+    },
+    {
+      "doc_id": "R2",
+      "envelope": "R",
+      "sequence_number": 2,
+      "type_id": 5,
+      "type_key": "official_memo",
+      "in_world_title": "Harwick County District Attorney's Office — Indictment Notice: Aldric Voss — Case #HPD-2024-10841 / Subject: Aldric Voss / POI-02",
+      "owner_source": "Harwick County District Attorney — Office of the DA",
+      "timestamp": "2024-11-06T11:30:00",
+      "filename_base": "R2_Indictment_Aldric_Voss",
+      "player_purpose": "resolution",
+      "reveals": "Aldric Voss is indicted on charges of first-degree murder, federal racketeering (RICO) for his concealed 40% ownership stake in Briarfield Solutions LLC, obstruction of justice for the staged second leak using Jordan's credentials, and tampering with evidence. The indictment notice enumerates the specific evidence chain: the hotel parking garage exit log timestamped 9:47pm (B6), the unauthorized Suite 440 workstation access to the City Hall print queue on October 14 (A3/C2), the router DHCP log placing MAC address a4:c3:f0:88:12:7e in Jordan's apartment from 22:08 to 23:34 (C1), and the VPN metadata tying the second Briarfield post to infrastructure operated by Voss's off-books investigator (C3).",
+      "player_inference": "Every piece of evidence the player assembled — the parking log, the print queue access, the router MAC address, the staged second leak — is now formally enumerated in a criminal indictment. The evidence chain holds. Voss is the killer.",
+      "document_justification": "This is the case's primary resolution document — the formal confirmation that the evidence chain the player constructed leads to a criminal indictment. It validates every deductive step while explicitly naming the evidence items, giving the player the satisfaction of seeing their work reflected in the legal record. The RICO charge also closes the loop on the Briarfield scheme itself.",
+      "pois_referenced": [
+        "POI-02"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A3",
+        "B2",
+        "B6",
+        "C1",
+        "C2",
+        "C3"
+      ],
+      "production_brief_writing": {
+        "summary": "A formal criminal indictment notice from the Harwick County DA's Office charging Aldric Voss with first-degree murder, federal racketeering, obstruction of justice, and evidence tampering. The document should read like an official legal instrument — numbered counts, statutory citations, and a precise enumeration of the evidence supporting each count. The tone is cold and procedural, but every line should feel like a nail in the coffin of Voss's decade-long career. Key structural beats: (1) header with case number and defendant identification, (2) Count I — First-Degree Murder with evidence citations (parking log, router DHCP, toxicology), (3) Count II — Federal Racketeering citing Briarfield Solutions LLC and the 40% concealed ownership stake, (4) Count III — Obstruction of Justice citing the staged second leak, (5) Count IV — Evidence Tampering citing the staged scene and planted note. End with the formal arraignment date and defendant's bail status (denied).",
+        "tone": "Legal instrument — numbered counts, formal statutory language, no contractions, no opinion. The document should feel like a weight landing on a desk.",
+        "min_words": 350,
+        "key_mandatory_line": "COUNT I — FIRST-DEGREE MURDER: On or about October 19, 2024, ALDRIC VOSS did unlawfully, willfully, and with premeditation cause the death of Jordan Mercer at 812 Kellner Street, Apartment 4C, Harwick, by administering a lethal dose of fentanyl. Supporting evidence includes: (a) Hotel parking garage exit record timestamped 21:47 on October 19, 2024 (Exhibit B-6); (b) Router DHCP lease log identifying device MAC a4:c3:f0:88:12:7e as present at subject's residence from 22:08 to 23:34 on October 19, 2024 (Exhibit C-1); (c) Toxicological confirmation of fentanyl intoxication in absence of any prescription or documented use history.",
+        "key_information_to_include": [
+          "Count I: First-degree murder — Jordan Mercer, October 19, 2024",
+          "Count II: Federal racketeering (RICO) — concealed 40% stake in Briarfield Solutions LLC under wife's maiden name",
+          "Count III: Obstruction of justice — staged second Briarfield post at 02:17 on October 20 using Jordan's copied credentials",
+          "Count IV: Evidence tampering — staged overdose scene including planted note mimicking Jordan's journaling style",
+          "Bail denied — defendant considered flight risk given financial resources and international contacts",
+          "Arraignment scheduled November 12, 2024, Harwick County Superior Court",
+          "Evidence citations: B6 (parking log), A3/C2 (print queue/Suite 440), C1 (router DHCP), C3 (VPN metadata), B7 (toxicology)"
+        ],
+        "voice_notes": "Written by an assistant DA preparing the formal charge sheet. No personality — this is a legal instrument. The only emotional register is the density and precision of the evidence enumeration, which reads as overwhelming. The defendant is referred to exclusively as 'ALDRIC VOSS' in full caps, as per standard indictment format."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false
+    },
+    {
+      "doc_id": "R3",
+      "envelope": "R",
+      "sequence_number": 3,
+      "type_id": 5,
+      "type_key": "official_memo",
+      "in_world_title": "Harwick PD — Investigative Disposition: Nadia Osei (POI-03) — Case #HPD-2024-10841",
+      "owner_source": "Harwick PD Homicide Division — Det. L. Ramirez",
+      "timestamp": "2024-11-04T10:15:00",
+      "filename_base": "R3_Disposition_Nadia_Osei",
+      "player_purpose": "resolution",
+      "reveals": "Nadia Osei is formally cleared as a suspect in Jordan Mercer's homicide. The disposition memo confirms that diner CCTV footage and a timestamped receipt (11:31pm–12:47am, Kellner Street Diner, three blocks from the apartment) account for the 108-minute gap in her hackathon badge record, placing her physically too far from 812 Kellner Street during the death window. The memo further notes that her public forum threats against Cyber Ghost, while hostile in tone, do not constitute criminal conduct. A separate notation acknowledges that the exploit dispute between Osei and Mercer involved code derived from a public proof-of-concept — no intellectual property claim is sustainable. No charges will be filed.",
+      "player_inference": "Nadia was the most obvious suspect — the threats, the technical capability, the badge gap — but the diner alibi is airtight. Her anger was real but her motive was professional jealousy, not murder. The case confirms what the player should have concluded: she is a red herring.",
+      "document_justification": "Formally closes the Nadia Osei thread and validates the player's reasoning if they correctly identified her as a red herring. The memo needs to explicitly address the badge gap that was planted as misdirection, and confirm the diner alibi that clears her, so the player understands exactly why she was exonerated.",
+      "pois_referenced": [
+        "POI-03"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A5",
+        "B3"
+      ],
+      "production_brief_writing": {
+        "summary": "A formal investigative disposition memo from Harwick PD clearing Nadia Osei of any involvement in Jordan Mercer's homicide. The memo should walk through the three main pieces of evidence that initially implicated her — the forum threats, her technical capability, and the badge gap — and methodically resolve each one. Tone is clinical and fact-driven. Key beats: (1) confirmation that diner CCTV and receipt (Kellner Street Diner, 11:31pm–12:47am, October 19) account for her 108-minute absence from Meridian Co-Works, (2) a note that the forum threat ('That debt doesn't go away') does not rise to the level of credible criminal threat under applicable statute, (3) a brief notation on the exploit dispute concluding no IP claim is viable, (4) formal designation: NO CHARGES — CLEARED. The memo should feel like justice being precise, not just lenient.",
+        "tone": "Police administrative disposition — factual, neutral, methodical. Each point of suspicion is addressed and resolved in sequence. No warmth, but no condemnation either.",
+        "min_words": 240,
+        "key_mandatory_line": "ALIBI VERIFICATION: Subject Nadia Osei's absence from Meridian Co-Works (badge-out 23:14, badge-in 01:02, October 19-20, 2024) is accounted for by CCTV footage from Kellner Street Diner (812 block) and a timestamped receipt (23:31–00:47) placing subject at said location for the duration of the gap. Subject's physical distance from 812 Kellner Street, Apartment 4C during the estimated time-of-death window (22:15–23:08) is confirmed. DISPOSITION: NO CHARGES — CLEARED.",
+        "key_information_to_include": [
+          "Diner CCTV and timestamped receipt (Kellner Street Diner, 11:31pm–12:47am) confirm alibi for the death window",
+          "Physical distance from 812 Kellner Street confirmed — insufficient time to reach the apartment during the badge gap",
+          "Forum threat ('That debt doesn't go away') reviewed under applicable statute — does not constitute criminal threat",
+          "Exploit dispute: code derived from public proof-of-concept — no viable IP claim",
+          "Formal designation: NO CHARGES — CLEARED",
+          "Note: Osei's name and alias ('NullRoute') will not appear in the public case file"
+        ],
+        "voice_notes": "Det. Ramirez writing a routine clearance memo. Professional, slightly clipped. There's no editorial commentary on Osei's threatening language — the detective simply notes it doesn't meet the statutory threshold and moves on. The clinical precision is itself a form of exoneration."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false
+    },
+    {
+      "doc_id": "R4",
+      "envelope": "R",
+      "sequence_number": 4,
+      "type_id": 5,
+      "type_key": "official_memo",
+      "in_world_title": "Harwick PD — Investigative Disposition and Prosecutorial Agreement: Serena Cho (POI-04) — Case #HPD-2024-10841",
+      "owner_source": "Harwick PD Homicide Division / Harwick County DA — Joint Memo",
+      "timestamp": "2024-11-05T14:00:00",
+      "filename_base": "R4_Disposition_Serena_Cho",
+      "player_purpose": "resolution",
+      "reveals": "Serena Cho is not charged with murder but faces federal civil liability for providing Jordan Mercer with unauthorized access to the city procurement system. The disposition memo confirms her home alibi (food delivery records and streaming timestamps on October 19) is verified. It also discloses the full explanation for her Signal warning message — she received an anonymous tip at 8:31pm from a burner number later traced to an investigator contracted by Voss, warning her that 'someone is moving on Ghost tonight.' She passed the warning to Jordan but did not call police out of fear of self-incrimination. The memo notes that Serena's cooperation with investigators after Jordan's body was discovered — including producing the anonymous tip message — was material to building the case against Voss. In exchange for full cooperation, the DA is recommending a deferred prosecution agreement on the unauthorized access charge.",
+      "player_inference": "Serena is the most morally complex figure in the case. She gave Jordan the tools to expose corruption, sent a warning she knew Jordan needed, and then froze when calling police would have exposed her. Voss used her guilt and fear as a weapon against her. The deferred prosecution feels like imperfect justice — accurate to how these cases actually resolve.",
+      "document_justification": "Serena's resolution document is the emotional capstone of the case — she is neither villain nor hero, and her disposition must reflect that ambiguity. The memo needs to explicitly close the loop on the warning Signal message (CONTRA-04), confirm the home alibi, acknowledge her role in the leak, and convey the deferred prosecution deal, giving the player the full picture of her moral position.",
+      "pois_referenced": [
+        "POI-04"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "B4",
+        "C3"
+      ],
+      "production_brief_writing": {
+        "summary": "A joint disposition memo from Harwick PD and the DA's Office addressing Serena Cho's status in Case #HPD-2024-10841. The memo must accomplish several things: (1) formally confirm her home alibi for the night of October 19 using delivery records and streaming timestamps, (2) disclose the full provenance of the Signal warning message — the anonymous tip from a burner number traced to Voss's off-books investigator — resolving why she sent 'don't let him in tonight' without calling police, (3) acknowledge that she provided Jordan with unauthorized access credentials to the city procurement system and faces federal civil liability, (4) confirm that her cooperation with investigators after Jordan's death was material to the Voss indictment, (5) state the DA's recommendation of a deferred prosecution agreement in exchange for full cooperation. The tone should be more measured than the Voss indictment — this is a document about a person caught between complicity and courage, and the DA's language should reflect that nuance without sentimentality.",
+        "tone": "Joint legal-administrative memo. More measured than the indictment — acknowledges complexity. Still formal and procedural, but the language around Cho's cooperation ('material to the successful prosecution') carries implicit acknowledgment of her position.",
+        "min_words": 320,
+        "key_mandatory_line": "SIGNAL MESSAGE EXPLANATION (October 19, 2024, 20:47): Subject Serena Cho received an unsolicited message at 20:31 from burner number +1-802-555-0194, stating 'someone is moving on Ghost tonight.' This number has been traced to a prepaid device purchased by private investigator Marcus Fell, contracted by ALDRIC VOSS. Subject forwarded a paraphrased version of this warning to Jordan Mercer at 20:47 but did not contact law enforcement, citing fear of self-incrimination regarding the unauthorized procurement system access. Subject's failure to act does not constitute criminal complicity in the homicide under applicable Harwick statutes.",
+        "key_information_to_include": [
+          "Home alibi confirmed: food delivery receipt (Cho's address, October 19, 19:44pm) and streaming service timestamps (19:52pm–23:30pm) verified",
+          "Signal warning message fully explained — anonymous tip from burner traced to Marcus Fell, PI contracted by Voss",
+          "Cho provided Jordan Mercer with city procurement system credentials — federal civil liability acknowledged",
+          "Cooperation with investigators after October 22 was material to the Voss indictment",
+          "DA recommendation: deferred prosecution agreement on unauthorized access charge, conditioned on full cooperation and civil remediation",
+          "Cho placed on administrative leave by City of Harwick IT Division pending internal review",
+          "No charges for homicide or obstruction — home alibi confirmed, no causal link to Jordan's death"
+        ],
+        "voice_notes": "Written jointly by Det. Ramirez and an assistant DA. The language is careful — Cho is clearly implicated in the leak but equally clearly not the killer. The deferred prosecution recommendation reads as a measured institutional response, not leniency. The memo should end with a line acknowledging that Cho's cooperation ensured the case against Voss could proceed — a quiet acknowledgment that her paralysis that night was, ultimately, not the last word."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false
+    }
+  ]
+}

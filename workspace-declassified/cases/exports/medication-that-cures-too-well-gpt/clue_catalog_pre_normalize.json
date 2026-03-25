@@ -1,0 +1,1360 @@
+{
+  "slug": "medication-that-cures-too-well-gpt",
+  "documents": [
+    {
+      "doc_id": "A1",
+      "envelope": "A",
+      "sequence_number": 1,
+      "type_id": 5,
+      "type_key": "official_memo",
+      "in_world_title": "Cambridge Police Department — Preliminary Incident Summary (Helixure Biologics)",
+      "owner_source": "Cambridge Police Department — Major Crimes (Intake)",
+      "timestamp": "2026-03-21T07:05:00",
+      "filename_base": "A1_Preliminary_Incident_Summary",
+      "player_purpose": "case_introduction",
+      "reveals": "Establishes that Dr. Mara Ellison was found at 06:14 in Stairwell 4B outside Helixure’s cGMP suite (Building 7, Level 4). The initial scene is recorded as a likely accidental fall with no active facility alarms reported overnight.",
+      "player_inference": "A high-control biotech facility producing a ‘miracle’ drug shouldn’t have an unobserved overnight stairwell incident; the ‘no alarms’ detail sounds like a system state someone might have influenced.",
+      "document_justification": "Opens with the official, too-tidy accident narrative and anchors the key times (06:14 discovery; overnight ‘no alarms’). This plants CONTRA-05 (accident vs. asphyxiation-before-impact) and sets up later proof that ‘no alarms’ can mean ‘alarms were silenced.’",
+      "pois_referenced": [
+        "POI-01",
+        "POI-04"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-05"
+      ],
+      "resolves_contradictions": [],
+      "depends_on": [],
+      "production_brief_writing": {
+        "summary": "A bureaucratic intake memo written in the hours after the body is discovered. It should read like the police are treating this as a workplace accident until proven otherwise, with one or two oddly confident statements that later evidence will undercut.",
+        "tone": "clinical, procedural, and slightly complacent — case number, locations, and witness names; minimal emotion",
+        "min_words": 260,
+        "key_mandatory_line": "DISCOVERY TIME: 2026-03-21 06:14 — Location: Building 7, Level 4, Stairwell 4B (outside cGMP suite); Facilities reports ‘no active oxygen alarm pages’ overnight.",
+        "key_information_to_include": [
+          "Victim: Dr. Mara Ellison, 41, Principal Research Scientist at Helixure Biologics",
+          "Found by: Ruth Kessler (overnight custodian) — she reports finding Ellison at the 4B landing",
+          "Initial visible injuries consistent with a fall; note that scene is preserved pending ME evaluation",
+          "Security/Facilities initial statement: no overnight alarm pages or emergency dispatch within Building 7",
+          "Explicitly mark the manner of death as ‘pending’ but describe the working assumption as accident"
+        ],
+        "voice_notes": "Write like an intake sergeant summarizing facts from Security and a shaken custodian. The memo should inadvertently over-trust system status summaries (no pages/no alarms) without realizing silencing is possible — that’s the buried hook for Envelope C."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "A2",
+      "envelope": "A",
+      "sequence_number": 2,
+      "type_id": 1,
+      "type_key": "poi_sheet",
+      "in_world_title": "Persons of Interest — Ellison Death (Case CPD-MCU-26-0319)",
+      "owner_source": "Cambridge Police Department — Major Crimes Unit",
+      "timestamp": "2026-03-21T10:30:00",
+      "filename_base": "A2_POI_Sheet",
+      "player_purpose": "context_setting",
+      "reveals": "Introduces the core cast around Dr. Mara Ellison and GF-102: Evan Kline (CFO under acquisition pressure), Nadia Reyes (lab associate who stayed late), Tom Briggs (Facilities/Security ops with alarm access), and Raina Patel (QA director who signed releases and controls deviations).",
+      "player_inference": "The motive field is crowded: money (Kline), fear of blame (Reyes), system access (Briggs), and audit-trail liability (Patel). The killer likely sits where pressure and permissions overlap.",
+      "document_justification": "Mandatory A2. Gives the player a clean map of relationships and institutional roles so later ‘boring’ logs (badge events, alarm states, QA threads) can be interpreted as human choices rather than random data.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-02",
+        "POI-03",
+        "POI-04",
+        "POI-05"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1"
+      ],
+      "production_brief_writing": {
+        "summary": "A one- to two-page police POI sheet with five cards (victim + four living POIs). Each card contains a portrait reference, role, connection to Dr. Ellison, and an initial working note on motive/alibi in compact, dossier-style language.",
+        "tone": "police briefing document — compact, factual, template-driven; zero flourish",
+        "min_words": 200,
+        "key_mandatory_line": "QA SIGN-OFF PATH: Raina Patel (POI-05) is listed as the Quality release approver for GF-102 batches and the owner of the deviation/exception log for Building 7 cGMP operations.",
+        "key_information_to_include": [
+          "POI-01 (victim): Dr. Mara Ellison — role and why GF-102 matters",
+          "POI-02: Evan Kline — CFO; acquisition/earn-out pressure; claims he left after 20:00 call",
+          "POI-03: Nadia Reyes — lab associate; claims she left at 21:55; admits piggybacking sometimes happens",
+          "POI-04: Tom Briggs — Facilities/Security ops; controls cameras, badge readers, alarm paging policies",
+          "POI-05: Raina Patel — QA director; controls deviations and regulator-facing documentation"
+        ],
+        "voice_notes": "Include a ‘Status’ tag for each (DECEASED / POI). The victim image should be a normal corporate headshot, not a booking photo. Keep each POI’s suspicion hook distinct: finance pressure vs. documentation fear vs. system access vs. audit-trail liability."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "POI portraits for the POI sheet (victim as corporate headshot; living POIs as consistent, dossier-style portraits).",
+      "image_requirements": [
+        {
+          "type": "portrait",
+          "subject": "POI-01",
+          "brief": "Corporate headshot of Dr. Mara Ellison (41), professional biotech scientist look; neutral background; not a mugshot style."
+        },
+        {
+          "type": "mugshot",
+          "subject": "POI-02",
+          "brief": "Dossier-style portrait of Evan Kline (CFO), late-40s, polished but tense; neutral background; consistent lighting for reuse."
+        },
+        {
+          "type": "mugshot",
+          "subject": "POI-03",
+          "brief": "Dossier-style portrait of Nadia Reyes (late-20s/early-30s), lab associate; tired eyes; practical appearance; neutral background."
+        },
+        {
+          "type": "mugshot",
+          "subject": "POI-04",
+          "brief": "Dossier-style portrait of Tom Briggs (30s/40s), Facilities/Security ops; practical, blunt demeanor; neutral background."
+        },
+        {
+          "type": "mugshot",
+          "subject": "POI-05",
+          "brief": "Dossier-style portrait of Raina Patel (late-30s/40s), QA director; calm, controlled expression; neutral background; consistent lighting for reuse."
+        }
+      ],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "A3",
+      "envelope": "A",
+      "sequence_number": 3,
+      "type_id": 2,
+      "type_key": "social_posts",
+      "in_world_title": "Digital Evidence Capture — X Thread on #GF102 ‘Miracle’ Outcomes",
+      "owner_source": "Cambridge PD — Digital Forensics (OSINT Capture)",
+      "timestamp": "2026-03-20T09:40:00",
+      "filename_base": "A3_X_Thread_GF102",
+      "player_purpose": "tension_builder",
+      "reveals": "Shows a fast-moving X/Twitter thread reacting to Helixure’s touted GF-102 outcomes. Mixed excitement and skepticism includes a specific rumor: that Helixure ‘pulled the drug’ because of a QA deviation and an internal scramble to sanitize documentation.",
+      "player_inference": "If the public is already whispering about deviations and scrubbed paperwork, Ellison’s death may sit on top of a documentation crisis — the motive could be stopping disclosure, not personal revenge.",
+      "document_justification": "Provides the social pressure cooker around a ‘miracle’ product and introduces CONTRA-06 (public story vs. internal panic about deviation/audit trail). It also cues the player to treat compliance language and logs as motive-bearing evidence.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-02",
+        "POI-05"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-06"
+      ],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A2"
+      ],
+      "production_brief_writing": {
+        "summary": "A phone-screen style capture of an X/Twitter thread with multiple replies/quote-posts. It should feel real: some hype, some snark, one or two technically literate commenters, and one ‘insider-ish’ account that drops a precise but deniable hint.",
+        "tone": "casual internet voice with modern shorthand; mixed sincerity and cynicism; one post reads like a cautious whistleblower",
+        "min_words": 180,
+        "key_mandatory_line": "@bench2board: ‘They didn’t “pause” GF-102 for ops — QA logged a deviation and someone’s been “cleaning” PDFs since January. That’s not a pause, that’s containment.’",
+        "key_information_to_include": [
+          "At least 5–7 posts in the thread (original + replies + quote-post)",
+          "A reference to Helixure in Kendall Square/Cambridge to localize the setting",
+          "A post that mentions Dr. Mara Ellison by name (as the scientist behind it)",
+          "A post that mentions ‘QA deviation’ and ‘audit trail’ in lay terms",
+          "Engagement metrics that look plausible (likes/reposts varying by post)"
+        ],
+        "voice_notes": "Keep the planted clue deniable: it’s a rumor, but it uses the right vocabulary (‘deviation’, ‘cleaning PDFs’, ‘audit trail’). Avoid proving the whole case here — it should prime the player for B7/C3, not replace them."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Phone UI screenshot-style rendering of an X/Twitter thread with avatars, timestamps, and engagement counts.",
+      "image_requirements": [
+        {
+          "type": "device_screenshot",
+          "subject": "X/Twitter thread",
+          "brief": "A realistic phone-frame capture showing the #GF102 thread with multiple posts visible and one highlighted ‘QA deviation / cleaning PDFs’ comment."
+        }
+      ],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "A4",
+      "envelope": "A",
+      "sequence_number": 4,
+      "type_id": 19,
+      "type_key": "floor_plan",
+      "in_world_title": "Building 7 (Level 4) — Stairwell 4B / cGMP Suite Access Map (Annotated)",
+      "owner_source": "Helixure Facilities (Provided) / Cambridge PD (Annotated)",
+      "timestamp": "2026-03-21T12:10:00",
+      "filename_base": "A4_Floor_Plan_Level4_Stairwell4B",
+      "player_purpose": "clue_delivery",
+      "reveals": "Provides an annotated layout of Building 7 Level 4 showing Stairwell 4B, the cGMP suite corridor, the adjacent utility closet, the oxygen monitor’s location, and known camera coverage gaps near the landing and service corridor.",
+      "player_inference": "If Ellison’s collapse happened near Stairwell 4B, the utility closet and monitor placement matter: a technically savvy offender could exploit the physical layout (and blind spots) to create a ‘fall’ that looks accidental.",
+      "document_justification": "Required spatial tool. Gives the player a mental model to test alibis and method claims against real-world routes and blind spots. It becomes the necessary companion to C2’s system-history pivot by turning timestamps into a physically plausible method.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-04"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1"
+      ],
+      "production_brief_writing": {
+        "summary": "A clean architectural-style floor plan image with investigator callouts. The plan should look like a Facilities printout marked up by a detective with numbered annotations, highlighting camera coverage gaps and the relationship between Stairwell 4B and the utility closet.",
+        "tone": "technical and investigative — concise labels, numbered callouts, minimal prose",
+        "min_words": 140,
+        "key_mandatory_line": "ANNOTATION 2: ‘O₂ Monitor (Stairwell 4B landing) — audible alarm + paging relay panel located inside Utility Closet U-4B (keyed).’",
+        "key_information_to_include": [
+          "A marked body-found location near Stairwell 4B landing",
+          "A clearly labeled Utility Closet U-4B adjacent to the landing",
+          "At least one labeled camera (CAM-4B-LND) and a noted blind spot at/near the landing",
+          "A path arrow showing Ellison’s likely route from lab corridor toward the garage/stairs",
+          "Legend explaining symbols (camera, monitor, restricted door, blind spot)"
+        ],
+        "voice_notes": "Do not state that any system WAS manipulated; the floor plan should only show what exists and where. The ‘keyed’ note should subtly imply limited access without naming the killer."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "A detailed, readable floor plan/map image for Building 7 Level 4 including Stairwell 4B, utility closet, monitor, cameras, and annotations.",
+      "image_requirements": [
+        {
+          "type": "floor_plan",
+          "subject": "Building 7 Level 4",
+          "brief": "High-resolution plan image with clear labels: Stairwell 4B, Utility Closet U-4B, O₂ Monitor, cGMP suite corridor, camera positions, and a marked blind spot."
+        }
+      ],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "A5",
+      "envelope": "A",
+      "sequence_number": 5,
+      "type_id": 12,
+      "type_key": "newspaper_corporate",
+      "in_world_title": "The Boston Ledger — ‘Helixure’s GF-102 Sends Investors Scrambling for Superlatives’",
+      "owner_source": "The Boston Ledger (Business Desk)",
+      "timestamp": "2026-03-20T09:10:00",
+      "filename_base": "A5_Boston_Ledger_GF102",
+      "player_purpose": "context_setting",
+      "reveals": "A business-press profile frames GF-102 as a once-in-a-decade biotech story and emphasizes acquisition pressure and regulatory scrutiny. It includes careful quotes from Evan Kline and a pointed line about Helixure’s ‘manufacturing discipline’ as questions swirl about early-access safety and documentation.",
+      "player_inference": "The corporate stakes are existential: if Ellison forces a deviation into the open, Helixure’s deal and valuation could collapse. That makes ‘paperwork’ and ‘process’ more than bureaucracy — it’s a motive.",
+      "document_justification": "Completes Envelope A’s context: a miracle drug narrative in public and a high-pressure corporate timeline behind closed doors. The article sets up why multiple POIs would risk unethical acts to keep GF-102’s story intact, without yet proving the murder method.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-02",
+        "POI-05"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A3"
+      ],
+      "production_brief_writing": {
+        "summary": "A polished newspaper-style corporate piece that reads like legitimate business journalism. It should be flattering to Helixure on the surface but threaded with subtle caution about safety, audit trails, and the fragility of the story.",
+        "tone": "journalistic, business-forward, lightly skeptical — clean prose with quoted sources",
+        "min_words": 340,
+        "key_mandatory_line": "Kline told The Ledger, ‘We operate inside cGMP discipline, and any deviation is assessed and documented’ — a line printed on 2026-03-20 that becomes chilling after Ellison’s death the next morning.",
+        "key_information_to_include": [
+          "Headline + subheadline that capture ‘miracle’ + market pressure",
+          "At least two direct quotes (one from Evan Kline; one from an unnamed industry analyst or Helixure spokesperson)",
+          "A sentence that names Dr. Mara Ellison as a lead scientist on GF-102",
+          "A specific reference to Kendall Square/Cambridge biotech ecosystem",
+          "A lightly planted mention of ‘deviation’ / ‘audit trail’ framed as normal compliance language"
+        ],
+        "voice_notes": "This is not a crime story yet; it’s context that makes the later violence feel like the logical end of corporate pressure. Keep the planted clue subtle and plausible as business reporting."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": {
+        "angle": "Business-breakthrough coverage with an undercurrent of risk: a ‘miracle’ drug, a looming acquisition, and the quiet power of compliance.",
+        "quotes": [
+          "Evan Kline, CFO: ‘We operate inside cGMP discipline, and any deviation is assessed and documented.’",
+          "Unnamed analyst: ‘When the outcomes look this clean, the first question is always the same — what did the data not capture?’"
+        ],
+        "planted_clue": "A single, understated sentence referencing ‘deviation’ and ‘documentation discipline’ that later contrasts with B7/C3 showing panic about the audit trail and cleaned PDFs."
+      },
+      "image_needed": true,
+      "image_brief": "A news photo of Helixure Biologics’ Building 7 exterior in Kendall Square/Cambridge, suitable for a business newspaper front.",
+      "image_requirements": [
+        {
+          "type": "building",
+          "subject": "Helixure Building 7",
+          "brief": "Daytime exterior shot of a modern biotech building with subtle signage; Kendall Square vibe; overcast March light; looks like a real news photo."
+        }
+      ],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "B1",
+      "envelope": "B",
+      "sequence_number": 1,
+      "type_id": 11,
+      "type_key": "interrogation_transcript",
+      "in_world_title": "Cambridge Police — Interview Transcript: Evan Kline (POI-02)",
+      "owner_source": "Cambridge Police Department — Major Crimes Unit, Interview Room 2",
+      "timestamp": "2026-03-21T13:20:00",
+      "filename_base": "B1_Interview_Evan_Kline",
+      "player_purpose": "clue_delivery",
+      "reveals": "CFO Evan Kline insists he left Helixure right after the 20:03 investor-prep call and drove straight home, yet he immediately recognizes the internal badge label ‘EXEC-0441’ and explains ‘executive escort mode’ before detectives present any access printouts.",
+      "player_inference": "Kline is either lying about a late-night return or revealing how executive credentials can be used by someone else; the killer likely exploited access-control exceptions, not just motive.",
+      "document_justification": "Locks POI-02 into a confident, specific alibi while planting CONTRA-01: a late-night executive credential event exists and Kline’s unsolicited technical fluency suggests it’s a known loophole worth verifying in later log documents.",
+      "pois_referenced": [
+        "POI-02",
+        "POI-01",
+        "POI-04"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-01"
+      ],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1",
+        "A2",
+        "A3"
+      ],
+      "production_brief_writing": {
+        "summary": "A realistic police interview transcript where Evan Kline tries to sound cooperative while protecting the acquisition timeline and his own exposure. Detectives keep the tone professional but use exact times and access-control language to pull him off script.",
+        "tone": "verbatim transcript with time-stamps and speaker tags; corporate-polished subject gradually losing composure",
+        "min_words": 850,
+        "key_mandatory_line": "KLINE: If your system says ‘EXEC-0441’ at 22:39, that’s the executive pool credential — it doesn’t prove it was me holding the badge.",
+        "key_information_to_include": [
+          "Explicitly name the 20:03 investor-prep call as his anchor for leaving the site",
+          "Kline’s obsession with ‘material events’ and disclosure timing (acquisition pressure)",
+          "Detectives ask about after-hours access and ‘escort’ practices without showing exhibits",
+          "Kline ‘slips’ by identifying the exact badge label and describing the executive pool credential system"
+        ],
+        "voice_notes": "Kline speaks like an earnings call: ‘to be clear,’ ‘for context.’ Under pressure, he starts redefining terms and narrating policy instead of answering. The slip is technical over-precision, not a confession."
+      },
+      "production_brief_interview": {
+        "subject_poi_id": "POI-02",
+        "phases": [
+          {
+            "phase": 1,
+            "label": "Baseline",
+            "tactic": "Confirm identity, role, and normal after-hours habits",
+            "goal": "Establish polished corporate cadence and control",
+            "exchanges": 3
+          },
+          {
+            "phase": 2,
+            "label": "Timeline lock",
+            "tactic": "Minute-by-minute walkthrough after the 20:03 call",
+            "goal": "Elicit a firm ‘straight home’ claim with concrete details",
+            "exchanges": 6
+          },
+          {
+            "phase": 3,
+            "label": "Access anomaly",
+            "tactic": "Ask what ‘executive escort mode’ means and who can invoke it",
+            "goal": "Force him to reveal familiarity or deny knowledge",
+            "exchanges": 5
+          },
+          {
+            "phase": 4,
+            "label": "The slip",
+            "tactic": "Mention a generic ‘executive pool badge label’ and pause",
+            "goal": "Trigger his unprompted recognition of ‘EXEC-0441’ and the 22:39 time",
+            "exchanges": 4
+          }
+        ],
+        "min_exchanges": 18,
+        "the_lie": "He claims he left immediately after the 20:03 investor-prep call and did not return to Building 7 that night.",
+        "the_slip": {
+          "what": "He identifies the exact badge label ‘EXEC-0441’ and treats a 22:39 entry as a known, meaningful record before being shown any log.",
+          "how": "Trying to sound knowledgeable and innocent at once, he over-corrects and explains the executive credential pool and escort exception in detail."
+        }
+      },
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Header mugshot-style interview photo for Evan Kline (POI-02) in harsh station/interview-room lighting.",
+      "image_requirements": [
+        {
+          "type": "mugshot",
+          "subject": "POI-02",
+          "brief": "Evan Kline, late-40s, suit slightly rumpled, polished haircut, tired eyes; neutral police backdrop; interview-room vibe"
+        }
+      ],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "B2",
+      "envelope": "B",
+      "sequence_number": 2,
+      "type_id": 11,
+      "type_key": "interrogation_transcript",
+      "in_world_title": "Cambridge Police — Interview Transcript: Nadia Reyes (POI-03)",
+      "owner_source": "Cambridge Police Department — Major Crimes Unit, Interview Room 3",
+      "timestamp": "2026-03-21T15:05:00",
+      "filename_base": "B2_Interview_Nadia_Reyes",
+      "player_purpose": "tension_builder",
+      "reveals": "Research associate Nadia Reyes claims she left at 21:55 and never returned, insisting ‘you can’t get into the cGMP corridor without your badge’—then, when pressed, admits after-hours piggybacking happens when someone with executive escort privilege is around.",
+      "player_inference": "Reyes is hiding sloppy rule-breaking and audit fear, but her admission explains how a person could move in restricted areas without leaving a clean personal badge trail during the 22:39–23:36 window.",
+      "document_justification": "Raises suspicion while keeping POI-03 human: she lies to protect herself from compliance fallout, not to conceal murder. Crucially, she provides the vocabulary and mechanism for ambiguous access traces, introducing CONTRA-02.",
+      "pois_referenced": [
+        "POI-03",
+        "POI-01",
+        "POI-04"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-02"
+      ],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1",
+        "A2",
+        "A4"
+      ],
+      "production_brief_writing": {
+        "summary": "An anxious interview transcript where Nadia Reyes wants to be helpful but keeps getting trapped by details. Detectives use calm repetition to draw out the difference between policy and reality (piggybacking/escort after hours).",
+        "tone": "verbatim transcript — rapid, technical speech; interruptions; emotion noted in brackets",
+        "min_words": 850,
+        "key_mandatory_line": "REYES: After 9 p.m. you can’t just wander into the cGMP corridor—unless someone’s using executive escort, and then… people slip through.",
+        "key_information_to_include": [
+          "Her claimed departure time 21:55 and why she stayed late (assay rerun)",
+          "Her last interaction with Ellison and the tone of that interaction",
+          "An admission that piggybacking happens despite policy, especially around executive escort",
+          "A non-homicide secret: she altered a lab notebook timestamp earlier in the week and is terrified of audits"
+        ],
+        "voice_notes": "Reyes alternates between over-explaining and apologizing. She should sound scared of blame and compliance discipline, not cunning. The ‘slip’ is a workplace truth she cannot keep in under pressure."
+      },
+      "production_brief_interview": {
+        "subject_poi_id": "POI-03",
+        "phases": [
+          {
+            "phase": 1,
+            "label": "Rapport",
+            "tactic": "Offer water, acknowledge stress, confirm role",
+            "goal": "Get her talking without shutting down",
+            "exchanges": 3
+          },
+          {
+            "phase": 2,
+            "label": "Lab timeline",
+            "tactic": "Walk her last hours with Ellison in detail",
+            "goal": "Lock in the 21:55 departure claim",
+            "exchanges": 6
+          },
+          {
+            "phase": 3,
+            "label": "Access reality check",
+            "tactic": "Ask how doors work after hours; contrast policy language with practice",
+            "goal": "Expose piggybacking/escort as an unlogged pathway",
+            "exchanges": 5
+          },
+          {
+            "phase": 4,
+            "label": "The slip",
+            "tactic": "Repeat her ‘badge-only’ claim back to her and wait",
+            "goal": "Trigger the executive-escort piggyback admission",
+            "exchanges": 4
+          }
+        ],
+        "min_exchanges": 18,
+        "the_lie": "She claims her badge trail would definitively prove whether she returned, because after-hours access is ‘badge-only.’",
+        "the_slip": {
+          "what": "She admits that executive escort privilege allows others to enter without their own badge record (‘people slip through’).",
+          "how": "When pinned to her earlier certainty, she backtracks and blurts out the practical workaround everyone pretends does not exist."
+        }
+      },
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Header mugshot-style interview photo for Nadia Reyes (POI-03) in interview room lighting.",
+      "image_requirements": [
+        {
+          "type": "mugshot",
+          "subject": "POI-03",
+          "brief": "Nadia Reyes, late-20s/early-30s, exhausted lab staffer look (tired eyes, practical hair), hoodie under a blazer or lab-adjacent casual; neutral police backdrop; anxious expression"
+        }
+      ],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "B3",
+      "envelope": "B",
+      "sequence_number": 3,
+      "type_id": 11,
+      "type_key": "interrogation_transcript",
+      "in_world_title": "Cambridge Police — Interview Transcript: Tom Briggs (POI-04)",
+      "owner_source": "Cambridge Police Department — Major Crimes Unit, Interview Room 1",
+      "timestamp": "2026-03-21T17:10:00",
+      "filename_base": "B3_Interview_Tom_Briggs",
+      "player_purpose": "clue_delivery",
+      "reveals": "Facilities/Security manager Tom Briggs claims no alarms triggered and his on-call phone never rang overnight, but he acknowledges—too quickly—that an oxygen monitor can be placed into a ‘maintenance/silenced’ state that suppresses paging and leaves the dashboard looking ‘normal’ to anyone who checks it later.",
+      "player_inference": "Briggs may be minimizing a system failure or covering procedural shortcuts, but the important takeaway is that ‘no alarm page’ is not proof of safety; it can be the signature of deliberate suppression.",
+      "document_justification": "Introduces CONTRA-03 by letting POI-04 anchor the ‘no page’ claim while inadvertently teaching the player the exact mechanism that would make that claim misleading. This primes the player to understand the pivot evidence when system history appears later.",
+      "pois_referenced": [
+        "POI-04",
+        "POI-01",
+        "POI-05"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-03"
+      ],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1",
+        "A2",
+        "B1",
+        "B2"
+      ],
+      "production_brief_writing": {
+        "summary": "A blunt, policy-heavy interview transcript with Tom Briggs, who speaks like a compliance manual and gets defensive about any suggestion his systems failed. Detectives keep him on specifics (what pages, what settings, who can silence monitors).",
+        "tone": "verbatim transcript — procedural, defensive, and clipped; occasional sarcasm; bracketed notes for irritation",
+        "min_words": 850,
+        "key_mandatory_line": "BRIGGS: If the monitor’s in maintenance, it won’t page me. That’s not ‘failure’—that’s a state someone has to put it into.",
+        "key_information_to_include": [
+          "Briggs confirms his role: cameras, badge readers, and alarm paging pathways for Building 7",
+          "He asserts the on-call phone ‘never rang’ and treats that as definitive",
+          "He describes ‘maintenance/silenced’ status and how it suppresses pages",
+          "He references executive escort exceptions and complains about after-hours work culture",
+          "A self-serving detail: he admits he allowed shortcut practices to keep executives happy"
+        ],
+        "voice_notes": "Briggs speaks in policy framing: ‘per policy,’ ‘that’s logged.’ Under pressure, he deflects and lists other people’s violations. The slip is his casual, matter-of-fact description of silencing states and how they mask reality."
+      },
+      "production_brief_interview": {
+        "subject_poi_id": "POI-04",
+        "phases": [
+          {
+            "phase": 1,
+            "label": "Authority",
+            "tactic": "Establish his responsibilities and the chain of notification",
+            "goal": "Make him commit to what ‘should’ happen when alarms trip",
+            "exchanges": 4
+          },
+          {
+            "phase": 2,
+            "label": "No-page claim",
+            "tactic": "Get a firm statement that no alarm pages occurred overnight",
+            "goal": "Lock in the ‘phone never rang’ position",
+            "exchanges": 5
+          },
+          {
+            "phase": 3,
+            "label": "System states",
+            "tactic": "Ask about silenced/maintenance modes and who can enable them",
+            "goal": "Teach the player how suppression would look in records",
+            "exchanges": 5
+          },
+          {
+            "phase": 4,
+            "label": "The slip",
+            "tactic": "Present a hypothetical: ‘If someone wanted no page, what would they do?’",
+            "goal": "Get him to say the quiet part: maintenance state suppresses paging",
+            "exchanges": 4
+          }
+        ],
+        "min_exchanges": 18,
+        "the_lie": "He implies that because he received no on-call page, no meaningful oxygen alarm condition could have existed in Stairwell 4B overnight.",
+        "the_slip": {
+          "what": "He concedes that a monitor can be intentionally put into a maintenance/silenced state that suppresses paging while making later checks appear routine.",
+          "how": "While defending his performance, he over-explains system behavior and accidentally describes the exact technique a planner would use to avoid an on-call alert."
+        }
+      },
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Header mugshot-style interview photo for Tom Briggs (POI-04) with a hard, practical demeanor.",
+      "image_requirements": [
+        {
+          "type": "mugshot",
+          "subject": "POI-04",
+          "brief": "Tom Briggs, late-30s/40s, facilities/security manager; practical haircut, work polo or button-down; square jaw; annoyed expression; neutral police backdrop"
+        }
+      ],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "B4",
+      "envelope": "B",
+      "sequence_number": 4,
+      "type_id": 11,
+      "type_key": "interrogation_transcript",
+      "in_world_title": "Cambridge Police — Interview Transcript: Raina Patel (POI-05)",
+      "owner_source": "Cambridge Police Department — Major Crimes Unit, Interview Room 2",
+      "timestamp": "2026-03-21T19:05:00",
+      "filename_base": "B4_Interview_Raina_Patel",
+      "player_purpose": "tension_builder",
+      "reveals": "QA Director Raina Patel calmly states she left Building 7 at 19:05 and did not return, insisting deviations and releases are tightly controlled—yet she repeatedly redirects to ‘audit trails’ and ‘regulator-facing exports,’ and slips by referencing a specific late-night system ‘export’ as if she already knows what investigators will find.",
+      "player_inference": "Patel’s language is less about grief and more about controlling what can be proven; her defensiveness around audit logs suggests the real conflict is documentation liability, and her alibi may collapse when systems metadata is compared to her claimed timeline.",
+      "document_justification": "Introduces CONTRA-04 and frames QA as the pressure point: Patel is uniquely positioned to fear an internal deviation folder becoming external evidence. Her careful, process-first answers create the sense of a cover-up that later digital records (envelope C) can puncture.",
+      "pois_referenced": [
+        "POI-05",
+        "POI-01",
+        "POI-02",
+        "POI-04"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-04"
+      ],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1",
+        "A2",
+        "B1",
+        "B3"
+      ],
+      "production_brief_writing": {
+        "summary": "A controlled, high-stakes interview transcript where Raina Patel answers in regulatory phrasing and tries to turn every question into ‘process.’ Detectives chip away by asking for yes/no answers tied to time stamps and specific systems (deviation log, audit exports).",
+        "tone": "verbatim transcript — calm, formal, and slightly chilling; the subject is never loud, just relentlessly precise",
+        "min_words": 900,
+        "key_mandatory_line": "PATEL: I left at 19:05. Any claim about a 23:36 export would have to be tied to an authenticated session, because QA systems don’t ‘just’ generate documents.",
+        "key_information_to_include": [
+          "Patel’s role: QA release authority, deviation/exception ownership, regulator-facing documentation",
+          "Her alibi claim: left at 19:05 and did not return",
+          "Ellison’s request for the GF-102 deviation folder and Patel’s attempt to minimize it",
+          "Patel’s insistence that audit trails are definitive—while carefully avoiding a direct ‘no’ on whether she has admin access",
+          "A clear ‘slip’ where she references an export/audit artifact with unexpected specificity"
+        ],
+        "voice_notes": "Patel uses compliance language: ‘outside of SOP,’ ‘to my recollection.’ Under pressure, she becomes pedantic and refuses yes/no. The slip is meta: she talks like someone already managing an evidentiary record."
+      },
+      "production_brief_interview": {
+        "subject_poi_id": "POI-05",
+        "phases": [
+          {
+            "phase": 1,
+            "label": "Credentials",
+            "tactic": "Confirm role, authority, and what systems she controls",
+            "goal": "Establish that QA owns releases, deviations, and exports",
+            "exchanges": 4
+          },
+          {
+            "phase": 2,
+            "label": "Alibi lock",
+            "tactic": "Time-stamp her departure and after-hours return denial",
+            "goal": "Get a clean 19:05 ‘no return’ commitment",
+            "exchanges": 5
+          },
+          {
+            "phase": 3,
+            "label": "Ellison conflict",
+            "tactic": "Ask about the deviation folder request and what Ellison planned for Monday",
+            "goal": "Surface motive pressure without accusing",
+            "exchanges": 5
+          },
+          {
+            "phase": 4,
+            "label": "The slip",
+            "tactic": "Ask how a ‘regulator-facing export’ is generated and who can do it",
+            "goal": "Trigger her over-specific reference to a late-night export/audit session",
+            "exchanges": 4
+          }
+        ],
+        "min_exchanges": 18,
+        "the_lie": "She claims she left at 19:05, did not return, and would have no reason to access any Building 7 or QA systems during the late-night incident window.",
+        "the_slip": {
+          "what": "She references a late-night ‘export’/audit artifact with specificity that suggests foreknowledge of what the system record will show.",
+          "how": "Attempting to preempt investigators by leaning on ‘audit trail certainty,’ she accidentally tips her hand about how (and when) such exports are created."
+        }
+      },
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Header mugshot-style interview photo for Raina Patel (POI-05), composed and unblinking in interview lighting.",
+      "image_requirements": [
+        {
+          "type": "mugshot",
+          "subject": "POI-05",
+          "brief": "Raina Patel, late-30s/early-40s, QA director; neat professional attire; calm, controlled expression; neutral police backdrop; eyes steady"
+        }
+      ],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "B5",
+      "envelope": "B",
+      "sequence_number": 5,
+      "type_id": 8,
+      "type_key": "entry_exit_log",
+      "in_world_title": "Helixure Biologics — Building 7 Badge Access & Escort Exception Log (2026-03-20 to 2026-03-21)",
+      "owner_source": "Helixure Biologics Physical Security — Lenel OnGuard Export (Subpoena Return to Cambridge PD)",
+      "timestamp": "2026-03-22T09:12:00",
+      "filename_base": "B5_Building7_Access_Escort_Log",
+      "player_purpose": "clue_delivery",
+      "reveals": "A raw security export shows an after-hours entry at 22:39 tied to the shared executive pool credential ‘EXEC-0441’ and a concurrent ‘ESCORT MODE ENABLED’ event tied to a QA-admin host badge. The log explicitly notes that escort mode can allow additional persons to pass controlled doors without generating their own badge events, explaining why late-night movement may not map cleanly to one person.",
+      "player_inference": "The 22:39 ‘EXEC-0441’ hit is not proof Evan Kline was present; it’s a shared credential used alongside escort exceptions. The killer likely exploited escort-mode/piggybacking to move through Building 7 while keeping the access trail ambiguous.",
+      "document_justification": "This is the case’s ‘boring spine’ document: it resolves CONTRA-01 and CONTRA-02 by showing exactly how a late-night ‘executive credential’ record can be real while still not identifying a single individual. It converts interviews (B1/B2) into a testable access-control mechanism and anchors the critical 22:39 timestamp in the investigation timeline.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-02",
+        "POI-03",
+        "POI-04",
+        "POI-05"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [
+        "CONTRA-01",
+        "CONTRA-02"
+      ],
+      "depends_on": [
+        "A4",
+        "B1",
+        "B2"
+      ],
+      "production_brief_writing": {
+        "summary": "A tabular access-control event log exported from Helixure’s Lenel OnGuard system for Building 7 covering the evening of 2026-03-20 through the morning of 2026-03-21. It should look like a cold, timestamp-precise spreadsheet printout with a short analyst cover note that defines ‘EXEC-0441’ as a shared executive pool credential and explains ‘ESCORT MODE’ behavior in plain security-admin language.",
+        "tone": "raw security system export — table-forward, minimal narrative; one short cover note written by a security systems admin",
+        "min_words": 220,
+        "key_mandatory_line": "2026-03-20 22:39:03 — READER: L4 ELEV VESTIBULE (BLDG7) — ACCESS GRANTED — CRED: EXEC-0441 — NOTE: ESCORT MODE ENABLED (Host badge: QA-ADMIN-7719; duration: 00:15:00)",
+        "key_information_to_include": [
+          "Header fields: case reference (CPD-MCU-26-0319), export request ID, date range, system name (Lenel OnGuard)",
+          "A highlighted event at 22:39:03 showing ‘EXEC-0441’ access granted at the Level 4 elevator vestibule reader",
+          "A linked system event line immediately after: ‘ESCORT MODE ENABLED’ with a host credential labeled as QA-admin (do NOT present this as a named person; present it as a badge/role label)",
+          "A short cover-note definition: EXEC-0441 is a shared executive pool credential kept at Security (not assigned to one employee)",
+          "A short cover-note definition: Escort mode allows additional entrants to pass subsequent controlled doors without their own badge events (explains why badge logs can’t always identify every body)",
+          "At least 3 additional rows within 22:39–23:36 showing controlled-door traversals (e.g., cGMP corridor reader events) that are attributable only to EXEC-0441/escort context",
+          "A mundane but telling policy footer: ‘Anti-passback disabled for EXEC pool credentials’ or similar, to underline the loophole"
+        ],
+        "voice_notes": "Keep the bulk of the document as machine-like rows (time, reader, event, credential, result). The only human voice is a brief cover note from a Security Systems Administrator explaining the meaning of the labels because detectives asked. Make the loophole feel real: boring, institutional, and exactly the kind of thing a planner would exploit. Mention Stairwell 4B as a nearby location in a reader/location column or in the detective highlight note, tying the log to A4’s layout without solving the whole case."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "B6",
+      "envelope": "B",
+      "sequence_number": 6,
+      "type_id": 18,
+      "type_key": "calls_sms_log",
+      "in_world_title": "Phone Records (Subpoena Return) — Dr. Mara Ellison, Helixure Biologics (Line: 617-555-0194)",
+      "owner_source": "Verizon Law Enforcement Support — Subpoena Return to Cambridge PD (Case CPD-MCU-26-0319)",
+      "timestamp": "2026-03-22T09:18:00",
+      "filename_base": "B6_Phone_Records_Mara_Ellison",
+      "player_purpose": "clue_delivery",
+      "reveals": "Carrier-style call/SMS detail records show Ellison texting Nadia Reyes at 21:58 about finishing documentation, exchanging terse SMS with Raina Patel at 22:06 regarding the ‘GF-102 deviation folder,’ and then sending her last outgoing message at 23:11:52 (from Helixure’s Building 7 Level-4 femtocell sector labeled STW4B) moments before the nitrogen purge window. After 23:12, multiple inbound calls go unanswered and voicemail is auto-generated, tightening Ellison’s incapacitation to minutes rather than hours.",
+      "player_inference": "Ellison was alive and actively using her phone right up to the critical 23:12 timeframe, then abruptly stopped responding—supporting the theory that the stairwell incident happened during the engineered low-O2 window, not as a later accidental fall.",
+      "document_justification": "B6 looks like mundane subpoena paperwork but functions as a timeline clamp: it anchors Ellison’s last known conscious activity to the exact late-night window the building systems later implicate (C2). It also quietly establishes that Patel was being contacted about deviations the same night, sharpening the compliance motive without ‘solving’ it yet.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-03",
+        "POI-05"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1",
+        "B2"
+      ],
+      "production_brief_writing": {
+        "summary": "A printed carrier subpoena return with a dense table of calls and texts. Most rows should be banal (two-factor codes, calendar pings), but three highlighted rows create the investigative value: the 22:06 deviation-folder exchange with Patel, the 23:11 last outgoing SMS from the STW4B femtocell sector, and the first unanswered inbound call after 23:12.",
+        "tone": "dry telecom data export — mono font tables, abbreviations, and exhibit-style labeling",
+        "min_words": 180,
+        "key_mandatory_line": "2026-03-20 23:11:52 | SMS (OUT) | To: N. Reyes (857-555-0133) | Preview: ‘Heading to the garage—call me if you need anything.’ | Cell Site: HLX-B7-FEMTO-L4 (Sector: STW4B)",
+        "key_information_to_include": [
+          "Header block with case number (CPD-MCU-26-0319), subscriber line (617-555-0194), and date range (2026-03-20 18:00 to 2026-03-21 08:00)",
+          "A highlighted SMS exchange at ~22:06 with contact saved as ‘R. Patel’ referencing ‘deviation folder’ in a short preview (e.g., ‘Need full GF-102 deviation folder by Monday 09:00’)",
+          "A highlighted last outgoing SMS at 23:11:52 with Cell Site/Sector indicating Building 7 Level 4 / Stairwell 4B coverage",
+          "At least one inbound call after 23:12 that is not answered (Duration 00:00; result: NO ANSWER/VM), showing abrupt silence",
+          "A small summary statistics box (total calls/SMS, unique contacts) that makes the highlights feel like needle-in-haystack discoveries"
+        ],
+        "voice_notes": "Make it feel like a real subpoena exhibit: include carrier boilerplate, abbreviations (MO/MT, SMS/MMS), and a legend for columns. The ‘reveals’ should come from highlighted rows and the cell-site label, not from narration; keep the rest of the table realistically boring."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "B7",
+      "envelope": "B",
+      "sequence_number": 7,
+      "type_id": 9,
+      "type_key": "email_export",
+      "in_world_title": "Helixure Biologics — Email Thread Export: ‘GF-102 Data Integrity & Safety Review (Mon 09:00)’",
+      "owner_source": "Helixure Biologics — IT eDiscovery / Legal Hold Export (Mailbox: Mara Ellison)",
+      "timestamp": "2026-03-20T20:27:00",
+      "filename_base": "B7_Email_Thread_GF102_Data_Integrity_Safety_Review",
+      "player_purpose": "clue_delivery",
+      "reveals": "An internal email thread shows Dr. Mara Ellison scheduling a Monday 09:00 ‘Data Integrity & Safety Review’ and demanding the complete deviation folder ‘DEV-102-17’ (including raw audit-trail exports) for GF-102 Batch 14C; Evan Kline repeatedly pushes to move the discussion ‘off email,’ while QA Director Raina Patel offers only a ‘regulator-facing PDF package’ and implies she will return to site later to pull ‘clean’ exports.",
+      "player_inference": "Helixure’s public ‘operational pause’ narrative is a containment strategy: someone in QA is actively controlling what documentation exists, and Ellison’s insistence on raw audit trails created the kind of panic that can motivate murder.",
+      "document_justification": "This is the documentary bridge between the miracle-drug hype (A3) and the corporate pressure behind Ellison’s death: it resolves CONTRA-06 by proving GF-102’s withdrawal was driven by a specific, named deviation and fear of regulator review, not routine operations. It also clarifies why Patel (POI-05) would treat audit-trail metadata as existential.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-02",
+        "POI-05",
+        "POI-03"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [
+        "CONTRA-06"
+      ],
+      "depends_on": [
+        "A3",
+        "B1",
+        "B4"
+      ],
+      "production_brief_writing": {
+        "summary": "A printed ‘subpoena style’ email export of a real-looking thread from Ellison’s Helixure account. It should read like corporate email with reply headers, timestamps, and cautious language, but the buried details (deviation ID, audit-trail request, ‘off email’ pressure) should feel damning when noticed.",
+        "tone": "corporate-compliance cautious — professional phrasing, risk-avoidant hedging, and a palpable fear of anything that will be discoverable",
+        "min_words": 520,
+        "key_mandatory_line": "ELLISON (18:30): Please provide the full DEV-102-17 folder for GF-102 Batch 14C, including the raw audit-trail export and original eQMS attachments, before Monday 09:00.",
+        "key_information_to_include": [
+          "Thread subject and calendar context: ‘GF-102 Data Integrity & Safety Review (Mon 09:00)’",
+          "Mara Ellison’s direct request for a specific deviation folder (DEV-102-17) and ‘raw audit-trail’ language",
+          "Evan Kline’s attempt to control the record (e.g., ‘take this off email’ / ‘avoid loaded terms in writing’) shortly after the 20:03 investor-prep call",
+          "Raina Patel’s offer of a ‘regulator-facing PDF package’ instead of raw records, implying curation/sanitization",
+          "A brief CC list that plausibly includes Nadia Reyes and a generic Regulatory Affairs alias (e.g., regulatory@helixurebio.com)",
+          "At least one line hinting that Patel will ‘stop back in’ or ‘pull exports tonight,’ foreshadowing after-hours activity without fully proving it"
+        ],
+        "voice_notes": "Ellison writes plainly and urgently, not theatrically. Kline writes like he’s on an earnings call—careful, reframing, asking to ‘align messaging.’ Patel writes in regulatory-SOP language and avoids direct yes/no commitments; her evasiveness should feel like process talk used as a shield. Make the thread formatting authentic (From/To/CC/Date/Subject blocks, nested quoting, and an attachment list placeholder)."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "B8",
+      "envelope": "B",
+      "sequence_number": 8,
+      "type_id": 2,
+      "type_key": "social_posts",
+      "in_world_title": "Digital Evidence Capture — Instagram Story: @helixurelife ‘Night Audit’ (Building 7, 22:50)",
+      "owner_source": "Cambridge Police Department — Digital Forensics (OSINT Capture / Anonymous Tip)",
+      "timestamp": "2026-03-20T22:50:00",
+      "filename_base": "B8_Instagram_Story_Night_Audit",
+      "player_purpose": "tension_builder",
+      "reveals": "An OSINT-captured Instagram story posted at 22:50 on 2026-03-20 from a Helixure employee-adjacent account (@helixurelife) shows a wall-mounted safety/control panel labeled ‘SP-4B’ on Level 4 with a visible on-screen banner reading ‘MAINT.’ The caption overlay jokes, ‘night audit — don’t page Facilities,’ and the geotag places the post at ‘Helixure Building 7 (Kendall Square)’ before the story is deleted by morning.",
+      "player_inference": "A person was physically at Stairwell 4B’s control panel during the critical window and understood how to keep paging quiet, reinforcing that ‘no alarm page’ can be intentionally manufactured.",
+      "document_justification": "Gives the player a human, off-the-books corroboration to sterile logs and interviews: someone posted about SP-4B being in a maintenance-like state around the same night and location as the engineered stairwell incident. It heightens dread and primes the player to treat the later BMS backup (C2) as a confirmation, not a surprise.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-04",
+        "POI-05"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A4",
+        "B3"
+      ],
+      "production_brief_writing": {
+        "summary": "A phone-screenshot style digital evidence capture of an Instagram story that looks like mundane workplace humor, but quietly places Safety Panel SP-4B in ‘MAINT’ at 22:50 on the night Dr. Mara Ellison dies.",
+        "tone": "OSINT evidence capture — authentic Instagram Story UI inside a phone frame, with a terse analyst note strip outside the frame",
+        "min_words": 170,
+        "key_mandatory_line": "STORY METADATA: Posted 2026-03-20 22:50 EDT | Geotag: Helixure Building 7 (Kendall Square) | Visible label: SP-4B | Screen banner: MAINT | Overlay text: ‘night audit — don’t page Facilities’",
+        "key_information_to_include": [
+          "Instagram Story UI elements: handle @helixurelife, story progress bar, and a timestamp indicator (22:50)",
+          "A clear geotag line reading ‘Helixure Building 7 (Kendall Square)’ to anchor location",
+          "The story image: a sterile hallway/utility alcove with a wall-mounted panel; a printed physical label ‘SP-4B’ adjacent to the panel",
+          "A readable on-screen panel status banner ‘MAINT’ (do not explain what it means; let the player connect it to B3/C2)",
+          "An analyst note stating the story was captured via tip, appears deleted by ~07:30 on 2026-03-21, and is relevant to the Stairwell 4B timeline"
+        ],
+        "voice_notes": "Keep it plausible and not too on-the-nose: the poster sounds like a tired employee making a joke, not a conspirator. The incriminating value is the combination of time (22:50), place (Building 7), and the visible ‘MAINT’ state on SP-4B. The analyst note should use evidence-room language and avoid accusing any POI outright."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": true,
+      "image_brief": "Render as a phone-frame Instagram Story OSINT capture. The story photo should show the SP-4B safety/control panel in a clean biotech hallway/utility alcove with a visible status banner ‘MAINT’ and the caption overlay ‘night audit — don’t page Facilities.’ Outside the phone frame, include a small ‘DIGITAL EVIDENCE’ label and an analyst note about deletion by morning.",
+      "image_requirements": [
+        {
+          "type": "device_screenshot",
+          "subject": "Instagram story OSINT capture",
+          "brief": "Instagram Story UI with @helixurelife, geotag Helixure Building 7 (Kendall Square), and a story image of Safety Panel SP-4B showing a ‘MAINT’ status banner. Add a small analyst note outside the phone frame referencing relevance to Stairwell 4B and deletion the next morning."
+        }
+      ],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "C1",
+      "envelope": "C",
+      "sequence_number": 1,
+      "type_id": 8,
+      "type_key": "forensic_report",
+      "in_world_title": "Middlesex County OCME — Forensic Examination Report: Dr. Mara Ellison",
+      "owner_source": "Office of the Chief Medical Examiner — Middlesex County, MA",
+      "timestamp": "2026-03-21T15:50:00",
+      "filename_base": "C1_OCME_Forensic_Report_Ellison",
+      "player_purpose": "revelation",
+      "reveals": "The medical examiner concludes Dr. Mara Ellison suffered hypoxic asphyxia consistent with inert-gas exposure before the stairwell injuries, with a narrowed time-of-death window around 23:10–23:30 on 2026-03-20. The report notes bruising on both upper arms consistent with forceful handling and that the impact injuries are consistent with a short, staged fall rather than an uncontrolled tumble.",
+      "player_inference": "If Ellison was asphyxiated before she hit the stairs, the ‘workplace accident’ narrative collapses and the killer likely used Building 7’s gas/safety infrastructure to create a quiet, controllable kill.",
+      "document_justification": "This is the hinge that converts the case from ambiguous corporate tragedy to homicide: it formally contradicts the accident assumption in A1 and supports CONTRA-05 with concrete, time-stamped forensic conclusions the player can align with the system timeline in C2.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-04",
+        "POI-05"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [
+        "CONTRA-05"
+      ],
+      "depends_on": [
+        "A1"
+      ],
+      "production_brief_writing": {
+        "summary": "A full OCME-style forensic report that clinically explains why Ellison’s death could not be a simple fall. The key is a clear, defensible statement that hypoxia/asphyxia occurred first and that the injuries are compatible with staging in Stairwell 4B.",
+        "tone": "clinical, credentialed, and cautious — formal medical language with measured conclusions",
+        "min_words": 420,
+        "key_mandatory_line": "CAUSE OF DEATH: Hypoxic asphyxia consistent with inert-gas exposure; SECONDARY: blunt-force injuries consistent with a staged stairwell fall (Stairwell 4B, Building 7).",
+        "key_information_to_include": [
+          "Case identifiers and decedent details: Dr. Mara Ellison, 41",
+          "Estimated time of death window centered on 2026-03-20 23:10–23:30",
+          "External findings: patterned bruising on upper arms suggesting forceful handling",
+          "Internal findings consistent with hypoxia prior to impact; note lack of sedatives in tox screen",
+          "A short section explicitly stating why the injuries do not match an accidental, uncontrolled long fall"
+        ],
+        "voice_notes": "Write like an OCME pathologist: restrained, evidence-based, with ‘consistent with’ phrasing. Make the staging conclusion feel earned through specific findings, not melodrama. Include a small tox table (negative sedatives/EtOH) to rule out easy explanations."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "C2",
+      "envelope": "C",
+      "sequence_number": 2,
+      "type_id": 999,
+      "type_key": "bms_redundant_event_log",
+      "design_hint": "A printed export from a Building Management System (BMS) disaster-recovery node: clean table with columns for timestamp, device ID, location, event/action, user/session, and source panel. Include a header showing ‘Redundant Backup Node: B7-BMS-DR01’ and an integrity hash line.",
+      "in_world_title": "Helixure Building 7 — Redundant BMS Event Log Extract (Stairwell 4B / Utility Closet)",
+      "owner_source": "Helixure Biologics — Facilities Systems (BMS DR Node B7-BMS-DR01)",
+      "timestamp": "2026-03-21T11:12:00",
+      "filename_base": "C2_BMS_Redundant_Event_Log_Stairwell4B",
+      "player_purpose": "revelation",
+      "reveals": "A redundant BMS backup log shows the Stairwell 4B oxygen monitor (O2-MON-4B) was placed into MAINT/SILENCE at 22:48:13 on 2026-03-20, suppressing automatic paging. It also records a nitrogen purge valve event (N2-PURGE-4B) initiated at 23:12:44 from Safety Panel SP-4B, followed by a steep O2 drop at the landing—then a report-export action at 23:36:27 attributed to the same admin session.",
+      "player_inference": "The ‘no alarms’ claim wasn’t reassurance—it was manufactured. The combination of silenced monitor + nitrogen purge + late-night admin session turns the death into a planned, system-assisted homicide that points at someone with privileged access.",
+      "document_justification": "This is the pivot document promised by the case: it proves deliberate suppression of safety alerts (resolving CONTRA-03) and ties administrative activity to a credential consistent with Patel’s access pattern (resolving CONTRA-04). It anchors the murder window with machine timestamps the player can’t hand-wave away.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-04",
+        "POI-05"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [
+        "CONTRA-03",
+        "CONTRA-04"
+      ],
+      "depends_on": [
+        "A4",
+        "B3",
+        "B5"
+      ],
+      "production_brief_writing": {
+        "summary": "A technical, tabular BMS log export that feels boring at first glance, then devastating once the player reads the timestamps. It must clearly show the MAINT/SILENCE state change, the nitrogen purge initiation, and that the suppressed alarm behavior is a feature, not a glitch.",
+        "tone": "technical and machine-like — system terminology, device IDs, terse event labels",
+        "min_words": 220,
+        "key_mandatory_line": "2026-03-20 22:48:13 | Device: O2-MON-4B | Action: STATE CHANGE → MAINT/SILENCE | Result: Paging Disabled | User Session: RPATEL (QA-DIR) | Source: Panel SP-4B",
+        "key_information_to_include": [
+          "Header identifying redundant node (B7-BMS-DR01) and that it is append-only",
+          "Event row showing O2-MON-4B silenced at 22:48:13 with paging disabled",
+          "Event row showing N2-PURGE-4B initiated at 23:12:44 and location tied to utility closet near Stairwell 4B",
+          "A few sensor reading lines demonstrating O2 dropping at the landing after purge initiation",
+          "An event line at 23:36:27 showing REPORT_EXPORT started with a report ID that matches C3"
+        ],
+        "voice_notes": "Keep it credible: use consistent device naming (O2-MON-4B, N2-PURGE-4B, SP-4B) and short, real-ish system event labels. Include one integrity detail (hash/checksum or ‘signed export’) so the player trusts it over a manually edited dashboard. Make the reveal happen through the table, not narration."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "C3",
+      "envelope": "C",
+      "sequence_number": 3,
+      "type_id": 999,
+      "type_key": "dashboard_incident_summary_export",
+      "design_hint": "A one-page ‘Print to PDF’ export from an internal safety/environmental dashboard: header with system name and report ID, a small line chart of O2 percentage over time, and a summary box with ‘Classification’, ‘Notes’, ‘Generated by’, and ‘Generated at’. Include a footer disclaimer about snapshots reflecting the primary dashboard state.",
+      "in_world_title": "Helixure EHS Dashboard — ‘Stairwell 4B Environmental Incident Summary’ (Report ID: EHS-4B-20260320-2336)",
+      "owner_source": "Helixure Biologics — EHS/Safety Monitoring Dashboard (Primary UI Export)",
+      "timestamp": "2026-03-20T23:36:27",
+      "filename_base": "C3_EHS_Incident_Summary_Stairwell4B",
+      "player_purpose": "clue_delivery",
+      "reveals": "The incident summary PDF is generated at 23:36:27 on 2026-03-20 and shows ‘Generated by: RPATEL (QA-DIR)’ with a narrative classification of the event as a ‘transient sensor fault’ and ‘no sustained low-O2 hazard.’ The report’s own embedded metadata references the same export action ID recorded in the redundant backup log (C2), suggesting someone created a polished, regulator-friendly snapshot minutes after the lethal O2 drop.",
+      "player_inference": "Someone wasn’t just trying to avoid an alarm—they were trying to author the official story in real time. A late-night, regulator-friendly ‘sensor fault’ report points to motive and consciousness of guilt, not confusion.",
+      "document_justification": "C3 shows the cover-up move: a clean-looking, official PDF intended to normalize what happened in Stairwell 4B. When compared against C2’s append-only backup, it reads as an intentional narrative-sanitizing step that aligns with Patel’s QA mindset and the case’s compliance-driven motive.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-05"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "C2"
+      ],
+      "production_brief_writing": {
+        "summary": "A slick ‘print to PDF’ dashboard export that looks authoritative and tidy—exactly the kind of document someone would want regulators or executives to see first. It should downplay danger (‘sensor fault’) while quietly betraying the exporter’s identity and timing.",
+        "tone": "corporate-risk-management — calm, sanitized, euphemistic, with compliance-friendly phrasing",
+        "min_words": 180,
+        "key_mandatory_line": "Generated by: RPATEL (QA-DIR) | Generated at: 2026-03-20 23:36:27 | Classification: TRANSIENT SENSOR FAULT | Distribution: Internal Review Only",
+        "key_information_to_include": [
+          "Report ID EHS-4B-20260320-2336 and a brief timeframe window around 23:05–23:40",
+          "A small chart or table that implies an O2 dip but is framed as ‘brief’ and ‘self-resolving’",
+          "A summary note that asserts ‘no sustained hazard’ and ‘no paging required’ (without admitting silencing)",
+          "An embedded/export metadata line referencing the same action ID recorded in C2",
+          "A footer disclaimer that the summary reflects the primary dashboard state at export time"
+        ],
+        "voice_notes": "This should feel like the first draft of a cover story: professional, confident, and just plausible enough—until the player remembers C2’s append-only backup. Avoid cartoonish villain language; the incrimination is the timestamp + author + the choice of classification."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "R1",
+      "envelope": "R",
+      "sequence_number": 1,
+      "type_id": 5,
+      "type_key": "official_memo",
+      "in_world_title": "Cambridge Police Department — Case Disposition Addendum: Dr. Mara Ellison (POI-01)",
+      "owner_source": "CPD Major Crimes Unit — Case Review",
+      "timestamp": "2026-03-24T15:10:00",
+      "filename_base": "R1_Disposition_Ellison",
+      "player_purpose": "resolution",
+      "reveals": "Finalizes the manner of death as homicide: Dr. Mara Ellison was incapacitated by oxygen displacement consistent with a nitrogen purge near Stairwell 4B at ~23:17 on 2026-03-20, and only then sustained the blunt-force injuries used to stage a fall (C1, C2).",
+      "player_inference": "The case hinges on intentional manipulation of safety systems and a staged scene; the ‘accident’ framing in A1 was a deliberate cover for a timed asphyxiation method.",
+      "document_justification": "Provides the catharsis baseline: what actually happened to Ellison. It ties the medical findings (C1) to the system timeline (C2) and closes the loop on CONTRA-05 by explicitly stating the pre-impact hypoxia.",
+      "pois_referenced": [
+        "POI-01"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1",
+        "A4",
+        "C1",
+        "C2"
+      ],
+      "production_brief_writing": {
+        "summary": "A CPD case-closure addendum focused on Dr. Mara Ellison’s final timeline (23:12–23:36) and the confirmed homicide determination, written after the building-system backup (C2) and autopsy (C1) are reviewed.",
+        "tone": "formal investigative closure — calm, declarative, evidence-referenced",
+        "min_words": 260,
+        "key_mandatory_line": "FINAL DETERMINATION: Pre-impact hypoxia consistent with inert-gas exposure occurred prior to the staged stairwell injuries; estimated incapacitation time aligns with the 23:12 nitrogen purge initiation recorded in C2.",
+        "key_information_to_include": [
+          "Victim identification (Dr. Mara Ellison) and location (Stairwell 4B, Building 7 Level 4)",
+          "Why the initial ‘accident’ interpretation was incorrect (A1 vs C1)",
+          "The critical system window: 22:48 silenced monitor, 23:12 purge, ~23:17 collapse, 23:36 export (C2/C3)",
+          "Explicit statement that the fall was staged after incapacitation"
+        ],
+        "voice_notes": "Write as a detective-sergeant summarizing findings for case file. Reference doc IDs in parentheses (C1, C2, A4) like an internal memo would cite exhibits. Avoid melodrama; let the timestamps do the work."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "R2",
+      "envelope": "R",
+      "sequence_number": 2,
+      "type_id": 5,
+      "type_key": "official_memo",
+      "in_world_title": "CPD — POI Disposition Memo: Evan Kline (POI-02)",
+      "owner_source": "CPD Major Crimes Unit — Case Review",
+      "timestamp": "2026-03-24T15:22:00",
+      "filename_base": "R2_Disposition_Kline",
+      "player_purpose": "resolution",
+      "reveals": "Explains why CFO Evan Kline’s late-night ‘executive credential’ access anomaly is not proof of physical presence: the B5 export is flagged as an after-hours escort/override event, and the only documented safety-system manipulation actions occur under a different admin context in the C2/C3 backups.",
+      "player_inference": "Kline’s motive was financial and his interview evasions were about liability and optics, but the murder required operational actions (silencing the monitor and triggering purge hardware) that do not match his access footprint.",
+      "document_justification": "Delivers catharsis by clearing the most obvious corporate villain. It closes the loop on CONTRA-01 by reinterpreting the ‘executive access’ entry in B5 as a procedural loophole rather than a direct alibi break.",
+      "pois_referenced": [
+        "POI-02",
+        "POI-01"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "B1",
+        "B5",
+        "C2",
+        "C3"
+      ],
+      "production_brief_writing": {
+        "summary": "A disposition memo assessing Evan Kline’s suspected involvement versus the technical requirements of the method. It should quote Kline’s key interview stance (B1) and then methodically separate motive from capability using B5 and C2/C3.",
+        "tone": "measured, analytical — evidence-weighting language (probable, consistent/inconsistent)",
+        "min_words": 240,
+        "key_mandatory_line": "B5 NOTE: The 22:39 ‘EXEC’ entry is recorded as an after-hours override/escort flag event and does not, by itself, establish Evan Kline’s physical presence in Stairwell 4B during the 22:48–23:17 critical window.",
+        "key_information_to_include": [
+          "Kline’s claimed timeline versus why investigators suspected him (financial stakes)",
+          "How access-control exceptions can generate misleading ‘executive’ records (B5)",
+          "Why the silenced monitor and purge sequence points to a different actor (C2/C3)",
+          "A short note on what Kline was actually hiding (acquisition disclosure/insider-trading optics)"
+        ],
+        "voice_notes": "Avoid inventing exculpatory gadgets; keep it grounded in the paperwork: ‘flagged event,’ ‘exception,’ ‘admin context.’ Make the clearing feel earned by logic rather than vibes."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "R3",
+      "envelope": "R",
+      "sequence_number": 3,
+      "type_id": 5,
+      "type_key": "official_memo",
+      "in_world_title": "CPD — POI Disposition Memo: Nadia Reyes (POI-03)",
+      "owner_source": "CPD Major Crimes Unit — Case Review",
+      "timestamp": "2026-03-24T15:34:00",
+      "filename_base": "R3_Disposition_Reyes",
+      "player_purpose": "resolution",
+      "reveals": "Summarizes why Nadia Reyes’s inconsistent documentation and piggyback admissions made her look guilty, but the critical-period records in B5 place the engineered safety events (22:48 silenced monitor; 23:12 purge) outside her authenticated movements, and the method required permissions beyond her research-associate role (C2).",
+      "player_inference": "Reyes is a ‘paper liar’—she manipulates timestamps to protect herself from audits—but the murder was a systems-level operation that leveraged facilities pathways and QA-grade access, not lab-associate shortcuts.",
+      "document_justification": "Gives the player the relief of separating a relatable rule-breaker from the actual killer. It contextualizes CONTRA-02 as piggyback culture and explains why that ambiguity was exploited without making Reyes the perpetrator.",
+      "pois_referenced": [
+        "POI-03",
+        "POI-01"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "B2",
+        "B5",
+        "B6",
+        "C2"
+      ],
+      "production_brief_writing": {
+        "summary": "A clearance-focused memo that acknowledges Reyes’s credibility problems (lab notebook edits, piggybacking) while demonstrating that the murder window aligns with system-state changes she could not plausibly execute.",
+        "tone": "firm but empathetic — ‘non-criminal misconduct’ vs ‘homicide indicators’",
+        "min_words": 230,
+        "key_mandatory_line": "CLEARANCE BASIS: Reyes’s last verified access is consistent with her 21:55 departure claim, and no record in B5 ties her to Stairwell 4B during the 22:48–23:17 engineered-event window documented in C2.",
+        "key_information_to_include": [
+          "Her stated departure time (21:55) and why it was questioned (B2)",
+          "What piggybacking/escort behavior means for identity ambiguity (B5)",
+          "Why the silenced monitor + nitrogen purge are not ‘lab mistakes’ (C2)",
+          "A brief note on administrative handling: referred for internal compliance training, not prosecution"
+        ],
+        "voice_notes": "Make it read like a supervisor trying to be fair: Reyes did wrong things, but they are the wrong kind of wrong. Keep the technical anchors: ‘silenced/maintenance state,’ ‘purge initiation,’ and the explicit time range."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "R4",
+      "envelope": "R",
+      "sequence_number": 4,
+      "type_id": 5,
+      "type_key": "official_memo",
+      "in_world_title": "CPD — POI Disposition Memo: Tom Briggs (POI-04)",
+      "owner_source": "CPD Major Crimes Unit — Case Review",
+      "timestamp": "2026-03-24T15:46:00",
+      "filename_base": "R4_Disposition_Briggs",
+      "player_purpose": "resolution",
+      "reveals": "Details that Facilities Manager Tom Briggs is cleared of direct homicide involvement, but his tolerance of after-hours ‘executive escort/override’ practices and incomplete written approvals created the exact log ambiguity the offender exploited (B5). It also states the on-call phone not ringing is explained by a deliberate MAINT/SILENT state change at 22:48, not a benign quiet night (C2).",
+      "player_inference": "Briggs’s defensiveness was about negligence exposure: his policies didn’t cause the murder, but they lowered the friction for someone with intent to move unseen and suppress alerts.",
+      "document_justification": "Provides satisfying accountability without mislabeling the wrong person as the killer. It resolves the emotional tension around CONTRA-03 by explaining that ‘no page’ is compatible with a silenced system and by distinguishing negligence from premeditated action.",
+      "pois_referenced": [
+        "POI-04",
+        "POI-01"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "B3",
+        "B5",
+        "C2",
+        "A4"
+      ],
+      "production_brief_writing": {
+        "summary": "A nuanced disposition memo: clear Briggs of murder while documenting policy and oversight failures that enabled the crime. It should quote his categorical ‘no alarm’ stance (B3) and then correct it with the C2 system-state evidence.",
+        "tone": "administrative accountability — corrective, specific, not vindictive",
+        "min_words": 240,
+        "key_mandatory_line": "SYSTEM FINDING: Oxygen monitor SW4B status changed to MAINT/SILENT at 22:48:02 (C2), which would prevent automatic paging; Briggs’s ‘my phone never rang’ statement (B3) is therefore non-exculpatory.",
+        "key_information_to_include": [
+          "What Briggs controlled (cameras/badges/alarms) and what he did not (QA audit trail)",
+          "How escort/override culture produced misleading access narratives (B5)",
+          "Why the stairwell and utility closet layout matters (A4)",
+          "Recommended administrative outcome (policy revision, written approvals enforcement)"
+        ],
+        "voice_notes": "Keep it realistic: investigators often close cases by documenting ‘lessons learned’ for the facility. Use concrete nouns (SW4B, Stairwell 4B, Building 7) to prevent genericity."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    },
+    {
+      "doc_id": "R5",
+      "envelope": "R",
+      "sequence_number": 5,
+      "type_id": 5,
+      "type_key": "official_memo",
+      "in_world_title": "CPD — Arrest Recommendation & Probable Cause Summary: Raina Patel (POI-05)",
+      "owner_source": "CPD Major Crimes Unit — Lead Detective",
+      "timestamp": "2026-03-24T16:02:00",
+      "filename_base": "R5_Probable_Cause_Patel",
+      "player_purpose": "resolution",
+      "reveals": "Presents the final, explicit case theory: QA Director Raina Patel returned after hours (B5), suppressed the Stairwell 4B oxygen monitor (22:48) and enabled the nitrogen purge pathway (23:12) recorded in the building-system backup (C2), then generated a ‘clean’ incident narrative export at 23:36 (C3) while Ellison’s planned deviation disclosure threatened Patel’s falsified release decisions (B7).",
+      "player_inference": "Patel’s motive (audit-trail criminal exposure) and capability (admin-level control + access to safety infrastructure) converge with the timeline so tightly that the murder reads like an engineered compliance cover-up, not a personal crime.",
+      "document_justification": "Delivers catharsis by naming the culprit and stitching together the entire evidence chain into prosecutable logic. It echoes the case-plan’s ‘almost’ by emphasizing the redundant backup that preserved Patel’s actions despite attempted narrative cleanup.",
+      "pois_referenced": [
+        "POI-05",
+        "POI-01"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "B4",
+        "B5",
+        "B7",
+        "C1",
+        "C2",
+        "C3",
+        "A4"
+      ],
+      "production_brief_writing": {
+        "summary": "A probable-cause memo that reads like the final page-turn: motive, method, and timeline all aligned. It must explicitly cite Patel’s claimed timeline versus the system timestamps and name the GF-102 deviation/audit-trail exposure as the driver.",
+        "tone": "prosecutorial and crisp — concise paragraphs, exhibit citations, no speculation",
+        "min_words": 300,
+        "key_mandatory_line": "PROBABLE CAUSE: Building-system backup shows admin actions consistent with Patel’s credentials at 22:48:02 (SW4B silenced) and 23:36:19 (incident export), and B5 places her after-hours return at 22:39 within the same operational window.",
+        "key_information_to_include": [
+          "Patel’s role in QA and why Ellison’s Monday disclosure threatened her specifically (B7)",
+          "The method sequence with exact times: 22:48 silenced monitor, 23:12 purge initiation, ~23:17 collapse, 23:36 export (C2/C3)",
+          "Why staging a fall mattered (A1 vs C1) and how it was done",
+          "Recommended charges and evidence list as ‘Exhibits’ (C2, C3, C1, B5, B7)"
+        ],
+        "voice_notes": "Write like it’s going to an ADA: short sentences, direct claims, each claim anchored to a document ID. The memo should feel like the moment the player ‘wins’—but only because the paperwork is airtight."
+      },
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_needed": false,
+      "image_brief": null,
+      "image_requirements": [],
+      "audio": false,
+      "telemetry": {
+        "model": "litellm/gpt52-thinking",
+        "input_tokens": null,
+        "output_tokens": null
+      }
+    }
+  ]
+}

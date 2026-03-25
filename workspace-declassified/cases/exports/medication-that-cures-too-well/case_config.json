@@ -1,0 +1,40 @@
+{
+  "title": "Medication That Cures Too Well",
+  "logline": "A biotech scientist announces a breakthrough drug that cures a chronic disease—then dies days later in a staged ‘accident’ as her company abruptly withdraws the product from the market.",
+  "setting": {
+    "primary_location": "Biotech campus and nearby hospital/commuter corridor",
+    "timeframe": "One week spanning the drug announcement, a fatal incident, and the sudden market withdrawal"
+  },
+  "premise": {
+    "victim_profile": "Lead scientist and co-inventor of the therapy",
+    "cause_of_death": "Suspicious ‘accident’ with indicators of tampering",
+    "inciting_event": "Company issues an urgent withdrawal and nondisclosure memo within 72 hours of the death"
+  },
+  "suspects": [
+    { "name": "The CEO", "role": "Company head balancing IPO pressure and catastrophic liability" },
+    { "name": "The Head of Regulatory", "role": "Gatekeeper of filings; knows what was (and wasn’t) disclosed" },
+    { "name": "The Lead Investor", "role": "Board powerbroker with motives tied to market timing and competitors" },
+    { "name": "The Research Rival", "role": "Internal competitor whose program was sidelined by the breakthrough" }
+  ],
+  "digital_evidence_targets": [
+    "Internal email exports",
+    "Regulatory submission excerpts",
+    "Lab notebook scans and experiment logs",
+    "Access/badge logs and security incident report",
+    "Investor/board calendar snippets",
+    "Public-facing press release and retraction statements",
+    "Social posts from patient advocacy groups"
+  ],
+  "spatial_tool": {
+    "required": true,
+    "concept": "Floor plan of the lab wing + parking/garage access points to reason about tampering and movement"
+  },
+  "trojan_horse": {
+    "concept": "A routine ‘safety recall’ bulletin that looks like bureaucratic noise but quietly proves the ‘accident’ was engineered.",
+    "purpose": "Turns a mundane corporate document into the key that collapses the staged-accident narrative"
+  },
+  "tone": {
+    "genre": "Corporate biotech conspiracy / investigative mystery",
+    "style": "Clinical realism; regulatory pressure; ethical dread; whistleblower tension"
+  }
+}

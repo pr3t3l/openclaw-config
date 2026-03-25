@@ -1,0 +1,407 @@
+{
+  "briefs": [
+    {
+      "image_id": "img_poi_01_portrait",
+      "for_doc": "A2",
+      "for_poi": "POI-01",
+      "envelope": "A",
+      "type": "mugshot",
+      "filename": "poi_01_alex_vance_portrait.png",
+      "dall_e_prompt": "Photorealistic ID-style portrait of a 32-year-old man with short dark brown hair, light stubble, hazel eyes, wearing a plain black crew-neck T-shirt. Neutral expression, slightly tired eyes as if from long streaming hours. Clean light gray background, soft even studio lighting, centered head-and-shoulders framing. photorealistic, shot on Canon EOS R5, soft studio lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no text overlays, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A2",
+          "template_slot": "mugshot_POI-01",
+          "placement_notes": "Victim portrait on the APD suspect/POI sheet (use as ID photo, not booking placard)."
+        }
+      ]
+    },
+    {
+      "image_id": "img_poi_02_mugshot",
+      "for_doc": "A2",
+      "for_poi": "POI-02",
+      "envelope": "A",
+      "type": "mugshot",
+      "filename": "poi_02_sam_miller_mugshot.png",
+      "dall_e_prompt": "Police booking-style mugshot of a 34-year-old man with sandy brown hair combed back, light beard stubble, blue eyes, wearing a dark charcoal crew-neck sweatshirt. Neutral expression with a tight jaw, flat front-facing angle, evenly lit, muted off-white background. photorealistic, shot on Canon EOS R5, flat fluorescent lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no text overlays, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A2",
+          "template_slot": "mugshot_POI-02",
+          "placement_notes": "Sam Miller mugshot on POI sheet."
+        },
+        {
+          "doc_id": "B3",
+          "template_slot": "subject_mugshot",
+          "placement_notes": "Interrogation transcript header photo for Sam Miller."
+        }
+      ]
+    },
+    {
+      "image_id": "img_poi_03_mugshot",
+      "for_doc": "A2",
+      "for_poi": "POI-03",
+      "envelope": "A",
+      "type": "mugshot",
+      "filename": "poi_03_jordan_hayes_mugshot.png",
+      "dall_e_prompt": "Police booking-style mugshot of a 36-year-old man with short black hair, clean-shaven, dark brown eyes, wearing a navy button-down shirt with the collar slightly open. Neutral expression, front-facing, evenly lit, muted off-white background. photorealistic, shot on Canon EOS R5, flat fluorescent lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no text overlays, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A2",
+          "template_slot": "mugshot_POI-03",
+          "placement_notes": "Jordan Hayes mugshot on POI sheet."
+        },
+        {
+          "doc_id": "B1",
+          "template_slot": "subject_mugshot",
+          "placement_notes": "Interrogation transcript header photo for Jordan Hayes."
+        }
+      ]
+    },
+    {
+      "image_id": "img_poi_04_mugshot",
+      "for_doc": "A2",
+      "for_poi": "POI-04",
+      "envelope": "A",
+      "type": "mugshot",
+      "filename": "poi_04_chloe_bennett_mugshot.png",
+      "dall_e_prompt": "Police booking-style mugshot of a 29-year-old woman with long auburn hair in a low ponytail, light freckles, green eyes, wearing a light gray zip hoodie over a white T-shirt. Neutral expression with slightly reddened eyes, front-facing, evenly lit, muted off-white background. photorealistic, shot on Canon EOS R5, flat fluorescent lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no text overlays, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A2",
+          "template_slot": "mugshot_POI-04",
+          "placement_notes": "Chloe Bennett mugshot on POI sheet."
+        },
+        {
+          "doc_id": "B2",
+          "template_slot": "subject_mugshot",
+          "placement_notes": "Interrogation transcript header photo for Chloe Bennett."
+        }
+      ]
+    },
+    {
+      "image_id": "img_poi_05_mugshot",
+      "for_doc": "A2",
+      "for_poi": "POI-05",
+      "envelope": "A",
+      "type": "mugshot",
+      "filename": "poi_05_tyler_riggs_mugshot.png",
+      "dall_e_prompt": "Police booking-style mugshot of a 26-year-old man with messy light brown hair, clean-shaven, brown eyes, wearing a black graphic T-shirt under an unzipped dark hoodie. Neutral expression with anxious tension in the mouth, front-facing, evenly lit, muted off-white background. photorealistic, shot on Canon EOS R5, flat fluorescent lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no text overlays, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A2",
+          "template_slot": "mugshot_POI-05",
+          "placement_notes": "Tyler 'Ty' Riggs mugshot on POI sheet."
+        },
+        {
+          "doc_id": "B5",
+          "template_slot": "subject_mugshot",
+          "placement_notes": "Interrogation transcript header photo for Tyler Riggs."
+        }
+      ]
+    },
+    {
+      "image_id": "img_scene_creator_studio_exterior",
+      "for_doc": "A1",
+      "for_poi": null,
+      "envelope": "A",
+      "type": "building",
+      "filename": "scene_creator_studio_building_exterior.png",
+      "dall_e_prompt": "Modern glass-and-steel creative studio building exterior at dawn in Austin, Texas tech district. Police cars with flashing lights parked out front, yellow police tape across the sidewalk, a few silhouetted onlookers behind the tape, wet pavement reflecting neon from nearby storefronts. Wide establishing shot from street level, slightly angled perspective, dramatic but realistic. photorealistic, shot on Canon EOS R5, early dawn ambient lighting with police light reflections, no illustration, no cartoon, no anime, no vector art, no watermark, no text overlays, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1792x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A1",
+          "template_slot": "mainPhoto",
+          "placement_notes": "Main photo on newspaper front page; ensure room for caption below in layout (no text in image)."
+        }
+      ]
+    },
+    {
+      "image_id": "img_body_diagram_male_torso",
+      "for_doc": "B4",
+      "for_poi": "POI-01",
+      "envelope": "B",
+      "type": "body_diagram",
+      "filename": "body_diagram_male_torso.png",
+      "dall_e_prompt": "photorealistic. USE REUSABLE ASSET: male torso body diagram (AsylumMedicine Mtorso). Do not generate new art; reference the reusable body diagram image for marking overlays.",
+      "dall_e_params": null,
+      "reusable_from_library": true,
+      "library_path": "body-diagrams/asylummedicine/Mtorso.png",
+      "usage_map": [
+        {
+          "doc_id": "B4",
+          "template_slot": "bodyDiagram",
+          "placement_notes": "Forensic report body diagram showing no obvious external trauma; annotate in document text, not on the image."
+        }
+      ]
+    },
+    {
+      "image_id": "img_floorplan_studio_control_room",
+      "for_doc": "C4",
+      "for_poi": null,
+      "envelope": "C",
+      "type": "document_scan",
+      "filename": "floorplan_studio_control_room_unlabeled.png",
+      "dall_e_prompt": "Top-down architectural floor plan diagram (unlabeled) of a small creator studio suite: main streaming studio room, adjacent control room, a side entrance hallway leading to the control room, and a connecting interior door between control room and studio. Clean black linework on white paper with subtle scanned-photocopy texture, simple rectangular proportions, no text labels, no compass rose. photorealistic, shot on Canon EOS R5, even office lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no text overlays, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1792x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "C4",
+          "template_slot": "floorPlanImage",
+          "placement_notes": "Floor plan image; room labels and key should be provided as document text fields in the template, not baked into the image."
+        }
+      ]
+    },
+    {
+      "image_id": "img_b1_poi-03_mugshot",
+      "for_doc": "B1",
+      "for_poi": "POI-03",
+      "envelope": "B",
+      "type": "mugshot",
+      "filename": "poi_03_jordan_hayes_mugshot.png",
+      "dall_e_prompt": null,
+      "dall_e_params": null,
+      "reusable_from_library": true,
+      "library_path": "canonical/poi_03_jordan_hayes_mugshot.png",
+      "usage_map": [
+        {
+          "doc_id": "B1",
+          "template_slot": "mugshot_POI-03",
+          "placement_notes": "Interview header portrait — reuse canonical mugshot"
+        }
+      ]
+    },
+    {
+      "image_id": "img_b2_poi-04_mugshot",
+      "for_doc": "B2",
+      "for_poi": "POI-04",
+      "envelope": "B",
+      "type": "mugshot",
+      "filename": "poi_04_chloe_bennett_mugshot.png",
+      "dall_e_prompt": null,
+      "dall_e_params": null,
+      "reusable_from_library": true,
+      "library_path": "canonical/poi_04_chloe_bennett_mugshot.png",
+      "usage_map": [
+        {
+          "doc_id": "B2",
+          "template_slot": "mugshot_POI-04",
+          "placement_notes": "Interview header portrait — reuse canonical mugshot"
+        }
+      ]
+    },
+    {
+      "image_id": "img_b3_poi-02_mugshot",
+      "for_doc": "B3",
+      "for_poi": "POI-02",
+      "envelope": "B",
+      "type": "mugshot",
+      "filename": "poi_02_sam_miller_mugshot.png",
+      "dall_e_prompt": null,
+      "dall_e_params": null,
+      "reusable_from_library": true,
+      "library_path": "canonical/poi_02_sam_miller_mugshot.png",
+      "usage_map": [
+        {
+          "doc_id": "B3",
+          "template_slot": "mugshot_POI-02",
+          "placement_notes": "Interview header portrait — reuse canonical mugshot"
+        }
+      ]
+    },
+    {
+      "image_id": "img_b5_poi-05_mugshot",
+      "for_doc": "B5",
+      "for_poi": "POI-05",
+      "envelope": "B",
+      "type": "mugshot",
+      "filename": "poi_05_tyler_riggs_mugshot.png",
+      "dall_e_prompt": null,
+      "dall_e_params": null,
+      "reusable_from_library": true,
+      "library_path": "canonical/poi_05_tyler_riggs_mugshot.png",
+      "usage_map": [
+        {
+          "doc_id": "B5",
+          "template_slot": "mugshot_POI-05",
+          "placement_notes": "Interview header portrait — reuse canonical mugshot"
+        }
+      ]
+    },
+    {
+      "image_id": "img_a3_livestream_final_frame",
+      "for_doc": "A3",
+      "for_poi": null,
+      "envelope": "A",
+      "type": "device_screenshot",
+      "filename": "scene_livestream_final_frame.png",
+      "dall_e_prompt": "[16:9] Screenshot of a livestream video player showing a dark streaming studio. In the final frame, a faint shadow silhouette is visible near a doorway in the background. The stream status bar shows 'CONNECTION LOST' in red. RGB lighting on the desk is still faintly glowing. Dark, eerie atmosphere. photorealistic, screen capture aesthetic, no illustration, no cartoon, no anime, no vector art, no watermark, no text overlays, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1792x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A3",
+          "template_slot": "evidence_image_1",
+          "placement_notes": "Added to boost visual_support — scene-relevant image for this evidence document."
+        }
+      ]
+    },
+    {
+      "image_id": "img_a4_doordash_receipt_app",
+      "for_doc": "A4",
+      "for_poi": null,
+      "envelope": "A",
+      "type": "device_screenshot",
+      "filename": "scene_doordash_receipt_app.png",
+      "dall_e_prompt": "[1:1] Close-up photo of a smartphone screen showing a food delivery app order confirmation. The screen shows: order status DELIVERED, a burger restaurant logo, delivery time showing 2:51 AM, and a partially visible delivery address with the bottom portion cut off by the edge of the screen. Dark background, phone held in hand, realistic app UI design. photorealistic, shot on iPhone, no illustration, no cartoon, no anime, no vector art, no watermark, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A4",
+          "template_slot": "evidence_image_1",
+          "placement_notes": "Added to boost visual_support — scene-relevant image for this evidence document."
+        }
+      ]
+    },
+    {
+      "image_id": "img_a5_parking_lot_phone",
+      "for_doc": "A5",
+      "for_poi": null,
+      "envelope": "A",
+      "type": "device_screenshot",
+      "filename": "scene_parking_lot_phone.png",
+      "dall_e_prompt": "[16:9] Nighttime photo taken from inside a car in a dimly lit parking lot. A smartphone screen glows showing a social media feed with a livestream chat. Through the car windshield, a modern glass building is visible with faint interior lighting. Wet pavement reflects distant neon signs. Moody, surveillance-like atmosphere. photorealistic, shot on Canon EOS R5, night ambient lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1792x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "A5",
+          "template_slot": "evidence_image_1",
+          "placement_notes": "Added to boost visual_support — scene-relevant image for this evidence document."
+        }
+      ]
+    },
+    {
+      "image_id": "img_c1_access_reader_side_door",
+      "for_doc": "C1",
+      "for_poi": null,
+      "envelope": "C",
+      "type": "evidence_photo",
+      "filename": "scene_access_reader_side_door.png",
+      "dall_e_prompt": "[1:1] Close-up photo of an RFID keycard access reader mounted on a wall next to a heavy metal side door of a commercial building. A small LED indicator glows green. The door is slightly ajar. The corridor is dimly lit with industrial overhead lighting. A small sign reads 'SUITE B'. Clean, institutional, slightly ominous. photorealistic, shot on Canon EOS R5, harsh fluorescent lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1024x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "C1",
+          "template_slot": "evidence_image_1",
+          "placement_notes": "Added to boost visual_support — scene-relevant image for this evidence document."
+        }
+      ]
+    },
+    {
+      "image_id": "img_c3_doordash_email_thread",
+      "for_doc": "C3",
+      "for_poi": null,
+      "envelope": "C",
+      "type": "device_screenshot",
+      "filename": "scene_doordash_email_thread.png",
+      "dall_e_prompt": "[16:9] Screenshot of an email inbox on a laptop screen showing a support email thread. The email client shows a conversation between a customer and DoorDash Support about a delivery issue. The screen shows a blue email interface with reply threads visible. Laptop on a desk with ambient office lighting. photorealistic, screen capture aesthetic, no illustration, no cartoon, no anime, no vector art, no watermark, no text overlays, no painting style",
+      "dall_e_params": {
+        "model": "dall-e-3",
+        "quality": "hd",
+        "size": "1792x1024",
+        "n": 1
+      },
+      "reusable_from_library": false,
+      "library_path": null,
+      "usage_map": [
+        {
+          "doc_id": "C3",
+          "template_slot": "evidence_image_1",
+          "placement_notes": "Added to boost visual_support — scene-relevant image for this evidence document."
+        }
+      ]
+    }
+  ]
+}

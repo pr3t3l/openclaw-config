@@ -1,0 +1,365 @@
+{
+  "case_id": "",
+  "slug": "the-influencer-who-erased-herself",
+  "tier": "NORMAL",
+  "status": "distributed",
+  "created_at": "2026-03-19T03:39:53Z",
+  "updated_at": "2026-03-19T11:37:48.247350Z",
+  "pois": [],
+  "documents": {},
+  "images": {},
+  "audio": {},
+  "pipeline_state": {
+    "narrative_architect": "completed",
+    "narrative_qa": "passed",
+    "art_director": "completed",
+    "experience_designer": "completed",
+    "production_envelopes": {
+      "A": "completed",
+      "B": "completed",
+      "C": "completed",
+      "R": "completed"
+    },
+    "playthrough_qa": "completed",
+    "image_generation": "completed",
+    "tts_scripting": "not_applicable",
+    "tts_generation": "not_applicable",
+    "layout_planning": "completed",
+    "render": "completed",
+    "distribution": "completed"
+  },
+  "cost_tracking": {
+    "phases": {
+      "image_generator": {
+        "phase": "image_generator",
+        "model": "unknown",
+        "images_generated": 15,
+        "images_failed": 0,
+        "images_reused": 2,
+        "fallback_used": null,
+        "estimated_cost_usd": null
+      },
+      "document_rendering": {
+        "calls": [
+          {
+            "timestamp": "2026-03-19T17:59:56.532754",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 3780,
+            "output_tokens": 8192,
+            "cost_usd": 0.1342,
+            "retry": false,
+            "doc_id": "A1"
+          },
+          {
+            "timestamp": "2026-03-19T18:02:10.654840",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 707904,
+            "output_tokens": 8192,
+            "cost_usd": 2.2466,
+            "retry": false,
+            "doc_id": "A3"
+          },
+          {
+            "timestamp": "2026-03-19T18:04:41.137967",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 456377,
+            "output_tokens": 8192,
+            "cost_usd": 1.492,
+            "retry": false,
+            "doc_id": "A4"
+          },
+          {
+            "timestamp": "2026-03-19T18:06:36.381069",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 414798,
+            "output_tokens": 8192,
+            "cost_usd": 1.3673,
+            "retry": false,
+            "doc_id": "A5"
+          },
+          {
+            "timestamp": "2026-03-19T18:08:44.677593",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 596427,
+            "output_tokens": 8192,
+            "cost_usd": 1.9122,
+            "retry": false,
+            "doc_id": "A6"
+          },
+          {
+            "timestamp": "2026-03-19T18:10:42.435011",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 610397,
+            "output_tokens": 8192,
+            "cost_usd": 1.9541,
+            "retry": false,
+            "doc_id": "A7"
+          },
+          {
+            "timestamp": "2026-03-19T18:13:12.095471",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 690751,
+            "output_tokens": 8192,
+            "cost_usd": 2.1951,
+            "retry": false,
+            "doc_id": "B1"
+          },
+          {
+            "timestamp": "2026-03-19T18:45:22.836065",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 2402,
+            "output_tokens": 8192,
+            "cost_usd": 0.1301,
+            "retry": false,
+            "doc_id": "A1"
+          },
+          {
+            "timestamp": "2026-03-19T18:47:11.091046",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 349966,
+            "output_tokens": 8192,
+            "cost_usd": 1.1728,
+            "retry": false,
+            "doc_id": "A2"
+          },
+          {
+            "timestamp": "2026-03-19T18:48:53.726394",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 3938,
+            "output_tokens": 8191,
+            "cost_usd": 0.1347,
+            "retry": false,
+            "doc_id": "A3"
+          },
+          {
+            "timestamp": "2026-03-19T18:50:31.052464",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 4130,
+            "output_tokens": 8192,
+            "cost_usd": 0.1353,
+            "retry": false,
+            "doc_id": "A4"
+          },
+          {
+            "timestamp": "2026-03-19T18:52:14.448351",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 4550,
+            "output_tokens": 8191,
+            "cost_usd": 0.1365,
+            "retry": false,
+            "doc_id": "A5"
+          },
+          {
+            "timestamp": "2026-03-19T18:54:01.696568",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 3873,
+            "output_tokens": 8192,
+            "cost_usd": 0.1345,
+            "retry": false,
+            "doc_id": "A6"
+          },
+          {
+            "timestamp": "2026-03-19T18:55:36.578392",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 5103,
+            "output_tokens": 8192,
+            "cost_usd": 0.1382,
+            "retry": false,
+            "doc_id": "A7"
+          },
+          {
+            "timestamp": "2026-03-19T18:58:05.937189",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 73741,
+            "output_tokens": 8192,
+            "cost_usd": 0.3441,
+            "retry": false,
+            "doc_id": "B1"
+          },
+          {
+            "timestamp": "2026-03-19T18:59:52.499219",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 77588,
+            "output_tokens": 8192,
+            "cost_usd": 0.3556,
+            "retry": false,
+            "doc_id": "B2"
+          },
+          {
+            "timestamp": "2026-03-19T19:01:45.465264",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 70558,
+            "output_tokens": 8192,
+            "cost_usd": 0.3346,
+            "retry": false,
+            "doc_id": "B3"
+          },
+          {
+            "timestamp": "2026-03-19T19:05:53.425454",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 64901,
+            "output_tokens": 8192,
+            "cost_usd": 0.3176,
+            "retry": false,
+            "doc_id": "B4"
+          },
+          {
+            "timestamp": "2026-03-19T19:07:30.704115",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 3326,
+            "output_tokens": 8192,
+            "cost_usd": 0.1329,
+            "retry": false,
+            "doc_id": "B5"
+          },
+          {
+            "timestamp": "2026-03-19T19:09:05.521489",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 4809,
+            "output_tokens": 8191,
+            "cost_usd": 0.1373,
+            "retry": false,
+            "doc_id": "B6"
+          },
+          {
+            "timestamp": "2026-03-19T19:10:47.827494",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 4984,
+            "output_tokens": 8191,
+            "cost_usd": 0.1378,
+            "retry": false,
+            "doc_id": "C1"
+          },
+          {
+            "timestamp": "2026-03-19T19:12:33.021201",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 6010,
+            "output_tokens": 8192,
+            "cost_usd": 0.1409,
+            "retry": false,
+            "doc_id": "C2"
+          },
+          {
+            "timestamp": "2026-03-19T19:14:03.312043",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 6273,
+            "output_tokens": 8192,
+            "cost_usd": 0.1417,
+            "retry": false,
+            "doc_id": "C3"
+          },
+          {
+            "timestamp": "2026-03-19T19:15:52.320331",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 3111,
+            "output_tokens": 8192,
+            "cost_usd": 0.1322,
+            "retry": false,
+            "doc_id": "R1"
+          },
+          {
+            "timestamp": "2026-03-19T19:17:38.257591",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 1752,
+            "output_tokens": 8191,
+            "cost_usd": 0.1281,
+            "retry": false,
+            "doc_id": "R2"
+          },
+          {
+            "timestamp": "2026-03-19T19:19:29.041385",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 2171,
+            "output_tokens": 8161,
+            "cost_usd": 0.1289,
+            "retry": false,
+            "doc_id": "R3"
+          },
+          {
+            "timestamp": "2026-03-19T19:21:24.985884",
+            "agent": "document-designer",
+            "model": "claude-sonnet46",
+            "input_tokens": 2287,
+            "output_tokens": 8191,
+            "cost_usd": 0.1297,
+            "retry": false,
+            "doc_id": "R4"
+          },
+          {
+            "timestamp": "2026-03-19T20:57:49.697984",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 2666,
+            "output_tokens": 8192,
+            "cost_usd": 0.1309,
+            "retry": false,
+            "doc_id": "A1"
+          },
+          {
+            "timestamp": "2026-03-19T21:00:32.077054",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 6516,
+            "output_tokens": 8192,
+            "cost_usd": 0.1424,
+            "retry": false,
+            "doc_id": "B1"
+          },
+          {
+            "timestamp": "2026-03-19T21:02:06.401377",
+            "agent": "document-designer",
+            "model": "claude-sonnet-4-6",
+            "input_tokens": 5681,
+            "output_tokens": 8192,
+            "cost_usd": 0.1399,
+            "retry": false,
+            "doc_id": "A7"
+          }
+        ],
+        "total_cost": 16.2582,
+        "total_input_tokens": 4190770,
+        "total_output_tokens": 245723
+      }
+    },
+    "images": {},
+    "totals": {
+      "input_tokens": 4190770,
+      "output_tokens": 245723,
+      "wasted_tokens_retries": 0,
+      "images_generated": 15,
+      "estimated_total_usd": 16.2582,
+      "api_calls": 30
+    }
+  },
+  "distribution": {
+    "drive_file_id": "1lwsZ356RfRhTT-9P96StqBG7sQyfCUyg",
+    "drive_web_view_link": "https://drive.google.com/file/d/1lwsZ356RfRhTT-9P96StqBG7sQyfCUyg/view?usp=drivesdk",
+    "zip_name": "the-influencer-who-erased-herself_FINAL.zip"
+  }
+}

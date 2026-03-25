@@ -1,0 +1,354 @@
+{
+  "slug": "the-last-livestream",
+  "experiential_style": "digital_corporate",
+  "detective_persona": {
+    "name": "Det. Sarah Okafor",
+    "annotation_voice": "Terse, time-obsessed, and systems-minded. Writes in clipped fragments, uses arrows to connect timestamps, and boxes anything that needs a cross-check.",
+    "handwriting_style": "careful_print"
+  },
+  "document_experience_map": {
+    "A1": {
+      "emotional_beat": "The spectacle curdles into dread as a viral event becomes a real death with a hard timestamp.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "Hinge time: 2:47 AM — build the whole timeline around this.",
+          "position": "beside_timestamp_0247",
+          "style_hint": "yellow highlight + boxed in blue"
+        }
+      ],
+      "immersion_elements": ["corporate_masthead", "timestamp_overlay", "photo_caption_strip"],
+      "reading_order_note": "Read first to lock the public timeline; everything else either tightens or contradicts it."
+    },
+    "A2": {
+      "emotional_beat": "Names become suspects; the case feels suddenly smaller and more personal when everyone has a face.",
+      "detective_annotations": [
+        {
+          "type": "sticky_note",
+          "content": "Make a grid: ACCESS / MOTIVE / OPPORTUNITY. Update after each doc.",
+          "position": "top_right_corner",
+          "style_hint": "square digital sticky with bullet points"
+        }
+      ],
+      "immersion_elements": ["agency_letterhead", "case_number_header", "subject_photo_header"]
+    },
+    "A3": {
+      "emotional_beat": "A chill hits when the ‘shadow’ appears—proof the stream didn’t just fail; someone was present.",
+      "detective_annotations": [
+        {
+          "type": "circled_text",
+          "content": "Shadow = second person. Don’t guess who yet.",
+          "position": "next_to_paragraph_1",
+          "style_hint": "red circle + short underline"
+        },
+        {
+          "type": "arrow_connection",
+          "content": "Where could this doorway be from? Need floor plan later.",
+          "position": "beside_timestamp_0247",
+          "style_hint": "thin arrow drawn to margin note"
+        }
+      ],
+      "immersion_elements": ["video_frame_border", "forensic_barcode", "digital_timestamp"]
+    },
+    "A4": {
+      "emotional_beat": "Relief turns uneasy: the receipt looks like an alibi, but the missing address feels intentional.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "2:51 AM — only 4 min after cutout. Too tight to ignore.",
+          "position": "beside_timestamp_0251",
+          "style_hint": "pink highlight"
+        },
+        {
+          "type": "question_mark",
+          "content": "Address cropped… why? Need FULL delivery location.",
+          "position": "bottom_margin",
+          "style_hint": "blue ink + double question marks"
+        }
+      ],
+      "immersion_elements": ["app_interface", "receipt_texture", "barcode"]
+    },
+    "A5": {
+      "emotional_beat": "The fan energy turns predatory when you realize he’s close enough to watch the building, not just the feed.",
+      "detective_annotations": [
+        {
+          "type": "margin_comment",
+          "content": "Geo tag near studio. Proximity ≠ entry. Verify with access logs.",
+          "position": "beside_timestamp_0230",
+          "style_hint": "small sans-serif margin note"
+        },
+        {
+          "type": "sticky_note",
+          "content": "(Maybe he got inside via a side door?) — confirm/deny.",
+          "position": "top_left_corner",
+          "style_hint": "this note is intentionally WRONG/biased to mimic detective overreach"
+        }
+      ],
+      "immersion_elements": ["dark_mode_ui", "phone_frame", "geotag_pin"]
+    },
+
+    "B1": {
+      "emotional_beat": "A money motive feels plausible, but the ‘no contact’ line lands like a rehearsed corporate script.",
+      "detective_annotations": [
+        {
+          "type": "circled_text",
+          "content": "‘Haven’t spoken’ — subpoena call/SMS to verify.",
+          "position": "next_to_paragraph_3",
+          "style_hint": "tight circle + arrow to margin"
+        }
+      ],
+      "immersion_elements": ["interview_room_header", "recording_device_notice", "subject_photo_header"],
+      "reading_order_note": "Keep Jordan’s exact phrasing in mind; C2 is designed to confirm the lie but soften motive."
+    },
+    "B2": {
+      "emotional_beat": "Grief becomes defensive when the drinks come up—the same object that comforts him becomes the weapon.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "Drink chain starts here. Track: bought → stored → delivered → accessed.",
+          "position": "top_right_corner",
+          "style_hint": "green highlight + boxed"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Specific detail (HEB / lane) sounds like real memory… but conflicts w/ ‘right before’ claim.",
+          "position": "next_to_paragraph_4",
+          "style_hint": "blue margin note, underlined twice"
+        }
+      ],
+      "immersion_elements": ["interview_room_header", "subject_photo_header", "confidential_stamp"]
+    },
+    "B3": {
+      "emotional_beat": "His calm composure feels helpful—until it reads like performance, not shock.",
+      "detective_annotations": [
+        {
+          "type": "sticky_note",
+          "content": "His entire story rests on WHERE the delivery went. Wait for full address.",
+          "position": "top_right_corner",
+          "style_hint": "square sticky, bolded WHERE"
+        }
+      ],
+      "immersion_elements": ["interview_room_header", "recording_device_notice", "subject_photo_header"]
+    },
+    "B4": {
+      "emotional_beat": "The case turns cold and undeniable: this wasn’t fate, it was chemistry.",
+      "detective_annotations": [
+        {
+          "type": "circled_text",
+          "content": "Stimulant + energy drink = deliberate tampering.",
+          "position": "next_to_paragraph_2",
+          "style_hint": "red circle"
+        },
+        {
+          "type": "arrow_connection",
+          "content": "Who could access the drinks AFTER drop-off? (Control room? fridge?)",
+          "position": "bottom_margin",
+          "style_hint": "arrow to a short list"
+        }
+      ],
+      "immersion_elements": ["agency_letterhead", "forensic_barcode", "chain_of_custody_stamp", "body_diagram_reference"]
+    },
+    "B5": {
+      "emotional_beat": "Ty’s eagerness curdles into panic; he sounds guilty until you notice he keeps dodging ‘how would I get in?’",
+      "detective_annotations": [
+        {
+          "type": "margin_comment",
+          "content": "Lock his claim: ‘never entered.’ This is testable w/ building logs.",
+          "position": "next_to_paragraph_3",
+          "style_hint": "blue margin note"
+        }
+      ],
+      "immersion_elements": ["interview_room_header", "recording_device_notice", "subject_photo_header"],
+      "reading_order_note": "This is meant to feel damning until C1 cleanly disproves entry."
+    },
+
+    "C1": {
+      "emotional_beat": "The boring truth hits hard: the most suspicious person can’t be the killer because he couldn’t even get inside.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "NO entry for Riggs. Cross him off as primary actor.",
+          "position": "next_to_paragraph_1",
+          "style_hint": "yellow highlight + ‘CLEARED’ stamp"
+        },
+        {
+          "type": "arrow_connection",
+          "content": "So who DOES have late-night access? Look for 2:15–2:50 window.",
+          "position": "bottom_margin",
+          "style_hint": "arrow to a time bracket"
+        }
+      ],
+      "immersion_elements": ["official_seal", "case_number_header", "digital_timestamp", "forensic_barcode"]
+    },
+    "C2": {
+      "emotional_beat": "Jordan’s lie is confirmed, but the tone is resignation—not menace—making ‘motive’ feel less lethal.",
+      "detective_annotations": [
+        {
+          "type": "circled_text",
+          "content": "12-min call exists → he lied. Now read the *content* for intent.",
+          "position": "next_to_paragraph_1",
+          "style_hint": "red circle"
+        },
+        {
+          "type": "margin_comment",
+          "content": "‘I’m out’ reads like closure. Motive weakens here.",
+          "position": "next_to_paragraph_2",
+          "style_hint": "small note, no highlight"
+        }
+      ],
+      "immersion_elements": ["data_export_header", "carrier_footer", "digital_timestamp"]
+    },
+    "C3": {
+      "emotional_beat": "The stomach-drop pivot: the alibi becomes a location pin at the crime scene.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "CONTROL ROOM SIDE ENTRANCE — this is the alibi collapse.",
+          "position": "next_to_paragraph_2",
+          "style_hint": "neon yellow highlight + boxed"
+        },
+        {
+          "type": "arrow_connection",
+          "content": "2:47 cutout → 2:51 delivery. Four minutes = next door.",
+          "position": "bottom_margin",
+          "style_hint": "arrow between two circled times"
+        }
+      ],
+      "immersion_elements": ["email_client_mock", "thread_header", "timestamp_overlay", "attachment_stub"]
+    },
+    "C4": {
+      "emotional_beat": "The ‘how’ snaps into place: the control room isn’t adjacent—it’s a hidden route that explains the shadow.",
+      "detective_annotations": [
+        {
+          "type": "circled_text",
+          "content": "Connecting door = silent movement. Shadow explained.",
+          "position": "next_to_paragraph_1",
+          "style_hint": "red circle + double underline"
+        },
+        {
+          "type": "arrow_connection",
+          "content": "Trace path: side entrance → control room → door → studio → back.",
+          "position": "bottom_margin",
+          "style_hint": "route drawn with arrows"
+        }
+      ],
+      "immersion_elements": ["plan_scan_texture", "legend_panel", "investigator_annotation_layer", "scale_marker"]
+    },
+
+    "R1": {
+      "emotional_beat": "A suspect becomes human again: the paperwork finally grants Chloe the relief she couldn’t argue into existence.",
+      "detective_annotations": [
+        {
+          "type": "sticky_note",
+          "content": "Chloe CLEARED. Keep: she delivered drinks, but no access during window.",
+          "position": "top_right_corner",
+          "style_hint": "gray sticky, calm tone"
+        }
+      ],
+      "immersion_elements": ["agency_letterhead", "confidential_stamp", "case_number_header"]
+    },
+    "R2": {
+      "emotional_beat": "The revenge story deflates: anger existed, but the evidence pushes it back into civil court where it belongs.",
+      "detective_annotations": [
+        {
+          "type": "margin_comment",
+          "content": "Motive-only suspect. Without access/opportunity, it doesn’t carry.",
+          "position": "bottom_margin",
+          "style_hint": "small, matter-of-fact note"
+        }
+      ],
+      "immersion_elements": ["agency_letterhead", "official_seal", "case_number_header"]
+    },
+    "R3": {
+      "emotional_beat": "Creepiness is separated from culpability—your instincts get corrected by hard access proof.",
+      "detective_annotations": [
+        {
+          "type": "sticky_note",
+          "content": "Reminder: ‘Weird’ ≠ ‘did it.’ Evidence first.",
+          "position": "top_left_corner",
+          "style_hint": "short note, underlined once"
+        }
+      ],
+      "immersion_elements": ["agency_letterhead", "confidential_stamp", "case_number_header"]
+    },
+    "R4": {
+      "emotional_beat": "The story turns prosecutable: betrayal becomes a charge backed by timestamps, space, and method.",
+      "detective_annotations": [
+        {
+          "type": "circled_text",
+          "content": "Probable cause chain: A3 + C3 + C4 = presence + path + opportunity.",
+          "position": "next_to_paragraph_2",
+          "style_hint": "circle with three doc IDs written inside"
+        },
+        {
+          "type": "highlight",
+          "content": "Keep it clean in court: location + timing + means.",
+          "position": "bottom_margin",
+          "style_hint": "yellow highlight"
+        }
+      ],
+      "immersion_elements": ["court_seal", "jurisdiction_header", "signature_block", "date_issued_stamp"]
+    }
+  },
+  "clue_proximity_check": [
+    {
+      "contradiction_id": "CONTRA-01",
+      "introduced_in": "B2",
+      "resolved_in": "B2",
+      "distance_docs": 0,
+      "status": "too_easy_warning"
+    },
+    {
+      "contradiction_id": "CONTRA-02",
+      "introduced_in": "B1",
+      "resolved_in": "C2",
+      "distance_docs": 5,
+      "status": "optimal"
+    },
+    {
+      "contradiction_id": "CONTRA-03",
+      "introduced_in": "A5",
+      "resolved_in": "C1",
+      "distance_docs": 5,
+      "status": "optimal"
+    },
+    {
+      "contradiction_id": "CONTRA-04",
+      "introduced_in": "A4",
+      "resolved_in": "C3",
+      "distance_docs": 8,
+      "status": "optimal"
+    },
+    {
+      "contradiction_id": "CONTRA-05",
+      "introduced_in": "A3",
+      "resolved_in": "C4",
+      "distance_docs": 10,
+      "status": "proximity_warning"
+    }
+  ],
+  "pacing_analysis": {
+    "A": { "document_count": 5, "estimated_reading_minutes": 3, "emotional_intensity": "medium" },
+    "B": { "document_count": 5, "estimated_reading_minutes": 14, "emotional_intensity": "high" },
+    "C": { "document_count": 4, "estimated_reading_minutes": 2, "emotional_intensity": "peak" },
+    "R": { "document_count": 4, "estimated_reading_minutes": 4, "emotional_intensity": "medium" }
+  },
+  "pacing_warnings": [
+    "Envelope C reads very fast by minimum-word estimates; ensure production text and annotations make it feel like a decisive ‘pivot’ sequence, not a brief administrative interlude.",
+    "CONTRA-05 spans 10 documents (A3→C4). Consider stronger ‘bookmark’ reminders in A3/B docs so the shadow stays cognitively active."
+  ],
+  "trojan_horse_verification": [
+    {
+      "doc_id": "A4",
+      "appears_as": "A routine food-delivery receipt screenshot that seems like an alibi.",
+      "actually_proves": "Sets up the later location reveal; when paired with C3 it places Sam at the control room side entrance during the murder window.",
+      "verified": true
+    },
+    {
+      "doc_id": "C3",
+      "appears_as": "A mundane customer-support email thread about a delivery problem.",
+      "actually_proves": "Provides the complete address (‘Control Room Side Entrance’), breaking Sam’s claimed-at-home alibi and anchoring the pivot.",
+      "verified": true
+    }
+  ]
+}

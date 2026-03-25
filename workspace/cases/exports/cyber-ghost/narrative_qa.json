@@ -1,0 +1,41 @@
+{
+  "mode": "narrative_quality",
+  "result": "PASS",
+  "issues": [
+    {
+      "category": "contradiction_discoverability",
+      "severity": "WARNING",
+      "detail": "CONTRA-06 is listed as both introduced_in and resolved_in C1 — meaning the same document introduces and resolves the contradiction. This collapses a two-step discovery into a single read, reducing the deductive work for the player. The router DHCP log already hands the anomalous MAC to the player in annotated form (red-pen circle, 'UNIDENTIFIED — NOT MERCER DEVICE' note) rather than letting them discover it themselves.",
+      "suggested_fix": "In C1, remove the handwritten margin annotation and device inventory comparison table. Let the raw data speak. Move the 'confirmed unidentified device' annotation to C2 or a separate forensic note — so the player must compare the raw log against Jordan's known devices independently. Keep the red circle but remove the explicit label. This preserves the aha-moment without making it passive."
+    },
+    {
+      "category": "evidence_chain",
+      "severity": "WARNING",
+      "detail": "Step 7 of the evidence chain (docs C2 + A3) is almost entirely dependent on the Suite 440 workstation connection, which the player will have already suspected from A3. By envelope C, this step delivers confirmation but little new deductive challenge. The MAC address trace in step 6 (C1 alone) and the VPN/Signal trace in step 8 (C3 + B4) are the genuinely surprising pivots — step 7 risks feeling like a validation beat rather than a revelation beat.",
+      "suggested_fix": "Add one piece of new information to C2 that is not merely confirmatory: e.g., the IT Security memo could reveal that the service account credential used in Suite 440 was compromised via a phishing email sent to an IT staffer — with the originating IP tracing back to Voss's home ISP block. This gives step 7 its own discovery rather than just confirming A3."
+    },
+    {
+      "category": "document_selection",
+      "severity": "NOTE",
+      "detail": "All four resolution documents (R1–R4) use the same type_key: official_memo. While individually justified, the tonal uniformity of the R envelope may feel anticlimactic after the escalating document variety in A–C. Players who engage with the dossier aesthetic may feel the resolution is flat.",
+      "suggested_fix": "Consider converting R3 (Nadia Osei clearance) to a news_article type — a brief Harwick Courier-Tribune piece on the Cyber Ghost case being solved, which can mention Nadia's clearance in the context of the broader story. This also gives Priya Nair (referenced in B1) a final narrative payoff and varies the R envelope's document palette without changing the underlying content."
+    },
+    {
+      "category": "interview_slip",
+      "severity": "NOTE",
+      "detail": "Serena Cho's slip ('things were moving faster than expected') is the least specific of the three interview slips. It implies a timeline in motion but doesn't anchor to a specific verifiable detail. By contrast, Voss's slip ('I didn't go looking for anything myself') and Nadia's slip (the private channel message) both tie to a concrete discoverable fact. Serena's slip is more atmospheric than deductive.",
+      "suggested_fix": "Change Serena's slip to reference a specific detail only an insider would know: e.g., she mentions 'the second cache was on a remote server, not the apartment — Jordan was careful about separation.' The detective never mentioned a second cache or remote server. This slip ties to Jordan's hidden backup (established in case-plan) and creates a deductive thread: if Serena knew about the server separation, Jordan must have told her — which means their communication was more active than she admitted, strengthening CONTRA-04's resolution in C3."
+    }
+  ],
+  "strengths": [
+    "Motive passes the substitution test: Voss's 40% concealed ownership stake in Briarfield Solutions LLC under his wife's maiden name is case-specific and cannot be generically applied to any other POI. No other suspect faces personal federal racketeering exposure from this specific shell company structure.",
+    "Evidence chain logic is causally rigorous: each step builds on the previous without logical leaps. The progression from 'suspicious overdose' (A) to 'alibi collapse' (B) to 'physical presence proof' (C) follows a clean deductive escalation. Step 8's dual resolution of CONTRA-02 and CONTRA-04 through a single forensic document (C3) is especially tight.",
+    "Trojan horse documents are excellently conceived. A3 (the IT audit log), B6 (the parking garage record), and C1 (the router DHCP export) all carry their misdirection naturally — each reads as background paperwork until a specific detail forces re-evaluation. The design_hint for C1 specifying a monospaced router admin UI is an excellent immersion touch.",
+    "Nadia Osei's red herring construction is strong. Her public threat, technical capability, badge gap, and professional grievance create a genuinely compelling false lead. The diner alibi and exploit admission are satisfying precisely because they come from Nadia herself — she clears herself, which prevents the player from feeling cheated.",
+    "Serena Cho's moral complexity is well-calibrated. Her role as credential-provider, warning-sender, and fear-frozen bystander creates the most emotionally resonant arc of any non-culprit. The deferred prosecution resolution in R4 is tonally accurate — neither exoneration nor condemnation.",
+    "Interview slip for Voss ('I didn't go looking for anything myself') is the best in the case — it's precisely the kind of volunteered denial that real guilty parties produce, and it ties directly to the Suite 440 access that C2 will confirm.",
+    "Social media plan is well-integrated. The Reddit throwaway comment about the print queue, the Instagram timestamp math for Nadia's alibi gap, and the deleted Facebook comment from Voss's network all serve specific deductive purposes rather than serving as filler.",
+    "Difficulty calibration appears appropriate for NORMAL tier. The pivot clue (C1 router log) requires cross-referencing three separate documents (A6 for the building layout, B7 for the death window, and the DHCP log itself) before the presence of a visitor is confirmed — that's a satisfying 90-minute deductive effort."
+  ],
+  "overall_notes": "Cyber Ghost is a structurally sound, well-calibrated NORMAL-tier mystery with a genuinely specific culprit motive and a clean six-step evidence chain. The core innovation — a router DHCP log as the pivot clue — is fresh and technically credible. The primary risk is in CONTRA-06's self-resolution (same document introduces and resolves it), which undercuts the discovery tension that should build across the A-C arc. The WARNING issues are fixable without structural revision. The NOTE-level issues are polish opportunities that would elevate the case to premium-adjacent quality but are not blockers. The case is approved for Phase 3 (Art Director) pending consideration of the WARNING fixes."
+}

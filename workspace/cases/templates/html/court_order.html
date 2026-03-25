@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        @page { margin: 20mm; size: letter; }
+        body {
+            font-family: "Times New Roman", serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #000;
+            background: #fff;
+            margin: 0;
+            padding: 25px;
+        }
+        .court-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .court-seal {
+            width: 70px; height: 70px;
+            margin: 0 auto 10px;
+        }
+        .court-seal img { width: 100%; height: auto; }
+        .court-name {
+            font-size: 14pt; font-weight: bold;
+            text-transform: uppercase; letter-spacing: 0.05em;
+            margin-bottom: 4px;
+        }
+        .court-division { font-size: 10pt; color: #444; margin-bottom: 15px; }
+        .docket-line {
+            font-size: 10pt; text-align: right;
+            margin-bottom: 20px; color: #666;
+        }
+        .parties {
+            margin: 20px 0;
+            padding: 0 40px;
+        }
+        .party-line { margin: 4px 0; font-size: 11pt; }
+        .party-name { font-weight: bold; text-transform: uppercase; }
+        .vs-line {
+            text-align: center; font-style: italic;
+            margin: 8px 0; font-size: 10pt;
+        }
+        .order-title {
+            text-align: center; font-size: 14pt;
+            font-weight: bold; text-transform: uppercase;
+            margin: 25px 0 20px; letter-spacing: 0.04em;
+            text-decoration: underline;
+        }
+        .order-body {
+            text-align: justify;
+            margin: 0 20px;
+            font-size: 11pt;
+            line-height: 1.7;
+        }
+        .order-body p { margin: 0 0 12px 0; text-indent: 30px; }
+        .order-body p:first-child { text-indent: 0; }
+        .premises-box {
+            border: 1px solid #333;
+            padding: 12px 16px;
+            margin: 15px 20px;
+            background: #fafafa;
+        }
+        .premises-title {
+            font-weight: bold; font-size: 10pt;
+            text-transform: uppercase; margin-bottom: 8px;
+        }
+        .items-list {
+            margin: 15px 20px 15px 50px;
+        }
+        .items-list li {
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+        .legal-notice {
+            margin: 20px 20px 0;
+            padding: 10px 15px;
+            border-top: 1px solid #333;
+            font-size: 9pt;
+            color: #444;
+            font-style: italic;
+        }
+        .signature-block {
+            margin: 40px 20px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        .judge-sig {
+            text-align: center;
+        }
+        .sig-line {
+            border-bottom: 1px solid #000;
+            width: 250px;
+            height: 35px;
+            margin-bottom: 4px;
+        }
+        .sig-label { font-size: 9pt; color: #666; }
+        .sig-name { font-weight: bold; font-size: 10pt; }
+        .date-issued {
+            text-align: right;
+            font-size: 10pt;
+            margin-top: 15px;
+            color: #444;
+        }
+        .expiration {
+            text-align: center;
+            margin-top: 15px;
+            padding: 8px;
+            border: 2px solid #a00;
+            color: #a00;
+            font-weight: bold;
+            font-size: 10pt;
+        }
+        .case-reference {
+            position: absolute; top: 15px; right: 25px;
+            font-family: "Courier New", monospace;
+            font-size: 8pt; color: #999;
+        }
+        .footer-info {
+            margin-top: 30px; text-align: center;
+            font-size: 8pt; color: #999;
+            border-top: 1px solid #ddd; padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="case-reference">{{caseNumber}} | {{docId}}</div>
+
+    <div class="court-header">
+        {{#if courtSeal}}
+        <div class="court-seal"><img src="{{courtSeal}}" alt="Court seal"></div>
+        {{/if}}
+        <div class="court-name">{{courtName}}</div>
+        <div class="court-division">{{jurisdiction}}</div>
+    </div>
+
+    <div class="docket-line">Docket No.: {{docketNumber}}</div>
+
+    <div class="parties">
+        <div class="party-line"><span class="party-name">{{plaintiff}}</span></div>
+        <div class="vs-line">v.</div>
+        <div class="party-line"><span class="party-name">{{defendant}}</span></div>
+    </div>
+
+    <div class="order-title">{{title}}</div>
+
+    <div class="order-body">
+        <p>TO ANY AUTHORIZED LAW ENFORCEMENT OFFICER:</p>
+
+        <p>Upon the sworn affidavit of {{affiant}}, and the Court being satisfied that probable cause exists, it is hereby ORDERED that the following premises be searched:</p>
+    </div>
+
+    <div class="premises-box">
+        <div class="premises-title">Premises to Be Searched</div>
+        {{{premisesToSearch}}}
+    </div>
+
+    <div class="order-body">
+        <p>For the following items, documents, and/or evidence:</p>
+    </div>
+
+    <ol class="items-list">
+        {{#each itemsAuthorized}}
+        <li>{{this}}</li>
+        {{/each}}
+    </ol>
+
+    <div class="order-body">
+        <p>{{{probableCause}}}</p>
+    </div>
+
+    <div class="legal-notice">
+        This warrant must be executed within the time period specified below. A return of service, together with an inventory of any items seized, shall be filed with this Court within 72 hours of execution.
+    </div>
+
+    {{#if expirationDate}}
+    <div class="expiration">
+        THIS WARRANT EXPIRES: {{expirationDate}}
+    </div>
+    {{/if}}
+
+    <div class="signature-block">
+        <div class="judge-sig">
+            <div class="sig-line"></div>
+            <div class="sig-name">{{judgeName}}</div>
+            <div class="sig-label">Judge, {{courtName}}</div>
+        </div>
+    </div>
+
+    <div class="date-issued">Issued: {{dateIssued}}</div>
+
+    <div class="footer-info">
+        <strong>{{caseTitle}}</strong><br>
+        Prepared for training / investigative simulation. All legal documents are fictional within this case universe.
+    </div>
+</body>
+</html>

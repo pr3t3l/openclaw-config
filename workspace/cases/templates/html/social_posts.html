@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        @page { margin: 15mm; size: letter; }
+        body {
+            font-family: "Helvetica Neue", "Arial", sans-serif;
+            font-size: 10pt;
+            line-height: 1.4;
+            color: #000;
+            background: #e8e8e8;
+            margin: 0;
+            padding: 20px;
+        }
+        .evidence-header {
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: "Courier New", monospace;
+            font-size: 9pt;
+            color: #666;
+        }
+        .evidence-stamp {
+            display: inline-block;
+            border: 2px solid #a00;
+            color: #a00;
+            padding: 4px 12px;
+            transform: rotate(-2deg);
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+        .phones-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .phone {
+            width: 480px;
+            background: #1a1a1a;
+            border-radius: 28px;
+            padding: 10px 8px;
+            box-shadow: 4px 4px 16px rgba(0,0,0,0.4);
+        }
+        .phone:nth-child(1) { }
+        .phone:nth-child(2) { }
+        .phone:nth-child(3) { }
+        .phone-notch {
+            width: 80px; height: 6px; background: #000;
+            border-radius: 3px; margin: 0 auto 8px;
+        }
+        .phone-screen {
+            background: #fff;
+            border-radius: 18px;
+            overflow: hidden;
+            min-height: auto;
+        }
+        .app-bar {
+            padding: 8px 12px;
+            font-size: 8pt;
+            font-weight: 700;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .app-bar.twitter { background: #f7f9fa; color: #1da1f2; }
+        .app-bar.facebook { background: #4267b2; color: #fff; }
+        .app-bar.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
+        .app-bar.nextdoor { background: #8ed500; color: #fff; }
+        .app-bar.reddit { background: #ff4500; color: #fff; }
+        .post {
+            padding: 10px 12px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+        .avatar {
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 7pt; font-weight: 700; color: #666;
+        }
+        .username { font-weight: 700; font-size: 8pt; }
+        .handle { font-size: 7pt; color: #888; }
+        .post-time { font-size: 7pt; color: #999; margin-left: auto; }
+        .post-content {
+            font-size: 8.5pt;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+        .post-content .hashtag { color: #1da1f2; }
+        .post-actions {
+            display: flex;
+            gap: 16px;
+            font-size: 7pt;
+            color: #888;
+        }
+        .post-location { font-size: 7pt; color: #999; margin-top: 4px; }
+        .post-image {
+            width: 100%;
+            height: 100px;
+            background: #f0f0f0;
+            margin: 6px 0;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 7pt; color: #999;
+        }
+        .highlight-note {
+            margin-top: 20px;
+            padding: 12px;
+            background: rgba(255,255,255,0.9);
+            border: 1px solid #999;
+            border-left: 4px solid #dc143c;
+            font-family: "Courier New", monospace;
+            font-size: 9pt;
+        }
+        .highlight-note-header { font-weight: bold; color: #dc143c; margin-bottom: 6px; }
+        .footer-info {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 8pt;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="evidence-header">
+        <div class="evidence-stamp">DIGITAL EVIDENCE</div><br>
+        Case: {{caseNumber}} | Document: {{docId}} | Date: {{date}}<br>
+        Classification: {{classification}}
+    </div>
+
+    <div class="phones-container">
+        {{#each posts}}
+        <div class="phone">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+                <div class="app-bar {{platform}}">{{platformName}}</div>
+                {{#each items}}
+                <div class="post">
+                    <div class="post-header">
+                        <div class="avatar">{{initials}}</div>
+                        <div>
+                            <div class="username">{{username}}</div>
+                            {{#if handle}}<div class="handle">{{handle}}</div>{{/if}}
+                        </div>
+                        <div class="post-time">{{time}}</div>
+                    </div>
+                    <div class="post-content">{{{content}}}</div>
+                    {{#if location}}<div class="post-location">📍 {{location}}</div>{{/if}}
+                    <div class="post-actions">
+                        <span>♡ {{likes}}</span>
+                        <span>💬 {{comments}}</span>
+                        {{#if shares}}<span>↗ {{shares}}</span>{{/if}}
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        {{/each}}
+    </div>
+
+    {{#if analystNotes}}
+    <div class="highlight-note">
+        <div class="highlight-note-header">ANALYST NOTES</div>
+        <div>{{{analystNotes}}}</div>
+    </div>
+    {{/if}}
+
+    <div class="footer-info">
+        <strong>{{caseTitle}}</strong><br>
+        Prepared for training / investigative simulation. All social media content is fictional within this case universe.
+    </div>
+</body>
+</html>

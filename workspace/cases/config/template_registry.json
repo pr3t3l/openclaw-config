@@ -1,0 +1,784 @@
+{
+  "templates": {
+    "1": {
+      "type_id": 1,
+      "type_key": "poi_sheet",
+      "name": "POI Sheet / Suspect List",
+      "html_template": "poi_sheet.html",
+      "required_vars": [
+        "caseNumber",
+        "docId",
+        "date",
+        "classification",
+        "caseTitle",
+        "pois"
+      ],
+      "optional_vars": [
+        "paperTexture"
+      ],
+      "pois_item_vars": [
+        "title",
+        "name",
+        "dob",
+        "height",
+        "weight",
+        "eyes",
+        "hair",
+        "status",
+        "mugshot",
+        "connection_to_case"
+      ],
+      "min_narrative_words": 50,
+      "min_exchanges": null,
+      "needs_image": true,
+      "image_type": "mugshot",
+      "image_count": "one_per_poi",
+      "supports_audio": false,
+      "quality_floor": {
+        "requirements": [
+          "All POI entries with photo reference",
+          "Each POI has bio + case connection",
+          "Status field filled for all"
+        ],
+        "narrative_count_rule": "Count only field VALUES (not labels). 'Height: 5\\'11\"' counts '5\\'11\"' only."
+      }
+    },
+    "2": {
+      "type_id": 2,
+      "type_key": "social_posts",
+      "name": "Social Comments / Posts",
+      "html_template": "social_posts.html",
+      "required_vars": [
+        "caseNumber",
+        "docId",
+        "date",
+        "caseTitle",
+        "posts"
+      ],
+      "optional_vars": [],
+      "posts_item_vars": [
+        "platform",
+        "username",
+        "avatar",
+        "content",
+        "timestamp",
+        "likes",
+        "comments",
+        "shares",
+        "hashtags"
+      ],
+      "min_narrative_words": 100,
+      "min_exchanges": null,
+      "needs_image": true,
+      "supports_audio": false,
+      "quality_floor": {
+        "requirements": [
+          "At least 3 posts",
+          "Each post has platform + username + content",
+          "At least 1 post contains a case-relevant detail"
+        ],
+        "narrative_count_rule": "Count post content text only, not platform names or metadata."
+      },
+      "image_type": "device_screenshot",
+      "image_count": "1",
+      "image_note": "Phone frame showing social feed"
+    },
+    "3": {
+      "type_id": 3,
+      "type_key": "clippings_taped",
+      "name": "Scrapbook / Taped Clippings",
+      "html_template": "clippings_taped.html",
+      "required_vars": [
+        "caseNumber",
+        "docId",
+        "date",
+        "caseTitle",
+        "clippings"
+      ],
+      "optional_vars": [
+        "mainPhoto"
+      ],
+      "clippings_item_vars": [
+        "source",
+        "headline",
+        "excerpt",
+        "date",
+        "annotation"
+      ],
+      "min_narrative_words": 100,
+      "min_exchanges": null,
+      "needs_image": true,
+      "image_type": "scene",
+      "supports_audio": false,
+      "quality_floor": {
+        "requirements": [
+          "At least 2 clippings",
+          "Each has source + excerpt",
+          "At least 1 handwritten annotation"
+        ],
+        "narrative_count_rule": "Count excerpt text + annotation text."
+      }
+    },
+    "4": {
+      "type_id": 4,
+      "type_key": "newspaper_front",
+      "name": "Newspaper Front Page",
+      "html_template": "newspaper_front.html",
+      "required_vars": [
+        "headline",
+        "storyContent",
+        "date",
+        "location"
+      ],
+      "optional_vars": [
+        "masthead",
+        "subheadline",
+        "mainPhoto",
+        "photoCaption",
+        "byline",
+        "price",
+        "isBreaking",
+        "sidebar",
+        "additionalStories",
+        "caseInfo"
+      ],
+      "min_narrative_words": 250,
+      "min_exchanges": null,
+      "needs_image": true,
+      "image_type": "scene",
+      "supports_audio": false,
+      "quality_floor": {
+        "requirements": [
+          "Headline present",
+          "Byline present",
+          "At least 1 quote from a source",
+          "Planted clue embedded naturally in reporting"
+        ],
+        "narrative_count_rule": "Count storyContent + sidebar text."
+      }
+    },
+    "5": {
+      "type_id": 5,
+      "type_key": "official_memo",
+      "name": "Official Memo / Investigation Office",
+      "html_template": "official_memo.html",
+      "required_vars": [
+        "title",
+        "recipient",
+        "sender",
+        "date",
+        "subject",
+        "caseNumber",
+        "classification",
+        "content"
+      ],
+      "optional_vars": [
+        "letterhead",
+        "agency",
+        "location",
+        "confidentialStamp",
+        "caseTitle"
+      ],
+      "min_narrative_words": 150,
+      "min_exchanges": null,
+      "needs_image": false,
+      "supports_audio": false,
+      "quality_floor": {
+        "requirements": [
+          "TO/FROM/RE/CASE fields filled",
+          "Institutional tone",
+          "Key info buried in bureaucratic language"
+        ],
+        "narrative_count_rule": "Count content body only, not TO/FROM/DATE header fields."
+      }
+    },
+    "6": {
+      "type_id": 6,
+      "type_key": "transcript_911",
+      "name": "911 Transcript",
+      "html_template": "transcript_911.html",
+      "required_vars": [
+        "title",
+        "caseNumber",
+        "docId",
+        "date",
+        "classification",
+        "agency",
+        "callDate",
+        "callTime",
+        "duration",
+        "operator",
+        "callerId",
+        "callerLocation",
+        "content"
+      ],
+      "optional_vars": [
+        "agencyLogo",
+        "operatorNotes",
+        "caseTitle"
+      ],
+      "min_narrative_words": 250,
+      "min_exchanges": 12,
+      "needs_image": false,
+      "supports_audio": true,
+      "audio_type": "911_call",
+      "quality_floor": {
+        "requirements": [
+          "Visible emotional arc in caller",
+          "Operator stays professional",
+          "Timestamps present",
+          "Key revelation moment occurs mid-call not at end",
+          "Background sounds noted"
+        ],
+        "narrative_count_rule": "Count dialogue text only. Exclude speaker tags (**Operator:**) and timestamp markers ([00:01:23])."
+      }
+    },
+    "7": {
+      "type_id": 7,
+      "type_key": "evidence_mosaic",
+      "name": "Evidence Mosaic (receipts + screenshots)",
+      "html_template": "evidence_mosaic.html",
+      "required_vars": [
+        "title",
+        "caseNumber",
+        "docId",
+        "date",
+        "classification",
+        "evidence_items"
+      ],
+      "optional_vars": [
+        "analysisContent",
+        "caseTitle"
+      ],
+      "evidence_items_vars": [
+        "type",
+        "title",
+        "content_lines",
+        "timestamp",
+        "label",
+        "image_path",
+        "relevance_tag"
+      ],
+      "min_narrative_words": 100,
+      "min_exchanges": null,
+      "needs_image": true,
+      "supports_audio": false,
+      "quality_floor": {
+        "requirements": [
+          "ALL tiles from JSON vars, ZERO hardcoded content",
+          "At least 3 evidence items",
+          "Every item has timestamp + relevance to case",
+          "No filler items unrelated to the story"
+        ],
+        "narrative_count_rule": "Count content_lines text + analysisContent."
+      },
+      "image_type": "evidence_photo",
+      "image_count": "1-3",
+      "image_note": "Evidence items need photos/screenshots"
+    },
+    "8": {
+      "type_id": 8,
+      "type_key": "entry_exit_log",
+      "name": "Sign-in / Entry-Exit Log",
+      "html_template": "entry_exit_log.html",
+      "required_vars": [
+        "title",
+        "caseNumber",
+        "docId",
+        "date",
+        "location",
+        "supervisor",
+        "entries"
+      ],
+      "optional_vars": [
+        "officialStamp",
+        "caseTitle"
+      ],
+      "entries_item_vars": [
+        "time_in",
+        "time_out",
+        "name",
+        "badge_id",
+        "purpose",
+        "signature"
+      ],
+      "min_narrative_words": 50,
+      "min_exchanges": null,
+      "needs_image": true,
+      "supports_audio": false,
+      "quality_floor": {
+        "requirements": [
+          "At least 10 log entries",
+          "At least 3 entries relevant to case timeline",
+          "At least 1 suspicious entry (gap, overlap, or inconsistency)",
+          "Supervisor signature present"
+        ],
+        "narrative_count_rule": "Each complete entry row counts as its full word count."
+      },
+      "image_type": "building",
+      "image_count": "1",
+      "image_note": "Access point photo (card reader, entrance)"
+    },
+    "9": {
+      "type_id": 9,
+      "type_key": "email_export",
+      "name": "Email / Message Export",
+      "html_template": "email_export.html",
+      "required_vars": [
+        "from",
+        "to",
+        "subject",
+        "date",
+        "body"
+      ],
+      "optional_vars": [
+        "cc",
+        "bcc",
+        "attachments",
+        "signature_block",
+        "caseNumber",
+        "caseTitle"
+      ],
+      "min_narrative_words": 100,
+      "min_exchanges": null,
+      "needs_image": true,
+      "supports_audio": false,
+      "quality_floor": {
+        "requirements": [
+          "Full headers (From/To/Subject/Date)",
+          "Body with realistic tone for sender",
+          "Signature block",
+          "At least 1 case-relevant detail in body"
+        ],
+        "narrative_count_rule": "Count body text + attachment descriptions. Exclude header labels."
+      },
+      "image_type": "device_screenshot",
+      "image_count": "1",
+      "image_note": "Email client screenshot"
+    },
+    "10": {
+      "type_id": 10,
+      "type_key": "forensic_report",
+      "name": "Forensic Autopsy / Investigation Report",
+      "html_template": "forensic_report.html",
+      "required_vars": [
+        "title",
+        "caseNumber",
+        "docId",
+        "date",
+        "examiner",
+        "subject_name",
+        "subject_details",
+        "findings",
+        "manner_of_death",
+        "cause_of_death",
+        "time_of_death_window"
+      ],
+      "optional_vars": [
+        "body_diagram",
+        "injury_markers",
+        "toxicology_results",
+        "confidentialStamp",
+        "caseTitle"
+      ],
+      "min_narrative_words": 400,
+      "min_exchanges": null,
+      "needs_image": true,
+      "image_type": "evidence",
+      "supports_audio": false,
+      "quality_floor": {
+        "requirements": [
+          "Method description at least 50 words",
+          "At least 3 specific findings with measurements/observations",
+          "Manner and cause stated explicitly",
+          "Body diagram referenced",
+          "Clinical passive voice throughout",
+          "Time of death window specified"
+        ],
+        "narrative_count_rule": "Count findings text + method text + conclusion. Exclude field labels."
+      }
+    },
+    "11": {
+      "type_id": 11,
+      "type_key": "interrogation_transcript",
+      "name": "Interrogation Transcript",
+      "html_template": "interrogation_transcript.html",
+      "required_vars": [
+        "title",
+        "caseNumber",
+        "docId",
+        "date",
+        "classification",
+        "time",
+        "location",
+        "interviewers",
+        "subjectName",
+        "recordingMethod",
+        "content"
+      ],
+      "optional_vars": [
+        "agency",
+        "letterhead",
+        "subjectPhoto",
+        "subjectDetails",
+        "counsel",
+        "currentPage",
+        "totalPages",
+        "analystNotes",
+        "analystName",
+        "confidentialStamp",
+        "caseTitle"
+      ],
+      "min_narrative_words": 350,
+      "min_exchanges": 16,
+      "needs_image": true,
+      "image_type": "mugshot",
+      "supports_audio": true,
+      "audio_type": "interview",
+      "quality_floor": {
+        "requirements": [
+          "All interview phases from production brief present",
+          "the_lie embedded naturally",
+          "the_slip feels like real verbal mistake not theatrical",
+          "Evasion IS content (deflections, lawyer requests, noted silences)",
+          "Detective uses actual tactics (presenting evidence, strategic silence, topic shifts)",
+          "Subject has distinct speech pattern"
+        ],
+        "narrative_count_rule": "Count dialogue text only. Exclude **Speaker:** tags and [stage directions] at line start."
+      }
+    },
+    "12": {
+      "type_id": 12,
+      "type_key": "newspaper_corporate",
+      "name": "Newspaper Corporate Scandal",
+      "html_template": "newspaper_front.html",
+      "required_vars": [
+        "headline",
+        "storyContent",
+        "date",
+        "location"
+      ],
+      "optional_vars": [
+        "masthead",
+        "subheadline",
+        "mainPhoto",
+        "photoCaption",
+        "byline",
+        "price",
+        "sidebar",
+        "caseInfo"
+      ],
+      "min_narrative_words": 250,
+      "min_exchanges": null,
+      "needs_image": true,
+      "image_type": "building",
+      "supports_audio": false,
+      "quality_floor": {
+        "requirements": [
+          "Same as newspaper_front (#4)"
+        ],
+        "narrative_count_rule": "Same as newspaper_front (#4)."
+      }
+    },
+    "13": {
+      "type_id": 13,
+      "type_key": "lab_report",
+      "name": "Lab Report Confidential",
+      "html_template": "lab_report.html",
+      "required_vars": [
+        "title",
+        "caseNumber",
+        "labName",
+        "labAddress",
+        "reportNumber",
+        "dateReceived",
+        "dateAnalyzed",
+        "evidenceItem",
+        "analyst",
+        "method",
+        "findings",
+        "conclusion"
+      ],
+      "optional_vars": [
+        "evidencePhoto",
+        "confidentialStamp",
+        "caseTitle"
+      ],
+      "min_narrative_words": 250,
+      "min_exchanges": null,
+      "needs_image": true,
+      "image_type": "evidence",
+      "supports_audio": false,
+      "quality_floor": {
+        "requirements": [
+          "Chain of custody note",
+          "Analysis methodology described",
+          "At least 2 specific findings with numeric values/measurements",
+          "Conclusion references findings",
+          "Clinical passive voice"
+        ],
+        "narrative_count_rule": "Count method + findings + conclusion text. Exclude header fields and lab address."
+      }
+    },
+    "14": {
+      "type_id": 14,
+      "type_key": "evidence_board",
+      "name": "Evidence Board / Photo Sheet + Sticky Notes",
+      "html_template": "evidence_board.html",
+      "required_vars": [
+        "title",
+        "caseNumber",
+        "docId",
+        "date",
+        "classification",
+        "evidenceItems"
+      ],
+      "optional_vars": [
+        "analysisContent",
+        "paperTexture",
+        "caseTitle"
+      ],
+      "evidenceItems_vars": [
+        "photo",
+        "label",
+        "description",
+        "hasClip",
+        "stickyNote"
+      ],
+      "min_narrative_words": 100,
+      "min_exchanges": null,
+      "needs_image": true,
+      "image_type": "scene",
+      "supports_audio": false,
+      "quality_floor": {
+        "requirements": [
+          "At least 4 evidence items",
+          "Each has description + sticky note annotation",
+          "Annotations written in detective handwriting voice",
+          "Items connect to case timeline"
+        ],
+        "narrative_count_rule": "Count description + stickyNote text per item + analysisContent."
+      }
+    },
+    "15": {
+      "type_id": 15,
+      "type_key": "court_order",
+      "name": "Court / Judicial Search Order",
+      "html_template": "court_order.html",
+      "required_vars": [
+        "title",
+        "caseNumber",
+        "court_name",
+        "judge_name",
+        "date_issued",
+        "defendant_name",
+        "premises_to_search",
+        "items_authorized",
+        "probable_cause",
+        "jurisdiction"
+      ],
+      "optional_vars": [
+        "court_seal",
+        "expiration_date",
+        "caseTitle"
+      ],
+      "min_narrative_words": 200,
+      "min_exchanges": null,
+      "needs_image": false,
+      "supports_audio": false,
+      "quality_floor": {
+        "requirements": [
+          "Legal language precision",
+          "Probable cause specificity (references actual evidence)",
+          "Items authorized list is specific not generic",
+          "Judge name + jurisdiction filled"
+        ],
+        "narrative_count_rule": "Count probable_cause + items_authorized text. Exclude court header fields."
+      }
+    },
+    "16": {
+      "type_id": 16,
+      "type_key": "witness_statement",
+      "name": "Voluntary Witness Statement",
+      "html_template": "witness_statement.html",
+      "required_vars": [
+        "title",
+        "caseNumber",
+        "docId",
+        "date",
+        "witness_name",
+        "witness_dob",
+        "witness_contact",
+        "statement_date",
+        "statement_time",
+        "statement_location",
+        "statement_text",
+        "willing_to_testify"
+      ],
+      "optional_vars": [
+        "witness_occupation",
+        "witness_relation",
+        "officer_name",
+        "caseTitle"
+      ],
+      "min_narrative_words": 200,
+      "min_exchanges": null,
+      "needs_image": false,
+      "supports_audio": false,
+      "quality_floor": {
+        "requirements": [
+          "Written in witness voice NOT police language",
+          "All form fields filled (name, DOB, contact, date/time, location)",
+          "Statement minimum 200 narrative words",
+          "At least 1 specific time/date reference",
+          "At least 1 observation unique to this witness",
+          "Willing to testify: YES or NO explicitly"
+        ],
+        "narrative_count_rule": "Count statement_text only. Exclude form field labels."
+      }
+    },
+    "17": {
+      "type_id": 17,
+      "type_key": "missing_person",
+      "name": "Missing Person Report",
+      "html_template": "missing_person.html",
+      "required_vars": [
+        "title",
+        "caseNumber",
+        "docId",
+        "date",
+        "subject_name",
+        "subject_age",
+        "subject_dob",
+        "subject_sex",
+        "subject_race",
+        "subject_height",
+        "subject_weight",
+        "subject_eyes",
+        "subject_hair",
+        "subject_id_marks",
+        "last_seen_date",
+        "last_seen_time",
+        "last_seen_location",
+        "circumstances",
+        "reporting_person_name",
+        "reporting_person_relation",
+        "reporting_person_phone"
+      ],
+      "optional_vars": [
+        "subject_photo",
+        "clothing_description",
+        "vehicle_info",
+        "caseTitle"
+      ],
+      "min_narrative_words": 200,
+      "min_exchanges": null,
+      "needs_image": true,
+      "image_type": "mugshot",
+      "supports_audio": false,
+      "quality_floor": {
+        "requirements": [
+          "ALL physical description fields filled with actual values",
+          "Circumstances section at least 100 narrative words",
+          "Last known location with specific address/detail",
+          "Timeline of last contact",
+          "Reporting person fully identified"
+        ],
+        "narrative_count_rule": "Count circumstances text + field VALUES only. Empty labels (NAME:) count as 0."
+      }
+    },
+    "18": {
+      "type_id": 18,
+      "type_key": "calls_sms_log",
+      "name": "Phone Calls / SMS Log",
+      "html_template": "calls_sms_log.html",
+      "required_vars": [
+        "title",
+        "caseNumber",
+        "docId",
+        "date",
+        "subject_phone",
+        "carrier",
+        "date_range",
+        "entries"
+      ],
+      "optional_vars": [
+        "analyst_notes",
+        "caseTitle"
+      ],
+      "entries_item_vars": [
+        "datetime",
+        "direction",
+        "contact_name",
+        "contact_number",
+        "type",
+        "duration",
+        "message_preview"
+      ],
+      "min_narrative_words": 50,
+      "min_exchanges": null,
+      "needs_image": true,
+      "supports_audio": false,
+      "quality_floor": {
+        "requirements": [
+          "At least 15 rows",
+          "At least 3 entries relevant to case timeline",
+          "At least 1 contact under alias or partial name",
+          "1-2 MISSED calls creating timeline gaps",
+          "Message previews 15-30 chars, partial/truncated"
+        ],
+        "narrative_count_rule": "Each entry row counts fully. Column headers excluded."
+      },
+      "image_type": "device_screenshot",
+      "image_count": "1",
+      "image_note": "Phone screen showing call/SMS log"
+    },
+    "19": {
+      "type_id": 19,
+      "type_key": "floor_plan",
+      "name": "Floor Plan / Map / Spatial Tool",
+      "html_template": "floor_plan.html",
+      "required_vars": [
+        "title",
+        "caseNumber",
+        "docId",
+        "date"
+      ],
+      "optional_vars": [
+        "classification",
+        "subtitle",
+        "planImage",
+        "scale",
+        "legend",
+        "annotations",
+        "analysisContent",
+        "preparedBy",
+        "agency",
+        "caseTitle"
+      ],
+      "legend_item_vars": [
+        "symbol",
+        "description"
+      ],
+      "annotations_item_vars": [
+        "label",
+        "text"
+      ],
+      "min_narrative_words": 50,
+      "min_exchanges": null,
+      "needs_image": true,
+      "image_type": "floor_plan",
+      "supports_audio": false,
+      "quality_floor": {
+        "requirements": [
+          "Floor plan/map image present (planImage)",
+          "Legend with at least 3 items explaining map symbols",
+          "At least 2 investigator annotations referencing case-relevant locations",
+          "Scale or distance reference present",
+          "Key locations marked (body location, entry/exit points, camera positions as relevant)"
+        ],
+        "narrative_count_rule": "Count annotations text + analysisContent. Legend descriptions excluded."
+      }
+    }
+  }
+}

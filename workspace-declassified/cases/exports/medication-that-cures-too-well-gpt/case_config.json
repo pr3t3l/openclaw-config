@@ -1,0 +1,10 @@
+{
+  "slug": "medication-that-cures-too-well-gpt",
+  "tier": "NORMAL",
+  "idea": "A biotech scientist discovers a drug that cures a chronic disease. Days later she dies in an 'accident'. The company withdraws the product from market.",
+  "constraints": {
+    "no_gemini_any_stage": true,
+    "allowed_model_families": ["claude", "gpt"],
+    "agent_token_reporting_required": true
+  }
+}

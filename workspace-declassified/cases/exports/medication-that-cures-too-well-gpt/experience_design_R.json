@@ -1,0 +1,134 @@
+{
+  "envelope": "R",
+  "experiential_style": "digital_corporate",
+  "document_experience_map": {
+    "R1": {
+      "emotional_beat": "A sober click of certainty: the ‘accident’ framing finally dies when the 23:12 nitrogen purge and pre-impact hypoxia line up on one timeline.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "This sentence ends the ‘routine fall’ theory from A1 — officially homicide now.",
+          "position": "next_to_final_determination_paragraph",
+          "style_hint": "yellow highlight with a tight digital callout box"
+        },
+        {
+          "type": "circled_text",
+          "content": "Anchor time: 23:12 purge (C2). Use this to sanity-check every alibi claim.",
+          "position": "beside_timestamp_2312",
+          "style_hint": "thin red circle; timestamp underlined twice"
+        }
+      ],
+      "immersion_elements": [
+        "agency_letterhead",
+        "case_number_header",
+        "homicide_reclassification_stamp",
+        "digital_signature_block",
+        "exhibit_citations_footer"
+      ],
+      "reading_order_note": "Read this first in Envelope R. It sets the final, evidence-anchored timeline (C1 + C2) before you evaluate the POI disposition memos."
+    },
+    "R2": {
+      "emotional_beat": "Relief mixed with irritation: Kline had the sleazy motive and corporate evasions, but the method evidence won’t stay pinned to him once the shared credential loophole is stated plainly.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "Key takeaway: EXEC-0441 is a record, not a person. Shared credential ≠ physical presence.",
+          "position": "next_to_b5_note_section",
+          "style_hint": "blue highlight; clean sans-serif callout"
+        },
+        {
+          "type": "margin_comment",
+          "content": "Still… his ‘EXEC-0441’ slip in B1 felt too fast. Not murder—maybe optics/obstruction.",
+          "position": "right_margin_near_interview_reference",
+          "style_hint": "small gray text box; cautious tone"
+        }
+      ],
+      "immersion_elements": [
+        "agency_letterhead",
+        "clearance_status_banner",
+        "evidence_weighting_bullets",
+        "document_revision_footer"
+      ],
+      "reading_order_note": "This plays best after R1. The emotional release depends on the player remembering how suspicious B1 felt before B5/C2 reframed it."
+    },
+    "R3": {
+      "emotional_beat": "A gentler kind of closure: Reyes is guilty of fear-driven ‘paper sins,’ but the 22:48–23:17 engineered window makes it clear she’s not the one who turned the building into a weapon.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "‘Paper liar’ vs. murderer — her audit panic explains B2, not C2.",
+          "position": "next_to_clearance_basis_sentence",
+          "style_hint": "yellow highlight; short note pinned to the margin"
+        },
+        {
+          "type": "circled_text",
+          "content": "Critical window called out again: 22:48 (silence) → 23:12 (purge) → ~23:17 (collapse).",
+          "position": "beside_time_window_reference",
+          "style_hint": "tight circle with an arrow pointing to ‘engineered-event window’"
+        }
+      ],
+      "immersion_elements": [
+        "agency_letterhead",
+        "cleared_stamp",
+        "internal_referral_note_box",
+        "case_number_header"
+      ],
+      "reading_order_note": "Read after R2 if you want a clean ‘suspect triage’ feeling: finance motive cleared (R2), then messy-but-human lab motive cleared (R3)."
+    },
+    "R4": {
+      "emotional_beat": "Uncomfortable accountability: Briggs isn’t the killer, but his ‘this is normal’ security culture reads like the open door the offender walked through.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "‘Phone never rang’ (B3) isn’t an alibi when MAINT/SILENT exists (C2 @ 22:48).",
+          "position": "next_to_system_finding_paragraph",
+          "style_hint": "orange highlight; bolded timestamp"
+        },
+        {
+          "type": "sticky_note",
+          "content": "Policy fix: escort/override after-hours needs written approval + auto-expire. B5 shouldn’t be this ambiguous.",
+          "position": "top_right_corner",
+          "style_hint": "digital sticky note; ‘Action Item’ label"
+        }
+      ],
+      "immersion_elements": [
+        "agency_letterhead",
+        "administrative_accountability_section",
+        "recommendations_box",
+        "confidential_stamp"
+      ],
+      "reading_order_note": "This memo lands hardest if read right before R5: it clarifies how the system could be exploited, then R5 shows who did exploit it."
+    },
+    "R5": {
+      "emotional_beat": "Catharsis with a chill: the motive (DEV-102-17 and audit-trail exposure) and the method (silence + purge + export) converge into a timestamp chain that feels too engineered to deny.",
+      "detective_annotations": [
+        {
+          "type": "highlight",
+          "content": "Four timestamps, one narrative: 22:39 (return) → 22:48 (silence) → 23:12 (purge) → 23:36 (export).",
+          "position": "next_to_probable_cause_paragraph",
+          "style_hint": "green highlight; bracketed timeline in the margin"
+        },
+        {
+          "type": "arrow_connection",
+          "content": "B7 (DEV-102-17 panic) → C2/C3 (RPATEL session) = motive meets method.",
+          "position": "between_exhibit_list_and_motive_section",
+          "style_hint": "thin black arrow with labeled endpoints"
+        },
+        {
+          "type": "margin_comment",
+          "content": "The cover-story move is the 23:36 ‘sensor fault’ export. That’s consciousness of guilt, not confusion.",
+          "position": "right_margin_near_c3_reference",
+          "style_hint": "clean digital callout; ‘why it matters’ tone"
+        }
+      ],
+      "immersion_elements": [
+        "probable_cause_header",
+        "exhibit_list_table",
+        "da_routing_stamp",
+        "digital_signature_block",
+        "confidential_stamp"
+      ],
+      "reading_order_note": "Read this last in Envelope R. The payoff depends on having R1’s homicide determination and the cleared-POI logic (R2–R4) already in your head."
+    }
+  }
+}

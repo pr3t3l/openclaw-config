@@ -1,0 +1,40 @@
+{
+  "title": "The Influencer Who Erased Herself",
+  "logline": "A Miami lifestyle influencer vanishes—and within 24 hours her accounts are wiped, her bank drained, and her locked apartment looks mid-morning normal: door locked, coffee still warm.",
+  "setting": {
+    "primary_location": "Miami, Florida — influencer apartment, brand event venues, and a creator-management ecosystem",
+    "timeframe": "Present day; critical 24 hours after disappearance"
+  },
+  "premise": {
+    "victim_profile": "Major social media creator (millions of followers) with lucrative brand deals",
+    "cause_of_death": "Unknown (missing person)",
+    "inciting_event": "Creator fails to appear for a scheduled brand obligation; friends find her apartment locked and untouched while her digital footprint is rapidly erased"
+  },
+  "suspects": [
+    { "name": "The Manager", "role": "Talent manager who controlled brand access, contracts, and account permissions" },
+    { "name": "The Boyfriend", "role": "On-and-off partner appearing in recent content with a murky financial tie" },
+    { "name": "The Brand Rep", "role": "Sponsor-side contact pushing a high-stakes launch with strict NDAs" },
+    { "name": "The Rival Creator", "role": "Competitor with prior public drama and private collab negotiations" }
+  ],
+  "digital_evidence_targets": [
+    "Instagram/TikTok profile remnants (screenshots, deletion notices)",
+    "Creator management emails + brand deal contract excerpts",
+    "Bank transfer alerts / account activity timeline",
+    "iMessage/WhatsApp DM mockups + voice memo transcript",
+    "Stalker-ish fan subreddit / gossip forum threads",
+    "Ride-share + building access logs",
+    "Cloud storage share links / password reset notices"
+  ],
+  "spatial_tool": {
+    "required": true,
+    "concept": "Apartment + building floor plan (lobby, elevator, unit hallway) to reason about access, cameras, and lock timing"
+  },
+  "trojan_horse": {
+    "concept": "A mundane ‘influencer logistics’ artifact (PR package intake slip / brand courier receipt) with a timestamp that breaks the obvious story",
+    "purpose": "Provides a precise time anchor that forces re-evaluation of who could have accessed the apartment/accounts in the key window"
+  },
+  "tone": {
+    "genre": "Modern missing-person conspiracy with corporate and parasocial pressure",
+    "style": "digital_lifestyle; influencer culture; brand-safe surfaces hiding messy backchannels"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "mode": "narrative_quality",
+  "result": "NEEDS_REVISION",
+  "issues": [
+    {
+      "category": "contradiction_discoverability",
+      "severity": "BLOCKER",
+      "detail": "CONTRA-01 (Chloe purchase timing) is marked as introduced in B2 and resolved in B5, but B5 is Tyler Riggs’ interview and does not logically provide the primary proof about Chloe’s HEB receipt/timing. This makes the contradiction’s resolution path feel arbitrary and risks an unfair ‘resolution by unrelated doc’.",
+      "suggested_fix": "Reassign CONTRA-01 resolved_in to the document that actually proves the purchase time (e.g., add/repurpose a receipt/CCTV/log doc, or move the resolution to a doc that explicitly contains the HEB receipt timestamp). If B5 is intended to resolve it, rewrite B5’s planned content to explicitly introduce a concrete, credible proof (e.g., Tyler took a photo/video of Chloe arriving with a visible HEB timestamp, or he saw her stop at HEB at 6:15 PM) and ensure clue_catalog B5 ‘reveals’ explicitly states that proof." 
+    },
+    {
+      "category": "evidence_chain_logic",
+      "severity": "WARNING",
+      "detail": "A4’s clue_catalog entry front-loads the incriminating detail (delivery address is the control room side entrance) inside the A4 ‘reveals’, but the case plan positions C3 as the pivot that breaks Sam’s alibi. As written, a careful player may solve Sam too early (or feel whiplash when C3 repeats what A4 already said).",
+      "suggested_fix": "Adjust A4 so it truly reads like an alibi early: keep the time/charge/merchant details clear, but make the delivery location ambiguous or truncated (e.g., partial address, ‘side entrance’ without ‘control room’), then make C3 the first unambiguous document that spells out ‘Control Room Side Entrance’ and ties it to Sam’s presence at the studio." 
+    },
+    {
+      "category": "interview_slip_naturalness",
+      "severity": "WARNING",
+      "detail": "B3 (Sam) ‘slip’ concept (“perfectly recalls the timestamp”) is plausible but may read as weak/subjective as the key accidental reveal unless the detective frames it tightly. B2 (Chloe) ‘slip’ about a store mirror is not clearly causally connected to the contradiction about when/where she bought the drinks.",
+      "suggested_fix": "For B3, make the slip more concrete (e.g., Sam references the ‘control room side door’ wording, or mentions a network switch/UPS detail only someone present would know). For B2, tie the slip directly to the purchase timeline (e.g., she accidentally says ‘6:15’ / mentions a specific checkout lane/cashier/receipt detail) so the contradiction is discoverable without guesswork." 
+    },
+    {
+      "category": "document_selection",
+      "severity": "NOTE",
+      "detail": "Some clue_catalog metadata looks inconsistent and could cause downstream confusion even if the narrative is solid: B5 has an implausible timestamp (2026-03-09T18:15:00) and a filename_base that reads like evidence mosaic rather than an interview; A1’s planted_clue claims an access-control contradiction that C1 doesn’t obviously support as summarized.",
+      "suggested_fix": "Normalize B5 metadata to the interview time and a consistent filename_base (e.g., interview_B5). Re-check A1 planted_clue so it points to a real contradiction C1 establishes (or adjust C1’s planned log content to actually contradict a ‘normal activity’ claim)." 
+    }
+  ],
+  "strengths": [
+    "Culprit motive is fairly specific and passes the substitution test: the exclusivity-deal betrayal plus technical access/skill is uniquely credible for Sam.",
+    "Strong core ‘digital + physical space’ evidence chain: stream cutout (A3) → Trojan horse receipt (A4) → alibi break (C3) → spatial feasibility (C4).",
+    "Red herrings are believable on the surface (girlfriend provides method access; ex-partner has financial grievance; superfan has obsession/proximity) and can be eliminated with documentary proof rather than pure vibes."
+  ],
+  "overall_notes": "This case blueprint is close: the hook is strong, and the digital-trail-to-floor-plan pivot is satisfying. The main quality risk is contradiction alignment/fairness—ensure each contradiction is introduced and resolved by the documents that actually contain the relevant proof, and ensure the intended pivot document (C3) is not pre-spoiled by A4’s summary. Fix those alignment issues and the narrative should be ready for production." 
+}

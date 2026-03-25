@@ -1,0 +1,38 @@
+{
+  "title": "The Last Livestream",
+  "logline": "A popular tech YouTuber is found dead mid–24-hour charity livestream after the stream cuts out at 2:47 AM and viewers capture a shadow in the doorway.",
+  "setting": {
+    "primary_location": "Soundproofed creator studio with adjacent control room",
+    "timeframe": "Overnight; stream goes offline at 2:47 AM"
+  },
+  "premise": {
+    "victim_profile": "Popular tech YouTuber (2.3M subscribers)",
+    "cause_of_death": "Lethal dose of a prescription stimulant mixed into an energy drink",
+    "inciting_event": "Charity livestream ends abruptly at 2:47 AM; screenshots show a shadow in the doorway"
+  },
+  "suspects": [
+    { "name": "The Editor", "role": "Editor with access to the studio all night" },
+    { "name": "The Ex-Business Partner", "role": "Former partner suing for $1.2M in stolen ad revenue" },
+    { "name": "The Girlfriend", "role": "Brought the energy drinks earlier that evening" },
+    { "name": "The Superfan Moderator", "role": "Discord moderator escalating threats in DMs" }
+  ],
+  "digital_evidence_targets": [
+    "YouTube channel screenshots",
+    "Livestream chat logs",
+    "Discord DM mockups",
+    "Sponsor email chains",
+    "Social media conspiracy threads"
+  ],
+  "spatial_tool": {
+    "required": true,
+    "concept": "Floor plan of the studio + control room layout"
+  },
+  "trojan_horse": {
+    "concept": "DoorDash receipt timestamped 2:51 AM showing a suspect ordering food 4 minutes after the stream died",
+    "purpose": "Time constraint/alibi pressure that challenges the obvious suspect"
+  },
+  "tone": {
+    "genre": "Modern digital-age locked-room-ish murder",
+    "style": "Tech-culture realism; fandom pressure; sponsor/corporate angles"
+  }
+}

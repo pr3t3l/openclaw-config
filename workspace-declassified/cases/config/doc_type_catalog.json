@@ -1,0 +1,296 @@
+{
+  "version": "1.0",
+  "description": "Extensible catalog of document type designs. Built-in types have detailed descriptions. Custom types added by Narrative Architect use design_hint field.",
+  "usage": "ai_render.py looks up type_key here. If found, uses the full design spec. If not found, falls back to design_hint from clue_catalog.json. Claude can render ANY document type.",
+  "types": {
+    "interrogation_transcript": {
+      "feel": "Police interview room. Typed transcript with classified markings.",
+      "layout": "Header block with case info, date, time, location, interviewer, subject. Subject mugshot photo in top-right if available. Body: dialogue format with speaker names in bold mono. Stage directions in [brackets, italic].",
+      "typography": "Mono/typewriter font for dialogue lines. Sans for headers and metadata. 10pt body, 1.4 line-height.",
+      "special_elements": [
+        "RESTRICTED stamp",
+        "subject mugshot photo",
+        "stage directions in italic brackets",
+        "page numbers",
+        "recording method notation"
+      ],
+      "page_estimate": "3-8 pages depending on interview length",
+      "background": "White with subtle paper texture",
+      "min_narrative_words": 500,
+      "quality_notes": "Must feel like authentic police interview. Dialogue must be natural, not expository. Include pauses, interruptions, emotional shifts."
+    },
+    "official_memo": {
+      "feel": "Government office. Formal legal/institutional document.",
+      "layout": "Agency letterhead at top (text-based, bold). TO/FROM/DATE/RE/CLASSIFICATION block. Horizontal rule. Body in formal prose with numbered sections or headed subsections. Signature block at bottom.",
+      "typography": "Serif for body text. Sans-serif bold for letterhead and field labels. 11pt body.",
+      "special_elements": [
+        "CONFIDENTIAL stamp overlay",
+        "agency letterhead",
+        "signature line",
+        "classification marking"
+      ],
+      "page_estimate": "1-2 pages",
+      "background": "White, formal",
+      "min_narrative_words": 150,
+      "quality_notes": "Formal institutional tone. Must include proper TO/FROM/RE fields and classification markings."
+    },
+    "newspaper_front": {
+      "feel": "Morning newspaper front page. Breaking news energy.",
+      "layout": "Masthead with newspaper name, date, price. Large bold headline. Sub-headline. Lead photo with caption. Multi-column body text (2-3 columns via CSS columns). Sidebar box with key facts or timeline.",
+      "typography": "Serif for body text (newspaper column style). Bold sans-serif for headline (24-32pt). Italic for byline.",
+      "special_elements": [
+        "newspaper masthead",
+        "multi-column layout",
+        "photo with caption",
+        "breaking news tag if applicable",
+        "sidebar facts box"
+      ],
+      "page_estimate": "1 page",
+      "background": "Slightly off-white (#fafaf5)",
+      "min_narrative_words": 200,
+      "quality_notes": "Journalistic style. Inverted pyramid structure. Must feel like real local news coverage."
+    },
+    "newspaper_corporate": {
+      "feel": "Same as newspaper_front but with corporate/business angle.",
+      "layout": "Same as newspaper_front.",
+      "typography": "Same as newspaper_front.",
+      "special_elements": [
+        "Same as newspaper_front"
+      ],
+      "page_estimate": "1 page",
+      "background": "Slightly off-white",
+      "min_narrative_words": 200,
+      "quality_notes": "Same standards as newspaper_front. Corporate/business angle."
+    },
+    "social_posts": {
+      "feel": "Phone screenshots laid on evidence table for cataloging.",
+      "layout": "Gray/dark evidence surface background. Phone mockup frame(s) with rounded corners, notch, and platform-colored app bar. Posts inside with avatar circle (initials), username, timestamp, content text, engagement counts (likes/comments/shares). Analyst notes section outside the phone frame.",
+      "typography": "System UI sans-serif inside phone frames (small, 8-9pt). Mono for analyst notes and evidence labels.",
+      "special_elements": [
+        "phone mockup frame",
+        "platform-specific UI colors (Twitter=blue bar, Instagram=gradient, Reddit=orange)",
+        "engagement counts",
+        "analyst notes with red left-border",
+        "DIGITAL EVIDENCE stamp"
+      ],
+      "page_estimate": "1-2 pages",
+      "background": "Dark gray (#2a2a2a) evidence surface",
+      "min_narrative_words": 100,
+      "quality_notes": "Platform-authentic UI. Posts must feel real with genuine engagement patterns."
+    },
+    "evidence_mosaic": {
+      "feel": "Evidence items laid out on dark surface for photographic cataloging.",
+      "layout": "Dark background. Grid of evidence 'tiles' (2-3 columns). Each tile: evidence photo/screenshot, label strip at bottom with item number, timestamp, and relevance tag. Tiles at very slight angles for realism.",
+      "typography": "Mono for evidence labels and item numbers. Sans for descriptions.",
+      "special_elements": [
+        "evidence item numbers (ITEM-01 etc)",
+        "relevance tags (KEY EVIDENCE / CONTEXTUAL / TIMELINE)",
+        "chain of custody reference",
+        "tiles at slight CSS rotation"
+      ],
+      "page_estimate": "1-2 pages",
+      "background": "Very dark (#1a1a1a)",
+      "min_narrative_words": 80,
+      "quality_notes": "Evidence items must be clearly labeled and organized. Each tile tells part of the story."
+    },
+    "evidence_board": {
+      "feel": "Detective's cork board / investigation wall. The most visually creative type.",
+      "layout": "Cork or dark board textured background. Photos pinned at various angles with pushpin graphics. Sticky notes with handwritten-style text. Red string/line connections between related items. Central suspect photo larger than others.",
+      "typography": "Handwritten/cursive for sticky notes. Mono for evidence labels. Marker style (bold sans) for key connections.",
+      "special_elements": [
+        "pushpin graphics (CSS circles)",
+        "red string connections (CSS borders/lines between items)",
+        "sticky notes at angles",
+        "central photo larger",
+        "margin annotations"
+      ],
+      "page_estimate": "1-2 pages",
+      "background": "Cork texture (#c4a882) or dark board (#2a2a2a)",
+      "min_narrative_words": 100,
+      "quality_notes": "Most creative type. Red string connections must be meaningful. Sticky notes drive player engagement."
+    },
+    "clippings_taped": {
+      "feel": "Scrapbook page from personal investigation file.",
+      "layout": "Cream paper background. Newspaper clippings and photos placed at slight angles. Tape strips (semi-transparent yellow rectangles) holding items. Handwritten margin notes.",
+      "typography": "Serif for newspaper clippings (column text). Handwritten/cursive for margin notes. Mono for dates.",
+      "special_elements": [
+        "tape strips at corners of items",
+        "items at slight rotation (CSS transform)",
+        "aging/wear effects (slight sepia tint)",
+        "handwritten notes in margins"
+      ],
+      "page_estimate": "1 page",
+      "background": "Cream paper (#f5f0e8)",
+      "min_narrative_words": 100,
+      "quality_notes": "Handwritten notes must feel personal and investigative. Aging effects add authenticity."
+    },
+    "poi_sheet": {
+      "feel": "Police internal briefing document. Persons of interest overview.",
+      "layout": "Header with case info and classification. Grid of POI cards (2-3 per row). Each card: mugshot photo (polaroid style with white border), name, DOB, role, connection to case, status badge (SUSPECT/CLEARED/DECEASED).",
+      "typography": "Sans-serif throughout. Bold for names. Small mono for status badges.",
+      "special_elements": [
+        "mugshot photos in polaroid-style frames",
+        "status badges color-coded (red=suspect, green=cleared, gray=deceased)",
+        "classification header"
+      ],
+      "page_estimate": "1-2 pages",
+      "background": "White with subtle gray header",
+      "min_narrative_words": 150,
+      "quality_notes": "Every POI card must have meaningful detail. Status badges must be accurate."
+    },
+    "forensic_report": {
+      "feel": "Medical examiner office. Clinical, precise, institutional.",
+      "layout": "Office header with name and accreditation. Form-style fields: case number, decedent, age/sex, date of exam, examiner. Body diagram SVG with numbered injury markers. External/internal examination narrative sections. Toxicology results table. Cause and manner of death section with checkbox-style selection.",
+      "typography": "Sans for form fields and headers. Serif for narrative examination sections. Mono for toxicology data.",
+      "special_elements": [
+        "body outline diagram with numbered injury markers",
+        "toxicology table with positive/negative highlighting",
+        "manner of death checkboxes (Natural/Accident/Suicide/Homicide/Undetermined)",
+        "examiner signature line"
+      ],
+      "page_estimate": "2 pages",
+      "background": "White, clinical",
+      "min_narrative_words": 300,
+      "quality_notes": "Clinical precision. Medical terminology must be accurate. Findings must be specific."
+    },
+    "entry_exit_log": {
+      "feel": "Building security desk. Institutional clipboard form.",
+      "layout": "Facility info header (building name, date, supervisor). Table with columns: Time In, Time Out, Name, Badge/ID, Purpose of Visit, Signature. Alternating row colors. Supervisor verification section at bottom.",
+      "typography": "Mono for table data (times, badge IDs). Sans for headers.",
+      "special_elements": [
+        "alternating row colors",
+        "highlighted rows for key entries (light yellow background)",
+        "supervisor signature line",
+        "building/facility name prominent"
+      ],
+      "page_estimate": "1-2 pages",
+      "background": "White with light gray table headers",
+      "min_narrative_words": 50,
+      "quality_notes": "Tabular data must contain specific times. Key entries highlighted for player attention."
+    },
+    "calls_sms_log": {
+      "feel": "Phone records subpoena return. Carrier data format.",
+      "layout": "Subject info header (name, phone number, date range). Table: Date, Time, Type (CALL/SMS), Direction (IN/OUT), Contact, Message Preview, Duration. Summary statistics section at bottom (total calls, SMS, unique contacts).",
+      "typography": "Mono throughout for data. Sans for section headers.",
+      "special_elements": [
+        "SMS messages in subtle speech-bubble style",
+        "calls vs SMS visually distinct (different row background)",
+        "key messages highlighted in yellow",
+        "communication summary stats box"
+      ],
+      "page_estimate": "1-3 pages",
+      "background": "White",
+      "min_narrative_words": 50,
+      "quality_notes": "Phone records must include specific numbers and times. Key messages highlighted."
+    },
+    "email_export": {
+      "feel": "Printed email from a webmail client. Subpoena exhibit.",
+      "layout": "Email client header bar (From, To, CC, Date, Subject in form layout). Email body with proper formatting. Reply quotes indented with left border. Forwarded content in lighter shade. Analyst margin notes as sticky-note overlay.",
+      "typography": "Sans for email UI elements. Body inherits standard email formatting. Mono for analyst notes.",
+      "special_elements": [
+        "reply threading with colored left borders",
+        "forwarded content section",
+        "analyst sticky note overlay",
+        "attachment list if applicable",
+        "email source notation (Subpoena Return)"
+      ],
+      "page_estimate": "1-2 pages",
+      "background": "White with light blue email header",
+      "min_narrative_words": 150,
+      "quality_notes": "Email chains must feel authentic. Reply threading and forwarding must be realistic."
+    },
+    "floor_plan": {
+      "feel": "Investigator's annotated building/room plan.",
+      "layout": "Floor plan image centered (the AI-generated image). Legend below with symbols and descriptions. Investigator annotations as numbered callouts around the image. Analysis notes section.",
+      "typography": "Sans for labels and legend. Handwritten-style for investigator annotations.",
+      "special_elements": [
+        "floor plan image (main visual)",
+        "legend with color-coded symbols",
+        "numbered annotation callouts",
+        "scale indicator if provided",
+        "movement path description"
+      ],
+      "page_estimate": "1 page",
+      "background": "White with light grid",
+      "min_narrative_words": 80,
+      "quality_notes": "Annotations must reference specific locations relevant to the case timeline."
+    },
+    "court_order": {
+      "feel": "Courthouse. Formal legal authority document.",
+      "layout": "Court name and jurisdiction header. Docket/case number. Caption block (State v. Defendant). Order body with formal legal language. Items authorized in numbered list. Probable cause section. Judge name and signature line. Date issued and expiration.",
+      "typography": "Serif throughout for formal legal feel. Bold for court name and key legal conclusions.",
+      "special_elements": [
+        "court seal (text-based 'COURT SEAL' in circle)",
+        "formal caption block",
+        "judge signature line",
+        "expiration date if applicable"
+      ],
+      "page_estimate": "1-2 pages",
+      "background": "White, formal",
+      "min_narrative_words": 150,
+      "quality_notes": "Legal language must be authentic. Probable cause section ties to case evidence."
+    },
+    "witness_statement": {
+      "feel": "Written statement taken at police station.",
+      "layout": "Pre-printed form header (department, date, case number). Statement body in first person. Signature and date line at bottom. Witness signature. Officer/notary signature.",
+      "typography": "Handwritten-style for the statement body (simulating handwriting). Mono for form field labels.",
+      "special_elements": [
+        "lined paper background effect",
+        "occasional crossed-out words for realism",
+        "initials in margins",
+        "sworn/affirmed notation"
+      ],
+      "page_estimate": "1-2 pages",
+      "background": "Lined paper (#fafaf8 with subtle horizontal lines)",
+      "min_narrative_words": 200,
+      "quality_notes": "First-person voice must be distinctive. Crossed-out words add authenticity."
+    },
+    "transcript_911": {
+      "feel": "Emergency dispatch center. Urgent typed log.",
+      "layout": "Header with call metadata: date, time received, duration, caller phone, responding unit. Transcript body in timestamp-speaker-text format. Background noise and caller emotion noted in [brackets].",
+      "typography": "Mono throughout (dispatch terminal feel). Red for urgent moments.",
+      "special_elements": [
+        "call classification tags (MEDICAL/FIRE/CRIME)",
+        "urgent moments in red",
+        "background noise in brackets",
+        "operator ID",
+        "dispatch codes"
+      ],
+      "page_estimate": "1-2 pages",
+      "background": "White with mono terminal feel",
+      "min_narrative_words": 300,
+      "quality_notes": "Urgency must escalate. Background noise and emotions in brackets add immersion."
+    },
+    "lab_report": {
+      "feel": "Forensic laboratory. Scientific precision and accreditation.",
+      "layout": "Lab header with logo area, accreditation number. Sample information form (evidence item, received date, examiner). Test methodology section. Results table with pass/fail/detected status. Interpretation narrative. Chain of custody block. Analyst signature.",
+      "typography": "Sans for headers and form fields. Mono for test data. Serif for interpretation narrative.",
+      "special_elements": [
+        "results table with color-coded status (green=negative, red=positive/detected)",
+        "chain of custody block",
+        "accreditation number",
+        "analyst signature with title"
+      ],
+      "page_estimate": "1-2 pages",
+      "background": "White, scientific",
+      "min_narrative_words": 200,
+      "quality_notes": "Scientific precision. Results must be specific and tie to case evidence."
+    },
+    "missing_person": {
+      "feel": "Urgent public flyer posted in community spaces.",
+      "layout": "Bold 'MISSING' or 'HAVE YOU SEEN THIS PERSON?' header in large display font. Large central photo. Key details in clear, scannable blocks: name, age, height, weight, hair, eyes, last seen location and date. Contact information / tip line number prominent at bottom.",
+      "typography": "Display font for header (Impact/bold sans). Sans for details. Large clear text for tip line.",
+      "special_elements": [
+        "large photo (primary visual element)",
+        "high contrast color scheme (red/black/white or blue/white)",
+        "QR code placeholder area",
+        "reward mention if applicable",
+        "last seen section very prominent"
+      ],
+      "page_estimate": "1 page",
+      "background": "White with colored header bar",
+      "min_narrative_words": 50,
+      "quality_notes": "High visual impact. Key details must be scannable. Contact info prominent."
+    }
+  }
+}

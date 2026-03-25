@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        @page { margin: 10mm; size: letter; }
+        body {
+            font-family: "Courier New", monospace;
+            font-size: 9pt;
+            line-height: 1.4;
+            color: #000;
+            background: #fff;
+            margin: 0;
+            padding: 15px;
+        }
+        .doc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .doc-header-left {
+            font-size: 8pt;
+            color: #666;
+        }
+        .doc-header-right {
+            text-align: right;
+            font-size: 8pt;
+            color: #666;
+        }
+        .classification-stamp {
+            display: inline-block;
+            border: 2px solid #a00;
+            color: #a00;
+            padding: 2px 10px;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            font-size: 8pt;
+            transform: rotate(-2deg);
+            margin-bottom: 6px;
+        }
+        .plan-title {
+            text-align: center;
+            font-size: 14pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+        .plan-subtitle {
+            text-align: center;
+            font-size: 9pt;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .plan-image-container {
+            text-align: center;
+            margin: 10px 0 20px;
+            border: 1px solid #ccc;
+            padding: 8px;
+            background: #fafafa;
+        }
+        .plan-image-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        .plan-image-placeholder {
+            width: 100%;
+            min-height: 350px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 10pt;
+            border: 1px dashed #ccc;
+        }
+        .legend {
+            margin-top: 15px;
+            padding: 10px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+        .legend-title {
+            font-weight: bold;
+            font-size: 10pt;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 4px;
+        }
+        .legend-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px 20px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 8pt;
+            padding: 2px 0;
+        }
+        .legend-symbol {
+            width: 14px;
+            height: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10pt;
+            flex-shrink: 0;
+        }
+        .annotations-section {
+            margin-top: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #fffff0;
+        }
+        .annotations-title {
+            font-weight: bold;
+            font-size: 10pt;
+            color: #c00;
+            margin-bottom: 6px;
+        }
+        .annotation-item {
+            font-size: 8pt;
+            padding: 3px 0;
+            border-bottom: 1px dotted #eee;
+        }
+        .annotation-item:last-child { border-bottom: none; }
+        .annotation-label {
+            font-weight: bold;
+            color: #c00;
+        }
+        .scale-bar {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 7pt;
+            color: #888;
+        }
+        .footer-info {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 7pt;
+            color: #999;
+            border-top: 1px solid #ddd;
+            padding-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="doc-header">
+        <div class="doc-header-left">
+            {{#if classification}}<div class="classification-stamp">{{classification}}</div><br>{{/if}}
+            Case #: {{caseNumber}}<br>
+            Doc ID: {{docId}}<br>
+            Date: {{date}}
+        </div>
+        <div class="doc-header-right">
+            {{#if preparedBy}}Prepared by: {{preparedBy}}<br>{{/if}}
+            {{#if agency}}{{agency}}{{/if}}
+        </div>
+    </div>
+
+    <div class="plan-title">{{title}}</div>
+    {{#if subtitle}}<div class="plan-subtitle">{{subtitle}}</div>{{/if}}
+
+    <div class="plan-image-container">
+        {{#if planImage}}
+            <img src="{{planImage}}" alt="{{title}}">
+        {{else}}
+            <div class="plan-image-placeholder">[Floor Plan / Map Image]</div>
+        {{/if}}
+    </div>
+
+    {{#if scale}}<div class="scale-bar">Scale: {{scale}}</div>{{/if}}
+
+    {{#if legend}}
+    <div class="legend">
+        <div class="legend-title">LEGEND</div>
+        <div class="legend-grid">
+            {{#each legend}}
+            <div class="legend-item">
+                <span class="legend-symbol">{{this.symbol}}</span>
+                <span>{{this.description}}</span>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    {{/if}}
+
+    {{#if annotations}}
+    <div class="annotations-section">
+        <div class="annotations-title">INVESTIGATOR NOTES</div>
+        {{#each annotations}}
+        <div class="annotation-item">
+            <span class="annotation-label">{{this.label}}:</span> {{this.text}}
+        </div>
+        {{/each}}
+    </div>
+    {{/if}}
+
+    {{#if analysisContent}}
+    <div class="annotations-section" style="background: #f9f9f9; border-left: 3px solid #333;">
+        {{{analysisContent}}}
+    </div>
+    {{/if}}
+
+    <div class="footer-info">
+        <strong>{{caseTitle}}</strong><br>
+        Prepared for training / investigative simulation. All locations depicted are fictional within this case universe.
+    </div>
+</body>
+</html>

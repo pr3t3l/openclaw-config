@@ -1,0 +1,290 @@
+{
+  "case_slug": "cyber-ghost",
+  "scenes": [
+    {
+      "for_doc": "A1",
+      "location": "Apartment 4C, 812 Kellner Street, Harwick — Jordan Mercer's apartment",
+      "visual_description": "A compact one-bedroom apartment on the fourth floor of a mid-rise residential building in the Civic District. The desk in the northeast corner holds a laptop in sleep mode, its indicator light pulsing slowly. The pill organizer sits open on the kitchen counter near the sink. Blinds partially drawn. Nothing overturned. The apartment has the stillness of a space that has been arranged rather than lived in that morning.",
+      "time_of_day": "Morning, approximately 08:15",
+      "lighting": "Dim — morning light filtering through half-closed venetian blinds, a single LED strip under kitchen cabinets left on",
+      "notable_objects": [
+        "laptop in sleep mode on desk",
+        "open pill organizer on counter (Tuesday slot)",
+        "glass near sink",
+        "no signs of forced entry or struggle",
+        "deadbolt locked from inside"
+      ],
+      "atmosphere": "Uncanny quiet. The kind of stillness that building superintendent Remy Salazar felt before he knocked. Civic District street noise muted four floors up. No music, no movement."
+    },
+    {
+      "for_doc": "A2",
+      "location": "HPD Detective Bureau — case file assembly room",
+      "visual_description": "A standard HPD detective bureau workspace with fluorescent overhead lighting and a large corkboard. Four POI folders are laid out on a metal table. Each folder contains a printed photo, bio summary, and flagged financial or behavioral notes. The Voss folder has a yellow sticky on the outside reading 'consulting fees — FLAG.'",
+      "time_of_day": "Afternoon, approximately 16:00",
+      "lighting": "Fluorescent overhead, harsh and even, no natural light",
+      "notable_objects": [
+        "four POI folders on metal table",
+        "corkboard with case number header",
+        "yellow sticky on Voss folder",
+        "victim device metadata printout"
+      ],
+      "atmosphere": "Procedural and methodical. Det. Holt's workspace is organized but under pressure — a fresh homicide with a civic corruption angle and city hall eyes already on it."
+    },
+    {
+      "for_doc": "A3",
+      "location": "Harwick City Hall — IT Security Division office, Floor 2",
+      "visual_description": "A windowless server-adjacent office in City Hall's IT security wing. Rows of workstations with dual monitors, most showing log dashboards. The print queue audit log is open on workstation CHWS-0009. A second monitor on an adjacent station shows the same file with different session metadata — accessed from Suite 440, Floor 4, the council fixer's office suite, without annotation.",
+      "time_of_day": "Daytime — original audit October 13, unauthorized access October 14 at 16:45",
+      "lighting": "Fluorescent ceiling panels, no natural light, monitor glow on workstation surfaces",
+      "notable_objects": [
+        "print queue access log open on CHWS-0009",
+        "unregistered guest session from Suite 440 logged at 16:45:03",
+        "memo signed by T. Bannister dated October 13",
+        "no annotation against the Suite 440 entry"
+      ],
+      "atmosphere": "The invisible kind of intrusion. No broken doors. No alarms. Just a cursor that moved through a system it had no business touching, 18 minutes and 42 seconds, then gone."
+    },
+    {
+      "for_doc": "A4",
+      "location": "HPD Digital Crimes Unit — Harwick Police Headquarters, analyst workstation",
+      "visual_description": "A dark-lit analyst bay with multiple monitors showing Tor mirror site captures, VPN trace maps, and PGP key verification outputs. Analyst Quiñones has printed a side-by-side comparison of the first and second Briarfield document caches, with yellow highlighting on the sections that were edited out and red annotations where new attribution markers were inserted pointing toward a Finance Division employee.",
+      "time_of_day": "Late morning, October 23, approximately 11:30",
+      "lighting": "Low ambient, blue-tinted monitor glow dominant, single desk lamp",
+      "notable_objects": [
+        "side-by-side cache comparison printout with yellow and red markings",
+        "VPN trace map showing HWK-VPN-Exit-07",
+        "PGP key fingerprint verification printout",
+        "timestamp log showing 02:17:44 publication event"
+      ],
+      "atmosphere": "The digital trace of a dead person's identity being used against them. Quiñones works carefully, noting what can be proven and what cannot — the misdirection is elegant, and that's the most disturbing part."
+    },
+    {
+      "for_doc": "A5",
+      "location": "Multiple — digital platforms compiled as evidence package",
+      "visual_description": "Four platform captures laid out as an HPD evidence compilation. The X/Twitter thread shows journalist Priya Nair's live-coverage from October 12, a council staffer's confirming reply visible below. The Reddit r/Harwick thread shows an upvoted post with a buried throwaway comment. Nadia Osei's Instagram post shows her at a hackathon whiteboard, upload timestamp 00:52 visible. The Facebook entry shows the Harwick Civic Watch post with Remy Salazar's haunted comment and a screenshot-within-screenshot of the since-deleted reply from HarwickProspers2024.",
+      "time_of_day": "Various — compiled October 22 at 17:00",
+      "lighting": "Screen captures — each platform's native UI with its own color temperature (X/Twitter dark mode gray-black, Reddit orange-white, Instagram gradient white, Facebook light blue-white)",
+      "notable_objects": [
+        "Priya Nair X/Twitter thread from October 12",
+        "Reddit throwaway comment about 847-page print session",
+        "Nadia Instagram post timestamped 00:52 Oct 20",
+        "deleted HarwickProspers2024 Facebook comment preserved as screenshot"
+      ],
+      "atmosphere": "The internet processing a death it doesn't know is a murder yet. Public grief, conspiracy theories, and one comment that got deleted too fast mixing together in a feed no one fully controls."
+    },
+    {
+      "for_doc": "A6",
+      "location": "812 Kellner Street — building entry points and Apartment 4C",
+      "visual_description": "A mid-rise residential building in Harwick's Civic District. The main lobby has a keycard reader mounted to the right of glass double doors and a ceiling-mounted wide-angle camera covering the full entry corridor to the elevator bank. The secondary stairwell exit on the alley side is a plain steel push-bar door with no external hardware — it opens from inside only, faces a narrow service alley, and sits directly below the window of Apartment 4C. The alley is unlit at night and not visible from the main street. Inside Apartment 4C: a narrow entry hall opens left to the kitchen and right to the living area, with the desk workspace built into the northeast corner below a window.",
+      "time_of_day": "Daytime — crime scene unit documentation October 22 at 13:00",
+      "lighting": "Exterior: overcast October daylight. Interior apartment: CSU portable work lights supplementing dim ambient",
+      "notable_objects": [
+        "main lobby keycard reader and overhead camera",
+        "secondary stairwell push-bar door with no camera",
+        "alley below Apartment 4C window",
+        "desk NE corner with laptop marker",
+        "kitchen counter with glass evidence marker"
+      ],
+      "atmosphere": "The gap in the surveillance net. Anyone who knew about that stairwell door and had already been let in through the lobby could vanish into the alley without a single frame of footage."
+    },
+    {
+      "for_doc": "B1",
+      "location": "Meridian Co-Works — Secure terminal bay, Terminal 3B",
+      "visual_description": "A co-working space in Harwick's Midtown corridor. The secure terminal bay is a glass-walled booth with three individual workstations, each with a privacy screen filter and a dedicated Ethernet drop. Jordan Mercer used Terminal 3B on October 17. The ProtonMail compose window is reconstructed in the forensics extraction — tight measured paragraphs, nothing wasted, the work of someone who has thought carefully about every word and knows this message will be read by more people than the recipient.",
+      "time_of_day": "Mid-morning, October 17, approximately 11:20",
+      "lighting": "Co-working space overhead lighting, privacy screen filter reducing ambient glow bleed",
+      "notable_objects": [
+        "secure terminal 3B with IP log",
+        "ProtonMail encrypted email compose window",
+        "privacy screen filter on monitor",
+        "terminal IP logged to Jordan Mercer's co-working account"
+      ],
+      "atmosphere": "The last careful act of someone still alive and still fighting. Jordan didn't know that the trail from this terminal had already been found. The email sent, the reply received, then silence."
+    },
+    {
+      "for_doc": "B2",
+      "location": "Harwick PD Homicide Division — Interview Room A",
+      "visual_description": "A standard HPD interview room — gray walls, a rectangular metal table bolted to the floor, two chairs on each side. Aldric Voss sits with his jacket on, posture relaxed, hands folded on the table in front of him. A legal notepad he brought himself sits to his right, untouched. He has a glass of water in front of him — his second request in 45 minutes. Det. Reyes sits across, a folder open between them. The room feels too small for the amount of control Voss is exerting.",
+      "time_of_day": "Morning, October 23, approximately 10:30",
+      "lighting": "Overhead fluorescent, no window, one-way mirror on the west wall",
+      "notable_objects": [
+        "metal table bolted to floor",
+        "Voss's untouched personal legal notepad",
+        "water glass (second request)",
+        "Det. Reyes's open folder",
+        "recording device on table edge"
+      ],
+      "atmosphere": "Power dressed down to look cooperative. Voss has done this before — not as a suspect, but as the person who calls the shots when someone else is in this room. He is managing the detective rather than being managed."
+    },
+    {
+      "for_doc": "B3",
+      "location": "Harwick PD Homicide Division — Interview Room B",
+      "visual_description": "The same building as Interview Room A but a different room — slightly smaller, no one-way mirror, a wall-mounted camera in the top corner instead. Nadia Osei arrived with her arms crossed and has not uncrossed them. A printout of her forum post is on the table. She looked at it when it was placed down and has not looked away from Det. Reyes since. Her hoodie has a conference lanyard stuffed in the front pocket. The room smells faintly of cold coffee.",
+      "time_of_day": "Afternoon, October 23, approximately 14:00",
+      "lighting": "Overhead fluorescent, wall-mounted camera red recording light visible",
+      "notable_objects": [
+        "forum post printout on table",
+        "conference lanyard in hoodie pocket",
+        "arms crossed throughout",
+        "badge log printout of hackathon entry/exit times"
+      ],
+      "atmosphere": "Contained aggression. Nadia is not nervous — she is irritated. She knows she didn't do it and she resents having to explain herself to someone who cannot keep up with her technically."
+    },
+    {
+      "for_doc": "B4",
+      "location": "Harwick PD Homicide Division — Interview Room A (second session)",
+      "visual_description": "The same interview room as Voss's session, now occupied by Serena Cho. Where Voss filled the room with presence, Cho seems to make herself smaller. She sits with her hands in her lap below the table. A city employee badge lanyard is around her neck, still on from her work day. A box of tissues has been placed on the table by someone on the HPD staff. She has used one. Jordan Mercer's name on the case folder tab is visible from where she sits.",
+      "time_of_day": "Late afternoon, October 23",
+      "lighting": "Overhead fluorescent, same room as B2",
+      "notable_objects": [
+        "city employee badge lanyard still worn",
+        "box of tissues on table (one used)",
+        "Jordan Mercer's name visible on folder tab",
+        "Signal message log printout face-down on detective's side"
+      ],
+      "atmosphere": "Someone carrying guilt that is not murder but still heavy. Serena knows something she did not tell the police in time. The room presses down on that."
+    },
+    {
+      "for_doc": "B5",
+      "location": "Harwick City Hall — Co-working badge access terminal, Meridian Co-Works entry lobby",
+      "visual_description": "The entry lobby of Meridian Co-Works on the Midtown corridor — a glass-fronted ground floor space with a key fob reader at the turnstile. The badge access log printout shows entries and exits timestamped to the second. The key entry of interest is the October 14 cross-reference showing Jordan Mercer's badge record for the previous week — the same week the print queue was pulled from CHWS-0047 in City Hall.",
+      "time_of_day": "Printed as subpoena return — data covers October 8–14",
+      "lighting": "Entry lobby: natural light through glass front, bright midday",
+      "notable_objects": [
+        "fob reader at turnstile",
+        "badge log printout with Jordan Mercer's access record",
+        "cross-reference notation linking to City Hall print session"
+      ],
+      "atmosphere": "The moment a person becomes a target. Someone in Suite 440 was reading this same trail, connecting the same dates. Jordan didn't know."
+    },
+    {
+      "for_doc": "B6",
+      "location": "Harwick Grand Hotel — Parking garage, ground level exit lane",
+      "visual_description": "The basement parking garage of the Harwick Grand Hotel. A single exit lane with a striped arm barrier and a wall-mounted timestamp camera above the gate sensor. The log printout shows Aldric Voss's vehicle — a dark gray 2022 Lexus ES 350, license plate on file — triggering the gate sensor at 21:47:03. The fundraiser dinner was scheduled through 10:30pm on the event program. The gate arm captured a clear timestamp. The valet stand at the lobby level has no corresponding record after 21:47.",
+      "time_of_day": "Evening, October 19, exit logged at 21:47:03",
+      "lighting": "Garage fluorescent amber lights, camera flash on plate capture, timestamp burned into frame",
+      "notable_objects": [
+        "exit gate arm sensor",
+        "timestamp camera log showing 21:47:03",
+        "Voss vehicle plate on record",
+        "no valet return record after 21:47",
+        "fundraiser event program end time 22:30"
+      ],
+      "atmosphere": "A 43-minute lie. The kind that would hold if no one subpoenaed the parking log. Someone did."
+    },
+    {
+      "for_doc": "B7",
+      "location": "Harwick County Medical Examiner's Office — Examination Suite 2",
+      "visual_description": "A clinical autopsy suite with stainless steel examination table, overhead surgical lamp array, and wall-mounted specimen storage. The toxicology report printout is clipped to the case file. The key finding is highlighted in the attending examiner's hand: fentanyl detected at 18.4 ng/mL — a lethal concentration. A secondary notation reads: 'No opioid prescription on record. Emergency contact states subject described opioid allergy to medical provider in 2022. No drug paraphernalia consistent with recreational use recovered from scene.'",
+      "time_of_day": "Report issued October 23, approximately 10:00",
+      "lighting": "Surgical overhead array, fluorescent supplemental, clinical white",
+      "notable_objects": [
+        "toxicology report with fentanyl concentration highlighted",
+        "notation of opioid allergy from 2022 provider record",
+        "no prescription record on file",
+        "absence of recreational use paraphernalia noted"
+      ],
+      "atmosphere": "The document that reclassifies a death. Everything that came before it was paperwork. After this, it is a homicide."
+    },
+    {
+      "for_doc": "C1",
+      "location": "812 Kellner Street, Apartment 4C — Jordan Mercer's home WiFi router admin panel, recovered forensically",
+      "visual_description": "The router — a black consumer-grade unit on the kitchen shelf — has been removed as evidence and its admin panel log extracted by HPD Digital Forensics. The DHCP lease log is printed out and annotated. Among the familiar MAC addresses (Jordan's laptop, phone, smart TV) is one that does not belong: a4:c3:f0:88:12:7e. It first appears at 22:08:14 on October 19. It disconnects at 23:34:47. The device type is unidentified — consistent with a mobile phone on auto-connect. Jordan Mercer's own devices are all accounted for. This device is not.",
+      "time_of_day": "Log covers October 19, 22:08–23:34; extracted forensically October 22–23",
+      "lighting": "Forensics lab environment — bright even white lighting, document photography setup",
+      "notable_objects": [
+        "DHCP lease log printout with unfamiliar MAC address highlighted",
+        "connection window 22:08:14 to 23:34:47",
+        "Jordan's known device MAC addresses listed for comparison",
+        "unidentified device flagged as mobile phone type by OUI lookup"
+      ],
+      "atmosphere": "The ghost in the network log. An invisible visitor who connected to the WiFi, stayed while Jordan died, and disconnected. Not a hack. A physical presence."
+    },
+    {
+      "for_doc": "C2",
+      "location": "Harwick City Hall — Suite 440, Floor 4 (Council Fixer's office suite)",
+      "visual_description": "A private office suite on the fourth floor of City Hall, used by political consultants and council liaisons. The workstation CHWS-0112 sits in the corner — a standard city-issue desktop with no nameplate. The unauthorized print queue access on October 14 lasted 18 minutes and 42 seconds from this terminal, using a guest session token that left no named user ID. The suite directory shows the primary occupant as Aldric Voss, Political Consultant, contracted through the Council Affairs Office. The connection between this terminal and the print queue is the link between Voss and Jordan Mercer's identity.",
+      "time_of_day": "Access logged October 14 at 16:45:03; suite documented during investigation",
+      "lighting": "Late afternoon natural light from west-facing windows, supplemented by desk lamp",
+      "notable_objects": [
+        "workstation CHWS-0112 in corner",
+        "suite directory showing Aldric Voss as primary occupant",
+        "guest session token log with no named user ID",
+        "18-minute access window to print queue audit log"
+      ],
+      "atmosphere": "A political consultant's office that smells like carpet cleaner and managed distance. The workstation is not his officially. The session left no name. But the suite is his, and the timing is exact."
+    },
+    {
+      "for_doc": "C3",
+      "location": "HPD Digital Crimes Unit — advanced analysis workstation, cross-reference bay",
+      "visual_description": "Analyst Quiñones has assembled the three threads on a dual-monitor display: the second Briarfield post VPN metadata on the left, the anonymous tip to Serena Cho's phone number on the right, and a network infrastructure map in the center linking both to a third-party investigative contractor registered in Delaware. The contractor's client list is redacted except for one active municipal contract — with the Harwick Council Affairs Office. A printed summary sits between the two monitors, highlighted and annotated in blue ink.",
+      "time_of_day": "Investigation analysis, after October 23",
+      "lighting": "Low ambient lab lighting, dual-monitor glow, single overhead work lamp",
+      "notable_objects": [
+        "second Briarfield post VPN metadata printout",
+        "anonymous tip phone number trace",
+        "network infrastructure map linking both to investigative contractor",
+        "contractor's active Harwick Council Affairs Office contract",
+        "Quiñones's blue-ink annotations"
+      ],
+      "atmosphere": "The convergence. Two separate threads — one designed to misdirect investigators, one designed to paralyze Serena — running back to the same node. Voss didn't just commit the murder. He staged the aftermath."
+    },
+    {
+      "for_doc": "R1",
+      "location": "HPD Homicide Division — case closure room / Det. Holt's office",
+      "visual_description": "Det. Holt's office with a corkboard fully covered: Voss's photo center, red string connecting to the parking log, the router DHCP printout, the Suite 440 access entry, and the contractor network map. Jordan Mercer's photo is in the upper left, connected to everything by a single thread. The resolution documents for each POI are printed and stacked in four folders on the desk.",
+      "time_of_day": "Resolution — post-investigation",
+      "lighting": "Desk lamp, late afternoon light through a small window, corkboard overhead lamp",
+      "notable_objects": [
+        "corkboard with full evidence web",
+        "Voss center photo with red string connections",
+        "Jordan Mercer photo upper left",
+        "four resolution folders on desk",
+        "router DHCP printout pinned with red marker"
+      ],
+      "atmosphere": "The weight of having solved a murder that was designed to never be a murder. Every piece of evidence was something Voss thought no one would look for. Someone looked."
+    },
+    {
+      "for_doc": "R2",
+      "location": "Harwick County Courthouse — arraignment holding area",
+      "visual_description": "A holding corridor adjacent to the arraignment courtrooms. Aldric Voss is seated on a bench in a suit that no longer looks entirely in command — the jacket is creased, the tie slightly loosened. A public defender's folder sits beside him. Through the corridor window, the Harwick Civic District skyline is visible. The same city he spent 15 years managing is proceeding without him.",
+      "time_of_day": "Morning, arraignment day",
+      "lighting": "Institutional fluorescent, one barred window with natural light",
+      "notable_objects": [
+        "Voss on bench in creased suit",
+        "public defender's folder",
+        "Harwick skyline visible through window",
+        "federal racketeering charge sheet on top of folder"
+      ],
+      "atmosphere": "The fixer, unfixed. The political capital spent. The man who made problems disappear, facing the problem that will not."
+    },
+    {
+      "for_doc": "R3",
+      "location": "Kosta's Diner, Meridian and 5th — booth by the window",
+      "visual_description": "A 24-hour diner three blocks from Meridian Co-Works. Nadia Osei is at the same booth she occupied on the night of October 19 — the CCTV still capture from that night shows the same seat, same window view of the Midtown street. The receipt from that night is in the evidence file. She is cleared. The diner is open, the coffee is still bad, and the city is slightly less corrupt than it was a month ago.",
+      "time_of_day": "Late night (24-hour diner)",
+      "lighting": "Diner overhead fluorescent, neon sign glow from the window, amber streetlight outside",
+      "notable_objects": [
+        "CCTV capture from October 19 showing Nadia in this booth",
+        "timestamped receipt from 11:31pm to 12:47am",
+        "window view of Meridian and 5th",
+        "clearance notation on her case file"
+      ],
+      "atmosphere": "Alibi confirmed. Anger still unresolved. Nadia didn't kill Jordan — but Jordan is still dead, and the city IT systems that Jordan breached are still running."
+    },
+    {
+      "for_doc": "R4",
+      "location": "Harwick City Hall — IT Security Division, Serena Cho's workstation, Floor 2",
+      "visual_description": "Serena Cho is at her desk. Her city employee badge is on the lanyard. The Briarfield investigation has expanded — federal oversight has arrived. Her cooperation agreement with the US Attorney's office sits in a sealed envelope in her bag. She provided the credentials. She sent the warning. She is not charged with murder. What she is charged with, and what it will cost her, is still being decided.",
+      "time_of_day": "Morning, days after the investigation resolves",
+      "lighting": "Fluorescent IT office lighting, same as she has worked under for 11 years",
+      "notable_objects": [
+        "city employee badge on lanyard",
+        "federal cooperation agreement in bag",
+        "IT workstation showing expanded Briarfield audit scope",
+        "Jordan Mercer's name in the case reference header on her monitor"
+      ],
+      "atmosphere": "Complicity without murder. The guilt of someone who gave a warning and then did nothing else, and who has to live in the building where the leak originated, under the oversight that Jordan's death made necessary."
+    }
+  ]
+}

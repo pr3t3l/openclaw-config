@@ -1,0 +1,60 @@
+{
+  "case_slug": "the-last-livestream",
+  "failures": [
+    {
+      "image_id": "img_poi_01_portrait",
+      "reason": "http error: HTTP Error 400: Bad Request",
+      "dest": "/home/robotin/.openclaw/workspace/cases/exports/the-last-livestream/visuals/envelope_A/final/poi_01_alex_vance_portrait.png"
+    },
+    {
+      "image_id": "img_poi_02_mugshot",
+      "reason": "http error: HTTP Error 400: Bad Request",
+      "dest": "/home/robotin/.openclaw/workspace/cases/exports/the-last-livestream/visuals/envelope_A/final/poi_02_sam_miller_mugshot.png"
+    },
+    {
+      "image_id": "img_poi_03_mugshot",
+      "reason": "http error: HTTP Error 400: Bad Request",
+      "dest": "/home/robotin/.openclaw/workspace/cases/exports/the-last-livestream/visuals/envelope_A/final/poi_03_jordan_hayes_mugshot.png"
+    },
+    {
+      "image_id": "img_poi_04_mugshot",
+      "reason": "http error: HTTP Error 400: Bad Request",
+      "dest": "/home/robotin/.openclaw/workspace/cases/exports/the-last-livestream/visuals/envelope_A/final/poi_04_chloe_bennett_mugshot.png"
+    },
+    {
+      "image_id": "img_poi_05_mugshot",
+      "reason": "http error: HTTP Error 400: Bad Request",
+      "dest": "/home/robotin/.openclaw/workspace/cases/exports/the-last-livestream/visuals/envelope_A/final/poi_05_tyler_riggs_mugshot.png"
+    },
+    {
+      "image_id": "img_scene_creator_studio_exterior",
+      "reason": "http error: HTTP Error 400: Bad Request",
+      "dest": "/home/robotin/.openclaw/workspace/cases/exports/the-last-livestream/visuals/envelope_A/final/scene_creator_studio_building_exterior.png"
+    },
+    {
+      "image_id": "img_floorplan_studio_control_room",
+      "reason": "http error: HTTP Error 400: Bad Request",
+      "dest": "/home/robotin/.openclaw/workspace/cases/exports/the-last-livestream/visuals/envelope_C/final/floorplan_studio_control_room_unlabeled.png"
+    },
+    {
+      "image_id": "img_b1_poi-03_mugshot",
+      "reason": "reusable placeholder too small: /home/robotin/.openclaw/workspace/cases/assets/reusable/canonical/poi_03_jordan_hayes_mugshot.png (68 bytes)",
+      "dest": "/home/robotin/.openclaw/workspace/cases/exports/the-last-livestream/visuals/envelope_B/final/poi_03_jordan_hayes_mugshot.png"
+    },
+    {
+      "image_id": "img_b2_poi-04_mugshot",
+      "reason": "reusable placeholder too small: /home/robotin/.openclaw/workspace/cases/assets/reusable/canonical/poi_04_chloe_bennett_mugshot.png (68 bytes)",
+      "dest": "/home/robotin/.openclaw/workspace/cases/exports/the-last-livestream/visuals/envelope_B/final/poi_04_chloe_bennett_mugshot.png"
+    },
+    {
+      "image_id": "img_b3_poi-02_mugshot",
+      "reason": "reusable placeholder too small: /home/robotin/.openclaw/workspace/cases/assets/reusable/canonical/poi_02_sam_miller_mugshot.png (68 bytes)",
+      "dest": "/home/robotin/.openclaw/workspace/cases/exports/the-last-livestream/visuals/envelope_B/final/poi_02_sam_miller_mugshot.png"
+    },
+    {
+      "image_id": "img_b5_poi-05_mugshot",
+      "reason": "reusable placeholder too small: /home/robotin/.openclaw/workspace/cases/assets/reusable/canonical/poi_05_tyler_riggs_mugshot.png (68 bytes)",
+      "dest": "/home/robotin/.openclaw/workspace/cases/exports/the-last-livestream/visuals/envelope_B/final/poi_05_tyler_riggs_mugshot.png"
+    }
+  ]
+}

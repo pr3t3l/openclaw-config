@@ -9,7 +9,31 @@
       "Bash(python3:*)",
       "Bash(git rm:*)",
       "Bash(git push:*)",
-      "Bash(chmod:*)"
+      "Bash(chmod:*)",
+      "Bash(bash scripts/start_plan.sh test-idea \"Quiero un workflow que cuando envíe un gasto por Telegram, me diga cuánto llevo gastado\")",
+      "Bash(bash scripts/start_plan.sh test-quotes \"I want a workflow that says 'hello' and handles \\\\\"double quotes\\\\\" too\")",
+      "Bash(cp /home/robotin/.openclaw/workspace-meta-planner/runs/test-idea/00_intake_summary.json /tmp/good_intake.json)",
+      "Bash(echo \"Exit code: $?\")",
+      "Bash(curl -s --max-time 5 http://127.0.0.1:4000/health)",
+      "Bash(python3 -c \":*)",
+      "Bash(curl -s --max-time 10 -H 'Content-Type: application/json' -d '{\"\"\"\"model\"\"\"\":\"\"\"\"claude-sonnet-4-6\"\"\"\",\"\"\"\"max_tokens\"\"\"\":50,\"\"\"\"messages\"\"\"\":[{\"\"\"\"role\"\"\"\":\"\"\"\"user\"\"\"\",\"\"\"\"content\"\"\"\":\"\"\"\"Say hi\"\"\"\"}]}' http://127.0.0.1:4000/v1/chat/completions)",
+      "Bash(systemctl --user status litellm.service)",
+      "Bash(curl:*)",
+      "Bash(bash /home/robotin/.openclaw/workspace-meta-planner/scripts/resume_plan.sh test-idea)",
+      "Bash(bash scripts/start_plan.sh finance-test \"Quiero un workflow que cuando envíe un gasto o ingreso por Telegram, categorice automáticamente la transacción, actualice mi balance, y me responda cuánto llevo gastado este mes y cuánto me queda de presupuesto. Presupuesto mensual: 5 USD para API costs.\")",
+      "Bash(bash /home/robotin/.openclaw/workspace-meta-planner/scripts/resume_plan.sh finance-test)",
+      "Bash(rm -rf /home/robotin/.openclaw/workspace-declassified/.git)",
+      "Bash(rm -rf /home/robotin/.openclaw/workspace/.git)",
+      "Bash(mkdir -p /home/robotin/openclaw-archive/zombie-workspaces)",
+      "Bash(mv /home/robotin/.openclaw/workspace-art-director /home/robotin/openclaw-archive/zombie-workspaces/)",
+      "Bash(mv /home/robotin/.openclaw/workspace-experience-designer /home/robotin/openclaw-archive/zombie-workspaces/)",
+      "Bash(mv /home/robotin/.openclaw/workspace-narrative-architect /home/robotin/openclaw-archive/zombie-workspaces/)",
+      "Bash(mv /home/robotin/.openclaw/workspace-production-engine /home/robotin/openclaw-archive/zombie-workspaces/)",
+      "Bash(grep -E '\\\\.\\(pdf|png|jpg|jpeg|svg|html\\)$')",
+      "Bash(wc -l echo '--- by subdir ---' du -sh /home/robotin/.openclaw/workspace-declassified/cases/exports/*/visuals/ 2)",
+      "Bash(/dev/null du:*)",
+      "Bash(grep -c \"workspace-declassified/cases/exports.*\\\\\\(visuals\\\\|layout_specs\\\\|final\\\\|envelope_\\\\|\\\\.pdf\\\\|\\\\.png\\\\|\\\\.jpg\\\\\\)\" echo \"---\" git add -n -A)",
+      "Bash(xargs -I{} du -sh {})"
     ]
   }
 }

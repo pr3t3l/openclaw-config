@@ -1,0 +1,913 @@
+{
+  "slug": "the-last-livestream",
+  "documents": [
+    {
+      "doc_id": "A1",
+      "envelope": "A",
+      "sequence_number": 1,
+      "type_id": 4,
+      "type_key": "newspaper_front",
+      "in_world_title": "Austin Chronicle Front Page",
+      "owner_source": "Austin Chronicle",
+      "timestamp": "2026-03-10T08:00:00",
+      "filename_base": "newspaper_front_A1",
+      "player_purpose": "case_introduction",
+      "reveals": "Alex Vance found dead after livestream abruptly cuts out.",
+      "player_inference": "The stream cutting out was not a technical glitch; it was the moment of death.",
+      "document_justification": "Provides the immediate hook and sets the public timeline of events.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-02"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [],
+      "production_brief_writing": {
+        "key_mandatory_line": "The 2.3M subscriber channel went dark at 2:47 AM, and building security found his body at 6:30 AM.",
+        "tone": "Journalistic, slightly sensationalized tech news.",
+        "summary": "Establish the setting, the victim's profile, and the timeline of discovery.",
+        "key_information_to_include": []
+      },
+      "production_brief_newspaper": {
+        "angle": "Local tech celebrity found dead during viral charity event",
+        "quotes": [
+          {
+            "source": "APD spokesperson",
+            "gist": "We are treating this as suspicious"
+          },
+          {
+            "source": "Neighbor",
+            "gist": "He was always streaming; I cannot believe he is gone"
+          },
+          {
+            "source": "Charity organizer",
+            "gist": "Stream was raising thousands per hour; it went dark around 2:47 AM"
+          }
+        ],
+        "planted_clue": "Building management confirmed access control logged normal activity — contradicted by C1 entry/exit log"
+      },
+      "image_needed": true,
+      "image_brief": "A newspaper front page with a photo of the exterior of the creator studio building.",
+      "image_requirements": [
+        {
+          "type": "general",
+          "brief": "Building exterior, neon signs, police tape visible."
+        }
+      ],
+      "production_brief_interview": null,
+      "production_brief_911": null
+    },
+    {
+      "doc_id": "A2",
+      "envelope": "A",
+      "sequence_number": 2,
+      "type_id": 1,
+      "type_key": "poi_sheet",
+      "in_world_title": "APD Suspect List",
+      "owner_source": "Austin Police Department",
+      "timestamp": "2026-03-10T09:00:00",
+      "filename_base": "poi_sheet_A2",
+      "player_purpose": "context_setting",
+      "reveals": "The primary suspects and their relation to Alex.",
+      "player_inference": "Each suspect has a potential motive and access to the studio.",
+      "document_justification": "Mandatory document to introduce the cast of characters.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-02",
+        "POI-03",
+        "POI-04",
+        "POI-05"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1"
+      ],
+      "production_brief_writing": {
+        "key_mandatory_line": "Suspects identified based on building access and recent interactions.",
+        "tone": "Clinical, police procedural.",
+        "summary": "Introduce the POIs clearly and concisely.",
+        "key_information_to_include": []
+      },
+      "image_needed": true,
+      "image_brief": "Mugshots or ID photos for all POIs.",
+      "image_requirements": [
+        {
+          "type": "general",
+          "brief": "Standard APD formatting."
+        }
+      ],
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "A3",
+      "envelope": "A",
+      "sequence_number": 3,
+      "type_id": 7,
+      "type_key": "evidence_mosaic",
+      "in_world_title": "Livestream Final Frames",
+      "owner_source": "Vance Tech Stream Archive",
+      "timestamp": "2026-03-10T02:47:00",
+      "filename_base": "evidence_mosaic_A3",
+      "player_purpose": "clue_delivery",
+      "reveals": "A shadow in the doorway right before the stream dies.",
+      "player_inference": "Someone was in the studio with Alex when the stream ended.",
+      "document_justification": "Visually establishes the critical moment of the crime.",
+      "pois_referenced": [
+        "POI-01"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-05"
+      ],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A1"
+      ],
+      "production_brief_writing": {
+        "key_mandatory_line": "Frame 4302: Unidentified shadow cast on the back wall near the studio entrance.",
+        "tone": "Analytical, technical.",
+        "summary": "Highlight the shadow in the final moments of the stream.",
+        "key_information_to_include": []
+      },
+      "image_needed": false,
+      "image_requirements": [],
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "A4",
+      "envelope": "A",
+      "sequence_number": 4,
+      "type_id": 7,
+      "type_key": "evidence_mosaic",
+      "in_world_title": "Sam's DoorDash Receipt",
+      "owner_source": "DoorDash App Export",
+      "timestamp": "2026-03-10T02:51:00",
+      "filename_base": "evidence_mosaic_A4",
+      "player_purpose": "clue_delivery",
+      "reveals": "Sam Miller DoorDash receipt shows a FuelBurger delivery at 2:51 AM — just 4 minutes after the stream died. The delivery address shows a partial building number matching the studio complex, but the specific entrance or unit is cut off on the receipt image.",
+      "player_inference": "This seems to provide an alibi for Sam at the time of the murder.",
+      "document_justification": "Trojan horse document. Appears to clear Sam, but actually implicates him later.",
+      "pois_referenced": [
+        "POI-02"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-04"
+      ],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A2"
+      ],
+      "production_brief_writing": {
+        "key_mandatory_line": "Order #4417 — FuelBurger — Delivered 2:51 AM — 1200 Tech Park [rest of address cut off in scan]",
+        "tone": "Mundane transactional record.",
+        "summary": "Show the DoorDash receipt as a scanned image crop. The timestamp (2:51 AM) is clear but the delivery address is partially visible — the player sees the building number but not the specific entrance. This looks like an alibi for Sam (he was ordering food, not killing). The full address is revealed in C3.",
+        "key_information_to_include": []
+      },
+      "image_needed": false,
+      "image_requirements": [],
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "A5",
+      "envelope": "A",
+      "sequence_number": 5,
+      "type_id": 2,
+      "type_key": "social_posts",
+      "in_world_title": "Ty Riggs Social Feed",
+      "owner_source": "X/Twitter Export",
+      "timestamp": "2026-03-10T02:30:00",
+      "filename_base": "social_posts_A5",
+      "player_purpose": "tension_builder",
+      "reveals": "Ty posted a selfie geolocated near the studio.",
+      "player_inference": "Ty is lying about being home; he was physically close to the scene.",
+      "document_justification": "Introduces suspicion around the superfan.",
+      "pois_referenced": [
+        "POI-05"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-03"
+      ],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A2"
+      ],
+      "production_brief_writing": {
+        "key_mandatory_line": "Just chilling outside the fortress. Hope Alex sees the dono! #VanceTech24",
+        "tone": "Enthusiastic fan, slightly creepy.",
+        "summary": "Show Ty's obsession and physical proximity.",
+        "key_information_to_include": []
+      },
+      "image_needed": false,
+      "image_requirements": [],
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "B1",
+      "envelope": "B",
+      "sequence_number": 1,
+      "type_id": 11,
+      "type_key": "interrogation_transcript",
+      "in_world_title": "Interview: Jordan Hayes",
+      "owner_source": "APD Interview Room 2",
+      "timestamp": "2026-03-10T11:00:00",
+      "filename_base": "interview_B1",
+      "player_purpose": "tension_builder",
+      "reveals": "Jordan claims no recent contact with Alex, citing a bitter lawsuit.",
+      "player_inference": "Jordan has a strong motive (money/revenge), but is he lying about contact?",
+      "document_justification": "Explores the business partner angle and introduces a contradiction.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-03"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-02"
+      ],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A2"
+      ],
+      "production_brief_writing": {
+        "key_mandatory_line": "I haven't spoken to Alex since the lawyers took over. We were done.",
+        "tone": "Defensive, corporate, irritated.",
+        "summary": "Establish Jordan's bitterness and establish his claim of no contact.",
+        "key_information_to_include": []
+      },
+      "production_brief_interview": {
+        "phases": [
+          {
+            "phase": 1,
+            "label": "Baseline",
+            "tactic": "Jordan is annoyed to be brought in, treating it like a waste of his valuable time.",
+            "goal": "Jordan is annoyed to be brought in, treating it like a waste of his valuable time.",
+            "exchanges": 4
+          },
+          {
+            "phase": 2,
+            "label": "Pressure",
+            "tactic": "Detective presses on the lawsuit details and bad blood.",
+            "goal": "Detective presses on the lawsuit details and bad blood.",
+            "exchanges": 4
+          },
+          {
+            "phase": 3,
+            "label": "The Lie",
+            "tactic": "Jordan insists he cut all ties and communication.",
+            "goal": "Jordan insists he cut all ties and communication.",
+            "exchanges": 4
+          },
+          {
+            "phase": 4,
+            "label": "The Slip",
+            "tactic": "He mentions a specific detail about the studio setup that implies recent knowledge.",
+            "goal": "He mentions a specific detail about the studio setup that implies recent knowledge.",
+            "exchanges": 4
+          },
+          {
+            "phase": 5,
+            "label": "Recovery",
+            "tactic": "He claims he read about the setup online.",
+            "goal": "He claims he read about the setup online.",
+            "exchanges": 4
+          }
+        ],
+        "subject_poi_id": "POI-03",
+        "min_exchanges": 18,
+        "the_lie": "Jordan insists he cut all ties and communication.",
+        "the_slip": {
+          "what": "He mentions a specific detail about the studio setup that implies recent knowledge.",
+          "how": "Revealed naturally during interview pressure"
+        }
+      },
+      "image_needed": true,
+      "image_brief": "Mugshot of Jordan Hayes.",
+      "image_requirements": [
+        {
+          "type": "general",
+          "brief": "Standard APD mugshot."
+        }
+      ],
+      "audio": {
+        "voice_id": "male_corporate",
+        "description": "Crisp, impatient, slightly arrogant."
+      },
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "B2",
+      "envelope": "B",
+      "sequence_number": 2,
+      "type_id": 11,
+      "type_key": "interrogation_transcript",
+      "in_world_title": "Interview: Chloe Bennett",
+      "owner_source": "APD Interview Room 3",
+      "timestamp": "2026-03-10T13:30:00",
+      "filename_base": "interview_B2",
+      "player_purpose": "clue_delivery",
+      "reveals": "Chloe dropped off the energy drinks and claims she bought them right before.",
+      "player_inference": "Chloe provided the method of poison delivery. Did she spike them?",
+      "document_justification": "Explores the girlfriend angle and the timeline of the drinks.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-04"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-01"
+      ],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A2"
+      ],
+      "production_brief_writing": {
+        "key_mandatory_line": "I just grabbed the case on my way over. He needed his specific brand.",
+        "tone": "Grieving, defensive, scattered.",
+        "summary": "Establish Chloe as the source of the drinks and her claim about the purchase time.",
+        "key_information_to_include": [
+          "Chloe mentions buying energy drinks at 6:15 PM — hours before drop-off"
+        ]
+      },
+      "production_brief_interview": {
+        "phases": [
+          {
+            "phase": 1,
+            "label": "Baseline",
+            "tactic": "Chloe is visibly upset, crying intermittently.",
+            "goal": "Chloe is visibly upset, crying intermittently.",
+            "exchanges": 4
+          },
+          {
+            "phase": 2,
+            "label": "Pressure",
+            "tactic": "Detective asks about the specific timeline of the drop-off.",
+            "goal": "Detective asks about the specific timeline of the drop-off.",
+            "exchanges": 4
+          },
+          {
+            "phase": 3,
+            "label": "The Lie",
+            "tactic": "She insists she bought the drinks immediately before dropping them off.",
+            "goal": "She insists she bought the drinks immediately before dropping them off.",
+            "exchanges": 4
+          },
+          {
+            "phase": 4,
+            "label": "The Slip",
+            "tactic": "She mentions checking her makeup in a specific store mirror that isn't near the studio.",
+            "goal": "She mentions checking her makeup in a specific store mirror that isn't near the studio.",
+            "exchanges": 4
+          },
+          {
+            "phase": 5,
+            "label": "Recovery",
+            "tactic": "She claims she was just flustered and misremembered the route.",
+            "goal": "She claims she was just flustered and misremembered the route.",
+            "exchanges": 4
+          }
+        ],
+        "subject_poi_id": "POI-04",
+        "min_exchanges": 18,
+        "the_lie": "She insists she bought the drinks immediately before dropping them off.",
+        "the_slip": {
+          "what": "Chloe says she grabbed the drinks on her way over, implying a quick spontaneous stop. But she accidentally mentions using the self-checkout at HEB, lane 7 — a specific detail that suggests a deliberate, unhurried shopping trip, not a quick grab. Combined with the 6:15 PM receipt timestamp, this proves she bought them hours before arriving.",
+          "how": "Detective asks casually where she picked up the drinks. Chloe says just on my way here, no big deal. Detective asks which store. She says HEB, self-checkout lane 7, the one near the pharmacy. The specificity betrays a planned trip, not an impulse buy."
+        }
+      },
+      "image_needed": true,
+      "image_brief": "Mugshot of Chloe Bennett.",
+      "image_requirements": [
+        {
+          "type": "general",
+          "brief": "Standard APD mugshot."
+        }
+      ],
+      "audio": {
+        "voice_id": "female_emotional",
+        "description": "Tearful, shaky, defensive when pressed."
+      },
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "B3",
+      "envelope": "B",
+      "sequence_number": 3,
+      "type_id": 11,
+      "type_key": "interrogation_transcript",
+      "in_world_title": "Interview: Sam Miller",
+      "owner_source": "APD Interview Room 1",
+      "timestamp": "2026-03-10T15:00:00",
+      "filename_base": "interview_B3",
+      "player_purpose": "red_herring",
+      "reveals": "Sam relies heavily on his delivery alibi and feigns ignorance of the shadow.",
+      "player_inference": "Sam seems cleared, directing suspicion toward others.",
+      "document_justification": "Solidifies Sam's false alibi and establishes his deceptive demeanor.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-02"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "A2",
+        "A4"
+      ],
+      "production_brief_writing": {
+        "key_mandatory_line": "I was at home eating my late-night pad thai when the stream went down. Check the app.",
+        "tone": "Calm, helpful, almost too composed.",
+        "summary": "Lean into the DoorDash alibi to misdirect the player.",
+        "key_information_to_include": []
+      },
+      "production_brief_interview": {
+        "phases": [
+          {
+            "phase": 1,
+            "label": "Baseline",
+            "tactic": "Sam is cooperative, offering technical explanations for the stream failure.",
+            "goal": "Sam is cooperative, offering technical explanations for the stream failure.",
+            "exchanges": 4
+          },
+          {
+            "phase": 2,
+            "label": "Pressure",
+            "tactic": "Detective asks where he was exactly.",
+            "goal": "Detective asks where he was exactly.",
+            "exchanges": 4
+          },
+          {
+            "phase": 3,
+            "label": "The Lie",
+            "tactic": "He confidently states he was at his apartment.",
+            "goal": "He confidently states he was at his apartment.",
+            "exchanges": 4
+          },
+          {
+            "phase": 4,
+            "label": "The Slip",
+            "tactic": "He perfectly recalls the timestamp of the outage without checking notes.",
+            "goal": "He perfectly recalls the timestamp of the outage without checking notes.",
+            "exchanges": 4
+          },
+          {
+            "phase": 5,
+            "label": "Recovery",
+            "tactic": "He says it's his job to know the stream metrics.",
+            "goal": "He says it's his job to know the stream metrics.",
+            "exchanges": 4
+          }
+        ],
+        "subject_poi_id": "POI-02",
+        "min_exchanges": 18,
+        "the_lie": "He confidently states he was at his apartment.",
+        "the_slip": {
+          "what": "Sam says the network switch in the control room was already rebooting when he arrived to check equipment — but the network logs show the switch was manually triggered at 2:47 AM, exactly when the stream died. How would Sam know it was rebooting unless he was already there?",
+          "how": "Detective asks Sam what he found when he went to check the equipment. Sam tries to minimize his involvement by saying everything was already resetting on its own. But rebooting implies he saw it mid-process, placing him in the control room during the critical window."
+        }
+      },
+      "image_needed": true,
+      "image_brief": "Mugshot of Sam Miller.",
+      "image_requirements": [
+        {
+          "type": "general",
+          "brief": "Standard APD mugshot."
+        }
+      ],
+      "audio": {
+        "voice_id": "male_calm",
+        "description": "Smooth, practiced, overly helpful."
+      },
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "B4",
+      "envelope": "B",
+      "sequence_number": 4,
+      "type_id": 10,
+      "type_key": "forensic_report",
+      "in_world_title": "Autopsy: Alex Vance",
+      "owner_source": "Travis County Medical Examiner",
+      "timestamp": "2026-03-11T10:00:00",
+      "filename_base": "autopsy_B4",
+      "player_purpose": "clue_delivery",
+      "reveals": "Cause of death is a lethal dose of a prescription stimulant found in the stomach contents, mixed with an energy drink.",
+      "player_inference": "The murderer tampered with the drinks Chloe brought.",
+      "document_justification": "Establishes the murder weapon/method.",
+      "pois_referenced": [
+        "POI-01"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "B2"
+      ],
+      "production_brief_writing": {
+        "key_mandatory_line": "Toxicology indicates a massive overdose of dextroamphetamine, ingested alongside a high-caffeine beverage.",
+        "tone": "Clinical, scientific, detached.",
+        "summary": "Confirm the poison and its delivery method.",
+        "key_information_to_include": []
+      },
+      "image_needed": true,
+      "image_brief": "A body diagram showing no external trauma, focusing on internal toxicology.",
+      "image_requirements": [
+        {
+          "type": "general",
+          "brief": "Standard ME body diagram."
+        }
+      ],
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "B5",
+      "envelope": "B",
+      "sequence_number": 5,
+      "type_id": 11,
+      "type_key": "interrogation_transcript",
+      "in_world_title": "Interview: Tyler 'Ty' Riggs (POI-05)",
+      "owner_source": "APD Interview Room 3",
+      "timestamp": "2026-03-10T14:30:00",
+      "filename_base": "interview_B5_tyler_riggs",
+      "player_purpose": "red_herring",
+      "reveals": "Tyler admits he was outside the studio building that night hoping to get noticed on stream, but insists he never went inside. He becomes defensive when asked about his escalating Discord messages.",
+      "player_inference": "Tyler had motive (obsessive fan behavior) and was physically near the scene, but did he actually enter the building?",
+      "document_justification": "Addresses the superfan angle. Tyler looks suspicious due to proximity and obsessive behavior, but building access logs in C1 prove he never entered.",
+      "pois_referenced": [
+        "POI-05"
+      ],
+      "introduces_contradictions": [
+        "CONTRA-03"
+      ],
+      "resolves_contradictions": [
+        "CONTRA-01"
+      ],
+      "depends_on": [
+        "B2"
+      ],
+      "production_brief_writing": {
+        "summary": "Full interrogation of Tyler Riggs, the superfan Discord moderator caught near the studio. Nervous, over-eager, then defensive about threats.",
+        "tone": "nervous, overly cooperative, then defensive when cornered",
+        "min_words": 600,
+        "key_mandatory_line": "I was just sitting in my car in the parking lot, okay? I wanted to see if he would mention my name on stream. I never went inside.",
+        "key_information_to_include": [
+          "Tyler was in the parking lot from approximately 1:00 AM to 3:30 AM",
+          "He saw Chloe leave around 10:45 PM",
+          "He noticed studio lights go dark at 2:47 AM",
+          "His Discord DMs escalated from fan messages to veiled threats",
+          "He claims the threats were just venting"
+        ],
+        "voice_notes": "Speaks fast, uses internet slang, apologizes constantly. When confronted about threats, switches to monosyllabic answers."
+      },
+      "image_needed": true,
+      "image_requirements": [
+        {
+          "type": "mugshot",
+          "subject": "POI-05",
+          "brief": "22yo male, hoodie, anxious, gaming headset around neck"
+        }
+      ],
+      "production_brief_interview": {
+        "subject_poi_id": "POI-05",
+        "interviewer_name": "Det. Sarah Okafor",
+        "min_exchanges": 18,
+        "phases": [
+          {
+            "phase": 1,
+            "label": "Rapport",
+            "tactic": "Let Tyler talk about his admiration for Alex",
+            "goal": "Establish baseline eager cooperative",
+            "exchanges": 4
+          },
+          {
+            "phase": 2,
+            "label": "Timeline",
+            "tactic": "Walk through his night hour by hour",
+            "goal": "Lock in claim of staying in car",
+            "exchanges": 5
+          },
+          {
+            "phase": 3,
+            "label": "Pressure",
+            "tactic": "Present printouts of Discord DMs",
+            "goal": "Force him to explain escalating language",
+            "exchanges": 5
+          },
+          {
+            "phase": 4,
+            "label": "The slip",
+            "tactic": "Casual question about studio layout",
+            "goal": "Tyler mentions control room door knowledge he should not have",
+            "exchanges": 4
+          }
+        ],
+        "the_lie": "Claims he never left his car and never entered the building",
+        "the_slip": {
+          "what": "Tyler mentions the door between the control room and studio — an interior detail not visible from outside or on the stream",
+          "how": "Over-describes building layout trying to be helpful, reveals interior knowledge"
+        }
+      },
+      "production_brief_911": null,
+      "production_brief_newspaper": null,
+      "image_brief": "Mugshot of Tyler Riggs"
+    },
+    {
+      "doc_id": "C1",
+      "envelope": "C",
+      "sequence_number": 1,
+      "type_id": 8,
+      "type_key": "entry_exit_log",
+      "in_world_title": "Studio Building Access Logs",
+      "owner_source": "Building Security",
+      "timestamp": "2026-03-10T07:00:00",
+      "filename_base": "access_log_C1",
+      "player_purpose": "revelation",
+      "reveals": "Ty Riggs never badged into the building.",
+      "player_inference": "Ty was outside, but he couldn't have killed Alex because he couldn't get in.",
+      "document_justification": "Clears Ty Riggs and resolves his contradiction.",
+      "pois_referenced": [
+        "POI-05"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [
+        "CONTRA-03"
+      ],
+      "depends_on": [
+        "A5"
+      ],
+      "production_brief_writing": {
+        "key_mandatory_line": "No entry records found for T. Riggs or guest access codes during the specified timeframe.",
+        "tone": "Dry security log.",
+        "summary": "Prove Ty didn't enter the building.",
+        "key_information_to_include": []
+      },
+      "image_needed": false,
+      "image_requirements": [],
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "C2",
+      "envelope": "C",
+      "sequence_number": 2,
+      "type_id": 18,
+      "type_key": "calls_sms_log",
+      "in_world_title": "Alex's Phone Records",
+      "owner_source": "AT&T Subpoena",
+      "timestamp": "2026-03-11T14:00:00",
+      "filename_base": "phone_log_C2",
+      "player_purpose": "revelation",
+      "reveals": "A 12-minute call between Alex and Jordan the day before.",
+      "player_inference": "Jordan lied about contact. However, an SMS snippet shows it was a final settlement agreement. Jordan was moving on, not planning murder.",
+      "document_justification": "Resolves Jordan's contradiction.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-03"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [
+        "CONTRA-02"
+      ],
+      "depends_on": [
+        "B1"
+      ],
+      "production_brief_writing": {
+        "key_mandatory_line": "SMS: 'Fine. The lawyers handle the rest. I'm out.'",
+        "tone": "Data export.",
+        "summary": "Show the call happened, but the context clears Jordan of immediate murderous intent.",
+        "key_information_to_include": []
+      },
+      "image_needed": false,
+      "image_requirements": [],
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "C3",
+      "envelope": "C",
+      "sequence_number": 3,
+      "type_id": 9,
+      "type_key": "email_export",
+      "in_world_title": "DoorDash Support Inquiry",
+      "owner_source": "Sam's Email Account",
+      "timestamp": "2026-03-10T10:00:00",
+      "filename_base": "email_export_C3",
+      "player_purpose": "revelation",
+      "reveals": "DoorDash support inquiry email shows the FULL delivery details: order delivered to 1200 Tech Park Dr, Unit B — Control Room Side Entrance. This is not Sam apartment. This is the studio control room, proving Sam was physically in the control room at 2:51 AM, 4 minutes after the stream died and Alex was killed.",
+      "player_inference": "Sam was AT THE STUDIO in the control room at 2:51 AM, not at his apartment.",
+      "document_justification": "The pivot document. Destroys Sam's alibi using the Trojan horse evidence.",
+      "pois_referenced": [
+        "POI-02"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [
+        "CONTRA-04"
+      ],
+      "depends_on": [
+        "A4"
+      ],
+      "production_brief_writing": {
+        "key_mandatory_line": "Delivery address on file: 1200 Tech Park Dr, Unit B — Control Room Side Entrance. Customer note: leave at door, do not ring.",
+        "tone": "Annoyed customer service email.",
+        "summary": "Email exchange between DoorDash support and APD showing full order details. The key revelation: the delivery address specifies Control Room Side Entrance. This is the pivot document that breaks Sam alibi — he was not at home ordering food, he was in the control room next to the studio where Alex died.",
+        "key_information_to_include": []
+      },
+      "image_needed": false,
+      "image_requirements": [],
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "C4",
+      "envelope": "C",
+      "sequence_number": 4,
+      "type_id": 19,
+      "type_key": "floor_plan",
+      "in_world_title": "Vance Tech Studio Layout",
+      "owner_source": "Building Management",
+      "timestamp": "2026-03-01T00:00:00",
+      "filename_base": "floor_plan_C4",
+      "player_purpose": "revelation",
+      "reveals": "The control room connects directly to the main studio.",
+      "player_inference": "Sam could poison the drink, cut the stream from the control room, and step into the studio (casting the shadow) without ever entering the main hall.",
+      "document_justification": "Provides the spatial reality needed to understand how the crime was committed.",
+      "pois_referenced": [
+        "POI-01",
+        "POI-02"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [
+        "CONTRA-05"
+      ],
+      "depends_on": [
+        "A3",
+        "C3"
+      ],
+      "production_brief_writing": {
+        "key_mandatory_line": "Annotated detail: Connecting door between Control Room and Main Studio.",
+        "tone": "Architectural, technical.",
+        "summary": "Show the physical connection that makes Sam's method possible.",
+        "key_information_to_include": []
+      },
+      "image_needed": true,
+      "image_brief": "A floor plan showing the main studio, the adjacent control room, the side entrance, and the connecting door.",
+      "image_requirements": [
+        {
+          "type": "general",
+          "brief": "Clear labels for all relevant rooms and doors."
+        }
+      ],
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "R1",
+      "envelope": "R",
+      "sequence_number": 1,
+      "type_id": 5,
+      "type_key": "official_memo",
+      "in_world_title": "Resolution: Chloe Bennett",
+      "owner_source": "District Attorney's Office",
+      "timestamp": "2026-03-15T09:00:00",
+      "filename_base": "resolution_R1",
+      "player_purpose": "resolution",
+      "reveals": "Chloe Bennett is cleared. Grocery receipt proves she bought drinks hours earlier, CCTV confirms she left the building at 10:45 PM — over 4 hours before the murder. Her prescribed medication is unrelated to the case.",
+      "player_inference": "She provided the drinks, but didn't poison them.",
+      "document_justification": "Mandatory resolution doc.",
+      "pois_referenced": [
+        "POI-04"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "B5"
+      ],
+      "production_brief_writing": {
+        "key_mandatory_line": "No charges filed against Ms. Bennett; timeline of purchase clears her of direct tampering prior to delivery.",
+        "tone": "Legal memo.",
+        "summary": "Clear Chloe formally.",
+        "key_information_to_include": []
+      },
+      "image_needed": false,
+      "image_requirements": [],
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "R2",
+      "envelope": "R",
+      "sequence_number": 2,
+      "type_id": 5,
+      "type_key": "official_memo",
+      "in_world_title": "Resolution: Jordan Hayes",
+      "owner_source": "District Attorney's Office",
+      "timestamp": "2026-03-15T09:15:00",
+      "filename_base": "resolution_R2",
+      "player_purpose": "resolution",
+      "reveals": "Jordan Hayes is cleared. Phone records confirm the 12-minute call was a settlement negotiation through lawyers. His keycard was deactivated 6 months ago, and building access logs show no entry attempts.",
+      "player_inference": "He had motive, but was finalizing a settlement, not planning a murder.",
+      "document_justification": "Mandatory resolution doc.",
+      "pois_referenced": [
+        "POI-03"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "C2"
+      ],
+      "production_brief_writing": {
+        "key_mandatory_line": "Investigation into Mr. Hayes concludes civil litigation was the extent of his ongoing conflict with the deceased.",
+        "tone": "Legal memo.",
+        "summary": "Clear Jordan formally.",
+        "key_information_to_include": []
+      },
+      "image_needed": false,
+      "image_requirements": [],
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "R3",
+      "envelope": "R",
+      "sequence_number": 3,
+      "type_id": 5,
+      "type_key": "official_memo",
+      "in_world_title": "Resolution: Ty Riggs",
+      "owner_source": "District Attorney's Office",
+      "timestamp": "2026-03-15T09:30:00",
+      "filename_base": "resolution_R3",
+      "player_purpose": "resolution",
+      "reveals": "Tyler 'Ty' Riggs is cleared. Despite being in the parking lot all night and sending threatening Discord DMs, building access logs confirm he never entered. His knowledge of the control room door came from an old studio tour video.",
+      "player_inference": "He was creepy, but couldn't get inside.",
+      "document_justification": "Mandatory resolution doc.",
+      "pois_referenced": [
+        "POI-05"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "C1"
+      ],
+      "production_brief_writing": {
+        "key_mandatory_line": "Mr. Riggs' physical presence outside the building is noted, but lack of entry confirms his non-involvement in the primary incident.",
+        "tone": "Legal memo.",
+        "summary": "Clear Ty formally.",
+        "key_information_to_include": []
+      },
+      "image_needed": false,
+      "image_requirements": [],
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    },
+    {
+      "doc_id": "R4",
+      "envelope": "R",
+      "sequence_number": 4,
+      "type_id": 15,
+      "type_key": "court_order",
+      "in_world_title": "Arrest Warrant: Sam Miller",
+      "owner_source": "Travis County Court",
+      "timestamp": "2026-03-15T10:00:00",
+      "filename_base": "resolution_R4",
+      "player_purpose": "resolution",
+      "reveals": "Sam is arrested for the murder of Alex Vance.",
+      "player_inference": "Sam's alibi was broken, placing him at the scene with the means, motive, and opportunity.",
+      "document_justification": "Mandatory resolution doc naming the culprit.",
+      "pois_referenced": [
+        "POI-02",
+        "POI-01"
+      ],
+      "introduces_contradictions": [],
+      "resolves_contradictions": [],
+      "depends_on": [
+        "C3",
+        "C4"
+      ],
+      "production_brief_writing": {
+        "key_mandatory_line": "Warrant authorized for the arrest of Sam Miller based on evidence placing him in the control room adjacent to the victim at the time of death.",
+        "tone": "Formal legal warrant.",
+        "summary": "Arrest Sam and summarize the evidence against him.",
+        "key_information_to_include": []
+      },
+      "image_needed": false,
+      "image_requirements": [],
+      "production_brief_interview": null,
+      "production_brief_911": null,
+      "production_brief_newspaper": null
+    }
+  ]
+}

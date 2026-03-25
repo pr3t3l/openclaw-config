@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        @page {
+            margin: 18mm;
+            size: letter;
+        }
+        
+        body {
+            font-family: "Times New Roman", serif;
+            font-size: 11pt;
+            line-height: 1.5;
+            color: #000;
+            background: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .letterhead {
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 15px;
+        }
+        
+        .letterhead img {
+            max-width: 120px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        
+        .agency-name {
+            font-size: 14pt;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .agency-address {
+            font-size: 10pt;
+            color: #666;
+        }
+        
+        .memo-header {
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .memo-title {
+            font-size: 16pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        
+        .memo-metadata {
+            font-size: 10pt;
+            margin-bottom: 20px;
+            border: 1px solid #999;
+            padding: 10px;
+            background: rgba(248, 248, 248, 0.5);
+        }
+        
+        .metadata-row {
+            margin-bottom: 5px;
+        }
+        
+        .metadata-label {
+            font-weight: bold;
+            display: inline-block;
+            width: 100px;
+        }
+        
+        .memo-content {
+            line-height: 1.6;
+            text-align: justify;
+            white-space: pre-wrap;
+        }
+        
+        .highlight {
+            background: rgba(255, 255, 0, 0.3);
+            padding: 2px 4px;
+        }
+        
+        .confidential-stamp {
+            position: absolute;
+            top: 100px;
+            right: 50px;
+            transform: rotate(25deg);
+            opacity: 0.8;
+        }
+        
+        .confidential-stamp img {
+            width: 100px;
+            height: auto;
+        }
+        
+        .signature-section {
+            margin-top: 40px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+        
+        .signature-line {
+            border-bottom: 1px solid #000;
+            width: 200px;
+            height: 30px;
+            margin: 10px 0;
+        }
+        
+        .signature-label {
+            font-size: 9pt;
+            color: #666;
+            text-transform: uppercase;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 8pt;
+            color: #666;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="letterhead">
+        {{#if letterhead}}
+        <img src="{{letterhead}}" alt="Agency letterhead">
+        {{else}}
+        <div class="agency-name">{{agency}}</div>
+        <div class="agency-address">{{location}}</div>
+        {{/if}}
+    </div>
+    
+    <div class="memo-header">
+        <div class="memo-title">{{title}}</div>
+    </div>
+    
+    <div class="memo-metadata">
+        <div class="metadata-row">
+            <span class="metadata-label">TO:</span> {{recipient}}
+        </div>
+        <div class="metadata-row">
+            <span class="metadata-label">FROM:</span> {{sender}}
+        </div>
+        <div class="metadata-row">
+            <span class="metadata-label">DATE:</span> {{date}}
+        </div>
+        <div class="metadata-row">
+            <span class="metadata-label">RE:</span> {{subject}}
+        </div>
+        <div class="metadata-row">
+            <span class="metadata-label">CASE:</span> {{caseNumber}}
+        </div>
+        <div class="metadata-row">
+            <span class="metadata-label">CLASSIFICATION:</span> {{classification}}
+        </div>
+    </div>
+    
+    <div class="memo-content">{{{content}}}</div>
+    
+    {{#if confidentialStamp}}
+    <div class="confidential-stamp">
+        <img src="{{confidentialStamp}}" alt="Confidential stamp">
+    </div>
+    {{/if}}
+    
+    <div class="signature-section">
+        <div class="signature-line"></div>
+        <div class="signature-label">Authorized Signature</div>
+    </div>
+    
+    <div class="footer">
+        <strong>{{caseTitle}}</strong><br>
+        Prepared for training / investigative simulation. All persons depicted are fictional within this case universe.
+    </div>
+</body>
+</html>

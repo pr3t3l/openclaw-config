@@ -1,0 +1,51 @@
+{
+  "case_slug": "the-last-livestream",
+  "scenes": [
+    {
+      "for_doc": "A1",
+      "location": "Creator studio building exterior, Austin Tech District",
+      "visual_description": "A modern glass-and-steel studio building on a mixed-use tech corridor. Police tape blocks off the entrance while two patrol cars sit curbside. The pavement looks damp and reflects neon from nearby storefronts.",
+      "time_of_day": "dawn, shortly after daybreak",
+      "lighting": "Cool dawn ambient light mixed with red-blue police light reflections",
+      "notable_objects": [
+        "yellow police tape",
+        "patrol cars",
+        "glass lobby doors",
+        "neon storefront reflections"
+      ],
+      "atmosphere": "Public-facing and tense; a place built for cameras now framed as a crime scene."
+    },
+    {
+      "for_doc": "C4",
+      "location": "Interior suite layout: streaming studio + adjacent control room",
+      "visual_description": "A compact two-room production suite: the main streaming studio opens into a small control room packed with monitors and network gear. A side entrance corridor leads directly into the control room, and a single interior door connects control room to studio.",
+      "time_of_day": "late night (context: the 2:47 AM outage window)",
+      "lighting": "Cool LED spill from monitor screens and dim overhead practicals",
+      "notable_objects": [
+        "monitor wall in control room",
+        "network rack",
+        "side entrance corridor",
+        "interior connecting door"
+      ],
+      "atmosphere": "Claustrophobic and technical; the kind of space where a small action can cause a huge outage."
+    },
+    {
+      "scene_id": "scene_creator_studio_interior_setup",
+      "for_doc": "A3",
+      "title": "Streaming Studio \u2014 Interior Setup (Pre-Collapse)",
+      "visual_description": "Inside the soundproofed creator studio: RGB accent lights, acoustic foam panels, a desk with a high-end PC tower, dual monitors, a camera on tripod aimed at a gaming chair, a boom mic, energy drink cans, and a small mini-fridge in the corner. A soft key light faces the chair; cables are neatly routed. It feels clean, curated, and claustrophobic."
+    },
+    {
+      "scene_id": "scene_parking_lot_tyler_night",
+      "for_doc": "A5",
+      "title": "Parking Lot Outside the Studio \u2014 Tyler Watching the Stream",
+      "visual_description": "A dim Austin tech-district parking lot at night: rows of cars, a few flickering LED lot lights, the glass studio building in the background. Inside one parked car, the glow of a phone/laptop screen reflects on a young man\u2019s face as he watches the livestream; hoodie up, anxious posture. Rain-slick pavement and distant neon signage add tension."
+    },
+    {
+      "scene_id": "scene_control_room_rack_network",
+      "for_doc": "C1",
+      "title": "Control Room \u2014 Network Rack and Switching Gear",
+      "visual_description": "Adjacent control room packed with production gear: a small network rack with a router, switch, labeled ethernet cables, a streaming encoder box, and a monitor showing the livestream dashboard. A side entrance door is visible. The room is darker and more utilitarian than the studio, with harsh overhead lighting and a faint hum of equipment."
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "mode": "playthrough",
+  "solvability": "YES",
+  "difficulty_score": 6,
+  "my_solving_path": "Envelope A: I treated this as a locked-room-ish digital case. Early ranking leaned toward Ty (proximity + escalating posts) and Chloe (drink supply), with Sam ‘cleared’ by the 2:51 delivery timestamp (A4) and Jordan as a background money-motive suspect. Envelope B: Autopsy (B4) confirms targeted drink tampering, pushing suspicion toward whoever had post-dropoff access; Sam’s interview (B3) reads overly composed and technically over-specific about the control-room network switch status, bumping him up the list, while Chloe’s purchase-time lie (B2) reads as self-protective rather than homicidal. Ty (B5) stays suspicious but his inability to explain entry becomes the key question. Envelope C: Access logs (C1) clear Ty on entry and simultaneously place Sam at the side entrance at 2:15 and show the DoorDash door-open at 2:52, making Sam the prime suspect. Phone records (C2) resolve Jordan’s ‘no contact’ lie into settlement closure. The pivot is the DoorDash email (C3) proving the delivery address is the Control Room Side Entrance (direct contradiction of Sam’s at-home claim). Floor plan (C4) supplies the physical ‘how’: side entrance → control room → connecting door → studio, satisfying the shadow evidence (A3). By the end of C4, Sam is the only suspect with motive + access + opportunity + method alignment.",
+  "identified_culprit_at": "Envelope C, after reading C3 (reinforced by C4)",
+  "red_herring_assessment": "Ty is a strong early red herring (A5/B5) because he is physically nearby and has threatening messages; he is eliminated cleanly in C1 when the access-control export shows no entry record. Chloe is an effective mid-game red herring because she introduces the delivery mechanism (B2/B4) and lies about timing, but her lie resolves within B2 into fear-of-blame. Jordan is a lighter red herring: strong motive coloration (B1) but eliminated via C2 settlement-tone texts and lack of access.",
+  "pacing_notes": "Envelope A is a tight hook that creates a concrete time anchor (02:47) and introduces the Trojan horse receipt with the address cropped, which sustains curiosity. Envelope B is the heaviest read due to multiple long interviews; it functions well as the ‘suspect soup’ phase and adds the cold, clinical certainty of method via B4. Envelope C lands the deduction pivot decisively (C1/C3/C4) and feels satisfying; however, it risks feeling ‘too fast’ because it resolves multiple threads rapidly—mitigated here by the substantive length/detail of C1 and C3. Envelope R provides clear prosecutorial closure without adding new required facts.",
+  "document_ordering_notes": "Overall sequence is fair and intuitive. A4 preceding B3 helps Sam’s alibi feel established before it is attacked. B5 before C1 is a good setup/payoff for clearing Ty. C3 immediately followed by C4 delivers a strong one-two punch (alibi collapse → method/space explanation).",
+  "suspect_ranking_evolution": [
+    {
+      "after_envelope": "A",
+      "ranking": [
+        { "poi_id": "POI-05", "name": "Tyler 'Ty' Riggs", "likelihood": 0.35, "why": "Geotagged proximity + unsettling escalation; feels like the obvious ‘chat saw a shadow’ suspect." },
+        { "poi_id": "POI-04", "name": "Chloe Bennett", "likelihood": 0.25, "why": "Supplied drinks (potential vector) and was on-site." },
+        { "poi_id": "POI-03", "name": "Jordan Hayes", "likelihood": 0.2, "why": "Strong money motive implied by lawsuit; no access proof yet." },
+        { "poi_id": "POI-02", "name": "Sam Miller", "likelihood": 0.2, "why": "Receipt reads like an alibi; still has access/technical capability in the back of mind." }
+      ]
+    },
+    {
+      "after_envelope": "B",
+      "ranking": [
+        { "poi_id": "POI-02", "name": "Sam Miller", "likelihood": 0.4, "why": "Overly precise technical language + rehearsed timeline; has the most meaningful access after drink drop-off." },
+        { "poi_id": "POI-05", "name": "Tyler 'Ty' Riggs", "likelihood": 0.3, "why": "Still near scene with threats; critical uncertainty is ‘could he get in?’" },
+        { "poi_id": "POI-04", "name": "Chloe Bennett", "likelihood": 0.2, "why": "Timing lie is suspicious but resolves as fear-of-blame; no clear opportunity window." },
+        { "poi_id": "POI-03", "name": "Jordan Hayes", "likelihood": 0.1, "why": "Motive-only; feels like a classic misdirect pending phone records." }
+      ]
+    },
+    {
+      "after_envelope": "C",
+      "ranking": [
+        { "poi_id": "POI-02", "name": "Sam Miller", "likelihood": 0.9, "why": "C1 places him at side entrance at 2:15; C3 proves DoorDash delivery to control room side entrance; C4 explains shadow + movement path." },
+        { "poi_id": "POI-04", "name": "Chloe Bennett", "likelihood": 0.05, "why": "Source of drinks, but no access during murder window and method implies post-dropoff tampering." },
+        { "poi_id": "POI-05", "name": "Tyler 'Ty' Riggs", "likelihood": 0.03, "why": "Cleared on entry by C1." },
+        { "poi_id": "POI-03", "name": "Jordan Hayes", "likelihood": 0.02, "why": "C2 frames contact as settlement closure; no access evidence." }
+      ]
+    }
+  ],
+  "fairness_issues": [],
+  "overall": "PASS",
+  "suggestions": [
+    "Consider adding (or explicitly referencing) the missing DoorDash proof photo (mentioned as absent in C3) as an optional ‘nice-to-have’ exhibit in a future iteration, but do not make it required for solvability.",
+    "If you want slightly higher difficulty, reduce how explicitly Sam is named in the C1 access log during the 02:15 entry (e.g., show badge ID + initials rather than full name) while keeping it fair and later resolvable—currently the case is very clean once Envelope C begins.",
+    "If Envelope C ever gets shortened in edits, protect the pivot impact by keeping C3’s ‘Control Room Side Entrance’ phrasing unmissable and keeping C4’s connecting-door explanation adjacent in order."
+  ],
+  "benchmark_estimate": {
+    "pillar_scores": {
+      "user_experience": { "raw": 8, "weight": 2, "weighted": 16 },
+      "information_relevance": { "raw": 9, "weight": 1, "weighted": 9 },
+      "clue_structure": { "raw": 8, "weight": 1, "weighted": 8 },
+      "visual_support": { "raw": 7, "weight": 1, "weighted": 7 },
+      "dynamic_variety": { "raw": 7, "weight": 0.5, "weighted": 3.5 },
+      "document_experience": { "raw": 7, "weight": 0.5, "weighted": 3.5 }
+    },
+    "total_weighted": 47.0,
+    "score_out_of_60": 51.3,
+    "percentage": "86%",
+    "above_threshold": true,
+    "weakest_pillars": ["visual_support", "dynamic_variety", "document_experience"],
+    "notes": "Strong, fair pivot: Trojan horse (A4) pays off cleanly in C3, and the physical ‘how’ is credibly delivered by C4. Emotional arc and interview voice work are solid. Visual support is adequate (portraits + exterior + body diagram + floor plan) but could be richer if additional device/receipt visuals are later desired."
+  },
+  "below_benchmark_threshold": false
+}

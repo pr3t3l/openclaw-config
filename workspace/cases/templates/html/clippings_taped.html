@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        @page { margin: 15mm; size: letter; }
+        body {
+            font-family: "Times New Roman", serif;
+            font-size: 10pt;
+            line-height: 1.4;
+            color: #222;
+            background: #d4c9a8;
+            background-image: url('{{paperTexture}}');
+            background-size: cover;
+            margin: 0;
+            padding: 25px;
+        }
+        .board {
+            position: relative;
+            min-height: 700px;
+        }
+        .evidence-label {
+            text-align: center;
+            font-family: "Courier New", monospace;
+            font-size: 9pt;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .clipping {
+            background: #fff;
+            padding: 20px;
+            position: relative;
+            margin-bottom: 25px;
+            box-shadow: 2px 3px 8px rgba(0,0,0,0.2);
+        }
+        .clipping:nth-child(odd) { transform: rotate(-0.8deg); }
+        .clipping:nth-child(even) { transform: rotate(0.5deg); }
+        .tape {
+            position: absolute;
+            width: 60px;
+            height: 18px;
+            background: rgba(255, 248, 220, 0.75);
+            border: 1px solid rgba(200, 190, 160, 0.5);
+            box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        .tape-top-left { top: -8px; left: 15px; transform: rotate(-15deg); }
+        .tape-top-right { top: -8px; right: 15px; transform: rotate(12deg); }
+        .tape-bottom { bottom: -8px; left: 40%; transform: rotate(3deg); }
+        .clipping-source {
+            font-size: 8pt;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+        .clipping-headline {
+            font-size: 14pt;
+            font-weight: bold;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+        .clipping-text {
+            font-size: 9.5pt;
+            line-height: 1.5;
+            column-count: 2;
+            column-gap: 15px;
+            text-align: justify;
+        }
+        .clipping-text.single-col { column-count: 1; }
+        .clipping-date { font-size: 8pt; color: #888; margin-top: 6px; }
+        .main-photo-container {
+            position: relative;
+            margin: 25px auto;
+            max-width: 400px;
+            transform: rotate(1.5deg);
+        }
+        .main-photo {
+            width: 100%;
+            height: auto;
+            border: 8px solid #f5f5dc;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+        }
+        .photo-caption {
+            font-family: "Courier New", monospace;
+            font-size: 8pt;
+            text-align: center;
+            margin-top: 4px;
+            color: #666;
+        }
+        .handwritten-note {
+            font-family: "Comic Sans MS", "Brush Script MT", cursive;
+            font-size: 10pt;
+            color: #333;
+            transform: rotate(-2deg);
+            padding: 8px;
+            margin: 15px 0;
+        }
+        .pin {
+            position: absolute;
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 4px 4px, #ff4444, #cc0000);
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+        }
+        .footer-info {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 8pt;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="evidence-label">
+        Case: {{caseNumber}} | Document: {{docId}} | Date: {{date}} | {{classification}}
+    </div>
+
+    <div class="board">
+        {{#each clippings}}
+        <div class="clipping">
+            <div class="tape tape-top-left"></div>
+            <div class="tape tape-top-right"></div>
+            <div class="clipping-source">{{source}} — {{date}}</div>
+            <div class="clipping-headline">{{headline}}</div>
+            <div class="clipping-text {{#if singleColumn}}single-col{{/if}}">{{{text}}}</div>
+            {{#if note}}
+            <div class="handwritten-note">{{note}}</div>
+            {{/if}}
+        </div>
+        {{/each}}
+
+        {{#if mainPhoto}}
+        <div class="main-photo-container">
+            <div class="tape tape-top-left"></div>
+            <div class="tape tape-top-right"></div>
+            <img src="{{mainPhoto}}" class="main-photo" alt="Evidence photo">
+            {{#if photoCaption}}
+            <div class="photo-caption">{{photoCaption}}</div>
+            {{/if}}
+        </div>
+        {{/if}}
+    </div>
+
+    <div class="footer-info">
+        <strong>{{caseTitle}}</strong><br>
+        Prepared for training / investigative simulation. All clippings are fictional within this case universe.
+    </div>
+</body>
+</html>
