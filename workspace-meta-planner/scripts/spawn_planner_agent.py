@@ -78,6 +78,8 @@ AGENT_CONTEXT = {
     "data_flow_mapper": {"artifacts": ["00_intake_summary", "01_gap_analysis", "02_scope_decision"]},
     "contract_designer": {"artifacts": ["03_data_flow_map"]},
     "architecture_planner": {},  # B3 uses spawn_debate.py, not spawn_planner_agent.py
+    "implementation_planner": {"artifacts": ["05_architecture_decision", "04_contracts"]},
+    "lessons_validator": {"artifacts": ["00_intake_summary", "01_gap_analysis", "02_scope_decision", "03_data_flow_map", "04_contracts", "05_architecture_decision", "06_implementation_plan", "07_cost_estimate"], "files": ["lessons_learned", "system_configuration"]},
 }
 
 
@@ -128,7 +130,7 @@ def build_user_prompt(agent_name, slug, run_dir):
             else:
                 print(f"WARNING: Upstream artifact {artifact_name}.json not found at {artifact_path}")
 
-    # Extra files (lessons_learned, etc.)
+    # Extra files (lessons_learned, system_configuration, etc.)
     if "files" in context:
         for file_key in context["files"]:
             if file_key == "lessons_learned":
@@ -136,6 +138,11 @@ def build_user_prompt(agent_name, slug, run_dir):
                 if ll_path.exists():
                     data = load_text(ll_path)
                     parts.append(f"=== lessons_learned.md ===\n{data}\n=== END lessons_learned.md ===")
+            elif file_key == "system_configuration":
+                sc_path = WORKSPACE / "system_configuration.md"
+                if sc_path.exists():
+                    data = load_text(sc_path)
+                    parts.append(f"=== system_configuration.md ===\n{data}\n=== END system_configuration.md ===")
 
     if not parts:
         return "No upstream context available."
