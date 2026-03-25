@@ -70,6 +70,26 @@ ARTIFACT_ORDER = [
     "08_plan_review",
 ]
 
+# Pricing per million tokens
+PRICING = {
+    "claude-sonnet46": {"input": 3.0, "output": 15.0},
+    "claude-opus46": {"input": 5.0, "output": 25.0},
+    "gpt52-none": {"input": 3.0, "output": 12.0},
+    "gpt52-medium": {"input": 3.0, "output": 12.0},
+    "gpt5-mini": {"input": 0.15, "output": 0.60},
+    "gemini31pro-none": {"input": 1.25, "output": 10.0},
+    "gemini31lite-none": {"input": 0.0, "output": 0.0},
+    "minimax-m27": {"input": 0.30, "output": 1.20},
+    "kimi-k25": {"input": 0.60, "output": 3.00},
+    "step35-flash": {"input": 0.10, "output": 0.30},
+}
+
+
+def calculate_cost(model, input_tokens, output_tokens):
+    """Calculate real cost from tokens and model pricing."""
+    p = PRICING.get(model, {"input": 3.0, "output": 15.0})
+    return (input_tokens * p["input"] / 1_000_000) + (output_tokens * p["output"] / 1_000_000)
+
 # What upstream context each agent needs
 AGENT_CONTEXT = {
     "intake_analyst": {"from_manifest": ["raw_idea"]},
@@ -265,28 +285,30 @@ def validate_artifact(slug, artifact_name):
     return result.returncode == 0, result.stdout + result.stderr
 
 
-def update_manifest(run_dir, artifact_name, content_str, usage, est_cost):
-    """Update manifest.json with artifact status, hash, cost, timestamp. Invalidate downstream."""
+def update_manifest(run_dir, artifact_name, content_str, usage, model_name):
+    """Update manifest.json with artifact status, hash, real cost from tokens. Invalidate downstream."""
     manifest_path = run_dir / "manifest.json"
     manifest = load_json(manifest_path)
 
     file_hash = hashlib.md5(content_str.encode()).hexdigest()[:8]
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
+    input_tokens = usage.get("prompt_tokens", 0)
+    output_tokens = usage.get("completion_tokens", 0)
+    real_cost = calculate_cost(model_name, input_tokens, output_tokens)
+
     manifest["artifacts"][artifact_name] = {
         "status": "fresh",
         "hash": file_hash,
-        "cost_usd": round(est_cost, 4),
+        "model": model_name,
+        "input_tokens": input_tokens,
+        "output_tokens": output_tokens,
+        "cost_usd": round(real_cost, 6),
         "timestamp": now,
     }
 
-    # Store token usage
-    if "token_usage" not in manifest:
-        manifest["token_usage"] = {}
-    manifest["token_usage"][artifact_name] = {
-        "prompt_tokens": usage.get("prompt_tokens", 0),
-        "completion_tokens": usage.get("completion_tokens", 0),
-    }
+    # Remove legacy token_usage if present
+    manifest.pop("token_usage", None)
 
     # Invalidate downstream artifacts
     idx = ARTIFACT_ORDER.index(artifact_name)
@@ -296,7 +318,7 @@ def update_manifest(run_dir, artifact_name, content_str, usage, est_cost):
 
     # Update totals
     manifest["total_cost_usd"] = round(
-        sum((v.get("cost_usd") or 0) for v in manifest["artifacts"].values()), 4
+        sum((v.get("cost_usd") or 0) for v in manifest["artifacts"].values()), 6
     )
     manifest["last_modified"] = now
 
@@ -398,13 +420,14 @@ def main():
         print(f"\nERROR: Schema validation failed. Artifact written but manifest NOT updated.")
         sys.exit(1)
 
-    # Get estimated cost from models.json
-    agent_config = models.get("agents", {}).get(agent_name, {})
-    est_cost = agent_config.get("est_cost", 0)
+    # Calculate real cost from tokens
+    input_tokens = usage.get("prompt_tokens", 0)
+    output_tokens = usage.get("completion_tokens", 0)
+    real_cost = calculate_cost(model, input_tokens, output_tokens)
 
     # Update manifest
-    update_manifest(run_dir, artifact_name, content_str, usage, est_cost)
-    print(f"\n  Manifest updated: {artifact_name} → fresh (cost: ${est_cost:.4f})")
+    update_manifest(run_dir, artifact_name, content_str, usage, model)
+    print(f"\n  Manifest updated: {artifact_name} → fresh (model: {model}, cost: ${real_cost:.6f})")
     print(f"\nDone: {agent_name} → {artifact_name}.json")
 
 

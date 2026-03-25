@@ -170,14 +170,33 @@ def main():
     if budget_max is not None and budget_max > 0:
         budget_feasible = total_monthly <= budget_max
 
+    # Build actual planning costs from manifest
+    fase_costs = {"A": [], "B": [], "C": []}
+    for name, info in manifest.get("artifacts", {}).items():
+        num = int(name[:2])
+        phase = "A" if num <= 2 else "B" if num <= 5 else "C"
+        if info.get("cost_usd") and info["cost_usd"] > 0:
+            fase_costs[phase].append({
+                "artifact": name,
+                "model": info.get("model", "unknown"),
+                "cost_usd": info["cost_usd"],
+            })
+
+    planning_actual = {}
+    for phase, items in fase_costs.items():
+        if items:
+            planning_actual[f"fase_{phase.lower()}"] = {
+                "total": round(sum(i["cost_usd"] for i in items), 6),
+                "breakdown": items,
+            }
+
     # Build notes
     notes_parts = []
     notes_parts.append(f"Estimated {runs_per_month} runs/month based on frequency: '{frequency}'.")
 
-    # Planner costs (actual, from manifest)
     planner_cost = manifest.get("total_cost_usd", 0)
     if planner_cost > 0:
-        notes_parts.append(f"Planning phase cost (actual): ${planner_cost:.4f}.")
+        notes_parts.append(f"Planning phase cost (actual): ${planner_cost:.6f}.")
 
     if not budget_feasible:
         notes_parts.append(
@@ -206,6 +225,7 @@ def main():
     # Build output
     cost_estimate = {
         "project_name": project_name,
+        "planning_actual_costs": planning_actual,
         "per_component_costs": per_component_costs,
         "per_run_total": per_run_total,
         "monthly_estimate": {

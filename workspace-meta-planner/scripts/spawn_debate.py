@@ -31,6 +31,24 @@ ARTIFACT_ORDER = [
     "06_implementation_plan", "07_cost_estimate", "08_plan_review",
 ]
 
+PRICING = {
+    "claude-sonnet46": {"input": 3.0, "output": 15.0},
+    "claude-opus46": {"input": 5.0, "output": 25.0},
+    "gpt52-none": {"input": 3.0, "output": 12.0},
+    "gpt52-medium": {"input": 3.0, "output": 12.0},
+    "gpt5-mini": {"input": 0.15, "output": 0.60},
+    "gemini31pro-none": {"input": 1.25, "output": 10.0},
+    "gemini31lite-none": {"input": 0.0, "output": 0.0},
+    "minimax-m27": {"input": 0.30, "output": 1.20},
+    "kimi-k25": {"input": 0.60, "output": 3.00},
+    "step35-flash": {"input": 0.10, "output": 0.30},
+}
+
+
+def calculate_cost(model, input_tokens, output_tokens):
+    p = PRICING.get(model, {"input": 3.0, "output": 15.0})
+    return (input_tokens * p["input"] / 1_000_000) + (output_tokens * p["output"] / 1_000_000)
+
 
 def load_json(path):
     with open(path, "r", encoding="utf-8") as f:
@@ -94,11 +112,13 @@ def call_litellm(model, system_prompt, user_prompt, config, models, max_tokens=N
         content = response["choices"][0]["message"]["content"]
         usage = response.get("usage", {})
 
+        inp = usage.get("prompt_tokens", 0)
+        out = usage.get("completion_tokens", 0)
         return {
             "content": content,
-            "prompt_tokens": usage.get("prompt_tokens", 0),
-            "completion_tokens": usage.get("completion_tokens", 0),
-            "cost": 0,  # Estimated later
+            "prompt_tokens": inp,
+            "completion_tokens": out,
+            "cost": calculate_cost(model, inp, out),
         }
     finally:
         os.unlink(tmp_path)
@@ -257,19 +277,26 @@ def save_proposal(run_dir, model, content):
     path.write_text(content, encoding="utf-8")
 
 
-def update_manifest(run_dir, content_str, total_tokens):
-    """Update manifest with architecture decision artifact."""
+def update_manifest(run_dir, content_str, total_cost, total_input, total_output, model_desc, debate_detail=None):
+    """Update manifest with architecture decision artifact and debate detail."""
     manifest = load_json(run_dir / "manifest.json")
 
     file_hash = hashlib.md5(content_str.encode()).hexdigest()[:8]
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    manifest["artifacts"]["05_architecture_decision"] = {
+    entry = {
         "status": "fresh",
         "hash": file_hash,
-        "cost_usd": round(total_tokens * 0.00001, 4),  # rough estimate
+        "model": model_desc,
+        "input_tokens": total_input,
+        "output_tokens": total_output,
+        "cost_usd": round(total_cost, 6),
         "timestamp": now,
     }
+    if debate_detail:
+        entry["debate_detail"] = debate_detail
+
+    manifest["artifacts"]["05_architecture_decision"] = entry
 
     # Invalidate downstream
     idx = ARTIFACT_ORDER.index("05_architecture_decision")
@@ -322,14 +349,18 @@ def main():
     user_prompt = build_upstream_context(run_dir)
     user_prompt += "\n\nProduce your architecture proposal as valid JSON matching 05_architecture_decision.schema.json."
 
-    total_tokens = 0
+    total_cost = 0
+    total_input = 0
+    total_output = 0
 
     # === SINGLE MODEL (simple) ===
     if len(debate_models_list) == 1 or not judge_model:
         model = debate_models_list[0]
         print(f"\n  Single model mode: {model}")
         result = call_model_sync(model, system_prompt, user_prompt, config, models)
-        total_tokens += result["prompt_tokens"] + result["completion_tokens"]
+        total_input += result["prompt_tokens"]
+        total_output += result["completion_tokens"]
+        total_cost += result["cost"]
 
         parsed = extract_json_from_response(result["content"])
         if not parsed:
@@ -355,8 +386,8 @@ def main():
             print("ERROR: Schema validation failed.")
             sys.exit(1)
 
-        update_manifest(run_dir, content_str, total_tokens)
-        print(f"\n  Done. Total tokens: {total_tokens}")
+        update_manifest(run_dir, content_str, total_cost, total_input, total_output, model)
+        print(f"\n  Done. Cost: ${total_cost:.6f}")
         return
 
     # === MULTI-MODEL DEBATE (complex/critical) ===
@@ -364,57 +395,51 @@ def main():
 
     execution_mode = config["debate"]["execution_mode"]
     proposals = []
+    proposal_details = []  # For debate_detail tracking
+
+    def process_results(results_list):
+        nonlocal total_cost, total_input, total_output
+        for mdl, result in results_list:
+            total_input += result["prompt_tokens"]
+            total_output += result["completion_tokens"]
+            total_cost += result["cost"]
+            parsed = extract_json_from_response(result["content"])
+            if parsed:
+                proposal_str = json.dumps(parsed, indent=2, ensure_ascii=False)
+                save_proposal(run_dir, mdl, proposal_str)
+                proposals.append((mdl, proposal_str))
+            else:
+                print(f"  WARNING: No valid JSON from {mdl}, skipping")
+                save_proposal(run_dir, mdl, result["content"])
+            proposal_details.append({
+                "model": mdl,
+                "input_tokens": result["prompt_tokens"],
+                "output_tokens": result["completion_tokens"],
+                "cost_usd": round(result["cost"], 6),
+            })
 
     if execution_mode == "parallel":
         try:
             print(f"  Execution: parallel")
-            results = run_models_parallel(debate_models_list, system_prompt, user_prompt, config, models)
-            for model, result in results:
-                total_tokens += result["prompt_tokens"] + result["completion_tokens"]
-                parsed = extract_json_from_response(result["content"])
-                if parsed:
-                    proposal_str = json.dumps(parsed, indent=2, ensure_ascii=False)
-                    save_proposal(run_dir, model, proposal_str)
-                    proposals.append((model, proposal_str))
-                else:
-                    print(f"  WARNING: No valid JSON from {model}, skipping")
-                    save_proposal(run_dir, model, result["content"])
+            process_results(run_models_parallel(debate_models_list, system_prompt, user_prompt, config, models))
         except Exception as e:
             print(f"  Parallel failed ({e})")
             if config["debate"]["fallback_to_sequential"]:
                 print(f"  Falling back to sequential...")
                 proposals = []
-                results = run_models_sequential(debate_models_list, system_prompt, user_prompt, config, models)
-                for model, result in results:
-                    total_tokens += result["prompt_tokens"] + result["completion_tokens"]
-                    parsed = extract_json_from_response(result["content"])
-                    if parsed:
-                        proposal_str = json.dumps(parsed, indent=2, ensure_ascii=False)
-                        save_proposal(run_dir, model, proposal_str)
-                        proposals.append((model, proposal_str))
-                    else:
-                        print(f"  WARNING: No valid JSON from {model}, skipping")
-                        save_proposal(run_dir, model, result["content"])
+                proposal_details = []
+                process_results(run_models_sequential(debate_models_list, system_prompt, user_prompt, config, models))
             else:
                 raise
     else:
         print(f"  Execution: sequential")
-        results = run_models_sequential(debate_models_list, system_prompt, user_prompt, config, models)
-        for model, result in results:
-            total_tokens += result["prompt_tokens"] + result["completion_tokens"]
-            parsed = extract_json_from_response(result["content"])
-            if parsed:
-                proposal_str = json.dumps(parsed, indent=2, ensure_ascii=False)
-                save_proposal(run_dir, model, proposal_str)
-                proposals.append((model, proposal_str))
-            else:
-                print(f"  WARNING: No valid JSON from {model}, skipping")
-                save_proposal(run_dir, model, result["content"])
+        process_results(run_models_sequential(debate_models_list, system_prompt, user_prompt, config, models))
 
     if not proposals:
         print("ERROR: No valid proposals from any model.")
         sys.exit(1)
 
+    judge_detail = {}
     if len(proposals) == 1:
         print(f"  Only 1 valid proposal — using it directly (no judge needed)")
         content_str = proposals[0][1]
@@ -428,11 +453,18 @@ def main():
         )
         judge_user = build_judge_prompt(proposals, debate_level)
         judge_result = call_litellm(judge_model, judge_system, judge_user, config, models)
-        total_tokens += judge_result["prompt_tokens"] + judge_result["completion_tokens"]
+        total_input += judge_result["prompt_tokens"]
+        total_output += judge_result["completion_tokens"]
+        total_cost += judge_result["cost"]
+        judge_detail = {
+            "model": judge_model,
+            "input_tokens": judge_result["prompt_tokens"],
+            "output_tokens": judge_result["completion_tokens"],
+            "cost_usd": round(judge_result["cost"], 6),
+        }
 
         judge_parsed = extract_json_from_response(judge_result["content"])
         if judge_parsed:
-            # Save judge evaluation
             proposals_dir = run_dir / "debate_proposals"
             proposals_dir.mkdir(parents=True, exist_ok=True)
             judge_path = proposals_dir / "judge_evaluation.json"
@@ -441,17 +473,14 @@ def main():
             )
             print(f"  Judge evaluation saved: {judge_path}")
 
-            # Extract final architecture
             final_arch = judge_parsed.get("final_architecture")
             if final_arch:
-                # Add judge metadata
                 final_arch["judge_reasoning"] = judge_parsed.get("judge_reasoning")
                 final_arch["debate_proposals"] = [
                     {"model": m, "summary": "see debate_proposals/"} for m, _ in proposals
                 ]
                 content_str = json.dumps(final_arch, indent=2, ensure_ascii=False)
             else:
-                # Judge didn't produce final_architecture — use full judge output
                 content_str = json.dumps(judge_parsed, indent=2, ensure_ascii=False)
 
             winner = judge_parsed.get("winner", "unknown")
@@ -462,6 +491,7 @@ def main():
             content_str = proposals[0][1]
 
     # === RED TEAM (critical only) ===
+    rt_detail = {}
     if debate_level == "critical" and models.get("red_team"):
         red_team_model = models["red_team"]
         print(f"\n  Running red team ({red_team_model})...")
@@ -473,15 +503,21 @@ def main():
         red_team_user = f"Architecture decision to attack:\n{content_str}"
         try:
             rt_result = call_litellm(red_team_model, red_team_system, red_team_user, config, models)
-            total_tokens += rt_result["prompt_tokens"] + rt_result["completion_tokens"]
+            total_input += rt_result["prompt_tokens"]
+            total_output += rt_result["completion_tokens"]
+            total_cost += rt_result["cost"]
+            rt_detail = {
+                "model": red_team_model,
+                "input_tokens": rt_result["prompt_tokens"],
+                "output_tokens": rt_result["completion_tokens"],
+                "cost_usd": round(rt_result["cost"], 6),
+            }
             rt_parsed = extract_json_from_response(rt_result["content"])
             if rt_parsed:
-                # Save red team findings
                 rt_path = run_dir / "debate_proposals" / "red_team_findings.json"
                 rt_path.write_text(
                     json.dumps(rt_parsed, indent=2, ensure_ascii=False), encoding="utf-8"
                 )
-                # Merge findings into architecture
                 arch = json.loads(content_str)
                 findings = rt_parsed.get("red_team_findings", rt_parsed.get("findings", []))
                 if isinstance(findings, list):
@@ -490,6 +526,20 @@ def main():
                 print(f"  Red team: {len(findings)} findings merged")
         except Exception as e:
             print(f"  WARNING: Red team failed ({e}), continuing without it")
+
+    # Build debate_detail for manifest
+    debate_detail = {"proposals": proposal_details}
+    if judge_detail:
+        debate_detail["judge"] = judge_detail
+    if rt_detail:
+        debate_detail["red_team"] = rt_detail
+
+    # Build model description string
+    model_parts = "debate:" + "+".join(debate_models_list)
+    if judge_detail:
+        model_parts += f"|judge:{judge_model}"
+    if rt_detail:
+        model_parts += f"|redteam:{models['red_team']}"
 
     # Write final artifact
     artifact_path = run_dir / "05_architecture_decision.json"
@@ -506,8 +556,8 @@ def main():
     if val_result.returncode != 0:
         print("WARNING: Schema validation failed. Artifact written but may need manual fix.")
 
-    update_manifest(run_dir, content_str, total_tokens)
-    print(f"\n  Done. Total tokens: {total_tokens}")
+    update_manifest(run_dir, content_str, total_cost, total_input, total_output, model_parts, debate_detail)
+    print(f"\n  Done. Cost: ${total_cost:.6f} ({total_input}in/{total_output}out)")
 
 
 if __name__ == "__main__":

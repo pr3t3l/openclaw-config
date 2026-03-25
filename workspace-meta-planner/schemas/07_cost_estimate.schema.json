@@ -59,6 +59,10 @@
     },
     "notes": {
       "type": "string"
+    },
+    "planning_actual_costs": {
+      "type": "object",
+      "description": "Actual costs from planning phases (read from manifest)"
     }
   },
   "additionalProperties": false
