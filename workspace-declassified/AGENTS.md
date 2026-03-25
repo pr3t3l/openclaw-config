@@ -49,7 +49,7 @@ CONTENT QUALITY:
 === END UNIVERSAL RULES ===
 ```
 
-The orchestrator copies this block and pastes it at the TOP of every sessions_spawn task, before the SKILL.md content.
+The orchestrator passes this block as context to every spawn script call. The spawn scripts (spawn_narrative.py, spawn_agent.py, spawn_images.py) prepend it automatically to the Claude API prompt.
 
 ---
 
@@ -74,34 +74,16 @@ When user provides a case idea, execute these steps in order:
 1. Read `skills/narrative-architect/SKILL.md` in full
 2. Read `cases/exports/<slug>/case_config.json`
 3. Read `cases/config/tier_definitions.json` — extract the FULL tier block for this case's tier
-4. Spawn sub-agent with:
+4. Run the narrative architect spawner for case-plan:
    ```
-   <Full contents of SKILL.md>
-
-   ---
-   CASE_CONFIG:
-   <Full contents of case_config.json>
-
-   ---
-   TIER CONSTRAINTS (this case is <TIER>):
-   <Full tier block from tier_definitions.json — the model MUST see these
-   numbers in context: total_docs, pois, contradictions, interviews.rule,
-   social_media_docs, spatial_tool_required, envelope_themes, multiplier_types,
-   and the critical_clarification about unique types vs total docs>
-
-   ---
-   CRITICAL — JSON OUTPUT SKELETONS:
-   <Copy the "## SKELETON: case-plan.json" section from SKILL.md here verbatim>
-
-   ---
-   INSTRUCTION: Generate ONLY case-plan.json in this run.
-   Do NOT generate clue_catalog.json yet — that comes in separate passes per envelope.
-   Write case-plan.json to /home/robotin/.openclaw/workspace-declassified/cases/exports/<slug>/case-plan.json using the write tool.
-   Respond with a SHORT confirmation (title, POI count, doc count, envelope distribution).
-   Do NOT paste the full JSON back into chat — it causes truncation.
+   exec python3 cases/scripts/spawn_narrative.py <slug> --phase plan
    ```
-   model: read `model_routing.json` → `agent_reasoning_map.narrative-architect` → resolve to model name
-   runTimeoutSeconds: 600
+   This script:
+   - Reads SKILL.md, case_config.json, tier_definitions.json automatically
+   - Calls Claude Sonnet API via streaming curl (TL-01)
+   - Writes case-plan.json to the correct absolute path
+   - Logs cost to manifest.json
+   - model: claude-sonnet-4-6 (hardcoded in script)
 
 5. **On sub-agent completion:**
    - Status "completed" → verify case-plan.json exists and is valid JSON with `pois` array
@@ -134,48 +116,17 @@ When user provides a case idea, execute these steps in order:
 **PROCESS:** For each envelope in order (A, B, C, D if PREMIUM, R):
 
 8. Read case-plan.json to get the doc_ids for this envelope: `envelopes.<letter>.docs`
-9. Spawn sub-agent with:
+9. Run the narrative architect spawner for this envelope:
    ```
-   <Clue catalog sections from SKILL.md: Step 6, SKELETON: clue_catalog.json, Self-Check, Anti-Stub Rules>
-
-   ---
-   CASE PLAN (read from file):
-   Read /home/robotin/.openclaw/workspace-declassified/cases/exports/<slug>/case-plan.json using the read tool.
-
-   ---
-   TIER CONSTRAINTS (this case is <TIER>):
-   <Same tier block as Phase 2a>
-
-   ---
-   INSTRUCTION: Generate clue_catalog entries for ENVELOPE <LETTER> ONLY.
-   
-   Documents to generate for this envelope:
-   <List each doc_id with its type_key and in_world_title from case-plan.json>
-   Example:
-   "A1 - official_memo - Case Initiation Memo
-    A2 - poi_sheet - Persons of Interest
-    A3 - newspaper_front - Cambridge Herald Front Page
-    A4 - floor_plan - NovaGenix R&D Building Level 3
-    A5 - entry_exit_log - Building Access Log March 21
-    A6 - email_export - Internal Withdrawal Directive"
-   
-   RULES FOR THIS ENVELOPE:
-   - A1 must have player_purpose="case_introduction" and sequence_number=1
-   - A2 must have type_id=1, type_key="poi_sheet", player_purpose="context_setting", sequence_number=2
-   - Interview docs (type_id 11) must include production_brief_interview with phases array, min_exchanges>=18, the_lie, the_slip
-   - Social media docs must use type_key="social_posts"
-   - Resolution docs (envelope R) must have player_purpose="resolution" and reference the POI in pois_referenced
-   
-   OUTPUT FORMAT: Write a JSON file with structure:
-   {"envelope": "<LETTER>", "documents": [<array of document objects for this envelope only>]}
-   
-   Write to: /home/robotin/.openclaw/workspace-declassified/cases/exports/<slug>/clue_catalog_<LETTER>.json
-   
-   Respond with ONLY: "clue_catalog_<LETTER>.json written | docs=<N> | types: <list of type_keys>"
-   Do NOT paste JSON into chat.
+   exec python3 cases/scripts/spawn_narrative.py <slug> --phase catalog --envelope <LETTER>
    ```
-   model: same as Phase 2a
-   runTimeoutSeconds: 300 (shorter — only generating 3-8 docs per envelope)
+   This script:
+   - Reads case-plan.json to get doc_ids for this envelope
+   - Reads SKILL.md clue_catalog sections, tier_definitions, doc_type_catalog
+   - Calls Claude Sonnet API via streaming curl (TL-01)
+   - Writes clue_catalog_<LETTER>.json to the case directory
+   - Logs cost to manifest.json
+   - Timeout: 300s per envelope (only 3-8 docs)
 
 10. **On sub-agent completion:**
     - Verify `clue_catalog_<LETTER>.json` exists and is valid JSON with `documents` array
@@ -206,11 +157,9 @@ When user provides a case idea, execute these steps in order:
 
 13. Run: `exec python3 cases/scripts/validate_narrative.py cases/exports/<slug>/`
 
-14. If validation PASSES → spawn QA sub-agent (narrative_quality mode):
+14. If validation PASSES → run QA agent (narrative_quality mode):
     ```
-    sessions_spawn task: "<quality-auditor SKILL.md>\n\n---\nMODE: narrative_quality\nCASE_SLUG: <slug>"
-      model: read model_routing → quality-auditor-narrative
-      runTimeoutSeconds: 600
+    exec python3 cases/scripts/spawn_agent.py <slug> quality-auditor "MODE: narrative_quality. Read case-plan.json and clue_catalog.json. Write narrative_qa.json."
     ```
 
 15. If QA PASSES → **HUMAN GATE: present case-plan summary including:**
@@ -229,10 +178,10 @@ When user provides a case idea, execute these steps in order:
 
 ### Phase 3: Art Director
 
-1. Read `skills/art-director/SKILL.md`
-2. Spawn sub-agent with SKILL.md + case slug + case-plan.json + clue_catalog.json
-   model: read model_routing → art-director
-   runTimeoutSeconds: 600
+1. Run art director agent:
+   ```
+   exec python3 cases/scripts/spawn_agent.py <slug> art-director "Generate art_briefs.json (POI portraits only) and scene_descriptions.json"
+   ```
 3. Run: `exec python3 cases/scripts/validate_art.py cases/exports/<slug>/`
 4. **HUMAN GATE: present art briefs summary including:**
    - Total POI portraits planned (1 per POI, canonical)
@@ -241,10 +190,10 @@ When user provides a case idea, execute these steps in order:
 
 ### Phase 4: Experience Designer
 
-1. Read `skills/experience-designer/SKILL.md`
-2. Spawn sub-agent with SKILL.md + case slug
-   model: read model_routing → experience-designer (use thinking level)
-   runTimeoutSeconds: 600
+1. Run experience designer agent:
+   ```
+   exec python3 cases/scripts/spawn_agent.py <slug> experience-designer "Generate experience_design.json with emotional beats, detective annotations, and pacing analysis"
+   ```
 3. Run: `exec python3 cases/scripts/validate_experience.py cases/exports/<slug>/`
 4. If validation PASSES → continue (no human gate here — rolls into Phase 5 gate)
 5. If validation FAILS → follow Retry Protocol
@@ -253,32 +202,16 @@ When user provides a case idea, execute these steps in order:
 
 1. Read `skills/production-engine/SKILL.md`
 2. For each envelope in order (A, B, C if NORMAL+, D if PREMIUM, R always last):
-   a. Spawn sub-agent with:
+   a. Run production engine agent for this envelope:
       ```
-      <Full SKILL.md>
-
-      ---
-      ENVELOPE: <letter>
-      CASE_SLUG: <slug>
-
-      ---
-      DOCUMENTS TO WRITE FOR THIS ENVELOPE:
-      <List all doc_ids assigned to this envelope from clue_catalog, with their
-      type_key and in_world_title. Example:
-      "This envelope contains 6 documents:
-       B1 - interrogation_transcript - Interview of David Harmon (POI-02)
-       B2 - interrogation_transcript - Interview of Sophia Chen (POI-03)
-       B3 - interrogation_transcript - Interview of Marcus Wu (POI-04)
-       B4 - forensic_report - Autopsy Report
-       B5 - lab_report - Toxicology Results
-       B6 - evidence_mosaic - Physical Evidence Collection
-       Write a _content.md file for EACH of these 6 documents.">
+      exec python3 cases/scripts/spawn_agent.py <slug> production-engine "Write _content.md for envelope <LETTER>. Documents: <list doc_ids with type_key and in_world_title from clue_catalog>"
       ```
-      model: read model_routing → production-engine
-      runTimeoutSeconds: 600
    b. Run: `exec python3 cases/scripts/validate_content.py cases/exports/<slug>/ <ENVELOPE>`
    c. Run: `exec python3 cases/scripts/validate_placeholders.py cases/exports/<slug>/`
-   d. Spawn QA sub-agent (narrative_depth mode) for each document in this envelope
+   d. Run QA agent (narrative_depth mode) for each document in this envelope:
+      ```
+      exec python3 cases/scripts/spawn_agent.py <slug> quality-auditor "MODE: narrative_depth. DOC_ID: <doc_id>. Read the _content.md and evaluate."
+      ```
    e. **HUMAN GATE per envelope: present documents with:**
       - Document count written vs expected
       - Word counts per document
@@ -289,11 +222,9 @@ When user provides a case idea, execute these steps in order:
 ### Phase 6: Quality Auditor — Playthrough
 
 1. Read `skills/quality-auditor/SKILL.md`
-2. Spawn QA sub-agent:
+2. Run QA agent (playthrough mode):
    ```
-   sessions_spawn task: "<quality-auditor SKILL.md>\n\n---\nMODE: playthrough\nCASE_SLUG: <slug>"
-     model: read model_routing → quality-auditor-playthrough
-     runTimeoutSeconds: 600
+   exec python3 cases/scripts/spawn_agent.py <slug> quality-auditor "MODE: playthrough. Read ALL _content.md files in envelope order. Write playthrough_report.json."
    ```
 3. **HUMAN GATE: present playthrough report including:**
    - Solvability (YES/NO)
@@ -308,9 +239,12 @@ When user provides a case idea, execute these steps in order:
 ### Phase 7: Image Generation
 
 1. Read `skills/image-generator/SKILL.md`
-2. Spawn sub-agent with case slug.
-   model: read model_routing → image-generator
-   runTimeoutSeconds: 900 (images are slow)
+2. Run image generation script:
+   ```
+   exec python3 cases/scripts/spawn_images.py <slug>
+   ```
+   This script reads art_briefs.json and generates POI portraits via DALL-E 3 / Nano Banana.
+   It writes images directly to disk and logs cost to manifest.json.
 3. **Generation order matters:**
    - Canonical POI portraits FIRST → visuals/canonical/
    - Scene/location images → visuals/scenes/
@@ -324,8 +258,10 @@ When user provides a case idea, execute these steps in order:
 ### Phase 7b: Audio (PREMIUM only)
 
 1. Read `skills/tts-script-writer/SKILL.md`
-2. Spawn sub-agent.
-   model: read model_routing → tts-script-writer
+2. Run TTS script writer agent:
+   ```
+   exec python3 cases/scripts/spawn_agent.py <slug> tts-script-writer "Generate TTS scripts for all interview audio"
+   ```
 3. When scripts ready, execute ElevenLabs calls
 4. **HUMAN GATE: present audio samples. Wait for approval.**
 
@@ -362,8 +298,9 @@ When user provides a case idea, execute these steps in order:
 3. Send Drive link to Telegram
 4. Update manifest.json: `status = "distributed"`, `distribution = "completed"`
 5. Run Lessons Learned agent:
-   - Spawn sub-agent with `skills/lessons-learned/SKILL.md`
-   - Agent reviews all QA reports + failure records → updates `cases/config/lessons_learned.json`
+   ```
+   exec python3 cases/scripts/spawn_agent.py <slug> lessons-learned "Review all QA reports and failure records. Update cases/config/lessons_learned.json with new findings."
+   ```
 6. Case complete. Report final summary.
 
 ---
@@ -433,7 +370,7 @@ When a validation script or QA check returns FAIL, do NOT blindly re-run the age
 
 ## Sub-Agent Completion Handling
 
-After EVERY `sessions_spawn`, handle the returned status:
+After EVERY spawn script (`spawn_agent.py`, `spawn_narrative.py`, `spawn_images.py`), check the exit code and output files:
 
 | Status | Action |
 |--------|--------|
@@ -471,20 +408,17 @@ When a model hits rate limits:
 
 ## Rules
 
-- ALWAYS read the SKILL.md before spawning a sub-agent — paste its full content as the task
-- ALWAYS append the JSON output skeletons from SKILL.md to the spawn task
-- ALWAYS inject the full tier constraints block from tier_definitions.json into the Narrative Architect spawn
+- ALWAYS use spawn scripts (spawn_agent.py, spawn_narrative.py, spawn_images.py) for content generation — NEVER use sessions_spawn (it cannot write files — TL-04)
+- ALWAYS verify output files exist and are valid after every spawn script completes
 - ALWAYS run validation scripts between pipeline steps
-- ALWAYS handle sub-agent completion status (completed/failed/timed_out)
 - ALWAYS update manifest.json pipeline_state before and after each phase
-- ALWAYS verify output files exist and are valid after sub-agent completion
 - ALWAYS backup case-plan.json and clue_catalog.json before operations that might overwrite them
 - NEVER skip human gates — present results and wait
-- NEVER write case content yourself — that's what sub-agents are for
-- NEVER try to fix structural problems with python scripts — re-run the agent instead
+- NEVER write case content yourself — that's what spawn scripts are for
+- NEVER use sessions_spawn for content generation — it does not write files to disk (confirmed 6+ times)
+- NEVER try to fix structural problems with python scripts — re-run the spawn script instead
 - NEVER generate the same POI portrait twice — use canonical portrait library
-- NEVER let sub-agents paste large JSON back through chat — they must use the write tool
 - The manifest.json in each case folder is the source of truth for case state
 - Tier constraints are in `cases/config/tier_definitions.json`
-- Model selection is in `cases/config/model_routing.json`
+- Model selection is hardcoded in spawn scripts (claude-sonnet-4-6) — NOT in model_routing.json
 - Past failures are in `cases/config/lessons_learned.json` — read before deciding
