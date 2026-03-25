@@ -75,6 +75,9 @@ AGENT_CONTEXT = {
     "intake_analyst": {"from_manifest": ["raw_idea"]},
     "gap_finder": {"artifacts": ["00_intake_summary"], "files": ["lessons_learned"]},
     "scope_framer": {"artifacts": ["00_intake_summary", "01_gap_analysis"]},
+    "data_flow_mapper": {"artifacts": ["00_intake_summary", "01_gap_analysis", "02_scope_decision"]},
+    "contract_designer": {"artifacts": ["03_data_flow_map"]},
+    "architecture_planner": {},  # B3 uses spawn_debate.py, not spawn_planner_agent.py
 }
 
 
