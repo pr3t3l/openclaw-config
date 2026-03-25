@@ -41,3 +41,11 @@
 - GPT-5.2: $2-5/$10-15 MTok (Declassified orchestrator — change pending A/B test)
 - Step 3.5 Flash: $0.10/$0.30 MTok (budget fallback candidate)
 - DALL-E 3: $0.04/image (pipeline POI portraits)
+
+## Meta-Workflow Planner
+- Status: Fase A (Clarify) operativa. Fases B y C pendientes.
+- Workspace: ~/.openclaw/workspace-meta-planner/
+- Trigger: "Planifica:", "Plan:", "Planear:" + idea
+- Costo por Fase A: ~$0.30 (3 calls a Sonnet via LiteLLM)
+- Test exitoso: finance-test (finanzas personales via Telegram)
+- Fecha: 2026-03-24
