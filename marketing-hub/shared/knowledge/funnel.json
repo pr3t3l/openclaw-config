@@ -1,0 +1,82 @@
+{
+  "nombre": "Embudo de Ventas — Plantilla General",
+  "version": "1.0",
+  "ultima_actualizacion": "2026-03-26",
+
+  "fases_del_cliente": [
+    {
+      "fase": "Conciencia",
+      "trigger": "Ve un Reel/TikTok con gancho de misterio",
+      "objetivo": "Parar el scroll, generar curiosidad",
+      "accion": "CTA: 'Comenta MISTERIO para recibir el caso gratis'",
+      "canal": "Instagram/TikTok"
+    },
+    {
+      "fase": "Consideracion",
+      "trigger": "Recibe el mini-caso gratis por DM o email",
+      "objetivo": "Demostrar valor, generar confianza",
+      "accion": "Email Sequence de Nurturing (3 emails)",
+      "canal": "Email ( ManyChat → lista )"
+    },
+    {
+      "fase": "Decision",
+      "trigger": "Email 3 con oferta directa",
+      "objetivo": "Conversión a compra",
+      "accion": "Link directo a checkout + urgencia",
+      "canal": "Email"
+    },
+    {
+      "fase": "Retencion",
+      "trigger": "Compra completada",
+      "objetivo": "Upsell, referral, reviews",
+      "accion": "Email post-compra + programa de referidos",
+      "canal": "Email"
+    }
+  ],
+
+  "lead_magnet": {
+    "nombre": "Mini-Caso de Misterio Gratuito",
+    "formato": "PDF descargable o documento en DM",
+    "contenido": "Un mini-caso autoconclusive (20-30 min de juego) + acceso a comunidad",
+    "cta_principal": "Descarga el mini-caso gratis",
+    "palabra_trigger_manychat": "MISTERIO"
+  },
+
+  "flujos_automatizados": [
+    {
+      "nombre": "Bienvenida + Mini-Caso",
+      "trigger": "Usuario comenta 'MISTERIO' en Instagram",
+      "pasos": [
+        "ManyChat envía DM con link de descarga del mini-caso",
+        "Se captura email en landing page",
+        "Email de bienvenida + encuesta rápida (¿qué te gustó?)"
+      ]
+    },
+    {
+      "nombre": "Nurturing 3-Días",
+      "trigger": "Descarga completada / email capturado",
+      "pasos": [
+        "Día 1: '¿Qué pasó?' — resumen del mini-caso + invitación a comunidad",
+        "Día 2: 'El caso de esta semana' — preview del caso actual + urgencia",
+        "Día 3: 'Última oportunidad' — oferta + testimonios"
+      ]
+    },
+    {
+      "nombre": "Recuperación Carrito",
+      "trigger": "Visitó checkout pero no compró (pixelado)",
+      "pasos": [
+        "Día 1: Recordatorio suave por email",
+        "Día 3: '¿Necesitas ayuda?' + pregunta",
+        "Día 5: Descuento limitado (si aplica)"
+      ]
+    }
+  ],
+
+  "kpis_fundamentales": {
+    "cpl_objetivo": 2.00,
+    "cpa_objetivo": 15.00,
+    "tasa_conversion_landing": "> 40%",
+    "tasa_apertura_email": "> 25%",
+    "ctr_email_cta": "> 5%"
+  }
+}

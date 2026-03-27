@@ -2,20 +2,20 @@
   "reasoning_levels": {
     "thinking": {
       "description": "Complex reasoning: narrative planning, experience design, QA playthrough, production writing",
-      "primary": "litellm/gemini31pro-thinking",
-      "fallback": "litellm/gpt52-thinking",
+      "primary": "litellm/chatgpt-gpt54-thinking",
+      "fallback": "litellm/chatgpt-gpt54-thinking",
       "timeout_seconds": 900
     },
     "medium": {
       "description": "Structured output: art direction, layout planning, image generation, QA depth",
-      "primary": "litellm/gemini31pro-medium",
-      "fallback": "litellm/gpt52-medium",
+      "primary": "litellm/chatgpt-gpt54",
+      "fallback": "litellm/chatgpt-gpt54",
       "timeout_seconds": 600
     },
     "none": {
       "description": "Mechanical tasks: distribution, document assembly, simple edits",
-      "primary": "litellm/gemini31pro-medium",
-      "fallback": "litellm/gpt52-medium",
+      "primary": "litellm/chatgpt-gpt54",
+      "fallback": "litellm/chatgpt-gpt54",
       "timeout_seconds": 300
     }
   },
@@ -40,13 +40,15 @@
       "input": 0.15,
       "output": 0.6
     },
-    "litellm/gpt52-thinking": {
-      "input": 3.0,
-      "output": 15.0
+    "litellm/chatgpt-gpt54-thinking": {
+      "input": 0,
+      "output": 0,
+      "_note": "ChatGPT subscription — no per-token cost"
     },
-    "litellm/gpt52-medium": {
-      "input": 0.75,
-      "output": 3.0
+    "litellm/chatgpt-gpt54": {
+      "input": 0,
+      "output": 0,
+      "_note": "ChatGPT subscription — no per-token cost"
     },
     "nano-banana-2-gemini": {
       "per_image": 0.02

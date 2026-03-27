@@ -23,12 +23,8 @@ PRICING = {
     "claude-sonnet46-thinking": {"input": 3.0, "output": 15.0},
     "claude-opus46": {"input": 5.0, "output": 25.0},
     "claude-opus46-thinking": {"input": 5.0, "output": 25.0},
-    "gpt52-none": {"input": 3.0, "output": 12.0},
-    "gpt52-medium": {"input": 3.0, "output": 12.0},
-    "gpt52-thinking": {"input": 3.0, "output": 12.0},
-    "gpt52-xhigh": {"input": 3.0, "output": 12.0},
+    "chatgpt-gpt54": {"input": 0.0, "output": 0.0},  # OAuth subscription
     "gpt53-codex": {"input": 3.0, "output": 12.0},
-    "gpt5-mini": {"input": 0.15, "output": 0.60},
     "gpt41": {"input": 2.0, "output": 8.0},
     "gemini31pro-none": {"input": 1.25, "output": 10.0},
     "gemini31pro-medium": {"input": 1.25, "output": 10.0},

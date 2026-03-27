@@ -81,7 +81,7 @@ Si el debate_level es complex o critical, recuerda que un JUEZ comparará tu pro
       {
         "name": "string",
         "purpose": "string",
-        "model": "string — must exist in models.json (e.g., 'gpt5-mini', 'claude-sonnet46')",
+        "model": "string — must exist in models.json (e.g., 'claude-sonnet46')",
         "spawn_method": "string (e.g., 'spawn_core', 'python_script')",
         "justification": "string — why agent not script (L-22)",
         "estimated_input_tokens": 2000,

@@ -1,0 +1,82 @@
+{
+  "nombre": "Campaña Semanal — Plantilla de Ejecución",
+  "version": "1.0",
+  "instrucciones": "Un archivo por semana. Se genera en la Fase 3.1 cada semana.",
+
+  "semana": {
+    "numero": "",
+    "fecha_inicio": "",
+    "fecha_fin": "",
+    "tema_del_caso": "",
+    "producto_asociado": ""
+  },
+
+  "contenido_a_generar": {
+    "reel_principal": {
+      "guion": "",
+      "duracion_estimada": "",
+      "fecha_publicacion": "",
+      "canal": "",
+      "estado": "pendiente"
+    },
+    "reel_secundario": {
+      "tema": "",
+      "guion": "",
+      "fecha_publicacion": "",
+      "estado": "pendiente"
+    },
+    "tiktok": {
+      "guion": "",
+      "fecha_publicacion": "",
+      "estado": "pendiente"
+    },
+    "articulo_blog": {
+      "titulo": "",
+      "keywords": [],
+      "enlaces": [],
+      "estado": "pendiente"
+    }
+  },
+
+  "anuncios": {
+    "campana_google_search": {
+      "keywords": [],
+      "copy_anuncio": "",
+      "presupuesto_diario": 0,
+      "estado": "pendiente"
+    },
+    "campana_meta": {
+      "audiencia": "",
+      "creativa": "",
+      "hook_del_anuncio": "",
+      "presupuesto_diario": 0,
+      "estado": "pendiente"
+    }
+  },
+
+  "email": {
+    "asunto_email_1": "",
+    "asunto_email_2": "",
+    "asunto_email_3": "",
+    "lead_magnet_activado": true,
+    "estado": "pendiente"
+  },
+
+  "automatizaciones": {
+    "manychat_trigger": "MISTERIO",
+    "palabra_clave_actualizada": true,
+    "dm_contenido": "",
+    "estado": "pendiente"
+  },
+
+  "metricas_de_semana": {
+    "fecha_registro": "",
+    "alcance_organico": 0,
+    "alcance_pago": 0,
+    "leads_generados": 0,
+    "ventas_totales": 0,
+    "cpa_real": 0,
+    "cpl_real": 0,
+    "notas": ""
+  }
+}

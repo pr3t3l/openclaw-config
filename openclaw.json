@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.3.2",
-    "lastTouchedAt": "2026-03-12T13:27:16.791Z"
+    "lastTouchedVersion": "2026.3.23-2",
+    "lastTouchedAt": "2026-03-27T02:34:30.273Z"
   },
   "wizard": {
     "lastRunAt": "2026-02-23T04:08:21.554Z",
@@ -264,18 +264,14 @@
       }
     }
   },
-  "session": {
-    "dmScope": "per-channel-peer",
-    "maintenance": {
-      "mode": "enforce",
-      "maxEntries": 200,
-      "pruneAfter": "14d"
-    }
-  },
   "agents": {
     "defaults": {
       "model": {
-        "primary": "litellm/minimax-m27"
+        "primary": "openai-codex/gpt-5.4",
+        "fallbacks": [
+          "litellm/gpt52-medium",
+          "litellm/minimax-m27"
+        ]
       },
       "models": {
         "litellm/gpt52-none": {},
@@ -298,20 +294,21 @@
         "litellm/claude-opus46-thinking": {},
         "litellm/minimax-m27": {},
         "litellm/step35-flash": {},
-        "litellm/kimi-k25": {}
+        "litellm/kimi-k25": {},
+        "openai-codex/gpt-5.4": {}
       },
       "workspace": "/home/robotin/.openclaw/workspace",
+      "contextPruning": {
+        "mode": "cache-ttl"
+      },
       "compaction": {
         "mode": "safeguard",
         "memoryFlush": {
           "enabled": true,
           "softThresholdTokens": 6000,
-          "systemPrompt": "Session nearing compaction. Write critical context to memory/YYYY-MM-DD.md NOW.",
-          "prompt": "Write lasting notes to memory/YYYY-MM-DD.md. Reply NO_REPLY if nothing to store."
+          "prompt": "Write lasting notes to memory/YYYY-MM-DD.md. Reply NO_REPLY if nothing to store.",
+          "systemPrompt": "Session nearing compaction. Write critical context to memory/YYYY-MM-DD.md NOW."
         }
-      },
-      "contextPruning": {
-        "mode": "cache-ttl"
       },
       "timeoutSeconds": 1000,
       "heartbeat": {
@@ -345,17 +342,11 @@
         "id": "declassified",
         "name": "Declassified",
         "workspace": "/home/robotin/.openclaw/workspace-declassified",
-        "groupChat": {
-          "mentionPatterns": [
-            "declassified",
-            "cases"
-          ]
-        },
         "model": {
-          "primary": "litellm/gpt52-medium",
+          "primary": "openai-codex/gpt-5.4",
           "fallbacks": [
-            "litellm/gemini31pro-medium",
-            "litellm/claude-sonnet46"
+            "litellm/gpt52-medium",
+            "litellm/minimax-m27"
           ]
         },
         "heartbeat": {
@@ -365,14 +356,81 @@
             "end": "02:00"
           }
         },
+        "groupChat": {
+          "mentionPatterns": [
+            "declassified",
+            "cases"
+          ]
+        },
         "subagents": {
           "allowAgents": [
             "*"
           ]
         }
+      },
+      {
+        "id": "planner",
+        "name": "Planner",
+        "workspace": "/home/robotin/.openclaw/workspace-meta-planner",
+        "model": {
+          "primary": "openai-codex/gpt-5.4",
+          "fallbacks": [
+            "litellm/gpt52-medium",
+            "litellm/minimax-m27"
+          ]
+        },
+        "heartbeat": {
+          "every": "60m",
+          "activeHours": {
+            "start": "08:00",
+            "end": "23:00"
+          }
+        },
+        "groupChat": {
+          "mentionPatterns": [
+            "workflow",
+            "planner",
+            "super workflow"
+          ]
+        }
       }
     ]
   },
+  "tools": {
+    "sessions": {
+      "visibility": "all"
+    },
+    "agentToAgent": {
+      "enabled": true,
+      "allow": [
+        "main",
+        "declassified"
+      ]
+    }
+  },
+  "bindings": [
+    {
+      "agentId": "main",
+      "match": {
+        "channel": "telegram",
+        "accountId": "default"
+      }
+    },
+    {
+      "agentId": "declassified",
+      "match": {
+        "channel": "telegram",
+        "accountId": "declassified"
+      }
+    },
+    {
+      "agentId": "planner",
+      "match": {
+        "channel": "telegram",
+        "accountId": "planner"
+      }
+    }
+  ],
   "messages": {
     "ackReactionScope": "group-mentions",
     "tts": {
@@ -391,6 +449,14 @@
     "nativeSkills": "auto",
     "restart": true,
     "ownerDisplay": "raw"
+  },
+  "session": {
+    "dmScope": "per-channel-peer",
+    "maintenance": {
+      "mode": "enforce",
+      "pruneAfter": "14d",
+      "maxEntries": 200
+    }
   },
   "hooks": {
     "internal": {
@@ -411,56 +477,30 @@
       }
     }
   },
-  "memory": {
-    "backend": "qmd",
-    "citations": "auto",
-    "qmd": {
-      "includeDefaultMemory": true,
-      "searchMode": "search",
-      "update": {
-        "interval": "5m",
-        "debounceMs": 15000,
-        "onBoot": true,
-        "waitForBootSync": false
-      },
-      "limits": {
-        "maxResults": 6,
-        "maxSnippetChars": 700,
-        "timeoutMs": 4000
-      },
-      "scope": {
-        "default": "deny",
-        "rules": [
-          {
-            "action": "allow",
-            "match": {
-              "chatType": "direct"
-            }
-          }
-        ]
-      },
-      "paths": [
-        {
-          "name": "ceo-memory",
-          "path": "/home/robotin/.openclaw/workspace/memory",
-          "pattern": "*.md"
-        }
-      ]
-    }
-  },
   "channels": {
     "telegram": {
       "enabled": true,
+      "dmPolicy": "pairing",
       "groupPolicy": "allowlist",
       "streaming": "off",
       "accounts": {
         "default": {
+          "dmPolicy": "pairing",
           "botToken": "${TELEGRAM_BOT_TOKEN}",
-          "dmPolicy": "pairing"
+          "groupPolicy": "allowlist",
+          "streaming": "partial"
         },
         "declassified": {
+          "dmPolicy": "pairing",
           "botToken": "${TELEGRAM_DECLASSIFIED_TOKEN}",
-          "dmPolicy": "pairing"
+          "groupPolicy": "allowlist",
+          "streaming": "partial"
+        },
+        "planner": {
+          "dmPolicy": "pairing",
+          "botToken": "${TELEGRAM_PLANNER_TOKEN}",
+          "groupPolicy": "allowlist",
+          "streaming": "partial"
         }
       }
     }
@@ -496,6 +536,43 @@
       ]
     }
   },
+  "memory": {
+    "backend": "qmd",
+    "citations": "auto",
+    "qmd": {
+      "searchMode": "search",
+      "includeDefaultMemory": true,
+      "paths": [
+        {
+          "path": "/home/robotin/.openclaw/workspace/memory",
+          "name": "ceo-memory",
+          "pattern": "*.md"
+        }
+      ],
+      "update": {
+        "interval": "5m",
+        "debounceMs": 15000,
+        "onBoot": true,
+        "waitForBootSync": false
+      },
+      "limits": {
+        "maxResults": 6,
+        "maxSnippetChars": 700,
+        "timeoutMs": 4000
+      },
+      "scope": {
+        "default": "deny",
+        "rules": [
+          {
+            "action": "allow",
+            "match": {
+              "chatType": "direct"
+            }
+          }
+        ]
+      }
+    }
+  },
   "skills": {
     "install": {
       "nodeManager": "npm"
@@ -523,34 +600,6 @@
       "telegram": {
         "enabled": true
       }
-    }
-  },
-  "bindings": [
-    {
-      "agentId": "main",
-      "match": {
-        "channel": "telegram",
-        "accountId": "default"
-      }
-    },
-    {
-      "agentId": "declassified",
-      "match": {
-        "channel": "telegram",
-        "accountId": "declassified"
-      }
-    }
-  ],
-  "tools": {
-    "agentToAgent": {
-      "enabled": true,
-      "allow": [
-        "main",
-        "declassified"
-      ]
-    },
-    "sessions": {
-      "visibility": "all"
     }
   }
 }

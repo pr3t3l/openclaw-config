@@ -1,0 +1,49 @@
+{
+  "nombre": "Biblioteca de Ganchos Probados",
+  "version": "1.0",
+  "ultima_actualizacion": "2026-03-26",
+
+  "estructura_gancho": {
+    "tipos": {
+      "shocking": "Abre con un hecho违背直觉的 que nadie espera",
+      "pregunta_retorica": "Formula una pregunta que fuerza a pensar",
+      "problema_oculto": "Describe un problema que el espectador no sabía que tenía",
+      "numero_lista": "Lista un número que genera curiosidad ('7 casos que no pudiste resolver')",
+      "locacion": "Ubicación inesperada ('En el Louvre, hace 100 años, desapareció un cuadro...')"
+    },
+    "duracion": "3-5 segundos max",
+    "regla": "Romper el patrón de atención en la primera frase. No presentar, provocar."
+  },
+
+  "ganchos_por_categoria": {
+    "misterio_general": [
+      "El caso que vas a querer resolver esta semana...",
+      "¿A quién le mienten en esta foto?",
+      "3 pistas. 1 culpable. Ninguna es obvia.",
+      "Esto pasó un martes en un pueblo de 200 habitantes. Nadie esperaba lo que pasó después.",
+      "La policía se rindió. Pero el caso nunca se cerró."
+    ],
+    "engagement": [
+      "Comenta 'PISTA' y te envío la primera pista.",
+      "¿Crees que puedes resolverlo? Ponlo en los comentarios.",
+      "El 90% de la gente falla en esta parte. ¿Tú puedes?"
+    ],
+    "urgencia": [
+      "Este caso desaparece el domingo a medianoche.",
+      "Solo quedan 47 casos esta semana.",
+      "Después de esta semana, este caso no estará disponible."
+    ],
+    "comunidad": [
+      "Los que resuelven este caso entran al ranking semanal.",
+      "Esta semana: hackeamos juntos el caso. En la comunidad.",
+      "El primero en resolverlo se lleva [premio]. Tienes hasta el domingo."
+    ]
+  },
+
+  "ganchos_que_no_funcionan": [
+    "Buenos días/tardes — ya perdiste",
+    "Hoy les voy a mostrar — el expectador ya se fue",
+    "Suscríbete para más — antes de dar valor",
+    "Esto es muy interesante porque... — opinión, no dato"
+  ]
+}

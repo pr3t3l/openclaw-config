@@ -1,0 +1,45 @@
+{
+  "nombre": "Plantilla de Guion para Reel/TikTok — Método ADAS",
+  "version": "1.0",
+
+  "descripcion": "Estructura para video corto de misterio. 3 bloques. Adaptable a cualquier caso semanal.",
+
+  "estructura": {
+    "bloque_1_gancho": {
+      "duracion": "3-5 segundos",
+      "objetivo": "Romper el patrón. Parar el scroll.",
+      "formula": "[Tipo de gancho] → [Provocación específica del caso]",
+      "ejemplo": "Shocking → 'El detective que resolvió este caso dejó de hablar para siempre.'",
+      "NO": "Presentarte. Saludar. Decir 'en este video'. Expresiones muertas."
+    },
+    "bloque_2_cuerpo": {
+      "duracion": "15-45 segundos",
+      "objetivo": "Desarrollar tensión narrativa. Dar contexto.",
+      "estructura": "Situación → Pistas → Pregunta sin responder",
+      "filtro_nino": "Lenguaje simple. Oraciones cortas. Un concepto por frase.",
+      "ritmo": "Corta cada 5-8 segundos con cambio de plano o texto en pantalla.",
+      "ejemplo": "'El lunes, el propietario del museo reportó que su obra más valiosa había desaparecido. Pero aquí está lo extraño: las cámaras no muestran a nadie entrando...'"
+    },
+    "bloque_3_cta": {
+      "duracion": "4-6 segundos",
+      "objetivo": "Conversión a lead o venta",
+      "tipos_cta": [
+        "Lead: 'Comenta MISTERIO y te envío el caso completo a tu DM'",
+        "Venta: 'El caso completo está en el link de mi bio. Solo $X.'",
+        "Comunidad: 'Entra al grupo y resuelve este caso con [N] personas más'"
+      ]
+    }
+  },
+
+  "adas_en_la_practica": {
+    "A_Amor": "Atrapa la curiosidad emocional en los primeros 3 seg",
+    "D_Dinero": "Conecta el caso con algo valioso (resolver, ganar, pertenecer)",
+    "A_Ayuda": "Ofrece el caso como solución al aburrimiento / necesidad de estimulación",
+    "S_Salud": "Implícito en misterio: satisfacción cerebral, dopamina de resolución"
+  },
+
+  "json_output": {
+    "schema": "guion_semanal.json",
+    "campos_requeridos": ["titulo_caso", "gancho_3seg", "cuerpo_30seg", "cta", "hashtags", "fecha_publicacion", "canal"]
+  }
+}

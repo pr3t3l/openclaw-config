@@ -25,7 +25,7 @@ WORKSPACE = Path("/home/robotin/.openclaw/workspace-meta-planner")
 
 PRICING = {
     "claude-sonnet46": {"input": 3.0, "output": 15.0},
-    "gpt52-none": {"input": 3.0, "output": 12.0},
+    "chatgpt-gpt54": {"input": 0.0, "output": 0.0},  # OAuth subscription
 }
 
 
@@ -312,7 +312,7 @@ def main():
         f"NARRATIVE:\n{narrative}\n\n"
         f"VERIFIED FACTS:\n{json.dumps(fact_pack, indent=2)}"
     )
-    review = call_litellm("gpt52-none", "You are a fact-checker. Be concise.", review_prompt, max_tokens=2000)
+    review = call_litellm("chatgpt-gpt54", "You are a fact-checker. Be concise.", review_prompt, max_tokens=2000)
 
     # Step 4: Regenerate if issues found
     if "ACCURATE" not in review.upper()[:20]:

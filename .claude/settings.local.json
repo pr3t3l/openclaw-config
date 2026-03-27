@@ -33,7 +33,29 @@
       "Bash(wc -l echo '--- by subdir ---' du -sh /home/robotin/.openclaw/workspace-declassified/cases/exports/*/visuals/ 2)",
       "Bash(/dev/null du:*)",
       "Bash(grep -c \"workspace-declassified/cases/exports.*\\\\\\(visuals\\\\|layout_specs\\\\|final\\\\|envelope_\\\\|\\\\.pdf\\\\|\\\\.png\\\\|\\\\.jpg\\\\\\)\" echo \"---\" git add -n -A)",
-      "Bash(xargs -I{} du -sh {})"
+      "Bash(xargs -I{} du -sh {})",
+      "Bash(gh repo:*)",
+      "Bash(bash scripts/start_plan.sh declassified-marketing \"quiero un workflow de marketing para vender los casos de Declassified Cases como producto digital. Quiero que este producto sea desde el principio. Entonces tengo el caso con todos los archivos, los clues, las escenas, el planning, las historias, bueno, tengo toda la información referente al caso y quiero que ese workflow lo que haga sea leer toda esa información que tenemos y con eso empezar a hacer un plan para vender y promocionar cada caso. Pero primero que eso, antes que eso, lo que tenemos que hacer es un estudio de marketing. Entonces hay que investigar todas las cosas que se necesitan hacer para hacer un estudio de marketing apropiado para poder vender un producto, identificar el buyer persona, identificar cuáles son los puntos de dolor, identificar cuáles son las mejores formas de vender, cuáles son las restricciones o las cosas que previenen a esta persona de comprarlo para poder decir, atacar esos puntos en la publicidad. Bueno, en general, todas las cosas de marketing. Entonces, una vez tenemos eso, entonces ya podemos empezar a planificar cómo vender esos casos, cómo vender cada uno de los casos teniendo en cuenta lo que ya identificamos de nuestros posibles compradores. Después necesitamos tener quién redacta cómo hacer la publicidad, tenemos que tener quién la crea, si son videos, si son imágenes, si son lo que sea. Después tenemos que identificar bajo qué, en qué redes ponerla, TikTok, Instagram, Facebook, etcétera, etcétera, etcétera. También eso tenemos que tenerlo en cuenta de el estudio de mercado que hicimos, cuáles vienen siendo las mejores opciones para vender esto. Después de eso necesitamos un agente o algo que nos haga un tracking de las métricas de ventas para identificar qué es algo que tenemos que haber hecho en el paso anterior, es identificar cuáles son la estrategia de cada una de las publicidades para poder hacer como un tracking de cuál es la que mejor está vendiendo y con eso ir optimizando el ciclo. Entonces tenemos que hacer como una especie de bucle de ventas para ir optimizando el ciclo cada vez más y más y más. Y bueno, entonces, eso es lo que necesitamos. En este momento ya tenemos una página web que se llama Theclassifiedcases.shop. Entonces las ventas se van a hacer a través de esa página, entonces cualquier publicidad que hagamos, cualquier cosa que hagamos, tenemos que ir a venderlas allá. Y adicionalmente podemos crear estrategias y son cosas que debemos probar, como por ejemplo, entonces necesitamos tener algo que nos ayude a crear y a pensar estrategias. Estrategias como, por ejemplo, colocar casos así como sueltos, o sea, como videos o shorts de la explicación del caso, pero no como si estuviéramos vendiendo, sino como bueno como mataron a tal persona no sé qué de forma de video animado lo que sea y colocar digamos tres posts y ya el cuarto decir cómpranos la idea. Algo así como para que la gente se enganche primero y después como que se interesen ese tipo de cosas. Entonces sería como hacer una página o un profile ya sea en Instagram Facebook TikTok en todos para crear para vender los casos. Otra cosa sería como identificar cuáles son las cosas virales que están en estos momentos por ejemplo si hay un audio viral o si hay un video viral o hay un formato viral aprovechar eso como apalancamiento para vender los casos. Y todo esto pero entonces todo esto que te estoy diciendo son estrategias que se me están ocurriendo a mí en este momento son ideas que tenemos que transformar en un proceso el cual pueda ser trackeado y ejecutado de manera lógica para poder tener el mejor resultado y para poder tener un bucle de mejora constante.\")",
+      "Bash(bash scripts/resume_plan.sh finance-test)",
+      "Bash(bash scripts/run_phase_b.sh finance-test)",
+      "Bash(bash scripts/resume_plan.sh declassified-marketing)",
+      "Bash(bash scripts/run_phase_c.sh finance-test)",
+      "Bash(bash -n scripts/run_full_plan.sh)",
+      "Bash(bash scripts/run_phase_b.sh declassified-marketing)",
+      "Bash(bash scripts/run_phase_c.sh declassified-marketing)",
+      "Bash(bash scripts/start_plan.sh finance-test \"Quiero un workflow que cuando envíe un gasto o ingreso por Telegram, categorice automáticamente la transacción, actualice mi balance, y me responda cuánto llevo gastado este mes y cuánto me queda de presupuesto. Presupuesto mensual: 5 USD para API costs. Persistencia en JSON local. Presupuesto configurable default 15000 MXN.\" regular)",
+      "Bash(bash scripts/run_phase_a.sh finance-test)",
+      "WebFetch(domain:docs.litellm.ai)",
+      "Bash(/home/robotin/litellm-venv/bin/prisma --version)",
+      "Bash(systemctl --user restart litellm.service)",
+      "Bash(journalctl --user -u litellm --since \"2 min ago\" --no-pager)",
+      "Bash(journalctl --user -u litellm --since \"3 min ago\" --no-pager)",
+      "Bash(curl -s http://127.0.0.1:4000/v1/chat/completions -H 'Content-Type: application/json' -H 'Authorization: Bearer sk-litellm-local' -d '{\"\"\"\"model\"\"\"\": \"\"\"\"chatgpt-gpt54\"\"\"\", \"\"\"\"messages\"\"\"\": [{\"\"\"\"role\"\"\"\": \"\"\"\"user\"\"\"\", \"\"\"\"content\"\"\"\": \"\"\"\"Say hello in one word.\"\"\"\"}]}')",
+      "Bash(openclaw gateway:*)",
+      "Bash(journalctl --user -u openclaw-gateway --since \"30 sec ago\" --no-pager)",
+      "Bash(journalctl --user -u openclaw-gateway --since \"2 min ago\" --no-pager)",
+      "Bash(systemctl:*)",
+      "Bash(journalctl --user -u openclaw-gateway --since \"10 min ago\" --no-pager)"
     ]
   }
 }

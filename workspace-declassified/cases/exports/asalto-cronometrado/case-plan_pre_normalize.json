@@ -1,0 +1,473 @@
+{
+  "tier": "NORMAL",
+  "slug": "the-timed-heist",
+  "title": "The Timed Heist",
+  "logline": "A vault is robbed in exactly 9 minutes with surgical precision — and the timecode evidence points not to a commando, but to an industrial engineer who blueprinted the crime as a process optimization study.",
+  "setting": {
+    "city": "Chicago, IL",
+    "neighborhood": "West Loop Financial District",
+    "time_period": "Present day — single night, 11:47 PM to 12:04 AM",
+    "atmosphere": "Fluorescent corridors and silent vaults; the cold geometry of a building that was never supposed to be robbed. The heist left no chaos — only a perfect, disturbing absence."
+  },
+  "victim": {
+    "name": "N/A — Robbery, No Homicide",
+    "age": 0,
+    "occupation": "Vault contents: $2.3M in negotiable bearer bonds and $180K cash (Metro Vault & Currency Exchange, LLC)",
+    "cause_of_death": "Not applicable — armed robbery, no fatalities",
+    "found_by": "Shift supervisor Renata Okonkwo",
+    "found_at": "Vault Room B, Sub-Level 1, Metro Vault & Currency Exchange, 318 W. Randolph St.",
+    "found_when": "2026-04-08T00:04:00"
+  },
+  "culprit": {
+    "poi_id": "POI-02",
+    "motive": "Marcus Fleiss, industrial engineer and former Metro Vault process consultant, was terminated without severance after management used his confidential time-study report — which he submitted as billable proprietary work — to restructure operations and then dismissed him under a non-disclosure clause. He planned the heist to recover the financial value he believed Metro Vault stole from him: the $2.3M figure corresponds precisely to the unpaid consulting invoices plus the market value of the methodology Metro Vault appropriated. The 9-minute heist window is the exact standard time he calculated in Phase 3 of his 2025 Process Efficiency Audit — a document he still possessed and weaponized.",
+    "motive_specificity_test": "Only Marcus Fleiss authored the Phase 3 Process Efficiency Audit that contains the 9:00 standard time table for vault-corridor cycle operations. Only he was terminated under the specific NDA clause that suppressed his billing claims. No other POI had both the technical blueprint and the personal financial grievance rooted in that exact document.",
+    "method_steps": [
+      "Step 1 (Weeks prior): Fleiss recruited three accomplices using burner contacts, assigning each a timed role derived directly from his process audit — the crew operated as a lean manufacturing cell, not a military unit.",
+      "Step 2 (11:47 PM): Using a cloned RFID credential obtained from alarm technician POI-04 (Dario Szymański) during a routine maintenance visit, the crew entered through Service Corridor C — the one blind spot Fleiss had documented in his audit as 'camera coverage gap, Node 7'.",
+      "Step 3 (11:47–11:56 PM): Fleiss directed operations via encrypted earpiece. Each task was assigned a standard time (ST) in seconds: door breach ST=47s, staff containment ST=112s, vault drill ST=318s, load and egress ST=83s. Total: 560 seconds = 9 minutes 20 seconds with buffer.",
+      "Step 4 (11:56 PM): The crew exited through the loading dock on W. Washington St., where a rented cargo van — booked under a shell LLC — waited. The entire operation matched Fleiss's audit table to within 4 seconds per phase.",
+      "Step 5 (Cover): Fleiss established a false alibi at a downtown hotel bar with a colleague, but the colleague later recalled he disappeared for 28 minutes — exactly the transit time from the hotel to Metro Vault and back."
+    ],
+    "the_almost": "One of the crew members (later identified as POI-03's former contact) dropped a laminated card during egress. The card, recovered near Vault Room B, bore a table of standard times in seconds — the exact format used in Fleiss's 2025 Process Efficiency Audit. Fleiss had distributed laminated ST reference cards to his crew as operational checklists. This card is the pivot clue in envelope C."
+  },
+  "pois": [
+    {
+      "id": "POI-01",
+      "name": "Renata Okonkwo",
+      "role": "Shift Supervisor, Metro Vault & Currency Exchange",
+      "status": "alive",
+      "description": "Renata has managed the overnight shift at Metro Vault for six years. She was the first person on scene after the alarm triggered at 00:04 AM, and she witnessed the vault open and the staff zip-tied. Methodical and protective of her team, she has extensive knowledge of daily operations and routines.",
+      "voice_profile": {
+        "speech_pattern": "Deliberate and precise — she speaks in complete sentences and corrects vague questions with specifics. Uses operational vocabulary naturally.",
+        "under_pressure": "Becomes quieter and more controlled, not louder. Her sentences shorten. She asks for clarification before answering anything she finds ambiguous.",
+        "verbal_tics": "Begins answers with 'To be accurate...' or 'What I can tell you for certain is...'"
+      },
+      "surface_motive": "As shift supervisor, Renata had full knowledge of staff schedules, vault cycles, and the single camera blind spot. She could have fed inside information to the crew.",
+      "alibi": {
+        "claim": "Was on the floor monitoring screens from 11:30 PM until the alarm triggered at 00:04 AM, logged continuously in the building access system.",
+        "verifiable": true,
+        "holes": "The CCTV shows Renata stepping away from the monitoring desk for 11 minutes between 11:44 PM and 11:55 PM — the exact window the crew entered."
+      },
+      "hiding": "She left the desk to take a personal call from her estranged sister and has not disclosed this because she fears disciplinary action for abandoning her post during the breach window.",
+      "interview_doc": "B1",
+      "is_culprit": false,
+      "red_herring_reason": "Her 11-minute absence from the monitoring desk perfectly overlaps the crew's entry window, making her look complicit. Her deep operational knowledge and access to schedule data makes her seem like a viable inside source. However, her departure was personal, not coordinated, and the crew used a cloned RFID — they didn't need her to step away."
+    },
+    {
+      "id": "POI-02",
+      "name": "Marcus Fleiss",
+      "role": "Industrial Engineer and Former Process Consultant, Metro Vault",
+      "status": "alive",
+      "description": "Marcus is a lean manufacturing and process design specialist who was contracted by Metro Vault in 2024–2025 to conduct a full operational efficiency audit. He was terminated in October 2025 under a non-disclosure agreement after management used his proprietary methodology without licensing it. Cold, analytical, and visibly bitter about the dismissal.",
+      "voice_profile": {
+        "speech_pattern": "Speaks in systems language — cycles, throughput, bottlenecks, standard times. Rarely uses emotional language. His speech has the quality of a technical report being read aloud.",
+        "under_pressure": "Does not become agitated — instead becomes more precise, almost pedantic. He answers questions with definitions. Avoids the word 'I' when discussing the audit.",
+        "verbal_tics": "Says 'the data shows' instead of 'I believe.' Frequently references 'standard time' as if it's a legal term. Pauses before answering questions about the audit."
+      },
+      "surface_motive": "Terminated without severance after Metro Vault appropriated his proprietary process methodology. Has documented financial grievance and deep technical knowledge of the building's operational vulnerabilities.",
+      "alibi": {
+        "claim": "Was at the Kinzie Hotel rooftop bar from 10:30 PM to 12:30 AM with colleague Petra Vance, attending an informal IEEE chapter mixer.",
+        "verifiable": true,
+        "holes": "Colleague Petra Vance confirms he was there but notes he disappeared for approximately 25–30 minutes around 11:40 PM, returning slightly out of breath. The hotel is an 8-minute drive from Metro Vault."
+      },
+      "hiding": "He directed the heist remotely via encrypted earpiece and deployed his process audit as the operational blueprint. He believes his actions are a legitimate recovery of stolen intellectual property value.",
+      "interview_doc": "B2",
+      "is_culprit": true,
+      "red_herring_reason": null
+    },
+    {
+      "id": "POI-03",
+      "name": "Vince Calabrese",
+      "role": "Ex-Military Security Guard, Metro Vault (Terminated March 2026)",
+      "status": "alive",
+      "description": "Vince is a former Army Ranger who worked the overnight security rotation at Metro Vault until he was let go in March 2026 following a disciplinary incident. He has publicly complained about the termination on social media and is known to boast about his tactical training. He knew the building layout intimately from his tenure.",
+      "voice_profile": {
+        "speech_pattern": "Short, direct, alpha cadence. Uses military shorthand ('0200,' 'perimeter,' 'breach'). Tends to answer questions with rhetorical ones.",
+        "under_pressure": "Becomes defensive and sarcastic. References his service record as a deflection. Gets louder when he feels accused.",
+        "verbal_tics": "Says 'Roger that' sarcastically when he disagrees with a premise. Uses 'zero' instead of 'no' (e.g., 'zero chance')."
+      },
+      "surface_motive": "Recently terminated from Metro Vault with a grievance, tactical training perfectly matching the heist's rapid-incursion profile, and intimate knowledge of shift patterns and building layout.",
+      "alibi": {
+        "claim": "Was at a late-night gym session at Iron District Fitness from 11:15 PM to 12:45 AM, and check-in logs confirm entry.",
+        "verifiable": true,
+        "holes": "The gym's check-in system logs entry but not continuous presence — members can exit the rear door without logging out. The rear exit is 3 blocks from Metro Vault."
+      },
+      "hiding": "He has been in contact with a former Army buddy who is one of the unidentified crew members in the heist — but Calabrese himself did not participate and is hiding this connection to protect his friend.",
+      "interview_doc": "B3",
+      "is_culprit": false,
+      "red_herring_reason": "Everything about Calabrese screams 'heist mastermind' — military precision, building knowledge, public grievance, suspicious gym alibi. The entire case narrative initially frames the heist as 'commando-style,' which investigators and players alike interpret as pointing to him. His tactical vocabulary and behavior under questioning amplify this. But the heist was not commando-style — it was lean manufacturing applied to crime, a distinction only visible once the time-study document surfaces."
+    },
+    {
+      "id": "POI-04",
+      "name": "Dario Szymański",
+      "role": "Alarm Systems Contractor, SekurTech Solutions (Maintenance Access to Metro Vault)",
+      "status": "alive",
+      "description": "Dario is a licensed alarm and access-control technician who has serviced Metro Vault's sensor array and RFID credential system for the past three years under contract with SekurTech Solutions. He performed a scheduled maintenance visit on April 3, 2026 — five days before the heist — and had unsupervised access to the credential management terminal for approximately 40 minutes.",
+      "voice_profile": {
+        "speech_pattern": "Nervous filler-heavy speech. Technical when discussing his work, but evasive when discussing anything outside the job scope. Tends to over-explain routine procedures.",
+        "under_pressure": "Voice pitch rises. Begins sentences and abandons them mid-way. Relies heavily on 'I was just doing my job' type deflections.",
+        "verbal_tics": "Says 'you know how it is' repeatedly. Trails off with 'et cetera' to avoid completing specific statements."
+      },
+      "surface_motive": "Had unsupervised access to the RFID credential terminal during the April 3 maintenance window — enough time to clone a valid access credential used in the heist.",
+      "alibi": {
+        "claim": "Was home in Pilsen from 9 PM onward the night of the heist, confirmed by his girlfriend.",
+        "verifiable": false,
+        "holes": "The girlfriend's statement is unverifiable beyond her word. Szymański's personal vehicle was captured by a traffic camera on W. Madison St. at 11:52 PM — 4 blocks from Metro Vault."
+      },
+      "hiding": "Marcus Fleiss approached him three weeks before the heist under the guise of a follow-up 'system compatibility consultation.' Fleiss paid Dario $4,000 cash to clone one RFID credential during the April 3 maintenance visit. Dario is hiding this transaction and his awareness that Fleiss intended something illegal.",
+      "interview_doc": "B4",
+      "is_culprit": false,
+      "red_herring_reason": "Dario's role as the RFID credential source makes him appear to be a key inside conspirator or possibly the mastermind who sold full access to the crew. His evasive behavior under questioning, false alibi, and the camera capturing his vehicle near the scene all look damning. However, he was an unwitting (or willfully blind) facilitator — the intellectual architecture of the crime belongs entirely to Fleiss."
+    }
+  ],
+  "timeline": [
+    {
+      "datetime": "2025-10-15T00:00:00",
+      "event": "Marcus Fleiss is officially terminated by Metro Vault under NDA clause 7.3, which suppresses his billing claims for the 2025 Process Efficiency Audit. Fleiss sends a final invoice for $2.48M that is rejected.",
+      "source_docs": [
+        "A3"
+      ],
+      "is_critical_period": false
+    },
+    {
+      "datetime": "2026-03-12T00:00:00",
+      "event": "Vince Calabrese is terminated from Metro Vault following a disciplinary incident involving an unauthorized external hard drive on premises. He posts publicly about wrongful termination.",
+      "source_docs": [
+        "A2",
+        "A5"
+      ],
+      "is_critical_period": false
+    },
+    {
+      "datetime": "2026-04-03T14:00:00",
+      "event": "Dario Szymański performs scheduled maintenance on Metro Vault's RFID credential terminal — 40 minutes unsupervised. RFID clone of Credential #MV-0047 (assigned to deactivated contractor account) is created during this window.",
+      "source_docs": [
+        "A6",
+        "B6"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-04-07T22:30:00",
+      "event": "Marcus Fleiss arrives at the Kinzie Hotel rooftop bar for the IEEE mixer. Colleague Petra Vance later places his arrival at approximately 10:30 PM.",
+      "source_docs": [
+        "B2"
+      ],
+      "is_critical_period": false
+    },
+    {
+      "datetime": "2026-04-07T23:40:00",
+      "event": "Fleiss disappears from the hotel bar for approximately 25-30 minutes. Petra Vance notices his absence but does not mark the time precisely.",
+      "source_docs": [
+        "B2",
+        "C2"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-04-07T23:47:00",
+      "event": "Crew enters Metro Vault through Service Corridor C using cloned RFID Credential #MV-0047. Entry logged at 23:47:12 in the access log. Renata Okonkwo is away from the monitoring desk.",
+      "source_docs": [
+        "A6",
+        "B1"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-04-07T23:47:00",
+      "event": "Operation begins. Each task is executed per the laminated standard-time reference cards distributed to crew: door breach (47s), staff containment (112s), vault drill (318s), load and egress (83s).",
+      "source_docs": [
+        "A4",
+        "C1"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-04-07T23:56:00",
+      "event": "Crew exits through loading dock on W. Washington St. One laminated standard-time reference card is dropped near Vault Room B during egress. A cargo van departs at 23:57.",
+      "source_docs": [
+        "C1",
+        "A4"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-04-08T00:04:00",
+      "event": "Vault Room B alarm triggers. Renata Okonkwo discovers the open vault, zip-tied staff, and missing contents. She calls 911.",
+      "source_docs": [
+        "A1",
+        "A3"
+      ],
+      "is_critical_period": false
+    },
+    {
+      "datetime": "2026-04-08T00:52:00",
+      "event": "CPD forensic team arrives. Laminated ST card recovered near Vault Room B door, photographed in place, and logged as Evidence Item 7.",
+      "source_docs": [
+        "B5",
+        "C1"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-04-08T09:15:00",
+      "event": "Dario Szymański's personal vehicle confirmed on traffic camera footage at W. Madison St. at 23:52 on April 7 — 4 blocks from Metro Vault and during the heist window.",
+      "source_docs": [
+        "B6"
+      ],
+      "is_critical_period": true
+    },
+    {
+      "datetime": "2026-04-08T14:30:00",
+      "event": "CPD analyst cross-references the standard-time table on the laminated card against Metro Vault's 2025 Process Efficiency Audit (on file as Exhibit A in the NDA dispute). Tables match to within formatting detail.",
+      "source_docs": [
+        "C1",
+        "C3"
+      ],
+      "is_critical_period": true
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "CONTRA-01",
+      "what": "Renata Okonkwo states she was monitoring screens continuously from 11:30 PM until the alarm at 00:04 AM, but CCTV timestamps show her monitoring desk vacant from 23:44 to 23:55 — the exact 11-minute window the crew entered.",
+      "introduced_in": "A1",
+      "resolved_in": "B1",
+      "player_inference": "Renata's gap is real but explained by a personal call — she was not coordinating with the crew. However, the crew's entry at exactly 23:47 (within her gap) suggests someone knew she would be away, or the crew was watching in real time."
+    },
+    {
+      "id": "CONTRA-02",
+      "what": "Vince Calabrese is presented as the most likely suspect due to his military background and tactical heist profile, but the heist methodology contains no improvisation, no tactical violence, and no military breach techniques — only engineered time allocations.",
+      "introduced_in": "A3",
+      "resolved_in": "C1",
+      "player_inference": "The 'commando' framing is a misread. The heist is not a military operation — it is a process engineering exercise. This reframes who the real suspect is: not someone trained to breach under fire, but someone trained to eliminate variance in a workflow."
+    },
+    {
+      "id": "CONTRA-03",
+      "what": "Dario Szymański claims his vehicle was home in Pilsen all night on April 7, but a traffic camera captures his license plate on W. Madison St. at 23:52 — 4 blocks from Metro Vault during the active heist.",
+      "introduced_in": "B4",
+      "resolved_in": "B6",
+      "player_inference": "Szymański's alibi is false. His vehicle was near the scene during the heist. Combined with his unsupervised access to the RFID terminal on April 3, this confirms he was involved in the credential cloning and was possibly conducting a pickup or final coordination pass."
+    },
+    {
+      "id": "CONTRA-04",
+      "what": "Marcus Fleiss claims uninterrupted presence at the Kinzie Hotel bar from 10:30 PM to 12:30 AM, but colleague Petra Vance places a 25-30 minute unexplained absence starting around 11:40 PM — exactly when the crew entered Metro Vault.",
+      "introduced_in": "B2",
+      "resolved_in": "C2",
+      "player_inference": "Fleiss's hotel alibi has a 28-minute gap that aligns with the round-trip transit time between the Kinzie Hotel and Metro Vault (8 minutes each way plus time on-site). He was directing the operation in person, then returned to the bar."
+    },
+    {
+      "id": "CONTRA-05",
+      "what": "The laminated card recovered at the scene (Evidence Item 7) contains a standard-time table in seconds that investigators initially attribute to military tactical timing, but the format — ST column headers, cycle notation, buffer percentages — matches industrial engineering process documentation, not military operations.",
+      "introduced_in": "B5",
+      "resolved_in": "C1",
+      "player_inference": "The laminated card is not a commando checklist — it is an industrial engineering standard-time reference card. This is the same format Fleiss uses in his process audit documents, and the specific cycle times match Phase 3 of his 2025 Metro Vault audit exactly."
+    },
+    {
+      "id": "CONTRA-06",
+      "what": "The RFID entry log shows Credential #MV-0047 used to enter Service Corridor C at 23:47, but that credential was deactivated in November 2025 after a contractor's engagement ended — it should have been rejected by the access control system.",
+      "introduced_in": "A6",
+      "resolved_in": "C3",
+      "player_inference": "The deactivated credential was physically cloned as a hardware key during Szymański's April 3 maintenance visit — the access control system had a firmware gap that allowed hardware-cloned credentials to bypass the deactivation flag, a vulnerability Fleiss had documented in his 2025 audit."
+    }
+  ],
+  "evidence_chain": [
+    {
+      "step": 1,
+      "docs_needed": [
+        "A1"
+      ],
+      "reveals": "The vault was breached on the night of April 7–8. The operation lasted from 23:47 to 23:56 — exactly 9 minutes. CCTV shows a disciplined 4-person crew with zero improvisation. Renata Okonkwo's monitoring desk was vacant during entry."
+    },
+    {
+      "step": 2,
+      "docs_needed": [
+        "A2",
+        "A3",
+        "A5"
+      ],
+      "reveals": "Four suspects are identified: Okonkwo (shift supervisor with operational knowledge), Fleiss (terminated engineer with financial grievance), Calabrese (ex-military guard with tactical profile and grudge), and Szymański (alarm contractor with recent unsupervised access). Calabrese's social media posts frame him as the obvious commando suspect."
+    },
+    {
+      "step": 3,
+      "docs_needed": [
+        "A4",
+        "A6"
+      ],
+      "reveals": "The site plan shows Service Corridor C has a camera blind spot at Node 7. The RFID entry log shows deactivated Credential #MV-0047 was used to access that corridor at exactly 23:47 — the credential should have been rejected. Someone with technical access cloned it."
+    },
+    {
+      "step": 4,
+      "docs_needed": [
+        "B1",
+        "B3",
+        "B4"
+      ],
+      "reveals": "Okonkwo's 11-minute desk absence is explained by a personal call (B1). Calabrese's gym alibi has a physical gap (B3) but his manner suggests knowledge, not guilt. Szymański lies about his vehicle's location — it was 4 blocks from the vault during the heist (B4). The credential clone points directly to Szymański's April 3 maintenance visit."
+    },
+    {
+      "step": 5,
+      "docs_needed": [
+        "B2",
+        "B5",
+        "B6"
+      ],
+      "reveals": "Fleiss has a 28-minute hole in his hotel alibi that matches the transit window to Metro Vault and back (B2). The laminated card recovered at the scene (Evidence Item 7) contains a standard-time table in an industrial engineering format — not military (B5). Szymański's traffic camera hit confirms his vehicle was near the scene at 23:52 (B6)."
+    },
+    {
+      "step": 6,
+      "docs_needed": [
+        "C1",
+        "C3"
+      ],
+      "reveals": "The laminated card's standard-time values match Phase 3 of Fleiss's 2025 Process Efficiency Audit to within 4 seconds per task (C1). The audit document is on file as Exhibit A in the NDA dispute — Fleiss's own filing. The firmware gap in Metro Vault's access control system was documented in that same audit as a remediation item Metro Vault never fixed (C3)."
+    },
+    {
+      "step": 7,
+      "docs_needed": [
+        "C1",
+        "C2",
+        "A3"
+      ],
+      "reveals": "Fleiss's 28-minute hotel absence (C2) perfectly covers the round-trip to Metro Vault during the 9-minute operation. His termination invoice for $2.48M (A3) matches the value of stolen assets. The heist was not a commando operation — it was a process engineering exercise Fleiss designed, documented, and executed using his own audit as the blueprint."
+    },
+    {
+      "step": 8,
+      "docs_needed": [
+        "C3",
+        "B4",
+        "B6"
+      ],
+      "reveals": "Szymański cloned Credential #MV-0047 during the April 3 maintenance visit and sold it to Fleiss for $4,000 cash. His vehicle near the scene at 23:52 — after the crew had already left — suggests a post-operation credential disposal run. He was a paid facilitator, not an architect."
+    }
+  ],
+  "envelopes": {
+    "A": {
+      "description": "Scene setup — establish the heist, introduce all four suspects, plant the camera blind spot and RFID anomaly",
+      "docs": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "A6"
+      ]
+    },
+    "B": {
+      "description": "Contradictory evidence — interviews reveal lies and gaps, forensic evidence deepens the mystery, Szymański's vehicle places him at the scene",
+      "docs": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7"
+      ]
+    },
+    "C": {
+      "description": "The pivot — the laminated ST card matched to Fleiss's process audit reframes the entire case from commando heist to engineered crime",
+      "docs": [
+        "C1",
+        "C2",
+        "C3"
+      ]
+    },
+    "R": {
+      "description": "Resolution — one document per POI establishing guilt, facilitation, or exoneration with specific evidence references",
+      "docs": [
+        "R1",
+        "R2",
+        "R3",
+        "R4"
+      ]
+    }
+  },
+  "experiential_style": "digital_corporate",
+  "emotional_arc": {
+    "envelope_A": "Curiosity shading into awe — the 9-minute precision is almost beautiful. Players feel they are looking at a puzzle, not a crime. The commando theory feels obvious and satisfying, which is exactly the trap.",
+    "envelope_B": "Suspicion multiplies — Calabrese looks guilty, Szymański's lie about his car is alarming, Fleiss seems like a bitter footnote. Players feel the case cracking open in three directions simultaneously, unsure which thread to pull.",
+    "envelope_C": "Paradigm shift and intellectual shock — the laminated card is not military, it's process engineering. The player realizes the entire 'commando' narrative was a misread and that the real architect was hiding in plain sight as a bureaucratic grievance case. The satisfaction is cerebral.",
+    "envelope_R": "Precision satisfaction — every actor in the operation is accounted for with a specific role and specific evidence. The resolution feels like a process audit itself: every variable resolved, every step documented."
+  },
+  "trojan_horse_docs": [
+    {
+      "doc_id": "A3",
+      "appears_as": "A routine HR/legal document — Metro Vault's formal termination letter and rejected invoice from Marcus Fleiss. Looks like background paperwork establishing his grudge motive.",
+      "actually_proves": "The rejected invoice amount is $2.48M — which corresponds precisely to the market value of the stolen bearer bonds ($2.3M) plus the cash ($180K). Fleiss did not steal randomly; he stole the exact amount he believed Metro Vault owed him. This is the financial fingerprint of the crime's architect."
+    },
+    {
+      "doc_id": "B5",
+      "appears_as": "A forensic evidence log entry — a routine CPD catalog of physical items recovered at the scene. The laminated card appears as 'Evidence Item 7, laminated reference card, contents TBD.' Looks like standard scene processing.",
+      "actually_proves": "The card's contents — when the player reads the actual table — are in industrial engineering standard-time format (ST columns, cycle notation, buffer percentages), not military tactical notation. This single formatting detail destroys the commando narrative and points to an industrial engineer as the planner."
+    },
+    {
+      "doc_id": "A6",
+      "appears_as": "A dry RFID access control log — a timestamped printout of all credential entries and exits for the night of April 7–8. Looks like routine access record-keeping that confirms when people entered and left.",
+      "actually_proves": "Credential #MV-0047 used at 23:47 was deactivated in November 2025. Its successful use proves a hardware clone was created — which requires unsupervised physical access to the credential terminal, directly implicating Szymański's April 3 maintenance visit as the cloning event."
+    }
+  ],
+  "social_media_plan": [
+    {
+      "platform": "X/Twitter",
+      "content_type": "thread",
+      "case_purpose": "A self-described 'security industry insider' account posts a thread arguing the Metro Vault heist was the work of a former military unit based on the 9-minute window and crew discipline. This amplifies the Calabrese red herring and gives players a compelling but wrong theory to interrogate. Doc_id: B7."
+    },
+    {
+      "platform": "Reddit",
+      "content_type": "thread",
+      "case_purpose": "A r/ChicagoNews thread where users speculate about the heist. One commenter — an anonymous account created 3 weeks before the heist — posts suspiciously specific knowledge about Metro Vault's camera blind spot at Node 7, then goes quiet. This plants Fleiss as a pre-heist planner without naming him. Doc_id: A5."
+    },
+    {
+      "platform": "Facebook",
+      "content_type": "post",
+      "case_purpose": "Vince Calabrese's public Facebook post from March 2026 about his wrongful termination from Metro Vault, including a photo of him in uniform outside the building and a rant about 'people who don't appreciate what real training looks like.' Establishes his grievance and tactical self-image — feeds the commando red herring. Doc_id: A5 (secondary reference) — assigned own doc_id in clue_catalog: this is combined with A5 as a social posts document."
+    },
+    {
+      "platform": "Instagram",
+      "content_type": "comments",
+      "case_purpose": "An Instagram post by the official Metro Vault company account about their 'state of the art security systems' from February 2026, with comments from Fleiss's now-deleted account (screenshot preserved) sarcastically stating 'your Node 7 coverage gap says otherwise' — a comment that was ignored at the time but now proves pre-heist reconnaissance intent. Doc_id: C2 (secondary layer of Fleiss's hotel alibi cross-reference document)."
+    }
+  ],
+  "spatial_tool": {
+    "type": "floor_plan",
+    "doc_id": "A4",
+    "description": "Annotated site plan of Metro Vault's Sub-Level 1 and ground floor showing: Vault Room B location, Service Corridor C with the Node 7 camera blind spot marked, all RFID-controlled entry points, sensor coverage zones, loading dock egress route on W. Washington St., and the four staff positions during the heist. Players use this to trace the crew's route against the RFID log and CCTV timestamps, confirming the 9-minute path and identifying the one entry point not covered by active cameras."
+  },
+  "hint_system": {
+    "levels": [
+      {
+        "level": 1,
+        "label": "Nudge",
+        "hints": [
+          "The heist was called 'military precision' — but look at the laminated card's column headers. What field uses 'ST' as a standard abbreviation?",
+          "Credential #MV-0047 was deactivated. How did it still open a door? Who had physical access to the credential system recently?"
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Direction",
+        "hints": [
+          "Compare the standard times on the laminated card (Evidence Item 7) with the Phase 3 table in the 2025 Process Efficiency Audit. How many seconds apart are the values?",
+          "Marcus Fleiss has a 28-minute gap in his hotel alibi. The Kinzie Hotel is 8 minutes from Metro Vault. Does the math work for a round trip during the heist window?"
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Reveal",
+        "hints": [
+          "The laminated card is a lean manufacturing standard-time reference card — not a military checklist. The person who made it is the same person who wrote the 2025 Metro Vault Process Efficiency Audit. That person is Marcus Fleiss.",
+          "Fleiss's rejected invoice was $2.48M. The stolen assets total $2.48M. He didn't plan a heist — he planned a precise recovery of the exact value Metro Vault stole from him."
+        ]
+      },
+      {
+        "level": 4,
+        "label": "Full Walkthrough",
+        "hints": [
+          "Marcus Fleiss is the architect. He used his own process audit as the blueprint. Dario Szymański cloned the RFID credential during the April 3 maintenance visit for $4,000 cash. Fleiss directed the operation via earpiece from near the scene during his 28-minute hotel absence. The commando framing was a misread — every 'military' detail is actually a process engineering detail."
+        ]
+      }
+    ]
+  }
+}

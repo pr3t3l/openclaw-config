@@ -1,0 +1,38 @@
+{
+  "title": "The Timed Heist",
+  "logline": "A crew robs a vault in exactly 9 minutes. The military precision points to a suspect who is an industrial engineer and expert in standard times.",
+  "setting": {
+    "primary_location": "Vault and service corridors of a currency exchange/security firm",
+    "timeframe": "A single night; 9-minute precise window"
+  },
+  "premise": {
+    "victim_profile": "Robbery (no homicide); small staff held for the minimum required time",
+    "cause_of_death": "Not applicable (vault heist)",
+    "inciting_event": "Cameras and sensors show the vault was breached in exactly 9:00 minutes with zero improvisation"
+  },
+  "suspects": [
+    { "name": "The Industrial Engineer", "role": "Expert in standard times and process design; manufacturing/lean background" },
+    { "name": "The Head of Operations", "role": "Knows shifts, routes, and response times of staff and security" },
+    { "name": "The Alarm Technician", "role": "Contractor with access to maintenance, sensors, and logs" },
+    { "name": "The Ex-Military Guard", "role": "Trained in rapid incursions; boasts about discipline and coordination" }
+  ],
+  "digital_evidence_targets": [
+    "CCTV records with timecode",
+    "Alarm and control panel logs",
+    "Access/credential logs (RFID/keypad)",
+    "Security team chats/calls",
+    "Internal emails regarding time audits and drills"
+  ],
+  "spatial_tool": {
+    "required": true,
+    "concept": "Site plan: vault, airlocks, service corridors, camera/sensor locations, and entry/exit routes"
+  },
+  "trojan_horse": {
+    "concept": "An apparently innocent technical report of a 'time study' includes a 9:00 standard table that matches the heist pattern and gives away the method",
+    "purpose": "Recontextualizes the evidence: it wasn't 'military', it was process engineering applied to crime"
+  },
+  "tone": {
+    "genre": "Heist procedural / modern investigative thriller",
+    "style": "Precision, timing, technical jargon vs. 'commando' narrative"
+  }
+}
