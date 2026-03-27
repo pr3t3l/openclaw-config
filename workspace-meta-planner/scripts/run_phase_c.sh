@@ -23,7 +23,13 @@ if [ "$GATE2" != "approved" ]; then
   exit 1
 fi
 
-echo "=== FASE C: BUILDABILITY ==="
+LEVEL=$(python3 -c "
+import json
+with open('$WORKSPACE/runs/$SLUG/manifest.json') as f:
+    print(json.load(f).get('analysis_level', 'regular'))
+")
+
+echo "=== FASE C: BUILDABILITY (level: $LEVEL) ==="
 echo ""
 
 echo "--- C1: Implementation Planner ---"
@@ -35,7 +41,11 @@ python3 "$SCRIPTS/cost_estimator.py" "$SLUG"
 echo ""
 
 echo "--- C3: Lessons Learned Validator ---"
-python3 "$SCRIPTS/spawn_planner_agent.py" "$SLUG" lessons_validator
+if [ "$LEVEL" = "deep" ]; then
+  python3 "$SCRIPTS/spawn_debate.py" "$SLUG" --phase lessons_validator
+else
+  python3 "$SCRIPTS/spawn_planner_agent.py" "$SLUG" lessons_validator
+fi
 echo ""
 
 # Show verdict

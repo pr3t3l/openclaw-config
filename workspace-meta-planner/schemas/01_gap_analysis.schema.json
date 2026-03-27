@@ -94,7 +94,15 @@
     "summary": {
       "type": "string",
       "minLength": 20
+    },
+    "red_team_findings": {
+      "type": "array",
+      "description": "Adversarial security/architecture review findings from Red Team phase"
+    },
+    "red_team_merged": {
+      "type": "boolean",
+      "description": "Whether red team findings were merged into this artifact"
     }
   },
-  "additionalProperties": false
+  "additionalProperties": true
 }

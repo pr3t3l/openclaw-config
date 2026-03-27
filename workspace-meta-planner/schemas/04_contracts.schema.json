@@ -26,8 +26,13 @@
           "estimated_size_tokens"
         ],
         "properties": {
-          "artifact_name": { "type": "string", "minLength": 1 },
-          "format": { "type": "string" },
+          "artifact_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "format": {
+            "type": "string"
+          },
           "schema_definition": {
             "type": "object",
             "description": "JSON Schema or structural definition for this artifact"
@@ -37,7 +42,9 @@
           },
           "validation_rules": {
             "type": "array",
-            "items": { "type": "string" }
+            "items": {
+              "type": "string"
+            }
           },
           "estimated_size_tokens": {
             "type": "integer",
@@ -48,13 +55,24 @@
             "description": "True if artifact exceeds single API call MAX_TOKENS (L-08)"
           },
           "split_strategy": {
-            "type": ["string", "null"]
+            "type": [
+              "string",
+              "null"
+            ]
           }
         },
         "additionalProperties": false
       },
       "minItems": 1
+    },
+    "red_team_findings": {
+      "type": "array",
+      "description": "Adversarial review findings"
+    },
+    "red_team_merged": {
+      "type": "boolean",
+      "description": "Whether red team ran on this artifact"
     }
   },
-  "additionalProperties": false
+  "additionalProperties": true
 }

@@ -28,11 +28,19 @@
           "estimated_effort_hours"
         ],
         "properties": {
-          "phase_number": { "type": "integer", "minimum": 0 },
-          "name": { "type": "string", "minLength": 1 },
+          "phase_number": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
           "tasks": {
             "type": "array",
-            "items": { "type": "string" },
+            "items": {
+              "type": "string"
+            },
             "minItems": 1
           },
           "test_minimum": {
@@ -42,10 +50,17 @@
           },
           "human_gate": {
             "type": "object",
-            "required": ["required", "justification"],
+            "required": [
+              "required",
+              "justification"
+            ],
             "properties": {
-              "required": { "type": "boolean" },
-              "justification": { "type": "string" }
+              "required": {
+                "type": "boolean"
+              },
+              "justification": {
+                "type": "string"
+              }
             },
             "additionalProperties": false
           },
@@ -59,7 +74,9 @@
           },
           "dependencies": {
             "type": "array",
-            "items": { "type": "integer" },
+            "items": {
+              "type": "integer"
+            },
             "description": "Phase numbers this phase depends on"
           }
         },
@@ -69,13 +86,23 @@
     },
     "deferred_to_v2": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "description": "Explicitly listed features NOT built in v1"
     },
     "total_estimated_hours": {
       "type": "number",
       "minimum": 0
+    },
+    "red_team_findings": {
+      "type": "array",
+      "description": "Adversarial review findings"
+    },
+    "red_team_merged": {
+      "type": "boolean",
+      "description": "Whether red team ran on this artifact"
     }
   },
-  "additionalProperties": false
+  "additionalProperties": true
 }

@@ -17,26 +17,58 @@
     },
     "debate_level": {
       "type": "string",
-      "enum": ["simple", "complex", "critical"]
+      "enum": [
+        "simple",
+        "complex",
+        "critical"
+      ]
     },
     "components": {
       "type": "object",
-      "required": ["agents", "scripts", "human_gates", "storage"],
+      "required": [
+        "agents",
+        "scripts",
+        "human_gates",
+        "storage"
+      ],
       "properties": {
         "agents": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["name", "purpose", "model", "spawn_method", "justification"],
+            "required": [
+              "name",
+              "purpose",
+              "model",
+              "spawn_method",
+              "justification"
+            ],
             "properties": {
-              "name": { "type": "string" },
-              "purpose": { "type": "string" },
-              "model": { "type": "string" },
-              "spawn_method": { "type": "string" },
-              "justification": { "type": "string", "description": "Why agent vs script (L-22)" },
-              "estimated_input_tokens": { "type": "integer" },
-              "estimated_output_tokens": { "type": "integer" },
-              "estimated_cost": { "type": "number" }
+              "name": {
+                "type": "string"
+              },
+              "purpose": {
+                "type": "string"
+              },
+              "model": {
+                "type": "string"
+              },
+              "spawn_method": {
+                "type": "string"
+              },
+              "justification": {
+                "type": "string",
+                "description": "Why agent vs script (L-22)"
+              },
+              "estimated_input_tokens": {
+                "type": "integer"
+              },
+              "estimated_output_tokens": {
+                "type": "integer"
+              },
+              "estimated_cost": {
+                "type": "number"
+              }
             },
             "additionalProperties": false
           }
@@ -45,11 +77,21 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["name", "purpose", "language"],
+            "required": [
+              "name",
+              "purpose",
+              "language"
+            ],
             "properties": {
-              "name": { "type": "string" },
-              "purpose": { "type": "string" },
-              "language": { "type": "string" }
+              "name": {
+                "type": "string"
+              },
+              "purpose": {
+                "type": "string"
+              },
+              "language": {
+                "type": "string"
+              }
             },
             "additionalProperties": false
           }
@@ -58,20 +100,34 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["location", "justification"],
+            "required": [
+              "location",
+              "justification"
+            ],
             "properties": {
-              "location": { "type": "string" },
-              "justification": { "type": "string" }
+              "location": {
+                "type": "string"
+              },
+              "justification": {
+                "type": "string"
+              }
             },
             "additionalProperties": false
           }
         },
         "storage": {
           "type": "object",
-          "required": ["type", "location"],
+          "required": [
+            "type",
+            "location"
+          ],
           "properties": {
-            "type": { "type": "string" },
-            "location": { "type": "string" }
+            "type": {
+              "type": "string"
+            },
+            "location": {
+              "type": "string"
+            }
           },
           "additionalProperties": true
         }
@@ -80,27 +136,60 @@
     },
     "execution_pattern": {
       "type": "object",
-      "required": ["trigger", "workflow_type", "retry_policy"],
+      "required": [
+        "trigger",
+        "workflow_type",
+        "retry_policy"
+      ],
       "properties": {
-        "trigger": { "type": "string" },
+        "trigger": {
+          "type": "string"
+        },
         "workflow_type": {
           "type": "string",
-          "enum": ["sequential", "conditional", "parallel", "mixed"]
+          "enum": [
+            "sequential",
+            "conditional",
+            "parallel",
+            "mixed"
+          ]
         },
-        "retry_policy": { "type": "string" },
-        "rollback_strategy": { "type": "string" }
+        "retry_policy": {
+          "type": "string"
+        },
+        "rollback_strategy": {
+          "type": "string"
+        }
       },
       "additionalProperties": false
     },
     "infrastructure_validation": {
       "type": "object",
-      "required": ["models_available", "spawn_compatible", "absolute_paths", "budget_feasible"],
+      "required": [
+        "models_available",
+        "spawn_compatible",
+        "absolute_paths",
+        "budget_feasible"
+      ],
       "properties": {
-        "models_available": { "type": "boolean" },
-        "spawn_compatible": { "type": "boolean" },
-        "absolute_paths": { "type": "boolean" },
-        "budget_feasible": { "type": "boolean" },
-        "notes": { "type": "array", "items": { "type": "string" } }
+        "models_available": {
+          "type": "boolean"
+        },
+        "spawn_compatible": {
+          "type": "boolean"
+        },
+        "absolute_paths": {
+          "type": "boolean"
+        },
+        "budget_feasible": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       },
       "additionalProperties": false
     },
@@ -109,23 +198,38 @@
       "minimum": 0
     },
     "debate_proposals": {
-      "type": ["array", "null"],
+      "type": [
+        "array",
+        "null"
+      ],
       "description": "Only present if debate_level is complex or critical",
       "items": {
         "type": "object",
         "properties": {
-          "model": { "type": "string" },
-          "summary": { "type": "string" }
+          "model": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          }
         }
       }
     },
     "judge_reasoning": {
-      "type": ["string", "null"]
+      "type": [
+        "string",
+        "null"
+      ]
     },
     "red_team_findings": {
-      "type": ["array", "null"],
-      "items": { "type": "string" }
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      }
     }
   },
-  "additionalProperties": false
+  "additionalProperties": true
 }

@@ -164,6 +164,22 @@ def build_user_prompt(agent_name, slug, run_dir):
                     data = load_text(sc_path)
                     parts.append(f"=== system_configuration.md ===\n{data}\n=== END system_configuration.md ===")
 
+    # Gate adjustments (injected as additional context)
+    for gate_num in [1, 2, 3]:
+        adj_path = run_dir / f"gate_{gate_num}_adjustments.json"
+        if adj_path.exists():
+            adj = load_json(adj_path)
+            parts.append(f"=== HUMAN ADJUSTMENTS FROM GATE #{gate_num} (incorporate these) ===\n{adj['adjustments']}\n=== END ADJUSTMENTS ===")
+
+    # Intake Q&A history (for iterative intake)
+    if agent_name == "intake_analyst":
+        qa_path = run_dir / "intake_qa_history.json"
+        if qa_path.exists():
+            qa = load_json(qa_path)
+            if qa.get("rounds"):
+                qa_text = json.dumps(qa["rounds"], indent=2, ensure_ascii=False)
+                parts.append(f"=== PREVIOUS Q&A ROUNDS (use these answers, do NOT re-ask) ===\n{qa_text}\n=== END Q&A ===")
+
     if not parts:
         return "No upstream context available."
 
@@ -353,6 +369,48 @@ def main():
         print(f"  Initialize with: bash scripts/start_plan.sh {slug} \"<idea>\"")
         sys.exit(1)
 
+    # --- Intake iterative pre-check (PATCH-1) ---
+    if agent_name == "intake_analyst":
+        pending_path = run_dir / "intake_pending_questions.json"
+        answers_path = run_dir / "intake_answers.json"
+        qa_history_path = run_dir / "intake_qa_history.json"
+
+        if pending_path.exists():
+            if not answers_path.exists():
+                print(f"  ERROR: Pending questions exist but no answers found.")
+                print(f"  Answer questions in: {pending_path}")
+                print(f"  Save answers to: {answers_path}")
+                print(f"  Format: {{\"answers\": [\"answer1\", \"answer2\", ...]}}")
+                sys.exit(1)
+            else:
+                pending = load_json(pending_path)
+                answers = load_json(answers_path)
+                qa_history = load_json(qa_history_path) if qa_history_path.exists() else {"rounds": []}
+                qa_history["rounds"].append({
+                    "round": pending.get("round", len(qa_history["rounds"]) + 1),
+                    "questions": pending.get("questions", []),
+                    "answers": answers.get("answers", []),
+                    "answered_at": datetime.now(timezone.utc).isoformat(),
+                })
+                with open(qa_history_path, "w", encoding="utf-8") as f:
+                    json.dump(qa_history, f, indent=2, ensure_ascii=False)
+                pending_path.unlink()
+                answers_path.unlink()
+                print(f"  Merged answers into Q&A history (round {len(qa_history['rounds'])})")
+
+        qa_history = load_json(qa_history_path) if qa_history_path.exists() else {"rounds": []}
+        current_round = len(qa_history["rounds"]) + 1
+        if current_round > 5:
+            print(f"  Max rounds (5) reached. Forcing READY.")
+            intake_path = run_dir / "00_intake_summary.json"
+            if intake_path.exists():
+                intake = load_json(intake_path)
+                intake["status"] = "READY"
+                intake["critical_missing_data"] = []
+                with open(intake_path, "w", encoding="utf-8") as f:
+                    json.dump(intake, f, indent=2, ensure_ascii=False)
+            sys.exit(0)
+
     # Load config
     config, models = load_config()
     model = get_model_for_agent(agent_name, models)
@@ -428,6 +486,26 @@ def main():
     # Update manifest
     update_manifest(run_dir, artifact_name, content_str, usage, model)
     print(f"\n  Manifest updated: {artifact_name} → fresh (model: {model}, cost: ${real_cost:.6f})")
+
+    # --- Intake post-check: save pending questions if NEEDS_CLARIFICATION ---
+    if agent_name == "intake_analyst" and parsed.get("status") == "NEEDS_CLARIFICATION":
+        questions = parsed.get("critical_missing_data", parsed.get("clarification_questions", []))
+        qa_history = load_json(run_dir / "intake_qa_history.json") if (run_dir / "intake_qa_history.json").exists() else {"rounds": []}
+        current_round = len(qa_history["rounds"]) + 1
+        pending = {
+            "round": current_round,
+            "questions": questions,
+            "created_at": datetime.now(timezone.utc).isoformat(),
+        }
+        with open(run_dir / "intake_pending_questions.json", "w", encoding="utf-8") as f:
+            json.dump(pending, f, indent=2, ensure_ascii=False)
+        print(f"\n  NEEDS_CLARIFICATION (round {current_round})")
+        for i, q in enumerate(questions, 1):
+            print(f"    {i}. {q}")
+        print(f"\n  Save answers to: {run_dir / 'intake_answers.json'}")
+        print(f'  Format: {{"answers": ["answer1", "answer2", ...]}}')
+        print(f"  Then re-run: python3 {sys.argv[0]} {slug} intake_analyst")
+
     print(f"\nDone: {agent_name} → {artifact_name}.json")
 
 

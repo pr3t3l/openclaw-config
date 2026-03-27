@@ -1,7 +1,7 @@
 #!/bin/bash
 # Usage: bash run_phase_b.sh <slug>
 # Runs B1 → B2 → B3 in sequence.
-# B3 uses spawn_debate.py (multi-model debate).
+# B3 always uses spawn_debate.py. B1 uses debate if deep.
 
 set -euo pipefail
 
@@ -23,11 +23,21 @@ if [ "$GATE1" != "approved" ]; then
   exit 1
 fi
 
-echo "=== FASE B: DESIGN ==="
+LEVEL=$(python3 -c "
+import json
+with open('$WORKSPACE/runs/$SLUG/manifest.json') as f:
+    print(json.load(f).get('analysis_level', 'regular'))
+")
+
+echo "=== FASE B: DESIGN (level: $LEVEL) ==="
 echo ""
 
 echo "--- B1: Data Flow Mapper ---"
-python3 "$SCRIPTS/spawn_planner_agent.py" "$SLUG" data_flow_mapper
+if [ "$LEVEL" = "deep" ]; then
+  python3 "$SCRIPTS/spawn_debate.py" "$SLUG" --phase data_flow_mapper
+else
+  python3 "$SCRIPTS/spawn_planner_agent.py" "$SLUG" data_flow_mapper
+fi
 echo ""
 
 # Check for orphan outputs (hard fail — L-01)
@@ -57,7 +67,7 @@ python3 "$SCRIPTS/spawn_planner_agent.py" "$SLUG" contract_designer
 echo ""
 
 echo "--- B3: Architecture Planner (Debate) ---"
-python3 "$SCRIPTS/spawn_debate.py" "$SLUG"
+python3 "$SCRIPTS/spawn_debate.py" "$SLUG" --phase architecture_planner
 echo ""
 
 echo "=== FASE B COMPLETE ==="

@@ -21,17 +21,44 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["component", "type", "model", "estimated_input_tokens", "estimated_output_tokens", "cost_per_call"],
+        "required": [
+          "component",
+          "type",
+          "model",
+          "estimated_input_tokens",
+          "estimated_output_tokens",
+          "cost_per_call"
+        ],
         "properties": {
-          "component": { "type": "string" },
+          "component": {
+            "type": "string"
+          },
           "type": {
             "type": "string",
-            "enum": ["agent", "script", "external_api"]
+            "enum": [
+              "agent",
+              "script",
+              "external_api"
+            ]
           },
-          "model": { "type": ["string", "null"] },
-          "estimated_input_tokens": { "type": "integer", "minimum": 0 },
-          "estimated_output_tokens": { "type": "integer", "minimum": 0 },
-          "cost_per_call": { "type": "number", "minimum": 0 }
+          "model": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "estimated_input_tokens": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "estimated_output_tokens": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "cost_per_call": {
+            "type": "number",
+            "minimum": 0
+          }
         },
         "additionalProperties": false
       }
@@ -42,10 +69,19 @@
     },
     "monthly_estimate": {
       "type": "object",
-      "required": ["runs_per_month", "total_monthly_cost"],
+      "required": [
+        "runs_per_month",
+        "total_monthly_cost"
+      ],
       "properties": {
-        "runs_per_month": { "type": "integer", "minimum": 0 },
-        "total_monthly_cost": { "type": "number", "minimum": 0 }
+        "runs_per_month": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "total_monthly_cost": {
+          "type": "number",
+          "minimum": 0
+        }
       },
       "additionalProperties": false
     },
@@ -63,7 +99,15 @@
     "planning_actual_costs": {
       "type": "object",
       "description": "Actual costs from planning phases (read from manifest)"
+    },
+    "red_team_findings": {
+      "type": "array",
+      "description": "Adversarial review findings"
+    },
+    "red_team_merged": {
+      "type": "boolean",
+      "description": "Whether red team ran on this artifact"
     }
   },
-  "additionalProperties": false
+  "additionalProperties": true
 }

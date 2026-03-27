@@ -46,11 +46,15 @@
     },
     "known_inputs": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "type": "string"
+      }
     },
     "desired_outputs": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "minItems": 1
     },
     "activation_mode": {
@@ -62,29 +66,53 @@
       "minLength": 1
     },
     "budget_monthly_max": {
-      "type": ["number", "null"]
+      "type": [
+        "number",
+        "null"
+      ]
     },
     "known_constraints": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "type": "string"
+      }
     },
     "critical_missing_data": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "type": "string"
+      }
     },
     "clarification_questions": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "maxItems": 3
     },
     "debate_level_recommendation": {
       "type": "string",
-      "enum": ["simple", "complex", "critical"]
+      "enum": [
+        "simple",
+        "complex",
+        "critical"
+      ]
     },
     "status": {
       "type": "string",
-      "enum": ["READY", "NEEDS_CLARIFICATION"]
+      "enum": [
+        "READY",
+        "NEEDS_CLARIFICATION"
+      ]
+    },
+    "red_team_findings": {
+      "type": "array",
+      "description": "Adversarial review findings"
+    },
+    "red_team_merged": {
+      "type": "boolean",
+      "description": "Whether red team ran on this artifact"
     }
   },
-  "additionalProperties": false
+  "additionalProperties": true
 }

@@ -18,7 +18,11 @@
     },
     "scope_version": {
       "type": "string",
-      "enum": ["mvp", "standard", "advanced"]
+      "enum": [
+        "mvp",
+        "standard",
+        "advanced"
+      ]
     },
     "artifacts": {
       "type": "array",
@@ -34,20 +38,46 @@
           "must_persist"
         ],
         "properties": {
-          "name": { "type": "string", "minLength": 1 },
-          "produced_by": { "type": "string", "minLength": 1 },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "produced_by": {
+            "type": "string",
+            "minLength": 1
+          },
           "consumed_by": {
             "type": "array",
-            "items": { "type": "string" },
+            "items": {
+              "type": "string"
+            },
             "minItems": 1
           },
           "format": {
             "type": "string",
-            "enum": ["json", "md", "csv", "pdf", "image", "html", "txt", "sqlite", "yaml", "other"]
+            "enum": [
+              "json",
+              "md",
+              "csv",
+              "pdf",
+              "image",
+              "html",
+              "txt",
+              "sqlite",
+              "yaml",
+              "other"
+            ]
           },
-          "purpose": { "type": "string", "minLength": 10 },
-          "is_source_of_truth": { "type": "boolean" },
-          "must_persist": { "type": "boolean" }
+          "purpose": {
+            "type": "string",
+            "minLength": 10
+          },
+          "is_source_of_truth": {
+            "type": "boolean"
+          },
+          "must_persist": {
+            "type": "boolean"
+          }
         },
         "additionalProperties": false
       },
@@ -57,10 +87,17 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["name", "reason_discarded"],
+        "required": [
+          "name",
+          "reason_discarded"
+        ],
         "properties": {
-          "name": { "type": "string" },
-          "reason_discarded": { "type": "string" }
+          "name": {
+            "type": "string"
+          },
+          "reason_discarded": {
+            "type": "string"
+          }
         },
         "additionalProperties": false
       }
@@ -69,14 +106,29 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["needed_by", "description"],
+        "required": [
+          "needed_by",
+          "description"
+        ],
         "properties": {
-          "needed_by": { "type": "string" },
-          "description": { "type": "string" }
+          "needed_by": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
         },
         "additionalProperties": false
       }
+    },
+    "red_team_findings": {
+      "type": "array",
+      "description": "Adversarial review findings"
+    },
+    "red_team_merged": {
+      "type": "boolean",
+      "description": "Whether red team ran on this artifact"
     }
   },
-  "additionalProperties": false
+  "additionalProperties": true
 }

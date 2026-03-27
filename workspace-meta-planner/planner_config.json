@@ -4,9 +4,10 @@
   "shared_scripts": "/home/robotin/.openclaw/shared/scripts",
   "lessons_learned_path": "/home/robotin/.openclaw/shared/lessons_learned.md",
   "debate": {
-    "execution_mode": "parallel",
+    "execution_mode": "sequential",
     "fallback_to_sequential": true,
     "parallel_max_concurrent": 3,
+    "rounds": 3,
     "timeout_per_model_seconds": 300,
     "subprocess_timeout_seconds": 350
   },

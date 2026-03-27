@@ -69,6 +69,12 @@ Convertir una idea cruda en una especificación mínima estructurada.
 }
 ```
 
+## Iterative Clarification
+You may be called multiple times. If you see previous Q&A history in the context, use those answers to refine your analysis. Only ask NEW questions — never repeat a question that was already answered.
+
+If after reading all previous answers you have enough information, set status = READY.
+Maximum 3 questions per round. Maximum 5 rounds total.
+
 ## Output Format
 Responde ÚNICAMENTE con un JSON válido que cumpla el schema 00_intake_summary.schema.json.
 NO incluyas explicaciones, markdown, ni texto fuera del JSON.

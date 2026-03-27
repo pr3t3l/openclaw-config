@@ -17,21 +17,38 @@
     },
     "versions": {
       "type": "object",
-      "required": ["mvp", "standard", "advanced"],
+      "required": [
+        "mvp",
+        "standard",
+        "advanced"
+      ],
       "properties": {
-        "mvp": { "$ref": "#/definitions/scope_version" },
-        "standard": { "$ref": "#/definitions/scope_version" },
-        "advanced": { "$ref": "#/definitions/scope_version" }
+        "mvp": {
+          "$ref": "#/definitions/scope_version"
+        },
+        "standard": {
+          "$ref": "#/definitions/scope_version"
+        },
+        "advanced": {
+          "$ref": "#/definitions/scope_version"
+        }
       },
       "additionalProperties": false
     },
     "recommendation": {
       "type": "object",
-      "required": ["start_with", "reasoning"],
+      "required": [
+        "start_with",
+        "reasoning"
+      ],
       "properties": {
         "start_with": {
           "type": "string",
-          "enum": ["mvp", "standard", "advanced"]
+          "enum": [
+            "mvp",
+            "standard",
+            "advanced"
+          ]
         },
         "reasoning": {
           "type": "string",
@@ -42,7 +59,10 @@
     },
     "upgrade_path": {
       "type": "object",
-      "required": ["mvp_to_standard", "standard_to_advanced"],
+      "required": [
+        "mvp_to_standard",
+        "standard_to_advanced"
+      ],
       "properties": {
         "mvp_to_standard": {
           "type": "string",
@@ -54,9 +74,17 @@
         }
       },
       "additionalProperties": false
+    },
+    "red_team_findings": {
+      "type": "array",
+      "description": "Adversarial review findings"
+    },
+    "red_team_merged": {
+      "type": "boolean",
+      "description": "Whether red team ran on this artifact"
     }
   },
-  "additionalProperties": false,
+  "additionalProperties": true,
   "definitions": {
     "scope_version": {
       "type": "object",
@@ -72,12 +100,16 @@
       "properties": {
         "features_included": {
           "type": "array",
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "minItems": 1
         },
         "features_excluded": {
           "type": "array",
-          "items": { "type": "string" }
+          "items": {
+            "type": "string"
+          }
         },
         "estimated_agents_scripts": {
           "type": "integer",

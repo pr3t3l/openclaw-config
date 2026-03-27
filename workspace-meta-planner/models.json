@@ -26,6 +26,10 @@
   },
   "red_team": "claude-opus46",
   "cost_estimator": "script",
+  "report_generator": {
+    "narrator": "claude-sonnet46",
+    "reviewer": "gpt52-none"
+  },
   "conditional_modules": {
     "landscape_researcher":  { "model": "claude-sonnet46", "route": "litellm", "needs_web_search": true },
     "capability_mapper":     { "model": "claude-sonnet46", "route": "litellm" },

@@ -1,11 +1,12 @@
 #!/bin/bash
-# Usage: bash start_plan.sh <slug> "<idea text>"
-# Example: bash start_plan.sh personal-finance "Quiero un workflow que cuando envíe un gasto por Telegram..."
+# Usage: bash start_plan.sh <slug> "<idea text>" [regular|deep]
+# Example: bash start_plan.sh personal-finance "Quiero un workflow..." deep
 
 set -euo pipefail
 
 SLUG="$1"
 IDEA="$2"
+ANALYSIS_LEVEL="${3:-regular}"
 WORKSPACE="/home/robotin/.openclaw/workspace-meta-planner"
 RUN_DIR="$WORKSPACE/runs/$SLUG"
 
@@ -26,6 +27,7 @@ cat > "$RUN_DIR/manifest.json" << EOF
   "created_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
   "last_modified": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
   "raw_idea": $IDEA_JSON,
+  "analysis_level": "$ANALYSIS_LEVEL",
   "debate_level": null,
   "scope_selected": null,
   "artifacts": {
