@@ -1,7 +1,7 @@
 {
-  "from_email": "cases@theclassifiedcases.shop",
+  "from_email": "cases@declassified.shop",
   "from_name": "Declassified Cases",
-  "reply_to": "support@theclassifiedcases.shop",
+  "reply_to": "support@declassified.shop",
   "subscriber_lists": {
     "all": [],
     "parejas_noche_cita": [],

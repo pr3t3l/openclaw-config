@@ -1,18 +1,18 @@
 {
   "product_id": "misterio-semanal",
   "week": "2026-W17",
-  "sent_at": "2026-03-28T13:36:46.962097",
-  "mode": "dry_run",
-  "test_email": null,
+  "sent_at": "2026-03-28T13:43:12.401385",
+  "mode": "test",
+  "test_email": "delivered@resend.dev",
   "emails_sent": [
     {
       "email_id": "E1-W17",
       "sequence_id": "SEQ-WEEKLY-CASE-W17",
       "subject_variant": "A",
       "subject": "Un medicamento milagroso. Una científica muerta.",
-      "recipients_count": 0,
-      "resend_id": "dry_run",
-      "status": "dry_run",
+      "recipients_count": 1,
+      "resend_id": "b7201f21-132f-4979-9492-eb99890b8a39",
+      "status": "sent",
       "error": null
     },
     {
@@ -20,9 +20,9 @@
       "sequence_id": "SEQ-WEEKLY-CASE-W17",
       "subject_variant": "A",
       "subject": "El expediente está en tu bandeja. 21 archivos clasificados.",
-      "recipients_count": 0,
-      "resend_id": "dry_run",
-      "status": "dry_run",
+      "recipients_count": 1,
+      "resend_id": "1ef690e9-7d3b-44c4-8be5-79d80ef21003",
+      "status": "sent",
       "error": null
     },
     {
@@ -30,9 +30,9 @@
       "sequence_id": "SEQ-WEEKLY-CASE-W17",
       "subject_variant": "A",
       "subject": "Último aviso: el caso cierra el domingo.",
-      "recipients_count": 0,
-      "resend_id": "dry_run",
-      "status": "dry_run",
+      "recipients_count": 1,
+      "resend_id": "a55cd8f4-3374-4ca8-89f2-a9677f882655",
+      "status": "sent",
       "error": null
     },
     {
@@ -40,9 +40,9 @@
       "sequence_id": "SEQ-WELCOME-W17",
       "subject_variant": "A",
       "subject": "Tu expediente de muestra está aquí. Empieza a investigar.",
-      "recipients_count": 0,
-      "resend_id": "dry_run",
-      "status": "dry_run",
+      "recipients_count": 1,
+      "resend_id": "093b0fdb-2aa5-4469-a5c0-ff9cc33f928d",
+      "status": "sent",
       "error": null
     },
     {
@@ -50,9 +50,9 @@
       "sequence_id": "SEQ-WELCOME-W17",
       "subject_variant": "A",
       "subject": "¿Resolviste el caso de muestra? El completo tiene 47 archivos más.",
-      "recipients_count": 0,
-      "resend_id": "dry_run",
-      "status": "dry_run",
+      "recipients_count": 1,
+      "resend_id": "219240c3-31a9-4859-aada-57c6fb686c32",
+      "status": "sent",
       "error": null
     },
     {
@@ -60,16 +60,16 @@
       "sequence_id": "SEQ-REENGAGEMENT-W17",
       "subject_variant": "A",
       "subject": "¿Sigues ahí? Tenemos un caso que no puedes ignorar.",
-      "recipients_count": 0,
-      "resend_id": "dry_run",
-      "status": "dry_run",
+      "recipients_count": 1,
+      "resend_id": "caa7dd5d-72c7-45e0-8737-cdfed4c6108e",
+      "status": "sent",
       "error": null
     }
   ],
   "total_sent": 6,
   "total_failed": 0,
   "ab_test_split": {
-    "variant_a_count": 0,
+    "variant_a_count": 6,
     "variant_b_count": 0
   }
 }
