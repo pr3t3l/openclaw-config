@@ -125,6 +125,7 @@ When weekly_case_brief.json includes detailed case info:
 - DO NOT use the same hook approach across all lanes — diversify
 - DO NOT write CTA pointing to homepage — use persona-specific landing URLs
 - DO NOT skip fear_neutralized or proof_element
+- DO NOT fabricate testimonials, reviews, statistics, or guarantees that are not in product_brief, brand_strategy, or weekly_case_brief. If you need social proof, use placeholders like '[TESTIMONIAL]' or reference the case's real data (number of documents, envelopes, duration). Every claim must be traceable to a source file.
 - DO NOT output anything other than the JSON — no commentary
 
 ## Acceptance Gate

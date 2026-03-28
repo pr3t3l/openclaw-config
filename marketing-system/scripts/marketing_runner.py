@@ -52,7 +52,7 @@ POST_GATE_PHASES = [
     {"name": "calendar_generator", "skill": "calendar-generator",
      "output": "publishing_calendar_draft.json", "model": UTILITY_MODEL},
     {"name": "quality_reviewer", "skill": "quality-reviewer",
-     "output": "quality_report.json", "model": UTILITY_MODEL},
+     "output": "quality_report.json", "model": CREATIVE_MODEL},
 ]
 
 

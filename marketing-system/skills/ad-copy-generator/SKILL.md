@@ -99,6 +99,7 @@ Every ad variant MUST have: `persona_id` (from ad_set), `trigger_id` (from ad_se
 - DO NOT write primary_text over 125 chars — mobile-first
 - DO NOT skip hypothesis — we must know what we're testing
 - DO NOT use forbidden claims even paraphrased
+- DO NOT fabricate testimonials, reviews, statistics, or guarantees that are not in product_brief, brand_strategy, or weekly_case_brief. If you need social proof, use placeholders like '[TESTIMONIAL]' or reference the case's real data (number of documents, envelopes, duration). Every claim must be traceable to a source file.
 - DO NOT output anything other than the JSON — no commentary
 
 ## Acceptance Gate

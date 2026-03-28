@@ -124,6 +124,7 @@ Every email MUST have: `persona_id`, `pain_point_addressed`, `cta_url` (persona-
 - DO NOT use generic CTA URLs — match to persona's use case page
 - DO NOT write emails without addressing a specific pain_point from buyer_persona
 - DO NOT fabricate case details not in weekly_case_brief — factual accuracy is critical
+- DO NOT fabricate testimonials, reviews, statistics, or guarantees that are not in product_brief, brand_strategy, or weekly_case_brief. If you need social proof, use placeholders like '[TESTIMONIAL]' or reference the case's real data (number of documents, envelopes, duration). Every claim must be traceable to a source file.
 - DO NOT output anything other than the JSON — no commentary
 
 ## Acceptance Gate

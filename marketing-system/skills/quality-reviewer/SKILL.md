@@ -1,7 +1,7 @@
 ---
 name: quality-reviewer
 description: Strategic quality review of all marketing drafts with 10-point checklist per asset. HARD BLOCK if critical_issues > 0 — cannot approve, only regenerate or documented human override. Produces quality_report.json.
-model: chatgpt-gpt54
+model: claude-sonnet46
 ---
 
 # Strategic Quality Reviewer
