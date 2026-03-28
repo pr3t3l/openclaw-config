@@ -33,13 +33,19 @@ def daily_cashflow() -> str:
     else:
         risk_msg = "\n🚨 NO ALCANZA. Recorta o difiere un pago."
 
+    # Payday info with estimated amount
+    expected_pay = budgets.get("expected_paycheck", 0)
+    payday_line = f"Próximo ingreso: {days_to_pay} días"
+    if expected_pay:
+        payday_line += f" (~${expected_pay:,.0f} estimado)"
+
     lines = [
         f"BUENOS DÍAS — {today.strftime('%b %d, %Y')}",
         "",
         f"Saldo disponible: ${available:,.0f}",
         f"Pagos próximos 14d: ${upcoming_total:,.0f} ({', '.join(upcoming_details)})" if upcoming_details else "Pagos próximos 14d: $0",
         f"Ahorro viajes hoy: ${daily_savings:.0f}",
-        f"Próximo pago: {days_to_pay} días",
+        payday_line,
         "",
         f"→ Puedes gastar máximo ${max(safe_daily, 0):.0f}/día",
         risk_msg,
@@ -88,6 +94,31 @@ def update_savings_target(goal: str, target: float):
             C.save_json(C.CONFIG_DIR / "savings.json", savings)
             return f"Meta {s['goal']} actualizada: ${target:,.0f}"
     return f"Meta '{goal}' no encontrada."
+
+
+def update_payday(schedule: str, amount: float = 0, dates: list[int] = None):
+    """Update pay schedule and expected paycheck amount.
+
+    Examples:
+      update_payday("biweekly", 2800)
+      update_payday("biweekly", 2800, [5, 19])
+      update_payday("monthly", 5000, [15])
+    """
+    budgets = C.load_budgets()
+    budgets["pay_schedule"] = schedule
+    if amount:
+        budgets["expected_paycheck"] = amount
+    if dates:
+        budgets["pay_dates"] = dates
+    C.save_json(C.CONFIG_DIR / "budgets.json", budgets)
+
+    pay_dates = budgets.get("pay_dates", [])
+    msg = f"Payday configurado: {schedule}"
+    if amount:
+        msg += f", ~${amount:,.0f} por pago"
+    if pay_dates:
+        msg += f", días {pay_dates}"
+    return msg
 
 
 def _daily_savings_quota() -> float:

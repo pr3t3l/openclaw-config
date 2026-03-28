@@ -1,0 +1,398 @@
+{
+  "schema_version": "3.0",
+  "product_id": "misterio-semanal",
+  "run_id": "2026-W17",
+  "generated_at": "2026-04-21T00:00:00.000000",
+  "strategy_version_used": "v2",
+  "lanes": [
+    {
+      "lane_id": "LANE-01",
+      "persona_id": "parejas_noche_cita",
+      "trigger_id": "viernes_tarde_tiktok",
+      "angle_id": "ANG-01",
+      "hypothesis": "Las parejas que scrollean TikTok el viernes por la tarde responden con alta urgencia a un gancho que refleja su rutina exacta (Netflix + teléfono) y ofrece una alternativa inmediata. El caso de biotech con conspiracion corporativa es suficientemente intrigante para parejas adultas que consumen true crime. Testear si el gancho de MIEDO a la rutina supera al gancho de CURIOSIDAD por el caso.",
+      "scripts": [
+        {
+          "script_id": "S1-A",
+          "creative_id": "DC-W17-L01-A",
+          "platform": "tiktok",
+          "duration_seconds": 20,
+          "hook": {
+            "text": "Otra vez Netflix. Otra vez el teléfono. Otra vez dormidos antes de las 11.",
+            "visual": "Plano de sofá desde arriba: dos teléfonos iluminados, pantalla de Netflix pausada, pareja mirando lados opuestos. Texto superpuesto en blanco: 'VIERNES, 10PM'",
+            "emotion": "Reconocimiento incómodo — vergüenza suave de la rutina"
+          },
+          "body": {
+            "text": "Esta noche, en lugar de eso, resuelvan juntos quién mató a la Dra. Ellison. Una científica muerta en un laboratorio de biotech. Cuatro sospechosos. Un expediente con 21 archivos clasificados. Dos horas de investigación real — sin salir de casa.",
+            "tension": "El misterio de la muerte de la Dra. Ellison se revela en capas: ¿accidente o asesinato? La pareja tiene que decidir juntos.",
+            "value_prop": "Una noche de cita activa e interactiva por $19.99 — menos que dos cervezas artesanales."
+          },
+          "cta": {
+            "text": "Compra ahora, juegan esta noche. Link en bio.",
+            "visual": "Manos de pareja sosteniendo tablet con archivos del caso abiertos. Texto grande: '$19.99 · Acceso inmediato · Esta noche'",
+            "landing_url": "/noche-cita-misterio-pareja"
+          },
+          "text_overlay": "OTRA VEZ NETFLIX? → Esta noche: resuelvan un asesinato juntos · $19.99 · Acceso inmediato",
+          "audio_notes": "Primeros 3 segundos: silencio incómodo con sonido de notificación de teléfono. Luego música de suspenso suave tipo thriller corporativo. Voz en off femenina, tono cómplice y urgente, español latinoamericano neutro.",
+          "fear_neutralized": "FK-01 — miedo a que sea aburrido: se comunica '21 archivos clasificados' y '2 horas de investigación real' para mostrar profundidad.",
+          "proof_element": "Preview visual de archivos del caso en tablet — documentos forenses, fotografías de escena del crimen en laboratorio de biotech.",
+          "testing_variable": "Gancho de MIEDO a la rutina ('Otra vez Netflix') vs. variante S1-B que usa gancho de CURIOSIDAD por el caso.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "script_id": "S1-B",
+          "creative_id": "DC-W17-L01-B",
+          "platform": "tiktok",
+          "duration_seconds": 20,
+          "hook": {
+            "text": "Una científica muerta en un laboratorio de Cambridge. Un medicamento milagroso retirado del mercado. Cuatro sospechosos. ¿Pueden resolverlo juntos esta noche?",
+            "visual": "Zoom lento sobre foto de escena del crimen: escalera de laboratorio con cinta policial, luz fluorescente clínica. Texto superpuesto: 'EXPEDIENTE CLASIFICADO — CAMBRIDGE, 2026'",
+            "emotion": "Curiosidad inmediata — intriga de thriller corporativo"
+          },
+          "body": {
+            "text": "Declassified Cases acaba de lanzar 'The Miracle Withdrawal'. 21 archivos reales. Informes forenses. Registros de seguridad. Testimonios de sospechosos. Tú y tu pareja tienen que descubrir quién mató a la Dra. Mara Ellison antes de que la empresa lo encubra todo. Descarga inmediata. En español.",
+            "tension": "La empresa está encubriendo algo — el medicamento funciona pero alguien no quiere que se sepa por qué. La pareja investiga contra el reloj narrativo.",
+            "value_prop": "Dos horas de misterio activo juntos, desde el sofá, por $19.99."
+          },
+          "cta": {
+            "text": "Link en bio — descárgalo ahora y empiecen esta noche.",
+            "visual": "Collage rápido de documentos del caso: informe forense, plano del laboratorio, fotos de sospechosos. Texto: 'Acceso inmediato · $19.99 · En español'",
+            "landing_url": "/noche-cita-misterio-pareja"
+          },
+          "text_overlay": "EXPEDIENTE CLASIFICADO: The Miracle Withdrawal · 21 archivos · $19.99 · Juegan esta noche",
+          "audio_notes": "Música de thriller corporativo desde el primer frame — tono de serie de Netflix. Voz en off masculina, grave y narrativo, como narrador de documental de crimen. Español latinoamericano neutro.",
+          "fear_neutralized": "FK-03 — miedo a que sea infantil: el tono documental y los archivos reales comunican seriedad y realismo adulto desde el primer segundo.",
+          "proof_element": "Collage de documentos reales del caso: informe forense de la Dra. Ellison, plano anotado del Edificio 7, fotos de sospechosos estilo mugshot policial.",
+          "testing_variable": "Gancho de CURIOSIDAD por el caso ('Una científica muerta...') vs. variante S1-A que usa gancho de MIEDO a la rutina.",
+          "strategy_version_used": "v2"
+        }
+      ]
+    },
+    {
+      "lane_id": "LANE-02",
+      "persona_id": "fans_true_crime_solo",
+      "trigger_id": "post_documental_podcast",
+      "angle_id": "ANG-02",
+      "hypothesis": "Los fans de true crime que acaban de terminar un podcast o documental están en el momento de mayor receptividad. El caso de biotech con conspiracion corporativa (muerte de científica, empresa encubriendo medicamento milagroso) es exactamente el tipo de narrativa que consumen. Testear si el gancho de IDENTIDAD ('tú eres la detective') supera al gancho de ARCHIVOS REALES ('mira lo que recibes').",
+      "scripts": [
+        {
+          "script_id": "S2-A",
+          "creative_id": "DC-W17-L02-A",
+          "platform": "instagram_reels",
+          "duration_seconds": 25,
+          "hook": {
+            "text": "Escuchas true crime. Analizas cada detalle. Siempre sabes quién es el culpable antes que el presentador. Ahora deja de ser espectadora.",
+            "visual": "POV: manos sosteniendo auriculares, pantalla de Spotify con podcast de crimen pausado. Corte rápido a manos abriendo carpeta de expediente con documentos. Texto: 'MODO DETECTIVE: ACTIVADO'",
+            "emotion": "Reconocimiento de identidad — orgullo de ser 'la que siempre lo sabe' + deseo de pasar a la acción"
+          },
+          "body": {
+            "text": "El nuevo caso de Declassified Cases: una científica de biotech muerta en Cambridge. La empresa dice que fue un accidente. El informe forense dice otra cosa. Tienes 21 archivos clasificados, cuatro sospechosos y la verdad enterrada en los registros de seguridad del edificio. Todo en español. Todo en tus manos.",
+            "tension": "La discrepancia entre la versión oficial y el informe forense — el accidente fue fabricado. La fan de true crime tiene que demostrarlo.",
+            "value_prop": "La experiencia interactiva de true crime que siempre quisiste: tú resuelves el caso, no solo lo escuchas."
+          },
+          "cta": {
+            "text": "Empieza a investigar ahora. Link en bio.",
+            "visual": "Mano femenina señalando documento forense en pantalla. Texto grande: 'Tu primer expediente · $19.99 · Acceso inmediato'",
+            "landing_url": "/juego-interactivo-true-crime-espanol"
+          },
+          "text_overlay": "DEJA DE ESCUCHAR → EMPIEZA A RESOLVER · Expediente clasificado en español · $19.99",
+          "audio_notes": "Primeros 3 segundos: audio de podcast de crimen (voz narrando un caso, fade out). Luego silencio dramático de 1 segundo. Luego música de suspenso documental. Voz en off femenina, tono de detective segura de sí misma.",
+          "fear_neutralized": "FK-01 — miedo a que sea demasiado fácil: se comunica '21 archivos clasificados' y la complejidad del caso (versión oficial vs. informe forense) para mostrar profundidad real.",
+          "proof_element": "Transición visual de podcast pausado a expediente abierto — muestra el contraste entre consumo pasivo y participación activa. Preview de informe forense real del caso.",
+          "testing_variable": "Gancho de IDENTIDAD ('tú eres la detective') vs. variante S2-B que usa gancho de ARCHIVOS REALES (unboxing digital).",
+          "strategy_version_used": "v2"
+        },
+        {
+          "script_id": "S2-B",
+          "creative_id": "DC-W17-L02-B",
+          "platform": "instagram_reels",
+          "duration_seconds": 25,
+          "hook": {
+            "text": "Esto es lo que recibes cuando compras un caso de Declassified Cases.",
+            "visual": "Manos abriendo carpeta digital en pantalla — se ven documentos uno por uno: informe policial, foto de escena del crimen en laboratorio, mugshot de sospechoso, plano del edificio con zona marcada, carta cifrada. Ritmo rápido, 1 segundo por documento.",
+            "emotion": "Curiosidad y deseo — FOMO de tener esos archivos en tus manos"
+          },
+          "body": {
+            "text": "Caso activo: The Miracle Withdrawal. Cambridge, 2026. Una científica muerta. Una empresa que retiró un medicamento milagroso antes de que nadie supiera por qué funcionaba. Informe forense. Registros del sistema de seguridad. Testimonios de cuatro sospechosos. Todo en español. Todo por $19.99. Descarga inmediata — sin esperas, sin envíos.",
+            "tension": "Cada documento que se muestra revela una capa más del misterio — el espectador quiere saber qué hay en el siguiente archivo.",
+            "value_prop": "El podcast de true crime que puedes resolver tú misma — con archivos reales, en tu idioma, esta noche."
+          },
+          "cta": {
+            "text": "Descarga tu expediente ahora. Link en bio.",
+            "visual": "Pantalla final con grid de todos los documentos del caso. Texto: '$19.99 · 21 archivos · Acceso inmediato · En español'",
+            "landing_url": "/juego-interactivo-true-crime-espanol"
+          },
+          "text_overlay": "ESTO ES LO QUE RECIBES: 21 archivos clasificados · Informe forense · 4 sospechosos · $19.99",
+          "audio_notes": "Música de suspenso documental desde el primer frame. Sonido de papel pasando páginas en cada corte de documento. Voz en off neutra y directa, como narrador de documental de Netflix. Español latinoamericano neutro.",
+          "fear_neutralized": "FK-03 — miedo a que sea superficial o parezca hecho con IA: mostrar los archivos reales del caso demuestra la calidad de producción antes de la compra.",
+          "proof_element": "Unboxing digital completo — se muestran documentos reales: informe forense de la Dra. Ellison, plano anotado del Edificio 7 con zona de crimen marcada, mugshots de los cuatro sospechosos, registro del sistema BMS.",
+          "testing_variable": "Gancho de ARCHIVOS REALES (unboxing digital) vs. variante S2-A que usa gancho de IDENTIDAD ('tú eres la detective').",
+          "strategy_version_used": "v2"
+        }
+      ]
+    },
+    {
+      "lane_id": "LANE-03",
+      "persona_id": "anfitriones_noche_juegos",
+      "trigger_id": "tiktok_noche_juegos",
+      "angle_id": "ANG-03",
+      "hypothesis": "Los anfitriones de noches de juegos responden al deseo de ser 'el que trae el plan épico'. El caso de biotech con conspiracion corporativa tiene suficiente complejidad para grupos de adultos que buscan algo más sofisticado que UNO o Catan. Testear si el gancho de PRECIO POR PERSONA ('menos de $4 cada uno') supera al gancho de REACCIÓN DEL GRUPO (mostrar el momento de debate grupal).",
+      "scripts": [
+        {
+          "script_id": "S3-A",
+          "creative_id": "DC-W17-L03-A",
+          "platform": "tiktok",
+          "duration_seconds": 18,
+          "hook": {
+            "text": "Un escape room para 6 personas: $180. Este caso de misterio para 6 personas: $19.99. Menos de $4 por cabeza.",
+            "visual": "Split screen: izquierda, precio de escape room físico en pantalla ($30 por persona × 6). Derecha, precio de Declassified Cases ($19.99 total). Texto animado que calcula: '$19.99 ÷ 6 = $3.33 por persona'",
+            "emotion": "Alivio y sorpresa — la matemática es irresistible"
+          },
+          "body": {
+            "text": "El nuevo caso: una científica muerta en un laboratorio de Cambridge. Cuatro sospechosos. Veintiún archivos clasificados para resolver entre todos. Diseñado para 2 a 6 personas. Guía del facilitador incluida — empiezan en menos de 10 minutos. Sin coordinar horarios, sin reservas, sin salir de casa.",
+            "tension": "El grupo tiene que ponerse de acuerdo sobre quién es el culpable — el debate grupal es el entretenimiento.",
+            "value_prop": "Sé el anfitrión que esta vez trajo algo que nadie había hecho antes — por menos de lo que cuesta una ronda de cervezas."
+          },
+          "cta": {
+            "text": "Descárgalo para este sábado. Link en bio.",
+            "visual": "Grupo de amigos alrededor de una mesa con documentos del caso desplegados, señalando y debatiendo. Texto: '$19.99 para todo el grupo · Acceso inmediato'",
+            "landing_url": "/noche-juegos-misterio-grupo"
+          },
+          "text_overlay": "ESCAPE ROOM: $180 para 6 → ESTE CASO: $19.99 para 6 · Menos de $4 por persona · Sábado resuelto",
+          "audio_notes": "Sonido de caja registradora al mostrar el precio del escape room. Pausa dramática. Luego música upbeat de noche de juegos. Voz en off masculina, tono de 'te estoy dando el dato del año', español latinoamericano neutro.",
+          "fear_neutralized": "FK-02 — miedo a que sea complicado de organizar: se comunica 'guía del facilitador incluida' y 'empiezan en menos de 10 minutos' para eliminar la barrera de logística.",
+          "proof_element": "Comparación de precio verificable y visual (split screen con matemática explícita). Imagen de grupo real jugando con documentos del caso desplegados.",
+          "testing_variable": "Gancho de PRECIO POR PERSONA (comparación matemática) vs. variante S3-B que usa gancho de REACCIÓN DEL GRUPO.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "script_id": "S3-B",
+          "creative_id": "DC-W17-L03-B",
+          "platform": "instagram_reels",
+          "duration_seconds": 22,
+          "hook": {
+            "text": "Esta vez no es UNO. Esta vez no es Catan. Esta vez tu grupo va a estar discutiendo quién mató a la Dra. Ellison hasta las 2 de la mañana.",
+            "visual": "Grupo de 5 personas alrededor de una mesa, documentos del caso desplegados, señalando un plano del laboratorio, expresiones de debate intenso. Uno señala a otro diciendo 'fue Evan Kline, el CFO'. Otro niega con la cabeza.",
+            "emotion": "Aspiración social — quiero que mi grupo tenga ESA noche"
+          },
+          "body": {
+            "text": "Declassified Cases acaba de lanzar un nuevo caso: una científica de biotech muerta en Cambridge. Un medicamento milagroso retirado sin explicación. Cuatro sospechosos con motivos reales. Tu grupo tiene 21 archivos clasificados para resolver el crimen. En español. Por $19.99 para todo el grupo. Guía del facilitador incluida.",
+            "tension": "Cada sospechoso tiene un motivo convincente — el grupo se va a dividir en teorías y el debate es inevitable.",
+            "value_prop": "El plan que tu grupo va a querer repetir cada mes — y tú eres el anfitrión que lo trajo."
+          },
+          "cta": {
+            "text": "Sé el anfitrión que siempre sorprende. Link en bio.",
+            "visual": "Zoom out del grupo celebrando cuando alguien señala el culpable. Texto superpuesto: '$19.99 para todo el grupo · Descarga inmediata · En español'",
+            "landing_url": "/noche-juegos-misterio-grupo"
+          },
+          "text_overlay": "ESTA VEZ NO ES UNO → Es resolver un asesinato juntos · $19.99 para todo el grupo · Acceso inmediato",
+          "audio_notes": "Primeros 3 segundos: sonido ambiente de noche de juegos (risas, voces debatiendo). Luego música de thriller suave que crea tensión. Voz en off masculina, tono de cómplice que te da el tip del sábado. Español latinoamericano neutro.",
+          "fear_neutralized": "FK-01 — miedo a que alguien no se enganche: se muestra al grupo completo participando activamente, debatiendo y señalando sospechosos — el debate grupal ES el entretenimiento.",
+          "proof_element": "Video UGC de grupo real debatiendo sobre los sospechosos del caso con documentos desplegados — prueba social de que la dinámica grupal funciona.",
+          "testing_variable": "Gancho de REACCIÓN DEL GRUPO (debate y aspiración social) vs. variante S3-A que usa gancho de PRECIO POR PERSONA.",
+          "strategy_version_used": "v2"
+        }
+      ]
+    },
+    {
+      "lane_id": "LANE-04",
+      "persona_id": "fans_true_crime_solo",
+      "trigger_id": "busqueda_true_crime_interactivo",
+      "angle_id": "ANG-06",
+      "hypothesis": "Los fans de true crime que buscan activamente contenido interactivo responden al posicionamiento de 'el podcast que puedes resolver'. El caso de biotech con conspiracion corporativa (medicamento milagroso, empresa encubriendo la verdad) es exactamente el tipo de narrativa de true crime que consumen en podcasts y documentales. Testear si el gancho de COMPARACION CON PODCAST supera al gancho de URGENCIA NARRATIVA (la verdad está a punto de desaparecer).",
+      "scripts": [
+        {
+          "script_id": "S4-A",
+          "creative_id": "DC-W17-L04-A",
+          "platform": "tiktok",
+          "duration_seconds": 20,
+          "hook": {
+            "text": "¿Y si el próximo episodio de true crime lo resolvieras tú?",
+            "visual": "Pantalla de Spotify con podcast de crimen en pausa. Corte a manos abriendo expediente digital con documentos del caso. Texto: 'DEJA DE ESCUCHAR → EMPIEZA A RESOLVER'",
+            "emotion": "Desafío personal — el espectador quiere demostrar que puede hacerlo"
+          },
+          "body": {
+            "text": "Caso activo: Cambridge, 2026. La Dra. Mara Ellison, científica principal de una empresa de biotech, apareció muerta en una escalera de servicio. La empresa dice accidente. El informe forense dice asfixia por gas inerte antes de la caída. Alguien fabricó el accidente — y los registros del sistema de seguridad del edificio lo prueban. Tienes 21 archivos para descubrirlo. En español. Acceso inmediato.",
+            "tension": "La discrepancia entre la versión oficial (accidente) y la evidencia forense (asfixia premeditada) — el fan de true crime reconoce inmediatamente el patrón de encubrimiento.",
+            "value_prop": "El podcast de true crime que puedes resolver: archivos reales, pistas reales, tu deducción real."
+          },
+          "cta": {
+            "text": "Descarga tu expediente ahora. Link en bio.",
+            "visual": "Informe forense de la Dra. Ellison en pantalla, con línea subrayada: 'Causa de muerte: asfixia por gas inerte'. Texto: '$19.99 · Acceso inmediato · En español'",
+            "landing_url": "/juego-interactivo-true-crime-espanol"
+          },
+          "text_overlay": "¿Y SI LO RESOLVIERAS TÚ? · Caso activo: Cambridge 2026 · 21 archivos · $19.99 · Acceso inmediato",
+          "audio_notes": "Primeros 2 segundos: audio de podcast de crimen (voz narrando, fade out rápido). Luego silencio de 1 segundo. Luego música de suspenso documental tipo Mindhunter. Voz en off femenina, tono de detective que te invita a unirte.",
+          "fear_neutralized": "FK-01 — miedo a que sea demasiado fácil: se revela la complejidad real del caso (asfixia por gas inerte fabricada como accidente, registros de sistema de seguridad como evidencia clave) para mostrar que requiere razonamiento real.",
+          "proof_element": "Preview del informe forense real con causa de muerte específica — demuestra la profundidad y autenticidad del contenido antes de la compra.",
+          "testing_variable": "Gancho de COMPARACION CON PODCAST ('¿Y si lo resolvieras tú?') vs. variante S4-B que usa gancho de URGENCIA NARRATIVA.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "script_id": "S4-B",
+          "creative_id": "DC-W17-L04-B",
+          "platform": "tiktok",
+          "duration_seconds": 22,
+          "hook": {
+            "text": "La empresa está a punto de enterrar la verdad. El expediente acaba de ser desclasificado. Tienes tiempo hasta que lo vuelvan a cerrar.",
+            "visual": "Sello de 'CLASIFICADO' siendo tachado con 'DESCLASIFICADO' en rojo. Zoom sobre documento con membrete de Cambridge Police Department. Texto parpadeante: 'EXPEDIENTE ACTIVO — ACCESO LIMITADO'",
+            "emotion": "Urgencia y exclusividad — sensación de acceso privilegiado a información que no debería ser pública"
+          },
+          "body": {
+            "text": "Caso real de Declassified Cases: Helixure Biologics, Cambridge. Un medicamento que curaba una enfermedad crónica. Una científica que descubrió algo que la empresa no quería que nadie supiera. Una muerte fabricada como accidente. Cuatro sospechosos. Veintiún archivos clasificados — informes forenses, registros de seguridad, testimonios. Todo en español. Todo tuyo por $19.99.",
+            "tension": "La narrativa de encubrimiento corporativo activa el instinto de fan de true crime — alguien poderoso está mintiendo y la evidencia está ahí para demostrarlo.",
+            "value_prop": "Ser la detective que descubre lo que la empresa quiso ocultar — con archivos reales, en tu idioma."
+          },
+          "cta": {
+            "text": "Accede al expediente ahora. Link en bio.",
+            "visual": "Carpeta de expediente abriéndose, documentos desplegándose en pantalla. Texto: 'ACCESO INMEDIATO · $19.99 · En español · Sin esperas'",
+            "landing_url": "/juego-interactivo-true-crime-espanol"
+          },
+          "text_overlay": "EXPEDIENTE DESCLASIFICADO: Helixure Biologics · Cambridge 2026 · 21 archivos · $19.99",
+          "audio_notes": "Sonido de sello de goma al inicio ('DESCLASIFICADO'). Música de thriller corporativo tipo documental de Netflix. Voz en off masculina, grave, tono de narrador de documental de crimen. Español latinoamericano neutro.",
+          "fear_neutralized": "FK-03 — miedo a que la narrativa sea superficial: el tono de expediente policial real, el detalle del caso (empresa de biotech, medicamento milagroso, asfixia por gas inerte) comunica profundidad narrativa profesional.",
+          "proof_element": "Visualización del expediente policial real con membrete de Cambridge PD y número de caso (CPD-MCU-26-0319) — autenticidad documental que valida la calidad narrativa.",
+          "testing_variable": "Gancho de URGENCIA NARRATIVA ('la empresa está a punto de enterrar la verdad') vs. variante S4-A que usa gancho de COMPARACION CON PODCAST.",
+          "strategy_version_used": "v2"
+        }
+      ]
+    },
+    {
+      "lane_id": "LANE-05",
+      "persona_id": "parejas_noche_cita",
+      "trigger_id": "post_netflix_true_crime",
+      "angle_id": "ANG-23",
+      "hypothesis": "Las parejas que acaban de terminar una serie de crimen en Netflix están en el momento de mayor receptividad para convertir el consumo pasivo en activo. El caso de biotech tiene la misma energía de thriller corporativo que series como Mindhunter o Dark. Testear si el gancho de CONTINUACION DE LA ENERGIA ('no apagues Netflix todavía') supera al gancho de DIFERENCIA DE TEORIAS ('van a tener teorías completamente distintas').",
+      "scripts": [
+        {
+          "script_id": "S5-A",
+          "creative_id": "DC-W17-L05-A",
+          "platform": "instagram_reels",
+          "duration_seconds": 18,
+          "hook": {
+            "text": "Terminaron el episodio. Quieren más. Esta vez, el caso lo resuelven ustedes.",
+            "visual": "Pantalla de Netflix con 'Siguiente episodio en 5 segundos' — mano presiona pausa. Corte a pareja mirándose, luego abriendo laptop con expediente del caso. Texto: '¿Y si esta vez USTEDES resuelven el crimen?'",
+            "emotion": "Transición de consumo pasivo a participación activa — el deseo de más se convierte en acción"
+          },
+          "body": {
+            "text": "Nuevo caso: una científica de biotech muerta en Cambridge. Un medicamento que curaba todo — retirado sin explicación. Cuatro sospechosos. Veintiún archivos para resolver juntos. La misma energía de thriller corporativo que aman, pero esta vez son ustedes los detectives. En español. Por $19.99. Descarga inmediata.",
+            "tension": "La pareja tiene que ponerse de acuerdo sobre quién es el culpable — y probablemente no van a coincidir.",
+            "value_prop": "La noche de cita que convierte el true crime pasivo en misterio activo — juntos, desde el sofá."
+          },
+          "cta": {
+            "text": "Descárgalo ahora. Link en bio.",
+            "visual": "Pareja con documentos del caso en la mesa, señalando el plano del laboratorio. Texto: '$19.99 · Acceso inmediato · Juegan esta noche'",
+            "landing_url": "/noche-cita-misterio-pareja"
+          },
+          "text_overlay": "TERMINARON EL EPISODIO → Ahora resuelvan el crimen USTEDES · $19.99 · Esta noche",
+          "audio_notes": "Primeros 2 segundos: sonido de créditos de serie finalizando. Luego música de thriller suave. Voz en off femenina, tono cómplice y emocionado. Español latinoamericano neutro.",
+          "fear_neutralized": "FK-05 — miedo a esperar: se comunica 'descarga inmediata' y 'juegan esta noche' — el impulso post-Netflix se convierte en acción en minutos.",
+          "proof_element": "Imagen de pareja real con documentos del caso desplegados — prueba de que la experiencia es tan inmersiva como una serie pero activa.",
+          "testing_variable": "Gancho de CONTINUACION DE LA ENERGIA post-Netflix vs. variante S5-B que usa gancho de DIFERENCIA DE TEORIAS.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "script_id": "S5-B",
+          "creative_id": "DC-W17-L05-B",
+          "platform": "instagram_reels",
+          "duration_seconds": 20,
+          "hook": {
+            "text": "No es una cena. No es una peli. Es descubrir que tu pareja tiene una teoría completamente diferente a la tuya sobre quién mató a la Dra. Ellison.",
+            "visual": "Pareja señalando el mismo documento — uno señala a Evan Kline (CFO), otro señala a Tom Briggs (seguridad). Expresiones de desacuerdo divertido. Texto: 'TEORÍAS COMPLETAMENTE DISTINTAS'",
+            "emotion": "Diversión anticipada — el conflicto de teorías como forma de conexión"
+          },
+          "body": {
+            "text": "Declassified Cases: un caso de misterio real para resolver juntos en casa. Cambridge, 2026. Una científica muerta. Una empresa de biotech con secretos. Cuatro sospechosos — cada uno con un motivo diferente. Veintiún archivos para que decidan juntos quién es el culpable. En español. Por $19.99. Sin salir de casa.",
+            "tension": "Los cuatro sospechosos tienen motivos igualmente convincentes — la pareja inevitablemente va a defender teorías distintas y el debate es el entretenimiento.",
+            "value_prop": "Una noche de conversación real, risas y la satisfacción de resolver algo juntos — desde el sofá, por menos que una pizza."
+          },
+          "cta": {
+            "text": "Compra ahora, juegan esta noche. Link en bio.",
+            "visual": "Pareja riendo mientras uno señala el expediente triunfante. Texto: '$19.99 · Para los dos · Acceso inmediato · En español'",
+            "landing_url": "/noche-cita-misterio-pareja"
+          },
+          "text_overlay": "¿QUIÉN MATÓ A LA DRA. ELLISON? Tú dices una cosa. Tu pareja dice otra. · $19.99 · Esta noche",
+          "audio_notes": "Música ligera y divertida con toque de misterio. Voz en off femenina, tono de amiga que te da el mejor plan del viernes. Español latinoamericano neutro.",
+          "fear_neutralized": "FK-01 — miedo a que no se enganchen: mostrar que el desacuerdo de teorías ES el entretenimiento elimina la preocupación de que uno de los dos no participe.",
+          "proof_element": "Video UGC de pareja real debatiendo sobre sospechosos específicos (Evan Kline vs. Tom Briggs) — prueba de que la dinámica de pareja funciona con el caso.",
+          "testing_variable": "Gancho de DIFERENCIA DE TEORIAS ('tu pareja tiene una teoría completamente diferente') vs. variante S5-A que usa gancho de CONTINUACION DE LA ENERGIA post-Netflix.",
+          "strategy_version_used": "v2"
+        }
+      ]
+    },
+    {
+      "lane_id": "LANE-06",
+      "persona_id": "anfitriones_noche_juegos",
+      "trigger_id": "planificacion_noche_sabado",
+      "angle_id": "ANG-08",
+      "hypothesis": "Los anfitriones que planifican la noche del sábado responden al formato de 'unboxing' que muestra exactamente qué recibirán. La optimización de W14 identificó que la falta de claridad sobre el contenido del producto es la barrera principal de conversión. Testear si el gancho de UNBOXING DIGITAL (mostrar los archivos) supera al gancho de ANFITRION LEGENDARIO (aspiración social).",
+      "scripts": [
+        {
+          "script_id": "S6-A",
+          "creative_id": "DC-W17-L06-A",
+          "platform": "tiktok",
+          "duration_seconds": 22,
+          "hook": {
+            "text": "Esto es exactamente lo que recibe tu grupo cuando compran este caso.",
+            "visual": "Manos abriendo carpeta digital en pantalla — documentos aparecen uno por uno en ritmo rápido: informe policial de Cambridge PD, foto de escena del crimen en escalera de laboratorio, mugshots de 4 sospechosos, plano del Edificio 7 con zona marcada, registro del sistema BMS, informe forense. Contador en pantalla: '1 de 21 archivos'",
+            "emotion": "Curiosidad y deseo — FOMO de tener esos archivos para la noche del sábado"
+          },
+          "body": {
+            "text": "Caso activo: The Miracle Withdrawal. Veintiún archivos clasificados. Informe forense. Registros del sistema de seguridad. Testimonios de cuatro sospechosos. Guía del facilitador para que empieces en menos de 10 minutos. Todo en español. Todo por $19.99 para todo el grupo. Descarga inmediata — compras ahora y en 5 minutos están investigando.",
+            "tension": "El contador '1 de 21 archivos' crea anticipación — el grupo quiere ver qué hay en los otros 20.",
+            "value_prop": "El anfitrión que sabe exactamente qué trae — y el grupo que no puede creer lo que está viendo."
+          },
+          "cta": {
+            "text": "Descárgalo para este sábado. Link en bio.",
+            "visual": "Grid final con todos los tipos de documentos del caso. Texto: '$19.99 para todo el grupo · 21 archivos · Guía del facilitador · Acceso inmediato'",
+            "landing_url": "/noche-juegos-misterio-grupo"
+          },
+          "text_overlay": "ESTO RECIBE TU GRUPO: 21 archivos · Informe forense · 4 sospechosos · Guía del facilitador · $19.99",
+          "audio_notes": "Sonido de 'clic' al abrir cada documento. Música de suspenso suave de fondo. Voz en off masculina, tono directo y entusiasta, como alguien mostrando el mejor plan del sábado. Español latinoamericano neutro.",
+          "fear_neutralized": "FK-02 — miedo a que sea complicado de organizar: mostrar la guía del facilitador como parte del contenido elimina la barrera de logística. 'Empiezan en menos de 10 minutos' refuerza la facilidad.",
+          "proof_element": "Unboxing digital completo — se muestran los 21 archivos reales del caso incluyendo informe forense, plano del edificio, mugshots de sospechosos y guía del facilitador. Aplicación directa de OPT-W14-002.",
+          "testing_variable": "Gancho de UNBOXING DIGITAL (mostrar exactamente qué reciben) vs. variante S6-B que usa gancho de ANFITRION LEGENDARIO.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "script_id": "S6-B",
+          "creative_id": "DC-W17-L06-B",
+          "platform": "instagram_reels",
+          "duration_seconds": 20,
+          "hook": {
+            "text": "Llevamos tres años haciendo noches de juegos. Esta fue la primera vez que nadie quería irse a casa.",
+            "visual": "Grupo de 5 personas alrededor de una mesa a las 2am, documentos del caso desplegados, todos señalando y debatiendo. Reloj en la pared marcando las 2:15am. Texto: 'NOCHE DE JUEGOS — 2:15AM'",
+            "emotion": "Prueba social y aspiración — quiero que MI grupo tenga esa noche"
+          },
+          "body": {
+            "text": "Declassified Cases. Un caso de misterio real para resolver en grupo. Esta semana: una científica de biotech muerta en Cambridge. Un medicamento milagroso retirado sin explicación. Cuatro sospechosos con motivos reales. Veintiún archivos para que tu grupo decida quién es el culpable. En español. Por $19.99 para todo el grupo — menos de $4 por persona.",
+            "tension": "El testimonio de que 'nadie quería irse a casa' es la prueba máxima de que el caso engancha — el anfitrión quiere replicar eso.",
+            "value_prop": "Sé el anfitrión que esta vez trajo algo que nadie había hecho antes — y que todos van a pedir repetir."
+          },
+          "cta": {
+            "text": "Sé el anfitrión que siempre sorprende. Link en bio.",
+            "visual": "Grupo celebrando cuando alguien señala al culpable. Texto: '$19.99 para todo el grupo · Descarga inmediata · En español'",
+            "landing_url": "/noche-juegos-misterio-grupo"
+          },
+          "text_overlay": "NADIE QUERÍA IRSE A CASA → El caso que tu grupo va a pedir repetir · $19.99 para todos",
+          "audio_notes": "Primeros 3 segundos: sonido ambiente de noche de juegos (risas, voces). Luego música upbeat de celebración con toque de misterio. Voz en off masculina, tono de testimonio genuino. Español latinoamericano neutro.",
+          "fear_neutralized": "FK-01 — miedo a que alguien no se enganche: el testimonio de que 'nadie quería irse a casa' es la prueba social más poderosa de que el caso funciona para grupos mixtos.",
+          "proof_element": "Testimonio UGC de anfitrión real ('llevamos tres años haciendo noches de juegos, esta fue la primera vez que nadie quería irse') — prueba social directa de la experiencia grupal. Aplicación de ANG-18.",
+          "testing_variable": "Gancho de ANFITRION LEGENDARIO (testimonio social) vs. variante S6-A que usa gancho de UNBOXING DIGITAL.",
+          "strategy_version_used": "v2"
+        }
+      ]
+    }
+  ],
+  "optimization_applied": [
+    "OPT-W14-001: Todos los scripts incluyen elementos visuales de archivos reales del caso (documentos forenses, plano del edificio, mugshots) y comunicación explícita del contenido ('21 archivos clasificados', '4 sospechosos', '2-4 horas de investigación') para reducir fricción de decisión de compra.",
+    "OPT-W14-002: LANE-06/S6-A implementa directamente el formato de 'unboxing digital' recomendado, mostrando los documentos del caso uno por uno con contador visible. Otros scripts incluyen previews visuales de archivos reales.",
+    "OPT-W14-003: Los scripts están segmentados por persona específica (parejas, fans true crime, anfitriones) con landing URLs distintas por segmento, aplicando la recomendación de refinamiento de targeting hacia perfiles específicos."
+  ],
+  "kb_patterns_used": [
+    "WP-001: Se mantienen hooks de curiosidad y pregunta retórica en múltiples scripts (S1-B, S2-A, S4-A, S5-B) dado que el CTR de 2.10% confirma que estos ángulos resuenan con la audiencia objetivo.",
+    "LP-001: Todos los scripts incluyen elementos que comunican claramente qué recibirá el comprador (número de archivos, tipos de documentos, duración estimada, guía del facilitador) para reducir la fricción post-clic identificada como barrera principal.",
+    "LP-002: Se diversifican los ángulos creativos por lane para identificar qué combinación de hook + emoción + proof element mejora la tasa de conversión más allá del CTR."
+  ],
+  "status": "draft"
+}

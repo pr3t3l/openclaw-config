@@ -61,12 +61,13 @@
       "threshold": 0.8
     }
   },
-  "available_balance": 3200.0,
-  "last_balance_update": "2026-03-27T13:43:31.425943",
+  "available_balance": 1178.14,
+  "last_balance_update": "2026-03-28T09:33:52.439107",
   "pay_schedule": "biweekly",
   "pay_dates": [
     5,
     19
   ],
-  "next_payday": null
+  "next_payday": null,
+  "expected_paycheck": 2800.0
 }

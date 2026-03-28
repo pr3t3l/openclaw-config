@@ -5,6 +5,44 @@ from . import config as C
 from . import sheets
 
 
+def log_income(tx: dict) -> dict:
+    """Log an income transaction and auto-update available balance."""
+    now = datetime.now()
+    tx["timestamp"] = now.isoformat()
+    tx["month"] = tx.get("date", now.strftime("%Y-%m-%d"))[:7]
+    tx["type"] = "income"
+    tx.setdefault("matched", False)
+    tx.setdefault("source", "manual")
+    tx.setdefault("tax_deductible", False)
+    tx.setdefault("tax_category", "none")
+    tx.setdefault("receipt_id", "")
+    tx.setdefault("receipt_number", "")
+    tx.setdefault("store_address", "")
+
+    sheets.append_transaction(tx)
+
+    # Auto-update available balance
+    budgets = C.load_budgets()
+    old_balance = budgets.get("available_balance", 0)
+    new_balance = old_balance + tx["amount"]
+    budgets["available_balance"] = new_balance
+    budgets["last_balance_update"] = now.isoformat()
+    C.save_json(C.CONFIG_DIR / "budgets.json", budgets)
+
+    # Get month income total
+    month_income = sheets.get_month_income(tx["month"])
+
+    return {
+        "logged": True,
+        "type": "income",
+        "amount": tx["amount"],
+        "source": tx.get("subcategory", "other"),
+        "old_balance": old_balance,
+        "new_balance": new_balance,
+        "month_income": month_income,
+    }
+
+
 def log_transaction(tx: dict) -> dict:
     """Log a confirmed transaction and return budget status."""
     now = datetime.now()
@@ -12,6 +50,7 @@ def log_transaction(tx: dict) -> dict:
     tx["month"] = tx.get("date", now.strftime("%Y-%m-%d"))[:7]
     tx.setdefault("matched", False)
     tx.setdefault("source", "receipt")
+    tx.setdefault("type", "expense")
     tx.setdefault("tax_deductible", False)
     tx.setdefault("tax_category", "none")
     tx.setdefault("receipt_id", "")
@@ -76,6 +115,18 @@ def log_split_receipt(receipt: dict) -> list[dict]:
         results.append({"tx": tx, "budget": result})
 
     return results
+
+
+def format_income_confirmation(tx: dict, result: dict) -> str:
+    """Format the Telegram confirmation message for an income."""
+    msg = (
+        f"💰 Ingreso registrado: ${tx['amount']:,.2f}"
+        f" ({result.get('source', 'other')})\n"
+        f"Saldo anterior: ${result['old_balance']:,.2f}\n"
+        f"Saldo nuevo: ${result['new_balance']:,.2f}\n"
+        f"Ingresos este mes: ${result.get('month_income', 0):,.2f}"
+    )
+    return msg
 
 
 def format_confirmation(tx: dict, budget_info: dict) -> str:

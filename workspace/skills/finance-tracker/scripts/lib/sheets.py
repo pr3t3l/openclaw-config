@@ -69,31 +69,44 @@ def append_transaction(tx: dict):
         tx.get("store_address", ""),
         tx.get("tax_deductible", False),
         tx.get("tax_category", "none"),
+        tx.get("type", "expense"),
     ]
     ws.append_row(row, value_input_option="USER_ENTERED")
 
 
 def get_month_spending(category: str, month: str) -> float:
-    """Sum spending for a category in a given month (YYYY-MM)."""
+    """Sum spending for a category in a given month (YYYY-MM). Excludes income."""
     ws = get_sheet(C.TAB_TRANSACTIONS)
     records = ws.get_all_records()
     return sum(
         float(r.get("amount", 0))
         for r in records
         if r.get("category") == category and r.get("month") == month
+        and str(r.get("type", "expense")).lower() != "income"
     )
 
 
 def get_all_month_spending(month: str) -> dict[str, float]:
-    """Return {category: total} for a given month."""
+    """Return {category: total} for a given month. Excludes income."""
     ws = get_sheet(C.TAB_TRANSACTIONS)
     records = ws.get_all_records()
     totals: dict[str, float] = {}
     for r in records:
-        if r.get("month") == month:
+        if r.get("month") == month and str(r.get("type", "expense")).lower() != "income":
             cat = r.get("category", "Other")
             totals[cat] = totals.get(cat, 0) + float(r.get("amount", 0))
     return totals
+
+
+def get_month_income(month: str) -> float:
+    """Sum all income for a given month."""
+    ws = get_sheet(C.TAB_TRANSACTIONS)
+    records = ws.get_all_records()
+    return sum(
+        float(r.get("amount", 0))
+        for r in records
+        if r.get("month") == month and str(r.get("type", "")).lower() == "income"
+    )
 
 
 def get_recent_transactions(days: int = 2) -> list[dict]:

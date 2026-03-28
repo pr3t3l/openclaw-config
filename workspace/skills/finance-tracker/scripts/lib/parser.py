@@ -91,9 +91,66 @@ TAX_CATEGORIES = [
 ]
 
 
+INCOME_PATTERNS = [
+    "me pagaron", "paycheck", "ingreso:", "income:", "cobré", "cobre",
+    "deposito:", "depósito:", "me depositaron", "nómina", "nomina",
+    "income", "ingreso", "sueldo",
+]
+
+
+def is_income_text(text: str) -> bool:
+    """Detect if text describes an income, not an expense."""
+    text_lower = text.lower().strip()
+    return any(p in text_lower for p in INCOME_PATTERNS)
+
+
+def parse_income(text: str) -> dict:
+    """Parse an income message. Returns income transaction dict."""
+    amount, _, card = _extract_text_fields(text)
+    if not amount:
+        # Try bare number after colon
+        m = re.search(r"[:=]\s*\$?([\d,]+\.?\d{0,2})", text)
+        if m:
+            amount = float(m.group(1).replace(",", ""))
+
+    return {
+        "type": "income",
+        "amount": amount or 0,
+        "merchant": "Income",
+        "date": datetime.now().strftime("%Y-%m-%d"),
+        "category": "Income",
+        "subcategory": _detect_income_source(text),
+        "card": card or "Bank",
+        "input_method": "text",
+        "confidence": 1.0,
+        "notes": text.strip(),
+        "items": [],
+        "rule_matched": True,
+        "needs_confirmation": True,
+        "tax_deductible": False,
+        "tax_category": "none",
+    }
+
+
+def _detect_income_source(text: str) -> str:
+    text_lower = text.lower()
+    if any(w in text_lower for w in ["paycheck", "nómina", "nomina", "sueldo", "me pagaron"]):
+        return "paycheck"
+    if any(w in text_lower for w in ["freelance", "side"]):
+        return "freelance"
+    if any(w in text_lower for w in ["refund", "reembolso", "devolucion"]):
+        return "refund"
+    return "other"
+
+
 def parse_text(text: str) -> dict:
     """Parse a free-text expense message. Tries rules first, then AI."""
     text_lower = text.lower()
+
+    # Check if this is an income, not an expense
+    if is_income_text(text):
+        return parse_income(text)
+
     is_airbnb = "airbnb" in text_lower or "para airbnb" in text_lower
     wants_split = "split" in text_lower
 

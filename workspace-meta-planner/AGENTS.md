@@ -43,6 +43,7 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 - When someone says "remember this" → update `memory/YYYY-MM-DD.md` or relevant file
 - When you learn a lesson → update AGENTS.md, TOOLS.md, or the relevant skill
 - When you make a mistake → document it so future-you doesn't repeat it
+- When any failure happens (tool failure, model failure, schema failure, runtime failure, truncation, invalid JSON, bad assumption, etc.) → immediately record it in a durable lessons-learned file before continuing
 - **Text > Brain** 📝
 
 ## Red Lines

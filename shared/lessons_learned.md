@@ -97,3 +97,124 @@ Templates must be 100% data-driven. No static sample content that pretends to be
 - gpt52-thinking is a reliable fallback for QA and narrative tasks
 - Sub-agents via sessions_spawn start fresh — token tracking per sub-agent is reliable
 - Main session context compounds with each spawn — keep orchestration concise
+
+## 2026-03-27 — Contract generation failure on large Advanced artifacts
+
+### Lesson
+When a planner artifact becomes large and schema-heavy (especially `04_contracts.json` in Advanced scope), do **not** rely on a single monolithic JSON response from one model call. Large contract outputs are prone to two failure modes:
+1. JSON extraction failure (mixed prose + JSON or malformed top-level structure)
+2. Truncation / unterminated strings from oversized completion payloads
+
+### Evidence
+Observed in `strategy-runtime-1` during B2 / Contract Designer:
+- First failure: runner could not extract valid JSON after retries.
+- Second failure: `JSONDecodeError: Unterminated string...` while parsing a large generated contract.
+- The artifact attempted to include many schemas, examples, validation rules, and split strategies in one payload.
+
+### Rule
+For any large contract/spec artifact:
+- Prefer split generation by domain/module (for example: core manifests, runtime state, marketing interface, Telegram/security) and consolidate after.
+- If keeping one artifact, reduce verbosity: keep schema + required fields + validation rules; avoid long examples unless truly needed.
+- Always save raw model output on failure before retrying.
+- Treat repeated invalid JSON on large outputs as an architectural problem, not just a token-limit problem.
+
+### Operational guidance
+- First failed generation → save raw output and diagnose whether failure is extraction vs truncation.
+- Second failed generation on large artifact → stop increasing tokens blindly; switch to chunked generation or smaller contracts.
+- Record the failure in lessons learned immediately.
+
+## 2026-03-27 — Use domain-split contract generation for B2 when Advanced scope is large
+
+### Lesson
+When `04_contracts.json` becomes too large in Advanced scope, generate contracts by domain/module and consolidate after validation instead of forcing one monolithic response.
+
+### Approved split for this planner
+1. Core manifests + runtime
+2. Strategic artifacts
+3. Marketing interface
+4. Gates + Telegram + security
+5. Invalidation + rollback + observability
+
+### Rule
+If any domain block is still too large, split it further before retrying. Validate each block independently, then consolidate into final `04_contracts.json`.
+
+## 2026-03-27 — Even domain-split B2 can fail; identify failing block before retry
+
+### Lesson
+When split-domain contract generation fails, the next move is not a blind re-run. First identify which specific block failed and whether prior blocks succeeded. Save raw output per block and inspect the failing block only.
+
+### Rule
+For split generation pipelines, checkpoint after each block. On failure:
+1. determine the failing block name,
+2. preserve successful blocks,
+3. retry only the failing block,
+4. if that block still fails, split that block further.
+
+## 2026-03-27 — For very large contract phases, use one-contract-per-artifact generation
+
+### Lesson
+If split-by-domain still fails, move to one artifact per generation unit. This minimizes truncation risk and isolates failures to a single contract file.
+
+### Rule
+Preferred fallback order for large contract phases:
+1. monolithic contracts
+2. split by domains
+3. split by subdomains
+4. one contract per artifact/spec
+
+When using one-contract-per-artifact generation, drop examples first if size remains a problem. Keep only schema + required fields + validation rules.
+
+## 2026-03-27 — Compact contract mode for all artifacts improves consistency and reliability
+
+### Lesson
+Even one-contract-per-artifact can fail if each contract is too verbose. For schema-heavy planning phases, enforce a compact output format across ALL artifacts, not just failed ones, to keep structure consistent and reduce parse risk.
+
+### Compact format
+Generate ONLY:
+1. artifact_name
+2. schema_definition (pure JSON Schema)
+3. produced_by
+4. consumed_by
+5. validation_rules (short list)
+
+Do NOT include examples, estimated sizes, long prose, long descriptions, or extended defaults.
+
+## 2026-03-27 — Add JSON auto-repair before declaring schema-generation failure
+
+### Lesson
+If schema generation fails with small syntax issues (missing comma, unterminated string, unclosed braces), do not immediately treat it as a hard model failure. First apply a lightweight JSON auto-repair pass and validate the repaired result.
+
+### Rule
+For contract/schema generation pipelines:
+1. attempt normal JSON parse
+2. if parse fails, save raw output
+3. run lightweight auto-repair
+4. if repaired JSON validates, continue
+5. only report failure if repair also fails
+
+## 2026-03-27 — Contract generation should auto-retry up to 3 times before surfacing failure
+
+### Lesson
+Do not interrupt the human for every single flaky contract-generation failure. For compact, per-artifact schema generation, auto-retry each artifact up to 3 times before escalating.
+
+### Rule
+For contract generation pipelines:
+- each contract gets up to 3 attempts automatically
+- only report back when all contracts complete, or when one contract fails 3 consecutive times
+
+## 2026-03-27 — Apply auto-repair and retry patterns to implementation plans too
+
+### Lesson
+The same failure mode seen in contracts (good content, invalid JSON wrapper) can also happen in implementation plans. Reuse the same robustness pattern: save raw output, retry automatically, attempt lightweight repair, and only then escalate.
+
+## 2026-03-27 — Large implementation plans should be generated by blocks with auto-retry
+
+### Lesson
+Implementation plans can fail exactly like contracts: good content, broken JSON wrapper. For large multi-phase build plans, generate by blocks, retry each block up to 3 times, then consolidate.
+
+### Rule
+For C1 implementation planning:
+- split into logical blocks
+- auto-retry each block up to 3 times
+- consolidate only after all blocks succeed
+- do not interrupt the human for per-block flakiness

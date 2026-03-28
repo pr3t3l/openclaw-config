@@ -380,7 +380,7 @@
           ]
         },
         "heartbeat": {
-          "every": "60m",
+          "every": "5m",
           "activeHours": {
             "start": "08:00",
             "end": "23:00"

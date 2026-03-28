@@ -1,0 +1,296 @@
+{
+  "schema_version": "2.0",
+  "product_id": "misterio-semanal",
+  "week": "2026-W17",
+  "generated_at": "2026-03-28T12:27:13.187305",
+  "source_case_dir": "/home/robotin/.openclaw/workspace-declassified/cases/exports/medication-that-cures-too-well-gpt",
+  "source_case_slug": "medication-that-cures-too-well-gpt",
+  "case": {
+    "title": "The Miracle Withdrawal",
+    "slug": "medication-that-cures-too-well-gpt",
+    "logline": "A biotech miracle appears to cure a chronic disease—then the lead scientist dies in a staged accident and the company yanks the drug before anyone can learn why it worked so well.",
+    "setting": {
+      "city": "Cambridge",
+      "neighborhood": "Kendall Square",
+      "time_period": "March 2026",
+      "atmosphere": "Badge-locked labs and immaculate conference rooms where every sentence is recorded and every risk is footnoted. After hours, the building becomes a machine—doors, sensors, and alarms writing a timeline no one can fully erase."
+    },
+    "victim": {
+      "name": "Dr. Mara Ellison",
+      "age": 41,
+      "occupation": "Principal Research Scientist, Helixure Biologics",
+      "cause_of_death": "Inert-gas asphyxiation with secondary blunt-force trauma from a staged stairwell fall"
+    },
+    "suspects": [
+      {
+        "name": "Evan Kline",
+        "occupation": "Chief Financial Officer, Helixure Biologics",
+        "why_suspicious": "The acquisition earn-out and his equity package hinge on keeping GF-102 on track; Ellison’s concerns could tank the deal."
+      },
+      {
+        "name": "Nadia Reyes",
+        "occupation": "Research Associate (Ellison’s lab)",
+        "why_suspicious": "She worked late with Ellison and has access to the cleanroom corridor, making her an easy suspect."
+      },
+      {
+        "name": "Tom Briggs",
+        "occupation": "Facilities & Security Operations Manager (Building 7)",
+        "why_suspicious": "He had access to alarms and security systems and openly clashed with Ellison about late-night work."
+      },
+      {
+        "name": "Raina Patel",
+        "occupation": "Director of Quality Assurance, Helixure Biologics",
+        "why_suspicious": "If GF-102 collapses under scrutiny, QA is the first department blamed, and Patel signed the releases that made the rollout possible."
+      }
+    ],
+    "emotional_arc": {
+      "envelope_A": "Curiosity and unease — a miracle drug meets a quiet death in a controlled facility, and the official story feels too tidy.",
+      "envelope_B": "Suspicion and mounting dread — everyone has a reason to lie, and the most important clues look like boring logs and compliance emails.",
+      "envelope_C": "Aha and shock — the pivot proves the accident was engineered by manipulating safety systems, turning corporate pressure into physical violence.",
+      "envelope_R": "Catharsis and clarity — the paper trail and the sensor trail align, and each POI’s lies snap into a coherent motive map."
+    },
+    "experience_summary": {
+      "envelopes": 4,
+      "total_documents": 21,
+      "estimated_duration_hours": "2-4",
+      "difficulty": "NORMAL",
+      "experiential_style": "digital_corporate",
+      "detective_name": "Det. Harlan Torres"
+    }
+  },
+  "marketing_assets": {
+    "scenes_for_video": [
+      {
+        "scene_id": "scene_A1",
+        "for_doc": "A1",
+        "location": "Helixure Biologics — Building 7, Level 4, Stairwell 4B landing (outside cGMP suite)",
+        "visual_description": "A sterile stairwell landing with painted concrete block walls, a steel handrail, and a heavy fire door marked ‘STAIR 4B.’ The space smells faintly of disinfectant and cold metal. A single security camera is mounted at the corner of the ceiling, but its view misses the landing’s far edge—an awkward pocket of shadow created by the door frame and the angle of the lens. Evidence markers and a thin red line of scene tape cut across the landing. The setting feels too controlled for an ‘accident,’ like the building itself is designed to remove surprises.",
+        "lighting": "Harsh fluorescent stairwell fixtures; clinical white light with minimal shadow; flashes from responder bodycams",
+        "atmosphere": "Quiet, procedural, and unsettling—an immaculate facility treating a death like a maintenance issue until someone insists it’s not.",
+        "notable_objects": [
+          "steel stairwell fire door labeled ‘4B’",
+          "handrail and short flight of stairs leading down",
+          "scene tape and evidence markers",
+          "nearby utility-closet door (unmarked, keyed)",
+          "a visible camera housing and a suspected blind spot at the landing edge"
+        ],
+        "time_of_day": "Early morning, approximately 06:20 (initial response window)",
+        "marketing_use": "Hook scene — discovery / crime scene"
+      },
+      {
+        "scene_id": "scene_A2",
+        "for_doc": "A2",
+        "location": "Cambridge Police Department — Major Crimes Unit briefing room",
+        "visual_description": "A windowless conference room with a whiteboard, a corkboard, and a metal table covered in manila folders. Five POI cards are laid out in a neat grid: the victim’s corporate headshot among four dossier-style portraits. A printed timeline strip (22:39, 22:48, 23:12, 23:36, 06:14) is taped to the table edge. The room smells like coffee and toner, and the hum of fluorescent lights makes every pause feel longer.",
+        "lighting": "Flat fluorescent overhead lighting; no natural light",
+        "atmosphere": "Methodical and tense—the kind of room where suspicion is built out of small times, small permissions, and who has reason to care about paperwork.",
+        "notable_objects": [
+          "POI sheet draft with five portrait slots",
+          "timeline strip with key timestamps",
+          "case folder labeled CPD-MCU-26-0319",
+          "highlighter marks on ‘Stairwell 4B’ references",
+          "printouts of early witness notes and facilities contact info"
+        ],
+        "time_of_day": "Late morning, approximately 10:30",
+        "marketing_use": "Suspect lineup — detective board"
+      },
+      {
+        "scene_id": "scene_A3",
+        "for_doc": "A3",
+        "location": "Online — X/Twitter thread about #GF102 ‘miracle’ outcomes (captured by digital forensics)",
+        "visual_description": "A dark-mode social feed full of clipped optimism, sarcasm, and rumor. A biotech ‘miracle’ headline is screenshot-saved beside replies that read like a public brainstorm: patients cheering, skeptics demanding data, and one account dropping the kind of precise compliance vocabulary that sounds like someone with insider proximity. The thread scroll feels endless, as if the company’s story is being rewritten in real time by strangers.",
+        "lighting": "Screen glow; high-contrast dark UI",
+        "atmosphere": "A pressure cooker—public hype colliding with the uneasy sense that something this good has to have a catch.",
+        "notable_objects": [
+          "hashtag #GF102 and Helixure mentions",
+          "reply with ‘QA deviation’ / ‘audit trail’ phrasing",
+          "engagement counters (likes/reposts) climbing",
+          "a screenshot timestamp/capture watermark from a forensics tool",
+          "avatars and handles that range from real names to burner accounts"
+        ],
+        "time_of_day": "Morning (thread active around 09:40; capture shows a live, fast-moving feed)",
+        "marketing_use": "Atmospheric / world-building"
+      },
+      {
+        "scene_id": "scene_A4",
+        "for_doc": "A4",
+        "location": "Helixure Biologics — Building 7, Level 4 (annotated floor plan context)",
+        "visual_description": "A clean, modern biotech corridor plan: straight lines, restricted doors, and labeled rooms that read like a controlled machine. Stairwell 4B sits near the cGMP suite corridor; a utility closet is tucked adjacent to the landing, easy to miss unless you already know it matters. Camera icons and shaded coverage cones are marked in pen, with one stubborn gap at the landing that looks small on paper but large in consequence.",
+        "lighting": "N/A (document context); implied bright corporate interior lighting",
+        "atmosphere": "Clinical inevitability—the kind of environment where a person can be reduced to a route and a timestamp.",
+        "notable_objects": [
+          "Stairwell 4B landing callout",
+          "Utility Closet U-4B adjacency",
+          "O₂ monitor location note",
+          "camera coverage cones and a marked blind spot",
+          "arrowed likely walking route toward garage access"
+        ],
+        "time_of_day": "N/A (investigative exhibit; reflects fixed building layout)",
+        "marketing_use": "Atmospheric / world-building"
+      },
+      {
+        "scene_id": "scene_A5",
+        "for_doc": "A5",
+        "location": "Helixure Biologics — Building 7 exterior, Kendall Square (news photo context)",
+        "visual_description": "A modern glass-and-metal biotech building with discreet signage and a security desk visible through the lobby windows. The sky is March overcast, and the sidewalks are wet with old snow melt. People in badges pass through turnstiles without looking up. The building feels expensive, careful, and slightly aloof—the kind of place that sells certainty.",
+        "lighting": "Natural daylight muted by clouds; cool gray tones",
+        "atmosphere": "Corporate triumph with a hairline fracture—an institution built to look flawless from the sidewalk.",
+        "notable_objects": [
+          "glass facade and minimal Helixure signage",
+          "badge-controlled entry turnstiles",
+          "security camera domes under the awning",
+          "Kendall Square street details (bike racks, concrete planters)",
+          "reflections of lab lights behind the windows"
+        ],
+        "time_of_day": "Morning, overcast March light",
+        "marketing_use": "Atmospheric / world-building"
+      }
+    ],
+    "poi_headshot_prompts": [
+      {
+        "image_id": "img_poi_01_headshot",
+        "name": "Dr. Mara Ellison",
+        "role": "victim",
+        "dall_e_prompt": "Professional corporate headshot of Dr. Mara Ellison, a 41-year-old woman, principal research scientist in biotech. Medium-length chestnut-brown hair in a neat side part, subtle under-eye fatigue, intelligent focused eyes, minimal natural makeup, no heavy jewelry. Wardrobe: charcoal blazer over a muted teal blouse (lab-adjacent professional). Expression: calm, serious, slightly guarded. Background: clean light gray seamless. Lighting: soft even studio light, gentle catchlights, no harsh shadows. Photorealistic, high detail, centered head-and-shoulders framing, Canon EOS R5 look. No text, no watermark, no logos, no illustration, no cartoon, no anime, no painterly style.",
+        "dall_e_params": {
+          "model": "dall-e-3",
+          "quality": "hd",
+          "size": "1024x1024",
+          "n": 1
+        }
+      },
+      {
+        "image_id": "img_poi_02_mugshot",
+        "name": "Evan Kline",
+        "role": "suspect",
+        "dall_e_prompt": "Police interview/booking-style mugshot portrait of Evan Kline, a late-40s white male CFO (approx. 48). Salt-and-pepper hair neatly styled, clean-shaven, sharp cheekbones, tired eyes that still look practiced and confident. Wardrobe: dark navy suit jacket with open-collar white shirt (no tie). Expression: controlled, slightly defensive. Background: neutral off-white/gray police backdrop. Lighting: flat institutional fluorescent, minimal shadows, front-facing head-and-shoulders framing. Photorealistic, high detail, Canon EOS R5 look. No text, no watermark, no badges, no logos, no illustration, no cartoon, no anime, no painterly style.",
+        "dall_e_params": {
+          "model": "dall-e-3",
+          "quality": "hd",
+          "size": "1024x1024",
+          "n": 1
+        }
+      },
+      {
+        "image_id": "img_poi_03_mugshot",
+        "name": "Nadia Reyes",
+        "role": "suspect",
+        "dall_e_prompt": "Police interview/booking-style mugshot portrait of Nadia Reyes, a Latina woman in her late-20s/early-30s (approx. 30), research associate. Dark brown hair pulled back into a practical low ponytail with a few flyaways, faint under-eye circles, honest anxious eyes. Wardrobe: simple dark zip hoodie under a plain blazer (looks like she came from work). Expression: stressed, apologetic, trying to be believed. Background: neutral off-white/gray police backdrop. Lighting: flat institutional fluorescent, front-facing head-and-shoulders framing. Photorealistic, high detail, Canon EOS R5 look. No text, no watermark, no logos, no illustration, no cartoon, no anime, no painterly style.",
+        "dall_e_params": {
+          "model": "dall-e-3",
+          "quality": "hd",
+          "size": "1024x1024",
+          "n": 1
+        }
+      },
+      {
+        "image_id": "img_poi_04_mugshot",
+        "name": "Tom Briggs",
+        "role": "suspect",
+        "dall_e_prompt": "Police interview/booking-style mugshot portrait of Tom Briggs, a white male in his late-30s/early-40s (approx. 40), facilities and security operations manager. Short-cropped hair, slight five o'clock shadow, practical rugged features, faint forehead lines. Wardrobe: work button-down shirt (light blue or gray) with the collar slightly wrinkled, no tie. Expression: blunt, annoyed, defensive; jaw set. Background: neutral off-white/gray police backdrop. Lighting: flat institutional fluorescent, front-facing head-and-shoulders framing. Photorealistic, high detail, Canon EOS R5 look. No text, no watermark, no logos, no illustration, no cartoon, no anime, no painterly style.",
+        "dall_e_params": {
+          "model": "dall-e-3",
+          "quality": "hd",
+          "size": "1024x1024",
+          "n": 1
+        }
+      },
+      {
+        "image_id": "img_poi_05_mugshot",
+        "name": "Raina Patel",
+        "role": "suspect",
+        "dall_e_prompt": "Police interview/booking-style mugshot portrait of Raina Patel, a South Asian woman in her late-30s/early-40s (approx. 39), Director of Quality Assurance. Dark hair neatly pulled into a low bun, precise grooming, minimal jewelry (small stud earrings), composed face with steady unblinking eyes. Wardrobe: tailored black blazer over a cream blouse. Expression: calm, controlled, slightly chilling; no visible panic. Background: neutral off-white/gray police backdrop. Lighting: flat institutional fluorescent, front-facing head-and-shoulders framing. Photorealistic, high detail, Canon EOS R5 look. No text, no watermark, no logos, no illustration, no cartoon, no anime, no painterly style.",
+        "dall_e_params": {
+          "model": "dall-e-3",
+          "quality": "hd",
+          "size": "1024x1024",
+          "n": 1
+        }
+      }
+    ],
+    "key_clues_for_hooks": [
+      {
+        "doc_id": "A1",
+        "document_title": "Cambridge Police Department — Preliminary Incident Summary (Helixure Biologics)",
+        "clue_description": "A high-control biotech facility producing a ‘miracle’ drug shouldn’t have an unobserved overnight stairwell incident; the ‘no alarms’ detail sounds like a system state someone might have influenced.",
+        "intrigue_level": "high",
+        "hook_potential": "A high-control biotech facility producing a ‘miracle’ drug shouldn’t have an unobserved overnight st..."
+      },
+      {
+        "doc_id": "A2",
+        "document_title": "Persons of Interest — Ellison Death (Case CPD-MCU-26-0319)",
+        "clue_description": "The motive field is crowded: money (Kline), fear of blame (Reyes), system access (Briggs), and audit-trail liability (Patel). The killer likely sits where pressure and permissions overlap.",
+        "intrigue_level": "high",
+        "hook_potential": "The motive field is crowded: money (Kline), fear of blame (Reyes), system access (Briggs), and audit..."
+      },
+      {
+        "doc_id": "A3",
+        "document_title": "Digital Evidence Capture — X Thread on #GF102 ‘Miracle’ Outcomes",
+        "clue_description": "If the public is already whispering about deviations and scrubbed paperwork, Ellison’s death may sit on top of a documentation crisis — the motive could be stopping disclosure, not personal revenge.",
+        "intrigue_level": "high",
+        "hook_potential": "If the public is already whispering about deviations and scrubbed paperwork, Ellison’s death may sit..."
+      },
+      {
+        "doc_id": "A4",
+        "document_title": "Building 7 (Level 4) — Stairwell 4B / cGMP Suite Access Map (Annotated)",
+        "clue_description": "If Ellison’s collapse happened near Stairwell 4B, the utility closet and monitor placement matter: a technically savvy offender could exploit the physical layout (and blind spots) to create a ‘fall’ t",
+        "intrigue_level": "high",
+        "hook_potential": "If Ellison’s collapse happened near Stairwell 4B, the utility closet and monitor placement matter: a..."
+      },
+      {
+        "doc_id": "A5",
+        "document_title": "The Boston Ledger — ‘Helixure’s GF-102 Sends Investors Scrambling for Superlatives’",
+        "clue_description": "The corporate stakes are existential: if Ellison forces a deviation into the open, Helixure’s deal and valuation could collapse. That makes ‘paperwork’ and ‘process’ more than bureaucracy — it’s a mot",
+        "intrigue_level": "high",
+        "hook_potential": "The corporate stakes are existential: if Ellison forces a deviation into the open, Helixure’s deal a..."
+      },
+      {
+        "doc_id": "C1",
+        "document_title": "Middlesex County OCME — Forensic Examination Report: Dr. Mara Ellison",
+        "clue_description": "If Ellison was asphyxiated before she hit the stairs, the ‘workplace accident’ narrative collapses and the killer likely used Building 7’s gas/safety infrastructure to create a quiet, controllable kil",
+        "intrigue_level": "high",
+        "hook_potential": "If Ellison was asphyxiated before she hit the stairs, the ‘workplace accident’ narrative collapses a..."
+      },
+      {
+        "doc_id": "C2",
+        "document_title": "Helixure Building 7 — Redundant BMS Event Log Extract (Stairwell 4B / Utility Closet)",
+        "clue_description": "The ‘no alarms’ claim wasn’t reassurance—it was manufactured. The combination of silenced monitor + nitrogen purge + late-night admin session turns the death into a planned, system-assisted homicide t",
+        "intrigue_level": "high",
+        "hook_potential": "The ‘no alarms’ claim wasn’t reassurance—it was manufactured. The combination of silenced monitor + ..."
+      },
+      {
+        "doc_id": "C3",
+        "document_title": "Helixure EHS Dashboard — ‘Stairwell 4B Environmental Incident Summary’ (Report ID: EHS-4B-20260320-2336)",
+        "clue_description": "Someone wasn’t just trying to avoid an alarm—they were trying to author the official story in real time. A late-night, regulator-friendly ‘sensor fault’ report points to motive and consciousness of gu",
+        "intrigue_level": "high",
+        "hook_potential": "Someone wasn’t just trying to avoid an alarm—they were trying to author the official story in real t..."
+      }
+    ],
+    "social_media_plan_from_case": [
+      {
+        "platform": "X/Twitter",
+        "content_type": "thread",
+        "case_purpose": "The miracle-cure narrative goes viral; mixed praise and skepticism establish public pressure and introduce early ‘too good to be true’ suspicion."
+      },
+      {
+        "platform": "Instagram",
+        "content_type": "post",
+        "case_purpose": "A lab-adjacent post/story provides a timestamped slice of company life that lightly supports or challenges a POI’s timeline without feeling like police evidence."
+      },
+      {
+        "platform": "Reddit",
+        "content_type": "thread",
+        "case_purpose": "A whistleblower-style discussion hints at QA deviations and audit-trail edits, steering the player toward compliance motive before the pivot confirms it."
+      }
+    ]
+  },
+  "hook_angles_from_case": [
+    "A biotech miracle appears to cure a chronic disease—then the lead scientist dies in a staged accident and the company yanks the drug before anyone can learn why it worked so well.",
+    "Dr. Mara Ellison — Inert-gas asphyxiation with secondary blunt-force trauma from a staged stairwell fall",
+    "4 sospechosos. Todos tienen motivo. Solo uno es culpable.",
+    "Badge-locked labs and immaculate conference rooms where every sentence is recorded and every risk is footnoted. After ho",
+    "A high-control biotech facility producing a ‘miracle’ drug shouldn’t have an unobserved overnight st...",
+    "The motive field is crowded: money (Kline), fear of blame (Reyes), system access (Briggs), and audit...",
+    "If the public is already whispering about deviations and scrubbed paperwork, Ellison’s death may sit..."
+  ]
+}

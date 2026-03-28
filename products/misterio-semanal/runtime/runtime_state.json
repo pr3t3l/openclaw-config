@@ -5,11 +5,11 @@
       "gate_name": "M1",
       "gate_type": "marketing",
       "product_id": "misterio-semanal",
-      "run_id": "2026-W15",
+      "run_id": "2026-W17",
       "status": "pending",
-      "summary": "🎬 Marketing 2026-W15 — Gate M1: Content Review\nProducto: misterio-semanal\n\n✅ Video Scripts: generado\n✅ Ad Copy: generado\n✅ Email Sequence: generado\n\nDecisión:\n/marketing approve 2026-W15\n/marketing reject 2026-W15",
+      "summary": "🎬 Marketing 2026-W17 — Gate M1: Content Review\nProducto: misterio-semanal\n\n✅ Video Scripts: generado\n✅ Ad Copy: generado\n✅ Email Sequence: generado\n\nDecisión:\n/marketing approve 2026-W17\n/marketing reject 2026-W17",
       "artifact_paths": [],
-      "created_at": "2026-03-28T09:50:22.920834",
+      "created_at": "2026-03-28T12:34:00.570447",
       "decided_at": null,
       "decision": null,
       "decided_by": null,
@@ -19,11 +19,11 @@
       "gate_name": "M2",
       "gate_type": "marketing",
       "product_id": "misterio-semanal",
-      "run_id": "2026-W15",
+      "run_id": "2026-W17",
       "status": "pending",
-      "summary": "📅 Marketing 2026-W15 — Gate M2: Calendar + Quality\nProducto: misterio-semanal\n\n✅ Calendar: 26 posts scheduled\n✅ Quality: fail\n  ⚠ email: 2 critical issues\n  ⚠ email: 1 critical issues\n  ⚠ meta_ad: 1 critical issues\n  ⚠ meta_ad: 1 critical issues\n  ⚠ meta_ad: 1 critical issues\n  ⚠ meta_ad: 1 critical issues\n  ⚠ meta_ad: 1 critical issues\n  ⚠ meta_ad: 1 critical issues\n\nDecisión:\n/marketing approve 2026-W15\n/marketing reject 2026-W15",
+      "summary": "📅 Marketing 2026-W17 — Gate M2: Calendar + Quality\nProducto: misterio-semanal\n\n✅ Calendar: 23 posts scheduled\n❌ Quality report: no generado\n\nDecisión:\n/marketing approve 2026-W17\n/marketing reject 2026-W17",
       "artifact_paths": [],
-      "created_at": "2026-03-28T09:56:47.347278",
+      "created_at": "2026-03-28T12:40:15.960258",
       "decided_at": null,
       "decision": null,
       "decided_by": null,
@@ -96,5 +96,5 @@
     }
   },
   "last_gate": "M2",
-  "last_updated": "2026-03-28T09:56:47.349259"
+  "last_updated": "2026-03-28T12:40:15.960431"
 }

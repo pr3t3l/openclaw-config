@@ -192,3 +192,14 @@ Ahora mismo yo te estoy respondiendo con:
 - **sesión actual** → `litellm/minimax-m27`
 
 Si quieres, te saco también una **tabla exacta desde los archivos del run y `models.json`** para verificar que no haya ninguna diferencia entre lo planeado y lo realmente ejecutado.
+
+## Lesson Learned — 2026-03-27
+
+Large Advanced contract artifacts can fail in two distinct ways:
+- extraction failure (response not clean JSON)
+- truncation failure (unterminated string / incomplete JSON)
+
+For future runs, do not keep retrying monolithic contract generation blindly. Save raw output immediately, diagnose the failure type, and switch to split/chunked contract generation when the artifact is schema-heavy.
+
+## New Standing Rule
+Whenever any failure happens (tool failure, model failure, schema failure, runtime failure, truncation, bad assumption, invalid JSON, etc.), write it down immediately as a lesson learned in a durable file before continuing.

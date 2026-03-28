@@ -23,6 +23,7 @@ Usage:
 
 import json
 import sys
+from datetime import datetime
 from pathlib import Path
 
 # Add scripts dir to path
@@ -31,10 +32,10 @@ sys.path.insert(0, str(Path(__file__).parent))
 from lib import config as C
 from lib.rules import match_rules, add_rule, log_correction
 from lib.parser import parse_text, parse_photo, parse_csv_text, check_duplicate
-from lib.logger import log_transaction, log_split_receipt, format_confirmation, format_split_confirmation
+from lib.logger import log_transaction, log_income, log_split_receipt, format_confirmation, format_income_confirmation, format_split_confirmation
 from lib.budget import weekly_summary, budget_status_brief
 from lib.payments import check_payments
-from lib.cashflow import daily_cashflow, update_balance, update_savings, update_savings_target
+from lib.cashflow import daily_cashflow, update_balance, update_savings, update_savings_target, update_payday
 from lib.analyst import monthly_report
 from lib.reconcile import reconcile_csv
 from lib import sheets
@@ -42,7 +43,11 @@ from lib import sheets
 
 def cmd_parse_text(text: str):
     tx = parse_text(text)
-    # Check duplicates
+    # If income, skip duplicate check
+    if tx.get("type") == "income":
+        print(json.dumps(tx, indent=2, ensure_ascii=False))
+        return
+    # Check duplicates for expenses
     try:
         recent = sheets.get_recent_transactions(days=2)
         dup = check_duplicate(tx, recent)
@@ -63,9 +68,48 @@ def cmd_parse_photo(path: str):
 
 def cmd_log(tx_json: str):
     tx = json.loads(tx_json)
-    result = log_transaction(tx)
-    msg = format_confirmation(tx, result)
+    if tx.get("type") == "income":
+        result = log_income(tx)
+        msg = format_income_confirmation(tx, result)
+    else:
+        result = log_transaction(tx)
+        msg = format_confirmation(tx, result)
     print(json.dumps({"result": result, "message": msg}, indent=2, ensure_ascii=False))
+
+
+def cmd_income(text: str):
+    """Quick income registration: income 2800 or income 2800 paycheck"""
+    from lib.parser import parse_income
+    parts = text.strip().split()
+    amount = float(parts[0]) if parts else 0
+    source = parts[1] if len(parts) > 1 else "paycheck"
+    tx = {
+        "type": "income",
+        "amount": amount,
+        "merchant": "Income",
+        "date": datetime.now().strftime("%Y-%m-%d"),
+        "category": "Income",
+        "subcategory": source,
+        "card": "Bank",
+        "input_method": "text",
+        "confidence": 1.0,
+        "notes": f"Income: {text.strip()}",
+    }
+    result = log_income(tx)
+    msg = format_income_confirmation(tx, result)
+    print(json.dumps({"result": result, "message": msg}, indent=2, ensure_ascii=False))
+
+
+def cmd_payday(text: str):
+    """Set payday schedule: 'biweekly 2800' or 'monthly 5000 15'"""
+    parts = text.strip().split()
+    schedule = parts[0] if parts else "biweekly"
+    amount = float(parts[1]) if len(parts) > 1 else 0
+    dates = None
+    if len(parts) > 2:
+        dates = [int(d) for d in parts[2].split(",")]
+    result = update_payday(schedule, amount, dates)
+    print(result)
 
 
 def cmd_balance(amount: str):
@@ -324,6 +368,8 @@ def main():
         "parse-text": lambda: cmd_parse_text(" ".join(args)),
         "parse-photo": lambda: cmd_parse_photo(args[0]),
         "log": lambda: cmd_log(args[0]),
+        "income": lambda: cmd_income(" ".join(args)),
+        "payday": lambda: cmd_payday(" ".join(args)),
         "balance": lambda: cmd_balance(args[0]),
         "cashflow": cmd_cashflow,
         "weekly-summary": cmd_weekly,

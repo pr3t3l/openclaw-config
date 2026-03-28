@@ -1,0 +1,50 @@
+{
+  "product_id": "misterio-semanal",
+  "week": "2026-W17",
+  "generated_at": "2026-03-28T12:42:47.132438",
+  "total_prompts": 5,
+  "generated": 0,
+  "failed": 5,
+  "images": [
+    {
+      "image_id": "img_poi_01_headshot",
+      "name": "Dr. Mara Ellison",
+      "role": "victim",
+      "output_path": "drafts/images/dr_mara_ellison_victim.png",
+      "generated": false,
+      "generated_at": "2026-03-28T12:42:47.100640"
+    },
+    {
+      "image_id": "img_poi_02_mugshot",
+      "name": "Evan Kline",
+      "role": "suspect",
+      "output_path": "drafts/images/evan_kline_suspect.png",
+      "generated": false,
+      "generated_at": "2026-03-28T12:42:47.109016"
+    },
+    {
+      "image_id": "img_poi_03_mugshot",
+      "name": "Nadia Reyes",
+      "role": "suspect",
+      "output_path": "drafts/images/nadia_reyes_suspect.png",
+      "generated": false,
+      "generated_at": "2026-03-28T12:42:47.116916"
+    },
+    {
+      "image_id": "img_poi_04_mugshot",
+      "name": "Tom Briggs",
+      "role": "suspect",
+      "output_path": "drafts/images/tom_briggs_suspect.png",
+      "generated": false,
+      "generated_at": "2026-03-28T12:42:47.124502"
+    },
+    {
+      "image_id": "img_poi_05_mugshot",
+      "name": "Raina Patel",
+      "role": "suspect",
+      "output_path": "drafts/images/raina_patel_suspect.png",
+      "generated": false,
+      "generated_at": "2026-03-28T12:42:47.132431"
+    }
+  ]
+}
