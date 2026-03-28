@@ -1,0 +1,203 @@
+{
+  "schema_version": "1.0",
+  "product_id": "misterio-semanal",
+  "generated_at": "2025-01-30T17:00:00Z",
+  "channels": [
+    {
+      "name": "Instagram",
+      "priority": "primary",
+      "audience_fit": "Valentina consume Instagram diariamente en horario nocturno (21:00-23:30) y mañanas. Sigue cuentas de recomendaciones culturales, lifestyle urbano y humor inteligente. Los Reels y Stories son el formato ideal para mostrar el unboxing digital del caso y generar FOMO visual.",
+      "content_types": [
+        "reels",
+        "stories",
+        "carousels",
+        "posts_estaticos"
+      ],
+      "posting_frequency": "5 posts/semana: 3 Reels + 1 Carousel + 1 Story diaria",
+      "budget_allocation_pct": 30,
+      "expected_cpc_range": "$0.30 - $1.20 USD",
+      "notes": "Priorizar Reels con gancho de los primeros 3 segundos mostrando archivos del caso desplegados. Usar hooks como '¿Puedes resolver esto?' o 'Nadie lo resolvió en menos de 2 horas'. Stories para retargeting y urgencia. Hashtags en español: #misterio #truecrime #escaperoomdigital #detectivesencasa."
+    },
+    {
+      "name": "TikTok",
+      "priority": "primary",
+      "audience_fit": "Valentina usa TikTok para descubrir contenido viral y recomendaciones. El formato de video corto es ideal para mostrar la experiencia de resolver el caso, el unboxing digital y testimonios en formato orgánico. El algoritmo de TikTok favorece contenido de nicho como true crime y misterio.",
+      "content_types": [
+        "videos_cortos",
+        "duets",
+        "stitch",
+        "tiktok_ads"
+      ],
+      "posting_frequency": "5 videos/semana",
+      "budget_allocation_pct": 25,
+      "expected_cpc_range": "$0.20 - $0.80 USD",
+      "notes": "Contenido orgánico primero para validar qué formatos funcionan antes de invertir en paid. Videos de 30-60 segundos mostrando: 'Resolvimos un caso de asesinato en casa', 'POV: eres detective por una noche', 'Lo que recibes cuando compras un caso de misterio digital'. Aprovechar tendencias de true crime en español."
+    },
+    {
+      "name": "YouTube",
+      "priority": "secondary",
+      "audience_fit": "Valentina consume YouTube para análisis de casos reales y reseñas de entretenimiento. Canal ideal para colaboraciones con creadores de true crime en español y para contenido de formato largo que demuestre la profundidad narrativa del producto.",
+      "content_types": [
+        "pre_roll_ads",
+        "colaboraciones_influencers",
+        "videos_propios"
+      ],
+      "posting_frequency": "2 videos/mes en canal propio + colaboraciones puntuales",
+      "budget_allocation_pct": 15,
+      "expected_cpc_range": "$0.05 - $0.30 USD CPV",
+      "notes": "Priorizar colaboraciones con podcasters y youtubers de true crime en español (acceso gratuito a casos a cambio de mención/reseña). Canal propio con walkthroughs sin spoilers, trailers de casos nuevos y testimonios de detectives. Pre-roll ads segmentados a audiencias de true crime en español."
+    },
+    {
+      "name": "Spotify (Podcast Ads)",
+      "priority": "secondary",
+      "audience_fit": "Valentina escucha podcasts de true crime 1-2 horas diarias durante el trabajo remoto. Los oyentes de true crime en español son exactamente el buyer persona. Un host-read ad de un podcaster de confianza tiene el mayor poder de conversión de todos los canales.",
+      "content_types": [
+        "host_read_ads",
+        "patrocinios_podcast",
+        "menciones_organicas"
+      ],
+      "posting_frequency": "1-2 colaboraciones/mes con podcasters seleccionados",
+      "budget_allocation_pct": 10,
+      "expected_cpc_range": "$0.00 - $50 USD por colaboración (trueque o fee bajo)",
+      "notes": "Estrategia principal: ofrecer acceso gratuito a casos a cambio de mención orgánica en podcasts de true crime en español con 5,000-50,000 oyentes. Priorizar podcasters medianos con audiencia muy comprometida sobre grandes con audiencia dispersa. Guión sugerido: 'Esta semana os traigo algo diferente: en lugar de escuchar el caso, podéis resolverlo vosotros mismos...'."
+    },
+    {
+      "name": "Email Marketing",
+      "priority": "primary",
+      "audience_fit": "Canal de retención y conversión para leads captados. Valentina está acostumbrada a comprar online y responde bien a comunicaciones personalizadas. El email es el canal más rentable para convertir leads en compradores y compradores en recurrentes.",
+      "content_types": [
+        "welcome_sequence",
+        "newsletters",
+        "abandoned_cart",
+        "caso_nuevo_anuncio"
+      ],
+      "posting_frequency": "1 email/semana a lista general + automatizaciones de ciclo de vida",
+      "budget_allocation_pct": 5,
+      "expected_cpc_range": "$0.00 USD (costo de herramienta incluido en tools_pct)",
+      "notes": "Secuencia de bienvenida de 3 emails: (1) Bienvenida + acceso al lead magnet, (2) Historia de la marca + qué hace único a Declassified Cases, (3) Oferta de primer caso con garantía de satisfacción. Newsletter semanal con teaser del caso nuevo, curiosidades de true crime y testimonios de detectives. Herramienta recomendada: Mailchimp (gratis hasta 500 contactos) o Brevo."
+    },
+    {
+      "name": "Google Ads (Search)",
+      "priority": "experimental",
+      "audience_fit": "Captura demanda existente de usuarios que buscan activamente 'escape room digital español', 'juego de misterio online español' y términos transaccionales identificados en el SEO. Alta intención de compra pero volumen bajo en nicho hispanohablante.",
+      "content_types": [
+        "search_ads",
+        "shopping_ads"
+      ],
+      "posting_frequency": "Campañas activas continuas con presupuesto diario de $0.50-$1.00 USD",
+      "budget_allocation_pct": 10,
+      "expected_cpc_range": "$0.40 - $1.50 USD",
+      "notes": "Dado el presupuesto limitado, iniciar con keywords exactas de alta intención: 'escape room digital español', 'juego misterio online español', 'caso detectivesco digital'. Pausar si CPA supera $15 USD. Priorizar SEO orgánico como alternativa de costo cero a largo plazo. Activar solo cuando haya al menos 10 reseñas verificadas en el sitio."
+    },
+    {
+      "name": "WhatsApp / Telegram (Comunidad)",
+      "priority": "secondary",
+      "audience_fit": "Valentina usa WhatsApp para coordinar planes con amigos y comparte recomendaciones en grupos. Una comunidad de detectives activa genera contenido orgánico, retención y boca a boca. Valentina tiene alta probabilidad de recomendar el producto en sus grupos si la experiencia es positiva.",
+      "content_types": [
+        "grupo_comunidad",
+        "canal_anuncios",
+        "referidos"
+      ],
+      "posting_frequency": "2-3 mensajes/semana en canal oficial + actividad orgánica de la comunidad",
+      "budget_allocation_pct": 5,
+      "expected_cpc_range": "$0.00 USD",
+      "notes": "Crear un canal de Telegram o grupo de WhatsApp 'Detectives Declassified' donde los compradores compartan teorías (sin spoilers), celebren resoluciones y reciban primicias de nuevos casos. Implementar programa de referidos: 'Invita a un amigo y obtén un 20% de descuento en tu próximo caso'. Canal de adquisición de costo cero con alto potencial viral en el mercado hispanohablante."
+    }
+  ],
+  "funnel": {
+    "awareness": {
+      "goal": "Generar conocimiento de marca entre adultos hispanohablantes 25-45 que consumen true crime y buscan entretenimiento activo. Meta: alcanzar 10,000 impresiones mensuales únicas en los primeros 3 meses.",
+      "channels": [
+        "TikTok",
+        "Instagram",
+        "YouTube",
+        "Spotify (Podcast Ads)"
+      ],
+      "content_types": [
+        "Reels de TikTok e Instagram mostrando el unboxing digital del caso (archivos, pistas, escena del crimen)",
+        "Videos cortos con hook 'POV: eres detective por una noche'",
+        "Menciones orgánicas de podcasters de true crime en español",
+        "Blog posts SEO sobre true crime interactivo y planes originales en pareja",
+        "Colaboraciones con micro-influencers de true crime (5K-50K seguidores) a cambio de acceso gratuito"
+      ],
+      "kpis": [
+        "Alcance mensual: 10,000+ impresiones únicas",
+        "Tasa de reproducción de Reels: >40%",
+        "Menciones orgánicas en podcasts: 2+/mes",
+        "Tráfico orgánico al sitio desde redes: 200+ visitas/mes"
+      ]
+    },
+    "consideration": {
+      "goal": "Convertir audiencia que conoce la marca en leads cualificados interesados en probar el producto. Meta: captar 100 emails de leads mensuales con CPL < $5 USD.",
+      "channels": [
+        "Instagram",
+        "TikTok",
+        "Email Marketing",
+        "Google Ads (Search)",
+        "YouTube"
+      ],
+      "content_types": [
+        "Carousels de Instagram explicando qué incluye un caso (archivos reales, pistas, narrativa)",
+        "Videos de testimonios de compradores mostrando su experiencia de resolución",
+        "Comparativa visual: Declassified Cases vs. escape room físico (precio, comodidad, duración)",
+        "Lead magnet: caso de muestra gratuito o mini-misterio de 30 minutos",
+        "Retargeting ads a visitantes del sitio que no compraron",
+        "Email de nurturing con historia de la marca y garantía de satisfacción",
+        "FAQ en video: '¿Qué recibes exactamente cuando compras un caso?'"
+      ],
+      "kpis": [
+        "Leads captados (emails): 100+/mes",
+        "CPL: < $5 USD",
+        "Tasa de apertura de emails: > 30%",
+        "Tiempo en página de producto: > 2 minutos",
+        "Tasa de clics en anuncios de retargeting: > 2%"
+      ]
+    },
+    "purchase": {
+      "goal": "Convertir leads y visitantes cualificados en compradores de primer caso. Meta: 15-20 ventas mensuales con CPA < $15 USD y tasa de conversión landing page > 3%.",
+      "channels": [
+        "Email Marketing",
+        "Instagram",
+        "Google Ads (Search)",
+        "WhatsApp / Telegram (Comunidad)"
+      ],
+      "content_types": [
+        "Email de oferta de primer caso con garantía de satisfacción y urgencia (caso de edición limitada)",
+        "Stories de Instagram con enlace directo a compra y cuenta regresiva",
+        "Anuncios de búsqueda Google para keywords transaccionales de alta intención",
+        "Página de producto optimizada con capturas reales, tiempo estimado de juego y reseñas verificadas",
+        "Email de carrito abandonado (secuencia de 2 emails: recordatorio + oferta de garantía)",
+        "Programa de referidos activado en comunidad de WhatsApp/Telegram",
+        "Testimonios en formato video de compradores resolviendo el caso"
+      ],
+      "kpis": [
+        "Ventas mensuales: 15-20 casos",
+        "CPA: < $15 USD",
+        "Tasa de conversión landing page: > 3%",
+        "Tasa de apertura email de carrito abandonado: > 40%",
+        "Tasa de recuperación de carrito abandonado: > 10%",
+        "ROAS: > 2.0x"
+      ]
+    }
+  },
+  "lead_magnet": {
+    "type": "mini_case",
+    "title": "El Caso del Sobre Sin Remitente: Tu Primera Investigación Gratuita",
+    "description": "Un mini-caso de misterio de 30-45 minutos que incluye 3 archivos clasificados, 2 pistas contradictorias y una escena del crimen para analizar. Diseñado para demostrar la calidad narrativa e inmersión de Declassified Cases sin revelar la mecánica completa de los casos premium. Al resolverlo, el detective recibe un código de descuento del 15% para su primer caso completo. Entregado como PDF descargable de alta calidad con el mismo diseño visual de los casos premium.",
+    "delivery_channel": "email",
+    "expected_conversion_rate": "15-25% de leads que descargan el mini-caso compran un caso completo en los primeros 7 días"
+  },
+  "kpi_targets": {
+    "cpa_ceiling_usd": 15,
+    "cpl_target_usd": 4,
+    "conversion_rate_target_pct": 3,
+    "roas_floor": 2.0,
+    "monthly_reach_target": 10000
+  },
+  "budget_plan": {
+    "monthly_total_usd": 50,
+    "paid_ads_pct": 50,
+    "content_creation_pct": 30,
+    "tools_pct": 20
+  }
+}

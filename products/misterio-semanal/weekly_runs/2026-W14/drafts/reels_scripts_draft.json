@@ -1,0 +1,89 @@
+{
+  "product_id": "misterio-semanal",
+  "run_id": "2026-W14",
+  "generated_at": "2026-04-01T00:00:00Z",
+  "strategy_version_used": "v1",
+  "scripts": [
+    {
+      "script_id": "S1",
+      "platform": "reels_tiktok",
+      "theme": "Las cámaras no muestran nada — el robo imposible",
+      "duration_seconds": 28,
+      "variants": [
+        {
+          "variant": "A",
+          "hook": "Una pintura de Frida Kahlo desapareció del museo... y las cámaras de seguridad no grabaron absolutamente nada.",
+          "body": "El guardia nocturno estaba en su puesto. La restauradora trabajó hasta tarde. El director juró que el sistema era infalible. Pero esta mañana, el marco estaba vacío. Alguien mintió. ¿Puedes descubrir quién?",
+          "cta": "El caso 'El Robo del Museo Nacional' ya está disponible. Enlace en bio. Primer caso desde $19.99.",
+          "visual_direction": "Plano lento de un marco vacío en una pared de museo iluminada. Corte a archivos clasificados desplegados sobre una mesa: fotografías de la escena, declaraciones contradictorias, plano del museo con marcas. Manos hojeando los documentos.",
+          "hook_type": "shock",
+          "tone": "Intrigante y directo"
+        },
+        {
+          "variant": "B",
+          "hook": "POV: son las 3 de la mañana, una pintura de Frida Kahlo acaba de desaparecer y tú eres la única detective disponible.",
+          "body": "Las cámaras no muestran nada. El guardia dice que no vio nada. La restauradora dice que se fue a las diez. Pero los archivos cuentan otra historia. Tienes los documentos, tienes las pistas. Ahora solo falta que las conectes.",
+          "cta": "Consigue el caso completo hoy. Archivos reales, pistas auténticas, entrega inmediata. Enlace en bio.",
+          "visual_direction": "Pantalla oscura con texto 'Son las 3:00 AM'. Corte a manos abriendo un sobre con archivos del caso. Primer plano de una fotografía de la escena del crimen con una nota encima que dice 'CLASIFICADO'.",
+          "hook_type": "storytelling",
+          "tone": "Cómplice e inmersivo"
+        }
+      ]
+    },
+    {
+      "script_id": "S2",
+      "platform": "reels_tiktok",
+      "theme": "De oyente pasiva a detective activa — el giro que cambia todo",
+      "duration_seconds": 22,
+      "variants": [
+        {
+          "variant": "A",
+          "hook": "Llevas años escuchando casos de true crime. Esta vez, el caso lo resuelves tú.",
+          "body": "Nada de esperar a que el podcaster revele al culpable. Nada de ver cómo otros investigan. Tú tienes los archivos, tú analizas las pistas, tú decides quién robó la Frida Kahlo. Y si te equivocas... el asesino gana.",
+          "cta": "Deja de escuchar el caso. Esta vez, resuélvelo tú. Enlace en bio.",
+          "visual_direction": "Split screen: izquierda, persona con auriculares escuchando un podcast con cara de frustración. Derecha, la misma persona con archivos del caso desplegados en la mesa, cara de concentración y emoción. Texto superpuesto: 'Antes / Ahora'.",
+          "hook_type": "emotional",
+          "tone": "Provocador e inteligente"
+        },
+        {
+          "variant": "B",
+          "hook": "¿Otra noche escuchando cómo otros resuelven el crimen? O podrías resolverlo tú esta noche.",
+          "body": "Un cuadro de Frida Kahlo. Un guardia sospechoso. Una restauradora con coartada débil. Y tú, con todos los archivos clasificados sobre la mesa. Dos a cuatro horas de investigación pura. En español. Desde tu sofá.",
+          "cta": "Tu primer caso te espera. Desde $19.99, entrega inmediata. Enlace en bio.",
+          "visual_direction": "Plano cenital de una mesa con archivos del caso bien desplegados: fotos, mapas, declaraciones. Manos de dos personas señalando pistas y debatiendo. Ambiente de noche, luz cálida de lámpara.",
+          "hook_type": "question",
+          "tone": "Directo y cómplice"
+        }
+      ]
+    },
+    {
+      "script_id": "S3",
+      "platform": "reels_tiktok",
+      "theme": "El plan de viernes que nadie más ha hecho todavía",
+      "duration_seconds": 25,
+      "variants": [
+        {
+          "variant": "A",
+          "hook": "Este viernes no pusimos Netflix. Resolvimos un robo de arte en el Museo Nacional.",
+          "body": "Llegaron los archivos clasificados: declaraciones contradictorias, fotos de la escena, un mapa con marcas que no cuadraban. Tardamos tres horas en atrapar al culpable. Fue la mejor noche en meses. Y costó menos que una pizza.",
+          "cta": "El caso 'El Robo del Museo Nacional' ya está disponible. Consíguelo hoy. Enlace en bio.",
+          "visual_direction": "Estilo vlog casual: pareja en el sofá con archivos del caso sobre la mesa, caras de concentración y risas. Corte a primer plano de los documentos. Corte a reacción de sorpresa cuando descubren una pista. Texto final: '3 horas. $19.99. Sin salir de casa.'",
+          "hook_type": "storytelling",
+          "tone": "Cálido, auténtico y con gancho de FOMO"
+        },
+        {
+          "variant": "B",
+          "hook": "El plan de fin de semana que ninguno de tus amigos ha hecho todavía: resolver un robo de arte.",
+          "body": "Una pintura de Frida Kahlo desaparece. Tres sospechosos. Archivos clasificados, pistas falsas y un giro que no te esperas. Puedes jugarlo en pareja, con amigos por videollamada o tú solo contra el caso. En español. Esta noche.",
+          "cta": "Menos scroll. Más investigación. Enlace en bio para conseguir el caso.",
+          "visual_direction": "Rápida secuencia de planos: manos abriendo archivos del caso, primer plano de una fotografía de la escena del crimen, dos personas señalando un mapa, expresión de '¡eureka!'. Ritmo dinámico con cortes rápidos. Texto superpuesto al final: 'Disponible ahora. Entrega inmediata.'",
+          "hook_type": "curiosity",
+          "tone": "Energético y cómplice"
+        }
+      ]
+    }
+  ],
+  "optimization_applied": [],
+  "kb_patterns_used": [],
+  "status": "draft"
+}

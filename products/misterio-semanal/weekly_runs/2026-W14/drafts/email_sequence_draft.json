@@ -1,0 +1,51 @@
+{
+  "product_id": "misterio-semanal",
+  "run_id": "2026-W14",
+  "generated_at": "2026-04-01T09:00:00Z",
+  "strategy_version_used": "v1",
+  "sequence": [
+    {
+      "email_id": "E1",
+      "position": 1,
+      "send_delay_hours": 0,
+      "purpose": "intrigue",
+      "subject": "Las cámaras grabaron toda la noche. No mostraron nada.",
+      "preheader": "Una pintura de Frida Kahlo desapareció del Museo Nacional. Nadie vio cómo.",
+      "body_markdown": "Eran las 3:17 de la madrugada.\n\nLas cámaras de seguridad del Museo Nacional grabaron cada rincón de la sala 12 durante toda la noche.\n\nA las 9:00 AM, cuando el personal abrió las puertas, el marco estaba vacío.\n\n**La pintura de Frida Kahlo había desaparecido. Y las cámaras no mostraban absolutamente nada.**\n\nLa policía tiene tres sospechosos:\n\n- **Martín Salazar** — el guardia nocturno que estuvo de turno esa noche\n- **Valentina Reyes** — la restauradora que tuvo acceso al cuadro la semana anterior\n- **Diego Fuentes** — el director del museo que insiste en que el seguro lo cubre todo\n\nAlguien está mintiendo. Las pistas están ahí, esperando a alguien con el ojo entrenado para verlas.\n\n¿Eres tú esa persona?\n\nEl expediente del caso **\"El Robo del Museo Nacional\"** se abre el 1 de abril. Archivos clasificados, fotografías de la escena, declaraciones contradictorias y una pista que nadie ha sabido leer todavía.\n\n**Tu investigación empieza pronto.**",
+      "cta_text": "Quiero resolver este caso",
+      "cta_url": "https://theclassifiedcases.shop/casos/robo-museo-nacional",
+      "compliance_notes": "No se afirma que el caso esté basado en hechos reales. Frida Kahlo mencionada en contexto ficticio. Sin superlativas no verificables.",
+      "tone": "Intrigante, directo, con gancho emocional inmediato"
+    },
+    {
+      "email_id": "E2",
+      "position": 2,
+      "send_delay_hours": 48,
+      "purpose": "value",
+      "subject": "Esto es lo que encuentras dentro del expediente",
+      "preheader": "Archivos clasificados, pistas reales y 2-4 horas de investigación pura. Esto es lo que recibes.",
+      "body_markdown": "Sabemos lo que estás pensando.\n\n*\"¿Pero qué recibo exactamente?\"*\n\nBuena pregunta, detective. Aquí va el expediente completo de lo que encontrarás en **El Robo del Museo Nacional**:\n\n---\n\n📁 **Archivos clasificados del caso**\nFotografías de la escena del crimen, planos del museo con marcas que no cuadran y el informe policial con tres versiones distintas de la misma noche.\n\n🔍 **Declaraciones de los sospechosos**\nMartín, Valentina y Diego cuentan historias que casi encajan. *Casi.*\n\n🎨 **Documentación del cuadro desaparecido**\nHistorial de la obra, registros de restauración y una nota que alguien metió en el archivo sin firma.\n\n⚠️ **Una pista falsa**\nAlguien quiere que mires en la dirección equivocada. Parte del reto es descubrir cuál es.\n\n---\n\nPuedes resolverlo **solo, en pareja o con amigos por videollamada**. La mayoría de detectives tarda entre 2 y 4 horas. Algunos han necesitado una segunda noche.\n\nY si en algún momento te quedas bloqueado, el sistema de pistas opcionales está ahí para darte un empujón sin arruinarte la revelación.\n\n**Todo esto por $19.99.** Sin envíos. Sin esperas. Acceso inmediato tras la compra.\n\nMenos de lo que cuesta una entrada al cine para dos personas. Con el doble de conversación después.",
+      "cta_text": "Ver el expediente completo",
+      "cta_url": "https://theclassifiedcases.shop/casos/robo-museo-nacional",
+      "compliance_notes": "Tiempo de juego presentado como estimación ('la mayoría tarda'). Precio verificable. Comparación con cine es orientativa, no garantía de valor.",
+      "tone": "Cómplice, detallado, que genera anticipación sin revelar demasiado"
+    },
+    {
+      "email_id": "E3",
+      "position": 3,
+      "send_delay_hours": 96,
+      "purpose": "urgency",
+      "subject": "El caso cierra el domingo. ¿Lo resuelves tú?",
+      "preheader": "Garantía de satisfacción total. Si no te engancha, te devolvemos el dinero. Sin preguntas.",
+      "body_markdown": "Llevas unos días con el caso en mente.\n\nLas cámaras que no muestran nada. El guardia nocturno. La restauradora con acceso. El director demasiado tranquilo.\n\nAlgo no cuadra. Y tú lo sabes.\n\n**El expediente de \"El Robo del Museo Nacional\" está disponible solo esta semana.**\n\nEsta noche podría ser la noche en que tú y tu pareja dejen de preguntarse qué poner en Netflix. La noche en que desplieguen los archivos en la mesa, discutan sobre quién miente y descubran la pista que lo cambia todo.\n\nO puedes esperar al próximo caso. Pero este no vuelve.\n\n---\n\n**¿Todavía tienes dudas?**\n\nEntendemos que comprar algo nuevo siempre genera incertidumbre. Por eso ofrecemos **garantía de satisfacción completa**: si el caso no cumple tus expectativas, te devolvemos el dinero sin preguntas.\n\nSin riesgo. Solo la posibilidad de pasar una noche que valga la pena recordar.\n\n---\n\n🔍 **$19.99 · Acceso inmediato · Para 1, 2 o más personas**\n\nEl museo sigue cerrado. El cuadro sigue desaparecido. El culpable sigue suelto.\n\n**¿Vas a dejar que se salga con la suya?**",
+      "cta_text": "Abrir el expediente ahora",
+      "cta_url": "https://theclassifiedcases.shop/casos/robo-museo-nacional",
+      "compliance_notes": "Urgencia basada en disponibilidad semanal del caso, coherente con modelo de caso nuevo cada semana. Garantía de satisfacción mencionada explícitamente. Sin promesas de resolución garantizada.",
+      "tone": "Apasionante, cómplice, con urgencia moderada y cierre emocional"
+    }
+  ],
+  "narrative_arc": "E1 abre el misterio con el gancho central (las cámaras no muestran nada) para despertar curiosidad y FOMO en la lectora. E2 resuelve la principal barrera de compra ('¿qué recibo exactamente?') detallando el contenido del caso y su valor racional frente a alternativas. E3 combina urgencia real (disponibilidad semanal limitada), eliminación del riesgo (garantía de satisfacción) y cierre emocional que conecta con el deseo de Valentina de vivir una experiencia activa con su pareja. Los tres emails funcionan individualmente pero se refuerzan en secuencia: intriga → demostración de valor → decisión de compra.",
+  "optimization_applied": [],
+  "kb_patterns_used": [],
+  "status": "draft"
+}

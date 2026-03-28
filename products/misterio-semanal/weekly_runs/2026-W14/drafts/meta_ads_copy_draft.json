@@ -1,0 +1,42 @@
+{
+  "product_id": "misterio-semanal",
+  "run_id": "2026-W14",
+  "generated_at": "2026-04-01T00:00:00Z",
+  "strategy_version_used": "v1",
+  "ad_set": {
+    "campaign_objective": "conversions",
+    "target_audience_summary": "Mujeres y hombres hispanohablantes de 25-45 años, urbanos, consumidores habituales de true crime y misterio en podcasts/series/documentales, con interés en escape rooms, juegos de mesa y entretenimiento activo. Activos en Instagram y TikTok en horario nocturno (21:00-23:30). Buscan planes originales para hacer en pareja o con amigos desde casa sin salir ni gastar lo que cuesta un escape room físico.",
+    "variants": [
+      {
+        "variant_id": "AD-A",
+        "angle": "curiosity",
+        "headline": "Las cámaras no grabaron nada",
+        "primary_text": "Una pintura de Frida Kahlo desaparece del Museo Nacional en plena noche.\n\nLas cámaras de seguridad no muestran nada. El guardia nocturno jura que no vio a nadie. La restauradora de arte llegó temprano esa mañana.\n\nAlguien miente. Y tú tienes los archivos para descubrir quién.\n\n🔍 El Robo del Museo Nacional — nuevo caso disponible ahora.\nAcceso inmediato. Sin envíos. En español.\n\n¿Puedes resolverlo esta noche?",
+        "cta_button": "Shop Now",
+        "compliance_notes": "Ninguna afirmación restringida utilizada. El caso es ficción original; no se afirma que esté basado en hechos reales.",
+        "expected_strength": "El gancho de las cámaras que 'no grabaron nada' genera una pregunta abierta irresistible para fans de true crime. El misterio queda sin resolver en el copy, forzando el clic. Funciona especialmente bien en Reels y Stories donde los primeros 3 segundos son críticos."
+      },
+      {
+        "variant_id": "AD-B",
+        "angle": "emotional",
+        "headline": "¿Otra noche en el sofá?",
+        "primary_text": "Esta noche podrías estar resolviendo el robo de arte más desconcertante del año.\n\nUna Frida Kahlo robada. Tres sospechosos. Cero evidencia en cámara.\n\nDeclassified Cases te da los archivos clasificados, las declaraciones contradictorias y las pistas que la policía no supo leer. Tú decides quién es culpable.\n\n✅ 2 a 4 horas de investigación activa\n✅ Acceso inmediato tras la compra\n✅ Perfecto para jugar en pareja o con amigos\n✅ Menos de $10 por hora de entretenimiento\n\nDeja de ver cómo otros resuelven el crimen. Esta vez, el caso es tuyo.",
+        "cta_button": "Shop Now",
+        "compliance_notes": "La estimación de '2 a 4 horas' está respaldada por el diseño de la experiencia según brand_strategy. La comparación de precio por hora frente a escape rooms físicos es un claim permitido. No se usan superlativos no verificables.",
+        "expected_strength": "Apela directamente al pain point de alta intensidad: la rutina del sofá y la sensación de desperdiciar el tiempo libre. El contraste entre 'otra noche en el sofá' y 'resolver un robo de arte' activa el FOMO emocional. La lista de beneficios racionales cierra la objeción de precio y logística."
+      },
+      {
+        "variant_id": "AD-C",
+        "angle": "rational",
+        "headline": "Escape room: $50. Esto: $19.99",
+        "primary_text": "Un escape room para dos personas te cuesta $50 USD, dura 60 minutos y tienes que reservar con días de antelación.\n\nDeclassified Cases: $19.99, 2 a 4 horas de investigación, acceso inmediato esta noche, en español.\n\nNuestro nuevo caso — El Robo del Museo Nacional — incluye:\n📁 Archivos clasificados de la investigación\n🖼️ Fotografías de la escena del crimen\n📋 Declaraciones contradictorias de los sospechosos\n🗺️ Pistas que no cuadran\n\nUna pintura de Frida Kahlo ha desaparecido. Las cámaras no grabaron nada. Alguien dentro del museo sabe más de lo que dice.\n\n¿Tienes lo que se necesita para resolverlo?\n\nGarantía de satisfacción: si no cumple tus expectativas, te devolvemos el dinero.",
+        "cta_button": "Get Offer",
+        "compliance_notes": "La comparación de precio con escape rooms físicos ($50 por persona para 60 minutos) es un claim permitido y respaldado por datos de mercado en brand_strategy. La garantía de satisfacción está alineada con la estrategia de manejo de objeciones. No se usan cifras de clientes no verificadas.",
+        "expected_strength": "Ataca directamente la barrera de precio con una comparación racional concreta y verificable. El desglose de contenido del caso elimina la objeción '¿qué recibiré exactamente?', la barrera de mayor severidad identificada en el buyer persona. La garantía de satisfacción al final neutraliza el riesgo percibido de primera compra."
+      }
+    ]
+  },
+  "optimization_applied": [],
+  "kb_patterns_used": [],
+  "status": "draft"
+}

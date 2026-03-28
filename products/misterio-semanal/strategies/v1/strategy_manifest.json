@@ -1,0 +1,27 @@
+{
+  "product_id": "misterio-semanal",
+  "strategy_version": "v1",
+  "source_brief_hash": "59c01ff029e2",
+  "created_at": "2026-03-27T23:06:52.498270",
+  "created_by_workflow": "strategy-workflow",
+  "status": "approved",
+  "validity": "valid",
+  "approved_by": "Alfredo",
+  "approved_at": "2026-03-27T23:07:14.842989",
+  "outputs": {
+    "market_analysis": "market_analysis.json",
+    "buyer_persona": "buyer_persona.json",
+    "brand_strategy": "brand_strategy.json",
+    "seo_architecture": "seo_architecture.json",
+    "channel_strategy": "channel_strategy.json"
+  },
+  "invalidation_rules": {
+    "price_change_pct": 20,
+    "target_audience_changed": true,
+    "positioning_changed": true,
+    "country_or_language_changed": true,
+    "sales_drop_pct": 30,
+    "max_age_days": 90
+  },
+  "cost_usd": 0.0
+}

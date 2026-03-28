@@ -1,0 +1,72 @@
+{
+  "categories": {
+    "Groceries": {
+      "monthly": 250,
+      "threshold": 0.8
+    },
+    "Restaurants": {
+      "monthly": 100,
+      "threshold": 0.8
+    },
+    "Gas": {
+      "monthly": 120,
+      "threshold": 0.8
+    },
+    "Shopping": {
+      "monthly": 150,
+      "threshold": 0.8
+    },
+    "Entertainment": {
+      "monthly": 50,
+      "threshold": 0.8
+    },
+    "Subscriptions_AI": {
+      "monthly": 500,
+      "threshold": 0.9
+    },
+    "Subscriptions_Other": {
+      "monthly": 80,
+      "threshold": 0.9
+    },
+    "Childcare": {
+      "monthly": 400,
+      "threshold": null
+    },
+    "Home": {
+      "monthly": 100,
+      "threshold": 0.8
+    },
+    "Personal": {
+      "monthly": 50,
+      "threshold": 0.8
+    },
+    "Travel": {
+      "monthly": null,
+      "threshold": null
+    },
+    "Work_Tools": {
+      "monthly": 200,
+      "threshold": 0.8
+    },
+    "Health": {
+      "monthly": 50,
+      "threshold": 0.8
+    },
+    "Other": {
+      "monthly": 50,
+      "threshold": 0.8
+    },
+    "Pets": {
+      "monthly": 50,
+      "threshold": 0.8
+    }
+  },
+  "available_balance": 3200.0,
+  "last_balance_update": "2026-03-27T13:43:31.425943",
+  "pay_schedule": "biweekly",
+  "pay_dates": [
+    5,
+    19
+  ],
+  "next_payday": null
+}

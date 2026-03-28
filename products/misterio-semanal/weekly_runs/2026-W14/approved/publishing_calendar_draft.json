@@ -1,0 +1,131 @@
+{
+  "product_id": "misterio-semanal",
+  "run_id": "2026-W14",
+  "generated_at": "2026-04-01T10:00:00Z",
+  "strategy_version_used": "v1",
+  "week_start": "2026-03-30",
+  "week_end": "2026-04-05",
+  "schedule": [
+    {
+      "day": "Monday",
+      "date": "2026-03-30",
+      "time": "21:15",
+      "timezone": "America/New_York",
+      "channel": "meta_ads",
+      "content_ref": "AD-A",
+      "content_type": "ad",
+      "notes": "Inicio de pauta de conversiones con gancho de curiosidad. Mantener activa hasta el viernes."
+    },
+    {
+      "day": "Tuesday",
+      "date": "2026-03-31",
+      "time": "07:30",
+      "timezone": "America/New_York",
+      "channel": "email",
+      "content_ref": "E1",
+      "content_type": "email",
+      "notes": "Email de intriga enviado en franja alta de apertura matutina."
+    },
+    {
+      "day": "Tuesday",
+      "date": "2026-03-31",
+      "time": "21:00",
+      "timezone": "America/New_York",
+      "channel": "instagram",
+      "content_ref": "S1",
+      "content_type": "reel",
+      "notes": "Reel principal de apertura de semana con el hook de las camaras; priorizar formato visual de marco vacio."
+    },
+    {
+      "day": "Tuesday",
+      "date": "2026-03-31",
+      "time": "22:00",
+      "timezone": "America/New_York",
+      "channel": "tiktok",
+      "content_ref": "S1",
+      "content_type": "reel",
+      "notes": "Publicacion adaptada a TikTok una hora despues para evitar solapamiento creativo y captar audiencia nocturna."
+    },
+    {
+      "day": "Wednesday",
+      "date": "2026-04-01",
+      "time": "21:10",
+      "timezone": "America/New_York",
+      "channel": "instagram",
+      "content_ref": "S2",
+      "content_type": "reel",
+      "notes": "Prioridad organica en miercoles por la noche; enfocar en pasar de oyente pasiva a detective activa."
+    },
+    {
+      "day": "Wednesday",
+      "date": "2026-04-01",
+      "time": "22:10",
+      "timezone": "America/New_York",
+      "channel": "tiktok",
+      "content_ref": "S2",
+      "content_type": "reel",
+      "notes": "Version TikTok con enfoque emocional y lenguaje directo para FYP nocturno."
+    },
+    {
+      "day": "Thursday",
+      "date": "2026-04-02",
+      "time": "13:15",
+      "timezone": "America/New_York",
+      "channel": "email",
+      "content_ref": "E2",
+      "content_type": "email",
+      "notes": "Email de valor en ventana de descanso; responde a la objecion de que incluye el caso."
+    },
+    {
+      "day": "Friday",
+      "date": "2026-04-03",
+      "time": "21:05",
+      "timezone": "America/New_York",
+      "channel": "instagram",
+      "content_ref": "S3",
+      "content_type": "reel",
+      "notes": "Publicacion clave de viernes noche; posicionar como plan de pareja para hoy mismo."
+    },
+    {
+      "day": "Friday",
+      "date": "2026-04-03",
+      "time": "22:05",
+      "timezone": "America/New_York",
+      "channel": "tiktok",
+      "content_ref": "S3",
+      "content_type": "reel",
+      "notes": "Empuje de fin de semana con tono FOMO y plan alternativo a Netflix."
+    },
+    {
+      "day": "Saturday",
+      "date": "2026-04-04",
+      "time": "07:45",
+      "timezone": "America/New_York",
+      "channel": "email",
+      "content_ref": "E3",
+      "content_type": "email",
+      "notes": "Email de urgencia y garantia enviado el sabado para impulsar compras del fin de semana."
+    },
+    {
+      "day": "Sunday",
+      "date": "2026-04-05",
+      "time": "21:20",
+      "timezone": "America/New_York",
+      "channel": "instagram",
+      "content_ref": "S1",
+      "content_type": "story",
+      "notes": "Recordatorio de cierre de semana en stories reutilizando el angulo del robo imposible con CTA directo."
+    }
+  ],
+  "summary": {
+    "total_posts": 11,
+    "by_channel": {
+      "instagram": 4,
+      "tiktok": 3,
+      "email": 3,
+      "meta_ads": 1
+    },
+    "estimated_reach": "Alcance estimado semanal de 8,000-12,000 impresiones combinadas entre organico y paid, con mayor concentracion en miercoles y viernes por la noche."
+  },
+  "status": "draft"
+}

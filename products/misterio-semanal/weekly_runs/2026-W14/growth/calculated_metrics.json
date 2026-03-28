@@ -1,0 +1,94 @@
+{
+  "product_id": "misterio-semanal",
+  "run_id": "2026-W14",
+  "strategy_version": "v1",
+  "calculated_at": "2026-03-27T23:25:28.796372",
+  "raw_input": {
+    "spend": 33.31,
+    "impressions": 11100,
+    "clicks": 233,
+    "conversions": 3,
+    "revenue": 59.97
+  },
+  "metrics": {
+    "ctr": {
+      "value": 2.0991,
+      "unit": "pct",
+      "delta_prev_week": null,
+      "delta_baseline": null,
+      "threshold_flag": null
+    },
+    "cpc": {
+      "value": 0.143,
+      "unit": "usd",
+      "delta_prev_week": null,
+      "delta_baseline": null,
+      "threshold_flag": null
+    },
+    "cpm": {
+      "value": 3.0009,
+      "unit": "usd",
+      "delta_prev_week": null,
+      "delta_baseline": null,
+      "threshold_flag": null
+    },
+    "cpa": {
+      "value": 11.1033,
+      "unit": "usd",
+      "delta_prev_week": null,
+      "delta_baseline": null,
+      "threshold_flag": null
+    },
+    "roas": {
+      "value": 1.8004,
+      "unit": "ratio",
+      "delta_prev_week": null,
+      "delta_baseline": null,
+      "threshold_flag": null
+    },
+    "conversion_rate": {
+      "value": 1.2876,
+      "unit": "pct",
+      "delta_prev_week": null,
+      "delta_baseline": null,
+      "threshold_flag": null
+    },
+    "email_open_rate": {
+      "value": 22.0,
+      "unit": "pct",
+      "delta_prev_week": null,
+      "delta_baseline": null,
+      "threshold_flag": null
+    },
+    "email_click_rate": {
+      "value": 3.1111,
+      "unit": "pct",
+      "delta_prev_week": null,
+      "delta_baseline": null,
+      "threshold_flag": null
+    },
+    "revenue": {
+      "value": 59.97,
+      "unit": "usd",
+      "delta_prev_week": null,
+      "delta_baseline": null,
+      "threshold_flag": null
+    },
+    "profit": {
+      "value": 26.66,
+      "unit": "usd",
+      "delta_prev_week": null,
+      "delta_baseline": null,
+      "threshold_flag": null
+    },
+    "spend": {
+      "value": 33.31,
+      "unit": "usd",
+      "delta_prev_week": null,
+      "delta_baseline": null,
+      "threshold_flag": null
+    }
+  },
+  "trends": {},
+  "alerts": []
+}

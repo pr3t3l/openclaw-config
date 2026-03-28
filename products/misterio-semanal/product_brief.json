@@ -1,0 +1,13 @@
+{
+  "product_id": "misterio-semanal",
+  "product_name": "Declassified Cases — Caso de misterio semanal",
+  "description": "Experiencias de misterio detectivesco en formato digital. Cada caso incluye archivos, pistas, escenas y narrativa completa para resolver.",
+  "price": 19.99,
+  "currency": "USD",
+  "billing": "per-case",
+  "platform_url": "https://theclassifiedcases.shop",
+  "target_audience_hint": "Adultos 25-45 que buscan entretenimiento inteligente, experiencias grupales, escape rooms digitales",
+  "monthly_marketing_budget": 50,
+  "language": "es",
+  "country": "global-hispanic"
+}

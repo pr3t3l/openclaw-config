@@ -1,0 +1,16 @@
+{
+  "product_id": "misterio-semanal",
+  "week": "2026-W14",
+  "case_name": "El Robo del Museo Nacional",
+  "case_slug": "robo-museo-nacional",
+  "theme": "Art heist in a national museum — a security guard, a forger, and a missing Frida Kahlo painting",
+  "hook_angle": "Una pintura de Frida Kahlo desaparece del museo... pero las cámaras no muestran nada",
+  "key_characters": [
+    {"name": "Martín Salazar", "role": "Guardia de seguridad nocturno", "suspicious": true},
+    {"name": "Valentina Reyes", "role": "Restauradora de arte", "suspicious": true},
+    {"name": "Diego Fuentes", "role": "Director del museo", "suspicious": false}
+  ],
+  "emotional_beats": ["intriga inicial", "descubrimiento de pista falsa", "giro inesperado", "revelación"],
+  "target_release_date": "2026-04-01",
+  "special_notes": "Primer caso con temática de arte. Incluir referencias visuales a obras reales (dominio público)."
+}

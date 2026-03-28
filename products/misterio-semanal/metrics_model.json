@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "description": "Pirámide jerárquica de métricas. El sistema diagnostica de arriba hacia abajo.",
+  "levels": {
+    "L1_business": {
+      "metrics": {
+        "revenue": {"formula": "conversions x price", "unit": "usd", "direction": "higher_is_better"},
+        "profit": {"formula": "revenue - spend", "unit": "usd", "direction": "higher_is_better"}
+      },
+      "thresholds": {
+        "revenue_weekly_target": 100,
+        "profit_margin_floor": 0.3
+      }
+    },
+    "L2_marketing": {
+      "metrics": {
+        "cpa": {"formula": "spend / conversions", "unit": "usd", "direction": "lower_is_better", "ceiling": 15.00},
+        "roas": {"formula": "revenue / spend", "unit": "ratio", "direction": "higher_is_better", "floor": 1.5},
+        "conversion_rate": {"formula": "conversions / clicks x 100", "unit": "pct", "direction": "higher_is_better"}
+      }
+    },
+    "L3_channel": {
+      "metrics": {
+        "ctr": {"formula": "clicks / impressions x 100", "unit": "pct", "direction": "higher_is_better"},
+        "cpc": {"formula": "spend / clicks", "unit": "usd", "direction": "lower_is_better"},
+        "cpm": {"formula": "spend / impressions x 1000", "unit": "usd", "direction": "lower_is_better"}
+      }
+    },
+    "L4_creative": {
+      "metrics": {
+        "hook_rate": {"formula": "3s_views / impressions x 100", "unit": "pct", "direction": "higher_is_better"},
+        "watch_time": {"formula": "avg_watch_seconds", "unit": "seconds", "direction": "higher_is_better"}
+      }
+    }
+  },
+  "diagnostic_flow": "Si L2 falla -> revisar L3. Si L3 falla -> revisar L4. Si L4 ok pero L2 falla -> problema en landing/offer."
+}

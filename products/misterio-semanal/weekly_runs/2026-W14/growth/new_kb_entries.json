@@ -1,0 +1,43 @@
+{
+  "product_id": "misterio-semanal",
+  "extracted_from_run": "2026-W14",
+  "generated_at": "2026-03-27T23:25:28.796372",
+  "new_winning_patterns": [
+    {
+      "pattern_id": "WP-001",
+      "pattern": "Los creativos con enfoque de curiosidad y pregunta retorica lograron captar interes inicial suficiente en una semana de lanzamiento, lo que sugiere que estos angulos funcionan para generar clics en la audiencia objetivo.",
+      "confidence": "low",
+      "evidence": "En 11100 impresiones se obtuvo un CTR de 2.10% (233 clics) usando hooks de curiosidad y pregunta retorica; el diagnostico indica que el creativo/copy inicial esta resonando con la audiencia objetivo.",
+      "evidence_runs_count": 1,
+      "minimum_sample_met": true,
+      "last_confirmed_at": "2026-W14",
+      "contradictions": [],
+      "status": "tentative"
+    }
+  ],
+  "new_losing_patterns": [
+    {
+      "pattern_id": "LP-001",
+      "pattern": "Un enfoque creativo que genera clics pero no comunica con claridad que recibira la persona al comprar tiende a perder conversion en la landing, probablemente por friccion de decision y desconfianza hacia una marca nueva.",
+      "confidence": "medium",
+      "evidence": "Aunque el CTR fue 2.10% con 233 clics, solo hubo 3 conversiones, para una tasa de conversion de 1.29%; el diagnostico identifica como barreras principales la falta de claridad sobre el contenido del producto y la desconfianza en marca desconocida.",
+      "evidence_runs_count": 1,
+      "minimum_sample_met": true,
+      "last_confirmed_at": "2026-W14",
+      "contradictions": [],
+      "status": "tentative"
+    },
+    {
+      "pattern_id": "LP-002",
+      "pattern": "El funnel actual no convierte con suficiente eficiencia para escalar con confianza, porque el rendimiento post-clic deja demasiado trafico sin comprar incluso con rentabilidad positiva.",
+      "confidence": "low",
+      "evidence": "La campana cerro con ROAS de 1.80, CPA de 11.10 USD, 233 clics y solo 3 ventas; el diagnostico concluye que el funnel funciona a nivel basico pero con margen de mejora significativo y que el ROAS es positivo pero insuficiente para escalar.",
+      "evidence_runs_count": 1,
+      "minimum_sample_met": true,
+      "last_confirmed_at": "2026-W14",
+      "contradictions": [],
+      "status": "tentative"
+    }
+  ],
+  "existing_patterns_reinforced": []
+}

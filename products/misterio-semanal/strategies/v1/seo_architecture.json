@@ -1,0 +1,493 @@
+{
+  "schema_version": "1.0",
+  "product_id": "misterio-semanal",
+  "generated_at": "2025-01-30T16:00:00Z",
+  "keyword_groups": [
+    {
+      "group_id": "escape-room-digital-espanol",
+      "theme": "Escape room digital en español",
+      "intent": "transactional",
+      "primary_keyword": "escape room digital en español",
+      "secondary_keywords": [
+        "escape room online en español",
+        "escape room virtual en español",
+        "escape room para jugar en casa en español",
+        "escape room digital hispanohablante"
+      ],
+      "long_tail": [
+        "escape room digital en español para jugar en pareja",
+        "escape room online en español sin descargar nada",
+        "escape room virtual en español para grupos remotos",
+        "mejor escape room digital en español 2025",
+        "escape room en español para jugar por videollamada"
+      ],
+      "estimated_volume": "medium",
+      "estimated_difficulty": "low",
+      "content_type": "landing_page",
+      "content_title_suggestion": "Escape Room Digital en Español: Resuelve Casos de Misterio Desde Casa",
+      "target_url_slug": "escape-room-digital-espanol"
+    },
+    {
+      "group_id": "juego-misterio-online-espanol",
+      "theme": "Juego de misterio online en español",
+      "intent": "transactional",
+      "primary_keyword": "juego de misterio online en español",
+      "secondary_keywords": [
+        "juego detectivesco online español",
+        "juego de investigación criminal online",
+        "juego de misterio digital español",
+        "juego de detectives en español"
+      ],
+      "long_tail": [
+        "juego de misterio online en español para adultos",
+        "juego de investigación criminal digital en español",
+        "juego de detectives online para jugar en pareja en español",
+        "juego de misterio en español para jugar con amigos remotos",
+        "comprar juego de misterio digital en español"
+      ],
+      "estimated_volume": "medium",
+      "estimated_difficulty": "low",
+      "content_type": "landing_page",
+      "content_title_suggestion": "Juego de Misterio Online en Español: Conviértete en Detective Desde Tu Sofá",
+      "target_url_slug": "juego-misterio-online-espanol"
+    },
+    {
+      "group_id": "caso-detectivesco-digital",
+      "theme": "Caso detectivesco digital para resolver",
+      "intent": "transactional",
+      "primary_keyword": "caso detectivesco digital",
+      "secondary_keywords": [
+        "caso de misterio para resolver online",
+        "caso criminal digital en español",
+        "resolver caso de asesinato online",
+        "caso policial interactivo digital"
+      ],
+      "long_tail": [
+        "caso detectivesco digital en español para adultos",
+        "comprar caso de misterio para resolver en casa",
+        "caso criminal interactivo digital en español",
+        "resolver un caso de asesinato desde casa en español",
+        "caso detectivesco digital para jugar en pareja"
+      ],
+      "estimated_volume": "low",
+      "estimated_difficulty": "low",
+      "content_type": "landing_page",
+      "content_title_suggestion": "Casos Detectivescos Digitales en Español: ¿Puedes Resolver el Crimen?",
+      "target_url_slug": "caso-detectivesco-digital"
+    },
+    {
+      "group_id": "planes-pareja-casa-originales",
+      "theme": "Planes originales para hacer en casa en pareja",
+      "intent": "informational",
+      "primary_keyword": "planes originales para hacer en casa en pareja",
+      "secondary_keywords": [
+        "actividades en pareja en casa",
+        "qué hacer en casa con tu pareja",
+        "planes de fin de semana en casa para parejas",
+        "ideas de entretenimiento en pareja sin salir"
+      ],
+      "long_tail": [
+        "planes originales para hacer en casa en pareja un viernes por la noche",
+        "actividades divertidas en pareja en casa sin gastar mucho",
+        "qué hacer en casa con tu pareja cuando no saben qué ver en netflix",
+        "ideas creativas para una noche en casa en pareja",
+        "planes de fin de semana en casa para parejas adultas"
+      ],
+      "estimated_volume": "high",
+      "estimated_difficulty": "medium",
+      "content_type": "blog_post",
+      "content_title_suggestion": "15 Planes Originales para Hacer en Casa en Pareja (Más Allá de Netflix)",
+      "target_url_slug": "planes-originales-pareja-en-casa"
+    },
+    {
+      "group_id": "actividades-grupales-remotas",
+      "theme": "Actividades grupales remotas y juegos para hacer por videollamada",
+      "intent": "informational",
+      "primary_keyword": "actividades grupales remotas en español",
+      "secondary_keywords": [
+        "juegos para hacer por videollamada con amigos",
+        "actividades para grupos remotos en español",
+        "qué hacer con amigos por videollamada",
+        "juegos online para grupos de amigos adultos"
+      ],
+      "long_tail": [
+        "actividades grupales remotas divertidas para adultos en español",
+        "juegos para hacer por videollamada con amigos adultos",
+        "qué hacer con amigos por zoom en español",
+        "actividades para grupos de amigos que viven en distintas ciudades",
+        "juegos de misterio para jugar con amigos por videollamada en español"
+      ],
+      "estimated_volume": "medium",
+      "estimated_difficulty": "medium",
+      "content_type": "blog_post",
+      "content_title_suggestion": "10 Actividades Grupales Remotas para Hacer con Amigos por Videollamada (en Español)",
+      "target_url_slug": "actividades-grupales-remotas-videollamada"
+    },
+    {
+      "group_id": "true-crime-interactivo-espanol",
+      "theme": "True crime interactivo en español",
+      "intent": "informational",
+      "primary_keyword": "true crime interactivo en español",
+      "secondary_keywords": [
+        "participar en un caso de true crime",
+        "juego de true crime en español",
+        "experiencia interactiva de true crime",
+        "true crime para resolver en casa"
+      ],
+      "long_tail": [
+        "cómo participar activamente en un caso de true crime en español",
+        "juego de true crime interactivo en español para adultos",
+        "experiencia de true crime para resolver desde casa en español",
+        "true crime interactivo para jugar en pareja en español",
+        "alternativa interactiva a los podcasts de true crime en español"
+      ],
+      "estimated_volume": "low",
+      "estimated_difficulty": "low",
+      "content_type": "blog_post",
+      "content_title_suggestion": "De Oyente a Detective: Cómo Vivir el True Crime de Forma Interactiva en Español",
+      "target_url_slug": "true-crime-interactivo-espanol"
+    },
+    {
+      "group_id": "alternativa-escape-room-fisico",
+      "theme": "Alternativa barata al escape room físico",
+      "intent": "informational",
+      "primary_keyword": "alternativa al escape room físico en casa",
+      "secondary_keywords": [
+        "escape room casero en español",
+        "escape room sin salir de casa",
+        "alternativa barata a escape room",
+        "escape room económico en español"
+      ],
+      "long_tail": [
+        "alternativa al escape room físico para hacer en casa en español",
+        "escape room casero digital para adultos en español",
+        "cómo hacer un escape room en casa sin materiales",
+        "escape room online más barato que el físico en español",
+        "experiencia de escape room desde casa para parejas en español"
+      ],
+      "estimated_volume": "medium",
+      "estimated_difficulty": "medium",
+      "content_type": "blog_post",
+      "content_title_suggestion": "¿Cansado de los Escape Rooms Caros? La Alternativa Digital que Puedes Hacer Esta Noche",
+      "target_url_slug": "alternativa-escape-room-fisico-casa"
+    },
+    {
+      "group_id": "mystery-box-digital-espanol",
+      "theme": "Mystery box digital en español",
+      "intent": "transactional",
+      "primary_keyword": "mystery box digital en español",
+      "secondary_keywords": [
+        "caja de misterio digital en español",
+        "mystery box online español",
+        "caja misteriosa digital para resolver",
+        "mystery box interactivo en español"
+      ],
+      "long_tail": [
+        "mystery box digital en español para adultos",
+        "comprar mystery box digital de misterio en español",
+        "mystery box online en español para jugar en casa",
+        "caja de misterio digital para resolver en pareja en español",
+        "mejor mystery box digital en español 2025"
+      ],
+      "estimated_volume": "low",
+      "estimated_difficulty": "low",
+      "content_type": "landing_page",
+      "content_title_suggestion": "Mystery Box Digital en Español: Archivos Clasificados, Pistas Reales, Un Caso Sin Resolver",
+      "target_url_slug": "mystery-box-digital-espanol"
+    },
+    {
+      "group_id": "juegos-mesa-misterio-adultos",
+      "theme": "Juegos de mesa de misterio para adultos en español",
+      "intent": "informational",
+      "primary_keyword": "juegos de misterio para adultos en español",
+      "secondary_keywords": [
+        "mejores juegos de detectives para adultos",
+        "juegos de mesa de investigación criminal en español",
+        "juegos de misterio para grupos de adultos",
+        "juegos de rol detectivesco en español"
+      ],
+      "long_tail": [
+        "mejores juegos de misterio para adultos en español 2025",
+        "juegos de detectives para adultos que se pueden jugar en casa",
+        "juegos de investigación criminal para adultos en español sin salir",
+        "alternativas digitales a los juegos de mesa de misterio en español",
+        "juegos de misterio para adultos que no requieren comprar materiales"
+      ],
+      "estimated_volume": "medium",
+      "estimated_difficulty": "medium",
+      "content_type": "comparison",
+      "content_title_suggestion": "Los 8 Mejores Juegos de Misterio para Adultos en Español (Físicos y Digitales)",
+      "target_url_slug": "mejores-juegos-misterio-adultos-espanol"
+    },
+    {
+      "group_id": "entretenimiento-inteligente-adultos",
+      "theme": "Entretenimiento inteligente para adultos en casa",
+      "intent": "informational",
+      "primary_keyword": "entretenimiento inteligente para adultos en casa",
+      "secondary_keywords": [
+        "actividades intelectualmente estimulantes en casa",
+        "entretenimiento activo para adultos en español",
+        "ocio inteligente para adultos en casa",
+        "actividades estimulantes para adultos en casa"
+      ],
+      "long_tail": [
+        "entretenimiento inteligente para adultos en casa en español",
+        "actividades mentalmente estimulantes para adultos en casa sin salir",
+        "ocio activo e inteligente para adultos hispanohablantes",
+        "qué hacer en casa que no sea ver series para adultos",
+        "entretenimiento interactivo para adultos inteligentes en español"
+      ],
+      "estimated_volume": "medium",
+      "estimated_difficulty": "medium",
+      "content_type": "blog_post",
+      "content_title_suggestion": "7 Formas de Entretenerte de Forma Inteligente en Casa (Sin Poner Netflix)",
+      "target_url_slug": "entretenimiento-inteligente-adultos-casa"
+    },
+    {
+      "group_id": "team-building-remoto-espanol",
+      "theme": "Team building remoto en español",
+      "intent": "transactional",
+      "primary_keyword": "team building remoto en español",
+      "secondary_keywords": [
+        "actividades de team building online en español",
+        "juegos de team building virtual en español",
+        "dinámicas de equipo remotas en español",
+        "team building digital para empresas en español"
+      ],
+      "long_tail": [
+        "team building remoto divertido en español para equipos de trabajo",
+        "actividades de team building online originales en español",
+        "juego de misterio para team building remoto en español",
+        "dinámicas de equipo virtuales creativas en español",
+        "team building digital para empresas hispanohablantes"
+      ],
+      "estimated_volume": "medium",
+      "estimated_difficulty": "medium",
+      "content_type": "landing_page",
+      "content_title_suggestion": "Team Building Remoto en Español: Resuelve un Caso de Misterio con Tu Equipo",
+      "target_url_slug": "team-building-remoto-espanol"
+    },
+    {
+      "group_id": "declassified-cases-resenas",
+      "theme": "Reseñas y opiniones de Declassified Cases",
+      "intent": "navigational",
+      "primary_keyword": "Declassified Cases opiniones",
+      "secondary_keywords": [
+        "Declassified Cases reseña",
+        "Declassified Cases review en español",
+        "theclassifiedcases.shop opiniones",
+        "Declassified Cases vale la pena"
+      ],
+      "long_tail": [
+        "Declassified Cases opiniones de usuarios en español",
+        "es bueno Declassified Cases juego de misterio",
+        "Declassified Cases review completo en español",
+        "qué incluye un caso de Declassified Cases",
+        "Declassified Cases cómo funciona"
+      ],
+      "estimated_volume": "low",
+      "estimated_difficulty": "low",
+      "content_type": "landing_page",
+      "content_title_suggestion": "¿Qué es Declassified Cases? Todo lo que Necesitas Saber Antes de Comprar",
+      "target_url_slug": "que-es-declassified-cases"
+    },
+    {
+      "group_id": "podcasts-true-crime-espanol",
+      "theme": "Podcasts de true crime en español y contenido relacionado",
+      "intent": "informational",
+      "primary_keyword": "podcasts de true crime en español",
+      "secondary_keywords": [
+        "mejores podcasts de misterio en español",
+        "podcasts de crímenes reales en español",
+        "true crime en español recomendaciones",
+        "podcasts de investigación criminal en español"
+      ],
+      "long_tail": [
+        "mejores podcasts de true crime en español para escuchar en 2025",
+        "podcasts de misterio y crímenes reales en español en spotify",
+        "qué escuchar después de terminar un podcast de true crime en español",
+        "true crime interactivo como alternativa a los podcasts en español",
+        "comunidades de true crime en español online"
+      ],
+      "estimated_volume": "high",
+      "estimated_difficulty": "high",
+      "content_type": "blog_post",
+      "content_title_suggestion": "Los Mejores Podcasts de True Crime en Español (Y Qué Hacer Cuando Se Acaban)",
+      "target_url_slug": "mejores-podcasts-true-crime-espanol"
+    },
+    {
+      "group_id": "regalo-original-parejas-adultos",
+      "theme": "Regalo original para parejas adultas",
+      "intent": "transactional",
+      "primary_keyword": "regalo original para parejas adultas",
+      "secondary_keywords": [
+        "regalo de experiencia para parejas",
+        "regalo original para amantes del misterio",
+        "regalo digital para parejas en español",
+        "regalo de entretenimiento para parejas"
+      ],
+      "long_tail": [
+        "regalo original para parejas adultas que les gusta el misterio",
+        "regalo de experiencia digital para parejas en español",
+        "regalo original para amigos que les gusta el true crime",
+        "regalo de cumpleaños original para adultos amantes del misterio",
+        "regalo digital de entretenimiento para parejas hispanohablantes"
+      ],
+      "estimated_volume": "medium",
+      "estimated_difficulty": "medium",
+      "content_type": "landing_page",
+      "content_title_suggestion": "El Regalo Perfecto para Amantes del Misterio: Una Experiencia Detectivesca Digital",
+      "target_url_slug": "regalo-original-amantes-misterio"
+    },
+    {
+      "group_id": "como-jugar-caso-misterio-casa",
+      "theme": "Cómo jugar un caso de misterio en casa",
+      "intent": "informational",
+      "primary_keyword": "cómo jugar un caso de misterio en casa",
+      "secondary_keywords": [
+        "cómo organizar una noche de misterio en casa",
+        "cómo resolver un caso de asesinato en casa",
+        "guía para jugar juegos de misterio en casa",
+        "noche de misterio en casa en español"
+      ],
+      "long_tail": [
+        "cómo organizar una noche de misterio en casa para adultos en español",
+        "paso a paso para resolver un caso detectivesco en casa",
+        "cómo jugar un caso de misterio en pareja en casa",
+        "guía completa para una noche de investigación criminal en casa",
+        "cómo hacer una noche de escape room en casa sin materiales"
+      ],
+      "estimated_volume": "medium",
+      "estimated_difficulty": "low",
+      "content_type": "guide",
+      "content_title_suggestion": "Guía Completa: Cómo Organizar una Noche de Misterio en Casa (Paso a Paso)",
+      "target_url_slug": "como-organizar-noche-misterio-en-casa"
+    },
+    {
+      "group_id": "faq-producto",
+      "theme": "Preguntas frecuentes sobre el producto",
+      "intent": "mixed",
+      "primary_keyword": "preguntas frecuentes juego de misterio digital",
+      "secondary_keywords": [
+        "cómo funciona un juego de misterio digital",
+        "qué incluye un caso de misterio digital",
+        "cuánto dura un caso de misterio digital",
+        "es difícil resolver un caso de misterio digital"
+      ],
+      "long_tail": [
+        "cuántas personas pueden jugar un caso de misterio digital al mismo tiempo",
+        "cuánto tiempo dura un caso de misterio digital en español",
+        "qué necesito para jugar un caso de misterio digital en casa",
+        "puedo jugar un caso de misterio digital en solitario",
+        "cómo recibo mi caso de misterio digital tras la compra"
+      ],
+      "estimated_volume": "low",
+      "estimated_difficulty": "low",
+      "content_type": "faq",
+      "content_title_suggestion": "Preguntas Frecuentes: Todo lo que Necesitas Saber Sobre los Casos de Misterio Digitales",
+      "target_url_slug": "preguntas-frecuentes-casos-misterio-digital"
+    }
+  ],
+  "content_calendar_suggestion": [
+    {
+      "priority": 1,
+      "group_id": "escape-room-digital-espanol",
+      "reason": "Término transaccional de mayor volumen y menor dificultad. Es la búsqueda más directa del comprador listo para comprar. Captura demanda existente de forma inmediata y posiciona la propuesta de valor principal del producto."
+    },
+    {
+      "priority": 2,
+      "group_id": "juego-misterio-online-espanol",
+      "reason": "Segunda búsqueda transaccional más relevante con alta intención de compra. Complementa la landing page principal y captura variantes de búsqueda del mismo perfil de comprador."
+    },
+    {
+      "priority": 3,
+      "group_id": "declassified-cases-resenas",
+      "reason": "Página de confianza y credibilidad esencial para convertir visitantes que ya conocen la marca. Reduce la barrera de desconfianza identificada como principal obstáculo de compra."
+    },
+    {
+      "priority": 4,
+      "group_id": "planes-pareja-casa-originales",
+      "reason": "Alto volumen de búsqueda informacional con audiencia perfectamente alineada al buyer persona. Genera tráfico orgánico masivo y presenta el producto como solución natural al problema de la rutina en pareja."
+    },
+    {
+      "priority": 5,
+      "group_id": "true-crime-interactivo-espanol",
+      "reason": "Conecta directamente con el principal interés del buyer persona (true crime) y convierte consumidores pasivos en compradores activos. Baja competencia y alta relevancia cultural."
+    },
+    {
+      "priority": 6,
+      "group_id": "alternativa-escape-room-fisico",
+      "reason": "Captura búsquedas de comparación de precio y conveniencia. Permite posicionar el producto como alternativa superior al escape room físico con argumentos racionales claros."
+    },
+    {
+      "priority": 7,
+      "group_id": "como-jugar-caso-misterio-casa",
+      "reason": "Contenido guía que educa al mercado y reduce la barrera de 'no sé qué recibiré'. Genera confianza y puede rankear para búsquedas de intención mixta con baja competencia."
+    },
+    {
+      "priority": 8,
+      "group_id": "faq-producto",
+      "reason": "Contenido esencial para SEO de cola larga y para reducir objeciones de compra. Responde preguntas específicas que aparecen en búsquedas de usuarios en etapa de consideración."
+    },
+    {
+      "priority": 9,
+      "group_id": "mystery-box-digital-espanol",
+      "reason": "Término transaccional con baja competencia que captura un segmento de compradores que buscan el formato específico de mystery box pero en versión digital."
+    },
+    {
+      "priority": 10,
+      "group_id": "actividades-grupales-remotas",
+      "reason": "Amplía el caso de uso del producto más allá de parejas hacia grupos de amigos. Volumen medio con audiencia alineada al buyer persona secundario."
+    },
+    {
+      "priority": 11,
+      "group_id": "regalo-original-parejas-adultos",
+      "reason": "Captura tráfico transaccional estacional (cumpleaños, San Valentín, Navidad) con alta intención de compra. Amplía el canal de adquisición hacia compradores que regalan la experiencia."
+    },
+    {
+      "priority": 12,
+      "group_id": "juegos-mesa-misterio-adultos",
+      "reason": "Contenido de comparación que posiciona el producto frente a alternativas físicas conocidas. Captura audiencia ya interesada en el género que busca opciones."
+    },
+    {
+      "priority": 13,
+      "group_id": "podcasts-true-crime-espanol",
+      "reason": "Alto volumen pero alta competencia. Contenido que atrae a la audiencia exacta del buyer persona desde el tope del funnel. Prioridad media-baja por dificultad de posicionamiento."
+    },
+    {
+      "priority": 14,
+      "group_id": "team-building-remoto-espanol",
+      "reason": "Canal B2B secundario con potencial de ticket promedio mayor. Se desarrolla después de consolidar el canal B2C principal dado el presupuesto limitado."
+    },
+    {
+      "priority": 15,
+      "group_id": "entretenimiento-inteligente-adultos",
+      "reason": "Contenido de tope de funnel con audiencia amplia. Útil para construir autoridad de dominio a largo plazo pero con conversión más indirecta."
+    },
+    {
+      "priority": 16,
+      "group_id": "caso-detectivesco-digital",
+      "reason": "Término muy específico con baja competencia pero también bajo volumen. Útil para capturar búsquedas de nicho una vez que el sitio tenga autoridad de dominio establecida."
+    }
+  ],
+  "technical_seo_notes": [
+    "Implementar hreflang para variantes regionales del español: es-ES, es-MX, es-AR, es-CO, es-419 (Latinoamérica general) para maximizar visibilidad en cada mercado hispanohablante.",
+    "Crear un sitemap XML estructurado con prioridades claras: landing pages transaccionales con prioridad 1.0, blog posts con 0.8, FAQ con 0.7.",
+    "Optimizar Core Web Vitals especialmente LCP y CLS dado que el buyer persona usa principalmente dispositivos móviles. El sitio debe cargar en menos de 2.5 segundos en mobile.",
+    "Implementar schema markup de tipo Product en las landing pages de compra, FAQPage en la página de preguntas frecuentes, y Article en los blog posts para mejorar la apariencia en SERPs.",
+    "Crear una estructura de enlazado interno clara: cada blog post debe enlazar hacia al menos una landing page transaccional relevante para canalizar el tráfico informacional hacia la conversión.",
+    "Registrar el sitio en Google Search Console y Bing Webmaster Tools desde el primer día para monitorear indexación y errores de rastreo.",
+    "Optimizar las meta descriptions para incluir propuesta de valor clara y llamada a la acción, especialmente en las landing pages transaccionales. Longitud recomendada: 140-155 caracteres.",
+    "Usar URLs cortas, descriptivas y en español sin caracteres especiales ni tildes en la URL (usar equivalentes sin tilde: espanol en lugar de español).",
+    "Implementar Open Graph y Twitter Card tags en todas las páginas para optimizar la apariencia del contenido cuando se comparte en redes sociales, canal principal del buyer persona.",
+    "Priorizar la construcción de backlinks desde sitios de podcasts de true crime en español, blogs de juegos de mesa y comunidades de entretenimiento hispanohablantes como estrategia de link building de bajo costo.",
+    "Crear una página de categoría o hub de contenido para 'Juegos de Misterio' que agrupe todos los blog posts relacionados y mejore la arquitectura de información del sitio.",
+    "Dado el presupuesto limitado, priorizar Google Business Profile si aplica y directorios de productos digitales en español para generar señales de autoridad local/regional sin costo."
+  ],
+  "metadata": {
+    "total_keyword_groups": 16,
+    "web_search_used": false,
+    "language": "es",
+    "target_country": "global-hispanic"
+  }
+}

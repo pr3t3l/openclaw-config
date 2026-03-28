@@ -1,0 +1,8 @@
+[
+  {"name": "Mortgage (DHI)", "due_day": 5, "amount": 1909, "account": "Bank", "autopay": true, "apr": 5.5, "promo_expiry": null},
+  {"name": "Chase Auto", "due_day": 4, "amount": 447, "account": "Chase", "autopay": true, "apr": 6.44, "promo_expiry": null},
+  {"name": "Wells Fargo CC", "due_day": 6, "amount": 200, "account": "WellsFargo", "autopay": true, "apr": 1.0, "promo_expiry": "2026-05-01"},
+  {"name": "Upstart Loan", "due_day": 20, "amount": 343, "account": "Upstart", "autopay": true, "apr": 11.01, "promo_expiry": null},
+  {"name": "Citibank CC", "due_day": 20, "amount": 288, "account": "Citi", "autopay": true, "apr": 0.0, "promo_expiry": "2027-08-01"},
+  {"name": "Discover CC", "due_day": 28, "amount": 566, "account": "Discover", "autopay": true, "apr": 3.99, "promo_expiry": "2027-02-01"}
+]

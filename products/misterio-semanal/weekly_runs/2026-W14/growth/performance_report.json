@@ -1,0 +1,26 @@
+{
+  "product_id": "misterio-semanal",
+  "run_id": "2026-W14",
+  "strategy_version_used": "v1",
+  "generated_at": "2026-03-27T23:25:28.796372",
+  "metrics_summary": {
+    "ctr": 2.0991,
+    "cpa": 11.1033,
+    "conversions": 3,
+    "revenue": 59.97,
+    "roas": 1.8004,
+    "spend": 33.31
+  },
+  "trends": {
+    "cpa_trend_3w": "stable",
+    "ctr_trend_3w": "stable"
+  },
+  "interpretation": "Esta semana la cuenta fue rentable: el ROAS de 1.8004 superó el mínimo esperado y el CPA de 11.1033 se mantuvo por debajo del techo de 15, lo que indica eficiencia aceptable en adquisición. Sin embargo, el ingreso total fue de 59.97, todavía por debajo de la meta semanal de 100, así que el problema principal no parece ser de costo sino de volumen. Como L2 está sano y el CTR de 2.0991 no muestra señales de debilidad, la lectura más probable es que falta escalar tráfico o aumentar conversiones para llegar al objetivo de negocio. No hay tendencias históricas disponibles, así que esta interpretación se basa en el corte actual.",
+  "overall_health": "yellow",
+  "key_insights": [
+    "El negocio cerró con ganancia y ROAS saludable, pero todavía no alcanza la meta semanal de ingresos.",
+    "El CPA está dentro del rango objetivo, así que el costo por conversión no es el principal cuello de botella.",
+    "El volumen de conversiones fue bajo, con solo 3 compras, lo que limita el crecimiento de revenue aunque la eficiencia sea aceptable.",
+    "Dado que no hay alertas ni caídas claras en CTR, la prioridad parece ser escalar alcance o mejorar la capacidad de convertir más clics en ventas."
+  ]
+}

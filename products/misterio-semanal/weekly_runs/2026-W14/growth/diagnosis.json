@@ -1,0 +1,50 @@
+{
+  "product_id": "misterio-semanal",
+  "run_id": "2026-W14",
+  "root_cause": "Semana de lanzamiento sin datos históricos comparables: ROAS de 1.80 y tasa de conversión de 1.29% indican que el funnel está funcionando a nivel básico pero con margen de mejora significativo, especialmente en la etapa de conversión post-clic donde se pierde el 98.7% del tráfico.",
+  "confidence": "low",
+  "reasoning": "Al ser la primera semana con datos (todos los deltas son null y la base de conocimiento está vacía), no es posible determinar si el rendimiento actual es una anomalía o la línea base real del producto. El CTR de 2.10% sugiere que el creativo/copy está generando interés inicial adecuado, pero la tasa de conversión de 1.29% sobre 233 clics (solo 3 ventas) apunta a fricción en la landing page o desconfianza de marca, que son las barreras de compra más severas identificadas en el buyer persona. El ROAS de 1.80 es positivo pero insuficiente para escalar con confianza.",
+  "decision_level": "tactical",
+  "problem_domain": "landing",
+  "suggested_owner": "marketing_weekly",
+  "evidence": [
+    "Tasa de conversión 1.29%: de 233 clics solo 3 convirtieron, lo que indica fricción severa en la etapa de decisión de compra",
+    "ROAS 1.80: positivo pero por debajo del umbral de escala sostenible (generalmente 2.5x-3x para productos digitales)",
+    "CTR 2.10%: saludable, sugiere que el creativo/copy inicial está resonando con la audiencia objetivo",
+    "CPA $11.10 vs precio de venta $19.99: margen de contribución por conversión es positivo pero ajustado",
+    "Base de conocimiento vacía: primera semana de datos, sin patrones confirmados ni tendencias establecidas",
+    "Buyer persona identifica como barrera de alta severidad: 'No sabe exactamente qué recibirá al comprar' y 'Desconfianza en marca desconocida'",
+    "Solo 3 conversiones en la semana: volumen insuficiente para conclusiones estadísticas sólidas"
+  ],
+  "escalation_risk": "Si en W15-W16 el ROAS no supera 2.0 con ajustes tácticos en landing y creativos, o si el CTR cae por debajo de 1.5%, escalar a nivel estratégico para revisar segmentación de audiencia, canales y propuesta de valor comunicada.",
+  "proposed_experiments": [
+    {
+      "hypothesis": "Mostrar explícitamente qué incluye el caso (capturas de archivos, número de pistas, duración estimada) en el anuncio o landing page reducirá la fricción de compra y aumentará la tasa de conversión",
+      "variable": "Contenido visual del anuncio/landing: descripción del producto",
+      "variant_a": "Anuncio actual con copy emocional sin detalle de contenido del caso",
+      "variant_b": "Anuncio con capturas reales de archivos del caso + texto '14 archivos clasificados · 6 pistas · 2-4 horas de investigación'",
+      "success_metric": "Tasa de conversión (conversiones / clics)",
+      "success_threshold": "Incremento de al menos 0.5 puntos porcentuales (de 1.29% a 1.79%+) sostenido durante 2 semanas",
+      "related_pattern_id": null
+    },
+    {
+      "hypothesis": "Añadir elementos de prueba social y garantía de satisfacción prominentes en la landing page reducirá la barrera de desconfianza de marca y aumentará conversiones",
+      "variable": "Elementos de confianza en landing page",
+      "variant_a": "Landing page actual sin prueba social explícita",
+      "variant_b": "Landing page con sección de garantía de devolución destacada, sellos de pago seguro y testimonio de primeros compradores con tiempo de juego real",
+      "success_metric": "Tasa de conversión y ROAS",
+      "success_threshold": "ROAS superior a 2.2 y tasa de conversión superior a 1.8% durante 2 semanas consecutivas",
+      "related_pattern_id": null
+    },
+    {
+      "hypothesis": "Segmentar la audiencia hacia oyentes de podcasts de true crime en español (intereses específicos: Spotify true crime, podcasts en español, crimen real) generará un CTR y tasa de conversión superiores al targeting actual",
+      "variable": "Segmentación de audiencia en paid social",
+      "variant_a": "Segmentación actual (desconocida, línea base W14)",
+      "variant_b": "Audiencia específica: mujeres 28-42 años, intereses en true crime, podcasts en español, misterio, escape rooms",
+      "success_metric": "CTR y tasa de conversión por segmento",
+      "success_threshold": "CTR superior a 2.5% y tasa de conversión superior a 1.8% en el segmento test",
+      "related_pattern_id": null
+    }
+  ],
+  "proposed_closures": []
+}

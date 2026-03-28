@@ -1,0 +1,182 @@
+{
+  "schema_version": "1.0",
+  "product_id": "misterio-semanal",
+  "generated_at": "2025-01-30T15:00:00Z",
+  "value_proposition": {
+    "cpm": "Ayudo a adultos hispanohablantes apasionados por el misterio a vivir la emoción de resolver casos detectivescos reales a través de experiencias digitales inmersivas en español sin salir de casa ni pagar el precio de un escape room físico.",
+    "tagline": "Deja de escuchar el caso. Esta vez, resuélvelo tú.",
+    "elevator_pitch": "Declassified Cases es la primera experiencia de misterio detectivesco digital premium en español. Cada caso incluye archivos clasificados, pistas auténticas y una narrativa completa para que tú —solo, en pareja o con amigos— seas el detective. Por $19.99, vives 2 a 4 horas de suspenso puro, sin reservas, sin envíos y sin esperas.",
+    "unique_selling_points": [
+      "Primera experiencia de misterio detectivesco digital nativa en español para el mercado hispanohablante global",
+      "Acceso inmediato tras la compra: sin envíos, sin esperas, sin logística",
+      "Modelo por caso sin suscripción obligatoria: compra solo cuando quieras",
+      "Diseñado para jugar en pareja, en grupo remoto o en solitario",
+      "Narrativa profunda con archivos, pistas y escenas que simulan una investigación real",
+      "Precio equivalente a menos de $10 por hora de entretenimiento activo e inmersivo"
+    ]
+  },
+  "voice_and_tone": {
+    "personality_adjectives": [
+      "Intrigante",
+      "Inteligente",
+      "Cómplice",
+      "Auténtico",
+      "Apasionante"
+    ],
+    "tone_examples": [
+      {
+        "context": "Anuncio en Instagram Reels o TikTok para captar atención",
+        "tone": "Directo, provocador y con gancho emocional inmediato",
+        "example": "¿Otra noche viendo cómo otros resuelven el crimen? Esta vez, el caso es tuyo. Archivos reales. Pistas auténticas. Un asesino sin nombre. ¿Tienes lo que se necesita?"
+      },
+      {
+        "context": "Descripción del producto en la página de compra",
+        "tone": "Inmersivo, detallado y que genera anticipación sin revelar demasiado",
+        "example": "El sobre llega sin remitente. Dentro: fotografías de la escena, declaraciones contradictorias, un mapa con marcas que no cuadran y una nota que alguien no quería que encontraras. El caso lleva semanas sin resolverse. Ahora es tu turno."
+      },
+      {
+        "context": "Email de bienvenida tras la primera compra",
+        "tone": "Cálido, cómplice y que refuerza la decisión de compra",
+        "example": "Bienvenida al equipo, detective. Tus archivos están listos. Tómate un café, cierra las notificaciones y prepárate: lo que estás a punto de descubrir va a mantenerte despierta más de lo que crees. Cualquier pista que necesites, aquí estamos."
+      },
+      {
+        "context": "Respuesta a comentario negativo o duda en redes sociales",
+        "tone": "Empático, transparente y resolutivo sin perder la personalidad de marca",
+        "example": "Entendemos la duda, y es completamente válida. Por eso ofrecemos garantía de satisfacción: si el caso no cumple tus expectativas, te devolvemos el dinero sin preguntas. Queremos que tu primera investigación sea memorable por las razones correctas."
+      },
+      {
+        "context": "Post de comunidad celebrando a alguien que resolvió el caso",
+        "tone": "Celebratorio, con humor inteligente y sentido de pertenencia",
+        "example": "Otro caso cerrado. 🔍 Valentina tardó 3 horas y 47 minutos en atrapar al culpable. Nosotros tardamos semanas en construir el caso para que no fuera tan fácil. Bien jugado, detective. El próximo caso ya está en camino."
+      }
+    ],
+    "language_style": {
+      "formality": "semiformal",
+      "humor": "light",
+      "urgency": "medium",
+      "technical_level": "none"
+    }
+  },
+  "claims": {
+    "allowed": [
+      {
+        "claim": "La primera experiencia de misterio detectivesco digital premium en español",
+        "evidence": "El análisis de mercado confirma que no existe un competidor directo que ofrezca casos de misterio digitales de calidad narrativa en español para el mercado hispanohablante global."
+      },
+      {
+        "claim": "Acceso inmediato tras la compra, sin envíos ni esperas",
+        "evidence": "El producto es 100% digital y se entrega de forma instantánea al completar el pago, a diferencia de competidores físicos como Hunt A Killer o Misterios Encajonados."
+      },
+      {
+        "claim": "2 a 4 horas de entretenimiento activo e inmersivo por caso",
+        "evidence": "Estimación basada en el diseño de la experiencia; debe validarse con datos reales de usuarios en las primeras semanas de operación."
+      },
+      {
+        "claim": "Menos de $10 por hora de entretenimiento, más barato que un escape room físico",
+        "evidence": "Los escape rooms físicos cuestan $25-50 USD por persona para una experiencia de 60 minutos. Declassified Cases ofrece 2-4 horas por $19.99 para múltiples jugadores simultáneos."
+      },
+      {
+        "claim": "Diseñado para jugar en pareja, en grupo remoto o en solitario",
+        "evidence": "El formato digital permite compartir archivos por cualquier plataforma de comunicación, habilitando el juego remoto y asincrónico sin restricciones técnicas."
+      },
+      {
+        "claim": "Narrativa completa con archivos, pistas y escenas que simulan una investigación real",
+        "evidence": "Cada caso incluye documentos, fotografías de escena, declaraciones y material de investigación diseñados para crear una experiencia inmersiva verificable en la descripción del producto."
+      },
+      {
+        "claim": "Sin suscripción obligatoria: compra solo el caso que quieras, cuando quieras",
+        "evidence": "El modelo de negocio es por caso individual a $19.99, sin compromisos de suscripción recurrente."
+      }
+    ],
+    "restricted": [
+      {
+        "claim": "El mejor juego de misterio del mundo",
+        "reason": "Superlativo no verificable y potencialmente engañoso sin evidencia objetiva que lo respalde."
+      },
+      {
+        "claim": "Garantizamos que resolverás el caso",
+        "reason": "El resultado depende del jugador; garantizar la resolución sería falso y eliminaría el desafío que es parte del valor del producto."
+      },
+      {
+        "claim": "Basado en casos reales",
+        "reason": "A menos que los casos estén explícitamente documentados como basados en hechos reales verificables, esta afirmación podría ser engañosa y generar problemas legales."
+      },
+      {
+        "claim": "Miles de clientes satisfechos",
+        "reason": "No hay datos verificados de volumen de clientes en el lanzamiento; usar cifras no respaldadas daña la credibilidad de la marca."
+      },
+      {
+        "claim": "Aprobado por expertos en criminología",
+        "reason": "Sin respaldo de credenciales verificables de expertos reales, esta afirmación es engañosa y puede generar desconfianza."
+      },
+      {
+        "claim": "Completamente gratuito",
+        "reason": "El producto tiene un precio de $19.99 por caso; esta afirmación sería directamente falsa."
+      }
+    ]
+  },
+  "messaging_framework": {
+    "emotional_appeal": "La satisfacción de pasar de espectador pasivo a protagonista activo: sentirte inteligente, capaz y emocionado al resolver lo que nadie más pudo. La conexión genuina con tu pareja o amigos al compartir una experiencia que genera conversación, debate y recuerdos.",
+    "rational_appeal": "Entretenimiento premium en español, accesible de inmediato, sin costos de envío, sin suscripción obligatoria y a una fracción del precio de un escape room físico. 2 a 4 horas de experiencia activa por $19.99, compartible con múltiples personas simultáneamente.",
+    "social_proof_strategy": "Construir credibilidad progresiva: comenzar con testimonios detallados de los primeros compradores (tiempo de juego, nivel de dificultad percibido, experiencia en pareja), mostrar capturas reales de los archivos del caso antes de la compra, publicar el número de casos resueltos por la comunidad, y activar colaboraciones con podcasters de true crime en español que aporten autoridad de terceros. Crear una comunidad activa en Discord o Telegram donde los detectives compartan teorías (sin spoilers) como prueba social orgánica.",
+    "objection_handling": [
+      {
+        "objection": "No sé exactamente qué recibiré. ¿Es solo un PDF aburrido?",
+        "response_strategy": "Mostrar un video de unboxing digital del caso, capturas reales de los archivos, fotografías de escena y documentos de investigación. Describir con precisión qué incluye cada caso: número de archivos, tipos de pistas, duración estimada y mecánica de juego."
+      },
+      {
+        "objection": "No conozco la marca. ¿Es una tienda legítima y el pago es seguro?",
+        "response_strategy": "Mostrar sellos de pago seguro (SSL, pasarelas reconocidas), política de garantía de satisfacción con devolución sin preguntas, entrega digital inmediata confirmada por email, y presencia activa y verificable en redes sociales con comunidad real."
+      },
+      {
+        "objection": "$19.99 es mucho para un producto digital que no puedo tocar",
+        "response_strategy": "Comparar el valor por hora: un escape room físico para dos personas cuesta $50-100 USD por 60 minutos; Declassified Cases ofrece 2-4 horas para múltiples jugadores por $19.99. Enfatizar que el precio incluye una experiencia completa, no un archivo genérico."
+      },
+      {
+        "objection": "¿Y si es demasiado fácil o demasiado difícil?",
+        "response_strategy": "Indicar el nivel de dificultad de cada caso de forma clara antes de la compra, ofrecer un sistema de pistas opcionales dentro del caso para quienes se queden bloqueados, y mostrar reseñas de compradores que mencionen el nivel de desafío experimentado."
+      },
+      {
+        "objection": "No tengo con quién jugarlo o es difícil coordinar con mis amigos",
+        "response_strategy": "Destacar que el formato digital permite jugar de forma asincrónica (cada quien avanza a su ritmo y comparten teorías por WhatsApp o videollamada) y que también es una experiencia completamente válida en solitario para los amantes del true crime."
+      },
+      {
+        "objection": "¿Y si no me gusta? Pierdo el dinero.",
+        "response_strategy": "Comunicar de forma prominente la garantía de satisfacción: si el caso no cumple las expectativas, se devuelve el dinero sin preguntas. Esto elimina el riesgo percibido de la primera compra."
+      }
+    ]
+  },
+  "differentiation": {
+    "vs_competitors": [
+      {
+        "competitor": "Hunt A Killer",
+        "our_advantage": "Disponible en español para el mercado hispanohablante global, acceso digital inmediato sin envíos ni esperas, precio significativamente menor ($19.99 vs. $30-45 USD) y sin suscripción obligatoria."
+      },
+      {
+        "competitor": "Finders Seekers Mysteries",
+        "our_advantage": "Formato 100% digital sin dependencia de logística postal, disponible en español, accesible para toda Latinoamérica y España sin costos adicionales de envío internacional."
+      },
+      {
+        "competitor": "Misterios Encajonados",
+        "our_advantage": "Alcance global hispanohablante (no solo España), formato digital sin costos de envío para Latinoamérica, acceso inmediato y precio competitivo sin barreras logísticas."
+      },
+      {
+        "competitor": "Sherlock Holmes Consulting Detective",
+        "our_advantage": "Contenido nuevo y fresco de forma regular (no limitado por caja física), formato digital accesible desde cualquier país sin costos de importación, experiencia diseñada para el jugador contemporáneo hispanohablante."
+      },
+      {
+        "competitor": "Unsolved Case Files",
+        "our_advantage": "Nativo en español con narrativas culturalmente relevantes para el mercado hispanohablante, formato digital sin restricciones de envío, acceso inmediato tras la compra."
+      },
+      {
+        "competitor": "Clue / Cluedo",
+        "our_advantage": "Narrativa profunda e inmersiva con casos únicos y originales, experiencia de investigación real con archivos y pistas auténticas, contenido fresco y renovado regularmente frente al gameplay repetitivo."
+      },
+      {
+        "competitor": "Escape rooms físicos",
+        "our_advantage": "Sin necesidad de reserva, desplazamiento ni coordinación de agendas. Experiencia de 2-4 horas por $19.99 para múltiples jugadores vs. $25-50 USD por persona por 60 minutos. Disponible cualquier noche de forma espontánea."
+      }
+    ],
+    "positioning_statement": "Para adultos hispanohablantes de 25 a 45 años que consumen contenido de misterio y true crime pero quieren pasar de espectadores a protagonistas, Declassified Cases es la única experiencia de investigación detectivesca digital premium en español que ofrece casos inmersivos, acceso inmediato y entretenimiento activo para compartir, sin los costos ni la logística de un escape room físico. A diferencia de los competidores angloparlantes o los formatos físicos con envío, Declassified Cases es nativo en español, accesible globalmente y diseñado para la forma en que los hispanohablantes de hoy quieren entretenerse."
+  }
+}

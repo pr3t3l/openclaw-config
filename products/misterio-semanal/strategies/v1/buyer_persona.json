@@ -1,0 +1,168 @@
+{
+  "schema_version": "1.0",
+  "product_id": "misterio-semanal",
+  "generated_at": "2025-01-30T14:30:00Z",
+  "avatar": {
+    "name": "Valentina Ríos",
+    "age": 34,
+    "occupation": "Coordinadora de proyectos en empresa de tecnología",
+    "income_range": "$1,800 - $3,500 USD/mes",
+    "family": "Casada, sin hijos, vive con su pareja en apartamento propio",
+    "location_type": "urban",
+    "daily_routine_summary": "Valentina trabaja desde casa tres días a la semana y en oficina dos. Sus noches entre semana las pasa viendo series o leyendo, y los fines de semana busca planes con su pareja o amigos cercanos que no impliquen salir a lugares concurridos. Siente que el entretenimiento pasivo ya no le satisface del todo y busca experiencias que la hagan pensar y desconectarse activamente del trabajo.",
+    "digital_habits": {
+      "primary_social": [
+        "Instagram",
+        "TikTok",
+        "YouTube",
+        "Spotify"
+      ],
+      "content_consumption": "Consume podcasts de true crime y misterio durante el trabajo remoto, sigue cuentas de recomendaciones de series y libros en Instagram, ve videos de 'unsolved mysteries' y análisis de casos reales en YouTube. Escucha podcasts como 'Entiende Tu Mente' y true crime en español.",
+      "device_preference": "mobile",
+      "peak_online_hours": [
+        "07:00-08:30",
+        "13:00-14:00",
+        "21:00-23:30"
+      ]
+    }
+  },
+  "pcr": {
+    "publico": "Valentina es una mujer urbana de 34 años con educación universitaria, empleo estable en el sector tecnológico y una vida social activa pero selectiva. Es consumidora habitual de contenido de misterio y true crime en formato pasivo (podcasts, series, documentales), tiene poder adquisitivo para entretenimiento premium y valora las experiencias que puede compartir con su pareja o grupo de amigos sin necesidad de salir de casa. Está acostumbrada a comprar productos digitales y no le genera fricción pagar online por contenido de calidad.",
+    "contexto": "Valentina es más receptiva al producto los jueves y viernes por la noche, cuando empieza a planear el fin de semana y busca planes alternativos a salir a bares o ver otra serie más. También es receptiva los domingos por la tarde, cuando el aburrimiento post-fin de semana la lleva a buscar algo estimulante. Encuentra el producto mientras navega por Instagram o YouTube buscando recomendaciones de entretenimiento, o cuando escucha a un podcaster de true crime mencionarlo.",
+    "reto": "Valentina quiere entretenimiento que la haga sentir inteligente y activa, no solo espectadora. Está cansada de consumir contenido de misterio de forma pasiva y quiere vivir la experiencia de 'resolver el caso' ella misma. Además, busca planes originales para hacer con su pareja o amigos que rompan la rutina de 'poner Netflix y ya', sin el costo y la logística de salir a un escape room físico."
+  },
+  "pain_points": [
+    {
+      "pain": "Termina podcasts y documentales de true crime sintiéndose frustrada porque solo puede observar, nunca participar en la resolución del caso",
+      "intensity": "high",
+      "frequency": "Varias veces por semana al consumir contenido de misterio"
+    },
+    {
+      "pain": "Los planes de fin de semana con su pareja siempre terminan siendo lo mismo: Netflix, delivery y el sofá, lo que genera sensación de rutina y falta de conexión",
+      "intensity": "high",
+      "frequency": "Cada fin de semana"
+    },
+    {
+      "pain": "Los escape rooms físicos son caros ($25-50 USD por persona), requieren reserva anticipada, desplazamiento y duran solo una hora, lo que los hace poco prácticos para una noche espontánea",
+      "intensity": "medium",
+      "frequency": "Cada vez que considera hacer un escape room (1-2 veces al mes)"
+    },
+    {
+      "pain": "No encuentra entretenimiento interactivo de calidad en español que esté a la altura de sus gustos; todo lo bueno está en inglés y pierde matices narrativos en la traducción",
+      "intensity": "high",
+      "frequency": "Constantemente al buscar nuevas experiencias de entretenimiento"
+    },
+    {
+      "pain": "Siente que su tiempo libre se desperdicia en scroll infinito de redes sociales porque no encuentra una alternativa lo suficientemente atractiva para desconectarse",
+      "intensity": "medium",
+      "frequency": "Casi todas las noches entre semana"
+    },
+    {
+      "pain": "Organizar planes grupales con amigos es cada vez más difícil por agendas distintas; necesita opciones que funcionen de forma remota y asincrónica",
+      "intensity": "medium",
+      "frequency": "Cada vez que intenta coordinar un plan grupal (2-3 veces al mes)"
+    },
+    {
+      "pain": "Siente que no tiene suficientes conversaciones estimulantes con su pareja; los temas del día a día (trabajo, tareas del hogar) dominan y echa de menos compartir experiencias que generen debate y emoción",
+      "intensity": "high",
+      "frequency": "Semanalmente"
+    }
+  ],
+  "purchase_triggers": [
+    {
+      "trigger": "Termina un episodio de podcast de true crime especialmente bueno y queda con ganas de más; busca en Google o Instagram algo relacionado",
+      "channel": "Instagram Reels, YouTube pre-roll, búsqueda orgánica Google",
+      "emotional_state": "Estimulada, curiosa, con ganas de seguir investigando"
+    },
+    {
+      "trigger": "Es viernes por la noche y su pareja le pregunta '¿qué hacemos hoy?' y ninguno quiere salir ni sabe qué ver",
+      "channel": "Instagram Stories, TikTok For You Page, recomendación directa de amigo",
+      "emotional_state": "Levemente aburrida, abierta a propuestas, con disposición a gastar en algo diferente"
+    },
+    {
+      "trigger": "Ve un Reel o TikTok de alguien mostrando cómo resolvió un caso con su pareja, con los archivos y pistas desplegados en la mesa",
+      "channel": "TikTok, Instagram Reels",
+      "emotional_state": "Envidiosa positivamente, inspirada, con FOMO de la experiencia"
+    },
+    {
+      "trigger": "Un podcaster o influencer de true crime que sigue menciona el producto como patrocinador o recomendación personal",
+      "channel": "Podcast en Spotify, YouTube, Instagram Stories",
+      "emotional_state": "Confiada (viene de fuente de autoridad), receptiva, con intención de compra inmediata"
+    },
+    {
+      "trigger": "Está organizando un plan con amigos remotos y busca algo que puedan hacer juntos por videollamada que no sea un juego de mesa genérico",
+      "channel": "Búsqueda en Google, grupos de WhatsApp con recomendaciones, Reddit en español",
+      "emotional_state": "Motivada, con presión de tiempo para encontrar algo concreto, dispuesta a pagar"
+    }
+  ],
+  "purchase_barriers": [
+    {
+      "barrier": "No sabe exactamente qué recibirá al comprar: ¿es un PDF aburrido? ¿Cuánto dura la experiencia? ¿Vale realmente $19.99?",
+      "severity": "high",
+      "counter_strategy": "Mostrar capturas reales de los archivos del caso, un video de unboxing digital, testimonios con tiempo de juego estimado (2-4 horas) y descripción detallada de qué incluye cada caso antes de la compra"
+    },
+    {
+      "barrier": "Miedo a que sea demasiado fácil o demasiado difícil y que la experiencia decepcione a ella o a su pareja",
+      "severity": "medium",
+      "counter_strategy": "Indicar nivel de dificultad por caso, ofrecer sistema de pistas opcionales dentro del caso, y mostrar reseñas de compradores anteriores que mencionen el nivel de desafío"
+    },
+    {
+      "barrier": "Desconfianza en una marca desconocida: ¿es una tienda legítima? ¿El pago es seguro? ¿Recibirá el producto inmediatamente?",
+      "severity": "high",
+      "counter_strategy": "Mostrar sellos de pago seguro, política de garantía de satisfacción, entrega digital inmediata tras el pago, y prueba social (número de casos vendidos, reseñas verificadas, presencia activa en redes)"
+    },
+    {
+      "barrier": "Siente que $19.99 USD es mucho para un producto digital que no puede 'tocar', especialmente si vive en un país latinoamericano con tipo de cambio desfavorable",
+      "severity": "medium",
+      "counter_strategy": "Enfatizar el valor por hora de entretenimiento (2-4 horas por $19.99 vs. $15 por 2 horas de streaming), ofrecer un caso de muestra gratuito o demo, y comparar el precio con el costo de un escape room físico para dos personas"
+    },
+    {
+      "barrier": "Procrastinación: le parece interesante pero lo deja para después y se olvida",
+      "severity": "medium",
+      "counter_strategy": "Crear urgencia con casos de edición limitada o temáticos por temporada, retargeting en redes sociales, y email de carrito abandonado con recordatorio de la experiencia que se está perdiendo"
+    }
+  ],
+  "psychographics": {
+    "values": [
+      "Experiencias sobre posesiones materiales",
+      "Tiempo de calidad con pareja y amigos cercanos",
+      "Estimulación intelectual y aprendizaje continuo",
+      "Autenticidad y originalidad frente a lo masivo",
+      "Comodidad y conveniencia sin sacrificar calidad"
+    ],
+    "interests": [
+      "True crime y misterio (podcasts, documentales, series)",
+      "Juegos de mesa y experiencias interactivas",
+      "Series de thriller y suspenso (Dark, Mindhunter, La Casa de Papel)",
+      "Lectura de novela negra y policial",
+      "Cocina en casa y planes de fin de semana con amigos",
+      "Tecnología y productividad personal"
+    ],
+    "media_consumption": [
+      "Podcasts de true crime en español (Spotify, 1-2 horas diarias)",
+      "YouTube: análisis de casos reales, reseñas de entretenimiento, vlogs de lifestyle",
+      "Netflix y HBO: series de thriller, misterio y drama",
+      "Instagram: cuentas de recomendaciones culturales, lifestyle urbano, humor inteligente",
+      "TikTok: contenido de entretenimiento rápido, recomendaciones virales, true crime en formato corto",
+      "Newsletters y blogs de recomendaciones culturales en español"
+    ],
+    "social_behavior": "Valentina es una consumidora activa pero selectiva en redes sociales. Comparte experiencias que considera originales o que la hacen quedar bien culturalmente (libros, series poco conocidas, planes creativos). Si vive una experiencia positiva con Declassified Cases, es muy probable que la comparta en sus Stories de Instagram o la recomiende en grupos de WhatsApp. No es influencer pero tiene un círculo social de 200-400 personas con gustos similares y alta credibilidad entre ellos.",
+    "brand_affinity_examples": [
+      "Spotify (por la personalización y calidad de contenido)",
+      "Notion (herramientas inteligentes y bien diseñadas)",
+      "National Geographic (contenido que educa y entretiene)",
+      "Zara / Mango (calidad accesible con estética cuidada)",
+      "Airbnb (experiencias únicas sobre lo genérico)",
+      "Audible (disposición a pagar por contenido de calidad)"
+    ]
+  },
+  "messaging_hooks": [
+    "Deja de solo escuchar el caso. Esta vez, resuélvelo tú.",
+    "El escape room que puedes hacer esta noche, desde tu sofá, en español.",
+    "¿Otra noche viendo Netflix? O podrías resolver un caso de asesinato con tu pareja.",
+    "Todo el suspenso de tu podcast favorito de true crime, pero ahora tú eres la detective.",
+    "Archivos reales, pistas auténticas, un caso sin resolver. ¿Tienes lo que se necesita?",
+    "El plan de fin de semana que ninguno de tus amigos ha hecho todavía.",
+    "Menos scroll. Más investigación. Tu primer caso te espera."
+  ]
+}

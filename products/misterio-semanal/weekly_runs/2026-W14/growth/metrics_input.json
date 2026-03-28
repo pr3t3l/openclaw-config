@@ -1,0 +1,29 @@
+{
+  "product_id": "misterio-semanal",
+  "week": "2026-W14",
+  "source": "manual",
+  "submitted_at": "2026-03-27T19:00:00Z",
+  "meta_ads": {
+    "spend": 33.31,
+    "impressions": 11100,
+    "clicks": 233,
+    "conversions": 3
+  },
+  "email": {
+    "sent": 450,
+    "opened": 99,
+    "clicked": 14
+  },
+  "organic": {
+    "views": 3200,
+    "likes": 180,
+    "comments": 23,
+    "shares": 8
+  },
+  "revenue": 59.97,
+  "content_used": {
+    "hooks_used": ["curiosidad", "curiosidad", "pregunta retórica"],
+    "formats_used": ["texto_animado", "texto_animado", "b-roll"],
+    "cta_position": ["final", "final", "medio"]
+  }
+}

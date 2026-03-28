@@ -1,0 +1,312 @@
+{
+  "schema_version": "1.0",
+  "product_id": "misterio-semanal",
+  "generated_at": "2025-01-30T12:00:00Z",
+  "market_size": {
+    "tam_usd": 4200000000,
+    "sam_usd": 420000000,
+    "som_usd": 2100000,
+    "cagr_pct": 14.5,
+    "year_reference": 2025,
+    "methodology": "TAM basado en el mercado global de entretenimiento interactivo digital y escape rooms (estimado en $4.2B en 2025, combinando escape rooms físicos ~$2.8B y experiencias digitales de misterio/puzzles ~$1.4B). SAM reducido al 10% considerando hispanohablantes globales con acceso digital y poder adquisitivo para entretenimiento premium (~500M hispanohablantes, penetración digital 40%, disposición a pagar por entretenimiento digital ~10%). SOM conservador del 0.5% del SAM para un producto nuevo con presupuesto de marketing limitado ($50/mes), equivalente a ~1,050 suscriptores activos a $19.99/caso."
+  },
+  "trends": [
+    {
+      "trend": "Auge de los escape rooms digitales y experiencias de entretenimiento en casa post-pandemia",
+      "relevance": "high",
+      "source": "Informes de mercado de Grand View Research y Allied Market Research sobre el mercado global de escape rooms (2023-2024)",
+      "implication": "El público hispanohablante ya está familiarizado con el formato de escape room y busca alternativas digitales accesibles sin necesidad de desplazamiento físico, lo que reduce la barrera de adopción para Declassified Cases."
+    },
+    {
+      "trend": "Crecimiento del mercado de juegos de mesa y entretenimiento analógico-digital híbrido entre adultos 25-45",
+      "relevance": "high",
+      "source": "Datos de ventas de BoardGameGeek, Kickstarter y reportes de la industria de juegos de mesa 2023-2024",
+      "implication": "El segmento objetivo ya invierte en entretenimiento inteligente y experiencias grupales. Los juegos de misterio tipo 'mystery box' y 'murder mystery' tienen alta demanda, validando el modelo de negocio por caso."
+    },
+    {
+      "trend": "Expansión del consumo de contenido en español en plataformas digitales globales",
+      "relevance": "high",
+      "source": "Reportes de Netflix, Spotify y Meta sobre crecimiento de audiencias hispanohablantes 2023-2024",
+      "implication": "El mercado hispanohablante global está subatendido en productos de entretenimiento interactivo de calidad en español, representando una ventaja competitiva significativa frente a competidores principalmente angloparlantes."
+    },
+    {
+      "trend": "Popularización del true crime y narrativas de misterio en podcasts y streaming",
+      "relevance": "high",
+      "source": "Rankings de Spotify y Apple Podcasts en mercados hispanohablantes; éxito de series como 'El caso Asunta' y podcasts de true crime en español",
+      "implication": "Existe una audiencia masiva ya enganchada con narrativas de misterio e investigación criminal. Declassified Cases puede capitalizar este interés convirtiendo consumidores pasivos en participantes activos."
+    },
+    {
+      "trend": "Demanda creciente de experiencias grupales remotas y actividades para parejas/amigos",
+      "relevance": "medium",
+      "source": "Tendencias de búsqueda en Google Trends para 'juegos en pareja', 'actividades grupales en casa', 'escape room online' en español (2022-2024)",
+      "implication": "El posicionamiento como experiencia grupal o en pareja amplía el caso de uso más allá del entretenimiento individual, potencialmente aumentando el valor percibido y la disposición a pagar."
+    }
+  ],
+  "competitive_landscape": {
+    "competitors": [
+      {
+        "name": "Hunt A Killer",
+        "url": "https://www.huntakiller.com",
+        "category": "direct",
+        "price_range": "$30-$45 USD por caja física mensual",
+        "strengths": [
+          "Marca consolidada con gran comunidad activa",
+          "Narrativas profundas de múltiples episodios",
+          "Alta producción física con objetos tangibles",
+          "Fuerte presencia en redes sociales y YouTube"
+        ],
+        "weaknesses": [
+          "Solo disponible en inglés",
+          "Precio elevado con envío físico",
+          "No accesible para mercado hispanohablante",
+          "Tiempo de espera por envío postal"
+        ],
+        "content_strategy": "Marketing de comunidad en Reddit y Facebook, unboxing en YouTube, colaboraciones con influencers de true crime y misterio en inglés.",
+        "estimated_audience_size": "200,000+ suscriptores activos"
+      },
+      {
+        "name": "Finders Seekers Mysteries",
+        "url": "https://www.findersseekersbox.com",
+        "category": "direct",
+        "price_range": "$30-$40 USD por caja física mensual",
+        "strengths": [
+          "Temática de viajes y culturas del mundo",
+          "Experiencia física premium",
+          "Comunidad activa de resolución colaborativa"
+        ],
+        "weaknesses": [
+          "Solo en inglés",
+          "Dependencia de logística de envío físico",
+          "Sin versión digital disponible",
+          "No orientado al mercado latino"
+        ],
+        "content_strategy": "Contenido en Instagram y Pinterest enfocado en estética de viajes y misterio, email marketing con comunidad de resolución.",
+        "estimated_audience_size": "50,000-100,000 suscriptores"
+      },
+      {
+        "name": "Mysterium (Libellud)",
+        "url": "https://www.libellud.com/mysterium",
+        "category": "indirect",
+        "price_range": "$40-$60 USD pago único (juego de mesa)",
+        "strengths": [
+          "Disponible en español",
+          "Experiencia grupal presencial consolidada",
+          "Alta valoración en comunidades de juegos de mesa",
+          "Distribución global en tiendas físicas"
+        ],
+        "weaknesses": [
+          "Requiere presencia física de todos los jugadores",
+          "Pago único sin recurrencia de contenido",
+          "Curva de aprendizaje inicial",
+          "No tiene componente narrativo de misterio detectivesco"
+        ],
+        "content_strategy": "Distribución en tiendas especializadas, presencia en BoardGameGeek, ferias de juegos de mesa como Essen Spiel.",
+        "estimated_audience_size": "500,000+ copias vendidas globalmente"
+      },
+      {
+        "name": "Sherlock Holmes Consulting Detective",
+        "url": "https://www.spacecowboys.fr/sherlock-holmes-consulting-detective",
+        "category": "indirect",
+        "price_range": "$35-$50 USD pago único por caja",
+        "strengths": [
+          "Marca icónica de Sherlock Holmes",
+          "Disponible en español",
+          "Formato de investigación narrativa muy similar al producto",
+          "Alta reputación en comunidades de juegos"
+        ],
+        "weaknesses": [
+          "Formato físico, no digital",
+          "Contenido limitado por caja (no hay nuevos casos frecuentes)",
+          "Precio elevado para mercados latinoamericanos con costos de importación",
+          "Sin componente de comunidad online activa"
+        ],
+        "content_strategy": "Boca a boca en comunidades de juegos de mesa, reseñas en BGG y YouTube de juegos de mesa.",
+        "estimated_audience_size": "300,000+ copias vendidas"
+      },
+      {
+        "name": "Escape This Podcast",
+        "url": "https://www.escapethispodcast.com",
+        "category": "indirect",
+        "price_range": "Gratuito (podcast) / $5-$10 contenido premium",
+        "strengths": [
+          "Formato accesible y gratuito",
+          "Gran audiencia establecida",
+          "Experiencia grupal remota facilitada"
+        ],
+        "weaknesses": [
+          "Solo en inglés",
+          "Formato audio limita la experiencia visual e inmersiva",
+          "Sin narrativa detectivesca profunda",
+          "Monetización limitada"
+        ],
+        "content_strategy": "Distribución en plataformas de podcast, comunidad en Discord, Patreon para contenido exclusivo.",
+        "estimated_audience_size": "100,000+ oyentes mensuales"
+      },
+      {
+        "name": "Misterios Encajonados (España)",
+        "url": "https://misteriosencajonados.com",
+        "category": "direct",
+        "price_range": "€25-€35 EUR por caja física",
+        "strengths": [
+          "Competidor directo en español",
+          "Mercado europeo hispanohablante establecido",
+          "Experiencia física premium en español"
+        ],
+        "weaknesses": [
+          "Enfocado principalmente en España, no en Latinoamérica",
+          "Costos de envío elevados para América Latina",
+          "Sin versión digital",
+          "Presupuesto de marketing limitado"
+        ],
+        "content_strategy": "Instagram y Facebook en español, colaboraciones con influencers de lifestyle español, email marketing.",
+        "estimated_audience_size": "5,000-15,000 suscriptores"
+      },
+      {
+        "name": "Clue/Cluedo (Hasbro)",
+        "url": "https://www.hasbro.com/cluedo",
+        "category": "substitute",
+        "price_range": "$15-$30 USD pago único",
+        "strengths": [
+          "Marca global reconocida",
+          "Disponible en español",
+          "Precio accesible",
+          "Versión digital disponible en múltiples plataformas"
+        ],
+        "weaknesses": [
+          "Gameplay repetitivo sin narrativa profunda",
+          "No hay nuevos casos o contenido fresco",
+          "Experiencia menos inmersiva que escape rooms",
+          "Orientado a audiencia más joven"
+        ],
+        "content_strategy": "Marketing masivo de marca, presencia en grandes retailers, licencias de películas y series.",
+        "estimated_audience_size": "Millones de jugadores globales"
+      },
+      {
+        "name": "Unsolved Case Files",
+        "url": "https://www.unsolvedcasefiles.com",
+        "category": "direct",
+        "price_range": "$20-$30 USD por caso",
+        "strengths": [
+          "Formato de caso único similar al producto",
+          "Basado en casos reales (true crime)",
+          "Precio por caso sin suscripción obligatoria",
+          "Buena presencia en Amazon"
+        ],
+        "weaknesses": [
+          "Solo en inglés",
+          "Formato físico con limitaciones de envío",
+          "Sin comunidad activa de resolución",
+          "No disponible para mercado hispanohablante"
+        ],
+        "content_strategy": "Ventas en Amazon y tienda propia, marketing en comunidades de true crime en Reddit, TikTok con unboxing.",
+        "estimated_audience_size": "30,000-60,000 clientes"
+      }
+    ],
+    "market_gaps": [
+      "Ausencia casi total de experiencias de misterio detectivesco de calidad en formato digital en español para el mercado hispanohablante global",
+      "Ningún competidor directo ofrece casos de misterio digitales con precio accesible ($19.99) sin costos de envío para Latinoamérica",
+      "Falta de productos orientados a experiencias grupales remotas en español (parejas, amigos, familias)",
+      "Escasa oferta de contenido de misterio interactivo que capitalice el auge del true crime en español",
+      "Ningún competidor combina narrativa profunda + formato digital + precio por caso + idioma español en un solo producto"
+    ],
+    "differentiation_opportunities": [
+      "Ser el primer producto premium de misterio detectivesco digital nativo en español para el mercado global hispanohablante",
+      "Posicionamiento como alternativa digital sin costos de envío, accesible inmediatamente tras la compra",
+      "Crear comunidad activa de resolución en español (Discord, Telegram, Facebook Groups) como ventaja competitiva",
+      "Ofrecer casos temáticos con ambientaciones latinoamericanas y españolas para mayor identificación cultural",
+      "Modelo por caso (no suscripción obligatoria) reduce la fricción de compra inicial",
+      "Colaboraciones con podcasters y creadores de contenido de true crime en español para distribución orgánica"
+    ]
+  },
+  "opportunities": [
+    {
+      "opportunity": "Mercado hispanohablante digital sin competidor directo establecido: primero en posicionarse captura ventaja de marca duradera",
+      "effort": "medium",
+      "impact": "high"
+    },
+    {
+      "opportunity": "Colaboraciones con influencers y podcasters de true crime en español (costo bajo, alcance alto en audiencia objetivo)",
+      "effort": "low",
+      "impact": "high"
+    },
+    {
+      "opportunity": "Crear comunidad gratuita de resolución (Discord/Telegram) que genere contenido orgánico y retención de clientes",
+      "effort": "low",
+      "impact": "medium"
+    },
+    {
+      "opportunity": "Posicionamiento SEO en términos de búsqueda con baja competencia: 'escape room digital español', 'juego de misterio online español', 'caso detectivesco digital'",
+      "effort": "medium",
+      "impact": "high"
+    },
+    {
+      "opportunity": "Paquetes grupales o licencias para empresas (team building remoto en español) como canal B2B adicional",
+      "effort": "medium",
+      "impact": "medium"
+    },
+    {
+      "opportunity": "Casos temáticos basados en misterios latinoamericanos o españoles para mayor resonancia cultural y cobertura mediática",
+      "effort": "medium",
+      "impact": "medium"
+    },
+    {
+      "opportunity": "Programa de afiliados con bloggers y creadores de contenido de entretenimiento en español para amplificar alcance con presupuesto limitado",
+      "effort": "low",
+      "impact": "medium"
+    }
+  ],
+  "threats": [
+    {
+      "threat": "Entrada de competidores angloparlantes consolidados (Hunt A Killer, Unsolved Case Files) al mercado en español mediante traducción de su catálogo",
+      "severity": "high",
+      "mitigation": "Construir marca y comunidad sólida en español antes de que lleguen competidores con más recursos. Enfatizar autenticidad cultural hispanohablante vs. traducción."
+    },
+    {
+      "threat": "Presupuesto de marketing muy limitado ($50/mes) que dificulta competir en canales pagados y escalar adquisición de clientes",
+      "severity": "high",
+      "mitigation": "Priorizar canales orgánicos: SEO, comunidades, colaboraciones con influencers a cambio de acceso gratuito a casos, programa de referidos."
+    },
+    {
+      "threat": "Piratería y distribución no autorizada de los archivos digitales de los casos",
+      "severity": "medium",
+      "mitigation": "Implementar protección de contenido digital, crear valor en la experiencia de comunidad que no se puede piratear, considerar elementos de personalización por comprador."
+    },
+    {
+      "threat": "Baja disposición a pagar $19.99 por caso en mercados latinoamericanos con menor poder adquisitivo (México, Colombia, Argentina, Perú)",
+      "severity": "medium",
+      "mitigation": "Ofrecer precios diferenciados por región, packs de múltiples casos con descuento, o versión de prueba gratuita para reducir fricción inicial."
+    },
+    {
+      "threat": "Saturación de opciones de entretenimiento digital (streaming, videojuegos, redes sociales) que compiten por el tiempo y presupuesto del público objetivo",
+      "severity": "medium",
+      "mitigation": "Posicionarse como experiencia única e interactiva que no puede reemplazarse con consumo pasivo. Enfatizar el componente social y la satisfacción de resolver el caso."
+    },
+    {
+      "threat": "Dificultad para mantener cadencia semanal de nuevos casos con calidad narrativa consistente a largo plazo",
+      "severity": "low",
+      "mitigation": "Construir backlog de casos antes del lanzamiento, establecer proceso editorial claro, considerar colaboraciones con escritores de misterio en español."
+    }
+  ],
+  "metadata": {
+    "data_sources": [
+      "Grand View Research: Global Escape Room Market Report 2023-2024 (estimaciones de mercado)",
+      "Allied Market Research: Interactive Entertainment Market Report 2023",
+      "BoardGameGeek: Rankings y datos de ventas de juegos de misterio 2024",
+      "Kickstarter: Datos de proyectos exitosos de mystery boxes y juegos de misterio 2022-2024",
+      "Spotify Podcast Charts: Rankings de podcasts de true crime en español 2024",
+      "Google Trends: Análisis de términos de búsqueda en español relacionados con escape rooms y misterio (2022-2024)",
+      "Sitios web oficiales de competidores identificados para datos de precio y producto",
+      "Statista: Datos de penetración digital en mercados hispanohablantes 2023-2024",
+      "Estimaciones propias basadas en análisis de mercado y datos públicos disponibles"
+    ],
+    "confidence_level": "medium",
+    "web_search_used": false,
+    "limitations": [
+      "No se realizó búsqueda web en tiempo real; todos los datos de mercado son estimaciones basadas en conocimiento hasta la fecha de corte del modelo",
+      "Los tamaños de audiencia de competidores son estimaciones aproximadas basadas en datos públicos disponibles, no cifras oficiales verificadas",
+      "El TAM/SAM/SOM son estimaciones metodológicas; el mercado específico de misterio digital en español carece de estudios de mercado publicados específicos",
+      "Las tendencias de precios y estrategias de competidores pueden haber cambiado desde la última actualización de datos del modelo",
+      "El mercado hispanohablante es heterogéneo; el poder adquisitivo y comportamiento de compra varía significativamente entre España, México, Argentina, Colombia y otros países"
+    ]
+  }
+}

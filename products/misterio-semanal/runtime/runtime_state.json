@@ -1,0 +1,71 @@
+{
+  "product_id": "misterio-semanal",
+  "pending_gates": {},
+  "resolved_gates": {
+    "S1": {
+      "gate_name": "S1",
+      "gate_type": "strategy",
+      "product_id": "misterio-semanal",
+      "run_id": null,
+      "status": "approved",
+      "summary": "✅ Strategy v1 — Gate S1\nProducto: misterio-semanal\n\nBuyer Persona:\n  Valentina Ríos, 34, Coordinadora de proyectos en empresa de tecnología\n  Pain points:\n    - Termina podcasts y documentales de true crime sintiéndose frustrada porque solo puede observar, nunca participar en la resolución del caso\n    - Los planes de fin de semana con su pareja siempre terminan siendo lo mismo: Netflix, delivery y el sofá, lo que genera sensación de rutina y falta de conexión\n    - Los escape rooms físicos son caros ($25-50 USD por persona), requieren reserva anticipada, desplazamiento y duran solo una hora, lo que los hace poco prácticos para una noche espontánea\n\nCompetidores:\n\nDecisión:\n1. /strategy approve misterio-semanal\n2. /strategy reject misterio-semanal",
+      "artifact_paths": [
+        "/home/robotin/.openclaw/products/misterio-semanal/strategies/v1/market_analysis.json",
+        "/home/robotin/.openclaw/products/misterio-semanal/strategies/v1/buyer_persona.json"
+      ],
+      "created_at": "2026-03-27T23:02:55.564388",
+      "decided_at": "2026-03-27T23:07:14.843485",
+      "decision": "approved",
+      "decided_by": "Alfredo",
+      "adjustments": null
+    },
+    "S2": {
+      "gate_name": "S2",
+      "gate_type": "strategy",
+      "product_id": "misterio-semanal",
+      "run_id": null,
+      "status": "approved",
+      "summary": "✅ Strategy completa — Gate S2\nProducto: misterio-semanal\n\nValue Proposition: {\"cpm\": \"Ayudo a adultos hispanohablantes apasionados por el misterio a vivir la emoci\\u00f3n de resolver casos detectivescos reales a trav\\u00e9s de experiencias digitales inmersivas en espa\\u00f1ol \n\nCanales:\n  - Instagram: primary\n  - TikTok: primary\n  - YouTube: secondary\n  - Spotify (Podcast Ads): secondary\n  - Email Marketing: primary\n\nSEO: 16 keyword groups\n\nDecisión:\n1. /strategy approve misterio-semanal\n2. /strategy reject misterio-semanal",
+      "artifact_paths": [
+        "/home/robotin/.openclaw/products/misterio-semanal/strategies/v1/brand_strategy.json",
+        "/home/robotin/.openclaw/products/misterio-semanal/strategies/v1/seo_architecture.json",
+        "/home/robotin/.openclaw/products/misterio-semanal/strategies/v1/channel_strategy.json"
+      ],
+      "created_at": "2026-03-27T23:06:52.497357",
+      "decided_at": "2026-03-27T23:07:14.843958",
+      "decision": "approved",
+      "decided_by": "Alfredo",
+      "adjustments": null
+    },
+    "M1": {
+      "gate_name": "M1",
+      "gate_type": "marketing",
+      "product_id": "misterio-semanal",
+      "run_id": "2026-W14",
+      "status": "approved",
+      "summary": "🎬 Marketing 2026-W14 — Gate M1: Content Review\nProducto: misterio-semanal\n\n✅ Video Scripts: 3 scripts x 2 variants\n✅ Ad Copy: 3 variants\n✅ Email Sequence: 3 emails\n\nDecisión:\n/marketing approve 2026-W14\n/marketing reject 2026-W14",
+      "artifact_paths": [],
+      "created_at": "2026-03-27T23:14:59.360054",
+      "decided_at": "2026-03-27T23:16:48.423676",
+      "decision": "approved",
+      "decided_by": "Alfredo",
+      "adjustments": null
+    },
+    "M2": {
+      "gate_name": "M2",
+      "gate_type": "marketing",
+      "product_id": "misterio-semanal",
+      "run_id": "2026-W14",
+      "status": "approved",
+      "summary": "📅 Marketing 2026-W14 — Gate M2: Calendar + Quality\nProducto: misterio-semanal\n\n✅ Calendar: 11 posts scheduled\n✅ Quality: fail\n  ⚠ reels_scripts: 1 critical issues\n  ⚠ meta_ads: 1 critical issues\n  ⚠ email_sequence: 1 critical issues\n\nDecisión:\n/marketing approve 2026-W14\n/marketing reject 2026-W14",
+      "artifact_paths": [],
+      "created_at": "2026-03-27T23:15:59.166899",
+      "decided_at": "2026-03-27T23:16:48.424213",
+      "decision": "approved",
+      "decided_by": "Alfredo",
+      "adjustments": null
+    }
+  },
+  "last_gate": "M2",
+  "last_updated": "2026-03-27T23:16:48.424222"
+}

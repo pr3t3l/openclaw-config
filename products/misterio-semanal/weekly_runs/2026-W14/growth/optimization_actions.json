@@ -1,0 +1,35 @@
+{
+  "product_id": "misterio-semanal",
+  "for_run": "2026-W15",
+  "generated_from_diagnosis": "2026-W14",
+  "actions": [
+    {
+      "action_id": "OPT-W14-001",
+      "type": "landing",
+      "action": "Añadir en la landing page, por encima del fold, una sección visual que muestre capturas reales de los archivos del caso (documentos, fotografías de escena, pistas) junto con el texto: '14 archivos clasificados · 6 pistas auténticas · 2 a 4 horas de investigación · Acceso inmediato tras la compra'. Incluir también un bloque de garantía de satisfacción con devolución sin preguntas, visible antes del botón de compra.",
+      "reason": "Solo 3 de 233 clics convirtieron (1.29%), lo que indica fricción severa en la decisión de compra. El buyer persona identifica como barrera de alta severidad no saber qué recibirá al comprar y desconfiar de una marca desconocida. Mostrar el contenido real del caso y eliminar el riesgo percibido son las palancas de mayor impacto disponibles sin cambiar el canal ni el presupuesto.",
+      "priority": "high",
+      "expected_impact": "Incremento de tasa de conversión de 1.29% a 1.8%-2.2%, lo que con el mismo volumen de clics pasaría de 3 a 4-5 conversiones semanales y elevaría el ROAS por encima de 2.0",
+      "experiment_id": "EXP-W14-001"
+    },
+    {
+      "action_id": "OPT-W14-002",
+      "type": "creative",
+      "action": "Crear una variante de anuncio en formato Reel/video corto (15-20 segundos) que muestre un 'unboxing digital' del caso: manos abriendo el archivo en pantalla, hojeando documentos, revelando una pista. Usar el hook: '¿Otra noche viendo cómo otros resuelven el crimen? Esta vez el caso es tuyo.' Finalizar con CTA directo: 'Descarga tu caso ahora · $19.99 · Acceso inmediato'. Lanzar en paralelo al creativo actual para comparar CTR y conversión.",
+      "reason": "El CTR actual de 2.10% es funcional pero el buyer persona responde con alta intensidad emocional al trigger visual de ver a alguien mostrando cómo resolvió un caso con los archivos desplegados. Un formato de unboxing digital activa el FOMO y reduce simultáneamente la barrera de 'no sé qué recibiré', atacando dos problemas con un solo creativo.",
+      "priority": "high",
+      "expected_impact": "Incremento de CTR a 2.5%-3.0% y mejora en calidad del tráfico (visitantes más informados sobre el producto = mayor probabilidad de conversión). Datos comparables disponibles en W15.",
+      "experiment_id": "EXP-W14-001"
+    },
+    {
+      "action_id": "OPT-W14-003",
+      "type": "targeting",
+      "action": "Crear un conjunto de anuncios con segmentación específica hacia: mujeres 28-42 años, intereses en podcasts de true crime en español, crimen real, escape rooms, misterio, series de thriller (Dark, Mindhunter, La Casa de Papel), y comportamiento de compra de entretenimiento digital. Mantener el conjunto de anuncios actual como control. Asignar 40% del presupuesto semanal al nuevo segmento y 60% al control durante W15.",
+      "reason": "Con solo 3 conversiones en W14 no es posible saber si la audiencia actual corresponde al buyer persona definido (Valentina Ríos). Refinar la segmentación hacia el perfil de consumidora de true crime en español es la acción de menor riesgo para mejorar la calidad del tráfico sin aumentar el gasto total, y generará datos de audiencia comparables para W16.",
+      "priority": "medium",
+      "expected_impact": "Mejora en tasa de conversión del segmento específico (objetivo: 1.8%+) y reducción del CPA por debajo de $9.00 en el segmento test, validando si el problema es de audiencia o de landing/oferta.",
+      "experiment_id": "EXP-W14-002"
+    }
+  ],
+  "status": "pending_approval"
+}

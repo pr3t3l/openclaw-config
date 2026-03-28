@@ -1,0 +1,31 @@
+{
+  "product_id": "misterio-semanal",
+  "growth_run_id": "GR-2026-W14",
+  "related_marketing_run_id": "2026-W14",
+  "strategy_version_used": "v1",
+  "metrics_source": "manual_json",
+  "started_at": "2026-03-27T23:26:41.978864",
+  "completed_at": "2026-03-27T23:26:41.978890",
+  "status": "completed",
+  "outputs_generated": [
+    "calculated_metrics.json",
+    "performance_report.json",
+    "diagnosis.json",
+    "optimization_actions.json"
+  ],
+  "persistent_artifacts_updated": [
+    "knowledge_base_marketing.json"
+  ],
+  "alert_generated": false,
+  "decision_level": "tactical",
+  "approved_actions": null,
+  "experiments_registered": [
+    "EXP-001",
+    "EXP-002",
+    "EXP-003"
+  ],
+  "pattern_promotions": {
+    "promote_candidates": [],
+    "deprecate_candidates": []
+  }
+}

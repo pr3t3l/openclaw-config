@@ -1,0 +1,121 @@
+{
+  "product_id": "misterio-semanal",
+  "run_id": "2026-W14",
+  "generated_at": "2026-04-01T00:00:00Z",
+  "overall_status": "fail",
+  "assets": [
+    {
+      "asset_type": "reels_scripts",
+      "asset_ref": "reels_scripts_draft.json",
+      "status": "fail",
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "factual_error",
+          "description": "Se introduce un asesino en un caso cuyo briefing trata sobre un robo de arte; esto cambia la naturaleza del caso y puede confundir al público.",
+          "location": "S2 variante A, body: \"Y si te equivocas... el asesino gana.\"",
+          "fix_suggestion": "Sustituir \"el asesino gana\" por una formulación alineada con el caso, por ejemplo: \"y si te equivocas, el ladrón se sale con la suya\"."
+        },
+        {
+          "severity": "warning",
+          "type": "compliance",
+          "description": "La frase \"Archivos reales\" puede implicar que el caso está basado en hechos reales o en documentación real, una zona riesgosa dado que esa afirmación está restringida si no es verificable.",
+          "location": "S1 variante B, cta: \"Archivos reales, pistas auténticas, entrega inmediata.\"",
+          "fix_suggestion": "Cambiar por \"archivos clasificados\", \"documentos del caso\" o \"archivos inmersivos\" para evitar implicaciones de factualidad real."
+        },
+        {
+          "severity": "warning",
+          "type": "compliance",
+          "description": "La afirmación \"costó menos que una pizza\" es una comparación de precio poco verificable y variable según mercado, lo que puede percibirse como exageración o mensaje engañoso.",
+          "location": "S3 variante A, body: \"Fue la mejor noche en meses. Y costó menos que una pizza.\"",
+          "fix_suggestion": "Reemplazar por una comparación permitida y respaldada, como \"costó menos que un escape room físico para dos\" o simplemente mantener \"$19.99\"."
+        },
+        {
+          "severity": "note",
+          "type": "tone_drift",
+          "description": "El tono de \"la única detective disponible\" roza lo teatral/gimmicky y puede sentirse menos auténtico que la voz cómplice e inteligente definida por la marca.",
+          "location": "S1 variante B, hook",
+          "fix_suggestion": "Hacer el hook más sobrio e intrigante, centrado en el misterio y no en una exageración narrativa."
+        }
+      ]
+    },
+    {
+      "asset_type": "meta_ads",
+      "asset_ref": "meta_ads_copy_draft.json",
+      "status": "flagged",
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "factual_error",
+          "description": "Se atribuye al director del museo una insistencia sobre el seguro, dato que no aparece en el briefing semanal. Añade un elemento narrativo no respaldado que puede desalinear la promoción del caso real.",
+          "location": "AD-A, primary_text: \"...El director del museo que insiste en que el seguro lo cubre todo\" no está en el anuncio, pero en otros activos sí se instala ese rasgo; el set creativo debería mantener consistencia estricta con el briefing.",
+          "fix_suggestion": "Mantener solo los hechos confirmados del briefing: cuadro desaparecido, cámaras sin evidencia visible y tres personajes clave con sus roles."
+        },
+        {
+          "severity": "warning",
+          "type": "compliance",
+          "description": "La frase \"las pistas que la policía no supo leer\" introduce un detalle no respaldado por el briefing y sugiere superioridad frente a una autoridad ficticia sin necesidad.",
+          "location": "AD-B, primary_text",
+          "fix_suggestion": "Cambiar por \"las pistas que tendrás que conectar\" o \"las pistas del expediente\"."
+        },
+        {
+          "severity": "warning",
+          "type": "compliance",
+          "description": "La comparación de escape room usa \"$50 USD\" como cifra cerrada, mientras la estrategia la presenta como rango de mercado. La simplificación puede ser válida en ads, pero conviene evitar precisión excesiva no universal.",
+          "location": "AD-C, headline y primary_text",
+          "fix_suggestion": "Usar \"más barato que un escape room físico para dos\" o \"un escape room físico para dos puede costar mucho más\"."
+        },
+        {
+          "severity": "note",
+          "type": "tone_drift",
+          "description": "El tono general está bien alineado, pero AD-C es más utilitario y comparativo que intrigante; puede perder parte de la personalidad de marca si no va acompañado de visuales inmersivos.",
+          "location": "AD-C, primary_text",
+          "fix_suggestion": "Conservar el argumento racional, pero añadir una línea más atmosférica del caso para reforzar intriga."
+        }
+      ]
+    },
+    {
+      "asset_type": "email_sequence",
+      "asset_ref": "email_sequence_draft.json",
+      "status": "fail",
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "factual_error",
+          "description": "Se afirma que el director del museo insiste en que el seguro lo cubre todo, pero ese detalle no está en el briefing semanal. Introduce una motivación narrativa no confirmada.",
+          "location": "E1, body_markdown: \"Diego Fuentes — el director del museo que insiste en que el seguro lo cubre todo\"",
+          "fix_suggestion": "Sustituir por su rol confirmado en el briefing: \"Diego Fuentes — el director del museo\" o añadir una descripción no especulativa."
+        },
+        {
+          "severity": "warning",
+          "type": "compliance",
+          "description": "La frase \"fotografías de la escena del crimen\" sugiere homicidio o delito violento; el caso es un robo de arte. Puede generar expectativa incorrecta.",
+          "location": "E2, sección \"Archivos clasificados del caso\"",
+          "fix_suggestion": "Cambiar por \"fotografías de la escena\", \"fotografías de la sala\" o \"imágenes del museo y del marco vacío\"."
+        },
+        {
+          "severity": "warning",
+          "type": "factual_error",
+          "description": "Se afirma que el informe policial contiene \"tres versiones distintas de la misma noche\", detalle no respaldado por el briefing semanal.",
+          "location": "E2, body_markdown",
+          "fix_suggestion": "Usar una descripción más segura: \"declaraciones contradictorias\" o \"testimonios y registros de la noche del robo\"."
+        },
+        {
+          "severity": "warning",
+          "type": "factual_error",
+          "description": "Se presenta la pista falsa como hecho cerrado del contenido del expediente. Aunque el briefing sí menciona ese beat emocional, conviene no sobredeterminar la estructura exacta de materiales si no está definida en el caso final.",
+          "location": "E2, sección \"Una pista falsa\"",
+          "fix_suggestion": "Mantenerlo como promesa narrativa más flexible, por ejemplo: \"una pista diseñada para hacerte dudar\"."
+        },
+        {
+          "severity": "warning",
+          "type": "publishability",
+          "description": "La urgencia de \"solo esta semana\" depende de un modelo editorial semanal que no está explicitado en el briefing del caso y podría generar fricción si la landing sigue vendiendo el caso después.",
+          "location": "E3, body_markdown: \"está disponible solo esta semana\"",
+          "fix_suggestion": "Asegurar que la disponibilidad limitada sea real en la oferta o suavizar a \"es el caso destacado de esta semana\"."
+        }
+      ]
+    }
+  ],
+  "summary": "Las piezas tienen una base sólida de tono e intriga, pero el paquete no es plenamente publicable aún por varias desviaciones factuales respecto al briefing del caso y algunas afirmaciones/comparaciones de riesgo. Corrigiendo los detalles inventados del director, evitando lenguaje que sugiera asesinato o hechos reales y afinando ciertas comparaciones de precio, el conjunto podría pasar con notas."
+}
