@@ -1,0 +1,75 @@
+{
+  "product_id": "misterio-semanal",
+  "week": "2026-W17",
+  "sent_at": "2026-03-28T13:36:46.962097",
+  "mode": "dry_run",
+  "test_email": null,
+  "emails_sent": [
+    {
+      "email_id": "E1-W17",
+      "sequence_id": "SEQ-WEEKLY-CASE-W17",
+      "subject_variant": "A",
+      "subject": "Un medicamento milagroso. Una científica muerta.",
+      "recipients_count": 0,
+      "resend_id": "dry_run",
+      "status": "dry_run",
+      "error": null
+    },
+    {
+      "email_id": "E2-W17",
+      "sequence_id": "SEQ-WEEKLY-CASE-W17",
+      "subject_variant": "A",
+      "subject": "El expediente está en tu bandeja. 21 archivos clasificados.",
+      "recipients_count": 0,
+      "resend_id": "dry_run",
+      "status": "dry_run",
+      "error": null
+    },
+    {
+      "email_id": "E3-W17",
+      "sequence_id": "SEQ-WEEKLY-CASE-W17",
+      "subject_variant": "A",
+      "subject": "Último aviso: el caso cierra el domingo.",
+      "recipients_count": 0,
+      "resend_id": "dry_run",
+      "status": "dry_run",
+      "error": null
+    },
+    {
+      "email_id": "EW1-W17",
+      "sequence_id": "SEQ-WELCOME-W17",
+      "subject_variant": "A",
+      "subject": "Tu expediente de muestra está aquí. Empieza a investigar.",
+      "recipients_count": 0,
+      "resend_id": "dry_run",
+      "status": "dry_run",
+      "error": null
+    },
+    {
+      "email_id": "EW2-W17",
+      "sequence_id": "SEQ-WELCOME-W17",
+      "subject_variant": "A",
+      "subject": "¿Resolviste el caso de muestra? El completo tiene 47 archivos más.",
+      "recipients_count": 0,
+      "resend_id": "dry_run",
+      "status": "dry_run",
+      "error": null
+    },
+    {
+      "email_id": "ER1-W17",
+      "sequence_id": "SEQ-REENGAGEMENT-W17",
+      "subject_variant": "A",
+      "subject": "¿Sigues ahí? Tenemos un caso que no puedes ignorar.",
+      "recipients_count": 0,
+      "resend_id": "dry_run",
+      "status": "dry_run",
+      "error": null
+    }
+  ],
+  "total_sent": 6,
+  "total_failed": 0,
+  "ab_test_split": {
+    "variant_a_count": 0,
+    "variant_b_count": 0
+  }
+}

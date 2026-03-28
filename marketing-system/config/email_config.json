@@ -1,0 +1,17 @@
+{
+  "from_email": "cases@theclassifiedcases.shop",
+  "from_name": "Declassified Cases",
+  "reply_to": "support@theclassifiedcases.shop",
+  "subscriber_lists": {
+    "all": [],
+    "parejas_noche_cita": [],
+    "anfitriones_noche_juegos": [],
+    "fans_true_crime_solo": [],
+    "compradores_regalo": [],
+    "dinner_party_planners": [],
+    "remote_teams_corporate": []
+  },
+  "ab_test_split": 0.5,
+  "unsubscribe_url": "https://theclassifiedcases.shop/unsubscribe",
+  "footer_html": "<p>Declassified Cases — theclassifiedcases.shop<br><a href='{{unsubscribe_url}}'>Unsubscribe</a></p>"
+}
