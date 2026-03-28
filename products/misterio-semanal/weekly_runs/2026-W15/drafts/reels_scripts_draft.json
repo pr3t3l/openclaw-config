@@ -1,0 +1,399 @@
+{
+  "schema_version": "3.0",
+  "product_id": "misterio-semanal",
+  "run_id": "2026-W15",
+  "generated_at": "2026-04-07T00:00:00.000000",
+  "strategy_version_used": "v2",
+  "lanes": [
+    {
+      "lane_id": "LANE-01",
+      "persona_id": "parejas_noche_cita",
+      "trigger_id": "viernes_tarde_tiktok",
+      "angle_id": "ANG-01",
+      "hypothesis": "Las parejas que están en modo 'qué hacemos esta noche' responden a un gancho que refleja su rutina exacta (Netflix + teléfono) y les ofrece una alternativa inmediata con el caso de radio pirata. Testear si el gancho de MIEDO A LA RUTINA supera al gancho de CURIOSIDAD NARRATIVA en CTR y conversión.",
+      "scripts": [
+        {
+          "script_id": "S1-A",
+          "creative_id": "DC-W15-LANE01-A",
+          "platform": "tiktok",
+          "duration_seconds": 22,
+          "hook": {
+            "text": "¿Otra vez Netflix y cada uno con el teléfono?",
+            "visual": "Pareja en el sofá, luz azul de pantalla, cada uno scrolleando en silencio. Texto en pantalla: 'Viernes 10pm'",
+            "emotion": "Reconocimiento incómodo — el espectador se ve reflejado"
+          },
+          "body": {
+            "text": "Esta noche resuelvan juntos quién está detrás de la estación de radio pirata que transmite coordenadas a las 3AM — y las personas que las siguen desaparecen. Catorce archivos clasificados, seis pistas reales, dos a cuatro horas investigando juntos. Descarga inmediata.",
+            "tension": "La premisa del caso es intrigante — coordenadas + desapariciones crea urgencia narrativa que hace querer empezar ya",
+            "value_prop": "Una noche de cita activa e interactiva desde el sofá, sin salir ni gastar lo de una cena"
+          },
+          "cta": {
+            "text": "Compra ahora, juegan esta noche — $19.99, acceso en dos minutos",
+            "visual": "Captura de pantalla de los archivos del caso desplegados en una mesa. Texto grande: 'Link en bio'",
+            "landing_url": "/noche-cita-misterio-pareja"
+          },
+          "text_overlay": "¿Otra vez Netflix? | Esta noche: resuelvan un crimen juntos | 14 archivos · 6 pistas · acceso inmediato | $19.99 · link en bio",
+          "audio_notes": "Sonido ambiente de radio estática al inicio, transición a música de suspenso suave. Voz en off femenina, tono cómplice y urgente. Sin música trending — el audio del caso es el protagonista.",
+          "fear_neutralized": "FK-01 — miedo a que sea aburrido: se comunica duración de 2-4 horas y seis pistas reales, demostrando profundidad",
+          "proof_element": "Captura visual de los 14 archivos clasificados del caso desplegados — muestra tangible del contenido que recibirán",
+          "testing_variable": "Gancho de MIEDO A LA RUTINA ('¿Otra vez Netflix?') vs. variante S1-B con gancho de CURIOSIDAD NARRATIVA (apertura del expediente)",
+          "strategy_version_used": "v2"
+        },
+        {
+          "script_id": "S1-B",
+          "creative_id": "DC-W15-LANE01-B",
+          "platform": "tiktok",
+          "duration_seconds": 20,
+          "hook": {
+            "text": "Una estación de radio pirata transmite coordenadas cada noche a las 3AM. Las personas que las siguen desaparecen.",
+            "visual": "Manos abriendo un archivo clasificado en la mesa. Primer plano de un documento con frecuencias de radio y coordenadas. Texto: 'EXPEDIENTE DESCLASIFICADO'",
+            "emotion": "Curiosidad inmediata y tensión narrativa — el espectador quiere saber qué pasa"
+          },
+          "body": {
+            "text": "Este es el caso que van a resolver juntos esta noche. Catorce archivos, seis pistas, cuatro sospechosos. Todo lo que necesitan está en el expediente — sin esperas, sin instalaciones. Descarga en dos minutos y empiecen a investigar.",
+            "tension": "El caso ya está abierto — la pareja siente que el expediente los está esperando",
+            "value_prop": "Experiencia de detective real para dos personas, desde casa, por menos de lo que cuesta salir a cenar"
+          },
+          "cta": {
+            "text": "Link en bio — $19.99, juegan esta noche",
+            "visual": "Pareja inclinada sobre documentos del caso, señalando pistas, riendo. Texto: 'Compra ahora · Acceso inmediato'",
+            "landing_url": "/noche-cita-misterio-pareja"
+          },
+          "text_overlay": "Señal Fantasma · Expediente Desclasificado | 14 archivos · 6 pistas · 4 sospechosos | Para dos personas · Desde casa | $19.99 · Link en bio",
+          "audio_notes": "Apertura con estática de radio y voz distorsionada diciendo coordenadas (2 segundos). Transición a voz en off masculina, tono de tráiler cinematográfico. Música de thriller de fondo.",
+          "fear_neutralized": "FK-03 — miedo a que sea infantil: el formato de expediente real con documentos auténticos comunica seriedad y calidad narrativa desde el primer frame",
+          "proof_element": "Primer plano de documentos reales del caso — frecuencias de radio, coordenadas, informe policial — que demuestran la calidad y autenticidad del producto",
+          "testing_variable": "Gancho de CURIOSIDAD NARRATIVA (apertura del expediente) vs. variante S1-A con gancho de MIEDO A LA RUTINA",
+          "strategy_version_used": "v2"
+        }
+      ]
+    },
+    {
+      "lane_id": "LANE-02",
+      "persona_id": "fans_true_crime_solo",
+      "trigger_id": "post_documental_podcast",
+      "angle_id": "ANG-02",
+      "hypothesis": "Las fans de true crime que acaban de terminar un podcast o documental están en el pico de su deseo de más contenido de crimen. La premisa de radio pirata + desapariciones es perfecta para este segmento. Testear si el gancho de IDENTIDAD DE DETECTIVE ('tú eres la investigadora') supera al gancho de UNBOXING DIGITAL en conversión, aplicando OPT-W14-002.",
+      "scripts": [
+        {
+          "script_id": "S2-A",
+          "creative_id": "DC-W15-LANE02-A",
+          "platform": "instagram_reels",
+          "duration_seconds": 25,
+          "hook": {
+            "text": "Escuchas true crime. Analizas cada detalle. Ahora deja de ser espectadora — el expediente está en tus manos.",
+            "visual": "Mujer con auriculares que los quita y abre un expediente en su mesa. Transición rápida a primer plano de documentos del caso. Texto: 'Tu próximo caso'",
+            "emotion": "Aspiración e identidad — la espectadora se reconoce como detective, no como consumidora pasiva"
+          },
+          "body": {
+            "text": "La Señal Fantasma: una estación de radio pirata transmite coordenadas cada noche a las 3AM y las personas que las siguen desaparecen. Cuatro sospechosos. Catorce archivos clasificados — informes forenses, testimonios, una frecuencia de radio cifrada. Dos a cuatro horas de investigación real. En español. Escrito para adultos.",
+            "tension": "La mención de la frecuencia cifrada y los archivos forenses activa el instinto investigador del segmento true crime",
+            "value_prop": "La experiencia interactiva de true crime en español que no existe en ningún podcast ni documental — tú resuelves el caso"
+          },
+          "cta": {
+            "text": "Empieza a investigar ahora — link en bio, acceso inmediato",
+            "visual": "Captura de pantalla de la landing page con los archivos del caso visibles. Texto: '$19.99 · Descarga inmediata · En español'",
+            "landing_url": "/juego-interactivo-true-crime-espanol"
+          },
+          "text_overlay": "Deja de escuchar · Empieza a resolver | La Señal Fantasma | Informe forense · Frecuencia cifrada · 4 sospechosos | Solo en español · $19.99",
+          "audio_notes": "Inicio con fragmento de audio de podcast de true crime (3 segundos) que se corta abruptamente. Transición a voz en off femenina, tono serio y apasionado. Música de investigación criminal de fondo.",
+          "fear_neutralized": "FK-01 — miedo a que sea demasiado fácil: se comunica explícitamente '2 a 4 horas de investigación real' y 'escrito para adultos', estableciendo expectativa de desafío",
+          "proof_element": "Descripción específica del contenido: informes forenses, testimonios, frecuencia de radio cifrada — demuestra profundidad y autenticidad del caso",
+          "testing_variable": "Gancho de IDENTIDAD DE DETECTIVE ('deja de ser espectadora') vs. variante S2-B con gancho de UNBOXING DIGITAL (mostrar archivos físicamente)",
+          "strategy_version_used": "v2"
+        },
+        {
+          "script_id": "S2-B",
+          "creative_id": "DC-W15-LANE02-B",
+          "platform": "instagram_reels",
+          "duration_seconds": 23,
+          "hook": {
+            "text": "Esto es lo que recibes cuando compras el caso.",
+            "visual": "Manos hojeando documentos del caso en pantalla — informe policial, fotografía de la escena, carta cifrada, mapa con coordenadas. Movimiento lento y deliberado. Texto: 'La Señal Fantasma · Expediente Completo'",
+            "emotion": "Curiosidad y deseo — el espectador quiere tener esos documentos en sus manos"
+          },
+          "body": {
+            "text": "Catorce archivos clasificados. Informe forense de la primera víctima. Transcripción de las transmisiones de radio. Fotografías de la escena. Una frecuencia cifrada que nadie ha podido descifrar. Todo esto por $19.99. Descarga inmediata. Sin esperas. En español.",
+            "tension": "El inventario detallado de archivos crea FOMO — la espectadora siente que ya debería tener esto",
+            "value_prop": "Contenido de calidad profesional de true crime interactivo en español, con acceso inmediato y sin fricción"
+          },
+          "cta": {
+            "text": "Link en bio — descarga tu expediente ahora",
+            "visual": "Pantalla final con todos los documentos desplegados y el precio visible. Texto: 'Acceso inmediato · $19.99 · En español'",
+            "landing_url": "/juego-interactivo-true-crime-espanol"
+          },
+          "text_overlay": "Esto es lo que recibes | 14 archivos clasificados | Informe forense · Frecuencia cifrada · Fotografías de escena | $19.99 · Acceso inmediato",
+          "audio_notes": "Sin música al inicio — solo el sonido de páginas pasándose. A los 5 segundos entra música de suspenso suave. Voz en off femenina, tono de inventario serio. Aplicación directa de OPT-W14-002.",
+          "fear_neutralized": "FK-02 — miedo a que sea complicado de configurar: se muestra explícitamente que son archivos descargables simples, sin app, sin instalación",
+          "proof_element": "Unboxing digital real — se muestran los archivos físicos del caso uno por uno, eliminando la incertidumbre sobre qué se recibe. Aplicación directa de OPT-W14-002.",
+          "testing_variable": "Gancho de UNBOXING DIGITAL (mostrar archivos físicamente) vs. variante S2-A con gancho de IDENTIDAD DE DETECTIVE",
+          "strategy_version_used": "v2"
+        }
+      ]
+    },
+    {
+      "lane_id": "LANE-03",
+      "persona_id": "anfitriones_noche_juegos",
+      "trigger_id": "tiktok_noche_juegos",
+      "angle_id": "ANG-03",
+      "hypothesis": "Los anfitriones de noches de juegos están motivados por el reconocimiento social de traer el mejor plan. La premisa de radio pirata es perfecta para grupos porque genera debate colectivo. Testear si el gancho de PRECIO POR PERSONA ('menos de $4 por cabeza') supera al gancho de REACCIÓN DEL GRUPO en intención de compra.",
+      "scripts": [
+        {
+          "script_id": "S3-A",
+          "creative_id": "DC-W15-LANE03-A",
+          "platform": "tiktok",
+          "duration_seconds": 20,
+          "hook": {
+            "text": "Esta vez no es UNO. Esta vez tu grupo va a resolver quién está detrás de la estación de radio pirata.",
+            "visual": "Grupo de 5 amigos alrededor de una mesa con documentos del caso desplegados, señalando pistas, discutiendo. Energía alta. Texto: 'Noche de juegos · Nivel siguiente'",
+            "emotion": "Aspiración social — el anfitrión imagina a su grupo teniendo exactamente esa experiencia"
+          },
+          "body": {
+            "text": "Un caso de misterio completo para todo el grupo por $19.99. Menos de cuatro dólares por persona. Guía del facilitador incluida — empiezan en diez minutos sin explicar reglas complicadas. Catorce archivos, cuatro sospechosos, un giro que nadie va a ver venir.",
+            "tension": "El precio por persona y la facilidad de inicio eliminan las dos objeciones principales del anfitrión",
+            "value_prop": "Ser el anfitrión que siempre sorprende, con el plan más original de la noche, por menos que una ronda de cervezas"
+          },
+          "cta": {
+            "text": "Descárgalo para este sábado — link en bio",
+            "visual": "Texto grande: 'Para 2-6 personas · $19.99 total · Menos de $4 por cabeza'. Fondo oscuro con documentos del caso.",
+            "landing_url": "/noche-juegos-misterio-grupo"
+          },
+          "text_overlay": "Esta vez no es UNO | Resuelvan un crimen juntos | $19.99 para TODO el grupo | Menos de $4 por persona · Link en bio",
+          "audio_notes": "Sonido de grupo riendo y debatiendo al inicio (2 segundos). Transición a voz en off masculina, tono entusiasta y cómplice. Música energética de fondo que evoca tensión y diversión simultáneamente.",
+          "fear_neutralized": "FK-02 — miedo a que sea complicado de organizar: se menciona explícitamente la guía del facilitador y el inicio en diez minutos",
+          "proof_element": "Precio por persona calculado explícitamente ($4 por cabeza) — hace tangible el valor del producto comparado con una ronda de cervezas",
+          "testing_variable": "Gancho de PRECIO POR PERSONA ('menos de $4 por cabeza') vs. variante S3-B con gancho de REACCIÓN DEL GRUPO (testimonial de anfitrión)",
+          "strategy_version_used": "v2"
+        },
+        {
+          "script_id": "S3-B",
+          "creative_id": "DC-W15-LANE03-B",
+          "platform": "tiktok",
+          "duration_seconds": 22,
+          "hook": {
+            "text": "Empezamos a las 9 de la noche. A la 1 de la mañana seguíamos discutiendo si Lucía mintió en su coartada.",
+            "visual": "Pantalla de texto estilo mensaje de WhatsApp con el testimonio. Luego corte a grupo real alrededor de documentos del caso. Texto: 'La mejor noche de juegos del año'",
+            "emotion": "Prueba social y FOMO — el espectador quiere tener esa misma experiencia con su grupo"
+          },
+          "body": {
+            "text": "La Señal Fantasma: un caso de misterio para resolver en grupo que los va a tener debatiendo durante horas. Catorce archivos clasificados, cuatro sospechosos, una frecuencia de radio cifrada. Para dos a seis personas. $19.99 para todo el grupo. Descarga inmediata — juegan este sábado.",
+            "tension": "El detalle específico del personaje ('Lucía') y la hora tardía crean credibilidad y hacen el testimonio concreto y real",
+            "value_prop": "La noche de juegos que el grupo va a querer repetir cada mes, por menos de lo que cuesta el delivery"
+          },
+          "cta": {
+            "text": "Sé el anfitrión que sorprende — link en bio, $19.99",
+            "visual": "Captura de los archivos del caso con texto superpuesto: '2-6 jugadores · Guía del facilitador incluida · Acceso inmediato'",
+            "landing_url": "/noche-juegos-misterio-grupo"
+          },
+          "text_overlay": "Empezamos a las 9pm... | A la 1am seguíamos discutiendo | La Señal Fantasma | Para 2-6 personas · $19.99 total | Link en bio",
+          "audio_notes": "Inicio silencioso con solo el texto en pantalla (efecto de impacto). A los 3 segundos entra música de suspenso. Voz en off masculina, tono de testimonio auténtico. Estilo UGC nativo.",
+          "fear_neutralized": "FK-01 — miedo a que sea aburrido o que alguien no se enganche: el testimonio de que 'seguíamos discutiendo a la 1am' demuestra engagement prolongado del grupo",
+          "proof_element": "Testimonio específico con hora y detalle del personaje ('Lucía mintió en su coartada') — prueba social concreta que demuestra que el debate grupal es real y sostenido",
+          "testing_variable": "Gancho de REACCIÓN DEL GRUPO (testimonial de anfitrión) vs. variante S3-A con gancho de PRECIO POR PERSONA",
+          "strategy_version_used": "v2"
+        }
+      ]
+    },
+    {
+      "lane_id": "LANE-04",
+      "persona_id": "parejas_noche_cita",
+      "trigger_id": "post_netflix_true_crime",
+      "angle_id": "ANG-23",
+      "hypothesis": "Las parejas que acaban de terminar una serie de crimen en Netflix están en el pico de su energía de misterio y quieren continuar esa experiencia de forma activa. Testear si el gancho de EXTENSIÓN POST-NETFLIX ('no termines la noche aquí') supera al gancho de COMPARACIÓN DE PRECIO en conversión.",
+      "scripts": [
+        {
+          "script_id": "S4-A",
+          "creative_id": "DC-W15-LANE04-A",
+          "platform": "instagram_reels",
+          "duration_seconds": 18,
+          "hook": {
+            "text": "No es una cena. No es una peli. Es resolver juntos quién está detrás de la señal de radio que hace desaparecer personas.",
+            "visual": "Pareja apagando la televisión y abriendo un expediente en la mesa. Transición de luz azul de pantalla a luz cálida de lámpara. Texto: 'Esta noche, algo diferente'",
+            "emotion": "Curiosidad y anticipación — la pareja siente que está a punto de vivir algo mejor que lo que acaban de terminar"
+          },
+          "body": {
+            "text": "Declassified Cases: el caso de misterio en español que van a resolver juntos esta noche. Descarga en dos minutos. Sin esperas, sin instalaciones. Y descubran que tienen teorías completamente diferentes sobre quién es el culpable.",
+            "tension": "La promesa de que tendrán teorías diferentes activa la dinámica competitiva y afectiva de la pareja",
+            "value_prop": "Conversación real, risas, debate — la noche de cita activa que no sabían que necesitaban"
+          },
+          "cta": {
+            "text": "Compra ahora, juegan esta noche — $19.99",
+            "visual": "Texto: '$19.99 · Menos que dos cervezas · Acceso inmediato'. Fondo con documentos del caso.",
+            "landing_url": "/noche-cita-misterio-pareja"
+          },
+          "text_overlay": "No es Netflix | Es resolver un crimen juntos | La Señal Fantasma | $19.99 · Acceso en 2 minutos · Link en bio",
+          "audio_notes": "Sonido de televisión apagándose al inicio. Transición a música de misterio suave. Voz en off femenina, tono cómplice y seductor. Ritmo rápido.",
+          "fear_neutralized": "FK-05 — miedo a esperar: se comunica 'descarga en dos minutos' y 'sin esperas, sin instalaciones' de forma explícita",
+          "proof_element": "Comparación implícita de precio: '$19.99 · Menos que dos cervezas' — hace tangible el valor sin necesidad de testimonial",
+          "testing_variable": "Gancho de EXTENSIÓN POST-NETFLIX ('no es una peli') vs. variante S4-B con gancho de COMPARACIÓN DE PRECIO explícita",
+          "strategy_version_used": "v2"
+        },
+        {
+          "script_id": "S4-B",
+          "creative_id": "DC-W15-LANE04-B",
+          "platform": "instagram_reels",
+          "duration_seconds": 20,
+          "hook": {
+            "text": "Una pizza para dos: $25. Una noche resolviendo un crimen juntos: $19.99. La diferencia: la pizza se olvida en una hora.",
+            "visual": "Split screen: a la izquierda, caja de pizza vacía. A la derecha, pareja con documentos del caso, animados. Texto: 'Elige tu viernes'",
+            "emotion": "Urgencia racional + humor ligero — la comparación es obvia y el espectador sonríe reconociéndola"
+          },
+          "body": {
+            "text": "La Señal Fantasma: un caso de misterio en español para resolver en pareja esta noche. Catorce archivos clasificados, seis pistas, cuatro sospechosos. Dos a cuatro horas de investigación activa juntos. Descarga inmediata — sin esperas, sin envíos.",
+            "tension": "La duración de 2-4 horas contrasta con la pizza que 'se olvida en una hora' — refuerza el valor del entretenimiento activo",
+            "value_prop": "Más memorable y más barato que salir — la noche de cita perfecta sin salir de casa"
+          },
+          "cta": {
+            "text": "Descárgalo ahora — link en bio",
+            "visual": "Texto: 'Compra ahora · Juegan esta noche · $19.99'. Pareja feliz con documentos del caso de fondo.",
+            "landing_url": "/noche-cita-misterio-pareja"
+          },
+          "text_overlay": "Pizza para dos: $25 | Noche de misterio para dos: $19.99 | La diferencia: 2-4 horas que van a recordar | Link en bio",
+          "audio_notes": "Música ligera y cómica al inicio (2 segundos). Transición a música de suspenso cuando aparecen los documentos. Voz en off mixta — pareja hablando entre sí, tono natural y divertido.",
+          "fear_neutralized": "FK-01 — miedo a que no valga la pena: la comparación con la pizza hace evidente que $19.99 por 2-4 horas de entretenimiento activo es una propuesta de valor superior",
+          "proof_element": "Comparación de precio explícita con benchmark familiar (pizza para dos) — hace el valor del producto inmediatamente comprensible sin necesidad de testimonial",
+          "testing_variable": "Gancho de COMPARACIÓN DE PRECIO ('pizza vs. caso') vs. variante S4-A con gancho de EXTENSIÓN POST-NETFLIX",
+          "strategy_version_used": "v2"
+        }
+      ]
+    },
+    {
+      "lane_id": "LANE-05",
+      "persona_id": "fans_true_crime_solo",
+      "trigger_id": "busqueda_true_crime_interactivo",
+      "angle_id": "ANG-14",
+      "hypothesis": "Las fans de true crime que buscan activamente experiencias interactivas responden a la autenticidad de los archivos del caso. La temática de radio pirata + señales cifradas es especialmente atractiva para este segmento porque combina misterio tecnológico con desapariciones. Testear si el gancho de ARCHIVOS DEL CASO supera al gancho de DIFERENCIACIÓN EN ESPAÑOL en conversión.",
+      "scripts": [
+        {
+          "script_id": "S5-A",
+          "creative_id": "DC-W15-LANE05-A",
+          "platform": "tiktok",
+          "duration_seconds": 25,
+          "hook": {
+            "text": "Informe forense. Transcripción de las transmisiones. Fotografías de la escena. Frecuencia de radio cifrada. Todo en tus manos.",
+            "visual": "Manos colocando documentos uno por uno sobre una mesa — cada uno con su etiqueta visible. Primer plano de cada archivo. Texto: 'Expediente La Señal Fantasma · Desclasificado'",
+            "emotion": "Deseo intenso — la fan de true crime quiere exactamente esos documentos"
+          },
+          "body": {
+            "text": "Este es el expediente completo del caso que vas a resolver esta noche. Una estación de radio pirata transmite coordenadas a las 3AM. Las personas que las siguen desaparecen. Cuatro sospechosos. Catorce archivos. Dos a cuatro horas de investigación. En español. Por $19.99.",
+            "tension": "La acumulación de detalles específicos del caso crea urgencia — la espectadora siente que el caso ya la está esperando",
+            "value_prop": "La experiencia de detective real con archivos auténticos que ningún podcast puede darte — en tu idioma, esta noche"
+          },
+          "cta": {
+            "text": "Empieza a investigar — link en bio, acceso inmediato",
+            "visual": "Todos los documentos desplegados con el precio visible. Texto: '$19.99 · Descarga inmediata · En español'",
+            "landing_url": "/juego-interactivo-true-crime-espanol"
+          },
+          "text_overlay": "Informe forense ✓ | Frecuencia cifrada ✓ | Fotografías de escena ✓ | Todo esto por $19.99 | Link en bio · Acceso inmediato",
+          "audio_notes": "Silencio casi total al inicio — solo el sonido de documentos colocándose sobre la mesa. A los 5 segundos entra música de investigación criminal. Voz en off femenina, tono de inventario serio y apasionado. Aplicación de OPT-W14-002.",
+          "fear_neutralized": "FK-03 — miedo a que sea superficial o infantil: mostrar los archivos del caso (informe forense, frecuencia cifrada) demuestra inmediatamente la profundidad y seriedad del producto",
+          "proof_element": "Unboxing digital completo — se muestran todos los tipos de archivos del expediente, eliminando la incertidumbre sobre la calidad y cantidad del contenido. Aplicación directa de OPT-W14-002.",
+          "testing_variable": "Gancho de ARCHIVOS DEL CASO (unboxing de documentos) vs. variante S5-B con gancho de DIFERENCIACIÓN EN ESPAÑOL",
+          "strategy_version_used": "v2"
+        },
+        {
+          "script_id": "S5-B",
+          "creative_id": "DC-W15-LANE05-B",
+          "platform": "tiktok",
+          "duration_seconds": 22,
+          "hook": {
+            "text": "Hunt A Killer: en inglés. Unsolved Case Files: en inglés. La Señal Fantasma: el único caso de misterio profesional en tu idioma.",
+            "visual": "Logos de competidores con tachado rojo. Luego aparece el expediente de La Señal Fantasma con texto: 'En español. Para ti.'",
+            "emotion": "Exclusividad y pertenencia — la espectadora siente que este producto fue creado específicamente para ella"
+          },
+          "body": {
+            "text": "Una estación de radio pirata. Coordenadas que llevan a personas a desaparecer. Cuatro sospechosos. Catorce archivos clasificados en español — escritos originalmente en tu idioma, no traducidos. Descarga inmediata. Esta noche, tú resuelves el caso.",
+            "tension": "El énfasis en 'escrito originalmente en español, no traducido' activa el orgullo de identidad y la expectativa de calidad narrativa real",
+            "value_prop": "El primer y único servicio de casos de misterio detectivesco de calidad profesional en español — sin barreras de idioma, sin esperas"
+          },
+          "cta": {
+            "text": "Tu primer expediente te espera — link en bio, $19.99",
+            "visual": "Texto: 'Escrito en español · Para hispanohablantes · Acceso inmediato'. Documentos del caso de fondo.",
+            "landing_url": "/juego-interactivo-true-crime-espanol"
+          },
+          "text_overlay": "Hunt A Killer: inglés ✗ | Unsolved Case Files: inglés ✗ | La Señal Fantasma: español ✓ | $19.99 · Link en bio",
+          "audio_notes": "Sonido de 'error' o tachado al mostrar competidores. Transición a música de misterio cuando aparece el producto. Voz en off femenina, tono de revelación y orgullo. Ritmo dinámico.",
+          "fear_neutralized": "FK-03 — miedo a que la narrativa sea de baja calidad: el énfasis en 'escrito originalmente en español, no traducido' establece expectativa de calidad narrativa auténtica",
+          "proof_element": "Comparación directa con competidores reconocidos — posiciona el producto en la misma categoría premium pero con la ventaja del idioma",
+          "testing_variable": "Gancho de DIFERENCIACIÓN EN ESPAÑOL (comparación con competidores) vs. variante S5-A con gancho de ARCHIVOS DEL CASO",
+          "strategy_version_used": "v2"
+        }
+      ]
+    },
+    {
+      "lane_id": "LANE-06",
+      "persona_id": "anfitriones_noche_juegos",
+      "trigger_id": "reel_grupo_resolviendo",
+      "angle_id": "ANG-07",
+      "hypothesis": "Los anfitriones que ven a otros grupos disfrutando un caso de misterio sienten FOMO y quieren replicar esa experiencia. La comparación con el escape room físico es especialmente efectiva para este segmento porque ya conocen esa alternativa y saben lo cara que es. Testear si el gancho de COMPARACIÓN ESCAPE ROOM supera al gancho de FACILIDAD DE ORGANIZACIÓN en intención de compra.",
+      "scripts": [
+        {
+          "script_id": "S6-A",
+          "creative_id": "DC-W15-LANE06-A",
+          "platform": "instagram_reels",
+          "duration_seconds": 20,
+          "hook": {
+            "text": "Un escape room para seis personas: $180. Una noche de misterio para seis: $19.99. Misma adrenalina. Sin salir de casa.",
+            "visual": "Split screen: a la izquierda, precio de escape room físico en pantalla ($30 x persona). A la derecha, grupo de amigos con documentos del caso, emocionados. Texto: 'Tú decides'",
+            "emotion": "Urgencia racional — la matemática es obvia y el espectador no puede ignorarla"
+          },
+          "body": {
+            "text": "La Señal Fantasma: el caso de misterio que tu grupo va a resolver este sábado. Catorce archivos, cuatro sospechosos, un giro que nadie va a ver venir. Guía del facilitador incluida — empiezan en diez minutos. Descarga inmediata.",
+            "tension": "La promesa del giro narrativo crea anticipación — el anfitrión quiere ser el que sorprenda a su grupo",
+            "value_prop": "La experiencia de escape room para el grupo entero a un décimo del precio, sin coordinar horarios ni desplazarse"
+          },
+          "cta": {
+            "text": "Descárgalo para este sábado — link en bio",
+            "visual": "Texto: '$19.99 para todo el grupo · Menos de $4 por persona · Acceso inmediato'. Fondo con documentos del caso.",
+            "landing_url": "/noche-juegos-misterio-grupo"
+          },
+          "text_overlay": "Escape room para 6: $180 | Noche de misterio para 6: $19.99 | Misma adrenalina · Sin salir | Link en bio",
+          "audio_notes": "Sonido de caja registradora al mostrar el precio del escape room. Transición a música de misterio cuando aparece el producto. Voz en off masculina, tono directo y comparativo.",
+          "fear_neutralized": "FK-02 — miedo a que sea complicado de organizar: se menciona la guía del facilitador y el inicio en diez minutos, eliminando la fricción de preparación",
+          "proof_element": "Comparación de precio con escape room físico — benchmark familiar que hace el valor del producto inmediatamente comprensible y atractivo",
+          "testing_variable": "Gancho de COMPARACIÓN ESCAPE ROOM ('$180 vs $19.99') vs. variante S6-B con gancho de FACILIDAD DE ORGANIZACIÓN",
+          "strategy_version_used": "v2"
+        },
+        {
+          "script_id": "S6-B",
+          "creative_id": "DC-W15-LANE06-B",
+          "platform": "instagram_reels",
+          "duration_seconds": 22,
+          "hook": {
+            "text": "El plan para tu grupo que puedes organizar en dos minutos y que van a hablar durante semanas.",
+            "visual": "Manos descargando el expediente en el teléfono, luego cortando a grupo de amigos recibiendo los documentos con reacciones de sorpresa. Texto: 'De compra a juego: 2 minutos'",
+            "emotion": "Alivio y aspiración — el anfitrión ve que puede ser el héroe de la noche sin esfuerzo"
+          },
+          "body": {
+            "text": "La Señal Fantasma: descarga el expediente, imprímelo o compártelo por pantalla, y en diez minutos tu grupo está investigando quién está detrás de la estación de radio pirata que hace desaparecer personas. Para dos a seis personas. $19.99 para todo el grupo.",
+            "tension": "El proceso concreto de 'descarga, comparte, juega' elimina la ansiedad del anfitrión sobre la logística",
+            "value_prop": "Ser el anfitrión perfecto sin preparación — el caso hace todo el trabajo, tú te llevas el crédito"
+          },
+          "cta": {
+            "text": "Sé el anfitrión que siempre sorprende — link en bio, $19.99",
+            "visual": "Texto: 'Guía del facilitador incluida · 2-6 jugadores · Acceso inmediato'. Grupo feliz de fondo.",
+            "landing_url": "/noche-juegos-misterio-grupo"
+          },
+          "text_overlay": "De compra a juego: 2 minutos | La Señal Fantasma | Para 2-6 personas · $19.99 total | Sé el anfitrión que sorprende · Link en bio",
+          "audio_notes": "Música ligera y positiva al inicio. Transición a música de misterio cuando aparecen los documentos. Voz en off masculina, tono cómplice y entusiasta. Estilo UGC nativo.",
+          "fear_neutralized": "FK-02 — miedo a que sea complicado de organizar para el grupo: el proceso de tres pasos (descarga, comparte, juega) hace la logística completamente transparente y simple",
+          "proof_element": "Descripción del proceso de onboarding en tiempo real — demuestra que el inicio es tan simple como el anfitrión necesita que sea",
+          "testing_variable": "Gancho de FACILIDAD DE ORGANIZACIÓN ('de compra a juego: 2 minutos') vs. variante S6-A con gancho de COMPARACIÓN ESCAPE ROOM",
+          "strategy_version_used": "v2"
+        }
+      ]
+    }
+  ],
+  "optimization_applied": [
+    "OPT-W14-001: Todos los scripts incluyen descripción explícita del contenido del caso (14 archivos, 6 pistas, 4 sospechosos, duración 2-4 horas) para eliminar fricción de 'no sé qué recibiré'",
+    "OPT-W14-001: Scripts S1-A, S1-B, S2-B, S5-A incluyen visualización de archivos del caso del caso como prueba de calidad y contenido",
+    "OPT-W14-002: Scripts S2-B y S5-A implementan formato de unboxing digital mostrando archivos uno por uno — variante directa del creativo recomendado",
+    "OPT-W14-003: LANE-02 y LANE-05 segmentan específicamente hacia fans de true crime en español con hooks de identidad de detective y diferenciación de idioma"
+  ],
+  "kb_patterns_used": [
+    "WP-001: Hooks de curiosidad y pregunta retórica mantenidos en S1-B, S2-A, S4-A — patrón tentativo con CTR 2.10% confirmado en W14",
+    "LP-001: Todos los scripts incluyen descripción explícita del contenido para reducir fricción post-clic y mejorar conversión en landing",
+    "LP-002: Scripts diseñados para atraer tráfico más cualificado mediante hooks específicos por segmento, reduciendo visitantes sin intención de compra"
+  ],
+  "status": "draft"
+}

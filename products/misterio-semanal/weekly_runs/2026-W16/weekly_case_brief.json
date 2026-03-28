@@ -1,0 +1,284 @@
+{
+  "schema_version": "2.0",
+  "product_id": "misterio-semanal",
+  "week": "2026-W16",
+  "generated_at": "2026-03-28T12:21:21.486863",
+  "source_case_dir": "/home/robotin/.openclaw/workspace-declassified/cases/exports/cyber-ghost",
+  "source_case_slug": "cyber-ghost",
+  "case": {
+    "title": "Cyber Ghost",
+    "slug": "cyber-ghost",
+    "logline": "A hacker who exposed city council corruption is found dead ten days after the leak — and the evidence suggests the whistleblower was silenced from the inside.",
+    "setting": {
+      "city": "Harwick, USA",
+      "neighborhood": "Civic District / Midtown co-working corridor",
+      "time_period": "Present day — October 2024",
+      "atmosphere": "A mid-sized city where civic trust is already fractured. Rain-slicked streets, fluorescent government offices, and a co-working space that smells like cold brew and paranoia."
+    },
+    "victim": {
+      "name": "Jordan Mercer",
+      "age": 31,
+      "occupation": "Freelance web developer / anonymous hacktivist operating as 'Cyber Ghost'",
+      "cause_of_death": "Fatal fentanyl overdose — initially ruled accidental, but toxicology and scene anomalies suggest staging"
+    },
+    "suspects": [
+      {
+        "name": "Aldric Voss",
+        "occupation": "City Council political consultant and fixer",
+        "why_suspicious": "Publicly has no direct motive — his role is purely advisory. But financial records show his consulting fees spiked 340% in the same fiscal year as the Briarfield contracts."
+      },
+      {
+        "name": "Nadia Osei",
+        "occupation": "Rival hacktivist and cybersecurity researcher",
+        "why_suspicious": "Jordan allegedly stole her exploit and burned her operational security — she had publicly threatened Cyber Ghost on forums two weeks before the death."
+      },
+      {
+        "name": "Serena Cho",
+        "occupation": "City IT and finance department systems administrator",
+        "why_suspicious": "She provided the credentials — if Jordan is identified, she faces federal charges for unauthorized access and obstruction. She had every reason to ensure Jordan was silenced before a full investigation could trace the leak back to her."
+      }
+    ],
+    "emotional_arc": {
+      "envelope_A": "Curiosity and civic unease — a whistleblower is dead and the documents they died for are still online. The player feels the weight of a cover-up already in motion, and every document feels like it could be tampered.",
+      "envelope_B": "Suspicion fracturing in three directions — Nadia's threats, Serena's cryptic warning, and Voss's suspiciously clean public image all pull the player toward different conclusions. Each interview generates empathy then doubt.",
+      "envelope_C": "Cold shock and vindication — the router log places an invisible visitor in a dead man's apartment. The pivot from 'overdose' to 'premeditated murder by a political fixer' reframes every document the player has already read.",
+      "envelope_R": "Exhausted satisfaction and moral weight — justice feels bureaucratic and incomplete, but the evidence chain is airtight. The player feels the specific tragedy of a whistleblower killed not for being wrong, but for being right."
+    },
+    "experience_summary": {
+      "envelopes": 4,
+      "total_documents": 20,
+      "estimated_duration_hours": "2-4",
+      "difficulty": "NORMAL",
+      "experiential_style": "digital_corporate",
+      "detective_name": "Det. R. Holt"
+    }
+  },
+  "marketing_assets": {
+    "scenes_for_video": [
+      {
+        "scene_id": "scene_A1",
+        "for_doc": "A1",
+        "location": "Apartment 4C, 812 Kellner Street, Harwick — Jordan Mercer's apartment",
+        "visual_description": "A compact one-bedroom apartment on the fourth floor of a mid-rise residential building in the Civic District. The desk in the northeast corner holds a laptop in sleep mode, its indicator light pulsing slowly. The pill organizer sits open on the kitchen counter near the sink. Blinds partially drawn. Nothing overturned. The apartment has the stillness of a space that has been arranged rather than lived in that morning.",
+        "lighting": "Dim — morning light filtering through half-closed venetian blinds, a single LED strip under kitchen cabinets left on",
+        "atmosphere": "Uncanny quiet. The kind of stillness that building superintendent Remy Salazar felt before he knocked. Civic District street noise muted four floors up. No music, no movement.",
+        "notable_objects": [
+          "laptop in sleep mode on desk",
+          "open pill organizer on counter (Tuesday slot)",
+          "glass near sink",
+          "no signs of forced entry or struggle",
+          "deadbolt locked from inside"
+        ],
+        "time_of_day": "Morning, approximately 08:15",
+        "marketing_use": "Hook scene — discovery / crime scene"
+      },
+      {
+        "scene_id": "scene_A2",
+        "for_doc": "A2",
+        "location": "HPD Detective Bureau — case file assembly room",
+        "visual_description": "A standard HPD detective bureau workspace with fluorescent overhead lighting and a large corkboard. Four POI folders are laid out on a metal table. Each folder contains a printed photo, bio summary, and flagged financial or behavioral notes. The Voss folder has a yellow sticky on the outside reading 'consulting fees — FLAG.'",
+        "lighting": "Fluorescent overhead, harsh and even, no natural light",
+        "atmosphere": "Procedural and methodical. Det. Holt's workspace is organized but under pressure — a fresh homicide with a civic corruption angle and city hall eyes already on it.",
+        "notable_objects": [
+          "four POI folders on metal table",
+          "corkboard with case number header",
+          "yellow sticky on Voss folder",
+          "victim device metadata printout"
+        ],
+        "time_of_day": "Afternoon, approximately 16:00",
+        "marketing_use": "Suspect lineup — detective board"
+      },
+      {
+        "scene_id": "scene_A3",
+        "for_doc": "A3",
+        "location": "Harwick City Hall — IT Security Division office, Floor 2",
+        "visual_description": "A windowless server-adjacent office in City Hall's IT security wing. Rows of workstations with dual monitors, most showing log dashboards. The print queue audit log is open on workstation CHWS-0009. A second monitor on an adjacent station shows the same file with different session metadata — accessed from Suite 440, Floor 4, the council fixer's office suite, without annotation.",
+        "lighting": "Fluorescent ceiling panels, no natural light, monitor glow on workstation surfaces",
+        "atmosphere": "The invisible kind of intrusion. No broken doors. No alarms. Just a cursor that moved through a system it had no business touching, 18 minutes and 42 seconds, then gone.",
+        "notable_objects": [
+          "print queue access log open on CHWS-0009",
+          "unregistered guest session from Suite 440 logged at 16:45:03",
+          "memo signed by T. Bannister dated October 13",
+          "no annotation against the Suite 440 entry"
+        ],
+        "time_of_day": "Daytime — original audit October 13, unauthorized access October 14 at 16:45",
+        "marketing_use": "Atmospheric / world-building"
+      },
+      {
+        "scene_id": "scene_A4",
+        "for_doc": "A4",
+        "location": "HPD Digital Crimes Unit — Harwick Police Headquarters, analyst workstation",
+        "visual_description": "A dark-lit analyst bay with multiple monitors showing Tor mirror site captures, VPN trace maps, and PGP key verification outputs. Analyst Quiñones has printed a side-by-side comparison of the first and second Briarfield document caches, with yellow highlighting on the sections that were edited out and red annotations where new attribution markers were inserted pointing toward a Finance Division employee.",
+        "lighting": "Low ambient, blue-tinted monitor glow dominant, single desk lamp",
+        "atmosphere": "The digital trace of a dead person's identity being used against them. Quiñones works carefully, noting what can be proven and what cannot — the misdirection is elegant, and that's the most disturbing part.",
+        "notable_objects": [
+          "side-by-side cache comparison printout with yellow and red markings",
+          "VPN trace map showing HWK-VPN-Exit-07",
+          "PGP key fingerprint verification printout",
+          "timestamp log showing 02:17:44 publication event"
+        ],
+        "time_of_day": "Late morning, October 23, approximately 11:30",
+        "marketing_use": "Atmospheric / world-building"
+      },
+      {
+        "scene_id": "scene_A5",
+        "for_doc": "A5",
+        "location": "Multiple — digital platforms compiled as evidence package",
+        "visual_description": "Four platform captures laid out as an HPD evidence compilation. The X/Twitter thread shows journalist Priya Nair's live-coverage from October 12, a council staffer's confirming reply visible below. The Reddit r/Harwick thread shows an upvoted post with a buried throwaway comment. Nadia Osei's Instagram post shows her at a hackathon whiteboard, upload timestamp 00:52 visible. The Facebook entry shows the Harwick Civic Watch post with Remy Salazar's haunted comment and a screenshot-within-screenshot of the since-deleted reply from HarwickProspers2024.",
+        "lighting": "Screen captures — each platform's native UI with its own color temperature (X/Twitter dark mode gray-black, Reddit orange-white, Instagram gradient white, Facebook light blue-white)",
+        "atmosphere": "The internet processing a death it doesn't know is a murder yet. Public grief, conspiracy theories, and one comment that got deleted too fast mixing together in a feed no one fully controls.",
+        "notable_objects": [
+          "Priya Nair X/Twitter thread from October 12",
+          "Reddit throwaway comment about 847-page print session",
+          "Nadia Instagram post timestamped 00:52 Oct 20",
+          "deleted HarwickProspers2024 Facebook comment preserved as screenshot"
+        ],
+        "time_of_day": "Various — compiled October 22 at 17:00",
+        "marketing_use": "Atmospheric / world-building"
+      }
+    ],
+    "poi_headshot_prompts": [
+      {
+        "image_id": "img_poi_01_portrait",
+        "name": "Jordan Mercer",
+        "role": "victim",
+        "dall_e_prompt": "Candid portrait of a 31-year-old person with androgynous presentation, dark brown hair slightly tousled, wearing a gray fitted crewneck and small stud earrings, neutral-to-guarded expression with watchful dark eyes, slight tension at the corners of the mouth, casual tech-worker aesthetic, soft natural window light from the left, light gray background. photorealistic, shot on Canon EOS R5, natural diffused lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no text overlays, no painting style",
+        "dall_e_params": {
+          "model": "dall-e-3",
+          "quality": "hd",
+          "size": "1024x1024",
+          "n": 1
+        }
+      },
+      {
+        "image_id": "img_poi_02_mugshot",
+        "name": "Aldric Voss",
+        "role": "suspect",
+        "dall_e_prompt": "Police booking portrait of a 48-year-old white male with silver-grey hair neatly combed back, sharp angular features, thin lips pressed together, wearing a pressed charcoal dress shirt with top button open, calm and composed expression with a slight hardness behind the eyes, slight clench at the jaw, police booking room neutral backdrop, flat even institutional lighting. photorealistic, shot on Canon EOS R5, flat institutional overhead lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no text overlays, no painting style",
+        "dall_e_params": {
+          "model": "dall-e-3",
+          "quality": "hd",
+          "size": "1024x1024",
+          "n": 1
+        }
+      },
+      {
+        "image_id": "img_poi_03_mugshot",
+        "name": "Nadia Osei",
+        "role": "suspect",
+        "dall_e_prompt": "Police booking portrait of a 27-year-old Black woman with natural coily hair pulled back loosely, sharp dark eyes with a direct confrontational gaze, wearing a dark olive graphic hoodie, slight smirk at the corner of the mouth suggesting impatience, strong confident posture, police booking room neutral backdrop, flat even institutional lighting. photorealistic, shot on Canon EOS R5, flat institutional overhead lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no text overlays, no painting style",
+        "dall_e_params": {
+          "model": "dall-e-3",
+          "quality": "hd",
+          "size": "1024x1024",
+          "n": 1
+        }
+      },
+      {
+        "image_id": "img_poi_04_mugshot",
+        "name": "Serena Cho",
+        "role": "suspect",
+        "dall_e_prompt": "Police booking portrait of a 36-year-old Korean-American woman with straight black hair cut at the shoulder, wearing a plain dark navy collared work blouse, minimal makeup, tired eyes with visible fatigue and slight redness at the rims, tight controlled expression that suggests suppressed emotion, slight downward cast to the gaze, police booking room neutral backdrop, flat even institutional lighting. photorealistic, shot on Canon EOS R5, flat institutional overhead lighting, no illustration, no cartoon, no anime, no vector art, no watermark, no text overlays, no painting style",
+        "dall_e_params": {
+          "model": "dall-e-3",
+          "quality": "hd",
+          "size": "1024x1024",
+          "n": 1
+        }
+      }
+    ],
+    "key_clues_for_hooks": [
+      {
+        "doc_id": "A1",
+        "document_title": "Harwick Police Department — Incident Report #2024-10836",
+        "clue_description": "A hacker who just leaked a massive corruption scandal is dead under circumstances that look almost too tidy — no forced entry, a conveniently staged scene. Someone may have wanted this to look like an",
+        "intrigue_level": "high",
+        "hook_potential": "A hacker who just leaked a massive corruption scandal is dead under circumstances that look almost t..."
+      },
+      {
+        "doc_id": "A2",
+        "document_title": "Persons of Interest — Case #2024-10836 (Jordan Mercer / 'Cyber Ghost')",
+        "clue_description": "Every POI has a reason to want Jordan silenced — the political fixer, the rival hacker, and the insider accomplice all had stakes in the leak. But the motives point in completely different directions,",
+        "intrigue_level": "high",
+        "hook_potential": "Every POI has a reason to want Jordan silenced — the political fixer, the rival hacker, and the insi..."
+      },
+      {
+        "doc_id": "A3",
+        "document_title": "City Hall IT Security — Print Queue Audit Log, October 8–14, 2024",
+        "clue_description": "Someone in Suite 440 — not IT Security — accessed this audit log a second time on October 14. That second access happened after the official IT review was complete, and Suite 440 is not an IT departme",
+        "intrigue_level": "high",
+        "hook_potential": "Someone in Suite 440 — not IT Security — accessed this audit log a second time on October 14. That s..."
+      },
+      {
+        "doc_id": "A4",
+        "document_title": "HPD Digital Crimes Unit — Preliminary Web Activity Report: 'Cyber Ghost' Second Publication Event",
+        "clue_description": "Jordan Mercer died around 23:08 on October 19. The second post went live three hours later using Jordan's own credentials. Either Jordan somehow published documents after death, or the killer had copi",
+        "intrigue_level": "high",
+        "hook_potential": "Jordan Mercer died around 23:08 on October 19. The second post went live three hours later using Jor..."
+      },
+      {
+        "doc_id": "A5",
+        "document_title": "Social Media Evidence Package — Cyber Ghost Case #2024-10836",
+        "clue_description": "Nadia's Instagram post was uploaded after she badged back into the hackathon — the 11:47pm tag comment and her 11:14pm badge-out create a gap. The Reddit comment about the print queue is either an ins",
+        "intrigue_level": "high",
+        "hook_potential": "Nadia's Instagram post was uploaded after she badged back into the hackathon — the 11:47pm tag comme..."
+      },
+      {
+        "doc_id": "A6",
+        "document_title": "812 Kellner Street — Building Entry Points and Apartment 4C Layout",
+        "clue_description": "The secondary stairwell has no camera and no external keycard — someone who was let into the apartment or who entered through the main lobby earlier in the day could exit through the stairwell without",
+        "intrigue_level": "high",
+        "hook_potential": "The secondary stairwell has no camera and no external keycard — someone who was let into the apartme..."
+      },
+      {
+        "doc_id": "C1",
+        "document_title": "DHCP Lease History Export — ASUS RT-AX88U, 812 Kellner St Apt 4C — Forensic Copy, Harwick PD Case #HW-2024-09917",
+        "clue_description": "Someone carrying an unidentified device was physically inside Jordan's apartment from 10:08pm to 11:34pm on the night of death — exactly the window toxicology places as the fatal dose window. The devi",
+        "intrigue_level": "high",
+        "hook_potential": "Someone carrying an unidentified device was physically inside Jordan's apartment from 10:08pm to 11:..."
+      },
+      {
+        "doc_id": "C2",
+        "document_title": "Internal Affairs Referral Memo — Unauthorized Workstation Access, City Hall Suite 440 — Case #HW-2024-09917",
+        "clue_description": "Aldric Voss, or someone in his office, used a stolen service account to secretly access the print queue metadata on October 14 — two days after the leak went public — and this access was deliberately ",
+        "intrigue_level": "high",
+        "hook_potential": "Aldric Voss, or someone in his office, used a stolen service account to secretly access the print qu..."
+      }
+    ],
+    "social_media_plan_from_case": [
+      {
+        "platform": "X/Twitter",
+        "content_type": "thread",
+        "case_purpose": "A local journalist live-threads the Briarfield leak story — plants the timeline of the original publication, introduces Cyber Ghost as a persona, and includes a reply from a suspected city council staffer that looks like damage control but actually confirms a key detail about the Briarfield vendor list.",
+        "doc_id": "A5"
+      },
+      {
+        "platform": "Reddit",
+        "content_type": "thread",
+        "case_purpose": "A post in r/Harwick titled 'Did the city just kill Cyber Ghost?' — citizen speculation that mixes genuine deductive reasoning with wild conspiracy theories. One comment from a throwaway account accurately describes the print queue as the leak's origin vector, which the player must evaluate as either a genuine insider leak or a red herring.",
+        "doc_id": "A5_entry_2"
+      },
+      {
+        "platform": "Instagram",
+        "content_type": "post",
+        "case_purpose": "Nadia Osei's personal account — a post timestamped during the hackathon showing her at a whiteboard, establishing her presence at Meridian Co-Works. Comments include a timestamp from a tagged attendee that corroborates part of her alibi, but the post itself was uploaded at 12:52am — after she had badged back in.",
+        "doc_id": "A5_entry_3"
+      },
+      {
+        "platform": "Facebook",
+        "content_type": "post",
+        "case_purpose": "A community post from the Harwick Civic Watch group reacting to the death — includes a comment from Remy Salazar (the building super who found Jordan) that adds texture to the scene discovery, and a reply from an account linked to Voss's political network that was deleted within 6 hours but is preserved in a screenshot.",
+        "doc_id": "A5_entry_4"
+      }
+    ]
+  },
+  "hook_angles_from_case": [
+    "A hacker who exposed city council corruption is found dead ten days after the leak — and the evidence suggests the whistleblower was silenced from the inside.",
+    "Jordan Mercer — Fatal fentanyl overdose — initially ruled accidental, but toxicology and scene anomalies suggest staging",
+    "3 sospechosos. Todos tienen motivo. Solo uno es culpable.",
+    "A mid-sized city where civic trust is already fractured. Rain-slicked streets, fluorescent government offices, and a co-",
+    "A hacker who just leaked a massive corruption scandal is dead under circumstances that look almost t...",
+    "Every POI has a reason to want Jordan silenced — the political fixer, the rival hacker, and the insi...",
+    "Someone in Suite 440 — not IT Security — accessed this audit log a second time on October 14. That s..."
+  ]
+}

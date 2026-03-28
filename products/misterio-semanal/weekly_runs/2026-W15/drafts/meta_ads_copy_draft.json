@@ -1,0 +1,221 @@
+{
+  "schema_version": "3.0",
+  "product_id": "misterio-semanal",
+  "run_id": "2026-W15",
+  "generated_at": "2026-04-07T00:00:00.000000",
+  "strategy_version_used": "v2",
+  "ad_sets": [
+    {
+      "ad_set_id": "ADSET-01",
+      "persona_id": "parejas_noche_cita",
+      "trigger_id": "scroll_instagram_viernes_noche",
+      "angle_id": "ANG-01",
+      "variants": [
+        {
+          "variant_id": "AD-01-A",
+          "creative_id": "DC-W15-01A",
+          "approach": "emotional",
+          "headline": "Esta noche no es Netflix",
+          "primary_text": "¿Otra vez el teléfono y el sofá en silencio? Esta noche resuelvan juntos quién transmite la Señal Fantasma.",
+          "description": "Caso nuevo: La Señal Fantasma. Una radio pirata, coordenadas misteriosas y desapariciones. 14 archivos. Acceso inmediato. $19.99 para los dos.",
+          "cta_text": "Jugar Esta Noche",
+          "landing_url": "/noche-cita-misterio-pareja",
+          "hypothesis": "Las parejas en modo 'qué hacemos esta noche' responden a la culpa de la rutina Netflix. Activar esa tensión emocional primero y ofrecer la solución inmediata debería generar CTR alto en viernes tarde. Apunta a mejorar el CTR baseline de 2.10% de W14.",
+          "fear_neutralized": "FK-01 — aburrimiento / falta de conexión real en pareja",
+          "compliance_notes": "Ninguna. Copy no usa claims superlativas ni promesas de resultado.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "variant_id": "AD-01-B",
+          "creative_id": "DC-W15-01B",
+          "approach": "rational",
+          "headline": "Menos que una pizza, más memorable",
+          "primary_text": "Una pizza para dos: $25. Resolver La Señal Fantasma juntos: $19.99. 2-3 horas de conversación real. Descarga inmediata.",
+          "description": "14 archivos clasificados · 6 pistas auténticas · Radio pirata + desapariciones en pueblo costero · Acceso en 2 minutos. Garantía de satisfacción.",
+          "cta_text": "Comprar Ahora",
+          "landing_url": "/noche-cita-misterio-pareja",
+          "hypothesis": "El buyer persona de parejas tiene como barrera principal el precio percibido vs. valor. Anclar $19.99 contra una pizza elimina la fricción racional y comunica el contenido concreto del caso, atacando directamente LP-001 (falta de claridad sobre qué se recibe). Variante más informativa para usuarios en fase de consideración.",
+          "fear_neutralized": "FK-01 y FK-05 — valor percibido bajo + deseo de acceso inmediato",
+          "compliance_notes": "La comparación con pizza es ilustrativa, no una afirmación de precio de pizza. Aceptable.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "variant_id": "AD-01-C",
+          "creative_id": "DC-W15-01C",
+          "approach": "urgency",
+          "headline": "Compra ahora, juegan esta noche",
+          "primary_text": "La Señal Fantasma acaba de desclasificarse. Radio pirata. Coordenadas. Desapariciones. ¿Pueden resolverlo antes de que amanezca?",
+          "description": "Caso nuevo semana 2026-W15. Descarga inmediata. Sin esperas. Sin instalaciones. $19.99 para la pareja completa. Garantía de satisfacción.",
+          "cta_text": "Descargar Ahora",
+          "landing_url": "/noche-cita-misterio-pareja",
+          "hypothesis": "El trigger de impulso de viernes noche requiere urgencia narrativa, no solo beneficio. El gancho del caso nuevo recién publicado + el tono de 'expediente desclasificado' activa FOMO y curiosidad simultáneamente. Implementa OPT-W14-002: formato de apertura de expediente para reducir barrera de 'no sé qué recibiré'.",
+          "fear_neutralized": "FK-05 — acceso inmediato sin esperas",
+          "compliance_notes": "Ninguna. 'Desclasificado' es metáfora narrativa, no afirmación factual sobre documentos reales.",
+          "strategy_version_used": "v2"
+        }
+      ]
+    },
+    {
+      "ad_set_id": "ADSET-02",
+      "persona_id": "fans_true_crime_solo",
+      "trigger_id": "post_documental_podcast",
+      "angle_id": "ANG-02",
+      "variants": [
+        {
+          "variant_id": "AD-02-A",
+          "creative_id": "DC-W15-02A",
+          "approach": "aspiration",
+          "headline": "Deja de escuchar. Resuélvelo tú.",
+          "primary_text": "Escuchas true crime. Analizas cada detalle. Ahora el expediente está en tus manos: La Señal Fantasma. En español. Esta noche.",
+          "description": "Informe policial · Fotografías de escena · Transcripciones de la señal de radio · Cartas cifradas. 14 archivos. 2-3 horas. Acceso inmediato. $19.99.",
+          "cta_text": "Abrir Mi Expediente",
+          "landing_url": "/juego-interactivo-true-crime-espanol",
+          "hypothesis": "La fan de true crime solitaria se frustra de ser siempre espectadora. El copy 'el expediente está en tus manos' activa el rol de detective activa que aspira ser. Mostrar los tipos de archivos específicos del caso ataca LP-001 (falta de claridad sobre contenido) y la barrera de calidad narrativa. Implementa OPT-W14-002.",
+          "fear_neutralized": "FK-03 — miedo a que sea infantil o poco realista",
+          "compliance_notes": "Ninguna. Los archivos mencionados son ficticios del caso, no documentos reales de crímenes.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "variant_id": "AD-02-B",
+          "creative_id": "DC-W15-02B",
+          "approach": "rational",
+          "headline": "El podcast de crimen que resuelves tú",
+          "primary_text": "Una radio pirata transmite coordenadas a las 3AM. Las personas que las siguen desaparecen. ¿Puedes resolver La Señal Fantasma?",
+          "description": "14 archivos clasificados · Pistas auténticas · Narrativa en 3 actos · Escrito originalmente en español · Dificultad adulto · 2-3 horas · $19.99",
+          "cta_text": "Empezar a Investigar",
+          "landing_url": "/juego-interactivo-true-crime-espanol",
+          "hypothesis": "El hook narrativo del caso activa la curiosidad inmediata de la fan de true crime. Comunicar 'escrito originalmente en español' diferencia de competidores y neutraliza la barrera de calidad de traducción. La duración de 2-3 horas ataca FK-01 (miedo a que sea demasiado fácil). Variante más informativa para audiencia en consideración.",
+          "fear_neutralized": "FK-01 — miedo a que sea demasiado fácil o corto",
+          "compliance_notes": "Ninguna. 'Pistas auténticas' refiere a la coherencia narrativa del caso, no a documentos de crímenes reales. Verificar que el copy de landing aclare que es ficción.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "variant_id": "AD-02-C",
+          "creative_id": "DC-W15-02C",
+          "approach": "social_proof",
+          "headline": "Archivos reales. Sensación real.",
+          "primary_text": "'Abrí el primer archivo y no pude parar hasta las 3AM.' — Camila, fan de true crime. Tu turno: La Señal Fantasma te espera.",
+          "description": "Informe forense · Fotos de escena · Transcripciones de radio pirata · Cartas cifradas. Todo en español. Acceso inmediato. $19.99. Garantía de satisfacción.",
+          "cta_text": "Ver Los Archivos",
+          "landing_url": "/juego-interactivo-true-crime-espanol",
+          "hypothesis": "La prueba social de una fan de true crime identificable ('Camila') que vivió la experiencia de enganche nocturno es el argumento más poderoso para este segmento. Neutraliza FK-01 (¿será suficientemente desafiante?) y FK-03 (¿será de calidad?). El testimonio debe ser real o representativo de experiencias reales.",
+          "fear_neutralized": "FK-03 — miedo a narrativa de baja calidad",
+          "compliance_notes": "IMPORTANTE: El testimonio citado debe ser real y verificable. Si no existe aún un testimonio real de este perfil, usar copy alternativo como 'Diseñado para fans de true crime que quieren más que escuchar' hasta tener testimonios reales disponibles.",
+          "strategy_version_used": "v2"
+        }
+      ]
+    },
+    {
+      "ad_set_id": "ADSET-03",
+      "persona_id": "anfitriones_noche_juegos",
+      "trigger_id": "reel_grupo_resolviendo",
+      "angle_id": "ANG-03",
+      "variants": [
+        {
+          "variant_id": "AD-03-A",
+          "creative_id": "DC-W15-03A",
+          "approach": "aspiration",
+          "headline": "Esta vez no es UNO ni Catan",
+          "primary_text": "Esta sábado tu grupo resuelve un caso real: una radio pirata, coordenadas secretas y desapariciones. Menos de $4 por persona.",
+          "description": "La Señal Fantasma — caso nuevo. Para 2-6 jugadores. Guía del facilitador incluida. Empieza en 10 minutos. $19.99 para todo el grupo. Acceso inmediato.",
+          "cta_text": "Organizar Esta Noche",
+          "landing_url": "/noche-juegos-misterio-grupo",
+          "hypothesis": "El anfitrión quiere ser el héroe que trae el plan épico. El hook 'esta vez no es UNO' activa la aspiración de originalidad. Comunicar '$4 por persona' reencuadra el precio como irrisorio para una noche grupal. Implementa OPT-W14-001: mostrar contenido concreto del caso para reducir fricción de decisión.",
+          "fear_neutralized": "FK-02 — miedo a que sea complicado de organizar",
+          "compliance_notes": "Ninguna. '$4 por persona' es matemáticamente correcto para 5 jugadores ($19.99/5 = $3.99). Verificar que la landing aclare que el precio es por caso completo, no por persona.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "variant_id": "AD-03-B",
+          "creative_id": "DC-W15-03B",
+          "approach": "rational",
+          "headline": "$4 por persona. Toda la noche.",
+          "primary_text": "Un escape room para 6: $180. La Señal Fantasma para 6: $19.99. Misma adrenalina. Sin salir de casa. Descarga inmediata este sábado.",
+          "description": "14 archivos · Guía del facilitador incluida · Para 2-6 jugadores · Empieza en 10 minutos · Sin instalaciones · Garantía de satisfacción · $19.99",
+          "cta_text": "Descargar Para el Sábado",
+          "landing_url": "/noche-juegos-misterio-grupo",
+          "hypothesis": "La comparación directa con escape room ($180 vs $19.99) es el argumento racional más poderoso para el anfitrión que evalúa opciones. Implementa ANG-07 (Cuatro Dólares por Persona) con el contexto del caso nuevo. Ataca LP-001 comunicando claramente qué incluye el producto.",
+          "fear_neutralized": "FK-01 — valor percibido bajo para experiencia grupal",
+          "compliance_notes": "El precio de escape room ($180 para 6 personas) es una estimación basada en $30/persona promedio en LATAM. Verificar que la landing no use cifras más específicas sin fuente. Aceptable como comparación ilustrativa en anuncio.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "variant_id": "AD-03-C",
+          "creative_id": "DC-W15-03C",
+          "approach": "social_proof",
+          "headline": "El plan que todos quieren repetir",
+          "primary_text": "Una radio pirata. Coordenadas que llevan a desapariciones. 6 amigos con teorías completamente distintas. ¿Quién tiene razón esta noche?",
+          "description": "La Señal Fantasma — caso nuevo semana W15. Para 2-6 jugadores. Guía del facilitador. $19.99 para todo el grupo. Acceso inmediato. Garantía incluida.",
+          "cta_text": "Ser el Anfitrión Épico",
+          "landing_url": "/noche-juegos-misterio-grupo",
+          "hypothesis": "El elemento de 'teorías distintas' activa la anticipación del debate grupal, que según el buyer persona es el valor central de la experiencia. El CTA 'Ser el Anfitrión Épico' refuerza la identidad aspiracional del segmento. La narrativa del caso genera curiosidad sin revelar la solución.",
+          "fear_neutralized": "FK-01 — miedo a que no todos se enganchen",
+          "compliance_notes": "Ninguna.",
+          "strategy_version_used": "v2"
+        }
+      ]
+    },
+    {
+      "ad_set_id": "ADSET-04",
+      "persona_id": "compradores_regalo",
+      "trigger_id": "busqueda_regalo_true_crime",
+      "angle_id": "ANG-12",
+      "variants": [
+        {
+          "variant_id": "AD-04-A",
+          "creative_id": "DC-W15-04A",
+          "approach": "emotional",
+          "headline": "El regalo que realmente van a usar",
+          "primary_text": "¿Fan del true crime? Regala La Señal Fantasma: un caso de misterio completo en español. Descarga inmediata. Envía por WhatsApp hoy.",
+          "description": "Tarjeta de regalo digital con diseño premium · Acceso inmediato al caso completo · 14 archivos · 2-3 horas de investigación · $19.99 · Garantía de satisfacción",
+          "cta_text": "Regalar Ahora",
+          "landing_url": "/regalo-experiencia-misterio",
+          "hypothesis": "El comprador de regalo necesita solución inmediata y confianza en que el destinatario lo usará. 'Envía por WhatsApp hoy' resuelve la urgencia de entrega. Mencionar 'fan del true crime' como perfil del destinatario ayuda al comprador a identificar si es el regalo correcto, reduciendo FK-04.",
+          "fear_neutralized": "FK-04 — miedo a que no le guste o no lo use",
+          "compliance_notes": "Ninguna. 'Tarjeta de regalo digital con diseño premium' debe estar disponible en la landing. Verificar que el proceso de regalo digital esté implementado antes de activar este anuncio.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "variant_id": "AD-04-B",
+          "creative_id": "DC-W15-04B",
+          "approach": "urgency",
+          "headline": "Regalo para hoy. Sin esperar envíos.",
+          "primary_text": "Cumpleaños mañana y no sabes qué regalar. La Señal Fantasma: caso de misterio en español. Compra ahora, envía en 5 minutos.",
+          "description": "Regalo digital · Tarjeta premium descargable · Acceso inmediato al caso completo · Para fans de true crime, escape rooms y misterio · $19.99 · Garantía",
+          "cta_text": "Regalar Hoy",
+          "landing_url": "/regalo-experiencia-misterio",
+          "hypothesis": "El comprador de última hora es el trigger de mayor urgencia en este segmento. El copy 'cumpleaños mañana' activa reconocimiento inmediato de la situación. 'Envía en 5 minutos' resuelve FK-05 y la barrera de 'cómo se entrega si es digital'. Implementa OPT-W14-001: claridad sobre qué se recibe.",
+          "fear_neutralized": "FK-05 — acceso y entrega inmediata",
+          "compliance_notes": "Ninguna.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "variant_id": "AD-04-C",
+          "creative_id": "DC-W15-04C",
+          "approach": "rational",
+          "headline": "Regala experiencia, no una cosa más",
+          "primary_text": "No más regalos que acumulan polvo. La Señal Fantasma: 2-3 horas de investigación activa en español. $19.99. Entrega digital inmediata.",
+          "description": "Caso completo de misterio · 14 archivos clasificados · Para 1-6 personas · Escrito en español · Tarjeta de regalo premium · Garantía de satisfacción · $19.99",
+          "cta_text": "Ver Opciones de Regalo",
+          "landing_url": "/regalo-experiencia-misterio",
+          "hypothesis": "El argumento racional de 'experiencia vs. objeto' reencuadra el precio como inversión en recuerdo, no en producto. Comunicar que funciona para 1-6 personas amplía la percepción de valor. Variante para usuarios que ya consideran regalos experienciales y necesitan el argumento final.",
+          "fear_neutralized": "FK-04 — miedo a regalar algo que no se use",
+          "compliance_notes": "Ninguna.",
+          "strategy_version_used": "v2"
+        }
+      ]
+    }
+  ],
+  "optimization_applied": [
+    "OPT-W14-001: Todos los anuncios incluyen descripción concreta de archivos del caso (14 archivos, 6 pistas, tipos de documentos) para reducir fricción de decisión por falta de claridad sobre contenido",
+    "OPT-W14-001: Garantía de satisfacción mencionada en la mayoría de variantes para reducir riesgo percibido en marca nueva",
+    "OPT-W14-002: Variantes con formato de apertura de expediente y hook narrativo del caso (La Señal Fantasma) para activar curiosidad y mostrar calidad del producto antes del clic",
+    "OPT-W14-003: Ad sets segmentados por persona específica (parejas, true crime solo, anfitriones, compradores regalo) con landing URLs distintas por segmento para mejorar relevancia y tasa de conversión post-clic"
+  ],
+  "kb_patterns_used": [
+    "WP-001: Mantenidos hooks de curiosidad y pregunta retórica en variantes emocionales (AD-01-C, AD-02-A, AD-03-C) dado CTR de 2.10% en W14",
+    "LP-001: Todas las variantes incluyen descripción explícita del contenido del caso para atacar la barrera de falta de claridad sobre qué se recibe",
+    "LP-002: Segmentación por persona + landing URLs específicas para mejorar eficiencia del funnel post-clic y reducir CPA desde $11.10 de W14"
+  ],
+  "status": "draft"
+}

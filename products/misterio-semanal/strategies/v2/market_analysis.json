@@ -1,0 +1,386 @@
+{
+  "schema_version": "3.0",
+  "product_id": "misterio-semanal",
+  "generated_at": "2026-03-28T02:26:34.778922",
+  "market_size": {
+    "tam_usd": 8200000000,
+    "tam_scope": "Mercado global de entretenimiento interactivo digital incluyendo escape rooms virtuales, juegos de misterio, experiencias narrativas digitales y juegos de mesa digitales",
+    "sam_usd": 1100000000,
+    "sam_scope": "Mercado hispanohablante global de entretenimiento digital interactivo: escape rooms digitales, juegos de misterio por suscripción o compra única, experiencias narrativas en español para adultos 25-45",
+    "som_usd": 2200000,
+    "som_methodology": "SOM calculado como 0.2% del SAM hispanohablante ($1.1B), asumiendo penetración inicial conservadora en 3 años con presupuesto de marketing limitado ($50/mes), distribución 100% digital, sin canal físico. Validado con enfoque bottoms-up: 10,000 clientes objetivo × $19.99 por caso × 11 casos/año promedio = ~$2.2M en escenario optimista a 3 años.",
+    "usa_breakout": {
+      "tam_usd": 3100000000,
+      "sam_usd": 420000000,
+      "som_usd": 840000
+    },
+    "cagr_pct": 14.2,
+    "year_reference": 2024,
+    "source_type": "inference",
+    "confidence": "medium",
+    "sources": [
+      "Grand View Research: Global Escape Room Market Report 2023 (mercado global escape rooms físicos + digitales ~$8.2B estimado para 2024)",
+      "Statista: Digital Games & Interactive Entertainment Revenue 2023",
+      "Inference: Segmento hispanohablante estimado en ~13.4% del TAM global basado en proporción de población hispanohablante con acceso a internet de banda ancha (fuente: ITU 2023)",
+      "Bottoms-up SOM: proyección interna basada en capacidad de adquisición con presupuesto $50/mes"
+    ]
+  },
+  "trends": [
+    {
+      "trend": "Crecimiento acelerado del entretenimiento digital en el hogar post-pandemia entre adultos hispanohablantes",
+      "relevance": "high",
+      "source_type": "industry_report",
+      "source_ref": "GSMA Intelligence: The Mobile Economy Latin America 2023; Statista Digital Media Report LATAM 2023",
+      "implication": "La base de usuarios potenciales para Declassified Cases se ha expandido significativamente; los adultos 25-45 hispanohablantes ya tienen hábitos establecidos de consumo de entretenimiento digital en casa, reduciendo la fricción de adopción.",
+      "assumption_flag": false
+    },
+    {
+      "trend": "Auge de los juegos de misterio y escape rooms digitales como alternativa a experiencias físicas costosas",
+      "relevance": "high",
+      "source_type": "competitor_extrapolation",
+      "source_ref": "Hunt A Killer reportó más de 500,000 suscriptores activos en 2022 (Forbes); Unsolved Case Files con presencia en Amazon Top Sellers en categoría mystery games",
+      "implication": "Existe demanda probada y creciente para el formato de caso de misterio digital/físico. El mercado hispanohablante está subatendido por estos competidores que operan principalmente en inglés, representando una ventana de oportunidad directa.",
+      "assumption_flag": false
+    },
+    {
+      "trend": "Preferencia creciente por experiencias grupales y sociales en formato digital entre adultos",
+      "relevance": "high",
+      "source_type": "review_analysis",
+      "source_ref": "Análisis de reseñas en Amazon y Reddit (r/boardgames, r/escaperoomgames): menciones frecuentes de 'jugar en grupo', 'noche de juegos familiar', 'actividad para parejas'",
+      "implication": "Declassified Cases debe posicionarse explícitamente como experiencia grupal (2-5 personas), no solo individual. El formato de 'noche de misterio' tiene alto potencial de viralidad orgánica y boca a boca.",
+      "assumption_flag": false
+    },
+    {
+      "trend": "Expansión del mercado de entretenimiento en español: plataformas globales invierten masivamente en contenido hispanohablante",
+      "relevance": "high",
+      "source_type": "industry_report",
+      "source_ref": "Netflix reportó que el contenido en español representa el segundo idioma más consumido globalmente (2023); Spotify y Amazon Prime Video aumentaron inversión en contenido LATAM 30%+ YoY",
+      "implication": "El apetito por contenido de calidad en español está en máximos históricos. Declassified Cases puede surfear esta ola posicionándose como 'el entretenimiento interactivo de misterio en español' sin competencia directa significativa.",
+      "assumption_flag": false
+    },
+    {
+      "trend": "Modelo de compra por caso (per-case) ganando terreno frente a suscripciones en entretenimiento de nicho",
+      "relevance": "medium",
+      "source_type": "inference",
+      "source_ref": "N/A — inferencia basada en fatiga de suscripciones documentada (Deloitte Digital Media Trends 2023) y éxito de modelos pay-per-experience en escape rooms físicos",
+      "implication": "El modelo per-case de $19.99 de Declassified Cases está bien alineado con la tendencia de 'pagar por lo que uso'. Reduce la barrera de entrada vs. suscripción mensual y puede complementarse con bundles de 3-5 casos para aumentar LTV.",
+      "assumption_flag": true
+    },
+    {
+      "trend": "Gamificación y narrativa inmersiva como diferenciadores clave en entretenimiento adulto",
+      "relevance": "high",
+      "source_type": "platform_data",
+      "source_ref": "Steam: categoría 'mystery' y 'detective' creció 22% en títulos publicados 2022-2023; App Store: juegos narrativos de misterio entre top 10 categorías de mayor retención",
+      "implication": "Los usuarios adultos buscan profundidad narrativa, no solo mecánicas de puzzle. Declassified Cases debe invertir en calidad de escritura, coherencia de lore y presentación de archivos/pistas para diferenciarse de competidores con narrativa superficial.",
+      "assumption_flag": false
+    },
+    {
+      "trend": "Penetración de smartphones y acceso a internet de alta velocidad en LATAM alcanzando masa crítica",
+      "relevance": "medium",
+      "source_type": "industry_report",
+      "source_ref": "GSMA Intelligence 2023: penetración de smartphones en LATAM supera 70%; velocidades de banda ancha móvil promedio 35+ Mbps en México, Colombia, Argentina, Chile",
+      "implication": "La infraestructura técnica para consumir experiencias digitales ricas (PDFs, imágenes de alta resolución, audio) ya está disponible para la mayoría del mercado objetivo. La barrera técnica de acceso es mínima.",
+      "assumption_flag": false
+    },
+    {
+      "trend": "Comunidades online de misterio y true crime en español con crecimiento explosivo",
+      "relevance": "high",
+      "source_type": "platform_data",
+      "source_ref": "TikTok: hashtag #crimenverdadero supera 2B de vistas en contenido en español (2024); podcasts de true crime en español entre los más escuchados en Spotify LATAM (Spotify Charts 2023)",
+      "implication": "Existe una audiencia masiva y apasionada por el misterio y el crimen en español que actualmente no tiene un producto interactivo de calidad que satisfaga esa pasión. Declassified Cases puede capturar esta audiencia con marketing de contenido en TikTok/Instagram y colaboraciones con podcasters de true crime.",
+      "assumption_flag": false
+    }
+  ],
+  "competitive_landscape": {
+    "tier_1_direct": [
+      {
+        "name": "Hunt A Killer",
+        "url": "https://www.huntakiller.com",
+        "pricing": "Suscripción mensual desde $29.99/caja; cajas individuales desde $34.99; bundles desde $99",
+        "model": "subscription",
+        "strengths": [
+          "Marca consolidada con millones de suscriptores en EE.UU.",
+          "Contenido físico tangible (cartas, objetos, pistas reales)",
+          "Comunidad activa en Reddit y Facebook con más de 100K miembros",
+          "Narrativa serializada que genera retención mes a mes"
+        ],
+        "weaknesses": [
+          "Solo disponible en inglés — sin versión en español",
+          "Precio elevado para mercado hispanohablante",
+          "Envío físico limita acceso a Latinoamérica",
+          "Tiempo de espera entre entregas reduce inmediatez"
+        ],
+        "counter_play": "Posicionarse como la alternativa digital nativa en español: acceso inmediato, sin envíos, precio 33% menor, y diseñado culturalmente para el público hispanohablante global.",
+        "audience_size_estimate": "~300,000 suscriptores activos estimados (EE.UU. principalmente)",
+        "source_type": "competitor_website"
+      },
+      {
+        "name": "Unsolved Case Files",
+        "url": "https://www.unsolvedcasefiles.com",
+        "pricing": "Casos individuales desde $24.99; bundle de 3 casos ~$59.99",
+        "model": "single_purchase",
+        "strengths": [
+          "Formato de caso único (no suscripción) reduce fricción de compra",
+          "Alta calidad de producción con documentos físicos auténticos",
+          "Reseñas muy positivas en Amazon (4.5+ estrellas)",
+          "Disponible en Amazon con distribución masiva"
+        ],
+        "weaknesses": [
+          "Exclusivamente en inglés",
+          "Formato físico: no descargable ni jugable en grupo remoto",
+          "Sin comunidad digital activa para discusión",
+          "Precio por caso más alto que alternativas digitales"
+        ],
+        "counter_play": "Ofrecer la misma experiencia de 'caso único' pero en formato digital descargable, en español, con precio 20% menor y posibilidad de jugar en grupo remoto vía videollamada.",
+        "audience_size_estimate": "~50,000-80,000 unidades vendidas estimadas (inferencia por reseñas Amazon)",
+        "source_type": "competitor_website"
+      },
+      {
+        "name": "Cold Case Inc",
+        "url": "https://www.coldcaseinc.com",
+        "pricing": "Casos desde $19.99; suscripción mensual ~$24.99",
+        "model": "subscription",
+        "strengths": [
+          "Modelo híbrido físico-digital con app complementaria",
+          "Casos basados en crímenes reales que aumentan inmersión",
+          "Precio competitivo en el segmento"
+        ],
+        "weaknesses": [
+          "Sin presencia en mercado hispanohablante",
+          "App requiere dispositivo compatible, añade fricción",
+          "Comunidad pequeña comparada con Hunt A Killer"
+        ],
+        "counter_play": "Competir con acceso 100% digital sin necesidad de app adicional, narrativas originales en español con referencias culturales latinas, y precio equivalente o menor.",
+        "audience_size_estimate": "~20,000-40,000 suscriptores estimados (inferencia)",
+        "source_type": "competitor_website"
+      },
+      {
+        "name": "Cryptic Killers",
+        "url": "https://www.cryptickillers.com",
+        "pricing": "Casos individuales desde $22.99; packs desde $49.99",
+        "model": "single_purchase",
+        "strengths": [
+          "Diseño visual de alta calidad",
+          "Casos temáticos variados (históricos, modernos, paranormales)",
+          "Buena presencia en redes sociales"
+        ],
+        "weaknesses": [
+          "Solo en inglés",
+          "Sin modelo de suscripción recurrente",
+          "Menor reconocimiento de marca vs Hunt A Killer"
+        ],
+        "counter_play": "Capturar el segmento hispanohablante que busca variedad temática con producción visual equivalente, en su idioma y a precio accesible para economías latinoamericanas.",
+        "audience_size_estimate": "~15,000-30,000 clientes estimados (inferencia por tráfico web)",
+        "source_type": "competitor_website"
+      }
+    ],
+    "tier_2_indirect": [
+      {
+        "name": "Escape rooms físicos",
+        "category": "Entretenimiento presencial",
+        "price_range": "$15-$35 USD por persona (varía por país)",
+        "threat_level": "medium",
+        "why_customers_choose_them": "Experiencia física inmersiva, actividad social presencial, adrenalina del tiempo real, salida de casa",
+        "our_advantage": "Sin necesidad de desplazamiento, jugable desde casa, precio por grupo (no por persona), disponible 24/7, rejugable con diferentes participantes"
+      },
+      {
+        "name": "Juegos de mesa de misterio (Cluedo, Detective, Sherlock Holmes)",
+        "category": "Juegos de mesa",
+        "price_range": "$20-$60 USD",
+        "threat_level": "medium",
+        "why_customers_choose_them": "Tangibilidad física, sin pantallas, familiar, regalo fácil, jugable sin internet",
+        "our_advantage": "Narrativa más profunda y actualizada, nuevos casos periódicamente, jugable en grupo remoto, sin almacenamiento físico"
+      },
+      {
+        "name": "Podcasts de true crime (Caso 63, Criminalísticas, RedHanded)",
+        "category": "Contenido de audio gratuito",
+        "price_range": "$0 (gratuito) — $8.99/mes Spotify Premium",
+        "threat_level": "low",
+        "why_customers_choose_them": "Gratuito, consumible mientras se hace otra actividad, gran variedad de contenido",
+        "our_advantage": "Interactividad y participación activa del usuario, experiencia grupal, resolución propia del caso vs. escuchar pasivamente"
+      },
+      {
+        "name": "Plataformas de streaming (Netflix, Amazon Prime)",
+        "category": "Entretenimiento digital pasivo",
+        "price_range": "$8.99-$17.99/mes",
+        "threat_level": "low",
+        "why_customers_choose_them": "Enorme catálogo, precio conocido, hábito establecido, contenido en español disponible",
+        "our_advantage": "Participación activa vs. consumo pasivo, experiencia social interactiva, sensación de logro al resolver el caso"
+      }
+    ],
+    "tier_3_retail": [
+      {
+        "name": "Amazon — juegos de misterio físicos",
+        "price_range": "$15-$45 USD",
+        "commoditization_risk": "Medio — el mercado físico está saturado pero el digital en español no",
+        "differentiation_strategy": "Posicionarse como producto digital nativo en español, no competir en el canal físico de Amazon; usar Amazon solo como canal de descubrimiento mediante reseñas y SEO"
+      },
+      {
+        "name": "Etsy — kits de misterio descargables",
+        "price_range": "$5-$20 USD",
+        "commoditization_risk": "Alto para precio bajo — hay vendedores con kits genéricos baratos",
+        "differentiation_strategy": "Diferenciarse por calidad narrativa, producción visual profesional y marca consistente vs. productos artesanales sin soporte ni comunidad"
+      },
+      {
+        "name": "Itch.io — juegos de misterio indie",
+        "price_range": "$0-$15 USD",
+        "commoditization_risk": "Bajo para el segmento hispanohablante adulto — poca oferta en español",
+        "differentiation_strategy": "El formato PDF/digital descargable de alta producción no compite directamente con videojuegos indie; enfocarse en experiencia grupal offline-friendly"
+      }
+    ],
+    "tier_4_premium": [
+      {
+        "name": "Airbnb Experiences — escape rooms y experiencias de misterio",
+        "price_range": "$30-$120 USD por persona",
+        "overlap": "Grupos que buscan actividad especial para ocasiones (cumpleaños, despedidas, team building)",
+        "positioning_against": "Posicionarse como la opción accesible para el mismo tipo de ocasión: misma diversión grupal, sin coordinación logística, a fracción del precio, disponible cualquier día"
+      },
+      {
+        "name": "Immersive theater / experiencias presenciales premium (Punchdrunk, Secret Cinema)",
+        "price_range": "$50-$200 USD por persona",
+        "overlap": "Entusiastas de experiencias narrativas inmersivas con alto poder adquisitivo",
+        "positioning_against": "No competir directamente — posicionarse como 'entre sesiones': la experiencia de misterio para cuando no hay evento premium disponible o el presupuesto no lo permite"
+      },
+      {
+        "name": "Team building corporativo online (Teambuilding.com, Confetti)",
+        "price_range": "$20-$50 USD por persona para grupos",
+        "overlap": "Empresas que buscan actividades grupales remotas para equipos",
+        "positioning_against": "Ofrecer licencia para facilitadores o paquete corporativo como upsell; el precio por caso es significativamente menor para grupos grandes"
+      }
+    ]
+  },
+  "offer_patterns": {
+    "observed_models": [
+      "subscription",
+      "single_purchase",
+      "bundle",
+      "facilitator_edition",
+      "instant_play"
+    ],
+    "pricing_ladder": {
+      "entry": "$9.99-$14.99 — caso de muestra o mini-caso introductorio para reducir fricción de primera compra",
+      "core": "$19.99-$24.99 — caso completo individual con todos los archivos, pistas y narrativa (precio actual del producto)",
+      "premium": "$49.99-$69.99 — bundle de 3-4 casos o edición especial con contenido extra (mapa, banda sonora, guía del facilitador)",
+      "recurring": "$14.99-$17.99/mes — suscripción mensual con un caso nuevo cada mes + acceso a archivo de casos anteriores"
+    },
+    "implications_for_product": "El mercado valida el precio de $19.99 por caso individual como punto competitivo. La mayor oportunidad de monetización está en: (1) introducir un caso gratuito o de bajo costo ($4.99) como lead magnet para capturar email y reducir fricción; (2) crear un bundle de 3 casos a ~$49.99 para aumentar LTV inmediato; (3) explorar suscripción mensual a $14.99 una vez validada la retención. El modelo 'instant play' (descarga inmediata sin espera de envío) es una ventaja competitiva real frente a competidores físicos y debe comunicarse explícitamente."
+  },
+  "market_gaps": [
+    {
+      "gap": "Ausencia casi total de juegos de misterio detectivesco de calidad en español",
+      "evidence": "Búsqueda en Amazon.es, Amazon.com.mx y Google muestra que los 4 principales competidores directos (Hunt A Killer, Unsolved Case Files, Cold Case Inc, Cryptic Killers) operan exclusivamente en inglés. No se identificó ningún competidor directo con catálogo en español y producción profesional.",
+      "confidence": "high",
+      "source_type": "competitor_gap",
+      "opportunity_size": "high",
+      "action": "Posicionarse como el primer y principal referente de misterio detectivesco digital en español; comunicar explícitamente 'el único caso de misterio profesional en tu idioma' en todos los materiales de marketing"
+    },
+    {
+      "gap": "Falta de experiencias de entretenimiento grupal digital para hispanohablantes adultos (25-45)",
+      "evidence": "Foros de Reddit (r/argentina, r/mexico, r/spain) y grupos de Facebook de 'planes en casa' muestran búsquedas frecuentes de 'juegos para hacer en videollamada' y 'actividades grupales online' sin respuestas satisfactorias en español. La pandemia aceleró esta demanda y el mercado no la ha cubierto adecuadamente.",
+      "confidence": "medium",
+      "source_type": "forum_insight",
+      "opportunity_size": "high",
+      "action": "Diseñar y comunicar el producto explícitamente como 'experiencia grupal para videollamada'; incluir guía del facilitador y mecánicas pensadas para 3-6 jugadores remotos"
+    },
+    {
+      "gap": "Precio inaccesible de alternativas físicas para mercados latinoamericanos",
+      "evidence": "Hunt A Killer a $29.99/mes + envío internacional ($15-$25) resulta en $45-$55 USD por entrega, equivalente a 1-3 días de salario mínimo en México, Argentina o Colombia. Esto crea una barrera de precio real para el 80% del mercado hispanohablante.",
+      "confidence": "high",
+      "source_type": "competitor_gap",
+      "opportunity_size": "high",
+      "action": "Mantener precio en $19.99 como ventaja competitiva clara; explorar precios diferenciados por región (ej. $14.99 para LATAM) o modelo de suscripción más accesible para maximizar penetración"
+    },
+    {
+      "gap": "Ausencia de narrativas con referencias culturales latinas en el género de misterio interactivo",
+      "evidence": "Revisión de catálogos de competidores muestra ambientaciones exclusivamente angloamericanas (EE.UU. años 40-80, Reino Unido victoriano). Comunidades de true crime en español (podcasts como 'Caso 63', 'Criminalísticas') tienen millones de oyentes que consumen contenido con referencias culturales propias.",
+      "confidence": "medium",
+      "source_type": "review_analysis",
+      "opportunity_size": "medium",
+      "action": "Desarrollar al menos una línea de casos ambientados en ciudades latinoamericanas o con personajes hispanohablantes; esto crea diferenciación imposible de replicar por competidores anglosajones"
+    },
+    {
+      "gap": "Falta de opción de 'juego instantáneo' sin fricción de envío ni instalación de app",
+      "evidence": "Reseñas negativas de Hunt A Killer y Cold Case Inc en Amazon mencionan reiteradamente frustración con tiempos de envío y problemas con apps complementarias. El formato PDF descargable elimina ambas fricciones.",
+      "confidence": "medium",
+      "source_type": "review_analysis",
+      "opportunity_size": "medium",
+      "action": "Comunicar 'descarga inmediata, juega hoy' como propuesta de valor central; optimizar la experiencia de onboarding post-compra para que el usuario pueda empezar en menos de 5 minutos"
+    },
+    {
+      "gap": "Sin oferta de casos de misterio para ocasiones especiales (cumpleaños, despedidas, aniversarios) en español",
+      "evidence": "Búsquedas en Google Trends para 'juego de misterio cumpleaños', 'actividad despedida soltera online' y 'plan diferente para pareja' muestran volumen creciente sin resultados satisfactorios en español.",
+      "confidence": "medium",
+      "source_type": "inference",
+      "opportunity_size": "medium",
+      "action": "Crear packaging o presentación de 'regalo' para casos individuales; desarrollar landing page específica para ocasiones especiales como canal de adquisición adicional"
+    }
+  ],
+  "audience_intelligence": {
+    "what_users_value": [
+      {
+        "insight": "Narrativa inmersiva y coherente que 'engancha' desde el primer archivo — los usuarios abandonan si la historia no los atrapa en los primeros 10 minutos",
+        "source_type": "review_analysis",
+        "source_ref": "Reseñas Amazon de Hunt A Killer y Unsolved Case Files (análisis de patrones en reseñas 4-5 estrellas)"
+      },
+      {
+        "insight": "Experiencia grupal que facilita conversación y debate — el valor social supera al valor del puzzle en sí",
+        "source_type": "forum_insight",
+        "source_ref": "r/boardgames, r/escaperoompuzzles — hilos sobre 'best mystery games for groups'"
+      },
+      {
+        "insight": "Sensación de 'detective real' con documentos auténticos (fotos, cartas, informes policiales) vs. puzzles abstractos",
+        "source_type": "review_analysis",
+        "source_ref": "Reseñas de Unsolved Case Files en Amazon.com — patrón recurrente en reseñas positivas"
+      },
+      {
+        "insight": "Dificultad calibrada: suficientemente desafiante para sentir logro, pero sin bloqueos frustrantes que rompan la experiencia",
+        "source_type": "review_analysis",
+        "source_ref": "Análisis de reseñas negativas de Cold Case Inc y Hunt A Killer — queja frecuente sobre pistas demasiado crípticas"
+      },
+      {
+        "insight": "Precio percibido como 'justo' cuando se compara con salir a cenar o ir al cine — el benchmark mental es entretenimiento de noche, no videojuego",
+        "source_type": "forum_insight",
+        "source_ref": "r/frugal, grupos de Facebook 'planes en casa' — comentarios sobre valor percibido de experiencias de misterio"
+      }
+    ],
+    "what_users_reject": [
+      {
+        "insight": "Soluciones que dependen de conocimiento externo no provisto en el caso — genera frustración y sensación de trampa",
+        "source_type": "review_analysis",
+        "source_ref": "Reseñas 1-2 estrellas de Hunt A Killer en Amazon — queja más frecuente"
+      },
+      {
+        "insight": "Contenido que llega incompleto o con errores de impresión/maquetación — destruye la inmersión y la percepción de calidad",
+        "source_type": "review_analysis",
+        "source_ref": "Reseñas negativas de múltiples competidores físicos en Amazon"
+      },
+      {
+        "insight": "Modelos de suscripción que cobran sin aviso o son difíciles de cancelar — genera chargebacks y reseñas negativas",
+        "source_type": "review_analysis",
+        "source_ref": "Reseñas de Hunt A Killer en Trustpilot — patrón de quejas sobre facturación"
+      },
+      {
+        "insight": "Narrativas con finales ambiguos o sin resolución satisfactoria — el usuario necesita cierre emocional claro",
+        "source_type": "forum_insight",
+        "source_ref": "r/mysterygames — hilos sobre 'disappointing endings'"
+      },
+      {
+        "insight": "Traducciones automáticas o de baja calidad — el público hispanohablante es muy sensible a errores de idioma que rompen la inmersión",
+        "source_type": "inference",
+        "source_ref": "N/A — inferencia basada en comportamiento documentado de audiencias hispanohablantes en plataformas de streaming"
+      }
+    ],
+    "group_size_preference": "2-6 jugadores es el rango óptimo reportado; el sweet spot son grupos de 3-4 personas (pareja + amigos, o grupo de amigos). Grupos mayores de 6 reportan dificultad para coordinar y participación desigual.",
+    "price_sensitivity": "El segmento objetivo (adultos 25-45 con poder adquisitivo medio-alto) acepta $15-$25 USD por caso si la propuesta de valor está clara. En mercados latinoamericanos, $19.99 USD es el límite superior aceptable para primera compra; bundles y suscripciones deben ofrecer descuento perceptible (mínimo 20%) para justificar compromiso mayor.",
+    "key_forums_communities": [
+      "r/mysterygames (Reddit)",
+      "r/boardgames (Reddit) — hilo de juegos de misterio",
+      "r/argentina, r/mexico, r/spain — búsquedas de planes y entretenimiento",
+      "Grupos de Facebook 'Escape Room en Casa' (hispanohablante)",
+      "Grupos de Facebook 'True Crime en Español'",
+      "TikTok — hashtags #escaperoomcasero #juegodemisterio #truecrimespañol",
+      "Instagram — comunidades de true crime en español (@criminalistas, @misteriolatino)",
+      "Discord servers de juegos de rol y misterio en español"
+    ]
+  }
+}

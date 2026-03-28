@@ -1,0 +1,24 @@
+{
+  "product_id": "misterio-semanal",
+  "run_id": "2026-W15",
+  "started_at": "2026-03-28T09:44:43.269360",
+  "strategy_version_used": "v2",
+  "status": "completed_with_override",
+  "gates": {
+    "M1_content": {
+      "status": "pending"
+    },
+    "M2_calendar_quality": {
+      "status": "pending"
+    }
+  },
+  "outputs": {
+    "reels_scripts_draft.json": "drafts/reels_scripts_draft.json",
+    "meta_ads_copy_draft.json": "drafts/meta_ads_copy_draft.json",
+    "email_sequence_draft.json": "drafts/email_sequence_draft.json",
+    "publishing_calendar_draft.json": "drafts/publishing_calendar_draft.json"
+  },
+  "cost_usd": 0.0,
+  "completed_at": "2026-03-28T09:56:47.349910",
+  "override_notes": "QA found 19 critical issues on first v1.1 run. Human override applied. Issues documented in quality_report.json."
+}

@@ -1,0 +1,17 @@
+{
+  "product_id": "misterio-semanal",
+  "week": "2026-W15",
+  "case_name": "La Señal Fantasma",
+  "case_slug": "senal-fantasma",
+  "theme": "A pirate radio station broadcasting coded messages is linked to a series of disappearances in a coastal town",
+  "hook_angle": "Una estación de radio pirata transmite coordenadas cada noche a las 3AM — y las personas que las siguen desaparecen",
+  "key_characters": [
+    {"name": "Lucía Marín", "role": "Técnica de telecomunicaciones municipal", "suspicious": true},
+    {"name": "Tomás Herrera", "role": "Pescador jubilado, primer testigo de la señal", "suspicious": false},
+    {"name": "Rafael Ochoa", "role": "Dueño de una tienda de electrónica", "suspicious": true},
+    {"name": "Carmen Vidal", "role": "Periodista local que investigaba las desapariciones", "suspicious": true}
+  ],
+  "emotional_beats": ["misterio sonoro", "descubrimiento de patrón", "conexión inesperada entre personajes", "revelación con doble giro"],
+  "target_release_date": "2026-04-08",
+  "special_notes": "Segundo caso publicado. Temática de radio/señales. Incluir elemento de audio como pista (frecuencia, código morse). Más complejo que el caso anterior."
+}

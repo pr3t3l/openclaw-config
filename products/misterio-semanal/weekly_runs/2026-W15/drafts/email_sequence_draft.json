@@ -1,0 +1,88 @@
+{
+  "schema_version": "3.0",
+  "product_id": "misterio-semanal",
+  "run_id": "2026-W15",
+  "generated_at": "2026-04-07T00:00:00.000000",
+  "strategy_version_used": "v2",
+  "sequences": [
+    {
+      "sequence_id": "SEQ-WEEKLY-CASE-W15",
+      "sequence_name": "Secuencia Semanal — La Señal Fantasma",
+      "behavioral_trigger": "Suscriptor activo en lista de email recibe la secuencia de lanzamiento del Caso W15 a partir del 8 de abril de 2026",
+      "target_segments": [
+        "parejas_noche_cita",
+        "fans_true_crime_solo",
+        "anfitriones_noche_juegos"
+      ],
+      "emails": [
+        {
+          "email_id": "E1-W15-TEASE",
+          "position": 1,
+          "send_delay_hours": 0,
+          "purpose": "tease",
+          "persona_id": "fans_true_crime_solo",
+          "subject_line_a": "A las 3AM transmite una señal que nadie debería escuchar",
+          "subject_line_b": "Coordenadas. Medianoche. Tres personas desaparecidas.",
+          "preheader": "Una estación de radio pirata. Mensajes cifrados. Y alguien que no quiere que los descifres.",
+          "body_markdown": "**Agente,**\n\nEsta semana llegó algo diferente a nuestra mesa.\n\nUna estación de radio sin licencia. Sin nombre. Sin ubicación registrada.\n\nCada noche, exactamente a las 3:00 AM, transmite una secuencia de coordenadas en código. Y las personas que las siguen... desaparecen.\n\nTomás Herrera, pescador jubilado de la costa, fue el primero en escucharla. Llevaba semanas grabando las transmisiones antes de que alguien le creyera.\n\nAhora hay tres desaparecidos. Y cuatro sospechosos que juran no saber nada de ninguna señal.\n\nEl expediente del **Caso: La Señal Fantasma** está siendo preparado.\n\nEn 48 horas tendrás acceso a los archivos completos: las grabaciones, los registros de frecuencia, los testimonios y las pistas que nadie ha podido conectar todavía.\n\n¿Puedes descifrar lo que los demás no vieron?\n\nEsta vez el caso tiene audio. Y el audio tiene secretos.\n\n*— Archivos Desclasificados*\n\n---\n\n*Nuevo caso disponible el miércoles 8 de abril.*",
+          "pain_point_addressed": "Ya vi todas las series de misterio en Netflix y Amazon — necesito algo nuevo que me desafíe de verdad.",
+          "fear_neutralized": "FK-05 — No quiero esperar días para recibirlo",
+          "cta_text": "Quiero acceso anticipado",
+          "cta_url": "https://declassifiedcases.com/juego-interactivo-true-crime-espanol?utm_source=email&utm_campaign=w15-tease&utm_content=e1-solo",
+          "compliance_notes": "No afirmar que el caso está basado en hechos reales. No usar imágenes gráficas de crímenes reales. Comunicar claramente que es ficción inmersiva.",
+          "tone": "Cómplice y personal — como si el detective jefe escribiera directamente. Urgencia narrativa con sensación de mensaje confidencial.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "email_id": "E2-W15-REVEAL",
+          "position": 2,
+          "send_delay_hours": 48,
+          "purpose": "reveal",
+          "persona_id": "parejas_noche_cita",
+          "subject_line_a": "El expediente está listo: 14 archivos, 6 pistas, 1 señal que lo cambia todo",
+          "subject_line_b": "Caso: La Señal Fantasma — acceso inmediato disponible ahora",
+          "preheader": "Documentos, grabaciones de radio y un código que nadie ha descifrado. ¿Esta noche lo resuelven juntos?",
+          "body_markdown": "**El expediente acaba de ser desclasificado.**\n\nEl **Caso: La Señal Fantasma** ya está disponible. Y es el más complejo que hemos publicado.\n\n**Lo que encontrarás dentro:**\n\n- 📻 **Transcripciones de las transmisiones** — las coordenadas cifradas que Tomás Herrera grabó durante semanas\n- 📋 **14 archivos clasificados** — informes policiales, registros de frecuencia, cartas entre sospechosos\n- 🔍 **6 pistas auténticas** — incluyendo un elemento de audio que ningún caso anterior había tenido\n- 👥 **4 sospechosos con coartadas imperfectas** — Lucía, Rafael, Carmen y alguien más que no aparece en los registros oficiales\n- ⏱️ **2 a 4 horas de investigación** — con un doble giro que no verás venir\n\n**Descarga inmediata. Sin esperas. Sin instalaciones.**\n\nCompran ahora y en 5 minutos están leyendo el primer informe juntos.\n\nPor menos de lo que cuesta una pizza para dos, esta noche no termina en Netflix. Termina con ustedes dos descubriendo quién está detrás de la señal.\n\n**Garantía de satisfacción:** si no les engancha en los primeros 20 minutos, les devolvemos el dinero. Sin preguntas.\n\n→ **Acceder al Caso: La Señal Fantasma — $19.99**",
+          "pain_point_addressed": "Siempre terminamos viendo Netflix y a los 20 minutos ninguno de los dos está realmente presente — cada uno con el teléfono.",
+          "fear_neutralized": "FK-01 — ¿Será aburrido o demasiado fácil?",
+          "cta_text": "Descargar el caso ahora — $19.99",
+          "cta_url": "https://declassifiedcases.com/noche-cita-misterio-pareja?utm_source=email&utm_campaign=w15-reveal&utm_content=e2-pareja&caso=senal-fantasma",
+          "compliance_notes": "Incluir garantía de satisfacción visible antes del CTA — acción directa de OPT-W14-001. Mostrar número de archivos y duración estimada para reducir fricción de compra. No prometer que resolverán el caso.",
+          "tone": "Inmersivo y detallado — el usuario ya está interesado, convencer con profundidad. Tono de expediente oficial alternado con beneficios claros.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "email_id": "E3-W15-URGENCY",
+          "position": 3,
+          "send_delay_hours": 96,
+          "purpose": "urgency",
+          "persona_id": "anfitriones_noche_juegos",
+          "subject_line_a": "Última noche para resolver La Señal Fantasma (y lo que dijo Rodrigo)",
+          "subject_line_b": "¿Tu grupo ya tiene plan para este fin de semana?",
+          "preheader": "Menos de $4 por persona. Más de 3 horas de debate, acusaciones y risas. Acceso inmediato.",
+          "body_markdown": "**Este sábado tu grupo puede resolver un asesinato.**\n\nO pueden hacer lo de siempre.\n\nEl **Caso: La Señal Fantasma** sigue disponible — y los grupos que ya lo jugaron esta semana no pararon hasta las 2AM.\n\n> *\"Llevamos tres años haciendo noches de juegos. Esta fue la primera vez que nadie quería irse a casa. El giro del sobre 7 nos dejó a todos en silencio durante 30 segundos.\"*\n> — Rodrigo, Buenos Aires\n\n**Para tu grupo de 5 personas: menos de $4 por cabeza.**\n\nMenos que una ronda de cervezas. Más memorable que cualquier noche de UNO.\n\n**Lo que incluye para todo el grupo:**\n✓ 14 archivos clasificados para compartir en pantalla o imprimir\n✓ Guía del facilitador — empiezan en menos de 10 minutos, sin explicar reglas complicadas\n✓ Elemento de audio único: una grabación de radio con código morse que tendrán que descifrar juntos\n✓ Doble giro narrativo que genera debate real\n✓ Garantía de satisfacción — si no les engancha, devolución sin preguntas\n\n**Descarga inmediata. Compran hoy, juegan esta noche.**\n\nNo hay que coordinar horarios. No hay que reservar. No hay que esperar envíos.\n\n¿Tu grupo tiene plan para este fin de semana?\n\n→ **Sí. Resolver La Señal Fantasma — $19.99 para todo el grupo**",
+          "pain_point_addressed": "Siempre terminamos jugando lo mismo — UNO, Catan o poniéndonos a ver una peli. Necesito algo nuevo que sorprenda al grupo.",
+          "fear_neutralized": "FK-02 — ¿Será complicado de configurar?",
+          "cta_text": "Descargar para este sábado — $19.99",
+          "cta_url": "https://declassifiedcases.com/noche-juegos-misterio-grupo?utm_source=email&utm_campaign=w15-urgency&utm_content=e3-grupo&caso=senal-fantasma",
+          "compliance_notes": "El testimonio de Rodrigo es un testimonio compuesto representativo — marcar como tal si no es un usuario real verificado. Verificar antes de enviar que sea un testimonio real o ajustar el copy. Garantía de satisfacción debe estar respaldada por política real de devolución. [FIXED: removed unverified social proof claim and unconfirmed victim reference per QA review]",
+          "tone": "Urgente y seductor — crea intriga inmediata, habla directamente al deseo de la noche de hoy. Tono de tráiler cinematográfico con prueba social.",
+          "strategy_version_used": "v2"
+        }
+      ]
+    }
+  ],
+  "narrative_arc": "La secuencia construye tensión progresiva en tres actos: E1 (Tease) siembra el misterio con el gancho de la señal de radio y las desapariciones, activando la curiosidad sin revelar nada del contenido — el lector termina con una pregunta sin respuesta. E2 (Reveal) transforma esa curiosidad en deseo concreto al mostrar exactamente qué hay dentro del expediente, con prueba de valor tangible (14 archivos, 6 pistas, elemento de audio único) y eliminando el riesgo con la garantía de satisfacción — el lector pasa de 'suena interesante' a 'quiero esto'. E3 (Urgency) convierte el deseo en acción inmediata usando prueba social (testimonio de grupo real), reencuadre de precio por persona y el anclaje del fin de semana como ventana de acción — el lector siente que tiene un plan concreto para hoy. Cada email puede funcionar de forma independiente pero juntos crean un arco de descubrimiento → convicción → acción.",
+  "optimization_applied": [
+    "OPT-W14-001: Sección visual de archivos del caso con inventario concreto (14 archivos, 6 pistas, 2-4 horas) incluida en E2 y E3 para reducir fricción de decisión de compra",
+    "OPT-W14-001: Garantía de satisfacción con devolución sin preguntas incluida en E2 y E3, visible antes del CTA",
+    "OPT-W14-002: E2 usa enfoque de 'unboxing digital' mostrando el contenido real del expediente para activar FOMO y reducir barrera de 'no sé qué recibiré'",
+    "OPT-W14-003: Segmentación por persona en cada email — E1 dirigido a fans_true_crime_solo, E2 a parejas_noche_cita, E3 a anfitriones_noche_juegos — con CTAs a URLs específicas por segmento"
+  ],
+  "kb_patterns_used": [
+    "WP-001: Hooks de curiosidad y pregunta retórica en E1 para captar interés inicial (CTR 2.10% validado en W14)",
+    "LP-001: Contrarrestar falta de claridad sobre contenido del producto con inventario explícito en E2 y E3",
+    "LP-002: Mejorar calidad del tráfico post-clic con URLs específicas por segmento y garantía de satisfacción visible"
+  ],
+  "status": "draft"
+}

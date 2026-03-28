@@ -44,6 +44,61 @@ PHASES = [
     # Gate S2 here
 ]
 
+# Skills that need chunked generation due to large outputs
+CHUNKED_SKILLS = {
+    "buyer_persona": {
+        "chunks": [
+            {
+                "label": "segments_block_1",
+                "instruction": "Generate ONLY the first 4 segments (segments array items 1-4). Output a JSON object with key 'segments' containing an array of 4 segment objects. Include all required fields per segment. Do NOT include comparative_table, priority_ranking, universal_fears, or activation_timeline yet.",
+                "merge_key": "segments",
+                "merge_mode": "extend",
+            },
+            {
+                "label": "segments_block_2_and_rest",
+                "instruction": "Generate the remaining segments (5+), the comparative_table, priority_ranking, universal_fears, and activation_timeline. Output a JSON object with keys: 'segments' (remaining segments), 'comparative_table', 'priority_ranking', 'universal_fears', 'activation_timeline'. All previous segments are already generated — do NOT repeat them.",
+                "merge_key": None,
+                "merge_mode": "merge_all",
+            },
+        ],
+        "base_fields": {"schema_version": "3.0"},
+    },
+    "market_analysis": {
+        "chunks": [
+            {
+                "label": "market_size_and_trends",
+                "instruction": "Generate ONLY the market_size and trends sections. Output a JSON object with keys: 'market_size' and 'trends'. Do NOT include competitive_landscape, offer_patterns, market_gaps, or audience_intelligence yet.",
+                "merge_key": None,
+                "merge_mode": "merge_all",
+            },
+            {
+                "label": "competitive_and_gaps",
+                "instruction": "Generate ONLY the competitive_landscape, offer_patterns, market_gaps, and audience_intelligence sections. Output a JSON object with these 4 keys. Do NOT include market_size or trends.",
+                "merge_key": None,
+                "merge_mode": "merge_all",
+            },
+        ],
+        "base_fields": {"schema_version": "3.0"},
+    },
+    "seo_architecture": {
+        "chunks": [
+            {
+                "label": "keywords_1_to_5",
+                "instruction": "Generate ONLY keyword_clusters 1-5 (core_transactional, use_case_date_night, use_case_game_night, use_case_dinner_party, use_case_solo). Output a JSON object with key 'keyword_clusters' containing an array of 5 cluster objects.",
+                "merge_key": "keyword_clusters",
+                "merge_mode": "extend",
+            },
+            {
+                "label": "keywords_6_to_10_and_rest",
+                "instruction": "Generate keyword_clusters 6-10 (use_case_gift, product_format, niche_true_crime_realism, themes, commercial_modifiers) PLUS url_architecture, pillar_cluster_strategy, content_calendar, and seo_warning. Output a JSON with keys: 'keyword_clusters' (clusters 6-10 only), 'url_architecture', 'pillar_cluster_strategy', 'content_calendar', 'seo_warning'.",
+                "merge_key": None,
+                "merge_mode": "merge_all",
+            },
+        ],
+        "base_fields": {"schema_version": "3.0"},
+    },
+}
+
 
 def run_strategy(product_id: str) -> bool:
     """Run the full strategy workflow. Returns True on success."""
@@ -177,21 +232,9 @@ def run_strategy(product_id: str) -> bool:
     return True
 
 
-def _run_agent_phase(phase: dict, product_id: str, brief: dict,
-                     version_dir: Path, prior_artifacts: dict) -> tuple:
-    """Run one agent phase. Returns (parsed_json, cost) or (None, 0) on failure."""
-    skill_path = SKILLS_DIR / phase["skill"] / "SKILL.md"
-    skill_md = skill_path.read_text()
-    output_file = phase["output"]
-
-    # Build context from brief + prior artifacts
-    context_parts = [f"## product_brief.json\n```json\n{json.dumps(brief, indent=2, ensure_ascii=False)}\n```"]
-    for name, data in prior_artifacts.items():
-        context_parts.append(f"## {name}.json\n```json\n{json.dumps(data, indent=2, ensure_ascii=False)}\n```")
-
-    context = "\n\n".join(context_parts)
-
-    system_prompt = f"""{skill_md}
+def _build_system_prompt(skill_md: str, context: str, product_id: str, language: str) -> str:
+    """Build the system prompt for an agent phase."""
+    return f"""{skill_md}
 
 PRODUCT CONTEXT:
 {context}
@@ -200,40 +243,142 @@ OUTPUT RULES:
 - Output ONLY valid JSON wrapped in ```json fences
 - product_id must be "{product_id}"
 - generated_at must be current ISO datetime
-- All text content in {brief.get('language', 'es')}
+- All text content in {language}
 """
 
-    user_prompt = f"Generate {output_file} for product {product_id}. Output ONLY the JSON."
 
-    try:
-        text, usage = call_llm(AGENT_MODEL, system_prompt, user_prompt, max_tokens=8192, temperature=0.4)
-        cost = 0  # ChatGPT OAuth = $0, Sonnet via LiteLLM = tracked there
+def _build_context(brief: dict, prior_artifacts: dict) -> str:
+    """Build context string from brief + prior artifacts."""
+    context_parts = [f"## product_brief.json\n```json\n{json.dumps(brief, indent=2, ensure_ascii=False)}\n```"]
+    for name, data in prior_artifacts.items():
+        context_parts.append(f"## {name}.json\n```json\n{json.dumps(data, indent=2, ensure_ascii=False)}\n```")
+    return "\n\n".join(context_parts)
 
-        parsed = extract_json_from_response(text)
-        if not parsed:
-            print(f"  ERROR: No valid JSON in response for {phase['name']}")
-            # Save debug
-            debug_path = version_dir / f"debug_{phase['name']}.txt"
-            debug_path.write_text(text)
+
+def _run_chunked_generation(phase_name: str, skill_md: str, context: str,
+                            product_id: str, language: str, version_dir: Path) -> tuple:
+    """Run chunked generation for skills with large outputs. Returns (parsed_json, cost)."""
+    chunk_config = CHUNKED_SKILLS[phase_name]
+    chunks = chunk_config["chunks"]
+    base = dict(chunk_config["base_fields"])
+    base["product_id"] = product_id
+    base["generated_at"] = datetime.now().isoformat()
+
+    consolidated = dict(base)
+    total_cost = 0.0
+
+    for i, chunk in enumerate(chunks):
+        print(f"    Chunk {i+1}/{len(chunks)}: {chunk['label']}")
+        chunk_system = f"""{skill_md}
+
+PRODUCT CONTEXT:
+{context}
+
+CHUNKED GENERATION MODE:
+You are generating ONLY a portion of the full output.
+{chunk['instruction']}
+
+OUTPUT RULES:
+- Output ONLY valid JSON wrapped in ```json fences
+- All text content in {language}
+"""
+        chunk_user = f"Generate the {chunk['label']} chunk for product {product_id}. Output ONLY the JSON for this chunk."
+
+        try:
+            text, usage = call_llm(AGENT_MODEL, chunk_system, chunk_user, max_tokens=16384, temperature=0.4)
+            parsed = extract_json_from_response(text)
+
+            if not parsed:
+                print(f"    ERROR: No valid JSON in chunk {chunk['label']}")
+                debug_path = version_dir / f"debug_{phase_name}_chunk_{i}.txt"
+                debug_path.write_text(text)
+                return None, 0
+
+            # Merge chunk into consolidated result
+            if chunk["merge_mode"] == "extend":
+                key = chunk["merge_key"]
+                if key not in consolidated:
+                    consolidated[key] = []
+                chunk_data = parsed.get(key, [])
+                if isinstance(chunk_data, list):
+                    consolidated[key].extend(chunk_data)
+                else:
+                    consolidated[key] = chunk_data
+            elif chunk["merge_mode"] == "merge_all":
+                for key, value in parsed.items():
+                    if key in consolidated and isinstance(consolidated[key], list) and isinstance(value, list):
+                        consolidated[key].extend(value)
+                    else:
+                        consolidated[key] = value
+
+            print(f"    ✅ Chunk {chunk['label']} merged ({len(json.dumps(parsed))} chars)")
+            print(f"    Tokens: {usage.get('input_tokens', '?')} in / {usage.get('output_tokens', '?')} out")
+
+        except Exception as e:
+            print(f"    ERROR in chunk {chunk['label']}: {e}")
             return None, 0
 
-        # Validate
-        out_path = version_dir / output_file
-        out_path.write_text(json.dumps(parsed, indent=2, ensure_ascii=False))
-        validation = validate_artifact(out_path)
+    return consolidated, total_cost
 
-        if not validation["valid"]:
-            print(f"  WARN: Validation issues: {validation['errors']}")
-            # Continue anyway — soft validation in v1
 
-        print(f"  ✅ {output_file} written ({len(json.dumps(parsed))} chars)")
-        print(f"  Tokens: {usage.get('input_tokens', '?')} in / {usage.get('output_tokens', '?')} out")
+def _run_agent_phase(phase: dict, product_id: str, brief: dict,
+                     version_dir: Path, prior_artifacts: dict) -> tuple:
+    """Run one agent phase. Returns (parsed_json, cost) or (None, 0) on failure."""
+    skill_path = SKILLS_DIR / phase["skill"] / "SKILL.md"
+    skill_md = skill_path.read_text()
+    output_file = phase["output"]
+    phase_name = phase["name"]
 
-        return parsed, cost
+    context = _build_context(brief, prior_artifacts)
+    language = brief.get('language', 'es')
+    system_prompt = _build_system_prompt(skill_md, context, product_id, language)
 
-    except Exception as e:
-        print(f"  ERROR in {phase['name']}: {e}")
-        return None, 0
+    # Proactively use chunked generation for known large-output skills
+    use_chunked = phase_name in CHUNKED_SKILLS
+
+    if use_chunked:
+        print(f"  Using chunked generation (output expected to be large)")
+        parsed, cost = _run_chunked_generation(phase_name, skill_md, context,
+                                                product_id, language, version_dir)
+        if parsed is None:
+            send_message(f"❌ Chunked generation failed for {phase_name}")
+            return None, 0
+    else:
+        user_prompt = f"Generate {output_file} for product {product_id}. Output ONLY the JSON."
+
+        try:
+            text, usage = call_llm(AGENT_MODEL, system_prompt, user_prompt, max_tokens=16384, temperature=0.4)
+            cost = 0
+
+            parsed = extract_json_from_response(text)
+            if not parsed:
+                # Fallback: if this skill has chunked config, try chunked
+                if phase_name in CHUNKED_SKILLS:
+                    print(f"  JSON parse failed, retrying with chunked generation...")
+                    parsed, cost = _run_chunked_generation(phase_name, skill_md, context,
+                                                            product_id, language, version_dir)
+                    if parsed is None:
+                        return None, 0
+                else:
+                    print(f"  ERROR: No valid JSON in response for {phase_name}")
+                    debug_path = version_dir / f"debug_{phase_name}.txt"
+                    debug_path.write_text(text)
+                    return None, 0
+
+        except Exception as e:
+            print(f"  ERROR in {phase_name}: {e}")
+            return None, 0
+
+    # Validate and save
+    out_path = version_dir / output_file
+    out_path.write_text(json.dumps(parsed, indent=2, ensure_ascii=False))
+    validation = validate_artifact(out_path)
+
+    if not validation["valid"]:
+        print(f"  WARN: Validation issues: {validation['errors']}")
+
+    print(f"  ✅ {output_file} written ({len(json.dumps(parsed))} chars)")
+    return parsed, cost
 
 
 def approve_strategy(product_id: str) -> bool:

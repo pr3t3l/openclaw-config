@@ -22,6 +22,7 @@ You extract patterns from this week's marketing results and diagnosis. Your outp
 - evidence_runs_count starts at 1 for new patterns
 - minimum_sample_met: true only if metrics had meaningful volume (>1000 impressions)
 - All text in Spanish
+- Extract **Learned Concepts** — strategic insights (not just tactical patterns). A concept is a principle that informs future decisions, not just "this hook worked". Example: "Urgency messaging works best for couples segment on Friday evenings" is a concept; "Hook X got 5% CTR" is a pattern.
 
 ## Output
 
@@ -60,6 +61,16 @@ Write: `new_kb_entries.json` (these get appended to the KB by the runner)
   ],
   "existing_patterns_reinforced": [
     {"pattern_id": "<existing ID>", "new_evidence": "<from this run>"}
+  ],
+  "learned_concepts": [
+    {
+      "concept_id": "LC-<NNN>",
+      "concept": "<strategic insight — not just a tactic, but a principle learned>",
+      "evidence": "<what data or result led to this insight>",
+      "applies_to": "<what future decisions this should inform>",
+      "confidence": "low|medium",
+      "extracted_from_run": "<week>"
+    }
   ]
 }
 ```

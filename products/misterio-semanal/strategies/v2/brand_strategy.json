@@ -1,0 +1,442 @@
+{
+  "schema_version": "3.0",
+  "product_id": "misterio-semanal",
+  "generated_at": "2025-01-28T10:00:00.000000",
+  "value_proposition": {
+    "cpm": "Ayudo a adultos hispanohablantes apasionados por el misterio a vivir la experiencia de ser detective real a través de casos digitales inmersivos en español sin esperas de envío, barreras de idioma ni el precio de un escape room físico",
+    "tagline": "Tu próximo caso te espera. Esta noche.",
+    "elevator_pitch": "Declassified Cases es el primer servicio de casos de misterio detectivesco de calidad profesional en español. Cada caso incluye archivos policiales, fotos de escena, pistas y narrativa completa para que tú y tu grupo resuelvan el crimen — descarga inmediata, sin esperas, desde $19.99. Es el podcast de true crime que puedes resolver tú mismo.",
+    "paradigm_shift": {
+      "old_way": "El mercado vende juegos de misterio en inglés con envío físico de semanas, para un público anglosajón, a precios que no contemplan la realidad latinoamericana — tú eres espectador de la historia de otro",
+      "new_way": "Vendemos el antídoto al entretenimiento pasivo: un Podcast de True Crime meets Escape Room meets Serie de Netflix — pero donde TÚ eres el detective, en tu idioma, esta noche, por menos de lo que cuesta una cena"
+    }
+  },
+  "differentiation_pillars": [
+    {
+      "pillar": "Nativo en Español — No una Traducción",
+      "why_it_matters": "El público hispanohablante es extremadamente sensible a traducciones automáticas y referencias culturales ajenas que rompen la inmersión. Un caso escrito originalmente en español, con nombres, lugares y contexto cultural propio, se siente auténtico y cercano.",
+      "how_to_communicate": "Enfatizar 'escrito originalmente en español' en todos los materiales. Mostrar extractos del texto con calidad narrativa evidente. Mencionar explícitamente que NO es una traducción de productos anglosajones. Usar referencias culturales latinas en los casos.",
+      "against_whom": "Contra Hunt A Killer, Unsolved Case Files, Cold Case Inc y Cryptic Killers — los cuatro operan exclusivamente en inglés y no tienen versión en español. Declassified Cases es el único referente profesional en el idioma del mercado hispanohablante global."
+    },
+    {
+      "pillar": "Acceso Inmediato — Juega Esta Noche",
+      "why_it_matters": "Los triggers de compra más poderosos son impulsivos: 'es viernes y quiero hacer algo diferente hoy'. El envío físico de 2-3 semanas de los competidores mata ese impulso. La descarga instantánea convierte el deseo en acción en minutos.",
+      "how_to_communicate": "Usar 'Compra ahora, juega esta noche' como CTA principal. Mostrar el proceso de compra-descarga-inicio en menos de 5 minutos en video. Destacar en headline: 'Acceso inmediato. Sin esperas. Sin envíos.'",
+      "against_whom": "Contra Hunt A Killer ($29.99/mes + 2-3 semanas de envío internacional) y Unsolved Case Files (envío físico sin opción digital). La inmediatez digital es una ventaja estructural imposible de replicar por competidores con modelo físico."
+    },
+    {
+      "pillar": "Precio Justo para el Mundo Hispanohablante",
+      "why_it_matters": "Hunt A Killer a $29.99 + envío internacional ($15-25) equivale a $45-55 USD por entrega — 1-3 días de salario mínimo en México, Argentina o Colombia. $19.99 por caso completo para todo el grupo es percibido como 'justo' y comparable a una noche de entretenimiento estándar.",
+      "how_to_communicate": "Reencuadrar siempre el precio en contexto grupal: '$19.99 para todo el grupo = menos de $4 por persona'. Comparar con salir a cenar, ir al cine o un escape room físico. Nunca defender el precio — atacar el precio de los competidores.",
+      "against_whom": "Contra Hunt A Killer ($45-55 USD con envío) y Unsolved Case Files ($24.99 + envío, solo en inglés). Declassified Cases ofrece experiencia equivalente o superior a 33-60% menos costo total, en español y sin esperas."
+    },
+    {
+      "pillar": "Realismo Documental — No un Juego de Mesa",
+      "why_it_matters": "Los fans de true crime y los entusiastas de escape rooms valoran la autenticidad. Archivos que parecen informes policiales reales, fotos de escena del crimen, cartas manuscritas y documentos forenses crean inmersión total. Los competidores con diseño 'gamificado' o cartoonish rompen la suspensión de incredulidad.",
+      "how_to_communicate": "Mostrar capturas de los archivos reales en todos los anuncios y landing pages. Usar lenguaje de 'archivo desclasificado', 'expediente policial', 'evidencia real'. Testimonios que mencionen 'se siente como un caso real'. Preview gratuito de los primeros documentos.",
+      "against_whom": "Contra juegos de mesa de misterio (Cluedo, Detective) con diseño abstracto y mecánicas simplificadas. Contra kits de Etsy con producción artesanal sin coherencia narrativa. Declassified Cases compite en la categoría de 'experiencia inmersiva', no de 'juego de mesa'."
+    },
+    {
+      "pillar": "Experiencia Grupal Diseñada para Videollamada",
+      "why_it_matters": "El 60%+ de los compradores potenciales jugarán en grupo — parejas, amigos, familia. El formato debe facilitar la participación activa de todos, el debate, la discusión y los momentos de 'eureka' colectivos. Los competidores físicos no están diseñados para grupos remotos.",
+      "how_to_communicate": "Comunicar explícitamente '2-6 jugadores, perfecto para videollamada'. Incluir guía del facilitador visible en materiales de marketing. Mostrar videos de grupos reales jugando en videollamada. Destacar que el debate grupal ES parte del entretenimiento.",
+      "against_whom": "Contra escape rooms físicos (requieren presencia, coordinación logística, precio por persona). Contra podcasts de true crime (experiencia individual y pasiva). Declassified Cases es la única opción grupal remota en español con formato optimizado para videollamada."
+    },
+    {
+      "pillar": "Narrativa Profesional con Cierre Satisfactorio",
+      "why_it_matters": "La queja más frecuente en reseñas de competidores es la narrativa superficial, los finales ambiguos y las pistas que dependen de conocimiento externo no provisto. El usuario necesita sentir que el caso es resoluble con la información dada y que el final tiene peso emocional.",
+      "how_to_communicate": "Garantizar explícitamente 'todo lo que necesitas para resolver el caso está en el expediente'. Destacar la calidad de escritura con extractos reales. Mencionar que cada caso tiene un final completo y satisfactorio. Usar el copy 'Escrito por narradores, no por algoritmos'.",
+      "against_whom": "Contra Hunt A Killer (queja más frecuente en Amazon: pistas demasiado crípticas que dependen de conocimiento externo) y contra kits genéricos de Etsy (narrativas superficiales sin coherencia). Declassified Cases se posiciona como el estándar de calidad narrativa del género en español."
+    },
+    {
+      "pillar": "Catálogo Creciente — Siempre Hay un Caso Nuevo",
+      "why_it_matters": "El potencial de recurrencia es el mayor diferenciador de LTV. Un producto de un solo uso tiene LTV de $19.99. Un catálogo creciente convierte cada comprador en un suscriptor de facto. Los fans de true crime son consumidores voraces que buscan su próxima dosis.",
+      "how_to_communicate": "Mencionar el catálogo disponible en todos los materiales post-compra. Crear anticipación para casos nuevos ('Próximo caso: [nombre]'). Ofrecer bundle de 3 casos con descuento para aumentar LTV inmediato. Email de seguimiento post-compra con recomendación del siguiente caso.",
+      "against_whom": "Contra juegos de mesa de misterio (un solo uso, se queda en el cajón). Contra Unsolved Case Files (catálogo limitado sin lanzamientos frecuentes). Declassified Cases construye una relación recurrente con el cliente, no una transacción única."
+    }
+  ],
+  "message_house": [
+    {
+      "segment_id": "couples_date_night_latam",
+      "core_message": "Esta noche, en lugar de ver Netflix en silencio cada uno con su teléfono, resuelvan juntos un caso de misterio que los va a tener hablando, discutiendo y riendo hasta las 2 de la mañana — por menos de lo que cuesta una pizza",
+      "supporting_proof_points": [
+        "2-3 horas de entretenimiento activo e interactivo para los dos — no pasivo como una serie",
+        "$19.99 para la pareja completa: menos que dos cervezas artesanales en un bar, más memorable que cualquier noche de Netflix",
+        "Descarga inmediata: compran ahora y en 5 minutos están leyendo el primer archivo del caso juntos"
+      ],
+      "objection_neutralizer": "Si les preocupa que $19.99 sea mucho para una sola noche, recuerden que salir a cenar para dos cuesta $40-80 USD y dura lo mismo. Aquí tienen 2-3 horas de conversación real, risas y la satisfacción de resolver algo juntos — desde el sofá, en pijama, con lo que tengan en la nevera.",
+      "sample_headlines": [
+        "Esta noche no es 'qué vemos en Netflix' — es 'quién mató al Conde Vargas'",
+        "La noche de cita más barata y memorable que van a tener este mes — sin salir de casa",
+        "Dejen de ver series de crimen. Empiecen a resolverlas juntos."
+      ]
+    },
+    {
+      "segment_id": "true_crime_fans_solo",
+      "core_message": "Ya escuchaste todos los podcasts, viste todos los documentales — ahora es tu turno de ser la detective. Archivos reales, pistas reales, tu razonamiento real. En español. Esta noche.",
+      "supporting_proof_points": [
+        "Expedientes completos con informes policiales, fotos de escena, cartas y evidencia forense — como un caso real desclasificado",
+        "Dificultad calibrada para adultos: 2-3 horas de investigación activa, no 20 minutos de puzzles obvios",
+        "El primer y único servicio de casos de misterio detectivesco de calidad profesional escrito originalmente en español"
+      ],
+      "objection_neutralizer": "Si te preocupa que sea demasiado fácil o superficial, mira los archivos del caso: informes forenses, testimonios de testigos, fotos de la escena. No es un juego de mesa — es un expediente policial completo que tú tienes que descifrar. Si puedes seguir un podcast de true crime, puedes resolver este caso.",
+      "sample_headlines": [
+        "Escuchas true crime. Ahora resuélvelo tú — expediente completo en español",
+        "El podcast de crimen que puedes resolver: archivos, pistas y la verdad que tú descubres",
+        "Pasaste de espectadora a detective. Tu primer caso está esperando."
+      ]
+    },
+    {
+      "segment_id": "game_night_hosts",
+      "core_message": "Sé el anfitrión que esta vez trajo algo que nadie había hecho antes — un caso de misterio real para resolver en grupo que los va a tener debatiendo, acusando y riendo durante horas, por menos de $4 por persona",
+      "supporting_proof_points": [
+        "$19.99 para todo el grupo de 5-6 personas: menos de $4 por cabeza, menos que una ronda de cervezas, más memorable que cualquier noche de UNO",
+        "Guía del facilitador incluida: empieza a jugar en menos de 10 minutos sin explicar reglas complicadas",
+        "Diseñado para grupos mixtos — no necesitas ser 'bueno en juegos' para participar y disfrutar"
+      ],
+      "objection_neutralizer": "Si te preocupa que alguien del grupo no se enganche, recuerda que el debate y la discusión grupal SON el entretenimiento — no tienes que ser un experto en puzzles para opinar sobre quién es el asesino. Los grupos más divertidos son los que más discuten entre sí.",
+      "sample_headlines": [
+        "Esta noche no es UNO ni Catan — es resolver un asesinato entre todos",
+        "El plan que tu grupo va a querer repetir cada mes: caso de misterio en español, $4 por persona",
+        "Sé el anfitrión que siempre sorprende: un caso de misterio real para tu próxima noche de juegos"
+      ]
+    }
+  ],
+  "voice_and_tone": {
+    "personality_adjectives": [
+      "Intrigante",
+      "Inteligente",
+      "Cómplice",
+      "Inmersivo",
+      "Accesible"
+    ],
+    "tone_by_context": [
+      {
+        "context": "ad",
+        "tone": "Urgente y seductor — crea intriga inmediata, habla directamente al deseo de la noche de hoy, usa el gancho antes de la explicación. Tono de tráiler cinematográfico, no de anuncio de producto.",
+        "example_copy": "Encontraron el cuerpo a las 11 de la noche. Tres sospechosos. Ninguna coartada perfecta. El expediente está desclasificado — ¿puedes resolver el caso antes de que amanezca? Descarga inmediata. Esta noche."
+      },
+      {
+        "context": "product_page",
+        "tone": "Inmersivo y detallado — el usuario ya está interesado, ahora hay que convencerlo con profundidad. Tono de expediente oficial que presenta el caso, alternado con copy de beneficios claros y concretos.",
+        "example_copy": "EXPEDIENTE #DC-007 — CLASIFICADO. Lo que recibes: 47 archivos del caso (informes forenses, fotografías de escena, testimonios de testigos, cartas cifradas), narrativa completa en 3 actos, guía del facilitador para grupos de 2-6 personas, sistema de pistas progresivas para cuando necesites ayuda. Duración estimada: 2-3 horas. Dificultad: adulto. Idioma: español nativo. Acceso: inmediato tras la compra."
+      },
+      {
+        "context": "email",
+        "tone": "Cómplice y personal — como si el detective jefe te escribiera directamente. Mezcla de urgencia narrativa con información práctica. Usa el nombre del destinatario cuando sea posible. Tono de mensaje confidencial.",
+        "example_copy": "Agente, tenemos un nuevo caso sobre tu mesa. Esta semana: una herencia disputada, un testamento falsificado y un sospechoso que jura estar en dos lugares a la vez. El expediente está listo para descarga inmediata. ¿Tienes lo que se necesita para cerrarlo? → Acceder al Caso #008"
+      },
+      {
+        "context": "social_post",
+        "tone": "Conversacional y provocador — genera debate, usa preguntas abiertas, invita a la participación. Tono de comunidad de true crime, no de marca corporativa. Usa referencias a la cultura del misterio y el crimen.",
+        "example_copy": "POV: Son las 11pm del viernes, tienen el expediente abierto, y llevan 2 horas discutiendo si el mayordomo mintió en su testimonio. ¿El veredicto de tu grupo? 🔍 #CasosDesclasificados #TrueCrimeEnEspañol #NocheDeJuegos"
+      },
+      {
+        "context": "telegram",
+        "tone": "Directo y exclusivo — como un canal de inteligencia confidencial. Mensajes cortos, con sensación de acceso privilegiado. Usa emojis con moderación. Tono de insider, no de newsletter masivo.",
+        "example_copy": "🔒 NUEVO EXPEDIENTE DISPONIBLE\n\nCaso #009: 'La Herencia del Faro'\nUbicación: Cartagena de Indias, 1987\nVíctima: Don Aurelio Montoya, 71 años\nSospechosos: 4\nArchivos: 52\n\nAcceso inmediato → [enlace]\n\nEste caso no va a durar mucho tiempo sin resolverse. ¿Estás listo?"
+      }
+    ],
+    "language_style": {
+      "formality": "semiformal",
+      "humor": "light",
+      "urgency": "high",
+      "technical_level": "none"
+    }
+  },
+  "claims": {
+    "allowed": [
+      {
+        "claim": "El primer servicio de casos de misterio detectivesco de calidad profesional escrito originalmente en español",
+        "evidence": "Análisis competitivo confirma que Hunt A Killer, Unsolved Case Files, Cold Case Inc y Cryptic Killers operan exclusivamente en inglés. No se identificó ningún competidor directo con catálogo en español y producción profesional.",
+        "source_type": "competitor_gap"
+      },
+      {
+        "claim": "Acceso inmediato — descarga y juega en menos de 5 minutos",
+        "evidence": "Formato 100% digital descargable sin instalación de app, sin envío físico, sin registro complejo. El proceso de compra-descarga-inicio es verificable y replicable.",
+        "source_type": "product_fact"
+      },
+      {
+        "claim": "Menos de $4 por persona para grupos de 5-6 jugadores",
+        "evidence": "Precio de $19.99 dividido entre 5 jugadores = $3.99 por persona. Matemática directa y verificable.",
+        "source_type": "product_fact"
+      },
+      {
+        "claim": "2-3 horas de entretenimiento activo por caso",
+        "evidence": "Estimación basada en el volumen de contenido incluido (archivos, pistas, narrativa en 3 actos) y comparación con productos similares del mercado. Debe validarse con datos de usuarios reales en cuanto estén disponibles.",
+        "source_type": "inference"
+      },
+      {
+        "claim": "Diseñado para 2-6 jugadores, perfecto para videollamada",
+        "evidence": "Especificación de diseño del producto: guía del facilitador incluida, archivos compartibles digitalmente, mecánicas de discusión grupal integradas en la narrativa.",
+        "source_type": "product_fact"
+      },
+      {
+        "claim": "Más barato que un escape room físico para el mismo grupo",
+        "evidence": "Escape rooms físicos en LATAM: $15-35 USD por persona. Para 5 personas: $75-175 USD. Declassified Cases: $19.99 para todo el grupo. Diferencia verificable y significativa.",
+        "source_type": "comparison"
+      },
+      {
+        "claim": "Todo lo que necesitas para resolver el caso está incluido en el expediente",
+        "evidence": "Principio de diseño del producto: ninguna pista requiere conocimiento externo no provisto en los archivos. Diferenciador directo contra la queja más frecuente de Hunt A Killer en Amazon.",
+        "source_type": "product_fact"
+      }
+    ],
+    "restricted": [
+      {
+        "claim": "El mejor juego de misterio en español",
+        "reason": "Superlativo no verificable sin datos comparativos de usuarios. Puede generar problemas legales y de credibilidad si se cuestiona."
+      },
+      {
+        "claim": "Garantizamos que resolverás el caso",
+        "reason": "La resolución depende del usuario. Prometer el resultado crea expectativas incorrectas y potenciales disputas de reembolso."
+      },
+      {
+        "claim": "Basado en casos reales",
+        "reason": "A menos que los casos sean explícitamente basados en hechos reales documentados, esta afirmación puede ser engañosa y generar problemas legales."
+      },
+      {
+        "claim": "Miles de clientes satisfechos",
+        "reason": "No verificable sin datos reales de clientes. Usar solo cuando se tengan testimonios y cifras reales que lo respalden."
+      },
+      {
+        "claim": "Aprobado por expertos en criminología / detectives reales",
+        "reason": "Endorsement profesional no verificado. No usar sin respaldo real de profesionales identificables."
+      }
+    ],
+    "compliance_notes": [
+      "Mantener política de reembolso clara y accesible para evitar chargebacks — la queja más frecuente de Hunt A Killer en Trustpilot es la facturación opaca.",
+      "Si se implementa modelo de suscripción en el futuro, comunicar términos de cancelación de forma prominente antes de la compra.",
+      "Los archivos del caso no deben incluir imágenes gráficas reales de crímenes — usar ilustraciones o fotografías de archivo ficticias.",
+      "Verificar que el precio en USD esté claramente comunicado para evitar confusión con monedas locales en mercados latinoamericanos.",
+      "Si se usan testimonios de usuarios, deben ser reales y verificables — no ficticios ni compuestos."
+    ]
+  },
+  "creative_angles_library": [
+    {
+      "angle_id": "ANG-01",
+      "angle_name": "El Viernes que No Fue Netflix",
+      "emotion_type": "fear",
+      "target_segment": "couples_date_night_latam",
+      "sample_hook": "Otra vez Netflix. Otra vez el teléfono. Otra vez dormidos antes de las 11. Esta noche, no.",
+      "when_to_use": "Anuncios de TikTok e Instagram Reels para parejas, especialmente jueves-viernes por la tarde. Máxima efectividad en el momento del trigger de aburrimiento nocturno.",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-02",
+      "angle_name": "Tú Eres la Detective",
+      "emotion_type": "aspiration",
+      "target_segment": "true_crime_fans_solo",
+      "sample_hook": "Escuchas true crime. Ves documentales. Analizas cada detalle. Ahora deja de ser espectadora — el expediente está en tus manos.",
+      "when_to_use": "TikTok, Instagram y anuncios post-podcast en Spotify. Especialmente efectivo inmediatamente después de que el usuario termina contenido de true crime.",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-03",
+      "angle_name": "El Anfitrión Legendario",
+      "emotion_type": "aspiration",
+      "target_segment": "game_night_hosts",
+      "sample_hook": "Esta vez no es UNO. Esta vez no es Catan. Esta vez tu grupo va a hablar de esta noche durante meses.",
+      "when_to_use": "Instagram y TikTok para anfitriones de noches de juegos. Efectivo 3-7 días antes del fin de semana cuando el anfitrión está en modo planificación.",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-04",
+      "angle_name": "El Expediente Desclasificado",
+      "emotion_type": "curiosity",
+      "target_segment": "universal",
+      "sample_hook": "EXPEDIENTE #DC-007 — DESCLASIFICADO. Víctima: Don Aurelio Montoya. Causa de muerte: aparente accidente. Sospechosos: 4. Coartadas: ninguna perfecta. ¿Puedes resolver el caso?",
+      "when_to_use": "Formato de 'apertura de expediente' para TikTok, Instagram Reels y anuncios de video. Funciona como gancho universal que genera curiosidad inmediata en cualquier segmento.",
+      "source_type": "competitor_analysis"
+    },
+    {
+      "angle_id": "ANG-05",
+      "angle_name": "Menos que una Pizza, Más Memorable",
+      "emotion_type": "urgency",
+      "target_segment": "couples_date_night_latam",
+      "sample_hook": "Una pizza para dos: $25. Una noche de misterio que van a recordar: $19.99. La diferencia: la pizza se olvida en una hora.",
+      "when_to_use": "Anuncios de retargeting para usuarios que visitaron la página pero no compraron. También efectivo como copy en landing page en la sección de precio.",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-06",
+      "angle_name": "El Podcast que Puedes Resolver",
+      "emotion_type": "curiosity",
+      "target_segment": "true_crime_fans_solo",
+      "sample_hook": "¿Y si el próximo episodio de true crime lo resolvieras tú? Archivos reales. Pistas reales. Tu deducción real. En español.",
+      "when_to_use": "Anuncios en Spotify durante o después de podcasts de true crime en español. También efectivo en TikTok con formato de 'extensión' del contenido de true crime.",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-07",
+      "angle_name": "Cuatro Dólares por Persona",
+      "emotion_type": "urgency",
+      "target_segment": "game_night_hosts",
+      "sample_hook": "Un escape room para 6: $180. Una noche de misterio para 6: $19.99. Menos de $4 por persona. Misma adrenalina. Sin salir de casa.",
+      "when_to_use": "Anuncios de Google Search cuando el usuario busca 'escape room en casa' o 'juego de misterio para grupo'. También efectivo en landing page en comparación de precio.",
+      "source_type": "competitor_analysis"
+    },
+    {
+      "angle_id": "ANG-08",
+      "angle_name": "El Unboxing Digital",
+      "emotion_type": "curiosity",
+      "target_segment": "universal",
+      "sample_hook": "Esto es lo que recibes cuando compras un caso: [mostrar archivos, fotos, documentos forenses, cartas]. Todo esto por $19.99. Descarga inmediata.",
+      "when_to_use": "TikTok e Instagram con formato de 'unboxing' o 'lo que incluye'. Extremadamente efectivo para superar la objeción de 'no sé si vale la pena para algo digital'. Formato UGC o producción propia.",
+      "source_type": "competitor_analysis"
+    },
+    {
+      "angle_id": "ANG-09",
+      "angle_name": "Esta Noche, No Mañana",
+      "emotion_type": "urgency",
+      "target_segment": "couples_date_night_latam",
+      "sample_hook": "No esperes el envío. No instales nada. Compra ahora y en 5 minutos están leyendo el primer archivo juntos. Esta noche.",
+      "when_to_use": "Anuncios de viernes y sábado por la tarde-noche. Especialmente efectivo en el momento del trigger de impulso cuando la pareja está decidiendo qué hacer.",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-10",
+      "angle_name": "El Debate que No Para",
+      "emotion_type": "social_proof",
+      "target_segment": "game_night_hosts",
+      "sample_hook": "Empezamos a las 9pm. A las 2am seguíamos discutiendo si el sospechoso mintió en su coartada. La mejor noche de juegos que hemos tenido. — Rodrigo, Buenos Aires",
+      "when_to_use": "Testimonios reales en formato UGC para TikTok e Instagram. También efectivo en landing page como prueba social. Usar cuando se tengan testimonios reales de grupos.",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-11",
+      "angle_name": "En Tu Idioma, No en el de Ellos",
+      "emotion_type": "aspiration",
+      "target_segment": "universal",
+      "sample_hook": "Hunt A Killer: en inglés. Unsolved Case Files: en inglés. Cryptic Killers: en inglés. Declassified Cases: el único caso de misterio profesional en tu idioma.",
+      "when_to_use": "Anuncios de comparación directa para usuarios que buscaron competidores en inglés. Efectivo en Google Search y como copy de diferenciación en landing page.",
+      "source_type": "competitor_analysis"
+    },
+    {
+      "angle_id": "ANG-12",
+      "angle_name": "El Regalo que Realmente Van a Usar",
+      "emotion_type": "fear",
+      "target_segment": "gift_buyers",
+      "sample_hook": "No más regalos que acumulan polvo. No más tarjetas de regalo genéricas. Regala una experiencia que van a recordar — y que van a usar esta semana.",
+      "when_to_use": "Anuncios de Google Search y Pinterest en temporadas de regalos (San Valentín, Navidad, cumpleaños). También efectivo en Instagram con formato de 'idea de regalo'.",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-13",
+      "angle_name": "La Noche que los Hizo Hablar de Verdad",
+      "emotion_type": "aspiration",
+      "target_segment": "couples_date_night_latam",
+      "sample_hook": "No fue una cena cara. No fue un viaje. Fue una noche resolviendo un caso de misterio juntos — y todavía hablan de eso.",
+      "when_to_use": "Formato de historia de pareja para Instagram y TikTok. Efectivo como contenido orgánico y como anuncio de retargeting para parejas que ya visitaron la página.",
+      "source_type": "hypothesis"
+    },
+    {
+      "angle_id": "ANG-14",
+      "angle_name": "Archivos Reales, Sensación Real",
+      "emotion_type": "curiosity",
+      "target_segment": "true_crime_fans_solo",
+      "sample_hook": "Informe forense. Fotografías de la escena. Testimonio del testigo principal. Carta cifrada del sospechoso. Todo en tus manos. ¿Por dónde empiezas?",
+      "when_to_use": "TikTok e Instagram con formato de 'mostrar los archivos'. Extremadamente efectivo para fans de true crime que valoran el realismo documental. Usar imágenes de alta calidad de los archivos reales.",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-15",
+      "angle_name": "El Exclusivo en Español",
+      "emotion_type": "exclusivity",
+      "target_segment": "universal",
+      "sample_hook": "Mientras el mundo juega en inglés, nosotros investigamos en el nuestro. Casos de misterio profesionales. En español. Para ti.",
+      "when_to_use": "Anuncios de awareness para audiencias hispanohablantes que consumen contenido de true crime o entretenimiento en español. Efectivo como copy de posicionamiento de marca.",
+      "source_type": "competitor_analysis"
+    },
+    {
+      "angle_id": "ANG-16",
+      "angle_name": "El Modo Detective Activado",
+      "emotion_type": "aspiration",
+      "target_segment": "true_crime_fans_solo",
+      "sample_hook": "Modo detective: activado. Expediente abierto. Café en mano. Esta noche no eres espectadora — eres la investigadora principal del caso.",
+      "when_to_use": "TikTok e Instagram con formato de 'preparación para la sesión'. Resonante con fans de true crime que se identifican con el rol de detective. Efectivo como contenido orgánico y anuncio.",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-17",
+      "angle_name": "Sin Esperas, Sin Excusas",
+      "emotion_type": "urgency",
+      "target_segment": "universal",
+      "sample_hook": "Hunt A Killer: espera 3 semanas el envío. Declassified Cases: descarga en 2 minutos. ¿Cuándo quieres empezar a investigar?",
+      "when_to_use": "Anuncios de retargeting y comparación directa. Efectivo para usuarios que buscaron competidores físicos y encontraron la barrera del envío internacional.",
+      "source_type": "competitor_analysis"
+    },
+    {
+      "angle_id": "ANG-18",
+      "angle_name": "La Noche de Juegos que Todos Recuerdan",
+      "emotion_type": "social_proof",
+      "target_segment": "game_night_hosts",
+      "sample_hook": "Llevamos 3 años haciendo noches de juegos. Esta fue la primera vez que nadie quería irse a casa. — Grupo de amigos, Ciudad de México",
+      "when_to_use": "Testimonios en formato UGC para TikTok e Instagram. Efectivo en landing page como prueba social para anfitriones indecisos. Usar cuando se tengan testimonios reales.",
+      "source_type": "hypothesis"
+    },
+    {
+      "angle_id": "ANG-19",
+      "angle_name": "El Giro que No Viste Venir",
+      "emotion_type": "curiosity",
+      "target_segment": "universal",
+      "sample_hook": "Pensabas que sabías quién era el asesino. Luego abriste el sobre número 7. Todo cambió. ¿Puedes manejarlo?",
+      "when_to_use": "Anuncios de video corto para TikTok e Instagram que generan intriga sin revelar el caso. Efectivo como gancho de apertura para cualquier segmento. Formato de tráiler cinematográfico.",
+      "source_type": "hypothesis"
+    },
+    {
+      "angle_id": "ANG-20",
+      "angle_name": "El Regalo Digital que se Siente Real",
+      "emotion_type": "aspiration",
+      "target_segment": "gift_buyers",
+      "sample_hook": "Regala una experiencia de detective. Descarga inmediata, tarjeta de regalo con diseño premium, lista para enviar por WhatsApp hoy. Porque los mejores regalos no se acumulan en un cajón.",
+      "when_to_use": "Anuncios de Google Search y Pinterest en temporadas de regalos. Efectivo para compradores de última hora que necesitan algo que puedan entregar hoy.",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-21",
+      "angle_name": "La Comunidad de Detectives",
+      "emotion_type": "social_proof",
+      "target_segment": "true_crime_fans_solo",
+      "sample_hook": "Miles de detectives hispanohablantes ya resolvieron el Caso #001. ¿Cuánto tardaste tú? Comparte tu tiempo y tu teoría. #CasosDesclasificados",
+      "when_to_use": "Contenido orgánico en TikTok e Instagram para construir comunidad. Efectivo para generar UGC y boca a boca. Usar cuando haya masa crítica de usuarios para que la comunidad sea real.",
+      "source_type": "hypothesis"
+    },
+    {
+      "angle_id": "ANG-22",
+      "angle_name": "El Escape Room que Cabe en tu Teléfono",
+      "emotion_type": "aspiration",
+      "target_segment": "game_night_hosts",
+      "sample_hook": "Un escape room para 6 personas: $180 y hay que coordinar horarios. O: descarga este caso por $19.99 y empiecen esta noche desde el sofá. Tú decides.",
+      "when_to_use": "Anuncios de Google Search para búsquedas de 'escape room en casa' o 'escape room digital'. Efectivo en landing page como comparación de precio y conveniencia.",
+      "source_type": "competitor_analysis"
+    },
+    {
+      "angle_id": "ANG-23",
+      "angle_name": "La Noche de Cita que No Sabías que Necesitabas",
+      "emotion_type": "curiosity",
+      "target_segment": "couples_date_night_latam",
+      "sample_hook": "No es una cena. No es una peli. Es resolver juntos quién mató al heredero Montoya — y descubrir que tu pareja tiene una teoría completamente diferente a la tuya.",
+      "when_to_use": "TikTok e Instagram Reels para parejas. Efectivo como contenido orgánico que genera comentarios y etiquetas. El elemento de 'teorías diferentes' genera conversación en comentarios.",
+      "source_type": "hypothesis"
+    },
+    {
+      "angle_id": "ANG-24",
+      "angle_name": "Narrativa que Engancha desde el Primer Archivo",
+      "emotion_type": "fear",
+      "target_segment": "true_crime_fans_solo",
+      "sample_hook": "No es un puzzle abstracto. No es un juego de mesa con cartas genéricas. Es una historia real con personajes reales que te va a tener leyendo archivos a las 3am sin poder parar.",
+      "when_to_use": "Anuncios de retargeting para usuarios que visitaron la página pero no compraron. Efectivo para superar la objeción de calidad narrativa. Usar con preview de extractos reales del caso.",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-25",
+      "angle_name": "El Team Building que Tu Equipo Va a Pedir Repetir",
+      "emotion_type": "aspiration",
+      "target_segment": "remote_teams_corporate",
+      "sample_hook": "Nada de trivia. Nada de Kahoot. Esta vez tu equipo remoto va a resolver un asesinato juntos — en español, sin instalaciones, desde cualquier país de LATAM.",
+      "when_to_use": "LinkedIn y Google Search para responsables de HR y team building corporativo. Efectivo como anuncio de awareness para el segmento exploratorio. Usar con copy de beneficios corporativos específicos.",
+      "source_type": "hypothesis"
+    }
+  ]
+}

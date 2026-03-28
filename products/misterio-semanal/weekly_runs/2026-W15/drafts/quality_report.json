@@ -1,0 +1,2479 @@
+{
+  "schema_version": "3.0",
+  "product_id": "misterio-semanal",
+  "run_id": "2026-W15",
+  "generated_at": "2026-04-07T00:00:00Z",
+  "overall_status": "fail",
+  "critical_issues_count": 19,
+  "warning_count": 23,
+  "assets": [
+    {
+      "asset_type": "reels_script",
+      "asset_ref": "DC-W15-LANE01-A",
+      "persona_id": "parejas_noche_cita",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Incluye persona_id especifico: parejas_noche_cita."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Lane incluye trigger_id especifico: viernes_tarde_tiktok."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutraliza FK-01 con duracion y profundidad del caso."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Usa prueba visual de archivos del caso."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL especifica para pareja: /noche-cita-misterio-pareja."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "pass",
+          "detail": "Define variable de test entre miedo a la rutina y curiosidad narrativa."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Formato vertical con hook rapido, overlay y audio nativo para TikTok."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "pass",
+          "detail": "La pregunta inicial entra de inmediato."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA claro: compra ahora y juegan esta noche."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca dolor real de rutina Netflix y desconexion de la pareja."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "warning",
+          "type": "factual_error",
+          "description": "Afirma 'Catorce archivos clasificados, seis pistas reales' cuando el brief semanal no confirma cantidades exactas de archivos ni pistas para este caso.",
+          "location": "body.text",
+          "fix_suggestion": "Eliminar cantidades no verificadas o validarlas contra el brief semanal antes de publicar."
+        }
+      ]
+    },
+    {
+      "asset_type": "reels_script",
+      "asset_ref": "DC-W15-LANE01-B",
+      "persona_id": "parejas_noche_cita",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Incluye persona_id especifico: parejas_noche_cita."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Lane incluye trigger_id especifico: viernes_tarde_tiktok."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutraliza FK-03 mostrando expediente serio."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Muestra documentos del caso como prueba."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL especifica para pareja."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "pass",
+          "detail": "Testing variable declarada."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Estructura visual y sonora adecuada para Reels/TikTok corto."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "warning",
+          "detail": "El hook textual es largo y puede exceder 3 segundos en locucion natural."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA especifico con accion y destino."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca necesidad de una actividad distinta para la noche en pareja."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "warning",
+          "type": "slow_hook",
+          "description": "El hook narrativo completo es demasiado largo para asegurar impacto en los primeros 3 segundos.",
+          "location": "hook.text",
+          "fix_suggestion": "Acortar a una frase mas breve, por ejemplo 'Coordenadas a las 3AM. Luego desaparecen.'"
+        },
+        {
+          "severity": "warning",
+          "type": "factual_error",
+          "description": "Incluye 'Catorce archivos, seis pistas' sin soporte explicito en el brief semanal.",
+          "location": "body.text",
+          "fix_suggestion": "Reemplazar por descriptores verificables del expediente o confirmar cantidades."
+        }
+      ]
+    },
+    {
+      "asset_type": "reels_script",
+      "asset_ref": "DC-W15-LANE02-A",
+      "persona_id": "fans_true_crime_solo",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Incluye persona_id especifico: fans_true_crime_solo."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Lane incluye trigger_id especifico."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutraliza miedo a que sea facil con dificultad y duracion."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Prueba mediante listado de tipos de archivo."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL especifica para true crime en espanol."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "pass",
+          "detail": "Variable de test declarada."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Formato nativo para Instagram Reels."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "warning",
+          "detail": "El hook completo excede facilmente 3 segundos."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA claro para investigar ahora."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca el deseo de dejar de ser espectadora pasiva."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "warning",
+          "type": "slow_hook",
+          "description": "El hook tiene varias frases y puede perder retencion antes del segundo 3.",
+          "location": "hook.text",
+          "fix_suggestion": "Reducirlo a una sola linea de identidad fuerte."
+        },
+        {
+          "severity": "warning",
+          "type": "factual_error",
+          "description": "Afirma 'Catorce archivos clasificados' sin respaldo expreso en weekly_case_brief.",
+          "location": "body.text",
+          "fix_suggestion": "Usar elementos del brief confirmados, como audio, radio pirata, personajes y mayor complejidad."
+        }
+      ]
+    },
+    {
+      "asset_type": "reels_script",
+      "asset_ref": "DC-W15-LANE02-B",
+      "persona_id": "fans_true_crime_solo",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Persona especifica presente."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Trigger especifico presente."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutraliza miedo a configuracion compleja."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "El unboxing digital aporta prueba fuerte."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL especifica para la audiencia."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "pass",
+          "detail": "Variable de test explicita."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Formato de unboxing nativo para reels."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "pass",
+          "detail": "El hook es corto y directo."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA especifico para descarga del expediente."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca necesidad de experiencia inmersiva nueva."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "warning",
+          "type": "factual_error",
+          "description": "Menciona 'catorce archivos', 'informe forense de la primera victima' y otros elementos no confirmados por el brief.",
+          "location": "body.text",
+          "fix_suggestion": "Ajustar inventario a elementos confirmados: audio, coordenadas, sospechosos, pueblo costero, mayor complejidad."
+        }
+      ]
+    },
+    {
+      "asset_type": "reels_script",
+      "asset_ref": "DC-W15-LANE03-A",
+      "persona_id": "anfitriones_noche_juegos",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Persona especifica presente."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Trigger especifico presente."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutraliza miedo a organizacion complicada."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "warning",
+          "detail": "La prueba principal es precio por persona, pero falta prueba mas tangible del contenido o experiencia."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL especifica para noche de juegos."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "pass",
+          "detail": "Variable de test explicita."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "TikTok grupal con energia visual adecuada."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "warning",
+          "detail": "El hook puede ser demasiado largo para una lectura completa en 3 segundos."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA especifico para descargar para el sabado."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca dolor de repetir siempre los mismos juegos."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "warning",
+          "type": "no_proof",
+          "description": "La prueba se apoya solo en precio por persona y no en evidencia concreta del expediente o resultados reales.",
+          "location": "proof_element",
+          "fix_suggestion": "Agregar visual o detalle verificable de archivos, audio o dinamica grupal."
+        },
+        {
+          "severity": "warning",
+          "type": "slow_hook",
+          "description": "El hook puede tardar demasiado en llegar a la propuesta central.",
+          "location": "hook.text",
+          "fix_suggestion": "Empezar con 'No es UNO.' y revelar el resto visualmente."
+        },
+        {
+          "severity": "warning",
+          "type": "factual_error",
+          "description": "Incluye 'Catorce archivos' y 'empiezan en diez minutos' no confirmados en weekly_case_brief.",
+          "location": "body.text",
+          "fix_suggestion": "Sostener solo claims permitidos y hechos confirmados."
+        }
+      ]
+    },
+    {
+      "asset_type": "reels_script",
+      "asset_ref": "DC-W15-LANE03-B",
+      "persona_id": "anfitriones_noche_juegos",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Persona especifica presente."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Trigger especifico presente."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutraliza miedo a aburrimiento mediante supuesto engagement prolongado."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Incluye testimonio como prueba."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL especifica para grupo."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "pass",
+          "detail": "Variable de test explicita."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "UGC testimonial funciona para TikTok."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "warning",
+          "detail": "El hook testimonial completo excede 3 segundos."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA claro."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca necesidad de sorprender al grupo con algo nuevo."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "compliance",
+          "description": "Usa un testimonio especifico no verificado ('Empezamos a las 9... a la 1... Lucía mintió') que puede inducir prueba social fabricada.",
+          "location": "hook.text / proof_element",
+          "fix_suggestion": "Sustituir por testimonio real verificable o por una recreacion claramente etiquetada."
+        },
+        {
+          "severity": "warning",
+          "type": "slow_hook",
+          "description": "El hook testimonial es demasiado largo para impacto inmediato.",
+          "location": "hook.text",
+          "fix_suggestion": "Resumir a una frase corta y dejar el detalle en subtitulos."
+        },
+        {
+          "severity": "warning",
+          "type": "factual_error",
+          "description": "Usa 'Catorce archivos' y otros detalles no confirmados por el brief.",
+          "location": "body.text",
+          "fix_suggestion": "Alinear con weekly_case_brief y retirar cantidades no validadas."
+        }
+      ]
+    },
+    {
+      "asset_type": "reels_script",
+      "asset_ref": "DC-W15-LANE04-A",
+      "persona_id": "parejas_noche_cita",
+      "status": "pass_with_warnings",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Persona especifica presente."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Trigger especifico presente."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutraliza miedo a espera con descarga inmediata."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "warning",
+          "detail": "La prueba se basa solo en comparacion de precio."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL especifica para pareja."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "pass",
+          "detail": "Variable de test presente."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Reel corto y visualmente nativo."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "warning",
+          "detail": "El hook es largo para los primeros 3 segundos."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "Compra ahora, juegan esta noche."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca el dolor de terminar otra vez en Netflix."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "warning",
+          "type": "no_proof",
+          "description": "La pieza no muestra prueba concreta del expediente o de la calidad del caso.",
+          "location": "proof_element",
+          "fix_suggestion": "Agregar visual de archivos o audio del caso."
+        },
+        {
+          "severity": "warning",
+          "type": "slow_hook",
+          "description": "El hook puede ser demasiado extenso para retencion inmediata.",
+          "location": "hook.text",
+          "fix_suggestion": "Reducirlo a una sola afirmacion sorprendente."
+        }
+      ]
+    },
+    {
+      "asset_type": "reels_script",
+      "asset_ref": "DC-W15-LANE04-B",
+      "persona_id": "parejas_noche_cita",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Persona especifica presente."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Trigger especifico presente."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutraliza miedo a que no valga la pena con comparacion de valor."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "warning",
+          "detail": "Prueba centrada en comparacion de precio, no en evidencia concreta."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL especifica para pareja."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "pass",
+          "detail": "Variable de test explicita."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Instagram Reels compatible."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "warning",
+          "detail": "El hook dificilmente cabe en 3 segundos."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA claro."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca costo y monotonía de una cita comun."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "forbidden_claim",
+          "description": "La comparacion 'Una pizza para dos: $25' presenta un benchmark de precio no verificado como hecho y puede resultar engañoso en distintos mercados.",
+          "location": "hook.text",
+          "fix_suggestion": "Usar comparacion cualitativa o una referencia sin cifra especifica no validada."
+        },
+        {
+          "severity": "warning",
+          "type": "no_proof",
+          "description": "La prueba es solo comparacion de precio y memoria, sin evidencia concreta del producto.",
+          "location": "proof_element",
+          "fix_suggestion": "Agregar vista del expediente, audio o detalle verificable del contenido."
+        },
+        {
+          "severity": "warning",
+          "type": "slow_hook",
+          "description": "El hook comparativo es demasiado largo para los primeros 3 segundos.",
+          "location": "hook.text",
+          "fix_suggestion": "Reducir a 'Pizza o expediente: elige tu viernes'."
+        },
+        {
+          "severity": "warning",
+          "type": "factual_error",
+          "description": "Incluye 'catorce archivos, seis pistas' no confirmados en weekly_case_brief.",
+          "location": "body.text",
+          "fix_suggestion": "Retirar cantidades no verificadas o validarlas."
+        }
+      ]
+    },
+    {
+      "asset_type": "reels_script",
+      "asset_ref": "DC-W15-LANE05-A",
+      "persona_id": "fans_true_crime_solo",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Persona especifica presente."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Trigger especifico presente."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutraliza miedo a superficialidad."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Unboxing digital aporta prueba fuerte."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL especifica."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "pass",
+          "detail": "Variable de test presente."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "TikTok de unboxing nativo."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "warning",
+          "detail": "Listado completo del hook puede tomar mas de 3 segundos."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA claro y especifico."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca deseo de experiencia de detective real."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "warning",
+          "type": "slow_hook",
+          "description": "El listado de items en el hook es demasiado largo para captar rapido.",
+          "location": "hook.text",
+          "fix_suggestion": "Mostrar algunos items en pantalla y dejar uno solo en VO."
+        },
+        {
+          "severity": "warning",
+          "type": "factual_error",
+          "description": "Afirma elementos especificos como informe forense y 14 archivos sin respaldo explicito del brief.",
+          "location": "hook.text / body.text",
+          "fix_suggestion": "Limitar la enumeracion a detalles confirmados por el brief o revisar contra el expediente real."
+        }
+      ]
+    },
+    {
+      "asset_type": "reels_script",
+      "asset_ref": "DC-W15-LANE05-B",
+      "persona_id": "fans_true_crime_solo",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Persona especifica presente."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Trigger especifico presente."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutraliza miedo sobre calidad narrativa e idioma."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "warning",
+          "detail": "Prueba basada en comparacion competitiva, no en experiencia o activos verificables del caso."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL especifica."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "pass",
+          "detail": "Variable de test presente."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "TikTok comparativo puede ser nativo."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "warning",
+          "detail": "Hook con tres marcas y claim largo es demasiado extenso."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA claro."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca dolor de encontrar experiencias premium solo en ingles."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "forbidden_claim",
+          "description": "Usa 'el unico caso de misterio profesional en tu idioma', que exagera el claim permitido y lo convierte en una exclusividad no respaldada.",
+          "location": "hook.text",
+          "fix_suggestion": "Usar el claim permitido exacto o una version prudente como 'escrito originalmente en espanol'."
+        },
+        {
+          "severity": "warning",
+          "type": "no_proof",
+          "description": "La comparacion competitiva no muestra evidencia tangible del caso.",
+          "location": "proof_element",
+          "fix_suggestion": "Agregar archivos, audio o preview del expediente."
+        },
+        {
+          "severity": "warning",
+          "type": "slow_hook",
+          "description": "El hook comparativo es demasiado largo para 3 segundos.",
+          "location": "hook.text",
+          "fix_suggestion": "Reducir a una sola comparacion y mover el resto al overlay."
+        },
+        {
+          "severity": "warning",
+          "type": "factual_error",
+          "description": "Repite 'catorce archivos' sin respaldo en el brief.",
+          "location": "body.text",
+          "fix_suggestion": "Alinear cantidades con datos verificados."
+        }
+      ]
+    },
+    {
+      "asset_type": "reels_script",
+      "asset_ref": "DC-W15-LANE06-A",
+      "persona_id": "anfitriones_noche_juegos",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Persona especifica presente."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Trigger especifico presente."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutraliza miedo a organizacion complicada."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "warning",
+          "detail": "La prueba se centra en comparacion de precio, no en evidencia de la experiencia."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL especifica para grupo."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "pass",
+          "detail": "Testing variable presente."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Reel comparativo adecuado para Instagram."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "warning",
+          "detail": "Hook largo por comparacion completa."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA claro."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca dolor del costo y logistica de escape room fisico."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "forbidden_claim",
+          "description": "La frase 'Misma adrenalina' equipara el producto con un escape room fisico en intensidad, algo no verificable y potencialmente enganoso.",
+          "location": "hook.text",
+          "fix_suggestion": "Cambiar por una comparacion prudente como 'una noche de misterio para el grupo sin salir de casa'."
+        },
+        {
+          "severity": "warning",
+          "type": "no_proof",
+          "description": "La comparacion de precio no prueba por si sola la calidad o inmersion del caso.",
+          "location": "proof_element",
+          "fix_suggestion": "Agregar evidencia del expediente o reacciones reales verificadas."
+        },
+        {
+          "severity": "warning",
+          "type": "slow_hook",
+          "description": "Hook demasiado largo para asegurar impacto instantaneo.",
+          "location": "hook.text",
+          "fix_suggestion": "Reducirlo a '$19.99 para seis. Sin salir de casa.'"
+        },
+        {
+          "severity": "warning",
+          "type": "factual_error",
+          "description": "Incluye 'Catorce archivos' y 'empiezan en diez minutos' no confirmados por el brief.",
+          "location": "body.text",
+          "fix_suggestion": "Validar o retirar esos detalles."
+        }
+      ]
+    },
+    {
+      "asset_type": "reels_script",
+      "asset_ref": "DC-W15-LANE06-B",
+      "persona_id": "anfitriones_noche_juegos",
+      "status": "pass_with_warnings",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Persona especifica presente."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Trigger especifico presente."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutraliza miedo a organizacion complicada con proceso simple."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "warning",
+          "detail": "La prueba se limita a descripcion del onboarding."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL especifica."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "pass",
+          "detail": "Variable de test presente."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Reel estilo UGC adecuado."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "warning",
+          "detail": "El hook puede exceder 3 segundos en lectura completa."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA claro."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca dolor logistico del anfitrion."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "warning",
+          "type": "no_proof",
+          "description": "La prueba se centra en facilidad de inicio pero no muestra evidencia tangible del valor narrativo o material incluido.",
+          "location": "proof_element",
+          "fix_suggestion": "Agregar vista de audio, archivos o dinamica grupal real."
+        },
+        {
+          "severity": "warning",
+          "type": "slow_hook",
+          "description": "La promesa completa del hook es demasiado extensa para 3 segundos.",
+          "location": "hook.text",
+          "fix_suggestion": "Acortar a 'Tu plan en 2 minutos.'"
+        }
+      ]
+    },
+    {
+      "asset_type": "meta_ad",
+      "asset_ref": "AD-01-A",
+      "persona_id": "parejas_noche_cita",
+      "status": "pass_with_warnings",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Incluye persona_id especifico."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Incluye trigger_id especifico."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutraliza aburrimiento en pareja."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "warning",
+          "detail": "Solo ofrece inventario resumido, sin prueba social o demo."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL especifica para pareja."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "No declara una variable de test explicita dentro de la variante."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Copy breve y directo adecuado para Meta."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "No aplica a pieza de copy estatico."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA especifico: Jugar Esta Noche."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca la rutina de sofa y telefono."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "warning",
+          "type": "no_proof",
+          "description": "Hay poca prueba concreta mas alla de inventario resumido.",
+          "location": "description",
+          "fix_suggestion": "Agregar demo visual, testimonio real o una pieza concreta del expediente."
+        },
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "No se explicita la variable de test a comparar dentro de la variante.",
+          "location": "variant",
+          "fix_suggestion": "Anotar la variable exacta que se esta testeando frente a otras variantes."
+        }
+      ]
+    },
+    {
+      "asset_type": "meta_ad",
+      "asset_ref": "AD-01-B",
+      "persona_id": "parejas_noche_cita",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Persona especifica presente."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Trigger especifico presente."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutraliza valor percibido y espera."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "warning",
+          "detail": "La prueba se basa en inventario y precio comparativo."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL de pareja especifica."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "No hay variable de test explicita en la variante."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Formato adecuado para Meta Ads."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "No aplica."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA claro: Comprar Ahora."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca costo y aburrimiento de la noche en pareja."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "compliance",
+          "description": "Incluye 'Garantia de satisfaccion' sin que exista respaldo factual en brand strategy o weekly brief.",
+          "location": "description",
+          "fix_suggestion": "Eliminar la garantia hasta confirmar que la politica existe y esta comunicada claramente."
+        },
+        {
+          "severity": "warning",
+          "type": "no_proof",
+          "description": "La pieza no aporta prueba verificable mas alla del listado y comparacion con pizza.",
+          "location": "description",
+          "fix_suggestion": "Usar un elemento concreto del expediente o testimonio real."
+        },
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "No se define con precision la variable testeada.",
+          "location": "variant",
+          "fix_suggestion": "Declarar si se testea precio-ancla, duracion o acceso inmediato."
+        },
+        {
+          "severity": "warning",
+          "type": "factual_error",
+          "description": "Menciona '6 pistas autenticas' y 'acceso en 2 minutos' sin validacion en weekly_case_brief.",
+          "location": "description",
+          "fix_suggestion": "Cambiar por lenguaje validado: acceso inmediato y pista de audio incluida."
+        }
+      ]
+    },
+    {
+      "asset_type": "meta_ad",
+      "asset_ref": "AD-01-C",
+      "persona_id": "parejas_noche_cita",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Persona presente."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Trigger presente."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutraliza miedo a esperar."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "warning",
+          "detail": "La pieza carece de prueba concreta."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL persona-specific."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "No se explicita la variable de test de forma operativa en la variante."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Urgency copy apto para Meta."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "No aplica."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA claro."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca necesidad de plan para esta noche."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "compliance",
+          "description": "Menciona 'Garantia de satisfaccion' sin soporte comprobado.",
+          "location": "description",
+          "fix_suggestion": "Eliminar o respaldar con politica real visible."
+        },
+        {
+          "severity": "warning",
+          "type": "no_proof",
+          "description": "No incluye prueba tangible del contenido o experiencia.",
+          "location": "variant",
+          "fix_suggestion": "Agregar tipos de archivos o elemento de audio confirmado."
+        },
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "No explicita claramente la variable a testear.",
+          "location": "variant",
+          "fix_suggestion": "Definir la variable de prueba en la metadata del asset."
+        }
+      ]
+    },
+    {
+      "asset_type": "meta_ad",
+      "asset_ref": "AD-02-A",
+      "persona_id": "fans_true_crime_solo",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Persona especifica presente."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Trigger especifico presente."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutraliza miedo a producto infantil o poco realista."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Entrega inventario especifico como prueba."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL especifica para true crime en espanol."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "No hay variable de test explicita dentro de la variante."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Copy aspiracional adecuado."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "No aplica."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA claro: Abrir Mi Expediente."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca deseo de dejar de ser espectadora."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "factual_error",
+          "description": "Lista 'Informe policial', 'Fotografias de escena', 'Cartas cifradas' y '14 archivos' sin confirmacion expresa en weekly_case_brief.",
+          "location": "description",
+          "fix_suggestion": "Usar solo elementos confirmados: audio, coordenadas, senal, sospechosos, mayor complejidad."
+        },
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "No se explicita variable de test.",
+          "location": "variant",
+          "fix_suggestion": "Indicar si se prueba identidad detective vs inventario de expediente."
+        }
+      ]
+    },
+    {
+      "asset_type": "meta_ad",
+      "asset_ref": "AD-02-B",
+      "persona_id": "fans_true_crime_solo",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Persona presente."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Trigger presente."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutraliza miedo a que sea corto o facil."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "warning",
+          "detail": "Proof limitado a descripcion inventariada."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL especifica."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "Variable de test no explicita."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Adecuado para Meta."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "No aplica."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA claro."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca deseo de resolver el caso personalmente."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "factual_error",
+          "description": "Afirma '14 archivos clasificados', 'pistas autenticas' y 'narrativa en 3 actos' sin soporte especifico en weekly_case_brief.",
+          "location": "description",
+          "fix_suggestion": "Limitar el copy a hechos confirmados por el brief semanal o por documentacion de producto validada."
+        },
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "No define variable de test.",
+          "location": "variant",
+          "fix_suggestion": "Explicitar si se prueba hook narrativo vs claim de idioma."
+        }
+      ]
+    },
+    {
+      "asset_type": "meta_ad",
+      "asset_ref": "AD-02-C",
+      "persona_id": "fans_true_crime_solo",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Persona presente."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Trigger presente."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Busca neutralizar duda sobre calidad con testimonio."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Usa testimonio y listado de activos como prueba."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL especifica."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "Variable de test no explicita."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Social proof encaja con Meta."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "No aplica."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA especifico."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca necesidad de enganche y calidad."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "compliance",
+          "description": "Usa testimonio de 'Camila' sin evidencia de que sea real y verificable.",
+          "location": "primary_text",
+          "fix_suggestion": "No usar testimonio hasta validar nombre, consentimiento y veracidad, o reemplazar por copy sin cita."
+        },
+        {
+          "severity": "critical",
+          "type": "factual_error",
+          "description": "Usa 'Informe forense' y 'Fotos de escena' sin confirmacion en weekly_case_brief.",
+          "location": "description",
+          "fix_suggestion": "Alinear el inventario con datos confirmados."
+        },
+        {
+          "severity": "critical",
+          "type": "compliance",
+          "description": "Incluye 'Garantia de satisfaccion' sin soporte documental confirmado.",
+          "location": "description",
+          "fix_suggestion": "Eliminar la promesa hasta validar politica real."
+        },
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "La variable de test no esta explicitada.",
+          "location": "variant",
+          "fix_suggestion": "Definir el eje de test."
+        }
+      ]
+    },
+    {
+      "asset_type": "meta_ad",
+      "asset_ref": "AD-03-A",
+      "persona_id": "anfitriones_noche_juegos",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Persona presente."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Trigger presente."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutraliza miedo a organizacion."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "warning",
+          "detail": "Prueba limitada a precio por persona y guia."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL especifica para grupo."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "No explicita variable de test."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Copy apto para Meta."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "No aplica."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA claro."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca repetir siempre los mismos juegos."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "compliance",
+          "description": "Afirma 'tu grupo resuelve un caso real', lo que implica base en hechos reales y contradice restricciones de marca.",
+          "location": "primary_text",
+          "fix_suggestion": "Cambiar por 'resuelve un caso de misterio' o 'una investigacion ficticia inmersiva'."
+        },
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "No se explicita variable de test.",
+          "location": "variant",
+          "fix_suggestion": "Definir si se prueba originalidad vs precio por persona."
+        }
+      ]
+    },
+    {
+      "asset_type": "meta_ad",
+      "asset_ref": "AD-03-B",
+      "persona_id": "anfitriones_noche_juegos",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Persona presente."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Trigger presente."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutraliza friccion de valor para grupo."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "warning",
+          "detail": "Proof centrado en comparacion de precio."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL especifica."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "Variable de test no explicita."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Adecuado para Meta."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "No aplica."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA especifico."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca costo de escape room y coordinacion."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "forbidden_claim",
+          "description": "Dice 'Misma adrenalina', equivalencia subjetiva no verificable frente a escape room fisico.",
+          "location": "primary_text",
+          "fix_suggestion": "Cambiar por una comparacion de formato o precio sin afirmar equivalencia emocional."
+        },
+        {
+          "severity": "critical",
+          "type": "compliance",
+          "description": "Incluye 'Garantia de satisfaccion' sin evidencia de politica real.",
+          "location": "description",
+          "fix_suggestion": "Eliminar la garantia hasta validarla."
+        },
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "No define variable de test.",
+          "location": "variant",
+          "fix_suggestion": "Especificar si se prueba precio comparativo vs facilidad de organizacion."
+        },
+        {
+          "severity": "warning",
+          "type": "factual_error",
+          "description": "Incluye '14 archivos' y 'Empieza en 10 minutos' no validados en weekly_case_brief.",
+          "location": "description",
+          "fix_suggestion": "Retirar o validar estos detalles."
+        }
+      ]
+    },
+    {
+      "asset_type": "meta_ad",
+      "asset_ref": "AD-03-C",
+      "persona_id": "anfitriones_noche_juegos",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Persona presente."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Trigger presente."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutraliza miedo a que el grupo no se enganche."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "warning",
+          "detail": "No ofrece prueba concreta, solo escenario aspiracional."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL especifica."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "Sin variable de test explicita."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Copy social/aspiracional adecuado para Meta."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "No aplica."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "warning",
+          "detail": "CTA 'Ser el Anfitrion Epico' es emocional pero menos especifico sobre la accion/destino."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca necesidad de sorprender al grupo."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "compliance",
+          "description": "Incluye 'Garantia incluida' sin respaldo documental.",
+          "location": "description",
+          "fix_suggestion": "Eliminar hasta confirmar politica real."
+        },
+        {
+          "severity": "warning",
+          "type": "no_proof",
+          "description": "La pieza es aspiracional pero no aporta evidencia tangible del producto.",
+          "location": "variant",
+          "fix_suggestion": "Agregar activos del expediente o detalle verificado del audio/pistas."
+        },
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "No explicita la variable de test.",
+          "location": "variant",
+          "fix_suggestion": "Declarar el eje de test frente a otras variantes."
+        },
+        {
+          "severity": "warning",
+          "type": "weak_cta",
+          "description": "CTA aspiracional pero poco concreto sobre la accion inmediata.",
+          "location": "cta_text",
+          "fix_suggestion": "Cambiar a 'Descargar para este sabado' o similar."
+        }
+      ]
+    },
+    {
+      "asset_type": "meta_ad",
+      "asset_ref": "AD-04-A",
+      "persona_id": "compradores_regalo",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Persona especifica presente."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Trigger especifico presente."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutraliza miedo a que no lo use y a la entrega."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "warning",
+          "detail": "Prueba limitada a descripcion de la oferta-regalo."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL de regalo especifica."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "No explicita variable de test."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Copy apto para Meta."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "No aplica."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA claro: Regalar Ahora."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca dificultad de encontrar un regalo util y rapido."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "factual_error",
+          "description": "Promete 'Tarjeta de regalo digital con diseno premium' sin que weekly_case_brief ni brand strategy confirmen que exista esta funcionalidad.",
+          "location": "description",
+          "fix_suggestion": "Eliminar la tarjeta premium hasta verificar implementacion real."
+        },
+        {
+          "severity": "critical",
+          "type": "compliance",
+          "description": "Incluye 'Garantia de satisfaccion' sin respaldo confirmado.",
+          "location": "description",
+          "fix_suggestion": "Retirar la garantia o documentarla con politica real."
+        },
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "Sin variable de test explicita.",
+          "location": "variant",
+          "fix_suggestion": "Definir si se prueba utilidad del regalo vs rapidez de entrega."
+        }
+      ]
+    },
+    {
+      "asset_type": "meta_ad",
+      "asset_ref": "AD-04-B",
+      "persona_id": "compradores_regalo",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Persona presente."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Trigger presente."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutraliza urgencia de entrega y acceso."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "warning",
+          "detail": "Proof limitado a descripcion de regalo digital."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL especifica de regalo."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "No explicita variable de test."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Copy directo y urgente adecuado."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "No aplica."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA claro."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca necesidad de regalo de ultima hora."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "factual_error",
+          "description": "Promete 'envia en 5 minutos', 'Tarjeta premium descargable' y 'Regalo digital' sin confirmacion de que esa operativa exista.",
+          "location": "primary_text / description",
+          "fix_suggestion": "Solo prometer flujos y entregables implementados y verificados."
+        },
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "No explicita variable de test.",
+          "location": "variant",
+          "fix_suggestion": "Definir si se prueba urgencia temporal vs regalo experiencial."
+        }
+      ]
+    },
+    {
+      "asset_type": "meta_ad",
+      "asset_ref": "AD-04-C",
+      "persona_id": "compradores_regalo",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Persona presente."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Trigger presente."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutraliza miedo a regalar algo inutil."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "warning",
+          "detail": "Prueba limitada a inventario y promesa de tarjeta."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL de regalo especifica."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "No explicita variable de test."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Apto para Meta."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "No aplica."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA claro."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca regalar otra cosa generica."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "factual_error",
+          "description": "Promete 'Tarjeta de regalo premium' sin evidencia de implementacion real.",
+          "location": "description",
+          "fix_suggestion": "Retirar la referencia o confirmar el activo antes de usarlo."
+        },
+        {
+          "severity": "critical",
+          "type": "compliance",
+          "description": "Incluye 'Garantia de satisfaccion' sin soporte confirmado.",
+          "location": "description",
+          "fix_suggestion": "Eliminar hasta validar politica real."
+        },
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "No explicita variable de test.",
+          "location": "variant",
+          "fix_suggestion": "Definir el angulo testeado."
+        },
+        {
+          "severity": "warning",
+          "type": "factual_error",
+          "description": "Afirma '14 archivos clasificados' sin respaldo del brief semanal.",
+          "location": "description",
+          "fix_suggestion": "Sustituir por descripcion validada del expediente."
+        }
+      ]
+    },
+    {
+      "asset_type": "email",
+      "asset_ref": "E1-W15-TEASE",
+      "persona_id": "fans_true_crime_solo",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Email dirigido a fans_true_crime_solo."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "fail",
+          "detail": "El email no incluye trigger_id especifico; solo behavioral_trigger a nivel secuencia."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "warning",
+          "detail": "No neutraliza de forma clara un miedo especifico del buyer persona; incluso menciona acceso en 48 horas."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "warning",
+          "detail": "Ofrece promesa de archivos futuros, pero no prueba actual."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "CTA dirige a URL de true crime en espanol."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "No declara variable de test."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Formato de email narrativo alineado con tono de marca."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "No aplica."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "warning",
+          "detail": "CTA sugiere acceso anticipado, pero el cuerpo no aclara mecanica ni beneficio concreto."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca necesidad de un nuevo misterio desafiante."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "missing_trigger",
+          "description": "No hay trigger_id especifico a nivel del asset, requisito obligatorio del checklist.",
+          "location": "email asset metadata",
+          "fix_suggestion": "Agregar un trigger_id explicito para este email."
+        },
+        {
+          "severity": "warning",
+          "type": "no_fear_neutralized",
+          "description": "El email declara FK-05 pero el contenido contradice esa neutralizacion al decir 'En 48 horas tendras acceso'.",
+          "location": "body_markdown / fear_neutralized",
+          "fix_suggestion": "Alinear el miedo neutralizado con el contenido real o cambiar el mensaje a acceso inmediato cuando corresponda."
+        },
+        {
+          "severity": "warning",
+          "type": "no_proof",
+          "description": "No ofrece prueba tangible del producto; solo teaser narrativo.",
+          "location": "body_markdown",
+          "fix_suggestion": "Agregar un preview verificable del audio o de un archivo."
+        },
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "No explicita variable de test.",
+          "location": "email asset metadata",
+          "fix_suggestion": "Definir variable, por ejemplo asunto narrativo vs asunto de acceso."
+        },
+        {
+          "severity": "warning",
+          "type": "weak_cta",
+          "description": "CTA poco especifico sobre que obtiene el usuario al hacer clic.",
+          "location": "cta_text",
+          "fix_suggestion": "Hacerlo mas concreto: 'Ver adelanto del expediente' o 'Recibir aviso de lanzamiento'."
+        }
+      ]
+    },
+    {
+      "asset_type": "email",
+      "asset_ref": "E2-W15-REVEAL",
+      "persona_id": "parejas_noche_cita",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Persona especifica presente."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "fail",
+          "detail": "No hay trigger_id especifico a nivel del email."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutraliza miedo a aburrimiento y falta de claridad."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Incluye inventario detallado del expediente."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL especifica para pareja."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "No declara variable de test."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Formato de reveal por email apropiado."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "No aplica."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA claro con precio y destino."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca rutina Netflix y falta de conexion."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "missing_trigger",
+          "description": "No hay trigger_id especifico en el asset.",
+          "location": "email asset metadata",
+          "fix_suggestion": "Agregar trigger_id explicito para este email."
+        },
+        {
+          "severity": "critical",
+          "type": "factual_error",
+          "description": "Asegura '14 archivos', '6 pistas', 'alguien mas que no aparece en los registros oficiales' y 'doble giro que no veras venir' sin soporte en weekly_case_brief.",
+          "location": "body_markdown",
+          "fix_suggestion": "Restringir el inventario a hechos confirmados y evitar revelaciones inventadas."
+        },
+        {
+          "severity": "critical",
+          "type": "compliance",
+          "description": "Promete 'si no les engancha en los primeros 20 minutos, les devolvemos el dinero. Sin preguntas.' sin respaldo documental.",
+          "location": "body_markdown",
+          "fix_suggestion": "Eliminar la garantia o validarla con politica real accesible."
+        },
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "No explicita variable de test.",
+          "location": "email asset metadata",
+          "fix_suggestion": "Definir si se prueba asunto de inventario vs acceso inmediato."
+        }
+      ]
+    },
+    {
+      "asset_type": "email",
+      "asset_ref": "E3-W15-URGENCY",
+      "persona_id": "anfitriones_noche_juegos",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Persona especifica presente."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "fail",
+          "detail": "No hay trigger_id especifico a nivel del email."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutraliza miedo a configuracion complicada."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Usa testimonial e inventario como prueba."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "URL especifica para grupo."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "No declara variable de test."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Email de urgencia alineado al canal."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "No aplica."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA claro y especifico."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Ataca repetir UNO/Catan y buscar algo nuevo para el grupo."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "missing_trigger",
+          "description": "No hay trigger_id especifico en el asset.",
+          "location": "email asset metadata",
+          "fix_suggestion": "Agregar trigger_id explicito para este email."
+        },
+        {
+          "severity": "critical",
+          "type": "compliance",
+          "description": "Abre con 'tu grupo puede resolver un asesinato', pero weekly_case_brief solo habla de desapariciones, no asesinato.",
+          "location": "body_markdown",
+          "fix_suggestion": "Cambiar a 'resolver un caso de desapariciones' o 'un misterio'."
+        },
+        {
+          "severity": "critical",
+          "type": "compliance",
+          "description": "Usa testimonio de Rodrigo y resultados de grupos sin verificar; la propia nota interna admite que podria ser compuesto.",
+          "location": "body_markdown",
+          "fix_suggestion": "Reemplazar con testimonio real verificable o eliminar la cita."
+        },
+        {
+          "severity": "critical",
+          "type": "compliance",
+          "description": "Promete 'devolucion sin preguntas' sin respaldo confirmado.",
+          "location": "body_markdown",
+          "fix_suggestion": "Eliminar la garantia hasta validar la politica real."
+        },
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "No explicita variable de test.",
+          "location": "email asset metadata",
+          "fix_suggestion": "Definir el test de asunto o CTA."
+        },
+        {
+          "severity": "warning",
+          "type": "factual_error",
+          "description": "Incluye '14 archivos', 'sobre 7' y otros detalles no confirmados por weekly_case_brief.",
+          "location": "body_markdown",
+          "fix_suggestion": "Alinear todo el inventario con hechos verificados."
+        }
+      ]
+    }
+  ],
+  "override": {
+    "allowed": true,
+    "override_reason": "Primera iteracion con skills v1.1. Los 19 critical issues son legitimos (compliance, factual_error, forbidden_claim). Se documentan para que W16 los evite. Los assets fueron corregidos parcialmente (trigger_ids, Carmen Vidal, archivos reales). Issues restantes requieren regeneracion completa que se hara en la siguiente iteracion.",
+    "overridden_by": "Alfredo (via Claude Code)"
+  },
+  "summary": "La tanda falla por multiples issues criticos de compliance y factualidad: promesas de garantia no verificadas, testimonios no comprobados, claims exagerados y detalles del caso no respaldados por weekly_case_brief. Aunque la segmentacion, el tono y las landing URLs suelen estar bien alineados, el batch no puede aprobarse hasta corregir esas infracciones.",
+  "recommendations": [
+    "Eliminar de inmediato todas las garantias, testimonios y funcionalidades de regalo no verificadas hasta contar con respaldo documental real.",
+    "Reescribir el inventario del caso usando solo hechos confirmados por weekly_case_brief o por una ficha de producto validada; no inventar cantidades de archivos, pistas, sobres o giros.",
+    "Agregar trigger_id y variable de test explicitos a cada email y anuncio, y acortar hooks de video para asegurar impacto en los primeros 3 segundos."
+  ]
+}

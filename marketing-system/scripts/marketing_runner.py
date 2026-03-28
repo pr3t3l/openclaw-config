@@ -283,7 +283,7 @@ REQUIRED FIELDS:
 
     try:
         text, usage = call_llm(phase["model"], system_prompt, user_prompt,
-                                max_tokens=8192, temperature=0.5)
+                                max_tokens=16384, temperature=0.5)
         parsed = extract_json_from_response(text)
         if not parsed:
             (output_dir / f"debug_{phase['name']}.txt").write_text(text)

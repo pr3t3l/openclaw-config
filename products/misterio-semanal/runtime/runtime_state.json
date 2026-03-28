@@ -1,6 +1,35 @@
 {
   "product_id": "misterio-semanal",
-  "pending_gates": {},
+  "pending_gates": {
+    "M1": {
+      "gate_name": "M1",
+      "gate_type": "marketing",
+      "product_id": "misterio-semanal",
+      "run_id": "2026-W15",
+      "status": "pending",
+      "summary": "🎬 Marketing 2026-W15 — Gate M1: Content Review\nProducto: misterio-semanal\n\n✅ Video Scripts: generado\n✅ Ad Copy: generado\n✅ Email Sequence: generado\n\nDecisión:\n/marketing approve 2026-W15\n/marketing reject 2026-W15",
+      "artifact_paths": [],
+      "created_at": "2026-03-28T09:50:22.920834",
+      "decided_at": null,
+      "decision": null,
+      "decided_by": null,
+      "adjustments": null
+    },
+    "M2": {
+      "gate_name": "M2",
+      "gate_type": "marketing",
+      "product_id": "misterio-semanal",
+      "run_id": "2026-W15",
+      "status": "pending",
+      "summary": "📅 Marketing 2026-W15 — Gate M2: Calendar + Quality\nProducto: misterio-semanal\n\n✅ Calendar: 26 posts scheduled\n✅ Quality: fail\n  ⚠ email: 2 critical issues\n  ⚠ email: 1 critical issues\n  ⚠ meta_ad: 1 critical issues\n  ⚠ meta_ad: 1 critical issues\n  ⚠ meta_ad: 1 critical issues\n  ⚠ meta_ad: 1 critical issues\n  ⚠ meta_ad: 1 critical issues\n  ⚠ meta_ad: 1 critical issues\n\nDecisión:\n/marketing approve 2026-W15\n/marketing reject 2026-W15",
+      "artifact_paths": [],
+      "created_at": "2026-03-28T09:56:47.347278",
+      "decided_at": null,
+      "decision": null,
+      "decided_by": null,
+      "adjustments": null
+    }
+  },
   "resolved_gates": {
     "S1": {
       "gate_name": "S1",
@@ -8,13 +37,13 @@
       "product_id": "misterio-semanal",
       "run_id": null,
       "status": "approved",
-      "summary": "✅ Strategy v1 — Gate S1\nProducto: misterio-semanal\n\nBuyer Persona:\n  Valentina Ríos, 34, Coordinadora de proyectos en empresa de tecnología\n  Pain points:\n    - Termina podcasts y documentales de true crime sintiéndose frustrada porque solo puede observar, nunca participar en la resolución del caso\n    - Los planes de fin de semana con su pareja siempre terminan siendo lo mismo: Netflix, delivery y el sofá, lo que genera sensación de rutina y falta de conexión\n    - Los escape rooms físicos son caros ($25-50 USD por persona), requieren reserva anticipada, desplazamiento y duran solo una hora, lo que los hace poco prácticos para una noche espontánea\n\nCompetidores:\n\nDecisión:\n1. /strategy approve misterio-semanal\n2. /strategy reject misterio-semanal",
+      "summary": "✅ Strategy v1 — Gate S1\nProducto: misterio-semanal\n\nBuyer Persona:\n  ?, ?, ?\n  Pain points:\n\nCompetidores:\n\nDecisión:\n1. /strategy approve misterio-semanal\n2. /strategy reject misterio-semanal",
       "artifact_paths": [
-        "/home/robotin/.openclaw/products/misterio-semanal/strategies/v1/market_analysis.json",
-        "/home/robotin/.openclaw/products/misterio-semanal/strategies/v1/buyer_persona.json"
+        "/home/robotin/.openclaw/products/misterio-semanal/strategies/v2/market_analysis.json",
+        "/home/robotin/.openclaw/products/misterio-semanal/strategies/v2/buyer_persona.json"
       ],
-      "created_at": "2026-03-27T23:02:55.564388",
-      "decided_at": "2026-03-27T23:07:14.843485",
+      "created_at": "2026-03-28T02:34:01.517636",
+      "decided_at": "2026-03-28T09:32:46.512465",
       "decision": "approved",
       "decided_by": "Alfredo",
       "adjustments": null
@@ -25,14 +54,14 @@
       "product_id": "misterio-semanal",
       "run_id": null,
       "status": "approved",
-      "summary": "✅ Strategy completa — Gate S2\nProducto: misterio-semanal\n\nValue Proposition: {\"cpm\": \"Ayudo a adultos hispanohablantes apasionados por el misterio a vivir la emoci\\u00f3n de resolver casos detectivescos reales a trav\\u00e9s de experiencias digitales inmersivas en espa\\u00f1ol \n\nCanales:\n  - Instagram: primary\n  - TikTok: primary\n  - YouTube: secondary\n  - Spotify (Podcast Ads): secondary\n  - Email Marketing: primary\n\nSEO: 16 keyword groups\n\nDecisión:\n1. /strategy approve misterio-semanal\n2. /strategy reject misterio-semanal",
+      "summary": "✅ Strategy completa — Gate S2\nProducto: misterio-semanal\n\nValue Proposition: {\"cpm\": \"Ayudo a adultos hispanohablantes apasionados por el misterio a vivir la experiencia de ser detective real a trav\\u00e9s de casos digitales inmersivos en espa\\u00f1ol sin esperas de env\\u00edo\n\nCanales:\n  - ?: primary\n  - ?: primary\n  - ?: primary\n  - ?: secondary\n  - ?: secondary\n\nSEO: 0 keyword groups\n\nDecisión:\n1. /strategy approve misterio-semanal\n2. /strategy reject misterio-semanal",
       "artifact_paths": [
-        "/home/robotin/.openclaw/products/misterio-semanal/strategies/v1/brand_strategy.json",
-        "/home/robotin/.openclaw/products/misterio-semanal/strategies/v1/seo_architecture.json",
-        "/home/robotin/.openclaw/products/misterio-semanal/strategies/v1/channel_strategy.json"
+        "/home/robotin/.openclaw/products/misterio-semanal/strategies/v2/brand_strategy.json",
+        "/home/robotin/.openclaw/products/misterio-semanal/strategies/v2/seo_architecture.json",
+        "/home/robotin/.openclaw/products/misterio-semanal/strategies/v2/channel_strategy.json"
       ],
-      "created_at": "2026-03-27T23:06:52.497357",
-      "decided_at": "2026-03-27T23:07:14.843958",
+      "created_at": "2026-03-28T02:43:05.797986",
+      "decided_at": "2026-03-28T09:32:46.512769",
       "decision": "approved",
       "decided_by": "Alfredo",
       "adjustments": null
@@ -67,5 +96,5 @@
     }
   },
   "last_gate": "M2",
-  "last_updated": "2026-03-27T23:16:48.424222"
+  "last_updated": "2026-03-28T09:56:47.349259"
 }

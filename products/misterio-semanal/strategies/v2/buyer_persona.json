@@ -1,0 +1,736 @@
+{
+  "schema_version": "3.0",
+  "product_id": "misterio-semanal",
+  "generated_at": "2026-03-28T02:28:56.577504",
+  "segments": [
+    {
+      "segment_id": "parejas_noche_cita",
+      "segment_name": "Parejas / Noche de Cita en Casa",
+      "priority": "primary",
+      "use_case": "Una pareja busca una actividad diferente para pasar la noche del viernes o sábado en casa, sin gastar en restaurante o cine, que les permita interactuar, reírse y compartir una experiencia memorable juntos.",
+      "avatar": {
+        "name": "Valentina",
+        "age": 31,
+        "occupation": "Diseñadora gráfica freelance",
+        "context": "Lleva 3 años con su pareja y sienten que las noches en casa se han vuelto rutinarias — Netflix y scrollear el teléfono. Buscan algo que los haga conectar de verdad sin salir ni gastar mucho.",
+        "routine_summary": "Trabaja desde casa de lunes a viernes, los fines de semana intenta hacer planes con su pareja. Consume contenido de true crime en TikTok e Instagram, sigue podcasts de misterio en Spotify. El presupuesto para entretenimiento es de $30-50 USD por semana."
+      },
+      "motivation": "Crear una noche especial y diferente con su pareja que genere conversación real, risas y la sensación de haber hecho algo juntos — sin salir de casa ni gastar lo de una cena.",
+      "pain_points": [
+        {
+          "pain": "Siempre terminamos viendo Netflix y a los 20 minutos ninguno de los dos está realmente presente — cada uno con el teléfono.",
+          "source_type": "forum_insight",
+          "evidence_excerpt": "Grupos de Facebook 'planes en casa' y r/argentina muestran búsquedas frecuentes de 'actividades para hacer en pareja en casa' con comentarios sobre la rutina de streaming pasivo."
+        },
+        {
+          "pain": "Los escape rooms físicos están bien pero son caros y hay que coordinar, reservar, ir hasta allá... para un martes no vale la pena.",
+          "source_type": "review_analysis",
+          "evidence_excerpt": "Reseñas de escape rooms en Google Maps LATAM mencionan el precio por persona ($15-35 USD) y la logística como barreras para uso frecuente."
+        },
+        {
+          "pain": "Quiero algo que nos haga hablar y pensar juntos, no solo mirar una pantalla en silencio.",
+          "source_type": "forum_insight",
+          "evidence_excerpt": "r/boardgames y grupos de Facebook de parejas hispanohablantes: hilos sobre 'juegos para dos personas que generen conversación' con alta participación."
+        },
+        {
+          "pain": "Los juegos de mesa que tenemos ya los conocemos de memoria y se vuelven aburridos.",
+          "source_type": "review_analysis",
+          "evidence_excerpt": "Reseñas de Cluedo y juegos de misterio clásicos en Amazon.es mencionan la falta de variedad y rejugabilidad como punto negativo principal."
+        },
+        {
+          "pain": "Todo lo bueno de misterio está en inglés y mi pareja no lo domina bien — siempre terminamos frustrados.",
+          "source_type": "inference",
+          "evidence_excerpt": "Análisis de brechas de mercado: los 4 principales competidores directos operan exclusivamente en inglés, sin versión en español disponible.",
+          "assumption_flag": true
+        }
+      ],
+      "buying_triggers": [
+        {
+          "trigger": "Viernes por la tarde scrolleando TikTok o Instagram y ven un video de alguien jugando un caso de misterio en pareja",
+          "timing": "impulse",
+          "urgency": "high",
+          "channel": "TikTok, Instagram Reels"
+        },
+        {
+          "trigger": "Terminan una serie de crimen o misterio en Netflix y quieren seguir con esa energía de forma activa",
+          "timing": "impulse",
+          "urgency": "high",
+          "channel": "Redes sociales, búsqueda directa en Google"
+        },
+        {
+          "trigger": "Planean una noche especial (aniversario, San Valentín, cumpleaños) y buscan algo diferente a cenar fuera",
+          "timing": "planned_short",
+          "urgency": "medium",
+          "channel": "Google, Pinterest, Instagram"
+        },
+        {
+          "trigger": "Una amiga les cuenta que ella y su pareja lo hicieron y fue increíble — boca a boca directo",
+          "timing": "planned_short",
+          "urgency": "medium",
+          "channel": "WhatsApp, recomendación directa"
+        }
+      ],
+      "purchase_barriers": [
+        {
+          "barrier": "¿Será aburrido o demasiado fácil para dos personas adultas?",
+          "objection_handling": "Mostrar clips de parejas reales jugando con reacciones genuinas de sorpresa y debate. Destacar que el caso está diseñado para 2-6 jugadores con dificultad calibrada para adultos."
+        },
+        {
+          "barrier": "No sé si $19.99 vale la pena para algo digital que no puedo tocar.",
+          "objection_handling": "Comparar explícitamente con el costo de salir: 'Menos que dos cervezas en un bar, más de 2 horas de entretenimiento activo juntos.' Mostrar preview de la calidad visual de los archivos."
+        },
+        {
+          "barrier": "¿Y si mi pareja no se engancha y terminamos dejándolo a medias?",
+          "objection_handling": "Garantía de satisfacción o devolución. Testimonios de parejas que lo terminaron en una sola noche. Destacar que la narrativa engancha desde el primer archivo."
+        }
+      ],
+      "preferred_channels": [
+        "TikTok",
+        "Instagram Reels",
+        "WhatsApp (boca a boca)",
+        "Google Search",
+        "Pinterest"
+      ],
+      "preferred_content_format": "ugc",
+      "acceptable_price_range": {
+        "min": 9.99,
+        "max": 24.99,
+        "sweet_spot": 19.99
+      },
+      "required_proof": "Videos UGC de parejas reales jugando, preview de los archivos del caso, comparación de precio vs. salir a cenar, garantía de satisfacción",
+      "ticket_expected": 19.99
+    },
+    {
+      "segment_id": "anfitriones_noche_juegos",
+      "segment_name": "Anfitriones de Noche de Juegos Grupal",
+      "priority": "primary",
+      "use_case": "Un grupo de 3-6 amigos o familiares busca una actividad estructurada para su noche de juegos mensual que sea más inmersiva que un juego de mesa tradicional y que todos puedan disfrutar sin importar su nivel de experiencia con juegos.",
+      "avatar": {
+        "name": "Rodrigo",
+        "age": 34,
+        "occupation": "Gerente de proyectos en empresa tech",
+        "context": "Organiza una noche de juegos con su grupo de amigos cada 3-4 semanas. Siempre es el que propone el plan y busca algo nuevo que sorprenda al grupo. Le gusta ser el anfitrión que trae la actividad más original.",
+        "routine_summary": "Semana laboral intensa, los fines de semana son sagrados para socializar. Gasta $40-80 USD en entretenimiento grupal mensual. Sigue canales de YouTube de juegos y reseñas, activo en grupos de WhatsApp con amigos."
+      },
+      "motivation": "Ser el anfitrión que trae la actividad más épica y memorable de la noche — algo que el grupo no haya hecho antes y que genere conversación, debate y risas colectivas.",
+      "pain_points": [
+        {
+          "pain": "Siempre terminamos jugando lo mismo — UNO, Catan o poniéndonos a ver una peli. Necesito algo nuevo que sorprenda al grupo.",
+          "source_type": "forum_insight",
+          "evidence_excerpt": "r/boardgames y grupos de Facebook hispanohablantes de juegos: hilos frecuentes sobre 'alternativas a los juegos de mesa de siempre' con alta participación."
+        },
+        {
+          "pain": "Los escape rooms físicos para 6 personas cuestan una fortuna y hay que coordinar horarios de todos — casi imposible.",
+          "source_type": "review_analysis",
+          "evidence_excerpt": "Reseñas de escape rooms grupales en LATAM: el precio por persona ($20-35 USD) multiplicado por 6 personas es una barrera frecuentemente mencionada."
+        },
+        {
+          "pain": "Quiero algo donde todos participen activamente, no solo los más extrovertidos del grupo.",
+          "source_type": "forum_insight",
+          "evidence_excerpt": "r/boardgames: hilos sobre 'juegos inclusivos para grupos mixtos' donde se valora que todos tengan rol activo independientemente de experiencia previa."
+        },
+        {
+          "pain": "Los juegos de misterio buenos están en inglés y en mi grupo no todos lo hablan bien — siempre hay alguien excluido.",
+          "source_type": "inference",
+          "evidence_excerpt": "Brecha de mercado identificada: ausencia de competidores directos con catálogo en español de calidad profesional.",
+          "assumption_flag": true
+        },
+        {
+          "pain": "Comprar un juego de mesa nuevo es caro y luego lo juegas dos veces y se queda en el cajón.",
+          "source_type": "review_analysis",
+          "evidence_excerpt": "Reseñas de juegos de mesa en Amazon.es: queja recurrente sobre el precio vs. rejugabilidad, especialmente en juegos de un solo uso como los de misterio."
+        }
+      ],
+      "buying_triggers": [
+        {
+          "trigger": "Está organizando la próxima noche de juegos y busca en Google 'juego de misterio para grupo en español'",
+          "timing": "planned_short",
+          "urgency": "medium",
+          "channel": "Google Search, YouTube"
+        },
+        {
+          "trigger": "Ve en Instagram o TikTok un video de un grupo de amigos resolviendo un caso juntos y se imagina hacerlo con su grupo",
+          "timing": "impulse",
+          "urgency": "medium",
+          "channel": "TikTok, Instagram Reels"
+        },
+        {
+          "trigger": "Alguien en el grupo de WhatsApp pregunta '¿qué hacemos este sábado?' y él quiere proponer algo diferente",
+          "timing": "impulse",
+          "urgency": "high",
+          "channel": "WhatsApp, búsqueda rápida en Google"
+        },
+        {
+          "trigger": "Un amigo de otro grupo le cuenta que lo hicieron y fue la mejor noche de juegos que habían tenido",
+          "timing": "planned_short",
+          "urgency": "medium",
+          "channel": "Boca a boca, WhatsApp"
+        }
+      ],
+      "purchase_barriers": [
+        {
+          "barrier": "¿Será complicado de organizar para 6 personas? No quiero que sea un caos.",
+          "objection_handling": "Destacar la guía del facilitador incluida, instrucciones claras para el anfitrión, y que el formato está diseñado específicamente para grupos de 2-6 personas. Mostrar video de cómo funciona la dinámica grupal."
+        },
+        {
+          "barrier": "¿Qué pasa si alguien del grupo no se engancha o lo encuentra aburrido?",
+          "objection_handling": "Testimonios de grupos con perfiles mixtos (algunos gamers, otros no). Garantía de satisfacción. Destacar que la narrativa funciona incluso para quienes no juegan habitualmente."
+        },
+        {
+          "barrier": "$19.99 para una noche de juegos parece caro si lo divido entre todos.",
+          "objection_handling": "Reencuadrar: '$19.99 para TODO el grupo, no por persona. Menos de $4 por persona para 2+ horas de entretenimiento.' Comparar con el costo de una ronda de cervezas."
+        }
+      ],
+      "preferred_channels": [
+        "TikTok",
+        "Instagram",
+        "Google Search",
+        "YouTube",
+        "WhatsApp (boca a boca)"
+      ],
+      "preferred_content_format": "ugc",
+      "acceptable_price_range": {
+        "min": 14.99,
+        "max": 29.99,
+        "sweet_spot": 19.99
+      },
+      "required_proof": "Videos de grupos reales jugando, guía del facilitador visible, desglose del precio por persona, testimonios de anfitriones, preview del contenido del caso",
+      "ticket_expected": 19.99
+    },
+    {
+      "segment_id": "fans_true_crime_solo",
+      "segment_name": "Fans de True Crime / Detectives Solitarios",
+      "priority": "primary",
+      "use_case": "Un adulto apasionado por el true crime, los podcasts de crimen y las series de misterio busca una experiencia interactiva donde pueda ejercer activamente su rol de 'detective' en lugar de consumir contenido pasivamente.",
+      "avatar": {
+        "name": "Camila",
+        "age": 28,
+        "occupation": "Enfermera",
+        "context": "Escucha podcasts de true crime durante su commute y en sus días libres. Ha visto todas las series de crimen en Netflix y siente que quiere algo más — participar activamente en resolver un caso, no solo escuchar o ver.",
+        "routine_summary": "Turnos rotativos de trabajo, en sus días libres busca entretenimiento que estimule su mente. Consume 3-5 horas semanales de contenido de true crime. Sigue cuentas de misterio en TikTok e Instagram. Gasta $15-30 USD mensuales en entretenimiento digital."
+      },
+      "motivation": "Vivir la experiencia de ser detective real — analizar pistas, conectar evidencias y llegar a la solución por su propio razonamiento, no solo consumir la historia de otro.",
+      "pain_points": [
+        {
+          "pain": "Escucho todos los podcasts de true crime pero siempre soy espectadora — quiero ser yo quien resuelva el caso.",
+          "source_type": "platform_data",
+          "evidence_excerpt": "TikTok: hashtag #crimenverdadero supera 2B de vistas en español (2024); comentarios frecuentes expresando deseo de 'participar' y no solo 'escuchar' en videos de true crime."
+        },
+        {
+          "pain": "Ya vi todas las series de misterio en Netflix y Amazon — necesito algo nuevo que me desafíe de verdad.",
+          "source_type": "forum_insight",
+          "evidence_excerpt": "r/truecrime y grupos de Facebook de true crime en español: hilos sobre 'qué hacer cuando ya viste todo' con alta participación y búsqueda de alternativas interactivas."
+        },
+        {
+          "pain": "Los juegos de misterio que encuentro en español son demasiado simples o infantiles — no me toman en serio como jugadora.",
+          "source_type": "review_analysis",
+          "evidence_excerpt": "Reseñas de juegos de misterio en español en Amazon.es: quejas frecuentes sobre narrativas superficiales y pistas demasiado obvias en productos disponibles en español."
+        },
+        {
+          "pain": "Quiero la sensación de tener archivos reales, fotos del caso, informes — como si fuera una detective de verdad.",
+          "source_type": "review_analysis",
+          "evidence_excerpt": "Reseñas positivas de Unsolved Case Files en Amazon.com: el elemento más valorado es la autenticidad de los documentos físicos que simulan archivos policiales reales."
+        }
+      ],
+      "buying_triggers": [
+        {
+          "trigger": "Termina un podcast o serie de true crime y queda con ganas de más — busca activamente algo interactivo",
+          "timing": "impulse",
+          "urgency": "high",
+          "channel": "Google Search, TikTok, Spotify (anuncios post-podcast)"
+        },
+        {
+          "trigger": "Ve en TikTok un video mostrando los archivos del caso — fotos, documentos, pistas — y quiere tener esa experiencia",
+          "timing": "impulse",
+          "urgency": "high",
+          "channel": "TikTok, Instagram Reels"
+        },
+        {
+          "trigger": "Un podcast de true crime en español menciona o patrocina el producto",
+          "timing": "planned_short",
+          "urgency": "medium",
+          "channel": "Spotify, Apple Podcasts, YouTube"
+        },
+        {
+          "trigger": "Día libre o fin de semana sin planes — busca algo que la mantenga mentalmente activa",
+          "timing": "impulse",
+          "urgency": "medium",
+          "channel": "TikTok, Instagram, Google"
+        }
+      ],
+      "purchase_barriers": [
+        {
+          "barrier": "¿Será suficientemente desafiante o lo resolveré en 20 minutos?",
+          "objection_handling": "Comunicar duración estimada (2-3 horas para caso completo), nivel de complejidad de las pistas, y que el caso tiene múltiples capas de evidencia. Mostrar preview de la profundidad narrativa."
+        },
+        {
+          "barrier": "¿La narrativa será de calidad o parecerá hecha con IA sin alma?",
+          "objection_handling": "Mostrar extractos reales del caso, destacar el trabajo de escritura profesional, incluir testimonios de fans de true crime que validaron la calidad narrativa."
+        },
+        {
+          "barrier": "¿Vale $19.99 para algo que hago sola en una tarde?",
+          "objection_handling": "Comparar con el precio de un libro de misterio ($12-18 USD) pero con interactividad. Destacar que el caso es rejugable con amigos. Ofrecer preview gratuito de los primeros archivos."
+        }
+      ],
+      "preferred_channels": [
+        "TikTok",
+        "Spotify (podcasts)",
+        "Instagram",
+        "YouTube",
+        "Google Search"
+      ],
+      "preferred_content_format": "entertaining",
+      "acceptable_price_range": {
+        "min": 9.99,
+        "max": 24.99,
+        "sweet_spot": 14.99
+      },
+      "required_proof": "Preview de archivos del caso, testimonios de fans de true crime, duración estimada del caso, muestra de la calidad narrativa, comparación con podcasts/series",
+      "ticket_expected": 19.99
+    },
+    {
+      "segment_id": "compradores_regalo",
+      "segment_name": "Compradores de Regalo / Experiencia de Regalo",
+      "priority": "secondary",
+      "use_case": "Una persona busca un regalo original, diferente y memorable para alguien que ama el misterio, el true crime o los escape rooms — para cumpleaños, San Valentín, Navidad o cualquier ocasión especial — y quiere algo que se pueda entregar de forma inmediata sin esperar envíos.",
+      "avatar": {
+        "name": "Sebastián",
+        "age": 36,
+        "occupation": "Abogado",
+        "context": "Necesita un regalo para su hermana que es fanática del true crime. No quiere regalar algo genérico (perfume, tarjeta de regalo) sino algo que demuestre que la conoce y que sea una experiencia real. Tiene poco tiempo para buscar y necesita algo que pueda entregar hoy.",
+        "routine_summary": "Agenda apretada, compra regalos con poca anticipación. Gasta $20-50 USD en regalos para personas cercanas. Busca en Google o pregunta en grupos de WhatsApp cuando no sabe qué regalar. Valora la inmediatez de la entrega digital."
+      },
+      "motivation": "Regalar una experiencia memorable y personalizada que demuestre que conoce los gustos del destinatario — algo que no se pueda comprar en cualquier tienda y que genere una reacción genuina de emoción.",
+      "pain_points": [
+        {
+          "pain": "No sé qué regalarle — ya tiene todo y no quiero darle otra tarjeta de regalo genérica.",
+          "source_type": "forum_insight",
+          "evidence_excerpt": "Grupos de Facebook y Reddit hispanohablantes: búsquedas frecuentes de 'regalos originales para personas que tienen todo' y 'regalos experiencia en español'."
+        },
+        {
+          "pain": "Quiero regalar algo que pueda usar hoy, no esperar 2 semanas a que llegue el envío.",
+          "source_type": "review_analysis",
+          "evidence_excerpt": "Reseñas negativas de Hunt A Killer y competidores físicos en Amazon: frustración frecuente con tiempos de envío internacional, especialmente para regalos de última hora."
+        },
+        {
+          "pain": "Los escape rooms son difíciles de coordinar como regalo — ¿y si no puede ir en esa fecha?",
+          "source_type": "inference",
+          "evidence_excerpt": "Inferencia basada en la naturaleza logística de los escape rooms físicos y la dificultad de coordinar horarios como regalo.",
+          "assumption_flag": true
+        },
+        {
+          "pain": "No sé si le va a gustar — me da miedo regalar algo que no use.",
+          "source_type": "forum_insight",
+          "evidence_excerpt": "Grupos de Facebook de regalos y r/gifts: el miedo a regalar algo que no se use es la barrera más mencionada al comprar experiencias digitales como regalo."
+        }
+      ],
+      "buying_triggers": [
+        {
+          "trigger": "Cumpleaños, San Valentín, Navidad o aniversario se acerca y busca en Google 'regalo original para fan del true crime'",
+          "timing": "planned_short",
+          "urgency": "high",
+          "channel": "Google Search, Pinterest"
+        },
+        {
+          "trigger": "El cumpleaños es mañana o pasado y necesita algo que pueda enviar digitalmente hoy",
+          "timing": "impulse",
+          "urgency": "high",
+          "channel": "Google Search, Instagram"
+        },
+        {
+          "trigger": "Ve un anuncio o post en redes sociales mostrando el producto como idea de regalo",
+          "timing": "planned_short",
+          "urgency": "medium",
+          "channel": "Instagram, Facebook, Pinterest"
+        },
+        {
+          "trigger": "Alguien en un grupo de WhatsApp pregunta ideas de regalos y alguien menciona Declassified Cases",
+          "timing": "planned_short",
+          "urgency": "medium",
+          "channel": "WhatsApp, boca a boca"
+        }
+      ],
+      "purchase_barriers": [
+        {
+          "barrier": "¿Y si no le gusta o ya lo tiene?",
+          "objection_handling": "Garantía de satisfacción o cambio de caso. Destacar que cada caso es único y que el catálogo se actualiza. Ofrecer opción de regalo con nota personalizada."
+        },
+        {
+          "barrier": "¿Cómo se lo entrego si es digital? ¿Se ve como un regalo de verdad?",
+          "objection_handling": "Mostrar el proceso de regalo digital: email personalizado, PDF con diseño de regalo, instrucciones claras. Crear una experiencia de 'unboxing digital' que se sienta especial."
+        },
+        {
+          "barrier": "¿$19.99 es suficiente para un regalo o parecerá barato?",
+          "objection_handling": "Posicionar como 'regalo experiencia' no como producto. Comparar con el precio de una cena o una entrada al cine. Destacar que es una experiencia de 2-3 horas, no un objeto."
+        }
+      ],
+      "preferred_channels": [
+        "Google Search",
+        "Pinterest",
+        "Instagram",
+        "Facebook",
+        "WhatsApp (boca a boca)"
+      ],
+      "preferred_content_format": "polished",
+      "acceptable_price_range": {
+        "min": 14.99,
+        "max": 34.99,
+        "sweet_spot": 19.99
+      },
+      "required_proof": "Presentación visual del regalo digital, proceso de entrega claro, garantía de satisfacción, testimonios de personas que lo recibieron como regalo, comparación de precio vs. experiencias alternativas",
+      "ticket_expected": 24.99
+    },
+    {
+      "segment_id": "dinner_party_planners",
+      "segment_name": "Planificadores de Cena Temática",
+      "priority": "secondary",
+      "use_case": "Organizar una cena con temática de misterio para 4-8 personas en una ocasión especial: cumpleaños, aniversario de grupo, reunión de fin de año o simplemente una noche memorable",
+      "avatar": {
+        "name": "Valentina",
+        "age": 38,
+        "occupation": "Directora de marketing en empresa mediana",
+        "context": "Valentina es la 'organizadora oficial' de su grupo de amigas. Planifica con detalle, cuida la estética y quiere que cada reunión sea una experiencia completa, no solo una cena.",
+        "routine_summary": "Trabaja de lunes a viernes con alta carga laboral. Los fines de semana son su espacio de desconexión social. Planifica eventos con 2-3 semanas de anticipación, investiga en Pinterest e Instagram, y está dispuesta a invertir en una experiencia de calidad."
+      },
+      "motivation": "Crear una noche temática completamente inmersiva que sus invitados recuerden durante meses; el caso de misterio es el hilo conductor de toda la velada",
+      "pain_points": [
+        {
+          "pain": "Quiero hacer algo más que solo cenar y hablar — necesito una actividad que estructure la noche",
+          "source_type": "forum_insight",
+          "evidence_excerpt": "Grupos de Facebook 'Planes en Casa' hispanohablante: búsquedas frecuentes de 'actividad para cena de amigos' y 'cómo hacer una noche temática en casa'"
+        },
+        {
+          "pain": "Los kits de cena de misterio que encuentro están en inglés o son muy genéricos y sin calidad",
+          "source_type": "competitor_gap",
+          "evidence_excerpt": "Búsqueda en Amazon.es y Google.es: ausencia de kits de cena de misterio de calidad en español; los disponibles son plantillas genéricas de Etsy sin narrativa real"
+        },
+        {
+          "pain": "Organizar una cena temática requiere mucho trabajo de preparación y no tengo tiempo para crear todo desde cero",
+          "source_type": "inference",
+          "evidence_excerpt": "Inferencia basada en comportamiento documentado de consumidores de productos 'listo para usar' en categorías de entretenimiento y eventos",
+          "assumption_flag": true
+        },
+        {
+          "pain": "Quiero algo que se vea profesional y bien producido, no un juego de rol casero improvisado",
+          "source_type": "review_analysis",
+          "evidence_excerpt": "Reseñas de Unsolved Case Files en Amazon: el atributo 'high quality documents' y 'feels authentic' aparece en el 60%+ de reseñas 5 estrellas"
+        }
+      ],
+      "buying_triggers": [
+        {
+          "trigger": "Está planificando una cena especial (cumpleaños, aniversario de grupo) y busca 'actividad para cena temática'",
+          "timing": "planned_long",
+          "urgency": "medium",
+          "channel": "Google Search, Pinterest, Instagram"
+        },
+        {
+          "trigger": "Ve contenido de una cena de misterio en Instagram o TikTok y se inspira para replicarlo",
+          "timing": "impulse",
+          "urgency": "low",
+          "channel": "Instagram, TikTok, Pinterest"
+        },
+        {
+          "trigger": "Una amiga le cuenta que organizó una noche de misterio y fue el mejor plan del año",
+          "timing": "planned_short",
+          "urgency": "medium",
+          "channel": "WhatsApp, conversación presencial"
+        }
+      ],
+      "purchase_barriers": [
+        {
+          "barrier": "¿Podré integrar el caso de misterio con la cena sin que se interrumpa el flujo de la noche?",
+          "objection_handling": "Proveer guía de facilitador con sugerencias de cómo estructurar la noche: cuándo servir cada plato, cuándo revelar cada pista, cómo crear momentos dramáticos"
+        },
+        {
+          "barrier": "No sé si el nivel de dificultad es adecuado para mi grupo — algunos son muy analíticos y otros no",
+          "objection_handling": "Comunicar que el caso está diseñado para grupos mixtos; el debate y la colaboración son parte del diseño, no se requiere ser 'bueno en puzzles'"
+        },
+        {
+          "barrier": "¿Qué pasa si alguien ya conoce el caso o lo ha jugado?",
+          "objection_handling": "Destacar el catálogo de casos disponibles y la posibilidad de elegir; mencionar que cada caso es una historia completamente nueva"
+        }
+      ],
+      "preferred_channels": [
+        "Pinterest",
+        "Instagram",
+        "Google Search",
+        "TikTok"
+      ],
+      "preferred_content_format": "polished",
+      "acceptable_price_range": {
+        "min": 19.99,
+        "max": 39.99,
+        "sweet_spot": 24.99
+      },
+      "required_proof": "Fotos de alta calidad del contenido, testimonios de anfitrionas, preview de los archivos incluidos, guía del facilitador visible",
+      "ticket_expected": 24.99
+    },
+    {
+      "segment_id": "remote_teams_corporate",
+      "segment_name": "Equipos Remotos / Team Building Corporativo",
+      "priority": "exploratory",
+      "use_case": "Actividad de team building para equipos de trabajo remotos o híbridos que buscan una experiencia grupal divertida y diferente a las típicas videollamadas de trabajo",
+      "avatar": {
+        "name": "Sofía",
+        "age": 41,
+        "occupation": "HR Manager en startup tecnológica",
+        "context": "Sofía es responsable de mantener la cultura y cohesión de un equipo de 15 personas distribuidas entre México, Colombia y España. Organiza actividades de team building cada 2-3 meses con presupuesto limitado.",
+        "routine_summary": "Trabaja 100% remota. Gestiona un presupuesto de team building de $200-500 USD por trimestre. Busca actividades que funcionen bien en videollamada, que sean inclusivas y que no requieran instalación de software adicional."
+      },
+      "motivation": "Crear un momento de conexión genuina entre el equipo que vaya más allá de las reuniones de trabajo; demostrar a la dirección que el team building remoto puede ser efectivo y divertido",
+      "pain_points": [
+        {
+          "pain": "Las actividades de team building online son siempre las mismas — trivia, kahoot, bingo — y el equipo ya está aburrido",
+          "source_type": "forum_insight",
+          "evidence_excerpt": "LinkedIn y grupos de HR en Facebook: quejas frecuentes sobre falta de originalidad en actividades de team building remoto post-pandemia"
+        },
+        {
+          "pain": "Es difícil encontrar algo que funcione para un equipo multicultural hispanohablante sin referencias culturales específicas de un solo país",
+          "source_type": "inference",
+          "evidence_excerpt": "Inferencia basada en la diversidad geográfica del mercado hispanohablante global y la sensibilidad cultural documentada en audiencias latinas",
+          "assumption_flag": true
+        },
+        {
+          "pain": "Los presupuestos de team building son limitados y necesito justificar el gasto con una experiencia de calidad",
+          "source_type": "inference",
+          "evidence_excerpt": "Inferencia basada en tendencias de reducción de presupuestos de team building en empresas medianas post-2022 (Gartner HR Survey 2023)",
+          "assumption_flag": true
+        }
+      ],
+      "buying_triggers": [
+        {
+          "trigger": "Planificación trimestral de actividades de team building — busca opciones nuevas y originales",
+          "timing": "planned_long",
+          "urgency": "low",
+          "channel": "Google Search, LinkedIn, recomendaciones de colegas de HR"
+        },
+        {
+          "trigger": "El equipo expresa aburrimiento con las actividades actuales y pide algo diferente",
+          "timing": "planned_short",
+          "urgency": "medium",
+          "channel": "Google Search, LinkedIn"
+        }
+      ],
+      "purchase_barriers": [
+        {
+          "barrier": "¿Funciona bien para grupos grandes (10-15 personas) en videollamada?",
+          "objection_handling": "Ofrecer guía de facilitador para grupos grandes; sugerir división en subgrupos de 4-5 personas que compiten entre sí; comunicar que el formato es flexible"
+        },
+        {
+          "barrier": "¿Necesito comprar una licencia especial para uso corporativo?",
+          "objection_handling": "Comunicar claramente la política de uso grupal; ofrecer paquete corporativo con descuento por volumen si aplica"
+        },
+        {
+          "barrier": "¿Qué pasa si alguien del equipo no habla bien español?",
+          "objection_handling": "Aclarar que el producto está diseñado para hispanohablantes nativos; sugerir que es ideal para equipos donde el español es el idioma principal de trabajo"
+        }
+      ],
+      "preferred_channels": [
+        "LinkedIn",
+        "Google Search",
+        "Email marketing B2B",
+        "Recomendaciones de colegas"
+      ],
+      "preferred_content_format": "educational",
+      "acceptable_price_range": {
+        "min": 19.99,
+        "max": 99.99,
+        "sweet_spot": 49.99
+      },
+      "required_proof": "Casos de uso corporativo, testimonios de equipos remotos, guía del facilitador, política clara de uso grupal",
+      "ticket_expected": 49.99
+    }
+  ],
+  "comparative_table": [
+    {
+      "segment_id": "dinner_party_planners",
+      "use_case": "Cena temática de misterio para ocasión especial",
+      "priority": "secondary",
+      "motivation": "Crear una noche completamente inmersiva y memorable",
+      "top_objection": "¿Podré integrar el caso con la cena sin interrumpir el flujo?",
+      "ticket_expected": 24.99,
+      "repeat_potential": "medio — ocasiones especiales son menos frecuentes",
+      "best_channel": "Pinterest / Instagram"
+    },
+    {
+      "segment_id": "remote_teams_corporate",
+      "use_case": "Team building para equipos remotos hispanohablantes",
+      "priority": "exploratory",
+      "motivation": "Crear conexión genuina entre el equipo más allá del trabajo",
+      "top_objection": "¿Funciona bien para grupos grandes en videollamada?",
+      "ticket_expected": 49.99,
+      "repeat_potential": "alto si se valida — compras trimestrales por equipo",
+      "best_channel": "LinkedIn / Google Search"
+    }
+  ],
+  "priority_ranking": [
+    {
+      "rank": 1,
+      "segment_id": "couples_date_night_latam",
+      "use_case": "Noche de cita en casa para parejas",
+      "justification": "El segmento de parejas combina la mayor frecuencia de compra potencial (múltiples viernes al mes), el trigger de compra más inmediato (impulso de 'algo diferente esta noche'), y el canal de adquisición más económico (TikTok/Instagram Reels con contenido UGC orgánico). La propuesta de valor es clara y fácil de comunicar en 15 segundos de video. El precio de $19.99 es percibido como 'justo' comparado con salir a cenar. Con un presupuesto de $50/mes, este segmento ofrece el mejor ROAS potencial.",
+      "conversion_potential": "high",
+      "reachability": "high",
+      "expected_aov": 19.99
+    },
+    {
+      "rank": 2,
+      "segment_id": "true_crime_fans_solo",
+      "use_case": "Experiencia interactiva para fans del true crime",
+      "justification": "La comunidad de true crime en español es masiva (2B+ vistas en TikTok), apasionada y activamente busca contenido relacionado. El trigger de compra post-documental/podcast es predecible y replicable. El potencial de recurrencia es el más alto de todos los segmentos — los fans de true crime consumen contenido vorazmente. La colaboración con podcasters de true crime en español puede generar adquisición a costo casi cero. El AOV es menor ($14.99) pero el LTV compensa por alta recurrencia.",
+      "conversion_potential": "high",
+      "reachability": "high",
+      "expected_aov": 14.99
+    },
+    {
+      "rank": 3,
+      "segment_id": "game_night_hosts",
+      "use_case": "Noche de juegos original para grupos de amigos",
+      "justification": "Los anfitriones de noches de juegos tienen alta intención de compra cuando están en modo planificación (1-2 semanas antes de la reunión). El boca a boca es especialmente poderoso en este segmento — una buena experiencia grupal genera múltiples compras futuras (cada participante puede convertirse en comprador). El precio de $19.99 dividido entre 5-6 personas es percibido como extremadamente accesible. La reachability es alta via TikTok y Google Search.",
+      "conversion_potential": "high",
+      "reachability": "medium",
+      "expected_aov": 19.99
+    }
+  ],
+  "universal_fears": [
+    {
+      "fear_id": "FK-01",
+      "fear": "¿Será aburrido o demasiado fácil? No quiero pagar $20 por algo que terminamos en 30 minutos sin emoción",
+      "severity": "critical",
+      "counter_strategy": "Comunicar duración estimada de 2-3 horas en todos los materiales. Mostrar la profundidad del contenido con preview de archivos, pistas y escenas. Usar testimonios específicos que mencionen 'no podíamos parar' o 'nos tuvo enganchados toda la noche'. Incluir en landing page una sección de 'qué incluye' con número de archivos, pistas y giros narrativos.",
+      "applicable_segments": [
+        "couples_date_night_latam",
+        "game_night_hosts",
+        "true_crime_fans_solo",
+        "dinner_party_planners",
+        "gift_buyers"
+      ]
+    },
+    {
+      "fear_id": "FK-02",
+      "fear": "¿Será complicado de configurar? No quiero pasarme 30 minutos leyendo instrucciones antes de empezar",
+      "severity": "high",
+      "counter_strategy": "Comunicar 'descarga y juega en menos de 5 minutos' en headline de landing page y en todos los anuncios. Mostrar el proceso de onboarding en un video de 30 segundos. Destacar que no requiere instalación de app, registro complicado ni configuración técnica. Incluir guía del facilitador de 1 página con instrucciones visuales.",
+      "applicable_segments": [
+        "couples_date_night_latam",
+        "game_night_hosts",
+        "dinner_party_planners",
+        "remote_teams_corporate"
+      ]
+    },
+    {
+      "fear_id": "FK-03",
+      "fear": "¿Será infantil o poco realista? No quiero algo que parezca un juego de niños o con una narrativa superficial",
+      "severity": "high",
+      "counter_strategy": "Mostrar capturas de los archivos reales del caso (informes policiales, fotos de escena, cartas) en todos los materiales de marketing. Usar lenguaje adulto y tono serio en la comunicación. Destacar la calidad narrativa y la coherencia del caso. Incluir testimonios que mencionen específicamente 'se siente como un caso real' o 'la narrativa es increíble'.",
+      "applicable_segments": [
+        "true_crime_fans_solo",
+        "couples_date_night_latam",
+        "game_night_hosts",
+        "dinner_party_planners"
+      ]
+    },
+    {
+      "fear_id": "FK-04",
+      "fear": "¿Le gustará? No quiero regalar algo que no use o que le parezca raro",
+      "severity": "high",
+      "counter_strategy": "Crear una página de regalo específica con descripción del tipo de persona que disfruta el producto ('perfecto para quien le gustan los podcasts de true crime, las series de misterio o los escape rooms'). Ofrecer tarjeta de regalo con diseño premium descargable. Incluir garantía de satisfacción o cambio de caso. Mostrar testimonios de personas que lo recibieron como regalo.",
+      "applicable_segments": [
+        "gift_buyers",
+        "dinner_party_planners"
+      ]
+    },
+    {
+      "fear_id": "FK-05",
+      "fear": "No quiero esperar días para recibirlo — si lo compro hoy quiero usarlo hoy",
+      "severity": "critical",
+      "counter_strategy": "Comunicar 'acceso inmediato' y 'descarga instantánea' en el headline principal de la landing page y en todos los anuncios. Mostrar el proceso de compra-descarga-juego en menos de 5 minutos. Destacar explícitamente que no hay envío físico, no hay espera, no hay instalación. Usar el copy 'Compra ahora, juega esta noche' en CTAs.",
+      "applicable_segments": [
+        "couples_date_night_latam",
+        "game_night_hosts",
+        "true_crime_fans_solo",
+        "dinner_party_planners",
+        "gift_buyers",
+        "remote_teams_corporate"
+      ]
+    }
+  ],
+  "activation_timeline": [
+    {
+      "time_horizon": "T-5min",
+      "trigger_type": "Aburrimiento nocturno / impulso espontáneo",
+      "urgency": "high",
+      "key_message": "Compra ahora, juega esta noche — acceso inmediato en 2 minutos",
+      "best_channel": "TikTok, Instagram Reels",
+      "applicable_segments": [
+        "couples_date_night_latam",
+        "true_crime_fans_solo"
+      ]
+    },
+    {
+      "time_horizon": "T-1hora",
+      "trigger_type": "Post-consumo de true crime (documental, podcast, serie)",
+      "urgency": "high",
+      "key_message": "No solo lo veas — resuélvelo tú. Tu próximo caso te espera",
+      "best_channel": "Instagram, TikTok, Google Search",
+      "applicable_segments": [
+        "true_crime_fans_solo",
+        "couples_date_night_latam"
+      ]
+    },
+    {
+      "time_horizon": "T-3dias",
+      "trigger_type": "Planificación de noche de cita o plan de pareja",
+      "urgency": "medium",
+      "key_message": "Una noche que los dos van a recordar — sin salir de casa",
+      "best_channel": "Instagram, Pinterest, Google Search",
+      "applicable_segments": [
+        "couples_date_night_latam",
+        "dinner_party_planners"
+      ]
+    },
+    {
+      "time_horizon": "T-1semana",
+      "trigger_type": "Planificación de noche de juegos o reunión de amigos",
+      "urgency": "medium",
+      "key_message": "El plan que todos van a querer repetir — sé el anfitrión que siempre sorprende",
+      "best_channel": "Google Search, Instagram, Facebook",
+      "applicable_segments": [
+        "game_night_hosts",
+        "dinner_party_planners"
+      ]
+    },
+    {
+      "time_horizon": "T-2semanas",
+      "trigger_type": "Búsqueda de regalo original para fecha especial",
+      "urgency": "medium",
+      "key_message": "Regala una experiencia, no una cosa — el regalo que realmente van a usar",
+      "best_channel": "Google Search, Pinterest, Instagram",
+      "applicable_segments": [
+        "gift_buyers"
+      ]
+    },
+    {
+      "time_horizon": "T-1mes",
+      "trigger_type": "Planificación trimestral de team building corporativo",
+      "urgency": "low",
+      "key_message": "El team building remoto que tu equipo va a pedir repetir — en español, sin instalaciones",
+      "best_channel": "LinkedIn, Google Search, Email B2B",
+      "applicable_segments": [
+        "remote_teams_corporate"
+      ]
+    },
+    {
+      "time_horizon": "T-estacional",
+      "trigger_type": "Navidad, San Valentín, Día de la Madre, temporada de regalos",
+      "urgency": "high",
+      "key_message": "El regalo perfecto para quien ya tiene todo — una experiencia que no olvidarán",
+      "best_channel": "Google Shopping, Instagram, Facebook, Pinterest",
+      "applicable_segments": [
+        "gift_buyers",
+        "couples_date_night_latam",
+        "game_night_hosts"
+      ]
+    }
+  ]
+}

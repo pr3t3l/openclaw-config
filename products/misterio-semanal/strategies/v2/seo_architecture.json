@@ -1,0 +1,1281 @@
+{
+  "schema_version": "3.0",
+  "product_id": "misterio-semanal",
+  "generated_at": "2026-03-28T02:37:13.315106",
+  "keyword_clusters": [
+    {
+      "cluster_id": "core_transactional",
+      "cluster_name": "Transaccional Principal",
+      "keywords": [
+        {
+          "keyword": "juego de misterio en español",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/",
+          "confidence": "high"
+        },
+        {
+          "keyword": "caso de misterio digital",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/",
+          "confidence": "high"
+        },
+        {
+          "keyword": "juego de detective en español",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/",
+          "confidence": "high"
+        },
+        {
+          "keyword": "comprar caso de misterio online",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/",
+          "confidence": "high"
+        },
+        {
+          "keyword": "escape room digital en español",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/escape-room-digital-espanol",
+          "confidence": "high"
+        },
+        {
+          "keyword": "juego de misterio descargable",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/",
+          "confidence": "high"
+        },
+        {
+          "keyword": "caso detectivesco descargable",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/",
+          "confidence": "high"
+        },
+        {
+          "keyword": "juego de crimen para adultos en español",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "experiencia de misterio interactiva en español",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "declassified cases español",
+          "intent": "navigational",
+          "competition_estimate": "low",
+          "recommended_page": "/",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "cluster_id": "use_case_date_night",
+      "cluster_name": "Caso de Uso: Noche de Cita en Pareja",
+      "keywords": [
+        {
+          "keyword": "juego de misterio para parejas en casa",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-misterio-noche-de-cita-pareja",
+          "confidence": "high"
+        },
+        {
+          "keyword": "plan de pareja en casa diferente",
+          "intent": "informational",
+          "competition_estimate": "medium",
+          "recommended_page": "/juego-misterio-noche-de-cita-pareja",
+          "confidence": "high"
+        },
+        {
+          "keyword": "noche de cita en casa original",
+          "intent": "informational",
+          "competition_estimate": "medium",
+          "recommended_page": "/juego-misterio-noche-de-cita-pareja",
+          "confidence": "high"
+        },
+        {
+          "keyword": "actividad para pareja en casa sin salir",
+          "intent": "informational",
+          "competition_estimate": "medium",
+          "recommended_page": "/juego-misterio-noche-de-cita-pareja",
+          "confidence": "high"
+        },
+        {
+          "keyword": "juego de detective para dos personas",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-misterio-noche-de-cita-pareja",
+          "confidence": "high"
+        },
+        {
+          "keyword": "caso de misterio para pareja descargable",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-misterio-noche-de-cita-pareja",
+          "confidence": "high"
+        },
+        {
+          "keyword": "qué hacer en pareja en casa viernes noche",
+          "intent": "informational",
+          "competition_estimate": "medium",
+          "recommended_page": "/juego-misterio-noche-de-cita-pareja",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "alternativa a netflix para parejas",
+          "intent": "informational",
+          "competition_estimate": "medium",
+          "recommended_page": "/juego-misterio-noche-de-cita-pareja",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "juego interactivo para pareja en casa",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-misterio-noche-de-cita-pareja",
+          "confidence": "high"
+        },
+        {
+          "keyword": "escape room en casa para dos personas",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/juego-misterio-noche-de-cita-pareja",
+          "confidence": "high"
+        },
+        {
+          "keyword": "plan romántico en casa sin gastar mucho",
+          "intent": "informational",
+          "competition_estimate": "medium",
+          "recommended_page": "/juego-misterio-noche-de-cita-pareja",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "juego de misterio para san valentín en casa",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-misterio-noche-de-cita-pareja",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "cluster_id": "use_case_game_night",
+      "cluster_name": "Caso de Uso: Noche de Juegos Grupal",
+      "keywords": [
+        {
+          "keyword": "juego de misterio para grupo de amigos",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-misterio-noche-de-juegos-grupo",
+          "confidence": "high"
+        },
+        {
+          "keyword": "actividad para noche de juegos en casa",
+          "intent": "informational",
+          "competition_estimate": "medium",
+          "recommended_page": "/juego-misterio-noche-de-juegos-grupo",
+          "confidence": "high"
+        },
+        {
+          "keyword": "juego de detective para 4 6 personas",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-misterio-noche-de-juegos-grupo",
+          "confidence": "high"
+        },
+        {
+          "keyword": "alternativa a escape room para grupo en casa",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-misterio-noche-de-juegos-grupo",
+          "confidence": "high"
+        },
+        {
+          "keyword": "juego de misterio grupal descargable en español",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-misterio-noche-de-juegos-grupo",
+          "confidence": "high"
+        },
+        {
+          "keyword": "qué hacer con amigos en casa noche de juegos",
+          "intent": "informational",
+          "competition_estimate": "medium",
+          "recommended_page": "/juego-misterio-noche-de-juegos-grupo",
+          "confidence": "high"
+        },
+        {
+          "keyword": "caso de asesinato para resolver en grupo",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-misterio-noche-de-juegos-grupo",
+          "confidence": "high"
+        },
+        {
+          "keyword": "juego de rol de misterio para adultos en español",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-misterio-noche-de-juegos-grupo",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "plan original para noche de amigos en casa",
+          "intent": "informational",
+          "competition_estimate": "medium",
+          "recommended_page": "/juego-misterio-noche-de-juegos-grupo",
+          "confidence": "high"
+        },
+        {
+          "keyword": "juego de misterio para videollamada en español",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-misterio-noche-de-juegos-grupo",
+          "confidence": "high"
+        },
+        {
+          "keyword": "escape room virtual para amigos en español",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/juego-misterio-noche-de-juegos-grupo",
+          "confidence": "high"
+        },
+        {
+          "keyword": "juego de misterio barato para grupo",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-misterio-noche-de-juegos-grupo",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "cluster_id": "use_case_dinner_party",
+      "cluster_name": "Caso de Uso: Cena Temática de Misterio",
+      "keywords": [
+        {
+          "keyword": "cena de misterio en casa en español",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/cena-tematica-misterio-en-casa",
+          "confidence": "high"
+        },
+        {
+          "keyword": "kit de cena de misterio descargable",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/cena-tematica-misterio-en-casa",
+          "confidence": "high"
+        },
+        {
+          "keyword": "cena temática de asesinato en casa",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/cena-tematica-misterio-en-casa",
+          "confidence": "high"
+        },
+        {
+          "keyword": "murder mystery dinner en español",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/cena-tematica-misterio-en-casa",
+          "confidence": "high"
+        },
+        {
+          "keyword": "cómo organizar una cena de misterio en casa",
+          "intent": "informational",
+          "competition_estimate": "low",
+          "recommended_page": "/cena-tematica-misterio-en-casa",
+          "confidence": "high"
+        },
+        {
+          "keyword": "actividad para cena de cumpleaños en casa",
+          "intent": "informational",
+          "competition_estimate": "medium",
+          "recommended_page": "/cena-tematica-misterio-en-casa",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "juego de misterio para cena de aniversario",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/cena-tematica-misterio-en-casa",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "kit de misterio para cena temática adultos",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/cena-tematica-misterio-en-casa",
+          "confidence": "high"
+        },
+        {
+          "keyword": "cena de detectives para grupo en casa",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/cena-tematica-misterio-en-casa",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "plan de cena original para grupo de amigos",
+          "intent": "informational",
+          "competition_estimate": "medium",
+          "recommended_page": "/cena-tematica-misterio-en-casa",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "cluster_id": "use_case_solo",
+      "cluster_name": "Caso de Uso: Detective Solitario",
+      "keywords": [
+        {
+          "keyword": "juego de misterio para jugar solo en español",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-misterio-detective-solitario",
+          "confidence": "high"
+        },
+        {
+          "keyword": "caso de detective para jugar solo",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-misterio-detective-solitario",
+          "confidence": "high"
+        },
+        {
+          "keyword": "juego interactivo de true crime en español",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-misterio-detective-solitario",
+          "confidence": "high"
+        },
+        {
+          "keyword": "resolver caso de misterio solo en casa",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-misterio-detective-solitario",
+          "confidence": "high"
+        },
+        {
+          "keyword": "alternativa interactiva a podcast de true crime",
+          "intent": "informational",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-misterio-detective-solitario",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "juego de investigación criminal en español",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-misterio-detective-solitario",
+          "confidence": "high"
+        },
+        {
+          "keyword": "ser detective desde casa en español",
+          "intent": "informational",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-misterio-detective-solitario",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "expediente de crimen para resolver en casa",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-misterio-detective-solitario",
+          "confidence": "high"
+        },
+        {
+          "keyword": "juego de misterio individual adultos",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-misterio-detective-solitario",
+          "confidence": "high"
+        },
+        {
+          "keyword": "qué hacer sola en casa noche de viernes",
+          "intent": "informational",
+          "competition_estimate": "medium",
+          "recommended_page": "/juego-misterio-detective-solitario",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "caso de crimen interactivo descargable en español",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-misterio-detective-solitario",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "cluster_id": "use_case_gift",
+      "cluster_name": "Regalo Experiencial / Compra como Regalo",
+      "keywords": [
+        {
+          "keyword": "regalo original para fan del true crime",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/regalo-experiencia-misterio",
+          "confidence": "high"
+        },
+        {
+          "keyword": "regalo experiencia misterio en español",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/regalo-experiencia-misterio",
+          "confidence": "high"
+        },
+        {
+          "keyword": "regalo digital descarga inmediata misterio",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/regalo-experiencia-misterio",
+          "confidence": "high"
+        },
+        {
+          "keyword": "regalo cumpleaños fan true crime",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/regalo-experiencia-misterio",
+          "confidence": "high"
+        },
+        {
+          "keyword": "regalo san valentin pareja en casa",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/regalo-experiencia-misterio",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "regalo experiencia para pareja original",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/regalo-experiencia-misterio",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "ideas regalo persona que tiene todo",
+          "intent": "informational",
+          "competition_estimate": "medium",
+          "recommended_page": "/blog/ideas-regalo-originales-fan-misterio",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "regalo navidad juego misterio en español",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/regalo-experiencia-misterio",
+          "confidence": "high"
+        },
+        {
+          "keyword": "tarjeta regalo escape room digital",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/regalo-experiencia-misterio",
+          "confidence": "high"
+        },
+        {
+          "keyword": "regalar experiencia detective hispanohablante",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/regalo-experiencia-misterio",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "cluster_id": "product_format",
+      "cluster_name": "Formato Digital / Descargable / Acceso Inmediato",
+      "keywords": [
+        {
+          "keyword": "juego de misterio descargable en español",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/caso-misterio-digital-descargable",
+          "confidence": "high"
+        },
+        {
+          "keyword": "caso de misterio digital para imprimir",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/caso-misterio-digital-descargable",
+          "confidence": "high"
+        },
+        {
+          "keyword": "escape room digital en español sin app",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/caso-misterio-digital-descargable",
+          "confidence": "high"
+        },
+        {
+          "keyword": "juego misterio pdf descarga inmediata",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/caso-misterio-digital-descargable",
+          "confidence": "high"
+        },
+        {
+          "keyword": "caso detectivesco descargable adultos",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/caso-misterio-digital-descargable",
+          "confidence": "high"
+        },
+        {
+          "keyword": "suscripcion mensual juego misterio español",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/caso-misterio-digital-descargable",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "juego misterio online sin instalacion",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/caso-misterio-digital-descargable",
+          "confidence": "high"
+        },
+        {
+          "keyword": "kit misterio digital para grupos",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/caso-misterio-digital-descargable",
+          "confidence": "high"
+        },
+        {
+          "keyword": "expediente misterio descargable adultos",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/caso-misterio-digital-descargable",
+          "confidence": "high"
+        },
+        {
+          "keyword": "juego misterio compra unica sin suscripcion",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/caso-misterio-digital-descargable",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "cluster_id": "niche_true_crime_realism",
+      "cluster_name": "True Crime / Realismo Detectivesco",
+      "keywords": [
+        {
+          "keyword": "juego interactivo true crime en español",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-interactivo-true-crime-espanol",
+          "confidence": "high"
+        },
+        {
+          "keyword": "resolver caso de crimen real interactivo",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-interactivo-true-crime-espanol",
+          "confidence": "high"
+        },
+        {
+          "keyword": "experiencia detective true crime hispanohablante",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-interactivo-true-crime-espanol",
+          "confidence": "high"
+        },
+        {
+          "keyword": "expediente policial interactivo en español",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-interactivo-true-crime-espanol",
+          "confidence": "high"
+        },
+        {
+          "keyword": "alternativa interactiva a podcast true crime",
+          "intent": "informational",
+          "competition_estimate": "low",
+          "recommended_page": "/blog/alternativa-interactiva-podcast-true-crime",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "juego misterio realista archivos policiales",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-interactivo-true-crime-espanol",
+          "confidence": "high"
+        },
+        {
+          "keyword": "ser detective en casa juego realista",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-interactivo-true-crime-espanol",
+          "confidence": "high"
+        },
+        {
+          "keyword": "caso misterio con pistas reales en español",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-interactivo-true-crime-espanol",
+          "confidence": "high"
+        },
+        {
+          "keyword": "fan true crime juego para resolver crimen",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-interactivo-true-crime-espanol",
+          "confidence": "high"
+        },
+        {
+          "keyword": "documentos forenses juego misterio adultos",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/juego-interactivo-true-crime-espanol",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "cluster_id": "themes",
+      "cluster_name": "Temáticas Estacionales y Ambientaciones",
+      "keywords": [
+        {
+          "keyword": "juego misterio halloween en español",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/tematicas/misterio-halloween",
+          "confidence": "high"
+        },
+        {
+          "keyword": "caso misterio navidad para grupos",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/tematicas/misterio-navidad",
+          "confidence": "high"
+        },
+        {
+          "keyword": "juego espias y misterio en español",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/tematicas/misterio-espias",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "caso misterio noir latinoamerica",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/tematicas/misterio-noir",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "misterio ambientado en latinoamerica",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/tematicas/misterio-noir",
+          "confidence": "high"
+        },
+        {
+          "keyword": "juego misterio san valentin pareja",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/tematicas/misterio-san-valentin",
+          "confidence": "high"
+        },
+        {
+          "keyword": "caso detectivesco anos 80 en español",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/tematicas/misterio-noir",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "juego misterio historico hispanoamerica",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/tematicas/misterio-noir",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "escape room halloween digital en español",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/tematicas/misterio-halloween",
+          "confidence": "high"
+        },
+        {
+          "keyword": "actividad navidad adultos juego misterio",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/tematicas/misterio-navidad",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "cluster_id": "commercial_modifiers",
+      "cluster_name": "Modificadores Comerciales / Comparativos",
+      "keywords": [
+        {
+          "keyword": "mejor juego de misterio en español para adultos",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/",
+          "confidence": "high"
+        },
+        {
+          "keyword": "juego misterio en español menos de 20 dolares",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/",
+          "confidence": "high"
+        },
+        {
+          "keyword": "alternativa hunt a killer en español",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/blog/alternativa-hunt-a-killer-espanol",
+          "confidence": "high"
+        },
+        {
+          "keyword": "juego misterio barato para grupos hispanohablantes",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/",
+          "confidence": "high"
+        },
+        {
+          "keyword": "reseña declassified cases caso misterio",
+          "intent": "informational",
+          "competition_estimate": "low",
+          "recommended_page": "/",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "comparativa juegos misterio digital español",
+          "intent": "informational",
+          "competition_estimate": "low",
+          "recommended_page": "/blog/comparativa-juegos-misterio-digital-espanol",
+          "confidence": "high"
+        },
+        {
+          "keyword": "juego misterio descarga inmediata sin espera",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/caso-misterio-digital-descargable",
+          "confidence": "high"
+        },
+        {
+          "keyword": "escape room en casa barato en español",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/noche-juegos-misterio-grupo",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "juego misterio precio por caso sin suscripcion",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/",
+          "confidence": "high"
+        },
+        {
+          "keyword": "vale la pena juego misterio digital español",
+          "intent": "informational",
+          "competition_estimate": "low",
+          "recommended_page": "/blog/comparativa-juegos-misterio-digital-espanol",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ],
+  "url_architecture": [
+    {
+      "url": "/",
+      "page_type": "product_page",
+      "target_segment": "couples_date_night_latam",
+      "primary_keywords": [
+        "caso de misterio en español",
+        "juego detectivesco digital hispanohablante",
+        "mejor juego de misterio en español para adultos"
+      ],
+      "search_intent": "transactional",
+      "content_brief": "Homepage principal con propuesta de valor central: primer servicio de casos de misterio profesional en español, acceso inmediato, $19.99 por caso. Incluir hero con gancho narrativo, preview de archivos del caso, comparación de precio vs. escape room físico, testimonios de parejas y grupos, CTA de descarga inmediata. Sección de segmentos: parejas, grupos, fans de true crime, regalos."
+    },
+    {
+      "url": "/noche-cita-misterio-pareja",
+      "page_type": "landing_page",
+      "target_segment": "couples_date_night_latam",
+      "primary_keywords": [
+        "juego misterio para pareja en casa",
+        "noche de cita en casa misterio",
+        "plan pareja viernes noche misterio"
+      ],
+      "search_intent": "transactional",
+      "content_brief": "Landing page específica para parejas que buscan una noche de cita diferente en casa. Headline: 'Esta noche no es Netflix — es resolver un crimen juntos'. Incluir comparación de precio vs. salir a cenar, videos UGC de parejas jugando, duración estimada 2-3 horas, CTA de compra inmediata. Testimonios de parejas reales. Sección de cómo funciona en 3 pasos."
+    },
+    {
+      "url": "/noche-juegos-misterio-grupo",
+      "page_type": "landing_page",
+      "target_segment": "game_night_hosts",
+      "primary_keywords": [
+        "juego de misterio para grupo de amigos",
+        "noche de juegos misterio en español",
+        "actividad grupal misterio en casa"
+      ],
+      "search_intent": "transactional",
+      "content_brief": "Landing page para anfitriones de noches de juegos. Headline: 'El plan que tu grupo va a querer repetir cada mes'. Destacar precio por persona ($3.99 con 5 jugadores), guía del facilitador incluida, inicio en menos de 10 minutos. Videos de grupos reales jugando. Comparación con escape room físico ($180 vs. $19.99). Testimonios de anfitriones."
+    },
+    {
+      "url": "/cena-tematica-misterio",
+      "page_type": "landing_page",
+      "target_segment": "dinner_party_planners",
+      "primary_keywords": [
+        "cena tematica misterio en español",
+        "kit cena misterio para grupos",
+        "organizar cena misterio en casa"
+      ],
+      "search_intent": "transactional",
+      "content_brief": "Landing page para planificadores de cenas temáticas. Posicionar el caso como hilo conductor de una noche completa. Incluir guía de cómo estructurar la cena con el caso (cuándo revelar cada pista, momentos dramáticos). Fotos de alta calidad de los archivos. Testimonios de anfitrionas. Precio y CTA. Sugerencias de maridaje temático (decoración, menú)."
+    },
+    {
+      "url": "/juego-interactivo-true-crime-espanol",
+      "page_type": "landing_page",
+      "target_segment": "true_crime_fans_solo",
+      "primary_keywords": [
+        "juego interactivo true crime en español",
+        "resolver caso crimen real interactivo",
+        "experiencia detective true crime hispanohablante"
+      ],
+      "search_intent": "transactional",
+      "content_brief": "Landing page para fans del true crime. Headline: 'Deja de escuchar — empieza a resolver'. Posicionar como la extensión interactiva de podcasts y documentales de true crime. Mostrar archivos del caso (informes forenses, fotos de escena). Duración estimada 2-3 horas. Comparación con podcast (pasivo) vs. Declassified Cases (activo). Testimonios de fans de true crime."
+    },
+    {
+      "url": "/regalo-experiencia-misterio",
+      "page_type": "landing_page",
+      "target_segment": "gift_buyers",
+      "primary_keywords": [
+        "regalo original fan true crime",
+        "regalo experiencia misterio en español",
+        "tarjeta regalo escape room digital"
+      ],
+      "search_intent": "transactional",
+      "content_brief": "Landing page para compradores de regalos. Headline: 'El regalo que realmente van a usar — esta semana'. Mostrar proceso de regalo digital: compra, descarga tarjeta de regalo con diseño premium, envío por WhatsApp o email. Garantía de satisfacción. Comparación con escape room físico como regalo. Testimonios de personas que lo recibieron como regalo. CTA: 'Regalar ahora — entrega inmediata'."
+    },
+    {
+      "url": "/caso-misterio-digital-descargable",
+      "page_type": "landing_page",
+      "target_segment": "true_crime_fans_solo",
+      "primary_keywords": [
+        "juego de misterio descargable en español",
+        "caso detectivesco descargable adultos",
+        "expediente misterio descargable adultos"
+      ],
+      "search_intent": "transactional",
+      "content_brief": "Landing page enfocada en el formato digital como ventaja competitiva. Headline: 'Sin esperas. Sin envíos. Sin instalaciones. Juega en 5 minutos.' Comparación directa con competidores físicos (Hunt A Killer: 3 semanas de espera). Mostrar proceso de compra-descarga-inicio. Preview de archivos PDF de alta calidad. Precio y CTA de descarga inmediata."
+    },
+    {
+      "url": "/tematicas/misterio-halloween",
+      "page_type": "landing_page",
+      "target_segment": "game_night_hosts",
+      "primary_keywords": [
+        "juego misterio halloween en español",
+        "escape room halloween digital en español",
+        "actividad halloween adultos en casa"
+      ],
+      "search_intent": "transactional",
+      "content_brief": "Landing page estacional para Halloween. Caso de misterio con ambientación de terror/misterio oscuro. Disponible en octubre. Incluir elementos visuales temáticos, descripción del caso con tono de suspenso, precio y CTA. Posicionar como alternativa a salir en Halloween para grupos que prefieren quedarse en casa."
+    },
+    {
+      "url": "/tematicas/misterio-navidad",
+      "page_type": "landing_page",
+      "target_segment": "gift_buyers",
+      "primary_keywords": [
+        "caso misterio navidad para grupos",
+        "actividad navidad adultos juego misterio",
+        "regalo navidad juego misterio en español"
+      ],
+      "search_intent": "transactional",
+      "content_brief": "Landing page estacional para Navidad/Reyes. Doble función: actividad grupal navideña y regalo. Caso con ambientación invernal o festiva. Incluir opción de tarjeta de regalo navideña. Posicionar como alternativa a juegos de mesa navideños genéricos. CTA doble: 'Jugar ahora' y 'Regalar'."
+    },
+    {
+      "url": "/tematicas/misterio-san-valentin",
+      "page_type": "landing_page",
+      "target_segment": "couples_date_night_latam",
+      "primary_keywords": [
+        "juego misterio san valentin pareja",
+        "plan san valentin en casa original",
+        "noche cita san valentin misterio"
+      ],
+      "search_intent": "transactional",
+      "content_brief": "Landing page estacional para San Valentín. Caso diseñado o recomendado para parejas. Posicionar como alternativa a cena en restaurante (cara, reservas difíciles). Incluir elementos románticos en la presentación. Precio comparado con cena para dos. CTA: 'Sorprende a tu pareja esta noche'."
+    },
+    {
+      "url": "/tematicas/misterio-noir",
+      "page_type": "landing_page",
+      "target_segment": "true_crime_fans_solo",
+      "primary_keywords": [
+        "caso misterio noir latinoamerica",
+        "misterio ambientado en latinoamerica",
+        "juego misterio historico hispanoamerica"
+      ],
+      "search_intent": "transactional",
+      "content_brief": "Landing page para casos con ambientación noir latinoamericana (años 40-80, ciudades latinoamericanas). Destacar la diferenciación cultural vs. competidores anglosajones. Mostrar extractos de la narrativa con referencias culturales latinas. Posicionar como 'el misterio que se siente tuyo'. Testimonios de fans de true crime latinoamericano."
+    },
+    {
+      "url": "/tematicas/misterio-espias",
+      "page_type": "landing_page",
+      "target_segment": "game_night_hosts",
+      "primary_keywords": [
+        "juego espias y misterio en español",
+        "caso espionaje interactivo en español",
+        "juego misterio tematica espias adultos"
+      ],
+      "search_intent": "transactional",
+      "content_brief": "Landing page para casos con temática de espionaje. Posicionar como experiencia de thriller de espías en español. Ideal para grupos que buscan algo diferente al misterio de asesinato clásico. Incluir elementos visuales de expediente clasificado, agentes secretos. CTA con copy de 'misión aceptada'."
+    },
+    {
+      "url": "/team-building-remoto-misterio",
+      "page_type": "landing_page",
+      "target_segment": "remote_teams_corporate",
+      "primary_keywords": [
+        "team building remoto en español misterio",
+        "actividad equipo remoto hispanohablante",
+        "juego misterio team building online"
+      ],
+      "search_intent": "transactional",
+      "content_brief": "Landing page para equipos corporativos remotos. Headline: 'El team building remoto que tu equipo va a pedir repetir'. Destacar: funciona en videollamada, sin instalaciones, en español para equipos multiculturales LATAM. Precio por grupo vs. por persona. Guía del facilitador para grupos grandes. Opción de subgrupos que compiten. CTA: 'Solicitar propuesta corporativa'."
+    },
+    {
+      "url": "/blog",
+      "page_type": "pillar_page",
+      "target_segment": "true_crime_fans_solo",
+      "primary_keywords": [
+        "blog misterio detectivesco en español",
+        "articulos true crime interactivo",
+        "guias juegos misterio adultos"
+      ],
+      "search_intent": "informational",
+      "content_brief": "Hub de contenido del blog. Organizado por categorías: Guías de juego, True Crime interactivo, Ideas para noches de juegos, Comparativas. Incluir artículos de pillar y cluster para SEO. Diseño que facilite la navegación y el descubrimiento de casos."
+    }
+  ],
+  "pillar_cluster_strategy": [
+    {
+      "pillar_page": "/blog/guia-completa-juegos-misterio-en-espanol",
+      "pillar_topic": "Guía completa de juegos de misterio en español para adultos",
+      "cluster_articles": [
+        {
+          "title": "Cómo organizar una noche de misterio en casa: guía paso a paso",
+          "url_slug": "/blog/como-organizar-noche-misterio-en-casa",
+          "target_keyword": "como organizar noche de misterio en casa",
+          "content_type": "guide",
+          "word_count_target": 1800
+        },
+        {
+          "title": "Los 7 mejores juegos de misterio en español para grupos (2024)",
+          "url_slug": "/blog/mejores-juegos-misterio-espanol-grupos",
+          "target_keyword": "mejores juegos de misterio en español para grupos",
+          "content_type": "listicle",
+          "word_count_target": 2200
+        },
+        {
+          "title": "Juego de misterio vs. escape room físico: ¿cuál vale más la pena?",
+          "url_slug": "/blog/juego-misterio-vs-escape-room-fisico",
+          "target_keyword": "juego misterio vs escape room fisico",
+          "content_type": "comparison",
+          "word_count_target": 1600
+        },
+        {
+          "title": "Cómo elegir el caso de misterio perfecto según tu grupo",
+          "url_slug": "/blog/como-elegir-caso-misterio-segun-grupo",
+          "target_keyword": "como elegir caso de misterio para grupo",
+          "content_type": "guide",
+          "word_count_target": 1400
+        },
+        {
+          "title": "Juegos de misterio para dos personas: la guía definitiva para parejas",
+          "url_slug": "/blog/juegos-misterio-para-dos-personas-parejas",
+          "target_keyword": "juegos de misterio para dos personas",
+          "content_type": "guide",
+          "word_count_target": 1600
+        }
+      ]
+    },
+    {
+      "pillar_page": "/blog/true-crime-interactivo-en-espanol",
+      "pillar_topic": "True crime interactivo en español: de espectador a detective",
+      "cluster_articles": [
+        {
+          "title": "Alternativa a los podcasts de true crime: cómo resolver casos tú mismo",
+          "url_slug": "/blog/alternativa-interactiva-podcast-true-crime",
+          "target_keyword": "alternativa interactiva a podcast true crime",
+          "content_type": "blog_post",
+          "word_count_target": 1500
+        },
+        {
+          "title": "Los mejores podcasts de true crime en español (y qué hacer cuando los terminas)",
+          "url_slug": "/blog/mejores-podcasts-true-crime-espanol",
+          "target_keyword": "mejores podcasts true crime en español",
+          "content_type": "listicle",
+          "word_count_target": 2000
+        },
+        {
+          "title": "Cómo pensar como detective: técnicas de los mejores investigadores",
+          "url_slug": "/blog/como-pensar-como-detective",
+          "target_keyword": "como pensar como detective",
+          "content_type": "guide",
+          "word_count_target": 1800
+        },
+        {
+          "title": "True crime en español: las mejores series, documentales y experiencias interactivas",
+          "url_slug": "/blog/true-crime-espanol-series-documentales-experiencias",
+          "target_keyword": "true crime en español series y experiencias",
+          "content_type": "listicle",
+          "word_count_target": 2200
+        },
+        {
+          "title": "Qué hacer después de terminar una serie de crimen en Netflix",
+          "url_slug": "/blog/que-hacer-despues-serie-crimen-netflix",
+          "target_keyword": "que hacer despues de terminar serie crimen netflix",
+          "content_type": "blog_post",
+          "word_count_target": 1200
+        }
+      ]
+    },
+    {
+      "pillar_page": "/blog/ideas-noche-de-juegos-en-casa",
+      "pillar_topic": "Ideas para noches de juegos en casa: más allá del UNO y el Catan",
+      "cluster_articles": [
+        {
+          "title": "20 ideas de actividades para noche de juegos en casa con amigos",
+          "url_slug": "/blog/actividades-noche-juegos-casa-amigos",
+          "target_keyword": "actividades noche de juegos en casa con amigos",
+          "content_type": "listicle",
+          "word_count_target": 2500
+        },
+        {
+          "title": "Cómo ser el anfitrión perfecto de una noche de juegos: guía completa",
+          "url_slug": "/blog/como-ser-anfitrion-perfecto-noche-juegos",
+          "target_keyword": "como ser anfitrion noche de juegos",
+          "content_type": "guide",
+          "word_count_target": 1800
+        },
+        {
+          "title": "Juegos para noche de amigos en casa: opciones para grupos de 4 a 8 personas",
+          "url_slug": "/blog/juegos-noche-amigos-casa-grupos",
+          "target_keyword": "juegos para noche de amigos en casa grupos",
+          "content_type": "listicle",
+          "word_count_target": 2000
+        },
+        {
+          "title": "Actividades grupales en videollamada: cómo hacer una noche de juegos remota",
+          "url_slug": "/blog/actividades-grupales-videollamada-noche-juegos",
+          "target_keyword": "actividades grupales en videollamada noche de juegos",
+          "content_type": "guide",
+          "word_count_target": 1600
+        }
+      ]
+    },
+    {
+      "pillar_page": "/blog/alternativa-hunt-a-killer-espanol",
+      "pillar_topic": "Alternativas a Hunt A Killer en español: comparativa completa 2024",
+      "cluster_articles": [
+        {
+          "title": "Hunt A Killer en español: ¿existe? Alternativas para hispanohablantes",
+          "url_slug": "/blog/hunt-a-killer-espanol-alternativas",
+          "target_keyword": "hunt a killer en español alternativas",
+          "content_type": "comparison",
+          "word_count_target": 2000
+        },
+        {
+          "title": "Comparativa: juegos de misterio digital en español vs. físico en inglés",
+          "url_slug": "/blog/comparativa-juegos-misterio-digital-espanol",
+          "target_keyword": "comparativa juegos misterio digital español",
+          "content_type": "comparison",
+          "word_count_target": 2200
+        },
+        {
+          "title": "Unsolved Case Files en español: ¿hay alternativa? Guía para hispanohablantes",
+          "url_slug": "/blog/unsolved-case-files-espanol-alternativa",
+          "target_keyword": "unsolved case files en español alternativa",
+          "content_type": "comparison",
+          "word_count_target": 1800
+        },
+        {
+          "title": "Por qué los juegos de misterio en inglés no funcionan para hispanohablantes",
+          "url_slug": "/blog/juegos-misterio-ingles-no-funcionan-hispanohablantes",
+          "target_keyword": "juegos misterio en ingles para hispanohablantes",
+          "content_type": "blog_post",
+          "word_count_target": 1400
+        }
+      ]
+    },
+    {
+      "pillar_page": "/blog/ideas-regalo-originales-fan-misterio",
+      "pillar_topic": "Regalos originales para fans del misterio y el true crime en español",
+      "cluster_articles": [
+        {
+          "title": "15 regalos originales para fans del true crime en español",
+          "url_slug": "/blog/regalos-originales-fans-true-crime-espanol",
+          "target_keyword": "regalos originales fans true crime espanol",
+          "content_type": "listicle",
+          "word_count_target": 2000
+        },
+        {
+          "title": "Cómo regalar una experiencia digital: guía para regalos que no se acumulan",
+          "url_slug": "/blog/como-regalar-experiencia-digital",
+          "target_keyword": "como regalar una experiencia digital",
+          "content_type": "guide",
+          "word_count_target": 1400
+        },
+        {
+          "title": "Ideas de regalos para San Valentín para parejas que aman el misterio",
+          "url_slug": "/blog/regalos-san-valentin-parejas-misterio",
+          "target_keyword": "regalos san valentin parejas misterio",
+          "content_type": "listicle",
+          "word_count_target": 1600
+        },
+        {
+          "title": "El regalo perfecto para Navidad para alguien que ya tiene todo",
+          "url_slug": "/blog/regalo-navidad-persona-que-tiene-todo",
+          "target_keyword": "regalo navidad persona que tiene todo",
+          "content_type": "blog_post",
+          "word_count_target": 1200
+        }
+      ]
+    }
+  ],
+  "content_calendar": [
+    {
+      "priority": 1,
+      "url_or_slug": "/blog/alternativa-hunt-a-killer-espanol",
+      "content_type": "pillar_page",
+      "target_keyword": "alternativa hunt a killer en español",
+      "reason": "Captura tráfico de alta intención de usuarios que ya conocen el producto líder del mercado pero buscan una opción en español. Competencia casi nula. Tráfico de conversión directa.",
+      "estimated_effort": "medium"
+    },
+    {
+      "priority": 2,
+      "url_or_slug": "/blog/mejores-juegos-misterio-espanol-grupos",
+      "content_type": "listicle",
+      "target_keyword": "mejores juegos de misterio en español para grupos",
+      "reason": "Keyword de alta intención transaccional con competencia baja. Posiciona a Declassified Cases como referente del género. Alta probabilidad de conversión directa desde el artículo.",
+      "estimated_effort": "medium"
+    },
+    {
+      "priority": 3,
+      "url_or_slug": "/blog/true-crime-interactivo-en-espanol",
+      "content_type": "pillar_page",
+      "target_keyword": "true crime interactivo en español",
+      "reason": "Captura la audiencia masiva de true crime en español (2B+ vistas en TikTok) en el momento de búsqueda de alternativas interactivas. Competencia prácticamente inexistente. Alto potencial de tráfico orgánico.",
+      "estimated_effort": "high"
+    },
+    {
+      "priority": 4,
+      "url_or_slug": "/blog/como-organizar-noche-misterio-en-casa",
+      "content_type": "guide",
+      "target_keyword": "como organizar noche de misterio en casa",
+      "reason": "Keyword informacional con intención de compra implícita. El usuario que busca cómo organizar una noche de misterio es un comprador potencial inmediato. Competencia baja en español.",
+      "estimated_effort": "medium"
+    },
+    {
+      "priority": 5,
+      "url_or_slug": "/blog/mejores-podcasts-true-crime-espanol",
+      "content_type": "listicle",
+      "target_keyword": "mejores podcasts true crime en español",
+      "reason": "Keyword de alto volumen de búsqueda con competencia media. Captura audiencia de true crime en el momento de consumo pasivo y la convierte en potencial compradora de experiencia interactiva. Excelente para link building.",
+      "estimated_effort": "medium"
+    },
+    {
+      "priority": 6,
+      "url_or_slug": "/blog/juego-misterio-vs-escape-room-fisico",
+      "content_type": "comparison",
+      "target_keyword": "juego misterio vs escape room fisico",
+      "reason": "Captura usuarios en fase de comparación con alta intención de compra. Permite posicionar Declassified Cases como la opción superior en precio y conveniencia. Competencia baja en español.",
+      "estimated_effort": "low"
+    },
+    {
+      "priority": 7,
+      "url_or_slug": "/blog/actividades-noche-juegos-casa-amigos",
+      "content_type": "listicle",
+      "target_keyword": "actividades noche de juegos en casa con amigos",
+      "reason": "Keyword de alto volumen con competencia media. Captura anfitriones en fase de planificación. Permite incluir Declassified Cases como opción destacada en una lista más amplia, generando tráfico cualificado.",
+      "estimated_effort": "medium"
+    },
+    {
+      "priority": 8,
+      "url_or_slug": "/blog/comparativa-juegos-misterio-digital-espanol",
+      "content_type": "comparison",
+      "target_keyword": "comparativa juegos misterio digital español",
+      "reason": "Keyword de intención transaccional alta con competencia casi nula. Posiciona a Declassified Cases favorablemente frente a alternativas. Ideal para capturar usuarios en fase de decisión final.",
+      "estimated_effort": "medium"
+    },
+    {
+      "priority": 9,
+      "url_or_slug": "/blog/que-hacer-despues-serie-crimen-netflix",
+      "content_type": "blog_post",
+      "target_keyword": "que hacer despues de terminar serie crimen netflix",
+      "reason": "Keyword long-tail con intención de búsqueda muy específica y competencia baja. Captura el momento exacto del trigger de compra: usuario que acaba de terminar contenido de true crime y busca más. Alta tasa de conversión esperada.",
+      "estimated_effort": "low"
+    },
+    {
+      "priority": 10,
+      "url_or_slug": "/blog/regalos-originales-fans-true-crime-espanol",
+      "content_type": "listicle",
+      "target_keyword": "regalos originales fans true crime espanol",
+      "reason": "Keyword estacional con picos en Navidad, San Valentín y cumpleaños. Competencia baja en español. Captura compradores de regalos con alta intención de compra. Permite posicionar Declassified Cases como opción número 1.",
+      "estimated_effort": "medium"
+    },
+    {
+      "priority": 11,
+      "url_or_slug": "/blog/juegos-misterio-para-dos-personas-parejas",
+      "content_type": "guide",
+      "target_keyword": "juegos de misterio para dos personas",
+      "reason": "Keyword específico con competencia baja en español. Captura el segmento de parejas con intención de compra clara. Complementa la landing page de noche de cita.",
+      "estimated_effort": "low"
+    },
+    {
+      "priority": 12,
+      "url_or_slug": "/blog/actividades-grupales-videollamada-noche-juegos",
+      "content_type": "guide",
+      "target_keyword": "actividades grupales en videollamada noche de juegos",
+      "reason": "Keyword post-pandemia con demanda sostenida y competencia baja en español. Captura equipos remotos y grupos de amigos que buscan actividades online. Puerta de entrada al segmento corporativo.",
+      "estimated_effort": "low"
+    },
+    {
+      "priority": 13,
+      "url_or_slug": "/tematicas/misterio-halloween",
+      "content_type": "landing_page",
+      "target_keyword": "juego misterio halloween en español",
+      "reason": "Keyword estacional de alta conversión. Publicar en septiembre para capturar tráfico de octubre. Competencia prácticamente nula en español. Pico de búsqueda predecible y aprovechable.",
+      "estimated_effort": "medium"
+    },
+    {
+      "priority": 14,
+      "url_or_slug": "/blog/regalos-san-valentin-parejas-misterio",
+      "content_type": "listicle",
+      "target_keyword": "regalos san valentin parejas misterio",
+      "reason": "Keyword estacional con pico en enero-febrero. Competencia baja en español. Captura compradores de regalos para San Valentín con alta intención de compra.",
+      "estimated_effort": "low"
+    },
+    {
+      "priority": 15,
+      "url_or_slug": "/blog/como-pensar-como-detective",
+      "content_type": "guide",
+      "target_keyword": "como pensar como detective",
+      "reason": "Keyword informacional de alto volumen que atrae a la audiencia de true crime. Competencia media pero con ángulo en español poco explotado. Excelente para link building y awareness de marca.",
+      "estimated_effort": "medium"
+    }
+  ],
+  "seo_warning": "Los términos genéricos de alto volumen como 'juego de misterio' o 'escape room' están dominados por Amazon, grandes retailers y plataformas de juegos establecidas. La estrategia ganadora para Declassified Cases es el long-tail combinado: caso de uso + formato + contexto cultural. En lugar de competir por 'juego de misterio', atacar 'juego de misterio descargable para pareja en casa en español' o 'caso detectivesco digital para noche de juegos hispanohablante'. El mercado hispanohablante de misterio interactivo digital está prácticamente sin competencia SEO — cada keyword long-tail en español es una oportunidad de posición 1 con esfuerzo mínimo. Priorizar contenido de blog que capture el momento post-consumo de true crime (después de un podcast o documental) y el momento de planificación de noche de juegos (3-7 días antes del fin de semana)."
+}

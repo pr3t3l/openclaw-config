@@ -1,0 +1,708 @@
+{
+  "schema_version": "3.0",
+  "product_id": "misterio-semanal",
+  "generated_at": "2025-01-28T12:00:00.000000",
+  "segment_trigger_channel_matrix": [
+    {
+      "segment_id": "couples_date_night_latam",
+      "trigger_id": "viernes_tarde_tiktok",
+      "channel": "TikTok",
+      "content_format": "UGC 15s video vertical de pareja resolviendo caso",
+      "landing_url": "/noche-cita-misterio-pareja",
+      "offer": "Caso individual $19.99 — acceso inmediato",
+      "cta": "Compra ahora, juegan esta noche",
+      "urgency": "high"
+    },
+    {
+      "segment_id": "couples_date_night_latam",
+      "trigger_id": "post_netflix_true_crime",
+      "channel": "Instagram Reels",
+      "content_format": "UGC 15-30s video pareja con gancho 'deja de ver, empieza a resolver'",
+      "landing_url": "/noche-cita-misterio-pareja",
+      "offer": "Caso individual $19.99 — descarga inmediata",
+      "cta": "Descárgalo esta noche",
+      "urgency": "high"
+    },
+    {
+      "segment_id": "couples_date_night_latam",
+      "trigger_id": "fecha_especial_aniversario",
+      "channel": "Google Search",
+      "content_format": "Anuncio de búsqueda con extensiones de sitio por ocasión",
+      "landing_url": "/noche-cita-misterio-pareja",
+      "offer": "Caso individual $19.99 o bundle 3 casos $49.99",
+      "cta": "Sorprende a tu pareja esta noche",
+      "urgency": "medium"
+    },
+    {
+      "segment_id": "couples_date_night_latam",
+      "trigger_id": "san_valentin_planificacion",
+      "channel": "Pinterest",
+      "content_format": "Pin vertical 2:3 con estética de noche de cita + texto superpuesto",
+      "landing_url": "/tematicas/misterio-san-valentin",
+      "offer": "Caso San Valentín $19.99",
+      "cta": "Planifica tu noche perfecta",
+      "urgency": "medium"
+    },
+    {
+      "segment_id": "true_crime_fans_solo",
+      "trigger_id": "post_documental_podcast",
+      "channel": "TikTok",
+      "content_format": "Video entretenido 20-30s mostrando archivos del caso con gancho 'tú eres la detective'",
+      "landing_url": "/juego-interactivo-true-crime-espanol",
+      "offer": "Caso individual $19.99",
+      "cta": "Empieza a investigar ahora",
+      "urgency": "high"
+    },
+    {
+      "segment_id": "true_crime_fans_solo",
+      "trigger_id": "spotify_post_podcast",
+      "channel": "Spotify Ads",
+      "content_format": "Audio ad 30s post-episodio de podcast true crime en español",
+      "landing_url": "/juego-interactivo-true-crime-espanol",
+      "offer": "Caso individual $19.99",
+      "cta": "Resuélvelo tú — descarga inmediata",
+      "urgency": "high"
+    },
+    {
+      "segment_id": "true_crime_fans_solo",
+      "trigger_id": "busqueda_true_crime_interactivo",
+      "channel": "Google Search",
+      "content_format": "Anuncio de búsqueda long-tail con preview de archivos del caso",
+      "landing_url": "/juego-interactivo-true-crime-espanol",
+      "offer": "Caso individual $19.99",
+      "cta": "Descarga tu primer expediente",
+      "urgency": "high"
+    },
+    {
+      "segment_id": "game_night_hosts",
+      "trigger_id": "planificacion_noche_sabado",
+      "channel": "Google Search",
+      "content_format": "Anuncio de búsqueda con extensiones de precio y reseñas",
+      "landing_url": "/noche-juegos-misterio-grupo",
+      "offer": "Caso grupal $19.99 — menos de $4 por persona",
+      "cta": "Organiza la noche perfecta",
+      "urgency": "medium"
+    },
+    {
+      "segment_id": "game_night_hosts",
+      "trigger_id": "reel_grupo_resolviendo",
+      "channel": "Instagram Reels",
+      "content_format": "UGC 20-30s grupo de amigos resolviendo caso con reacciones genuinas",
+      "landing_url": "/noche-juegos-misterio-grupo",
+      "offer": "Caso grupal $19.99",
+      "cta": "Sé el anfitrión que sorprende",
+      "urgency": "high"
+    },
+    {
+      "segment_id": "game_night_hosts",
+      "trigger_id": "tiktok_noche_juegos",
+      "channel": "TikTok",
+      "content_format": "UGC 15-20s con gancho 'esta vez no es UNO' mostrando reacciones del grupo",
+      "landing_url": "/noche-juegos-misterio-grupo",
+      "offer": "Caso grupal $19.99",
+      "cta": "Descárgalo para este sábado",
+      "urgency": "high"
+    },
+    {
+      "segment_id": "gift_buyers",
+      "trigger_id": "busqueda_regalo_true_crime",
+      "channel": "Google Search",
+      "content_format": "Anuncio de búsqueda con extensiones de regalo y entrega inmediata",
+      "landing_url": "/regalo-experiencia-misterio",
+      "offer": "Tarjeta regalo $19.99 — entrega digital inmediata",
+      "cta": "Regala ahora, recibe hoy",
+      "urgency": "high"
+    },
+    {
+      "segment_id": "gift_buyers",
+      "trigger_id": "temporada_navidad_regalos",
+      "channel": "Pinterest",
+      "content_format": "Pin vertical 2:3 con diseño de regalo premium y texto 'el regalo que realmente van a usar'",
+      "landing_url": "/regalo-experiencia-misterio",
+      "offer": "Bundle regalo 3 casos $49.99",
+      "cta": "Regalar experiencia",
+      "urgency": "high"
+    },
+    {
+      "segment_id": "gift_buyers",
+      "trigger_id": "instagram_idea_regalo",
+      "channel": "Instagram",
+      "content_format": "Carrusel 4-6 slides mostrando proceso de regalo digital premium",
+      "landing_url": "/regalo-experiencia-misterio",
+      "offer": "Caso individual $19.99 o bundle $49.99",
+      "cta": "Ver opciones de regalo",
+      "urgency": "medium"
+    },
+    {
+      "segment_id": "dinner_party_planners",
+      "trigger_id": "planificacion_cena_especial",
+      "channel": "Pinterest",
+      "content_format": "Pin vertical 2:3 con estética de cena temática de misterio elegante",
+      "landing_url": "/cena-tematica-misterio",
+      "offer": "Caso cena temática $19.99",
+      "cta": "Organiza tu cena de misterio",
+      "urgency": "medium"
+    },
+    {
+      "segment_id": "dinner_party_planners",
+      "trigger_id": "instagram_inspiracion_cena",
+      "channel": "Instagram",
+      "content_format": "Carrusel 6 slides con fotos de alta calidad de archivos + ambientación de cena",
+      "landing_url": "/cena-tematica-misterio",
+      "offer": "Caso cena temática $19.99",
+      "cta": "Descarga el kit completo",
+      "urgency": "low"
+    },
+    {
+      "segment_id": "remote_teams_corporate",
+      "trigger_id": "planificacion_team_building",
+      "channel": "Google Search",
+      "content_format": "Anuncio de búsqueda B2B con extensiones de precio por grupo",
+      "landing_url": "/team-building-remoto-misterio",
+      "offer": "Paquete corporativo desde $19.99",
+      "cta": "Solicitar propuesta",
+      "urgency": "low"
+    }
+  ],
+  "channels": [
+    {
+      "channel_name": "TikTok",
+      "priority": "primary",
+      "target_segments": [
+        "couples_date_night_latam",
+        "true_crime_fans_solo",
+        "game_night_hosts"
+      ],
+      "content_format": "Videos UGC verticales 9:16 de 15-30s con gancho en primeros 2s, valor en 3-6s, CTA claro al final. Estética nativa, sin producción excesiva. Sonidos trending en español.",
+      "platform_specs": {
+        "aspect_ratio": "9:16",
+        "max_duration": "60s (óptimo 15-30s)",
+        "character_limits": "Descripción: 2200 caracteres; Caption en video: 3-4 palabras máximo",
+        "native_features": [
+          "duets",
+          "stitch",
+          "trending sounds",
+          "text overlay",
+          "hashtags de nicho"
+        ]
+      },
+      "posting_frequency": "3-5 posts orgánicos por semana + 1 anuncio pagado activo",
+      "estimated_budget_pct": 35,
+      "kpis": [
+        {
+          "metric": "CPM",
+          "threshold": "< $5 USD",
+          "measurement": "TikTok Ads Manager — métricas de campaña"
+        },
+        {
+          "metric": "CTR",
+          "threshold": "> 1.5%",
+          "measurement": "TikTok Ads Manager — tasa de clics al enlace"
+        },
+        {
+          "metric": "CPA",
+          "threshold": "< $15 USD",
+          "measurement": "TikTok Ads Manager + píxel de conversión en tienda"
+        },
+        {
+          "metric": "Tasa de visualización completa",
+          "threshold": "> 25%",
+          "measurement": "TikTok Ads Manager — video views completion rate"
+        }
+      ]
+    },
+    {
+      "channel_name": "Instagram Reels y Feed",
+      "priority": "primary",
+      "target_segments": [
+        "couples_date_night_latam",
+        "game_night_hosts",
+        "gift_buyers",
+        "dinner_party_planners"
+      ],
+      "content_format": "Reels UGC 15-30s para awareness y conversión. Carruseles de 4-6 slides para consideración (mostrar archivos del caso, proceso de regalo). Stories con stickers de encuesta y CTA de swipe up.",
+      "platform_specs": {
+        "aspect_ratio": "9:16 para Reels, 1:1 o 4:5 para feed, 9:16 para Stories",
+        "max_duration": "90s Reels (óptimo 15-30s), 60s Stories",
+        "character_limits": "Caption: 2200 caracteres; primeras 125 visibles sin expandir",
+        "native_features": [
+          "carruseles",
+          "stories con encuestas",
+          "stickers de cuenta regresiva",
+          "colaboraciones",
+          "Reels con audio trending"
+        ]
+      },
+      "posting_frequency": "4-5 posts orgánicos por semana (mix Reels + carruseles) + 1-2 anuncios pagados activos",
+      "estimated_budget_pct": 25,
+      "kpis": [
+        {
+          "metric": "CPM",
+          "threshold": "< $8 USD",
+          "measurement": "Meta Ads Manager — métricas de campaña"
+        },
+        {
+          "metric": "CTR",
+          "threshold": "> 1.2%",
+          "measurement": "Meta Ads Manager — link click rate"
+        },
+        {
+          "metric": "CPA",
+          "threshold": "< $15 USD",
+          "measurement": "Meta Ads Manager + píxel de conversión"
+        },
+        {
+          "metric": "Alcance orgánico Reels",
+          "threshold": "> 500 cuentas por Reel",
+          "measurement": "Instagram Insights — reach por publicación"
+        }
+      ]
+    },
+    {
+      "channel_name": "Google Search",
+      "priority": "primary",
+      "target_segments": [
+        "couples_date_night_latam",
+        "true_crime_fans_solo",
+        "game_night_hosts",
+        "gift_buyers",
+        "remote_teams_corporate"
+      ],
+      "content_format": "Anuncios de texto con extensiones de sitio por segmento, extensiones de precio, extensiones de imagen. Keywords long-tail transaccionales en español. Landing pages específicas por segmento.",
+      "platform_specs": {
+        "aspect_ratio": "N/A — texto",
+        "max_duration": "N/A",
+        "character_limits": "Título: 30 caracteres x3; Descripción: 90 caracteres x2; Extensiones de sitio: 25 caracteres",
+        "native_features": [
+          "extensiones de sitio",
+          "extensiones de precio",
+          "extensiones de imagen",
+          "extensiones de llamada",
+          "anuncios responsivos de búsqueda"
+        ]
+      },
+      "posting_frequency": "Campañas siempre activas con ajuste de pujas por horario (jueves-domingo mayor puja)",
+      "estimated_budget_pct": 20,
+      "kpis": [
+        {
+          "metric": "CPC promedio",
+          "threshold": "< $0.80 USD",
+          "measurement": "Google Ads — costo por clic promedio"
+        },
+        {
+          "metric": "CTR",
+          "threshold": "> 5%",
+          "measurement": "Google Ads — tasa de clics en búsqueda"
+        },
+        {
+          "metric": "CPA",
+          "threshold": "< $12 USD",
+          "measurement": "Google Ads + conversiones de Google Analytics"
+        },
+        {
+          "metric": "Quality Score",
+          "threshold": "> 7/10",
+          "measurement": "Google Ads — puntuación de calidad por grupo de anuncios"
+        }
+      ]
+    },
+    {
+      "channel_name": "Pinterest",
+      "priority": "secondary",
+      "target_segments": [
+        "gift_buyers",
+        "dinner_party_planners",
+        "couples_date_night_latam"
+      ],
+      "content_format": "Pines verticales 2:3 con imágenes de alta calidad de archivos del caso, ambientación de noche de misterio y diseño de regalo. Pines de idea para noches temáticas. Tableros organizados por ocasión.",
+      "platform_specs": {
+        "aspect_ratio": "2:3 (1000x1500px óptimo)",
+        "max_duration": "N/A para pines estáticos; video pines hasta 15 minutos",
+        "character_limits": "Título: 100 caracteres; Descripción: 500 caracteres",
+        "native_features": [
+          "tableros temáticos",
+          "pines de idea",
+          "pines de producto con precio",
+          "Rich Pins",
+          "pines de video"
+        ]
+      },
+      "posting_frequency": "5-7 pines por semana (mix orgánico y promovido en temporadas clave)",
+      "estimated_budget_pct": 5,
+      "kpis": [
+        {
+          "metric": "Impresiones mensuales",
+          "threshold": "> 10,000",
+          "measurement": "Pinterest Analytics — impresiones totales"
+        },
+        {
+          "metric": "CTR a sitio",
+          "threshold": "> 0.5%",
+          "measurement": "Pinterest Analytics — outbound clicks rate"
+        },
+        {
+          "metric": "Guardados por pin",
+          "threshold": "> 10 guardados por pin",
+          "measurement": "Pinterest Analytics — saves por publicación"
+        }
+      ]
+    },
+    {
+      "channel_name": "Email Marketing",
+      "priority": "secondary",
+      "target_segments": [
+        "couples_date_night_latam",
+        "true_crime_fans_solo",
+        "game_night_hosts",
+        "gift_buyers"
+      ],
+      "content_format": "Secuencia de bienvenida 5 emails post lead magnet. Newsletter semanal con nuevo caso disponible. Emails de abandono de carrito. Emails de reactivación para compradores inactivos. Mobile-first, texto + imagen.",
+      "platform_specs": {
+        "aspect_ratio": "600px ancho máximo, diseño responsive",
+        "max_duration": "N/A",
+        "character_limits": "Asunto: 40-50 caracteres; Preheader: 85-100 caracteres; Cuerpo: 200-400 palabras óptimo",
+        "native_features": [
+          "segmentación por comportamiento",
+          "A/B testing de asuntos",
+          "automatizaciones de trigger",
+          "personalización con nombre",
+          "botones CTA prominentes"
+        ]
+      },
+      "posting_frequency": "1 newsletter semanal + secuencias automatizadas por comportamiento",
+      "estimated_budget_pct": 5,
+      "kpis": [
+        {
+          "metric": "Tasa de apertura",
+          "threshold": "> 25%",
+          "measurement": "Plataforma de email (Mailchimp/Klaviyo) — open rate"
+        },
+        {
+          "metric": "CTR email",
+          "threshold": "> 3%",
+          "measurement": "Plataforma de email — click-through rate"
+        },
+        {
+          "metric": "Tasa de conversión email",
+          "threshold": "> 1.5%",
+          "measurement": "Plataforma de email + Google Analytics — conversiones atribuidas a email"
+        },
+        {
+          "metric": "Tasa de baja",
+          "threshold": "< 0.5%",
+          "measurement": "Plataforma de email — unsubscribe rate por envío"
+        }
+      ]
+    },
+    {
+      "channel_name": "Spotify Ads",
+      "priority": "experimental",
+      "target_segments": [
+        "true_crime_fans_solo"
+      ],
+      "content_format": "Audio ad de 30s reproducido después de episodios de podcasts de true crime en español. Voz narrativa con gancho de expediente desclasificado. Companion banner con imagen del caso.",
+      "platform_specs": {
+        "aspect_ratio": "640x640px para companion banner",
+        "max_duration": "30s audio",
+        "character_limits": "Script audio: máximo 75 palabras para 30s",
+        "native_features": [
+          "companion banner clickeable",
+          "segmentación por podcast específico",
+          "segmentación por género musical/podcast",
+          "frecuencia de exposición controlada"
+        ]
+      },
+      "posting_frequency": "Campaña activa continua con presupuesto mínimo ($5-10/día)",
+      "estimated_budget_pct": 5,
+      "kpis": [
+        {
+          "metric": "CTR companion banner",
+          "threshold": "> 0.3%",
+          "measurement": "Spotify Ad Studio — click-through rate"
+        },
+        {
+          "metric": "Tasa de escucha completa",
+          "threshold": "> 80%",
+          "measurement": "Spotify Ad Studio — audio completion rate"
+        },
+        {
+          "metric": "CPA",
+          "threshold": "< $18 USD",
+          "measurement": "Spotify Ad Studio + UTM tracking en Google Analytics"
+        }
+      ]
+    },
+    {
+      "channel_name": "Colaboraciones con Podcasters True Crime",
+      "priority": "experimental",
+      "target_segments": [
+        "true_crime_fans_solo",
+        "couples_date_night_latam"
+      ],
+      "content_format": "Mención patrocinada en episodios de podcasts de true crime en español (30-60s). Código de descuento exclusivo por podcaster. Reseña orgánica a cambio de acceso gratuito al producto.",
+      "platform_specs": {
+        "aspect_ratio": "N/A — audio",
+        "max_duration": "30-60s mención en episodio",
+        "character_limits": "Script de mención: 75-150 palabras",
+        "native_features": [
+          "código de descuento rastreable",
+          "enlace en notas del episodio",
+          "mención en redes sociales del podcaster"
+        ]
+      },
+      "posting_frequency": "1-2 colaboraciones por mes con micro-podcasters (5K-50K oyentes)",
+      "estimated_budget_pct": 5,
+      "kpis": [
+        {
+          "metric": "Usos de código de descuento",
+          "threshold": "> 5 usos por colaboración",
+          "measurement": "Plataforma de e-commerce — tracking de código promocional"
+        },
+        {
+          "metric": "Tráfico referido",
+          "threshold": "> 50 visitas por colaboración",
+          "measurement": "Google Analytics — tráfico por UTM de cada podcaster"
+        },
+        {
+          "metric": "CPA colaboración",
+          "threshold": "< $15 USD (incluyendo costo de acceso gratuito)",
+          "measurement": "Conversiones atribuidas / costo total de colaboración"
+        }
+      ]
+    }
+  ],
+  "platform_native_specs": {
+    "tiktok": {
+      "hook_window_seconds": "1-3",
+      "hook_strategy": "Abrir con imagen de archivo del caso O reacción genuina de sorpresa O pregunta directa al espectador ('¿Puedes resolver esto en 2 horas?')",
+      "value_prop_window_seconds": "3-8",
+      "value_prop_strategy": "Mostrar archivos reales del caso, reacciones del grupo, o comparación de precio. Texto superpuesto con dato clave.",
+      "cta_window_seconds": "8-15",
+      "cta_strategy": "CTA directo con urgencia: 'Link en bio — juega esta noche'. Texto grande y visible.",
+      "audio_strategy": "Usar sonidos trending en español cuando sea posible. Para anuncios pagados, voz en off nativa en español latinoamericano neutro.",
+      "aesthetic": "UGC nativo — sin producción excesiva. Iluminación natural, fondo de casa real. Autenticidad sobre perfección.",
+      "hashtags_recommended": [
+        "#juegodemisterio",
+        "#truecrime",
+        "#nochedepareja",
+        "#nochedejuegos",
+        "#escaperoomcasero",
+        "#crimenverdadero",
+        "#misterio"
+      ],
+      "formats_priority": [
+        "UGC pareja resolviendo caso",
+        "Unboxing digital de archivos",
+        "Reacción al giro del caso",
+        "POV: eres detective esta noche"
+      ],
+      "ad_compatibility": "Spark Ads con contenido orgánico de alto rendimiento. In-Feed Ads con formato nativo."
+    },
+    "instagram": {
+      "reels_strategy": "Misma lógica que TikTok. Reutilizar contenido TikTok sin marca de agua. Priorizar Reels sobre feed para alcance orgánico.",
+      "feed_strategy": "Carruseles de 4-6 slides para mostrar archivos del caso, proceso de regalo, o comparación de precio. Primera imagen debe funcionar como miniatura atractiva.",
+      "stories_strategy": "Stickers de encuesta ('¿Resolverías esto solo o en grupo?'), cuenta regresiva para nuevo caso, swipe up a landing page específica.",
+      "aesthetic": "Mix de UGC auténtico y producción media. Paleta oscura con toques de rojo/dorado para evocar misterio y expediente.",
+      "ad_formats": [
+        "Reels ads 9:16",
+        "Carrusel ads 1:1",
+        "Stories ads 9:16",
+        "Feed ads 4:5"
+      ],
+      "advantage_plus_compatibility": "Subir múltiples creativos (mínimo 5 variaciones) para que Advantage+ optimice automáticamente. Mix de UGC y producción.",
+      "caption_strategy": "Primeras 125 caracteres con gancho narrativo. Resto con contexto, prueba social y CTA. Hashtags al final (5-10 relevantes)."
+    },
+    "google_search": {
+      "campaign_structure": "1 campaña por segmento principal (parejas, grupos, true crime, regalos). Grupos de anuncios por intención específica.",
+      "keyword_match_types": "Phrase match para long-tail. Exact match para keywords de alta conversión. Negative keywords: 'gratis', 'torrent', 'crack', 'niños'.",
+      "ad_copy_formula": "Título 1: Keyword principal | Título 2: Beneficio clave | Título 3: CTA con urgencia. Descripción 1: Prueba social + diferenciador. Descripción 2: Oferta + CTA.",
+      "landing_page_alignment": "Cada grupo de anuncios apunta a landing page específica por segmento. Message match entre keyword → anuncio → landing page.",
+      "bid_strategy": "Target CPA de $12 USD una vez con datos suficientes. Iniciar con Maximizar Conversiones con presupuesto limitado.",
+      "scheduling": "Mayor puja jueves 18h-24h, viernes 12h-24h, sábado 10h-22h. Reducir puja lunes-miércoles mañana.",
+      "extensions_required": [
+        "Extensiones de sitio por segmento",
+        "Extensiones de precio ($19.99 por caso)",
+        "Extensiones de imagen con archivos del caso",
+        "Extensiones de fragmento estructurado"
+      ]
+    },
+    "pinterest": {
+      "pin_design": "Imagen vertical 1000x1500px. Texto superpuesto legible en móvil. Paleta oscura con elementos de expediente/misterio. Logo discreto en esquina.",
+      "board_strategy": "Tableros: 'Noche de Cita en Casa', 'Noche de Juegos Original', 'Ideas de Regalo Experiencial', 'True Crime Interactivo', 'Cena Temática de Misterio'.",
+      "seo_pinterest": "Títulos y descripciones con keywords exactas de búsqueda en Pinterest. Incluir precio en descripción para Rich Pins.",
+      "seasonal_calendar": "San Valentín (enero-febrero), Halloween (septiembre-octubre), Navidad (noviembre-diciembre). Crear tableros estacionales con 4-6 semanas de anticipación.",
+      "video_pins": "Video pins de 15-30s mostrando archivos del caso o proceso de regalo. Autoplay sin sonido — texto superpuesto esencial."
+    },
+    "email": {
+      "subject_line_formula": "Intriga narrativa ('El expediente está en tu bandeja') O Beneficio directo ('Tu noche de viernes, resuelta') O Urgencia ('Nuevo caso disponible — solo esta semana')",
+      "preheader_strategy": "Complementar asunto con dato de prueba social o beneficio adicional. Nunca repetir el asunto.",
+      "mobile_first": "Diseño de columna única. Botón CTA mínimo 44px de altura. Texto mínimo 16px. Imágenes con alt text.",
+      "behavioral_triggers": [
+        "Abandono de carrito (1h, 24h, 72h)",
+        "Post-compra (upsell siguiente caso a las 48h)",
+        "Inactividad 30 días (reactivación con descuento)",
+        "Lead magnet descargado (secuencia de nurturing 5 emails)"
+      ],
+      "segmentation": "Segmentar por: comprador vs. lead, segmento de entrada (pareja/grupo/solo/regalo), casos comprados, frecuencia de apertura.",
+      "ab_testing_priority": [
+        "Línea de asunto (siempre)",
+        "CTA principal (mensual)",
+        "Longitud del email (trimestral)"
+      ]
+    }
+  },
+  "funnel": {
+    "awareness": {
+      "goal": "Generar conocimiento de marca entre hispanohablantes 25-45 que consumen true crime o buscan entretenimiento grupal. Objetivo: 50,000 impresiones mensuales en los primeros 3 meses.",
+      "channels": [
+        "TikTok orgánico",
+        "Instagram Reels orgánico",
+        "Colaboraciones con podcasters true crime",
+        "SEO blog (contenido de pillar)"
+      ],
+      "content_types": [
+        "Videos UGC de 15s mostrando archivos del caso (gancho de curiosidad)",
+        "Reels con ángulo 'tú eres la detective' para fans de true crime",
+        "Posts de comparación 'escape room $180 vs. nuestro caso $19.99'",
+        "Artículos de blog SEO sobre true crime interactivo y noches de juegos",
+        "Menciones en podcasts de true crime en español"
+      ],
+      "kpis": [
+        "Impresiones totales > 50,000/mes",
+        "Alcance único > 20,000/mes",
+        "Tasa de visualización de video > 20%",
+        "Tráfico orgánico blog > 500 visitas/mes"
+      ],
+      "budget_pct": 20
+    },
+    "consideration": {
+      "goal": "Convertir espectadores en visitantes de landing page y leads (captura de email). Objetivo: 500 visitas a landing pages por mes, 100 leads capturados por mes.",
+      "channels": [
+        "TikTok Ads (In-Feed)",
+        "Instagram Ads (Reels + Carrusel)",
+        "Google Search (keywords informacionales)",
+        "Pinterest (pines de producto)",
+        "Retargeting Meta"
+      ],
+      "content_types": [
+        "Carruseles mostrando qué incluye el caso (archivos, pistas, narrativa)",
+        "Video 'unboxing digital' de los archivos del expediente",
+        "Testimonios UGC de parejas y grupos reales jugando",
+        "Comparación directa con Hunt A Killer (precio + idioma + acceso)",
+        "Preview gratuito de los primeros archivos del caso (lead magnet)"
+      ],
+      "kpis": [
+        "CTR anuncios > 1.5%",
+        "Visitas landing page > 500/mes",
+        "Leads capturados > 100/mes",
+        "Tiempo en página > 90 segundos",
+        "Tasa de rebote < 60%"
+      ],
+      "budget_pct": 35
+    },
+    "conversion": {
+      "goal": "Convertir visitantes en compradores. Objetivo: 15-20 ventas por mes con CPA < $15 USD. ROAS mínimo 1.3x.",
+      "channels": [
+        "Google Search (keywords transaccionales)",
+        "Meta Ads (retargeting)",
+        "TikTok Ads (retargeting)",
+        "Email (abandono de carrito)",
+        "Pinterest (pines de producto con precio)"
+      ],
+      "content_types": [
+        "Anuncios de retargeting con oferta específica ('Vuelve y juega esta noche')",
+        "Emails de abandono de carrito con urgencia narrativa",
+        "Anuncios de Google Search con extensiones de precio y CTA directo",
+        "Testimonios específicos con objeción resuelta ('Pensé que era caro hasta que lo dividimos entre 5')",
+        "Anuncios con garantía de satisfacción visible"
+      ],
+      "kpis": [
+        "CPA < $15 USD",
+        "Tasa de conversión landing page > 2%",
+        "ROAS > 1.3x",
+        "Tasa de abandono de carrito recuperada > 5%",
+        "Ventas mensuales > 15"
+      ],
+      "budget_pct": 35
+    },
+    "retention": {
+      "goal": "Convertir compradores en clientes recurrentes. Objetivo: 30% de compradores adquieren un segundo caso en los primeros 60 días.",
+      "channels": [
+        "Email marketing (secuencia post-compra)",
+        "WhatsApp/comunidad (boca a boca)",
+        "Retargeting Meta (audiencia de compradores)",
+        "TikTok orgánico (comunidad)"
+      ],
+      "content_types": [
+        "Email post-compra a las 48h con recomendación del siguiente caso",
+        "Email de reseña a los 7 días solicitando testimonio UGC",
+        "Newsletter semanal con nuevo caso disponible y teasers narrativos",
+        "Oferta de bundle exclusiva para compradores existentes (3 casos $44.99)",
+        "Contenido de comunidad: '¿Quién resolvió el caso? Comparte tu teoría'"
+      ],
+      "kpis": [
+        "Tasa de recompra 60 días > 30%",
+        "Tasa de apertura email post-compra > 40%",
+        "NPS > 8",
+        "Testimonios UGC generados > 5/mes",
+        "LTV promedio > $39.99 en 6 meses"
+      ],
+      "budget_pct": 10
+    }
+  },
+  "lead_magnet": {
+    "type": "Preview gratuito del primer expediente — 'Caso Muestra: Los Primeros Archivos'",
+    "title": "Descarga gratis: Los primeros archivos del Caso #001 — ¿Puedes resolver el crimen en 20 minutos?",
+    "description": "El usuario recibe los primeros 8-10 archivos del caso introductorio: informe policial inicial, fotografía de la escena del crimen, testimonio del primer testigo y una carta cifrada del sospechoso. Suficiente para experimentar la calidad narrativa y el formato del producto, pero sin la resolución completa del caso. Incluye instrucciones de cómo jugar y una invitación a desbloquear el caso completo.",
+    "delivery_channel": "email",
+    "target_segments": [
+      "true_crime_fans_solo",
+      "couples_date_night_latam",
+      "game_night_hosts"
+    ],
+    "expected_conversion_rate": "8-12% de leads que descargan el preview compran el caso completo en los primeros 7 días",
+    "follow_up_sequence": "Email 1 (inmediato): Entrega del preview con instrucciones de cómo empezar. Email 2 (24h): '¿Resolviste el misterio? El caso completo tiene 47 archivos más...' con CTA de compra. Email 3 (72h): Testimonio de usuario real + comparación de precio vs. salir a cenar. Email 4 (7 días): Última llamada con oferta de lanzamiento ($17.99 en lugar de $19.99 — solo para leads del preview). Email 5 (14 días): Nuevo caso disponible — segunda oportunidad de conversión."
+  },
+  "budget_allocation": {
+    "monthly_total_usd": 50,
+    "channels": [
+      {
+        "channel": "TikTok Ads",
+        "budget_pct": 35,
+        "budget_usd": 17.5,
+        "justification": "TikTok ofrece el CPM más bajo del mercado ($3-6 USD) para audiencias hispanohablantes 25-45. El formato UGC nativo tiene el mayor potencial de viralidad orgánica que amplifica el presupuesto pagado. Los segmentos primarios (parejas, fans true crime, anfitriones) son altamente activos en TikTok. Con $17.50/mes se pueden generar 2,900-5,800 impresiones pagadas, complementadas por alcance orgánico potencialmente 10x mayor si el contenido funciona."
+      },
+      {
+        "channel": "Google Search Ads",
+        "budget_pct": 30,
+        "budget_usd": 15,
+        "justification": "Google Search captura demanda existente con intención de compra alta — usuarios que ya buscan 'juego de misterio en español' o 'escape room digital'. El CPC estimado para keywords long-tail en español es bajo ($0.30-0.80 USD) dado la baja competencia. Con $15/mes se pueden obtener 18-50 clics altamente cualificados. La tasa de conversión de búsqueda pagada es típicamente 3-5x mayor que redes sociales. Prioridad: keywords transaccionales de segmento parejas y grupos."
+      },
+      {
+        "channel": "Instagram Ads (Meta)",
+        "budget_pct": 20,
+        "budget_usd": 10,
+        "justification": "Instagram complementa TikTok alcanzando segmentos ligeramente mayores (30-45 años) y compradores de regalos que usan más Instagram que TikTok. El formato carrusel es ideal para mostrar los archivos del caso y el proceso de regalo. Con $10/mes se activa retargeting de visitantes de landing page (audiencia caliente con mayor probabilidad de conversión). Advantage+ permite optimización automática con presupuesto mínimo."
+      },
+      {
+        "channel": "Spotify Ads + Colaboraciones Podcasters",
+        "budget_pct": 10,
+        "budget_usd": 5,
+        "justification": "Canal experimental de alto potencial para el segmento true crime fans. $5/mes se destina a: (a) acceso gratuito al producto para 1-2 micro-podcasters de true crime en español a cambio de mención orgánica (costo real: $0 en cash, 1-2 casos = $40 valor de producto), o (b) prueba mínima de Spotify Ads ($5 mínimo diario por 1 día para validar CTR). El ROI potencial de una mención en podcast con 10K oyentes supera cualquier canal pagado con este presupuesto."
+      },
+      {
+        "channel": "Pinterest Ads + Email (herramienta)",
+        "budget_pct": 5,
+        "budget_usd": 2.5,
+        "justification": "Pinterest orgánico no requiere presupuesto — los pines tienen vida útil larga (meses vs. horas en otras redes). El presupuesto mínimo se destina a herramienta de email marketing (Mailchimp free tier hasta 500 contactos, luego $13/mes — inicialmente $0). Los $2.50 se reservan como buffer para boost de pines estacionales en temporadas clave (San Valentín, Navidad) o para cubrir el costo de herramienta de email cuando se supere el tier gratuito."
+      }
+    ],
+    "testing_budget_pct": 10,
+    "kpi_targets": {
+      "cpa_ceiling_usd": 15,
+      "cpl_target_usd": 3,
+      "conversion_rate_target_pct": 2.5,
+      "roas_floor": 1.3
+    }
+  }
+}
