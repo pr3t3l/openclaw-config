@@ -23,7 +23,7 @@ Usage:
 import json
 import shutil
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
 SCRIPTS_DIR = Path(__file__).parent
@@ -39,6 +39,21 @@ from llm_caller import call_llm, extract_json_from_response
 from telegram_sender import send_message
 from gate_handler import create_gate, resolve_gate
 from claim_linter import lint_assets, print_report as print_lint_report
+import db
+
+
+def _db_write(fn, *args, **kwargs):
+    """Safe DB write — logs errors but never blocks the runner."""
+    try:
+        return fn(*args, **kwargs)
+    except Exception as e:
+        print(f"  WARN: DB write failed ({fn.__name__}): {e}")
+        return None
+
+
+def _week_to_date(week_str):
+    """Convert '2026-W17' to the Monday date of that ISO week."""
+    return datetime.strptime(f"{week_str}-1", "%G-W%V-%u").date()
 
 
 CONTENT_PHASES = [
@@ -128,6 +143,16 @@ def run_marketing(product_id: str, week: str = None) -> bool:
         "cost_usd": 0.0,
     }
 
+    # DB: create campaign + run
+    week_date = _week_to_date(week)
+    campaign_db_id = _db_write(db.create_campaign,
+        product_id, f"weekly-{week}", f"Weekly Case {week}", "weekly_product",
+        status="active", start_date=week_date,
+        end_date=week_date + timedelta(days=6))
+    run_db_id = _db_write(db.create_run,
+        campaign_db_id, product_id, week_date,
+        theme=case_brief.get("case_name", week)) if campaign_db_id else None
+
     # ─── Phase 1: Content Generation (scripts + ads + emails) ───
     print("\n=== PHASE 1: Content Generation ===")
     for phase in CONTENT_PHASES:
@@ -139,6 +164,10 @@ def run_marketing(product_id: str, week: str = None) -> bool:
         if result:
             run_manifest["outputs"][phase["output"]] = f"drafts/{phase['output']}"
             print(f"  ✅ {phase['output']}")
+            # DB: save individual assets
+            if run_db_id and campaign_db_id:
+                _save_assets_to_db(phase["name"], result, product_id, week,
+                                   week_date, campaign_db_id, run_db_id, strategy_version)
         else:
             print(f"  ❌ {phase['name']} failed")
             run_manifest["outputs"][phase["output"]] = None
@@ -151,6 +180,7 @@ def run_marketing(product_id: str, week: str = None) -> bool:
     m1_summary = _format_content_gate(product_id, week, drafts_dir)
     send_message(m1_summary)
     create_gate(product_id, "M1", "marketing", m1_summary, run_id=week)
+    _db_write(db.log_gate, product_id, "marketing_m1", "pending", notes=m1_summary[:500])
 
     # ─── Phase 2: Calendar + Claim Lint + Quality ───
     print("\n=== PHASE 2: Calendar + Lint + Quality ===")
@@ -223,6 +253,7 @@ def run_marketing(product_id: str, week: str = None) -> bool:
     m2_summary = _format_calendar_gate(product_id, week, drafts_dir)
     send_message(m2_summary)
     create_gate(product_id, "M2", "marketing", m2_summary, run_id=week)
+    _db_write(db.log_gate, product_id, "marketing_m2", "pending", notes=m2_summary[:500])
 
     # Save run manifest
     run_manifest["completed_at"] = datetime.now().isoformat()
@@ -282,6 +313,16 @@ def approve_marketing(product_id: str, week: str) -> bool:
             resolve_gate(product_id, gate_name, "approved", "Alfredo")
         except (ValueError, KeyError):
             pass
+
+    # DB: update run status + gates
+    week_date = _week_to_date(week)
+    campaign = _db_write(db.get_campaign, product_id, f"weekly-{week}")
+    if campaign:
+        run = _db_write(db.get_run, campaign["id"], week_date)
+        if run:
+            _db_write(db.update_run_status, run["id"], "completed")
+    _db_write(db.log_gate, product_id, "marketing_m1", "approved", decided_by="Alfredo")
+    _db_write(db.log_gate, product_id, "marketing_m2", "approved", decided_by="Alfredo")
 
     msg = (f"✅ Marketing {week} APROBADO\n"
            f"Assets promovidos: {', '.join(promoted)}\n"
@@ -346,6 +387,51 @@ REQUIRED FIELDS:
     except Exception as e:
         print(f"  ERROR: {e}")
         return None
+
+
+def _save_assets_to_db(phase_name, parsed, product_id, week,
+                       week_date, campaign_db_id, run_db_id, strategy_version):
+    """Save individual assets from a phase result to DB."""
+    if phase_name == "script_generator":
+        for lane in parsed.get("lanes", []):
+            for script in lane.get("scripts", []):
+                _db_write(db.save_asset,
+                    run_id=run_db_id, project_id=product_id, campaign_id=campaign_db_id,
+                    creative_id=script.get("creative_id", f"S-{week}-{script.get('script_id', '')}"),
+                    asset_type="reel_script", content=script,
+                    platform=script.get("platform", "tiktok"),
+                    title=script.get("theme", ""),
+                    week_start_date=week_date,
+                    metadata={"persona_id": lane.get("persona_id"),
+                              "angle_id": lane.get("angle_id"),
+                              "strategy_version": strategy_version})
+
+    elif phase_name == "ad_copy_generator":
+        for ad_set in parsed.get("ad_sets", []):
+            for variant in ad_set.get("variants", []):
+                _db_write(db.save_asset,
+                    run_id=run_db_id, project_id=product_id, campaign_id=campaign_db_id,
+                    creative_id=variant.get("creative_id", f"AD-{week}-{variant.get('variant_id', '')}"),
+                    asset_type="meta_ad", content=variant,
+                    platform="meta_ads",
+                    title=variant.get("headline", ""),
+                    week_start_date=week_date,
+                    metadata={"persona_id": ad_set.get("persona_id"),
+                              "angle_id": ad_set.get("angle_id"),
+                              "strategy_version": strategy_version})
+
+    elif phase_name == "email_generator":
+        for seq in parsed.get("sequences", []):
+            for email in seq.get("emails", []):
+                _db_write(db.save_asset,
+                    run_id=run_db_id, project_id=product_id, campaign_id=campaign_db_id,
+                    creative_id=email.get("creative_id", f"E-{week}-{email.get('email_id', '')}"),
+                    asset_type="email", content=email,
+                    platform="email",
+                    title=email.get("subject", email.get("subject_variants", [{}])[0].get("text", "") if isinstance(email.get("subject_variants", []), list) else ""),
+                    week_start_date=week_date,
+                    metadata={"persona_id": email.get("persona_id"),
+                              "strategy_version": strategy_version})
 
 
 def _load_strategy_context(strategy_dir: Path) -> dict:

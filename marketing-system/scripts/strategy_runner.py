@@ -32,6 +32,16 @@ from telegram_sender import send_message, send_gate
 from artifact_validator import validate_artifact
 from gate_handler import create_gate, format_strategy_gate_s1, format_strategy_gate_s2
 from rollback_executor import stage_backup, rollback, cleanup_staging
+import db
+
+
+def _db_write(fn, *args, **kwargs):
+    """Safe DB write — logs errors but never blocks the runner."""
+    try:
+        return fn(*args, **kwargs)
+    except Exception as e:
+        print(f"  WARN: DB write failed ({fn.__name__}): {e}")
+        return None
 
 
 PHASES = [
@@ -117,6 +127,20 @@ def run_strategy(product_id: str) -> bool:
     print(f"STRATEGY WORKFLOW — {product_id} ({next_version})")
     print(f"{'='*50}")
 
+    # Parse version number from "v2" → 2
+    version_num = int(next_version.lstrip("v"))
+
+    # DB: ensure project + strategy version exist
+    _db_write(db.upsert_project, product_id, brief.get("product_name", product_id),
+              brief.get("project_type", "digital_experience"),
+              description=brief.get("description"),
+              website_url=brief.get("platform_url"),
+              config={"language": brief.get("language", "es"),
+                      "country": brief.get("country"),
+                      "monthly_budget": brief.get("monthly_marketing_budget")})
+    _db_write(db.create_strategy_version, product_id, version_num,
+              description=f"Strategy {next_version}")
+
     brief_hash = hashlib.sha256(json.dumps(brief, sort_keys=True).encode()).hexdigest()[:12]
     artifacts = {}
     total_cost = 0.0
@@ -137,6 +161,7 @@ def run_strategy(product_id: str) -> bool:
     send_message(gate_msg)
     gate = create_gate(product_id, "S1", "strategy", gate_msg,
                        [str(version_dir / "market_analysis.json"), str(version_dir / "buyer_persona.json")])
+    _db_write(db.log_gate, product_id, "strategy_s1", "pending", notes=gate_msg[:500])
     print(f"Gate S1 created. Waiting for approval via Telegram.")
     print(f"  /strategy approve {product_id}")
 
@@ -160,6 +185,7 @@ def run_strategy(product_id: str) -> bool:
     send_message(gate_msg)
     gate = create_gate(product_id, "S2", "strategy", gate_msg,
                        [str(version_dir / f) for f in ["brand_strategy.json", "seo_architecture.json", "channel_strategy.json"]])
+    _db_write(db.log_gate, product_id, "strategy_s2", "pending", notes=gate_msg[:500])
 
     # Create strategy_manifest.json
     manifest = {
@@ -377,6 +403,19 @@ def _run_agent_phase(phase: dict, product_id: str, brief: dict,
     if not validation["valid"]:
         print(f"  WARN: Validation issues: {validation['errors']}")
 
+    # DB: save strategy output
+    version_num = int(version_dir.name.lstrip("v"))
+    _db_write(db.save_strategy_output, product_id, version_num, phase_name, parsed,
+              title=phase_name.replace("_", " ").title())
+
+    # DB: extract buyer segments if this is buyer_persona
+    if phase_name == "buyer_persona" and "segments" in parsed:
+        for seg in parsed["segments"]:
+            _db_write(db.upsert_buyer_segment,
+                      product_id, seg["segment_id"], seg.get("segment_name", ""),
+                      seg.get("priority", "secondary"), seg.get("use_case", ""),
+                      seg, version=version_num)
+
     print(f"  ✅ {output_file} written ({len(json.dumps(parsed))} chars)")
     return parsed, cost
 
@@ -420,6 +459,12 @@ def approve_strategy(product_id: str) -> bool:
             resolve_gate(product_id, gate_name, "approved", "Alfredo")
         except ValueError:
             pass  # Already resolved or doesn't exist
+
+    # DB: approve strategy version
+    version_num = int(version.lstrip("v"))
+    _db_write(db.approve_strategy_version, product_id, version_num)
+    _db_write(db.log_gate, product_id, "strategy_s1", "approved", decided_by="Alfredo")
+    _db_write(db.log_gate, product_id, "strategy_s2", "approved", decided_by="Alfredo")
 
     msg = f"✅ Strategy {version} APROBADA para {product_id}\nMarketing puede correr ahora."
     print(msg)

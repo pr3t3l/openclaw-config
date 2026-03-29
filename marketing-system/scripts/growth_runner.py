@@ -40,6 +40,21 @@ from telegram_sender import send_message
 from metrics_calculator import calculate as calc_metrics
 from experiment_manager import process_proposals
 from pattern_promoter import evaluate_promotions
+import db
+
+
+def _db_write(fn, *args, **kwargs):
+    """Safe DB write — logs errors but never blocks the runner."""
+    try:
+        return fn(*args, **kwargs)
+    except Exception as e:
+        print(f"  WARN: DB write failed ({fn.__name__}): {e}")
+        return None
+
+
+def _week_to_date(week_str):
+    """Convert '2026-W17' to the Monday date of that ISO week."""
+    return datetime.strptime(f"{week_str}-1", "%G-W%V-%u").date()
 
 
 def run_growth(product_id: str, week: str) -> bool:
@@ -67,9 +82,25 @@ def run_growth(product_id: str, week: str) -> bool:
     metrics_input = json.loads(input_path.read_text())
     print("Step 1: ✅ metrics_input.json loaded")
 
+    # DB: resolve week date and find campaign
+    week_date = _week_to_date(week)
+    campaign = _db_write(db.get_campaign, product_id, f"weekly-{week}")
+    campaign_db_id = campaign["id"] if campaign else None
+
     # ─── Step 2: Metrics Calculator (deterministic) ───
     print("\nStep 2: Calculating metrics...")
     calculated = calc_metrics(product_id, week)
+
+    # DB: save platform metrics from metrics_input
+    for platform_key in ["meta_ads", "email", "tiktok", "instagram", "google_ads"]:
+        if platform_key in metrics_input:
+            m = metrics_input[platform_key]
+            _db_write(db.save_platform_metrics, product_id, campaign_db_id, week_date, platform_key, {
+                "spend": m.get("spend", 0), "impressions": m.get("impressions", 0),
+                "clicks": m.get("clicks", 0), "conversions": m.get("conversions", 0),
+                "revenue": m.get("revenue", 0), "reach": m.get("reach", 0),
+                "roas": m.get("roas", 0), "engagement_rate": m.get("engagement_rate", 0),
+            })
 
     # ─── Step 3: Metrics Interpreter (LLM) ───
     print("\nStep 3: Interpreting metrics...")
@@ -79,6 +110,17 @@ def run_growth(product_id: str, week: str) -> bool:
     print("\nStep 4: Running diagnosis...")
     diagnosis, opt_actions = _run_diagnosis(product_id, week, strategy_version,
                                              calculated, product_dir, growth_dir)
+
+    # DB: save growth analysis
+    if diagnosis:
+        _db_write(db.save_growth_analysis, product_id, campaign_db_id, week_date, {
+            "performance_report": perf_report or {},
+            "diagnosis": diagnosis,
+            "optimization_actions": opt_actions or {},
+            "root_cause": diagnosis.get("root_cause"),
+            "decision_level": diagnosis.get("decision_level"),
+            "problem_domain": diagnosis.get("problem_domain"),
+        }, recommendations=(opt_actions or {}).get("actions", []))
 
     # ─── Step 5: Experiment Manager (deterministic) ───
     print("\nStep 5: Processing experiments...")
@@ -91,6 +133,42 @@ def run_growth(product_id: str, week: str) -> bool:
     print("\nStep 6: Extracting learnings...")
     kb_updates = _run_learning_extractor(product_id, week, calculated,
                                           diagnosis, metrics_input, product_dir, growth_dir)
+
+    # DB: save KB entries
+    if kb_updates:
+        for p in kb_updates.get("new_winning_patterns", []):
+            _db_write(db.add_kb_entry, product_id, {
+                "pattern_id": p.get("pattern_id", ""),
+                "category": "winning_patterns",
+                "title": p.get("pattern", "")[:200],
+                "description": p.get("pattern", ""),
+                "evidence": [{"text": p.get("evidence", ""), "runs": p.get("evidence_runs_count", 1)}],
+                "status": "active",
+                "confidence": {"high": 0.9, "medium": 0.7, "low": 0.4}.get(p.get("confidence", "low"), 0.5),
+            })
+        for p in kb_updates.get("new_losing_patterns", []):
+            _db_write(db.add_kb_entry, product_id, {
+                "pattern_id": p.get("pattern_id", ""),
+                "category": "losing_patterns",
+                "title": p.get("pattern", "")[:200],
+                "description": p.get("pattern", ""),
+                "evidence": [{"text": p.get("evidence", ""), "runs": p.get("evidence_runs_count", 1)}],
+                "status": "active",
+                "confidence": {"high": 0.9, "medium": 0.7, "low": 0.4}.get(p.get("confidence", "low"), 0.5),
+            })
+
+    # DB: save experiments
+    if diagnosis:
+        for exp in diagnosis.get("proposed_experiments", []):
+            exp_id = exp.get("experiment_id") or exp.get("related_pattern_id", "")
+            if exp_id:
+                _db_write(db.save_experiment, product_id, {
+                    "experiment_id": exp_id,
+                    "experiment_name": exp.get("hypothesis", exp_id)[:100],
+                    "hypothesis": exp.get("hypothesis", ""),
+                    "status": "proposed",
+                    "metadata": {"proposed_in_week": week, "variable": exp.get("variable")},
+                })
 
     # ─── Step 7: Pattern Promoter (deterministic) ───
     print("\nStep 7: Evaluating pattern promotions...")
