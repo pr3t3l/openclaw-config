@@ -1,0 +1,41 @@
+{
+  "product_id": "misterio-semanal",
+  "week": "2026-W17",
+  "linted_at": "2026-03-28T20:24:26.585758",
+  "status": "pass",
+  "total_violations": 0,
+  "critical_violations": 0,
+  "violations": [],
+  "facts_verified": {
+    "document_count_claims": {
+      "found": 16,
+      "correct": 16,
+      "wrong": 0
+    },
+    "time_claims": {
+      "found": 7,
+      "correct": 7,
+      "wrong": 0
+    },
+    "price_claims": {
+      "found": 16,
+      "correct": 16,
+      "wrong": 0
+    },
+    "player_claims": {
+      "found": 5,
+      "correct": 5,
+      "wrong": 0
+    },
+    "envelope_claims": {
+      "found": 12,
+      "correct": 12,
+      "wrong": 0
+    },
+    "case_count_claims": {
+      "found": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  }
+}
