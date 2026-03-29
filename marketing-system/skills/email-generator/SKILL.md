@@ -127,6 +127,26 @@ Every email MUST have: `persona_id`, `pain_point_addressed`, `cta_url` (persona-
 - DO NOT fabricate testimonials, reviews, statistics, or guarantees that are not in product_brief, brand_strategy, or weekly_case_brief. If you need social proof, use placeholders like '[TESTIMONIAL]' or reference the case's real data (number of documents, envelopes, duration). Every claim must be traceable to a source file.
 - DO NOT output anything other than the JSON — no commentary
 
+## Verified Facts (MANDATORY)
+
+When product_brief.json includes `verified_facts`, use ONLY those facts for claims:
+
+- Price: use ONLY the price from verified_facts
+- Duration: use ONLY the time from verified_facts
+- Player count: use ONLY the range from verified_facts
+- Document count: use the range from verified_facts, or the specific number from weekly_case_brief if available
+- Delivery: use ONLY the delivery method from verified_facts
+
+When product_brief.json includes `allowed_claims`, use ONLY those claims.
+When product_brief.json includes `forbidden_claims`, NEVER use any of those patterns.
+
+If you need social proof and no reviews exist, use one of these alternatives:
+- "[TESTIMONIAL — to be replaced with real review]"
+- Reference the case content as proof: "21 documentos, 4 sobres, 2-4 horas de investigación"
+- Use the product's real features as proof instead of fabricated testimonials
+
+DO NOT invent facts. DO NOT fabricate testimonials. DO NOT create guarantees that don't exist.
+
 ## Acceptance Gate
 
 - [ ] At least 1 sequence with 3 emails (weekly case)

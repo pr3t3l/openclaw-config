@@ -9,8 +9,9 @@ Orchestrates:
   5. Phase M-emails: email_generator (claude-sonnet46)
   6. Gate M1: Telegram review of scripts + ads + emails
   7. Phase M-calendar: calendar_generator (chatgpt-gpt54)
-  8. Phase M-quality: semantic_quality_reviewer (chatgpt-gpt54)
-  9. Gate M2: Telegram review of calendar + quality
+  8. Phase M-lint: claim_linter (deterministic, fast)
+  9. Phase M-quality: semantic_quality_reviewer (only if lint passes)
+  10. Gate M2: Telegram review of calendar + quality
   → Updates run_manifest.json
 
 Usage:
@@ -37,6 +38,7 @@ sys.path.insert(0, str(SCRIPTS_DIR))
 from llm_caller import call_llm, extract_json_from_response
 from telegram_sender import send_message
 from gate_handler import create_gate, resolve_gate
+from claim_linter import lint_assets, print_report as print_lint_report
 
 
 CONTENT_PHASES = [
@@ -90,9 +92,12 @@ def run_marketing(product_id: str, week: str = None) -> bool:
     print(f"Strategy pinned: {strategy_version}")
     print(f"{'='*50}")
 
-    # Load strategy context
+    # Load strategy context (includes product_brief for verified_facts)
     strategy_dir = product_dir / "strategies" / strategy_version
     strategy_context = _load_strategy_context(strategy_dir)
+    strategy_context["product_brief"] = json.loads(
+        (product_dir / "product_brief.json").read_text()
+    )
 
     # Load weekly case brief
     brief_path = run_dir / "weekly_case_brief.json"
@@ -147,24 +152,68 @@ def run_marketing(product_id: str, week: str = None) -> bool:
     send_message(m1_summary)
     create_gate(product_id, "M1", "marketing", m1_summary, run_id=week)
 
-    # ─── Phase 2: Calendar + Quality (runs after M1 in v1 — async gate) ───
-    print("\n=== PHASE 2: Calendar + Quality ===")
+    # ─── Phase 2: Calendar + Claim Lint + Quality ───
+    print("\n=== PHASE 2: Calendar + Lint + Quality ===")
 
     # Calendar needs the draft outputs as context
     all_drafts = _load_drafts(drafts_dir)
 
-    for phase in POST_GATE_PHASES:
-        print(f"\n--- {phase['name']} ---")
-        result = _run_content_agent(
-            phase, product_id, week, strategy_version,
-            strategy_context, case_brief, growth_context, drafts_dir,
-            extra_context=all_drafts
+    # Run calendar generator
+    cal_phase = POST_GATE_PHASES[0]
+    print(f"\n--- {cal_phase['name']} ---")
+    cal_result = _run_content_agent(
+        cal_phase, product_id, week, strategy_version,
+        strategy_context, case_brief, growth_context, drafts_dir,
+        extra_context=all_drafts
+    )
+    if cal_result:
+        run_manifest["outputs"][cal_phase["output"]] = f"drafts/{cal_phase['output']}"
+        print(f"  ✅ {cal_phase['output']}")
+    else:
+        print(f"  ❌ {cal_phase['name']} failed")
+
+    # ─── Claim Linter (deterministic, fast) ───
+    print("\n--- claim_linter ---")
+    lint_report = lint_assets(product_id, week)
+    print_lint_report(lint_report)
+    run_manifest["outputs"]["claim_lint_report.json"] = "claim_lint_report.json"
+
+    if lint_report.get("status") == "fail":
+        run_manifest["status"] = "failed_lint"
+        run_manifest["completed_at"] = datetime.now().isoformat()
+        (run_dir / "run_manifest.json").write_text(
+            json.dumps(run_manifest, indent=2, ensure_ascii=False))
+
+        violations_summary = "\n".join(
+            f"  • [{v['severity']}] {v['violation_type']}: {v['text_found'][:80]}"
+            for v in lint_report.get("violations", [])[:15]
         )
-        if result:
-            run_manifest["outputs"][phase["output"]] = f"drafts/{phase['output']}"
-            print(f"  ✅ {phase['output']}")
-        else:
-            print(f"  ❌ {phase['name']} failed")
+        msg = (f"🛑 Claim Linter FAILED — {product_id} {week}\n"
+               f"Violations: {lint_report['total_violations']} "
+               f"({lint_report['critical_violations']} critical)\n\n"
+               f"{violations_summary}\n\n"
+               f"Quality reviewer NOT executed.\n"
+               f"Fix issues and re-run, or override:\n"
+               f"/marketing override-lint {week}")
+        print(msg)
+        send_message(msg)
+        return False
+
+    print("  ✅ Claim linter passed")
+
+    # Run quality reviewer (only if lint passed)
+    qa_phase = POST_GATE_PHASES[1]
+    print(f"\n--- {qa_phase['name']} ---")
+    qa_result = _run_content_agent(
+        qa_phase, product_id, week, strategy_version,
+        strategy_context, case_brief, growth_context, drafts_dir,
+        extra_context=all_drafts
+    )
+    if qa_result:
+        run_manifest["outputs"][qa_phase["output"]] = f"drafts/{qa_phase['output']}"
+        print(f"  ✅ {qa_phase['output']}")
+    else:
+        print(f"  ❌ {qa_phase['name']} failed")
 
     # ─── Gate M2: Calendar + Quality ───
     print("\n--- Gate M2: Calendar + Quality ---")
