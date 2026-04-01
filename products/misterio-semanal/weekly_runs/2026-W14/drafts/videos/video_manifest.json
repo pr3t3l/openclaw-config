@@ -1,0 +1,84 @@
+{
+  "product_id": "misterio-semanal",
+  "week": "2026-W14",
+  "generated_at": "2026-03-31T22:51:39.850570",
+  "model": "veo-3.0-fast-generate-001",
+  "quality": "fast",
+  "videos": [
+    {
+      "video_id": "V-2026-W14-S1-A",
+      "source_script_id": "S1-A",
+      "creative_id": "DC-W14-S1A-PAREJA-MIEDO-RUTINA",
+      "persona_id": "parejas_noche_cita",
+      "file_path": "videos/V-2026-W14-S1-A.mp4",
+      "duration_seconds": 20,
+      "aspect_ratio": "9:16",
+      "cost_usd": 3.0,
+      "status": "generated",
+      "error": null
+    },
+    {
+      "video_id": "V-2026-W14-S2-A",
+      "source_script_id": "S2-A",
+      "creative_id": "DC-W14-S2A-TRUECRIME-IDENTIDAD",
+      "persona_id": "fans_true_crime_solo",
+      "file_path": "videos/V-2026-W14-S2-A.mp4",
+      "duration_seconds": 25,
+      "aspect_ratio": "9:16",
+      "cost_usd": 3.75,
+      "status": "generated",
+      "error": null
+    },
+    {
+      "video_id": "V-2026-W14-S3-A",
+      "source_script_id": "S3-A",
+      "creative_id": "DC-W14-S3A-GRUPO-PRECIO-PERSONA",
+      "persona_id": "anfitriones_noche_juegos",
+      "file_path": "videos/V-2026-W14-S3-A.mp4",
+      "duration_seconds": 18,
+      "aspect_ratio": "9:16",
+      "cost_usd": 2.6999999999999997,
+      "status": "generated",
+      "error": null
+    },
+    {
+      "video_id": "V-2026-W14-S4-A",
+      "source_script_id": "S4-A",
+      "creative_id": "DC-W14-S4A-TRUECRIME-CASO-ESPECIFICO",
+      "persona_id": "fans_true_crime_solo",
+      "file_path": "videos/V-2026-W14-S4-A.mp4",
+      "duration_seconds": 22,
+      "aspect_ratio": "9:16",
+      "cost_usd": 3.3,
+      "status": "generated",
+      "error": null
+    },
+    {
+      "video_id": "V-2026-W14-S5-A",
+      "source_script_id": "S5-A",
+      "creative_id": "DC-W14-S5A-PAREJA-POST-SERIE",
+      "persona_id": "parejas_noche_cita",
+      "file_path": "videos/V-2026-W14-S5-A.mp4",
+      "duration_seconds": 18,
+      "aspect_ratio": "9:16",
+      "cost_usd": 2.6999999999999997,
+      "status": "generated",
+      "error": null
+    },
+    {
+      "video_id": "V-2026-W14-S6-A",
+      "source_script_id": "S6-A",
+      "creative_id": "DC-W14-S6A-GRUPO-UNBOXING",
+      "persona_id": "anfitriones_noche_juegos",
+      "file_path": "videos/V-2026-W14-S6-A.mp4",
+      "duration_seconds": 20,
+      "aspect_ratio": "9:16",
+      "cost_usd": 3.0,
+      "status": "generated",
+      "error": null
+    }
+  ],
+  "total_cost_usd": 18.45,
+  "total_generated": 6,
+  "total_failed": 0
+}
