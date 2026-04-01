@@ -17,7 +17,7 @@ Usage:
   python3 finance.py status [category]
   python3 finance.py log-split '{"receipt_id":"...","transactions":[...]}'
   python3 finance.py taxes [year]
-  python3 finance.py setup
+  python3 finance.py setup ['{"name":"X","language":"es","cards":"Chase,Cash","tax":"none"}']
   python3 finance.py setup-sheets
   python3 finance.py new-tax-profile
   python3 finance.py update-tax-profile
@@ -263,8 +263,14 @@ def cmd_new_tax_profile():
     run_tax_setup()
 
 
-def cmd_update_tax_profile():
-    """Update existing tax profile — add/remove rules."""
+def cmd_update_tax_profile(action: str = None, *action_args):
+    """Update existing tax profile — add/remove rules.
+
+    Non-interactive usage:
+      finance.py update-tax-profile regenerate
+      finance.py update-tax-profile remove-rule 2
+      finance.py update-tax-profile add-keywords 1 "keyword1,keyword2,keyword3"
+    """
     tax_profile = C.get_tax_profile()
     if not tax_profile.get("enabled"):
         print("No tax profile exists. Run: finance.py new-tax-profile")
@@ -274,19 +280,35 @@ def cmd_update_tax_profile():
     print(f"Rules: {len(tax_profile.get('ask_rules', []))}")
     for i, rule in enumerate(tax_profile.get("ask_rules", []), 1):
         print(f"  {i}. {rule['trigger']} ({len(rule['keywords'])} keywords)")
-    print()
-    print("Options:")
-    print("  1. Regenerate entire profile with AI")
-    print("  2. Add a new rule")
-    print("  3. Remove a rule")
-    print("  4. Add keywords to existing rule")
-    choice = input("→ ").strip()
+
+    # Non-interactive mode
+    if action:
+        choice = {"regenerate": "1", "remove-rule": "3", "add-keywords": "4"}.get(action, action)
+    else:
+        print()
+        print("Options:")
+        print("  1. Regenerate entire profile with AI")
+        print("  2. Add a new rule")
+        print("  3. Remove a rule")
+        print("  4. Add keywords to existing rule")
+        try:
+            choice = input("→ ").strip()
+        except EOFError:
+            print("No input available. Use: finance.py update-tax-profile [regenerate|remove-rule N|add-keywords N 'kw1,kw2']")
+            return
 
     if choice == "1":
         from lib.setup_wizard import run_tax_setup
         run_tax_setup()
     elif choice == "3" and tax_profile.get("ask_rules"):
-        idx = int(input("Rule number to remove: ").strip()) - 1
+        if action_args:
+            idx = int(action_args[0]) - 1
+        else:
+            try:
+                idx = int(input("Rule number to remove: ").strip()) - 1
+            except EOFError:
+                print("No input. Usage: finance.py update-tax-profile remove-rule <number>")
+                return
         if 0 <= idx < len(tax_profile["ask_rules"]):
             removed = tax_profile["ask_rules"].pop(idx)
             config = C._load_tracker_config()
@@ -294,9 +316,17 @@ def cmd_update_tax_profile():
             C.save_tracker_config(config)
             print(f"Removed rule: {removed['trigger']}")
     elif choice == "4" and tax_profile.get("ask_rules"):
-        idx = int(input("Rule number to update: ").strip()) - 1
+        if len(action_args) >= 2:
+            idx = int(action_args[0]) - 1
+            new_kw = action_args[1]
+        else:
+            try:
+                idx = int(input("Rule number to update: ").strip()) - 1
+                new_kw = input("New keywords (comma-separated): ").strip()
+            except EOFError:
+                print("No input. Usage: finance.py update-tax-profile add-keywords <number> 'kw1,kw2'")
+                return
         if 0 <= idx < len(tax_profile["ask_rules"]):
-            new_kw = input("New keywords (comma-separated): ").strip()
             keywords = [k.strip().lower() for k in new_kw.split(",") if k.strip()]
             tax_profile["ask_rules"][idx]["keywords"].extend(keywords)
             config = C._load_tracker_config()
@@ -376,15 +406,19 @@ def cmd_modify_budget(category: str, amount: str):
     print(f"✅ {category} budget: ${old} → ${amount}")
 
 
-def cmd_remove_category(name: str):
-    """Remove a category (asks for confirmation)."""
+def cmd_remove_category(name: str, confirm: str = None):
+    """Remove a category. Pass --yes or 'yes' to skip confirmation."""
     config = C._load_tracker_config()
     cats = config.get("categories", {})
     if name not in cats:
         print(f"Category '{name}' not found.")
         return
-    confirm = input(f"Remove category '{name}'? (y/N) → ").strip().lower()
-    if confirm != "y":
+    if confirm not in ("yes", "--yes", "y"):
+        try:
+            confirm = input(f"Remove category '{name}'? (y/N) → ").strip().lower()
+        except EOFError:
+            confirm = "n"
+    if confirm not in ("y", "yes", "--yes"):
         print("Cancelled.")
         return
     del cats[name]
@@ -515,10 +549,22 @@ def cmd_add_goal(name: str, target: str, deadline: str = None):
     print(f"✅ Goal '{name}' added: ${target} by {deadline}")
 
 
-def cmd_setup():
-    """Run the first-time setup wizard."""
+def cmd_setup(answers_json: str = None):
+    """Run the first-time setup wizard.
+
+    Non-interactive mode (for LLM/bot usage):
+      python3 finance.py setup '{"name":"Alfredo","language":"es","currency":"USD","cards":"Chase,Discover,Cash","tax":"none"}'
+
+    Supported answer keys:
+      name, language (en/es), currency, cards (comma-separated),
+      spreadsheet_name, tax (none/rental/freelancer/business/other),
+      tax_description, tax_business_name, tax_schedule
+    """
     from lib.setup_wizard import run_setup_wizard
-    run_setup_wizard()
+    answers = None
+    if answers_json:
+        answers = json.loads(answers_json)
+    run_setup_wizard(answers=answers)
 
 
 def cmd_batch_receipts(file_path: str, account: str = "Chase"):
@@ -640,14 +686,14 @@ def main():
         "taxes": lambda: cmd_taxes(args[0] if args else None),
         "batch-receipts": lambda: cmd_batch_receipts(args[0], args[1] if len(args) > 1 else "Chase"),
         "setup-sheets": cmd_setup_sheets,
-        "setup": cmd_setup,
+        "setup": lambda: cmd_setup(args[0] if args else None),
         "new-tax-profile": cmd_new_tax_profile,
-        "update-tax-profile": cmd_update_tax_profile,
+        "update-tax-profile": lambda: cmd_update_tax_profile(*args),
         "current-tax-profile": cmd_current_tax_profile,
         "list-categories": cmd_list_categories,
         "add-category": lambda: cmd_add_category(args[0], args[1], args[2] if len(args) > 2 else "0.8"),
         "modify-budget": lambda: cmd_modify_budget(args[0], args[1]),
-        "remove-category": lambda: cmd_remove_category(args[0]),
+        "remove-category": lambda: cmd_remove_category(args[0], args[1] if len(args) > 1 else None),
         "list-payments": cmd_list_payments,
         "add-payment": lambda: cmd_add_payment(args[0], args[1], args[2], args[3] if len(args) > 3 else "Bank", args[4] if len(args) > 4 else "true"),
         "remove-payment": lambda: cmd_remove_payment(args[0]),

@@ -1,19 +1,16 @@
 {
   "user": {
-    "name": "Alfredo",
-    "language": "en",
-    "spreadsheet_name": "Alfredo Finance 2026",
+    "name": "TestUser",
+    "language": "es",
+    "spreadsheet_name": "TestUser Finance 2026",
     "currency": "USD",
     "cards": [
-      "Chase CC",
-      "Amex CC",
-      "Wells Fargo CC",
-      "Discovery CC",
-      "Citi CC",
-      "Wells Fargo Checking"
+      "Chase Visa",
+      "Discover",
+      "Cash"
     ],
     "setup_complete": true,
-    "created_at": "2026-04-01T17:22:07.500321"
+    "created_at": "2026-04-01T18:33:28.849795"
   },
   "categories": {
     "Groceries": {
@@ -76,51 +73,20 @@
     "expected_paycheck": 0
   },
   "tax": {
-    "enabled": true,
-    "business_type": "Airbnb",
-    "schedule_type": "E",
-    "business_name": "Airbnb",
-    "tax_categories": [
-      {
-        "id": "business_expense",
-        "label": "General Business Expense"
-      },
-      {
-        "id": "business_supplies",
-        "label": "Business Supplies"
-      }
-    ],
-    "ask_rules": [
-      {
-        "trigger": "Potential business purchase",
-        "keywords": [
-          "supply",
-          "supplies",
-          "equipment",
-          "tool",
-          "tools",
-          "professional",
-          "business"
-        ],
-        "tax_category": "business_expense"
-      }
-    ],
-    "never_ask": [
-      "food",
-      "groceries",
-      "clothing",
-      "medicine",
-      "entertainment",
-      "alcohol",
-      "toys"
-    ],
-    "generated_by": "basic_fallback",
-    "generated_at": "2026-04-01T17:24:32.927049"
+    "enabled": false,
+    "business_type": null,
+    "schedule_type": null,
+    "business_name": null,
+    "tax_categories": [],
+    "ask_rules": [],
+    "never_ask": [],
+    "generated_by": "setup_wizard",
+    "generated_at": "2026-04-01T18:33:28.849958"
   },
   "payments": [],
   "savings": [],
   "telemetry": {
-    "install_id": "2f3c9851-d473-4c5c-b2be-03df0f63f642",
+    "install_id": "b6c50deb-8d61-4ec6-b49f-cb84eecb842e",
     "enabled": true
   }
 }
