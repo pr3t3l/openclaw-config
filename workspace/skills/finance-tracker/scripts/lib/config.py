@@ -8,6 +8,32 @@ from pathlib import Path
 SKILL_DIR = Path(__file__).resolve().parent.parent.parent  # finance-tracker/
 CONFIG_DIR = SKILL_DIR / "config"
 SCRIPTS_DIR = SKILL_DIR / "scripts"
+WORKSPACE_DIR = SKILL_DIR.parent.parent  # ~/.openclaw/workspace/
+
+
+def read_user_md() -> dict:
+    """Read name and language from workspace USER.md (set by OpenClaw)."""
+    user_md = WORKSPACE_DIR / "USER.md"
+    result = {"name": None, "language": None}
+    if not user_md.exists():
+        return result
+    text = user_md.read_text()
+    for line in text.splitlines():
+        low = line.lower().strip()
+        if low.startswith("- **name:**") or low.startswith("**name:**"):
+            # Extract: "- **Name:** Alfredo Pretel (Alf)" → "Alfredo Pretel"
+            val = line.split(":**", 1)[-1].strip()
+            # Take first name only, remove parenthetical
+            val = val.split("(")[0].strip()
+            if val:
+                result["name"] = val.split()[0]  # first name
+        if "spanish" in low and "english" in low:
+            result["language"] = "es"  # bilingual → prefer Spanish
+        elif "spanish" in low or "español" in low:
+            result["language"] = "es"
+        elif "english" in low:
+            result["language"] = "en"
+    return result
 
 
 # ═══════════════════════════════════════════

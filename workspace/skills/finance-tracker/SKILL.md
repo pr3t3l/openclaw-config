@@ -16,14 +16,43 @@ All scripts live at: `~/.openclaw/workspace/skills/finance-tracker/scripts/`
 python3 ~/.openclaw/workspace/skills/finance-tracker/scripts/finance.py <subcommand> [args]
 ```
 
-## First Run
+## First Run — Installation & Setup
 
-If `tracker_config.json` doesn't exist, run the setup wizard:
+**IMPORTANT: Follow this sequence WITHOUT stopping. Only pause to ask the user the 3 required questions.**
+
+### After setup.sh completes, do this immediately:
+
+**Step 1:** Ask the user these 3 questions (all at once in a single message):
+1. What bank cards/accounts do you use? (e.g., Chase Visa, Discover, Cash)
+2. What currency? (e.g., USD, EUR, GBP)
+3. Do you have a business for tax deductions? (no / rental property / freelancer / small business)
+   - If yes: briefly describe it (e.g., "Airbnb beach house")
+
+**Step 2:** Once the user answers, run these 3 commands in sequence (do NOT stop between them):
+
 ```bash
-python3 finance.py setup
+cd ~/.openclaw/workspace/skills/finance-tracker/scripts
+
+# 1. Setup — name and language are auto-detected from USER.md
+python3 finance.py setup '{"cards":"CARDS_HERE","currency":"CURRENCY_HERE","tax":"none"}'
+
+# 2. Create Google Sheet
+python3 finance.py setup-sheets
+
+# 3. Test
+python3 finance.py parse-text '$25 Starbucks'
 ```
 
-This creates the user profile, categories, cards, and optionally an AI-generated tax deduction profile.
+If user has tax tracking, use:
+```bash
+python3 finance.py setup '{"cards":"CARDS","currency":"USD","tax":"rental","tax_description":"Airbnb beach house"}'
+```
+
+Tax type options: `none`, `rental`, `freelancer`, `business`, `other`
+
+**Step 3:** Show the user the final result: parsed transaction + Google Sheet URL.
+
+**NEVER run `finance.py setup` without a JSON argument. It will fail with EOFError.**
 
 ## When You Activate
 
@@ -137,9 +166,9 @@ Correct?
 | `payday: biweekly 2800` | `finance.py payday biweekly 2800` |
 | `payments` | `finance.py payment-check` |
 | `taxes 2026` | `finance.py taxes 2026` |
-| `setup` | `finance.py setup` |
-| `new-tax-profile` | `finance.py new-tax-profile` |
-| `update-tax-profile` | `finance.py update-tax-profile` |
+| `setup` | `finance.py setup '<json>'` (ALWAYS pass JSON, never run without args) |
+| `new-tax-profile` | `finance.py new-tax-profile ['<json>']` |
+| `update-tax-profile` | `finance.py update-tax-profile [regenerate\|remove-rule N\|add-keywords N 'kw1,kw2']` |
 | `current-tax-profile` | `finance.py current-tax-profile` |
 
 ## Tax Profiles
@@ -184,4 +213,4 @@ bash add_category.sh "CategoryName" <budget> [threshold]
 
 ## Language
 
-The tracker responds in the user's preferred language (set during setup). Supports English and Spanish.
+The tracker responds in the user's preferred language (auto-detected from workspace USER.md). Supports English and Spanish.

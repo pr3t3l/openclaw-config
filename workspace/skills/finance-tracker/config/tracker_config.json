@@ -1,16 +1,15 @@
 {
   "user": {
-    "name": "TestUser",
+    "name": "Alfredo",
     "language": "es",
-    "spreadsheet_name": "TestUser Finance 2026",
+    "spreadsheet_name": "Alfredo Finance 2026",
     "currency": "USD",
     "cards": [
       "Chase Visa",
-      "Discover",
       "Cash"
     ],
     "setup_complete": true,
-    "created_at": "2026-04-01T18:33:28.849795"
+    "created_at": "2026-04-01T19:38:48.072261"
   },
   "categories": {
     "Groceries": {
@@ -73,20 +72,51 @@
     "expected_paycheck": 0
   },
   "tax": {
-    "enabled": false,
-    "business_type": null,
-    "schedule_type": null,
+    "enabled": true,
+    "business_type": "Airbnb beach house",
+    "schedule_type": "Schedule E",
     "business_name": null,
-    "tax_categories": [],
-    "ask_rules": [],
-    "never_ask": [],
-    "generated_by": "setup_wizard",
-    "generated_at": "2026-04-01T18:33:28.849958"
+    "tax_categories": [
+      {
+        "id": "business_expense",
+        "label": "General Business Expense"
+      },
+      {
+        "id": "business_supplies",
+        "label": "Business Supplies"
+      }
+    ],
+    "ask_rules": [
+      {
+        "trigger": "Potential business purchase",
+        "keywords": [
+          "supply",
+          "supplies",
+          "equipment",
+          "tool",
+          "tools",
+          "professional",
+          "business"
+        ],
+        "tax_category": "business_expense"
+      }
+    ],
+    "never_ask": [
+      "food",
+      "groceries",
+      "clothing",
+      "medicine",
+      "entertainment",
+      "alcohol",
+      "toys"
+    ],
+    "generated_by": "basic_fallback",
+    "generated_at": "2026-04-01T19:39:48.068761"
   },
   "payments": [],
   "savings": [],
   "telemetry": {
-    "install_id": "b6c50deb-8d61-4ec6-b49f-cb84eecb842e",
+    "install_id": "8b145981-0c9a-4613-9fe6-3af8a6fee0bf",
     "enabled": true
   }
 }

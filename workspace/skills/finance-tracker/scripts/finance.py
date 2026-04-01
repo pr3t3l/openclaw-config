@@ -17,7 +17,7 @@ Usage:
   python3 finance.py status [category]
   python3 finance.py log-split '{"receipt_id":"...","transactions":[...]}'
   python3 finance.py taxes [year]
-  python3 finance.py setup ['{"name":"X","language":"es","cards":"Chase,Cash","tax":"none"}']
+  python3 finance.py setup '{"cards":"Chase,Cash","currency":"USD","tax":"none"}'
   python3 finance.py setup-sheets
   python3 finance.py new-tax-profile
   python3 finance.py update-tax-profile
@@ -257,10 +257,16 @@ def cmd_taxes(year: str = None):
     print("\n".join(lines))
 
 
-def cmd_new_tax_profile():
-    """Create a new tax profile via AI-powered wizard."""
+def cmd_new_tax_profile(answers_json: str = None):
+    """Create a new tax profile via AI-powered wizard.
+
+    Non-interactive: finance.py new-tax-profile '{"tax":"rental","tax_description":"Airbnb house"}'
+    """
     from lib.setup_wizard import run_tax_setup
-    run_tax_setup()
+    answers = None
+    if answers_json:
+        answers = json.loads(answers_json)
+    run_tax_setup(answers=answers)
 
 
 def cmd_update_tax_profile(action: str = None, *action_args):
@@ -552,13 +558,14 @@ def cmd_add_goal(name: str, target: str, deadline: str = None):
 def cmd_setup(answers_json: str = None):
     """Run the first-time setup wizard.
 
-    Non-interactive mode (for LLM/bot usage):
-      python3 finance.py setup '{"name":"User","language":"es","currency":"USD","cards":"Chase,Discover,Cash","tax":"none"}'
+    Name and language are auto-detected from workspace USER.md.
+    Only pass: cards, currency, tax type.
 
-    Supported answer keys:
-      name, language (en/es), currency, cards (comma-separated),
-      spreadsheet_name, tax (none/rental/freelancer/business/other),
-      tax_description, tax_business_name, tax_schedule
+    Non-interactive (for LLM/bot):
+      finance.py setup '{"cards":"Chase Visa,Discover,Cash","currency":"USD","tax":"none"}'
+
+    With tax:
+      finance.py setup '{"cards":"Chase,Cash","currency":"USD","tax":"rental","tax_description":"Airbnb house"}'
     """
     from lib.setup_wizard import run_setup_wizard
     answers = None
@@ -687,7 +694,7 @@ def main():
         "batch-receipts": lambda: cmd_batch_receipts(args[0], args[1] if len(args) > 1 else "Chase"),
         "setup-sheets": cmd_setup_sheets,
         "setup": lambda: cmd_setup(args[0] if args else None),
-        "new-tax-profile": cmd_new_tax_profile,
+        "new-tax-profile": lambda: cmd_new_tax_profile(args[0] if args else None),
         "update-tax-profile": lambda: cmd_update_tax_profile(*args),
         "current-tax-profile": cmd_current_tax_profile,
         "list-categories": cmd_list_categories,

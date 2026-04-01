@@ -10,78 +10,62 @@ from . import config as C
 def run_setup_wizard(answers: dict = None) -> dict:
     """Run the setup wizard. Returns the created config.
 
-    If answers dict is provided, runs non-interactively (for LLM/bot usage).
-    Expected keys: name, language (en/es), currency, cards (comma-separated or list),
-                   spreadsheet_name (optional), tax (none/rental/freelancer/business/other),
-                   tax_description (if tax != none), tax_business_name, tax_schedule
+    Reads name and language automatically from workspace USER.md.
+    Only requires: cards, currency, tax type (+ tax_description if applicable).
 
-    Steps:
-    1. Ask user's name
-    2. Ask preferred language (en/es)
-    3. Ask what cards/accounts they use
-    4. Ask if they have a business for tax deductions
-    5. If yes: ask business type -> AI generates tax profile
-    6. Save everything to tracker_config.json
-    7. Create Google Sheet with the right name
+    Non-interactive mode (pass JSON):
+      finance.py setup '{"cards":"Chase Visa,Discover,Cash","currency":"USD","tax":"none"}'
+
+    With tax:
+      finance.py setup '{"cards":"Chase,Cash","currency":"USD","tax":"rental","tax_description":"Airbnb house"}'
     """
     interactive = answers is None
+    if answers is None:
+        answers = {}
 
     print("=" * 50)
-    print("Finance Tracker — First Time Setup")
+    print("Finance Tracker — Setup")
     print("=" * 50)
     print()
 
-    # Step 1: Name
-    if interactive:
-        name = input("What's your first name? → ").strip() or "User"
-    else:
-        name = answers.get("name", "User")
-        print(f"Name: {name}")
+    # Auto-detect name and language from workspace USER.md
+    user_md = C.read_user_md()
+    name = answers.get("name") or user_md.get("name") or "User"
+    language = answers.get("language") or user_md.get("language") or "en"
+    print(f"Name: {name} (from USER.md)")
+    print(f"Language: {language}")
 
-    # Step 2: Language
-    if interactive:
-        print("\nPreferred language?")
-        print("  1. English")
-        print("  2. Español")
-        lang_choice = input("→ ").strip()
-        language = "es" if lang_choice == "2" else "en"
-    else:
-        language = answers.get("language", "en")
-        print(f"Language: {language}")
-
-    # Step 3: Currency
-    if interactive:
-        print(f"\nCurrency code (default: USD)?")
-        currency = input("→ ").strip().upper() or "USD"
-    else:
-        currency = answers.get("currency", "USD").upper()
-        print(f"Currency: {currency}")
-
-    # Step 4: Cards
-    if interactive:
+    # Cards — must be provided
+    if "cards" in answers:
+        cards_raw = answers["cards"]
+        if isinstance(cards_raw, list):
+            cards = cards_raw
+        else:
+            cards = [c.strip() for c in cards_raw.split(",")]
+    elif interactive:
         print(f"\nWhat bank cards/accounts do you use? (comma-separated)")
         print(f"  Example: Chase Visa, Discover, Cash")
         cards_input = input("→ ").strip()
         cards = [c.strip() for c in cards_input.split(",")] if cards_input else ["Card 1", "Cash"]
     else:
-        cards_raw = answers.get("cards", "Card 1, Cash")
-        if isinstance(cards_raw, list):
-            cards = cards_raw
-        else:
-            cards = [c.strip() for c in cards_raw.split(",")]
-        print(f"Cards: {', '.join(cards)}")
+        cards = ["Card 1", "Cash"]
+    print(f"Cards: {', '.join(cards)}")
 
-    # Step 5: Spreadsheet name
-    year = datetime.now().year
-    default_sheet = f"{name} Finance {year}"
-    if interactive:
-        print(f"\nGoogle Sheets name (default: {default_sheet})?")
-        sheet_name = input("→ ").strip() or default_sheet
+    # Currency — must be provided
+    if "currency" in answers:
+        currency = answers["currency"].upper()
+    elif interactive:
+        print(f"\nCurrency code (e.g. USD, EUR, GBP)?")
+        currency = input("→ ").strip().upper() or "USD"
     else:
-        sheet_name = answers.get("spreadsheet_name", default_sheet)
-        print(f"Spreadsheet: {sheet_name}")
+        currency = "USD"
+    print(f"Currency: {currency}")
 
-    # Save everything to tracker_config.json (single file)
+    # Spreadsheet name — auto-generated
+    year = datetime.now().year
+    sheet_name = answers.get("spreadsheet_name", f"{name} Finance {year}")
+
+    # Save base config
     config = {
         "user": {
             "name": name,
@@ -128,16 +112,18 @@ def run_setup_wizard(answers: dict = None) -> dict:
     C.save_json(C.CONFIG_DIR / "tracker_config.json", config)
     print(f"\n✅ Profile saved: {name}, {language}, {currency}")
 
-    # Step 6: Tax profile
+    # Tax profile
     print("\n" + "=" * 50)
     print("Tax Deduction Setup")
     print("=" * 50)
     print()
 
-    # Map non-interactive tax types to biz_choice numbers
     tax_type_map = {"none": "1", "rental": "2", "freelancer": "3", "business": "4", "other": "5"}
 
-    if interactive:
+    if "tax" in answers:
+        tax_type = answers["tax"].lower()
+        biz_choice = tax_type_map.get(tax_type, "1")
+    elif interactive:
         print("Do you have a business or side income where")
         print("some purchases might be tax-deductible?")
         print()
@@ -149,9 +135,7 @@ def run_setup_wizard(answers: dict = None) -> dict:
         print()
         biz_choice = input("→ ").strip()
     else:
-        tax_type = answers.get("tax", "none").lower()
-        biz_choice = tax_type_map.get(tax_type, "1")
-        print(f"Tax type: {tax_type} (option {biz_choice})")
+        biz_choice = "1"
 
     if biz_choice == "1":
         tax_profile = {
@@ -168,51 +152,43 @@ def run_setup_wizard(answers: dict = None) -> dict:
         config["tax"] = tax_profile
         C.save_json(C.CONFIG_DIR / "tracker_config.json", config)
         C.invalidate_config_cache()
-        print("\n✅ Tax tracking disabled. You can enable it later with: finance.py new-tax-profile")
+        print("✅ Tax tracking disabled. Enable later: finance.py new-tax-profile")
     else:
-        if interactive:
-            if biz_choice == "2":
-                biz_description = input("\nDescribe your rental property (e.g., 'Airbnb beach house in Florida'):\n→ ").strip()
-                default_schedule = "Schedule E"
-            elif biz_choice == "3":
-                biz_description = input("\nWhat kind of freelance/contract work? (e.g., 'web developer', 'graphic designer', 'consultant'):\n→ ").strip()
-                default_schedule = "Schedule C"
-            elif biz_choice == "4":
-                biz_description = input("\nDescribe your business (e.g., 'Etsy candle shop', 'auto repair', 'photography studio'):\n→ ").strip()
-                default_schedule = "Schedule C"
-            else:
-                biz_description = input("\nDescribe your business or income source:\n→ ").strip()
-                default_schedule = "Schedule C"
-            biz_name = input(f"\nBusiness name (optional, press Enter to skip):\n→ ").strip() or None
-            print(f"\nTax schedule (default: {default_schedule})?")
-            print("  Schedule C = self-employment / business income")
-            print("  Schedule E = rental property income")
-            print("  Other = enter your own")
-            schedule = input("→ ").strip() or default_schedule
-        else:
-            biz_description = answers.get("tax_description", "general business")
-            default_schedule = "Schedule E" if biz_choice == "2" else "Schedule C"
+        # Auto-assign schedule based on type
+        default_schedule = "Schedule E" if biz_choice == "2" else "Schedule C"
+
+        if "tax_description" in answers:
+            biz_description = answers["tax_description"]
             biz_name = answers.get("tax_business_name") or None
             schedule = answers.get("tax_schedule", default_schedule)
-            print(f"Tax description: {biz_description}")
-            print(f"Tax schedule: {schedule}")
-            if biz_name:
-                print(f"Business name: {biz_name}")
+        elif interactive:
+            prompts = {
+                "2": "Describe your rental property (e.g., 'Airbnb beach house in Florida'):",
+                "3": "What kind of freelance/contract work? (e.g., 'web developer', 'consultant'):",
+                "4": "Describe your business (e.g., 'Etsy candle shop', 'photography studio'):",
+                "5": "Describe your business or income source:",
+            }
+            biz_description = input(f"\n{prompts.get(biz_choice, prompts['5'])}\n→ ").strip()
+            biz_name = input(f"\nBusiness name (optional, Enter to skip):\n→ ").strip() or None
+            schedule = default_schedule
+        else:
+            biz_description = "general business"
+            biz_name = None
+            schedule = default_schedule
 
-        print(f"\nAI is generating your tax deduction profile for: {biz_description}...")
+        print(f"Tax: {biz_description} ({schedule})")
+        print(f"\nGenerating tax deduction profile with AI...")
         tax_profile = _ai_generate_tax_profile(biz_description, schedule, biz_name)
 
         if tax_profile:
             config["tax"] = tax_profile
             C.save_json(C.CONFIG_DIR / "tracker_config.json", config)
             C.invalidate_config_cache()
-            print(f"\n✅ Tax profile created with {len(tax_profile['ask_rules'])} deduction rules:")
+            print(f"\n✅ Tax profile: {len(tax_profile['ask_rules'])} deduction rules")
             for rule in tax_profile["ask_rules"]:
                 print(f"   • {rule['trigger']} ({len(rule['keywords'])} keywords)")
-            print(f"\n   Items that will NEVER be asked: {', '.join(tax_profile['never_ask'][:5])}...")
-            print(f"\n   You can update this anytime: finance.py update-tax-profile")
         else:
-            print("\n⚠️ AI generation failed. Creating basic profile — update later with: finance.py new-tax-profile")
+            print("\n⚠️ AI failed. Basic profile created — update later: finance.py new-tax-profile")
             tax_profile = _basic_tax_profile(biz_description, schedule, biz_name)
             config["tax"] = tax_profile
             C.save_json(C.CONFIG_DIR / "tracker_config.json", config)
@@ -221,7 +197,6 @@ def run_setup_wizard(answers: dict = None) -> dict:
     print("\n" + "=" * 50)
     print("✅ Setup complete!")
     print(f"   Spreadsheet: {sheet_name}")
-    print(f"   Next: run 'finance.py setup-sheets' to create the Google Sheet")
     print("=" * 50)
 
     # Track setup completion
@@ -232,51 +207,56 @@ def run_setup_wizard(answers: dict = None) -> dict:
     return config
 
 
-def run_tax_setup() -> dict | None:
-    """Run only the tax profile section of the wizard. Returns updated config."""
+def run_tax_setup(answers: dict = None) -> dict | None:
+    """Run only the tax profile section. Returns updated config.
+
+    Non-interactive: finance.py new-tax-profile '{"tax":"rental","tax_description":"Airbnb"}'
+    """
     config = C._load_tracker_config()
 
-    print("=" * 50)
-    print("Tax Deduction Profile Setup")
-    print("=" * 50)
-    print()
-    print("What type of business or side income do you have?")
-    print()
-    print("  1. Rental property (Airbnb, VRBO, long-term)")
-    print("  2. Freelancer / contractor")
-    print("  3. Small business / side hustle")
-    print("  4. Other (I'll describe it)")
-    print()
-    biz_choice = input("→ ").strip()
-
-    if biz_choice == "1":
-        biz_description = input("\nDescribe your rental property:\n→ ").strip()
-        default_schedule = "Schedule E"
-    elif biz_choice == "2":
-        biz_description = input("\nWhat kind of freelance/contract work?\n→ ").strip()
-        default_schedule = "Schedule C"
-    elif biz_choice == "3":
-        biz_description = input("\nDescribe your business:\n→ ").strip()
-        default_schedule = "Schedule C"
+    if answers:
+        tax_type_map = {"rental": "1", "freelancer": "2", "business": "3", "other": "4"}
+        tax_type = answers.get("tax", "other").lower()
+        biz_choice = tax_type_map.get(tax_type, "4")
+        biz_description = answers.get("tax_description", "general business")
+        biz_name = answers.get("tax_business_name") or None
+        default_schedule = "Schedule E" if biz_choice == "1" else "Schedule C"
+        schedule = answers.get("tax_schedule", default_schedule)
     else:
-        biz_description = input("\nDescribe your business or income source:\n→ ").strip()
-        default_schedule = "Schedule C"
+        print("=" * 50)
+        print("Tax Deduction Profile Setup")
+        print("=" * 50)
+        print()
+        print("What type of business or side income do you have?")
+        print()
+        print("  1. Rental property (Airbnb, VRBO, long-term)")
+        print("  2. Freelancer / contractor")
+        print("  3. Small business / side hustle")
+        print("  4. Other (I'll describe it)")
+        print()
+        biz_choice = input("→ ").strip()
 
-    biz_name = input(f"\nBusiness name (optional, press Enter to skip):\n→ ").strip() or None
+        prompts = {
+            "1": "Describe your rental property:",
+            "2": "What kind of freelance/contract work?",
+            "3": "Describe your business:",
+            "4": "Describe your business or income source:",
+        }
+        biz_description = input(f"\n{prompts.get(biz_choice, prompts['4'])}\n→ ").strip()
+        biz_name = input(f"\nBusiness name (optional, Enter to skip):\n→ ").strip() or None
+        default_schedule = "Schedule E" if biz_choice == "1" else "Schedule C"
+        schedule = default_schedule
 
-    print(f"\nTax schedule (default: {default_schedule})?")
-    schedule = input("→ ").strip() or default_schedule
-
-    print(f"\nAI is generating your tax deduction profile for: {biz_description}...")
+    print(f"\nGenerating tax deduction profile for: {biz_description}...")
     tax_profile = _ai_generate_tax_profile(biz_description, schedule, biz_name)
 
     if not tax_profile:
-        print("\n⚠️ AI generation failed. Creating basic profile.")
+        print("\n⚠️ AI failed. Basic profile created.")
         tax_profile = _basic_tax_profile(biz_description, schedule, biz_name)
 
     config["tax"] = tax_profile
     C.save_tracker_config(config)
-    print(f"\n✅ Tax profile created with {len(tax_profile.get('ask_rules', []))} deduction rules.")
+    print(f"\n✅ Tax profile: {len(tax_profile.get('ask_rules', []))} deduction rules.")
     return config
 
 
