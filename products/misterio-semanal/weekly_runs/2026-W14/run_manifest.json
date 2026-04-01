@@ -1,15 +1,15 @@
 {
   "product_id": "misterio-semanal",
   "run_id": "2026-W14",
-  "started_at": "2026-03-27T23:13:05.850735",
-  "strategy_version_used": "v1",
-  "status": "completed",
+  "started_at": "2026-03-31T22:03:00",
+  "strategy_version_used": "v2",
+  "status": "awaiting_gate_M2",
   "gates": {
     "M1_content": {
-      "status": "approved"
+      "status": "pending"
     },
     "M2_calendar_quality": {
-      "status": "approved"
+      "status": "pending"
     }
   },
   "outputs": {
@@ -17,10 +17,9 @@
     "meta_ads_copy_draft.json": "drafts/meta_ads_copy_draft.json",
     "email_sequence_draft.json": "drafts/email_sequence_draft.json",
     "publishing_calendar_draft.json": "drafts/publishing_calendar_draft.json",
+    "claim_lint_report.json": "claim_lint_report.json",
     "quality_report.json": "drafts/quality_report.json"
   },
   "cost_usd": 0.0,
-  "completed_at": "2026-03-27T23:15:59.168336",
-  "approved_at": "2026-03-27T23:16:48.422852",
-  "approved_by": "Alfredo"
+  "completed_at": "2026-03-31T22:35:11.599542"
 }

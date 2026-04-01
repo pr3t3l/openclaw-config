@@ -1,42 +1,270 @@
 {
+  "schema_version": "3.0",
   "product_id": "misterio-semanal",
   "run_id": "2026-W14",
-  "generated_at": "2026-04-01T00:00:00Z",
-  "strategy_version_used": "v1",
-  "ad_set": {
-    "campaign_objective": "conversions",
-    "target_audience_summary": "Mujeres y hombres hispanohablantes de 25-45 años, urbanos, consumidores habituales de true crime y misterio en podcasts/series/documentales, con interés en escape rooms, juegos de mesa y entretenimiento activo. Activos en Instagram y TikTok en horario nocturno (21:00-23:30). Buscan planes originales para hacer en pareja o con amigos desde casa sin salir ni gastar lo que cuesta un escape room físico.",
-    "variants": [
-      {
-        "variant_id": "AD-A",
-        "angle": "curiosity",
-        "headline": "Las cámaras no grabaron nada",
-        "primary_text": "Una pintura de Frida Kahlo desaparece del Museo Nacional en plena noche.\n\nLas cámaras de seguridad no muestran nada. El guardia nocturno jura que no vio a nadie. La restauradora de arte llegó temprano esa mañana.\n\nAlguien miente. Y tú tienes los archivos para descubrir quién.\n\n🔍 El Robo del Museo Nacional — nuevo caso disponible ahora.\nAcceso inmediato. Sin envíos. En español.\n\n¿Puedes resolverlo esta noche?",
-        "cta_button": "Shop Now",
-        "compliance_notes": "Ninguna afirmación restringida utilizada. El caso es ficción original; no se afirma que esté basado en hechos reales.",
-        "expected_strength": "El gancho de las cámaras que 'no grabaron nada' genera una pregunta abierta irresistible para fans de true crime. El misterio queda sin resolver en el copy, forzando el clic. Funciona especialmente bien en Reels y Stories donde los primeros 3 segundos son críticos."
-      },
-      {
-        "variant_id": "AD-B",
-        "angle": "emotional",
-        "headline": "¿Otra noche en el sofá?",
-        "primary_text": "Esta noche podrías estar resolviendo el robo de arte más desconcertante del año.\n\nUna Frida Kahlo robada. Tres sospechosos. Cero evidencia en cámara.\n\nDeclassified Cases te da los archivos clasificados, las declaraciones contradictorias y las pistas que la policía no supo leer. Tú decides quién es culpable.\n\n✅ 2 a 4 horas de investigación activa\n✅ Acceso inmediato tras la compra\n✅ Perfecto para jugar en pareja o con amigos\n✅ Menos de $10 por hora de entretenimiento\n\nDeja de ver cómo otros resuelven el crimen. Esta vez, el caso es tuyo.",
-        "cta_button": "Shop Now",
-        "compliance_notes": "La estimación de '2 a 4 horas' está respaldada por el diseño de la experiencia según brand_strategy. La comparación de precio por hora frente a escape rooms físicos es un claim permitido. No se usan superlativos no verificables.",
-        "expected_strength": "Apela directamente al pain point de alta intensidad: la rutina del sofá y la sensación de desperdiciar el tiempo libre. El contraste entre 'otra noche en el sofá' y 'resolver un robo de arte' activa el FOMO emocional. La lista de beneficios racionales cierra la objeción de precio y logística."
-      },
-      {
-        "variant_id": "AD-C",
-        "angle": "rational",
-        "headline": "Escape room: $50. Esto: $19.99",
-        "primary_text": "Un escape room para dos personas te cuesta $50 USD, dura 60 minutos y tienes que reservar con días de antelación.\n\nDeclassified Cases: $19.99, 2 a 4 horas de investigación, acceso inmediato esta noche, en español.\n\nNuestro nuevo caso — El Robo del Museo Nacional — incluye:\n📁 Archivos clasificados de la investigación\n🖼️ Fotografías de la escena del crimen\n📋 Declaraciones contradictorias de los sospechosos\n🗺️ Pistas que no cuadran\n\nUna pintura de Frida Kahlo ha desaparecido. Las cámaras no grabaron nada. Alguien dentro del museo sabe más de lo que dice.\n\n¿Tienes lo que se necesita para resolverlo?\n\nGarantía de satisfacción: si no cumple tus expectativas, te devolvemos el dinero.",
-        "cta_button": "Get Offer",
-        "compliance_notes": "La comparación de precio con escape rooms físicos ($50 por persona para 60 minutos) es un claim permitido y respaldado por datos de mercado en brand_strategy. La garantía de satisfacción está alineada con la estrategia de manejo de objeciones. No se usan cifras de clientes no verificadas.",
-        "expected_strength": "Ataca directamente la barrera de precio con una comparación racional concreta y verificable. El desglose de contenido del caso elimina la objeción '¿qué recibiré exactamente?', la barrera de mayor severidad identificada en el buyer persona. La garantía de satisfacción al final neutraliza el riesgo percibido de primera compra."
-      }
-    ]
-  },
-  "optimization_applied": [],
-  "kb_patterns_used": [],
+  "generated_at": "2026-03-31T22:03:37.906300",
+  "strategy_version_used": "v2",
+  "ad_sets": [
+    {
+      "ad_set_id": "ADSET-01",
+      "persona_id": "parejas_noche_cita",
+      "trigger_id": "viernes_tarde_tiktok",
+      "angle_id": "ANG-01",
+      "variants": [
+        {
+          "variant_id": "AD-01-A",
+          "creative_id": "DC-W14-01A",
+          "approach": "emotional",
+          "headline": "Esta noche no es Netflix",
+          "primary_text": "¿Otra vez el teléfono mientras la serie corre sola? Esta noche resuelvan un crimen juntos. Acceso inmediato.",
+          "description": "Caso de misterio digital para dos. 21 documentos, 4 sobres, 2-4 horas de investigación. $19.99 — menos que salir a cenar.",
+          "cta_text": "Descubrir el caso",
+          "landing_url": "/noche-cita-misterio-pareja",
+          "hypothesis": "El ángulo emocional de 'rutina vs. conexión real' activa la culpa del entretenimiento pasivo en parejas que se identifican con el scroll nocturno. Debería generar CTR alto en viernes por la tarde cuando el trigger de aburrimiento es máximo.",
+          "fear_neutralized": "FK-01 — duración y profundidad del caso comunicadas en descripción (2-4 horas, 21 documentos)",
+          "compliance_notes": "Ninguna. Todos los datos (21 documentos, 4 sobres, 2-4 horas, $19.99) provienen de verified_facts y weekly_case_brief.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "variant_id": "AD-01-B",
+          "creative_id": "DC-W14-01B",
+          "approach": "rational",
+          "headline": "Menos que dos cervezas",
+          "primary_text": "$19.99 para los dos. 4 sobres, 21 archivos, 2-4 horas de investigación activa. Acceso inmediato tras la compra.",
+          "description": "Un caso de misterio digital en español. Sin esperas, sin envíos. Compra ahora y en minutos están leyendo el primer archivo juntos.",
+          "cta_text": "Empezar esta noche",
+          "landing_url": "/noche-cita-misterio-pareja",
+          "hypothesis": "El argumento racional de precio vs. valor ataca directamente la barrera 'no sé si $19.99 vale la pena'. Mostrar el desglose concreto (4 sobres, 21 archivos) responde a LP-001: falta de claridad sobre qué se recibe. Debería mejorar la tasa de conversión post-clic.",
+          "fear_neutralized": "FK-05 — 'acceso inmediato tras la compra' y 'sin esperas, sin envíos' comunican disponibilidad instantánea",
+          "compliance_notes": "Precio $19.99 verificado. Datos de contenido (21 archivos, 4 sobres) provienen de weekly_case_brief y verified_facts. No se afirma garantía de devolución (no existe en product_brief).",
+          "strategy_version_used": "v2"
+        },
+        {
+          "variant_id": "AD-01-C",
+          "creative_id": "DC-W14-01C",
+          "approach": "urgency",
+          "headline": "Compra ahora, juegan hoy",
+          "primary_text": "Una científica muerta. Un medicamento retirado. 4 sospechosos. ¿Pueden resolverlo juntos esta noche?",
+          "description": "Caso 'The Miracle Withdrawal' — Cambridge, 2026. 21 documentos clasificados, 4 sobres, acceso inmediato. $19.99 para la pareja.",
+          "cta_text": "Ver el expediente",
+          "landing_url": "/noche-cita-misterio-pareja",
+          "hypothesis": "El gancho narrativo específico del caso activa la curiosidad inmediata y la urgencia de 'esta noche'. Usar detalles reales del caso (científica, medicamento, 4 sospechosos) crea intriga sin revelar la solución. Responde a OPT-W14-002: mostrar contenido real del caso para reducir fricción.",
+          "fear_neutralized": "FK-03 — los detalles del caso comunican profundidad narrativa real, no un juego superficial",
+          "compliance_notes": "Los detalles del caso (científica muerta, medicamento retirado, 4 sospechosos) provienen directamente de weekly_case_brief. No se afirma que es un caso real — es ficción. No se menciona garantía.",
+          "strategy_version_used": "v2"
+        }
+      ]
+    },
+    {
+      "ad_set_id": "ADSET-02",
+      "persona_id": "fans_true_crime_solo",
+      "trigger_id": "post_documental_podcast",
+      "angle_id": "ANG-02",
+      "variants": [
+        {
+          "variant_id": "AD-02-A",
+          "creative_id": "DC-W14-02A",
+          "approach": "aspiration",
+          "headline": "Deja de escuchar. Resuélvelo.",
+          "primary_text": "Escuchas true crime. Ves documentales. Ahora el expediente está en tus manos. En español. Acceso inmediato.",
+          "description": "21 documentos clasificados, 4 sobres con pistas, 2-4 horas de investigación activa. El caso que tú resuelves — $19.99.",
+          "cta_text": "Abrir el expediente",
+          "landing_url": "/juego-interactivo-true-crime-espanol",
+          "hypothesis": "El contraste 'espectadora vs. detective activa' activa la aspiración central de los fans de true crime que ya consumen contenido pasivo. El trigger post-podcast/documental es el momento de mayor receptividad. Debería generar CTR alto en audiencias con intereses en podcasts de crimen.",
+          "fear_neutralized": "FK-01 — '2-4 horas de investigación activa' y '21 documentos' comunican que no es algo que se resuelve en 20 minutos",
+          "compliance_notes": "Ninguna. Datos verificados. No se afirma que el caso es real.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "variant_id": "AD-02-B",
+          "creative_id": "DC-W14-02B",
+          "approach": "rational",
+          "headline": "21 archivos. 4 sobres. Tú decides.",
+          "primary_text": "Un medicamento milagroso. Una científica muerta en un accidente 'de trabajo'. 4 sospechosos. 21 documentos para analizar.",
+          "description": "Caso de misterio detectivesco en español. Formato digital, acceso inmediato, 2-4 horas de investigación. $19.99 por caso completo.",
+          "cta_text": "Investigar ahora",
+          "landing_url": "/juego-interactivo-true-crime-espanol",
+          "hypothesis": "El enfoque racional muestra exactamente qué se recibe (21 archivos, 4 sobres, detalles del caso) atacando LP-001 y OPT-W14-001. Para fans de true crime que valoran el realismo documental, ver el volumen de contenido real reduce la barrera '¿será suficientemente desafiante?'.",
+          "fear_neutralized": "FK-01 — volumen de contenido explícito responde a la duda sobre dificultad y duración",
+          "compliance_notes": "Detalles del caso provienen de weekly_case_brief. No se afirma que es un caso real. Datos de contenido verificados.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "variant_id": "AD-02-C",
+          "creative_id": "DC-W14-02C",
+          "approach": "social_proof",
+          "headline": "El podcast que tú resuelves",
+          "primary_text": "Archivos clasificados. Informes forenses. Testimonios. Todo en tus manos. En español. ¿Por dónde empiezas a investigar?",
+          "description": "Caso 'The Miracle Withdrawal' — Cambridge, 2026. Formato digital descargable. 21 documentos, 4 sobres. $19.99 — acceso inmediato.",
+          "cta_text": "Ver los archivos",
+          "landing_url": "/juego-interactivo-true-crime-espanol",
+          "hypothesis": "El frame 'podcast que tú resuelves' conecta directamente con el lenguaje mental de los fans de true crime y posiciona el producto como extensión natural de su consumo habitual. La pregunta '¿por dónde empiezas?' activa la curiosidad y la agencia del usuario. Responde a OPT-W14-003: segmentación hacia consumidores de podcasts de crimen.",
+          "fear_neutralized": "FK-03 — 'archivos clasificados, informes forenses, testimonios' comunica realismo y calidad narrativa sin fabricar testimonios de usuarios",
+          "compliance_notes": "No se usan testimonios de usuarios. Los tipos de documentos mencionados (informes forenses, testimonios) son consistentes con el contenido del caso según weekly_case_brief. No se afirma que son documentos reales de un crimen real.",
+          "strategy_version_used": "v2"
+        }
+      ]
+    },
+    {
+      "ad_set_id": "ADSET-03",
+      "persona_id": "anfitriones_noche_juegos",
+      "trigger_id": "planificacion_noche_sabado",
+      "angle_id": "ANG-03",
+      "variants": [
+        {
+          "variant_id": "AD-03-A",
+          "creative_id": "DC-W14-03A",
+          "approach": "aspiration",
+          "headline": "Esta vez no es UNO ni Catan",
+          "primary_text": "Esta noche tu grupo resuelve un asesinato. 4 sobres, 21 archivos, 2-4 horas de debate real. Menos de $4 por persona.",
+          "description": "Caso de misterio digital para 1-6 jugadores. Acceso inmediato, en español, sin instalaciones. $19.99 para todo el grupo.",
+          "cta_text": "Organizar la noche",
+          "landing_url": "/noche-juegos-misterio-grupo",
+          "hypothesis": "El contraste directo con juegos conocidos (UNO, Catan) activa el deseo del anfitrión de sorprender al grupo con algo nuevo. El desglose de precio por persona ($4) neutraliza la barrera de coste percibido. Debería funcionar bien 3-7 días antes del fin de semana cuando el anfitrión está en modo planificación.",
+          "fear_neutralized": "FK-01 — '4 sobres, 21 archivos, 2-4 horas de debate real' comunica duración y profundidad",
+          "compliance_notes": "El cálculo 'menos de $4 por persona' asume 5+ jugadores ($19.99 ÷ 5 = $3.99). Matemática verificable. Rango de jugadores (1-6) proviene de verified_facts.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "variant_id": "AD-03-B",
+          "creative_id": "DC-W14-03B",
+          "approach": "rational",
+          "headline": "Escape room: $180. Esto: $19.99",
+          "primary_text": "Para 6 personas. 21 documentos clasificados, 4 sobres, 2-4 horas. Acceso inmediato. Sin salir de casa. En español.",
+          "description": "Caso de misterio digital 'The Miracle Withdrawal'. Un medicamento retirado, una científica muerta, 4 sospechosos. ¿Quién lo hizo?",
+          "cta_text": "Descargarlo para el sábado",
+          "landing_url": "/noche-juegos-misterio-grupo",
+          "hypothesis": "La comparación de precio directa con escape room físico es el argumento racional más poderoso para este segmento. Mostrar el contenido específico del caso actual (medicamento, científica, 4 sospechosos) responde a OPT-W14-001 mostrando qué se recibe. El CTA con día específico crea urgencia sin ser artificial.",
+          "fear_neutralized": "FK-05 — 'acceso inmediato' y 'sin salir de casa' eliminan la barrera logística",
+          "compliance_notes": "La comparación de precio con escape room ($180 para 6 personas) es una estimación basada en rangos de mercado documentados en market_analysis ($15-35 por persona × 6 = $90-210). Se usa como referencia de categoría, no como dato exacto de un competidor específico. Verificar que la landing page no use este dato de forma engañosa.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "variant_id": "AD-03-C",
+          "creative_id": "DC-W14-03C",
+          "approach": "urgency",
+          "headline": "¿Qué hacemos este sábado?",
+          "primary_text": "Resuelvan juntos quién mató a la Dra. Ellison. 4 sobres, 21 archivos, 2-4 horas. $19.99 para todo el grupo. Acceso hoy.",
+          "description": "Caso de misterio digital en español para 1-6 jugadores. Sin instalaciones, sin esperas. Compra ahora y empiezan esta noche.",
+          "cta_text": "Ver el caso",
+          "landing_url": "/noche-juegos-misterio-grupo",
+          "hypothesis": "La pregunta '¿qué hacemos este sábado?' replica el trigger exacto del buyer persona Rodrigo cuando está en el grupo de WhatsApp buscando proponer algo. Usar el nombre real de la víctima del caso crea especificidad narrativa que diferencia del copy genérico. La urgencia 'acceso hoy' activa la compra impulsiva.",
+          "fear_neutralized": "FK-02 — 'sin instalaciones, sin esperas' y el proceso simple de compra-acceso comunican facilidad de configuración",
+          "compliance_notes": "El nombre 'Dra. Ellison' proviene de weekly_case_brief (personaje ficticio). No se afirma que es un caso real. Datos de contenido verificados.",
+          "strategy_version_used": "v2"
+        }
+      ]
+    },
+    {
+      "ad_set_id": "ADSET-04",
+      "persona_id": "compradores_regalo",
+      "trigger_id": "busqueda_regalo_true_crime",
+      "angle_id": "ANG-12",
+      "variants": [
+        {
+          "variant_id": "AD-04-A",
+          "creative_id": "DC-W14-04A",
+          "approach": "emotional",
+          "headline": "El regalo que van a usar hoy",
+          "primary_text": "No más regalos que acumulan polvo. Regala un caso de misterio — descarga inmediata, en español, $19.99. Envía por WhatsApp.",
+          "description": "Experiencia de detective para fans del true crime. 21 documentos, 4 sobres, 2-4 horas de investigación. Acceso inmediato tras la compra.",
+          "cta_text": "Regalar ahora",
+          "landing_url": "/regalo-experiencia-misterio",
+          "hypothesis": "El contraste emocional 'regalo que acumula polvo vs. regalo que se usa hoy' activa la motivación del comprador de regalo que quiere demostrar que conoce al destinatario. La mención de WhatsApp como canal de entrega reduce la fricción del regalo digital para un público que puede no estar familiarizado con regalos digitales.",
+          "fear_neutralized": "FK-04 — 'para fans del true crime' ayuda al comprador a confirmar que es el regalo correcto para su destinatario",
+          "compliance_notes": "No se afirma garantía de satisfacción (no existe en product_brief). No se fabrican testimonios. El proceso de entrega por WhatsApp debe estar disponible en la landing page para que el anuncio sea preciso.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "variant_id": "AD-04-B",
+          "creative_id": "DC-W14-04B",
+          "approach": "rational",
+          "headline": "Regalo digital, entrega inmediata",
+          "primary_text": "Caso de misterio en español. 21 archivos, 4 sobres, 2-4 horas. $19.99. Compra ahora, tu regalo llega hoy mismo.",
+          "description": "Perfecto para quien ama el true crime, los escape rooms o las series de crimen. Formato digital descargable. Sin esperas de envío.",
+          "cta_text": "Ver opciones de regalo",
+          "landing_url": "/regalo-experiencia-misterio",
+          "hypothesis": "El enfoque racional con énfasis en 'entrega inmediata' ataca directamente la barrera del comprador de regalo de última hora. Mostrar el contenido concreto (21 archivos, 4 sobres) responde a la duda '¿se verá como un regalo de verdad?' con datos reales. La descripción del perfil del destinatario ayuda a confirmar la idoneidad del regalo.",
+          "fear_neutralized": "FK-05 — 'sin esperas de envío' y 'tu regalo llega hoy mismo' eliminan la ansiedad del regalo de última hora",
+          "compliance_notes": "Datos de contenido verificados. No se fabrican testimonios ni garantías.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "variant_id": "AD-04-C",
+          "creative_id": "DC-W14-04C",
+          "approach": "social_proof",
+          "headline": "Regala una experiencia, no una cosa",
+          "primary_text": "Para quien ya vio todo en Netflix y escucha true crime. Un caso completo para resolver: 21 archivos, 4 sobres, acceso inmediato.",
+          "description": "Caso de misterio digital en español. $19.99 para toda la experiencia. Envío digital instantáneo — perfecto para regalar hoy.",
+          "cta_text": "Regalar la experiencia",
+          "landing_url": "/regalo-experiencia-misterio",
+          "hypothesis": "El frame 'experiencia vs. cosa' reencuadra el precio como inversión en un momento memorable, no en un objeto. La descripción del destinatario ('quien ya vio todo en Netflix y escucha true crime') actúa como espejo de reconocimiento para el comprador — si su destinatario encaja, la decisión de compra se simplifica. Responde a la barrera FK-04.",
+          "fear_neutralized": "FK-04 — la descripción específica del tipo de destinatario ayuda al comprador a confirmar que el regalo es apropiado",
+          "compliance_notes": "No se fabrican testimonios. 'Caso real para resolver' se refiere a la experiencia de investigación, no a un crimen real — verificar que la landing page aclare que es ficción.",
+          "strategy_version_used": "v2"
+        }
+      ]
+    },
+    {
+      "ad_set_id": "ADSET-05",
+      "persona_id": "fans_true_crime_solo",
+      "trigger_id": "busqueda_true_crime_interactivo",
+      "angle_id": "ANG-16",
+      "variants": [
+        {
+          "variant_id": "AD-05-A",
+          "creative_id": "DC-W14-05A",
+          "approach": "emotional",
+          "headline": "Modo detective: activado",
+          "primary_text": "Una científica muerta. Un medicamento retirado. Cambridge, 2026. El expediente está en tus manos. ¿Lo resuelves?",
+          "description": "21 documentos clasificados, 4 sobres con pistas, 2-4 horas de investigación. En español. $19.99 — acceso inmediato.",
+          "cta_text": "Activar el caso",
+          "landing_url": "/juego-interactivo-true-crime-espanol",
+          "hypothesis": "El frame 'modo detective activado' conecta con la identidad aspiracional del fan de true crime que se imagina como investigadora. Los detalles específicos del caso actual (científica, medicamento, Cambridge) crean inmersión inmediata y diferencia del copy genérico. Responde a OPT-W14-002: mostrar contenido real del caso para reducir fricción.",
+          "fear_neutralized": "FK-03 — los detalles específicos del caso comunican profundidad narrativa y autenticidad",
+          "compliance_notes": "Detalles del caso provienen de weekly_case_brief. No se afirma que es un caso real. Datos verificados.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "variant_id": "AD-05-B",
+          "creative_id": "DC-W14-05B",
+          "approach": "urgency",
+          "headline": "Tu próximo caso te espera",
+          "primary_text": "Terminaste el podcast. Terminaste la serie. Ahora el expediente es tuyo. 21 archivos, 4 sobres. Acceso en minutos.",
+          "description": "Caso de misterio detectivesco en español. $19.99 por caso completo. Sin esperas, sin instalaciones. Empieza a investigar esta noche.",
+          "cta_text": "Abrir mi expediente",
+          "landing_url": "/juego-interactivo-true-crime-espanol",
+          "hypothesis": "Captura el momento exacto del trigger post-consumo: el usuario que acaba de terminar un podcast o serie y busca más. La progresión 'terminaste X, terminaste Y, ahora el expediente es tuyo' crea continuidad narrativa con el hábito existente. La urgencia 'esta noche' activa la compra impulsiva en el momento de mayor receptividad.",
+          "fear_neutralized": "FK-05 — 'acceso en minutos' y 'sin esperas' eliminan cualquier fricción de tiempo entre el deseo y el disfrute",
+          "compliance_notes": "Ninguna. Datos verificados. No se fabrican testimonios ni garantías.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "variant_id": "AD-05-C",
+          "creative_id": "DC-W14-05C",
+          "approach": "rational",
+          "headline": "En español. Sin esperas. $19.99.",
+          "primary_text": "Hunt A Killer: en inglés. Unsolved Case Files: en inglés. Este caso: en español, descarga inmediata, $19.99 completo.",
+          "description": "21 documentos, 4 sobres, 2-4 horas de investigación activa. Para jugar solo, en pareja o en grupo (1-6 jugadores). Acceso inmediato.",
+          "cta_text": "Ver el caso en español",
+          "landing_url": "/juego-interactivo-true-crime-espanol",
+          "hypothesis": "La comparación directa con competidores en inglés activa el diferenciador de idioma para fans de true crime hispanohablantes que ya conocen los productos anglosajones pero no tienen una alternativa en español. Responde a OPT-W14-003: segmentación hacia audiencias que buscan contenido en español. El formato racional con datos concretos reduce la fricción de decisión.",
+          "fear_neutralized": "FK-01 — '21 documentos, 4 sobres, 2-4 horas' comunica que el contenido es sustancial y comparable a los competidores mencionados",
+          "compliance_notes": "La afirmación sobre Hunt A Killer y Unsolved Case Files operando en inglés está documentada en market_analysis y brand_strategy. No se fabrican datos de competidores. No se afirma exclusividad absoluta ('el único') para evitar problemas de verificación.",
+          "strategy_version_used": "v2"
+        }
+      ]
+    }
+  ],
+  "optimization_applied": [
+    "OPT-W14-001: Variantes AD-01-B, AD-02-B, AD-03-B incluyen desglose explícito de contenido del caso (21 archivos, 4 sobres, 2-4 horas) en primary_text y description para reducir fricción de decisión post-clic",
+    "OPT-W14-002: Variantes AD-01-C, AD-02-C, AD-03-C y AD-05-A usan detalles narrativos específicos del caso actual (Dra. Ellison, medicamento retirado, Cambridge) como hook de unboxing narrativo para mostrar contenido real",
+    "OPT-W14-003: ADSET-05 creado específicamente para segmentación hacia consumidores de true crime en español con ángulo de comparación con competidores en inglés (AD-05-C)"
+  ],
+  "kb_patterns_used": [
+    "WP-001: Hooks de curiosidad y pregunta retórica mantenidos en variantes emocionales (AD-01-A, AD-02-A, AD-03-A, AD-05-A) dado CTR de 2.10% en W14",
+    "LP-001: Todas las variantes racionales incluyen desglose explícito de contenido para reducir la barrera 'no sé qué recibiré' identificada como causa principal de baja conversión (1.29%)",
+    "LP-002: Se diversifican los enfoques (emocional, racional, urgencia, social_proof) para identificar cuál mejora la tasa de conversión post-clic más allá del CTR"
+  ],
   "status": "draft"
 }

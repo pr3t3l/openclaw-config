@@ -1,89 +1,398 @@
 {
+  "schema_version": "3.0",
   "product_id": "misterio-semanal",
   "run_id": "2026-W14",
-  "generated_at": "2026-04-01T00:00:00Z",
-  "strategy_version_used": "v1",
-  "scripts": [
+  "generated_at": "2026-03-31T22:30:00.000000",
+  "strategy_version_used": "v2",
+  "lanes": [
     {
-      "script_id": "S1",
-      "platform": "reels_tiktok",
-      "theme": "Las cámaras no muestran nada — el robo imposible",
-      "duration_seconds": 28,
-      "variants": [
+      "lane_id": "LANE-01",
+      "persona_id": "parejas_noche_cita",
+      "trigger_id": "viernes_tarde_tiktok",
+      "angle_id": "ANG-01",
+      "hypothesis": "Las parejas que están scrolleando TikTok el viernes por la tarde responden a un gancho que nombra directamente su rutina de Netflix pasivo. El miedo al aburrimiento compartido es más poderoso que la promesa de diversión. Testar si el gancho de 'miedo a la rutina' supera al gancho de 'promesa de conexión'.",
+      "scripts": [
         {
-          "variant": "A",
-          "hook": "Una pintura de Frida Kahlo desapareció del museo... y las cámaras de seguridad no grabaron absolutamente nada.",
-          "body": "El guardia nocturno estaba en su puesto. La restauradora trabajó hasta tarde. El director juró que el sistema era infalible. Pero esta mañana, el marco estaba vacío. Alguien mintió. ¿Puedes descubrir quién?",
-          "cta": "El caso 'El Robo del Museo Nacional' ya está disponible. Enlace en bio. Primer caso desde $19.99.",
-          "visual_direction": "Plano lento de un marco vacío en una pared de museo iluminada. Corte a archivos clasificados desplegados sobre una mesa: fotografías de la escena, declaraciones contradictorias, plano del museo con marcas. Manos hojeando los documentos.",
-          "hook_type": "shock",
-          "tone": "Intrigante y directo"
+          "script_id": "S1-A",
+          "creative_id": "DC-W14-S1A-PAREJA-MIEDO-RUTINA",
+          "platform": "tiktok",
+          "duration_seconds": 20,
+          "hook": {
+            "text": "Otra vez Netflix. Otra vez el teléfono. Otra vez dormidos antes de las 11.",
+            "visual": "Plano de sofá con dos personas mirando pantallas distintas, cara aburrida, luz azul de pantalla en la oscuridad",
+            "emotion": "Reconocimiento incómodo — 'eso somos nosotros'"
+          },
+          "body": {
+            "text": "Esta noche resuelvan juntos quién mató a la científica. 21 documentos clasificados. 4 sobres con pistas reales. 2 a 4 horas sin tocar el teléfono. Acceso inmediato — $19.99.",
+            "tension": "¿Y si esta noche puede ser diferente sin salir de casa?",
+            "value_prop": "Una noche de cita activa e interactiva por menos que una pizza, descarga inmediata"
+          },
+          "cta": {
+            "text": "Compra ahora, juegan esta noche. Link en bio.",
+            "visual": "Texto grande en pantalla: 'JUEGAN ESTA NOCHE · $19.99 · ACCESO INMEDIATO'",
+            "landing_url": "/noche-cita-misterio-pareja"
+          },
+          "text_overlay": "¿Otra noche de Netflix? → Esta noche: resuelvan un asesinato juntos · $19.99 · Acceso inmediato",
+          "audio_notes": "Silencio tenso primeros 2 segundos, luego música de suspenso suave tipo thriller, voz en off femenina en español neutro latinoamericano",
+          "fear_neutralized": "FK-01 — miedo a que sea aburrido: se comunica duración 2-4 horas y 21 documentos reales",
+          "proof_element": "21 documentos clasificados y 4 sobres con pistas — contenido tangible visible en pantalla",
+          "testing_variable": "Hook de MIEDO A LA RUTINA (nombrar el problema) vs. S1-B que usa hook de PROMESA DE CONEXIÓN",
+          "strategy_version_used": "v2"
         },
         {
-          "variant": "B",
-          "hook": "POV: son las 3 de la mañana, una pintura de Frida Kahlo acaba de desaparecer y tú eres la única detective disponible.",
-          "body": "Las cámaras no muestran nada. El guardia dice que no vio nada. La restauradora dice que se fue a las diez. Pero los archivos cuentan otra historia. Tienes los documentos, tienes las pistas. Ahora solo falta que las conectes.",
-          "cta": "Consigue el caso completo hoy. Archivos reales, pistas auténticas, entrega inmediata. Enlace en bio.",
-          "visual_direction": "Pantalla oscura con texto 'Son las 3:00 AM'. Corte a manos abriendo un sobre con archivos del caso. Primer plano de una fotografía de la escena del crimen con una nota encima que dice 'CLASIFICADO'.",
-          "hook_type": "storytelling",
-          "tone": "Cómplice e inmersivo"
+          "script_id": "S1-B",
+          "creative_id": "DC-W14-S1B-PAREJA-PROMESA-CONEXION",
+          "platform": "tiktok",
+          "duration_seconds": 20,
+          "hook": {
+            "text": "¿Cuándo fue la última vez que los dos estuvieron completamente presentes, sin teléfono, durante dos horas?",
+            "visual": "Pareja mirándose a los ojos sobre una mesa con documentos desplegados, expresión de concentración y diversión",
+            "emotion": "Nostalgia + deseo — querer recuperar esa conexión real"
+          },
+          "body": {
+            "text": "Un caso de misterio real. 21 archivos clasificados. 4 sobres con pistas. Dos horas resolviendo juntos quién mató a la científica de Cambridge. Descarga inmediata — $19.99.",
+            "tension": "La respuesta al caso y a la pregunta del hook está a un clic de distancia",
+            "value_prop": "Conexión real en pareja, entretenimiento activo, acceso inmediato desde casa"
+          },
+          "cta": {
+            "text": "Descárgalo ahora y juegan esta noche. Link en bio.",
+            "visual": "Texto en pantalla: 'UNA NOCHE QUE VAN A RECORDAR · $19.99 · LINK EN BIO'",
+            "landing_url": "/noche-cita-misterio-pareja"
+          },
+          "text_overlay": "2-4 horas sin teléfono · 21 documentos · 4 sobres · $19.99 · Acceso inmediato",
+          "audio_notes": "Música cálida y misteriosa, tono íntimo, voz en off masculina en español neutro latinoamericano",
+          "fear_neutralized": "FK-01 — miedo a que sea aburrido: se comunica duración y volumen de contenido explícitamente",
+          "proof_element": "Mostrar documentos reales del caso desplegados sobre la mesa — evidencia visual del contenido",
+          "testing_variable": "Hook de PROMESA DE CONEXIÓN (aspiracional) vs. S1-A que usa hook de MIEDO A LA RUTINA (problema)",
+          "strategy_version_used": "v2"
         }
       ]
     },
     {
-      "script_id": "S2",
-      "platform": "reels_tiktok",
-      "theme": "De oyente pasiva a detective activa — el giro que cambia todo",
-      "duration_seconds": 22,
-      "variants": [
+      "lane_id": "LANE-02",
+      "persona_id": "fans_true_crime_solo",
+      "trigger_id": "post_documental_podcast",
+      "angle_id": "ANG-02",
+      "hypothesis": "Los fans de true crime que acaban de terminar un podcast o documental están en el pico de su energía detectivesca. El gancho más efectivo es el que activa su identidad como 'detective' en lugar de venderles un producto. Testar si el gancho de IDENTIDAD ('tú eres la detective') supera al gancho de UNBOXING DIGITAL (mostrar los archivos).",
+      "scripts": [
         {
-          "variant": "A",
-          "hook": "Llevas años escuchando casos de true crime. Esta vez, el caso lo resuelves tú.",
-          "body": "Nada de esperar a que el podcaster revele al culpable. Nada de ver cómo otros investigan. Tú tienes los archivos, tú analizas las pistas, tú decides quién robó la Frida Kahlo. Y si te equivocas... el asesino gana.",
-          "cta": "Deja de escuchar el caso. Esta vez, resuélvelo tú. Enlace en bio.",
-          "visual_direction": "Split screen: izquierda, persona con auriculares escuchando un podcast con cara de frustración. Derecha, la misma persona con archivos del caso desplegados en la mesa, cara de concentración y emoción. Texto superpuesto: 'Antes / Ahora'.",
-          "hook_type": "emotional",
-          "tone": "Provocador e inteligente"
+          "script_id": "S2-A",
+          "creative_id": "DC-W14-S2A-TRUECRIME-IDENTIDAD",
+          "platform": "instagram_reels",
+          "duration_seconds": 25,
+          "hook": {
+            "text": "Escuchas true crime. Analizas cada detalle. Sabes quién es culpable antes del final. Ahora deja de ser espectadora.",
+            "visual": "Mano femenina pausando un podcast en el teléfono, luego abriendo un archivo de caso en pantalla",
+            "emotion": "Reconocimiento de identidad + activación — 'eso soy yo, y hay algo más para mí'"
+          },
+          "body": {
+            "text": "The Miracle Withdrawal: una científica muere en un laboratorio de Cambridge. La empresa retira el medicamento milagroso antes de que nadie pueda preguntar por qué. 21 documentos clasificados. 4 sobres con pistas. Tú decides quién lo hizo. En español. Acceso inmediato.",
+            "tension": "¿Puedes resolver lo que la policía no puede ver?",
+            "value_prop": "Pasar de consumir true crime pasivamente a ser la investigadora principal del caso"
+          },
+          "cta": {
+            "text": "Tu expediente te espera. $19.99. Link en bio.",
+            "visual": "Texto: 'MODO DETECTIVE: ACTIVADO · $19.99 · ACCESO INMEDIATO'",
+            "landing_url": "/juego-interactivo-true-crime-espanol"
+          },
+          "text_overlay": "Deja de escuchar → empieza a resolver · 21 documentos · 4 sobres · En español · $19.99",
+          "audio_notes": "Audio de podcast de true crime que se pausa abruptamente, luego música de suspenso tipo documental criminal, voz en off femenina segura y directa",
+          "fear_neutralized": "FK-03 — miedo a que sea infantil: se menciona Cambridge, laboratorio biotech, documentos clasificados — tono adulto y serio",
+          "proof_element": "Mostrar capturas reales de los documentos del caso — informe policial, archivos del laboratorio — para demostrar calidad y realismo",
+          "testing_variable": "Hook de IDENTIDAD ('deja de ser espectadora') vs. S2-B que usa hook de UNBOXING DIGITAL (mostrar archivos)",
+          "strategy_version_used": "v2"
         },
         {
-          "variant": "B",
-          "hook": "¿Otra noche escuchando cómo otros resuelven el crimen? O podrías resolverlo tú esta noche.",
-          "body": "Un cuadro de Frida Kahlo. Un guardia sospechoso. Una restauradora con coartada débil. Y tú, con todos los archivos clasificados sobre la mesa. Dos a cuatro horas de investigación pura. En español. Desde tu sofá.",
-          "cta": "Tu primer caso te espera. Desde $19.99, entrega inmediata. Enlace en bio.",
-          "visual_direction": "Plano cenital de una mesa con archivos del caso bien desplegados: fotos, mapas, declaraciones. Manos de dos personas señalando pistas y debatiendo. Ambiente de noche, luz cálida de lámpara.",
-          "hook_type": "question",
-          "tone": "Directo y cómplice"
+          "script_id": "S2-B",
+          "creative_id": "DC-W14-S2B-TRUECRIME-UNBOXING",
+          "platform": "instagram_reels",
+          "duration_seconds": 25,
+          "hook": {
+            "text": "Esto es lo que recibes cuando compras un caso de misterio en español.",
+            "visual": "Manos abriendo el archivo digital en pantalla — se ven documentos del caso, fotografías de escena, mapas del laboratorio",
+            "emotion": "Curiosidad inmediata + deseo — 'quiero eso'"
+          },
+          "body": {
+            "text": "21 archivos clasificados. Informe policial. Mapa del laboratorio. Registros de seguridad. Fotografías de escena. 4 sobres con pistas. El caso: una científica muerta en Cambridge y una empresa que quiere enterrar la verdad. Tú resuelves quién lo hizo. En español. $19.99. Acceso inmediato.",
+            "tension": "Cada archivo que aparece en pantalla revela más de lo que el espectador esperaba",
+            "value_prop": "Contenido de calidad profesional — no un juego de mesa, un expediente real"
+          },
+          "cta": {
+            "text": "Descarga tu expediente ahora. Link en bio.",
+            "visual": "Texto: 'TODO ESTO POR $19.99 · DESCARGA INMEDIATA · LINK EN BIO'",
+            "landing_url": "/juego-interactivo-true-crime-espanol"
+          },
+          "text_overlay": "21 documentos · 4 sobres · Informe policial · Mapa del lab · En español · $19.99",
+          "audio_notes": "Sonido de páginas pasándose, música de suspenso suave, voz en off que describe cada documento con tono de narrador de documental",
+          "fear_neutralized": "FK-01 — miedo a que sea aburrido o poco contenido: mostrar visualmente la cantidad y calidad de archivos elimina esa duda",
+          "proof_element": "Unboxing digital real — mostrar los documentos reales del caso en pantalla es la prueba más directa del valor del producto",
+          "testing_variable": "Hook de UNBOXING DIGITAL (mostrar qué recibes) vs. S2-A que usa hook de IDENTIDAD ('deja de ser espectadora')",
+          "strategy_version_used": "v2"
         }
       ]
     },
     {
-      "script_id": "S3",
-      "platform": "reels_tiktok",
-      "theme": "El plan de viernes que nadie más ha hecho todavía",
-      "duration_seconds": 25,
-      "variants": [
+      "lane_id": "LANE-03",
+      "persona_id": "anfitriones_noche_juegos",
+      "trigger_id": "reel_grupo_resolviendo",
+      "angle_id": "ANG-03",
+      "hypothesis": "El anfitrión de noche de juegos responde al deseo de ser recordado como 'el que trajo el mejor plan'. El gancho más efectivo es el que activa su ego de anfitrión. Testar si el gancho de PRECIO POR PERSONA ('menos de $4 por cabeza') supera al gancho de REACCIÓN DEL GRUPO (mostrar a amigos jugando).",
+      "scripts": [
         {
-          "variant": "A",
-          "hook": "Este viernes no pusimos Netflix. Resolvimos un robo de arte en el Museo Nacional.",
-          "body": "Llegaron los archivos clasificados: declaraciones contradictorias, fotos de la escena, un mapa con marcas que no cuadraban. Tardamos tres horas en atrapar al culpable. Fue la mejor noche en meses. Y costó menos que una pizza.",
-          "cta": "El caso 'El Robo del Museo Nacional' ya está disponible. Consíguelo hoy. Enlace en bio.",
-          "visual_direction": "Estilo vlog casual: pareja en el sofá con archivos del caso sobre la mesa, caras de concentración y risas. Corte a primer plano de los documentos. Corte a reacción de sorpresa cuando descubren una pista. Texto final: '3 horas. $19.99. Sin salir de casa.'",
-          "hook_type": "storytelling",
-          "tone": "Cálido, auténtico y con gancho de FOMO"
+          "script_id": "S3-A",
+          "creative_id": "DC-W14-S3A-GRUPO-PRECIO-PERSONA",
+          "platform": "tiktok",
+          "duration_seconds": 18,
+          "hook": {
+            "text": "Un escape room para 6 personas: $180. Este caso de misterio para 6 personas: $19.99.",
+            "visual": "Split screen: a la izquierda precio de escape room físico, a la derecha precio del caso digital",
+            "emotion": "Sorpresa + alivio — 'espera, ¿en serio?'"
+          },
+          "body": {
+            "text": "Menos de $4 por persona. 21 documentos clasificados. 4 sobres con pistas. Un científico muerto en Cambridge y cuatro sospechosos. Tu grupo resuelve el caso esta noche. Descarga inmediata. Sin salir de casa.",
+            "tension": "La comparación de precio hace que $19.99 parezca ridículamente accesible",
+            "value_prop": "Misma adrenalina que un escape room, a menos del 12% del precio, desde el sofá"
+          },
+          "cta": {
+            "text": "Descárgalo para este sábado. Link en bio.",
+            "visual": "Texto: 'MENOS DE $4 POR PERSONA · $19.99 PARA TODO EL GRUPO · LINK EN BIO'",
+            "landing_url": "/noche-juegos-misterio-grupo"
+          },
+          "text_overlay": "Escape room: $180 para 6 → Este caso: $19.99 para 6 · Menos de $4 por persona · Acceso inmediato",
+          "audio_notes": "Sonido de caja registradora al mostrar el precio del escape room, luego música upbeat de misterio, voz en off masculina directa y entusiasta",
+          "fear_neutralized": "FK-05 — miedo a no poder usarlo hoy: 'descarga inmediata' y 'esta noche' comunicados explícitamente",
+          "proof_element": "Comparación de precio verificable — escape room físico LATAM $15-35 USD por persona vs. $19.99 para todo el grupo",
+          "testing_variable": "Hook de PRECIO POR PERSONA (comparación numérica) vs. S3-B que usa hook de REACCIÓN DEL GRUPO (social proof visual)",
+          "strategy_version_used": "v2"
         },
         {
-          "variant": "B",
-          "hook": "El plan de fin de semana que ninguno de tus amigos ha hecho todavía: resolver un robo de arte.",
-          "body": "Una pintura de Frida Kahlo desaparece. Tres sospechosos. Archivos clasificados, pistas falsas y un giro que no te esperas. Puedes jugarlo en pareja, con amigos por videollamada o tú solo contra el caso. En español. Esta noche.",
-          "cta": "Menos scroll. Más investigación. Enlace en bio para conseguir el caso.",
-          "visual_direction": "Rápida secuencia de planos: manos abriendo archivos del caso, primer plano de una fotografía de la escena del crimen, dos personas señalando un mapa, expresión de '¡eureka!'. Ritmo dinámico con cortes rápidos. Texto superpuesto al final: 'Disponible ahora. Entrega inmediata.'",
-          "hook_type": "curiosity",
-          "tone": "Energético y cómplice"
+          "script_id": "S3-B",
+          "creative_id": "DC-W14-S3B-GRUPO-REACCION",
+          "platform": "instagram_reels",
+          "duration_seconds": 22,
+          "hook": {
+            "text": "Esta vez no es UNO. Esta vez no es Catan. Esta vez tu grupo va a hablar de esta noche durante meses.",
+            "visual": "Grupo de 5 amigos alrededor de una mesa con documentos desplegados, uno señala algo con emoción, los demás reaccionan",
+            "emotion": "FOMO + aspiración — 'quiero que mi grupo tenga eso'"
+          },
+          "body": {
+            "text": "Un caso de misterio real. Una científica muerta en un laboratorio de Cambridge. 21 archivos clasificados. 4 sobres con pistas. Tu grupo decide quién lo hizo. $19.99 para todos. Acceso inmediato. Guía del facilitador incluida — empiezan en 10 minutos.",
+            "tension": "La imagen del grupo completamente enganchado hace que el espectador quiera replicarlo",
+            "value_prop": "Ser el anfitrión que trajo el plan más memorable del año, sin esfuerzo de organización"
+          },
+          "cta": {
+            "text": "Sé el anfitrión que siempre sorprende. Link en bio.",
+            "visual": "Texto: 'EL PLAN QUE TU GRUPO VA A PEDIR REPETIR · $19.99 · LINK EN BIO'",
+            "landing_url": "/noche-juegos-misterio-grupo"
+          },
+          "text_overlay": "Esta vez no es UNO → Esta vez resuelven un asesinato · $19.99 para todo el grupo · Guía incluida",
+          "audio_notes": "Música de misterio con energía grupal, risas de fondo auténticas, voz en off que habla como si fuera un amigo recomendando el plan",
+          "fear_neutralized": "FK-02 — miedo a que sea complicado de organizar: 'guía del facilitador incluida, empiezan en 10 minutos' elimina esa barrera",
+          "proof_element": "Mostrar al grupo real interactuando con los documentos — reacciones genuinas de sorpresa y debate como prueba de engagement",
+          "testing_variable": "Hook de REACCIÓN DEL GRUPO (social proof visual) vs. S3-A que usa hook de PRECIO POR PERSONA (comparación numérica)",
+          "strategy_version_used": "v2"
+        }
+      ]
+    },
+    {
+      "lane_id": "LANE-04",
+      "persona_id": "fans_true_crime_solo",
+      "trigger_id": "busqueda_true_crime_interactivo",
+      "angle_id": "ANG-14",
+      "hypothesis": "Los fans de true crime que buscan activamente experiencias interactivas responden al gancho del realismo documental — quieren sentir que tienen archivos reales en sus manos. El caso de Cambridge con biotech y documentos corporativos es perfecto para este ángulo. Testar si el hook del CASO ESPECÍFICO (nombrar el caso) supera al hook de LOS ARCHIVOS (mostrar los documentos).",
+      "scripts": [
+        {
+          "script_id": "S4-A",
+          "creative_id": "DC-W14-S4A-TRUECRIME-CASO-ESPECIFICO",
+          "platform": "tiktok",
+          "duration_seconds": 22,
+          "hook": {
+            "text": "Cambridge, marzo 2026. Una científica muere en un laboratorio. La empresa retira el medicamento milagroso. El expediente está desclasificado.",
+            "visual": "Texto apareciendo como si fuera un informe policial, con el logo de Cambridge PD y la fecha del caso",
+            "emotion": "Intriga inmediata — 'necesito saber más'"
+          },
+          "body": {
+            "text": "Cuatro sospechosos. El CFO con millones en juego. La asistente que estaba ahí esa noche. El jefe de seguridad con acceso a todo. La directora de calidad que firmó los documentos. 21 archivos. 4 sobres. Tú decides. En español. $19.99.",
+            "tension": "Nombrar a los cuatro sospechosos con sus motivos específicos crea urgencia de resolver",
+            "value_prop": "Un caso real con narrativa profesional, en español, acceso inmediato"
+          },
+          "cta": {
+            "text": "El expediente te espera. Acceso inmediato. Link en bio.",
+            "visual": "Texto: 'EXPEDIENTE DESCLASIFICADO · $19.99 · ACCESO INMEDIATO'",
+            "landing_url": "/juego-interactivo-true-crime-espanol"
+          },
+          "text_overlay": "Cambridge · Marzo 2026 · 4 sospechosos · 21 archivos · 4 sobres · En español · $19.99",
+          "audio_notes": "Sonido de máquina de escribir al aparecer el texto, música de thriller corporativo, voz en off masculina grave tipo narrador de documental criminal",
+          "fear_neutralized": "FK-03 — miedo a que sea superficial: nombrar detalles específicos del caso (Cambridge, biotech, motivos concretos) demuestra profundidad narrativa",
+          "proof_element": "Detalles específicos del caso — ciudad real, fecha, ocupaciones reales de los sospechosos — demuestran la calidad y seriedad de la narrativa",
+          "testing_variable": "Hook del CASO ESPECÍFICO (detalles narrativos del caso) vs. S4-B que usa hook de PREGUNTA RETÓRICA (¿puedes resolverlo?)",
+          "strategy_version_used": "v2"
+        },
+        {
+          "script_id": "S4-B",
+          "creative_id": "DC-W14-S4B-TRUECRIME-PREGUNTA-RETORICA",
+          "platform": "tiktok",
+          "duration_seconds": 22,
+          "hook": {
+            "text": "¿Puedes resolver un asesinato con solo los archivos del caso? Porque el expediente acaba de ser desclasificado.",
+            "visual": "Carpeta de archivos abriéndose en pantalla con sello de 'CLASIFICADO' tachado, documentos cayendo",
+            "emotion": "Desafío directo + curiosidad — 'claro que puedo, muéstrame'"
+          },
+          "body": {
+            "text": "Una científica muerta en Cambridge. Una empresa que retira su medicamento milagroso antes de que nadie pregunte por qué. 21 documentos clasificados. 4 sobres con pistas. Informe forense. Registros de seguridad. Tú eres la investigadora. En español. 2 a 4 horas de investigación real.",
+            "tension": "El desafío del hook crea necesidad de demostrar que sí puede resolverlo",
+            "value_prop": "Experiencia de detective real con archivos auténticos, en español, duración suficiente para sentir logro"
+          },
+          "cta": {
+            "text": "Acepta el caso. $19.99. Acceso inmediato. Link en bio.",
+            "visual": "Texto: '¿ACEPTAS EL CASO? · $19.99 · ACCESO INMEDIATO · LINK EN BIO'",
+            "landing_url": "/juego-interactivo-true-crime-espanol"
+          },
+          "text_overlay": "¿Puedes resolverlo? · 21 documentos · Informe forense · Registros de seguridad · En español · $19.99",
+          "audio_notes": "Sonido de sello de 'clasificado' al inicio, música de suspenso que escala, voz en off femenina con tono de reto directo",
+          "fear_neutralized": "FK-01 — miedo a que sea demasiado fácil: '2 a 4 horas de investigación real' y la complejidad del caso biotech comunican dificultad adecuada",
+          "proof_element": "Mencionar informe forense y registros de seguridad como tipos específicos de documentos — demuestra profundidad y autenticidad del contenido",
+          "testing_variable": "Hook de PREGUNTA RETÓRICA (desafío directo) vs. S4-A que usa hook del CASO ESPECÍFICO (detalles narrativos)",
+          "strategy_version_used": "v2"
+        }
+      ]
+    },
+    {
+      "lane_id": "LANE-05",
+      "persona_id": "parejas_noche_cita",
+      "trigger_id": "post_netflix_true_crime",
+      "angle_id": "ANG-23",
+      "hypothesis": "Las parejas que acaban de terminar una serie de crimen están en el momento de mayor receptividad. El gancho más efectivo es el que captura ese momento exacto y lo redirige hacia la acción. Testar si el gancho POST-SERIE ('acaban de terminar') supera al gancho de COMPARACIÓN DE PRECIO ('menos que una pizza').",
+      "scripts": [
+        {
+          "script_id": "S5-A",
+          "creative_id": "DC-W14-S5A-PAREJA-POST-SERIE",
+          "platform": "instagram_reels",
+          "duration_seconds": 18,
+          "hook": {
+            "text": "¿Terminaron la serie y quieren más? Esta vez el caso lo resuelven ustedes.",
+            "visual": "Pantalla de Netflix mostrando 'siguiente episodio' pero la persona cierra la app y abre algo diferente",
+            "emotion": "Transición perfecta — captura el momento exacto del trigger"
+          },
+          "body": {
+            "text": "Un caso de misterio real en Cambridge. Una científica muerta. Una empresa con secretos. 21 archivos clasificados. 4 sobres con pistas. Dos horas resolviendo juntos quién lo hizo. $19.99. Descarga inmediata — juegan esta noche.",
+            "tension": "La energía del true crime que acaban de consumir se redirige hacia acción inmediata",
+            "value_prop": "Continuar la energía del true crime pero de forma activa e interactiva, en pareja"
+          },
+          "cta": {
+            "text": "Descárgalo ahora. Juegan esta noche. Link en bio.",
+            "visual": "Texto: 'DE ESPECTADORES A DETECTIVES · $19.99 · ESTA NOCHE · LINK EN BIO'",
+            "landing_url": "/noche-cita-misterio-pareja"
+          },
+          "text_overlay": "¿Terminaron la serie? → Ahora resuelvan el caso ustedes · $19.99 · Acceso inmediato",
+          "audio_notes": "Sonido de Netflix cerrándose, transición a música de suspenso, voz en off cómplice como si fuera un amigo sugiriendo el plan",
+          "fear_neutralized": "FK-05 — miedo a esperar: 'descarga inmediata' y 'juegan esta noche' capturan el impulso del momento",
+          "proof_element": "21 archivos clasificados y 4 sobres — volumen de contenido que justifica las 2 horas de duración prometidas",
+          "testing_variable": "Hook POST-SERIE (capturar el momento exacto del trigger) vs. S5-B que usa hook de COMPARACIÓN DE PRECIO",
+          "strategy_version_used": "v2"
+        },
+        {
+          "script_id": "S5-B",
+          "creative_id": "DC-W14-S5B-PAREJA-PRECIO-PIZZA",
+          "platform": "instagram_reels",
+          "duration_seconds": 18,
+          "hook": {
+            "text": "Una pizza para dos: $25. Una noche de misterio que van a recordar: $19.99.",
+            "visual": "Split screen: pizza a la izquierda, documentos del caso a la derecha",
+            "emotion": "Sorpresa + reencuadre — 'es más barato que cenar y más memorable'"
+          },
+          "body": {
+            "text": "21 archivos clasificados. 4 sobres con pistas. Un caso de asesinato en Cambridge que resuelven juntos desde el sofá. 2 a 4 horas de entretenimiento activo. Sin salir. Sin reservas. Acceso inmediato.",
+            "tension": "La comparación hace que $19.99 parezca una decisión obvia",
+            "value_prop": "Más barato que cenar fuera, más memorable, más interactivo, desde casa"
+          },
+          "cta": {
+            "text": "Compra ahora, juegan esta noche. Link en bio.",
+            "visual": "Texto: 'MÁS BARATO QUE UNA PIZZA · MÁS MEMORABLE · $19.99 · LINK EN BIO'",
+            "landing_url": "/noche-cita-misterio-pareja"
+          },
+          "text_overlay": "Pizza para dos: $25 → Noche de misterio: $19.99 · 2-4 horas · Acceso inmediato",
+          "audio_notes": "Música ligera y cómplice, tono de conversación entre amigos, voz en off femenina con humor sutil",
+          "fear_neutralized": "FK-01 — miedo a que no valga la pena el precio: la comparación con la pizza reencuadra $19.99 como una decisión de valor obvio",
+          "proof_element": "Comparación de precio verificable y relatable — pizza para dos como benchmark mental del espectador",
+          "testing_variable": "Hook de COMPARACIÓN DE PRECIO (reencuadre económico) vs. S5-A que usa hook POST-SERIE (capturar el momento del trigger)",
+          "strategy_version_used": "v2"
+        }
+      ]
+    },
+    {
+      "lane_id": "LANE-06",
+      "persona_id": "anfitriones_noche_juegos",
+      "trigger_id": "tiktok_noche_juegos",
+      "angle_id": "ANG-08",
+      "hypothesis": "El anfitrión que ya está buscando algo para su noche de juegos necesita ver el contenido del producto para superar la barrera de 'no sé qué recibiré'. El unboxing digital es la herramienta más directa para esto. Testar si el hook de UNBOXING (mostrar qué incluye) supera al hook de GIRO NARRATIVO (el momento de sorpresa del caso).",
+      "scripts": [
+        {
+          "script_id": "S6-A",
+          "creative_id": "DC-W14-S6A-GRUPO-UNBOXING",
+          "platform": "tiktok",
+          "duration_seconds": 20,
+          "hook": {
+            "text": "Esto es lo que recibe tu grupo cuando compran este caso de misterio.",
+            "visual": "Manos abriendo archivos digitales en pantalla — se ven documentos, mapas, fotografías del laboratorio",
+            "emotion": "Curiosidad + deseo — 'quiero eso para mi grupo'"
+          },
+          "body": {
+            "text": "Sobre A: el informe policial y los sospechosos. Sobre B: los registros de seguridad del laboratorio. Sobre C: el informe forense. Sobre R: la resolución. 21 documentos en total. Un caso de asesinato en Cambridge que tu grupo resuelve esta noche. $19.99 para todos. Acceso inmediato.",
+            "tension": "Revelar el contenido sobre a sobre crea anticipación de lo que viene",
+            "value_prop": "Contenido profesional y estructurado — el anfitrión sabe exactamente qué va a recibir y cómo funciona"
+          },
+          "cta": {
+            "text": "Descárgalo para este sábado. $19.99. Link en bio.",
+            "visual": "Texto: '4 SOBRES · 21 DOCUMENTOS · $19.99 PARA TODO EL GRUPO · LINK EN BIO'",
+            "landing_url": "/noche-juegos-misterio-grupo"
+          },
+          "text_overlay": "4 sobres · 21 documentos · Informe forense · Registros de seguridad · $19.99 para el grupo",
+          "audio_notes": "Sonido de páginas pasándose, música de misterio con energía, voz en off que describe cada sobre con entusiasmo contenido",
+          "fear_neutralized": "FK-02 — miedo a que sea complicado: mostrar la estructura de 4 sobres demuestra que está organizado y es fácil de seguir",
+          "proof_element": "Mostrar los documentos reales del caso — la mejor prueba de calidad y valor es ver el producto directamente",
+          "testing_variable": "Hook de UNBOXING DIGITAL (mostrar el contenido) vs. S6-B que usa hook de GIRO NARRATIVO (el momento de sorpresa)",
+          "strategy_version_used": "v2"
+        },
+        {
+          "script_id": "S6-B",
+          "creative_id": "DC-W14-S6B-GRUPO-GIRO-NARRATIVO",
+          "platform": "tiktok",
+          "duration_seconds": 20,
+          "hook": {
+            "text": "Pensaban que sabían quién era el asesino. Luego abrieron el sobre número tres. Todo cambió.",
+            "visual": "Manos abriendo un sobre con el número 3, expresión de shock del grupo alrededor de la mesa",
+            "emotion": "Intriga máxima + FOMO — 'necesito saber qué hay en ese sobre'"
+          },
+          "body": {
+            "text": "Un caso de misterio real. Una científica muerta en un laboratorio de Cambridge. Cuatro sospechosos. 21 documentos. 4 sobres con giros que no van a ver venir. $19.99 para todo tu grupo. Sin salir de casa. Acceso inmediato esta noche.",
+            "tension": "El gancho del giro narrativo mantiene la atención hasta el CTA",
+            "value_prop": "Una experiencia grupal con narrativa que sorprende — no un puzzle predecible"
+          },
+          "cta": {
+            "text": "¿Tu grupo puede resolverlo? Link en bio. $19.99.",
+            "visual": "Texto: '¿PUEDEN RESOLVERLO? · $19.99 PARA TODO EL GRUPO · ACCESO INMEDIATO'",
+            "landing_url": "/noche-juegos-misterio-grupo"
+          },
+          "text_overlay": "4 sobres · Giros que no ven venir · $19.99 para todo el grupo · Esta noche",
+          "audio_notes": "Música de suspenso que escala al abrir el sobre, sonido de shock, luego música upbeat, voz en off con tono de tráiler cinematográfico",
+          "fear_neutralized": "FK-01 — miedo a que sea predecible o aburrido: el giro narrativo demuestra que el caso tiene profundidad y sorpresas reales",
+          "proof_element": "La reacción genuina del grupo al abrir el sobre — la emoción visible es la mejor prueba de que el producto engancha",
+          "testing_variable": "Hook de GIRO NARRATIVO (sorpresa del caso) vs. S6-A que usa hook de UNBOXING DIGITAL (mostrar el contenido)",
+          "strategy_version_used": "v2"
         }
       ]
     }
   ],
-  "optimization_applied": [],
-  "kb_patterns_used": [],
+  "optimization_applied": [
+    "OPT-W14-002: Se crearon variantes de formato unboxing digital (S2-B, S6-A) que muestran los archivos reales del caso para reducir la barrera de 'no sé qué recibiré' identificada como causa principal de baja conversión en W14",
+    "OPT-W14-001: Todos los scripts incluyen explícitamente el número de documentos (21), número de sobres (4), duración (2-4 horas) y 'acceso inmediato' para comunicar el valor del producto antes del CTA",
+    "OPT-W14-003: Los scripts de LANE-02 y LANE-04 están específicamente dirigidos a fans de true crime con segmentación por intereses en podcasts de crimen y series de thriller, alineado con la acción de refinamiento de audiencia"
+  ],
+  "kb_patterns_used": [
+    "WP-001: Se mantienen hooks de curiosidad y pregunta retórica (S4-B, S5-A) que demostraron CTR de 2.10% en W14 — patrón tentativo confirmado como punto de partida",
+    "LP-001: Se añade contenido visual de los archivos del caso en todos los scripts para reducir la fricción de decisión de compra identificada como causa de baja conversión (1.29%)",
+    "LP-002: Se diversifican los ángulos creativos para mejorar la calidad del tráfico y la tasa de conversión post-clic, no solo el CTR"
+  ],
   "status": "draft"
 }

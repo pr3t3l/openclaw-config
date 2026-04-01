@@ -1,121 +1,118 @@
 {
+  "schema_version": "3.0",
   "product_id": "misterio-semanal",
   "run_id": "2026-W14",
-  "generated_at": "2026-04-01T00:00:00Z",
-  "overall_status": "fail",
+  "generated_at": "2026-04-01T12:00:00Z",
+  "overall_status": "pass_with_warnings",
+  "critical_issues_count": 0,
+  "warning_count": 8,
   "assets": [
     {
-      "asset_type": "reels_scripts",
-      "asset_ref": "reels_scripts_draft.json",
-      "status": "fail",
-      "issues": [
-        {
-          "severity": "critical",
-          "type": "factual_error",
-          "description": "Se introduce un asesino en un caso cuyo briefing trata sobre un robo de arte; esto cambia la naturaleza del caso y puede confundir al público.",
-          "location": "S2 variante A, body: \"Y si te equivocas... el asesino gana.\"",
-          "fix_suggestion": "Sustituir \"el asesino gana\" por una formulación alineada con el caso, por ejemplo: \"y si te equivocas, el ladrón se sale con la suya\"."
-        },
-        {
-          "severity": "warning",
-          "type": "compliance",
-          "description": "La frase \"Archivos reales\" puede implicar que el caso está basado en hechos reales o en documentación real, una zona riesgosa dado que esa afirmación está restringida si no es verificable.",
-          "location": "S1 variante B, cta: \"Archivos reales, pistas auténticas, entrega inmediata.\"",
-          "fix_suggestion": "Cambiar por \"archivos clasificados\", \"documentos del caso\" o \"archivos inmersivos\" para evitar implicaciones de factualidad real."
-        },
-        {
-          "severity": "warning",
-          "type": "compliance",
-          "description": "La afirmación \"costó menos que una pizza\" es una comparación de precio poco verificable y variable según mercado, lo que puede percibirse como exageración o mensaje engañoso.",
-          "location": "S3 variante A, body: \"Fue la mejor noche en meses. Y costó menos que una pizza.\"",
-          "fix_suggestion": "Reemplazar por una comparación permitida y respaldada, como \"costó menos que un escape room físico para dos\" o simplemente mantener \"$19.99\"."
-        },
-        {
-          "severity": "note",
-          "type": "tone_drift",
-          "description": "El tono de \"la única detective disponible\" roza lo teatral/gimmicky y puede sentirse menos auténtico que la voz cómplice e inteligente definida por la marca.",
-          "location": "S1 variante B, hook",
-          "fix_suggestion": "Hacer el hook más sobrio e intrigante, centrado en el misterio y no en una exageración narrativa."
-        }
-      ]
-    },
-    {
-      "asset_type": "meta_ads",
-      "asset_ref": "meta_ads_copy_draft.json",
+      "asset_type": "meta_ad",
+      "asset_ref": "AD-04-C",
+      "persona_id": "compradores_regalo",
       "status": "flagged",
       "issues": [
         {
-          "severity": "critical",
-          "type": "factual_error",
-          "description": "Se atribuye al director del museo una insistencia sobre el seguro, dato que no aparece en el briefing semanal. Añade un elemento narrativo no respaldado que puede desalinear la promoción del caso real.",
-          "location": "AD-A, primary_text: \"...El director del museo que insiste en que el seguro lo cubre todo\" no está en el anuncio, pero en otros activos sí se instala ese rasgo; el set creativo debería mantener consistencia estricta con el briefing.",
-          "fix_suggestion": "Mantener solo los hechos confirmados del briefing: cuadro desaparecido, cámaras sin evidencia visible y tres personajes clave con sus roles."
+          "severity": "warning",
+          "type": "forbidden_claim",
+          "description": "El copy 'Caso real para resolver' puede implicar que el caso está basado en hechos reales. product_brief prohíbe explícitamente afirmar 'basado en hechos reales' y mencionar 'caso real' en referencia al crimen.",
+          "location": "compliance_notes: 'Caso real para resolver se refiere a la experiencia de investigación, no a un crimen real'",
+          "fix_suggestion": "Cambiar a 'Un caso de misterio para resolver' o 'Una experiencia detectivesca completa'. La nota de compliance reconoce el riesgo pero no lo resuelve en el copy visible."
         },
         {
           "severity": "warning",
-          "type": "compliance",
-          "description": "La frase \"las pistas que la policía no supo leer\" introduce un detalle no respaldado por el briefing y sugiere superioridad frente a una autoridad ficticia sin necesidad.",
-          "location": "AD-B, primary_text",
-          "fix_suggestion": "Cambiar por \"las pistas que tendrás que conectar\" o \"las pistas del expediente\"."
-        },
-        {
-          "severity": "warning",
-          "type": "compliance",
-          "description": "La comparación de escape room usa \"$50 USD\" como cifra cerrada, mientras la estrategia la presenta como rango de mercado. La simplificación puede ser válida en ads, pero conviene evitar precisión excesiva no universal.",
-          "location": "AD-C, headline y primary_text",
-          "fix_suggestion": "Usar \"más barato que un escape room físico para dos\" o \"un escape room físico para dos puede costar mucho más\"."
-        },
-        {
-          "severity": "note",
-          "type": "tone_drift",
-          "description": "El tono general está bien alineado, pero AD-C es más utilitario y comparativo que intrigante; puede perder parte de la personalidad de marca si no va acompañado de visuales inmersivos.",
-          "location": "AD-C, primary_text",
-          "fix_suggestion": "Conservar el argumento racional, pero añadir una línea más atmosférica del caso para reforzar intriga."
+          "type": "no_proof",
+          "description": "Variante de social_proof sin prueba social real. El approach es 'social_proof' pero no incluye ningún testimonio, reseña ni dato de usuarios — solo copy de producto.",
+          "location": "AD-04-C approach: social_proof",
+          "fix_suggestion": "Cambiar approach a 'emotional' o 'aspiration' para alinear con el contenido real del anuncio, o añadir placeholder [TESTIMONIAL] si se dispone de uno verificable."
         }
       ]
     },
     {
-      "asset_type": "email_sequence",
-      "asset_ref": "email_sequence_draft.json",
-      "status": "fail",
+      "asset_type": "meta_ad",
+      "asset_ref": "AD-03-B",
+      "persona_id": "anfitriones_noche_juegos",
+      "status": "flagged",
       "issues": [
         {
-          "severity": "critical",
-          "type": "factual_error",
-          "description": "Se afirma que el director del museo insiste en que el seguro lo cubre todo, pero ese detalle no está en el briefing semanal. Introduce una motivación narrativa no confirmada.",
-          "location": "E1, body_markdown: \"Diego Fuentes — el director del museo que insiste en que el seguro lo cubre todo\"",
-          "fix_suggestion": "Sustituir por su rol confirmado en el briefing: \"Diego Fuentes — el director del museo\" o añadir una descripción no especulativa."
-        },
-        {
-          "severity": "warning",
-          "type": "compliance",
-          "description": "La frase \"fotografías de la escena del crimen\" sugiere homicidio o delito violento; el caso es un robo de arte. Puede generar expectativa incorrecta.",
-          "location": "E2, sección \"Archivos clasificados del caso\"",
-          "fix_suggestion": "Cambiar por \"fotografías de la escena\", \"fotografías de la sala\" o \"imágenes del museo y del marco vacío\"."
-        },
-        {
           "severity": "warning",
           "type": "factual_error",
-          "description": "Se afirma que el informe policial contiene \"tres versiones distintas de la misma noche\", detalle no respaldado por el briefing semanal.",
-          "location": "E2, body_markdown",
-          "fix_suggestion": "Usar una descripción más segura: \"declaraciones contradictorias\" o \"testimonios y registros de la noche del robo\"."
+          "description": "El headline 'Escape room: $180. Esto: $19.99' presenta $180 como dato concreto. La compliance_note reconoce que es una estimación ($90-210 según market_analysis). Usar un número exacto sin rango puede ser engañoso.",
+          "location": "AD-03-B headline y compliance_notes",
+          "fix_suggestion": "Cambiar a 'Un escape room para 6: hasta $180. Este caso: $19.99.' o usar 'Escape room para 6: $90-180. Este caso: $19.99.' para reflejar el rango real documentado."
+        }
+      ]
+    },
+    {
+      "asset_type": "reels_script",
+      "asset_ref": "DC-W14-S3B-GRUPO-REACCION",
+      "persona_id": "anfitriones_noche_juegos",
+      "status": "flagged",
+      "issues": [
+        {
+          "severity": "warning",
+          "type": "no_proof",
+          "description": "El script indica 'mostrar al grupo real interactuando con los documentos — reacciones genuinas' como proof_element, pero no existe UGC verificable según publishing_calendar (content_mix nota: 'déficit de social_proof por falta de testimonios reales'). Si se publica sin ese material real, el proof_element es ficticio.",
+          "location": "proof_element y audio_notes: 'risas de fondo auténticas'",
+          "fix_suggestion": "Usar actores o equipo interno claramente no presentados como clientes reales, o reemplazar el proof_element por unboxing de documentos (como S3-A) hasta disponer de UGC verificable."
         },
         {
           "severity": "warning",
           "type": "factual_error",
-          "description": "Se presenta la pista falsa como hecho cerrado del contenido del expediente. Aunque el briefing sí menciona ese beat emocional, conviene no sobredeterminar la estructura exacta de materiales si no está definida en el caso final.",
-          "location": "E2, sección \"Una pista falsa\"",
-          "fix_suggestion": "Mantenerlo como promesa narrativa más flexible, por ejemplo: \"una pista diseñada para hacerte dudar\"."
-        },
+          "description": "El body menciona 'Un caso de misterio real' — mismo riesgo que AD-04-C. El caso es ficción profesional, no un crimen real.",
+          "location": "body.text: 'Un caso de misterio real'",
+          "fix_suggestion": "Cambiar a 'Un caso de misterio' o 'Una historia de misterio profesional'. Aplicar corrección consistente en todos los scripts que usen esta frase."
+        }
+      ]
+    },
+    {
+      "asset_type": "reels_script",
+      "asset_ref": "DC-W14-S2A-TRUECRIME-IDENTIDAD",
+      "persona_id": "fans_true_crime_solo",
+      "status": "flagged",
+      "issues": [
         {
           "severity": "warning",
-          "type": "publishability",
-          "description": "La urgencia de \"solo esta semana\" depende de un modelo editorial semanal que no está explicitado en el briefing del caso y podría generar fricción si la landing sigue vendiendo el caso después.",
-          "location": "E3, body_markdown: \"está disponible solo esta semana\"",
-          "fix_suggestion": "Asegurar que la disponibilidad limitada sea real en la oferta o suavizar a \"es el caso destacado de esta semana\"."
+          "type": "factual_error",
+          "description": "El body menciona 'Un caso de misterio real en Cambridge' — el caso es ficción ambientada en Cambridge, no un caso real. Riesgo de implicación engañosa.",
+          "location": "body.text: 'Un caso de misterio real en Cambridge'",
+          "fix_suggestion": "Cambiar a 'Un caso de misterio ambientado en Cambridge' o simplemente 'Un caso de misterio en Cambridge, 2026'."
+        }
+      ]
+    },
+    {
+      "asset_type": "email",
+      "asset_ref": "E3-W14",
+      "persona_id": "anfitriones_noche_juegos",
+      "status": "flagged",
+      "issues": [
+        {
+          "severity": "warning",
+          "type": "no_proof",
+          "description": "El email de urgencia menciona 'El nuevo caso de la semana que viene ya está en camino' como mecanismo de urgencia. Si no hay un caso confirmado para W15, esta afirmación es una promesa no verificada que puede dañar la credibilidad.",
+          "location": "body_markdown: 'El nuevo caso de la semana que viene ya está en camino'",
+          "fix_suggestion": "Cambiar a 'Cada semana hay un nuevo caso' o 'El catálogo sigue creciendo' si W15 no está confirmado. Solo usar la promesa de nuevo caso si está verificada en el pipeline de producción."
+        },
+        {
+          "severity": "note",
+          "type": "tone_drift",
+          "description": "El email mezcla tres segmentos (grupos, parejas, detectives solitarios) en un solo cuerpo con secciones separadas. Aunque la persona_id es anfitriones_noche_juegos, el contenido es genérico multi-segmento, lo que diluye la personalización.",
+          "location": "body_markdown: secciones 'Para grupos', 'Para parejas', 'Para detectives solitarios'",
+          "fix_suggestion": "Si el sistema de email permite segmentación, enviar versiones separadas por segmento. Si no, priorizar el segmento declarado (anfitriones) y mover los otros a emails separados o menciones secundarias."
         }
       ]
     }
   ],
-  "summary": "Las piezas tienen una base sólida de tono e intriga, pero el paquete no es plenamente publicable aún por varias desviaciones factuales respecto al briefing del caso y algunas afirmaciones/comparaciones de riesgo. Corrigiendo los detalles inventados del director, evitando lenguaje que sugiera asesinato o hechos reales y afinando ciertas comparaciones de precio, el conjunto podría pasar con notas."
+  "override": {
+    "allowed": false,
+    "override_reason": "",
+    "overridden_by": ""
+  },
+  "summary": "El batch 2026-W14 pasa sin issues críticos y puede publicarse con correcciones menores. Los 8 warnings se concentran en tres patrones: uso inconsistente de 'caso real' (ficción presentada como real en 3 assets), proof_element de social_proof sin UGC verificable (2 assets), y un dato de precio de escape room presentado como exacto cuando es una estimación de rango.",
+  "recommendations": [
+    "Aplicar corrección global de 'caso real' → 'caso de misterio' en todos los scripts y ads antes de publicar — afecta al menos 3 assets y es un riesgo de compliance con product_brief.",
+    "Reemplazar proof_elements de UGC en S3-B y AD-04-C hasta disponer de testimonios verificables; usar unboxing de documentos como alternativa de prueba social que no requiere usuarios reales.",
+    "Revisar el headline de AD-03-B para usar rango de precio ($90-180) en lugar del valor puntual $180, y confirmar si el caso W15 está en producción antes de enviar E3-W14 con la promesa de nuevo caso semanal."
+  ]
 }
