@@ -163,6 +163,17 @@ CEO routes "Planifica:" or "Plan:" prefixed messages → `start_plan.sh` → Fas
 
 **⚠️ STALE:** CEO AGENTS.md says "NO ejecutes Fase B o C — aún no están implementadas." Git shows they ARE implemented (commits ff75f65, 30ebae2). Need to update. `[AUDIT]`
 
+### Finance Tracker Skill
+The finance-tracker skill is auto-discovered by OpenClaw from `workspace/skills/finance-tracker/SKILL.md`. It handles:
+- Receipt photos and text expense entries
+- Budget monitoring and payment reminders
+- Daily cashflow calculations
+- Tax deduction tracking (Airbnb)
+- Bank CSV and PDF reconciliation
+- Batch receipt processing (Walmart w-mt.co links)
+
+Reference added to AGENTS.md for explicit routing of finance-related messages.
+
 ### Memory directory `[AUDIT]`
 
 `workspace/memory/`: 8 daily notes (2026-03-20 to 2026-03-28) + lessons_summary.md
@@ -271,6 +282,13 @@ All 24 models were active at time of audit. See Bible v2 §7 for complete model 
 **Sync:** `~/.openclaw/sync_keys.sh` (10 lines) — copies .env → litellm.env
 
 **IMPORTANT:** litellm.env only needs API keys + UI creds. Extra variables (TELEGRAM_*, GATEWAY_*) crash LiteLLM. (TL-35) `[EXT-OPT]`
+
+### Google Sheets credentials (Finance Tracker)
+
+| File | Path | Purpose |
+|------|------|---------|
+| Google Sheets OAuth token | `~/.openclaw/credentials/finance-tracker-token.json` | Finance tracker read/write |
+| Google OAuth client config | `~/.openclaw/credentials/google-client.json` | OAuth flow for Sheets |
 
 ---
 
@@ -423,6 +441,10 @@ Agent-to-agent: enabled between main ↔ declassified only. Planner is isolated.
 - QMD 2.0.1 + Bun 1.3.11 configured `[AUDIT]`
 - Claude Code 2.1.86 installed `[AUDIT]`
 - Git repo (openclaw-config) on GitHub `[AUDIT]`
+- **Finance Tracker skill deployed and operational** (9 modules + batch receipts) `[CHANGES]`
+- **Google Sheets "Robotin Finance 2026" connected** (7 tabs + Cashflow_Ledger) `[CHANGES]`
+- **AI batch classification for unknown merchants** `[CHANGES]`
+- **87+ auto-categorization rules in rules.json** `[CHANGES]`
 
 ### Issues ⚠️
 - **CEO AGENTS.md + MEMORY.md stale** — version, model count, model primary, repo name all wrong `[AUDIT]`
@@ -452,6 +474,8 @@ Agent-to-agent: enabled between main ↔ declassified only. Planner is isolated.
 | 🟡 | Optimization Phase 8: Reduce AGENTS.md size | After compaction |
 | 🟡 | Create dedicated TELEGRAM_OPS_TOKEN | BotFather |
 | 🟢 | Optimization Phase 9: Meta-planner integration | Future |
+| 🔴 | Configure finance tracker cron jobs | None |
+| 🟡 | Add finance-tracker reference to CEO AGENTS.md | None |
 
 ---
 

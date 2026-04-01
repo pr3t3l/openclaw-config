@@ -46,10 +46,18 @@ The Finance Tracker is a personal expense tracking system built as an OpenClaw s
 | 2026-03-31 | Cashflow_Ledger tab with signed amounts | New Google Sheets tab | [CHANGES] |
 | 2026-03-31 | Wells Fargo checking CSV support | reconcile.py updated | [CHANGES] |
 | 2026-03-31 | Batch Receipt Processor spec created | BATCH_RECEIPT_INSTRUCTIONS.md — not yet implemented | [BATCH] |
+| 2026-03-31 | AI batch classification implemented | reconcile.py calls AI for unknown merchants, auto-creates rules | [CHANGES] |
+| 2026-03-31 | Batch receipt processor built | batch_receipts.py — process multiple receipt links at once | [CHANGES] |
+| 2026-03-31 | Receipt splitting + tax deduction deployed | Multi-category receipts with Airbnb flag per line item | [CHANGES] |
+| 2026-03-31 | Income tracking added | "me pagaron 2800" auto-updates balance, tracks payday schedule | [CHANGES] |
+| 2026-03-31 | 4 reconciliation fixes applied | false positive matching eliminated, payment classification fixed, multi-month support, CATEGORIES synced | [CHANGES] |
+| 2026-03-31 | Cashflow_Ledger tab added | Signed amounts, flow_type classification (expense/refund/income/payment/transfer) | [CHANGES] |
+| 2026-03-31 | Wells Fargo checking CSV support | _parse_csv_row_wells() for WF format | [CHANGES] |
+| 2026-03-31 | 17 Walmart receipts batch-processed | First real batch import with line-item splitting | [CHANGES] |
 
 ---
 
-# 3. ARCHITECTURE — 8 MODULES
+# 3. ARCHITECTURE — 9 MODULES
 
 | Phase | Module | Priority | What it does | Uses AI? |
 |-------|--------|----------|-------------|----------|
@@ -78,12 +86,12 @@ Transaction Logger: writes to Google Sheets
 Budget Monitor: checks if near limit → alerts if needed
 ```
 
-### Module 9 (designed, not implemented): Batch Receipt Processor `[BATCH]`
+| 9 | **Batch Receipt Processor** | Process multiple receipt links, match against CSV rows, replace generic rows with detailed line items | batch_receipts.py |
 
-Processes 17+ receipt links (Walmart w-mt.co, Target, etc.) at once, replacing generic CSV-imported transactions with detailed line-item breakdowns.
+**Flow:**
 
 ```
-Multiple receipt links → dedup check → fetch each (2s delay) → parse items
+Multiple receipt links → dedup check → fetch each (2s delay) → parse items via __NEXT_DATA__
     ↓
 Match against existing CSV transaction (amount exact, merchant fuzzy, date ±2d)
     ↓
@@ -95,7 +103,7 @@ Batch-ask Airbnb confirmation for cleaning/linens/supplies items
 
 **CLI:** `finance.py batch-receipts <file_with_links> [--account Chase]`
 **Dedup:** `processed_receipts.json` in config/
-**Spec:** `BATCH_RECEIPT_INSTRUCTIONS.md` — ready for Claude Code
+**Status:** OPERATIONAL — 17 Walmart receipts processed 2026-03-31
 
 ---
 
@@ -112,7 +120,22 @@ Sheet name: **"Robotin Finance 2026"**
 | **Debt Tracker** | Debt balances and payoff tracking | creditor, balance, APR, minimum, promo_rate, promo_expiry |
 | **Rules** | Rule Engine auto-categorization rules | merchant_pattern, category, subcategory, priority |
 | **Reconciliation_Log** | Bank CSV matching results | date, csv_amount, matched_receipt, status |
-| **Cashflow_Ledger** | Signed transaction amounts for daily cashflow | date, amount (signed), category, running_balance |
+| **Cashflow_Ledger** | Signed transaction amounts for daily cashflow | date, account, merchant, amount_signed, flow_type, category, subcategory, notes, source, timestamp, month |
+
+### Tab 8: Cashflow_Ledger
+| Column | Purpose |
+|--------|---------|
+| date | Transaction date |
+| account | Bank/card name |
+| merchant | Merchant description |
+| amount_signed | Positive = money in, negative = money out |
+| flow_type | expense / refund / income / payment / transfer |
+| category | Spending category |
+| subcategory | Optional detail |
+| notes | Context |
+| source | csv / receipt / manual |
+| timestamp | When logged |
+| month | YYYY-MM |
 
 ---
 
@@ -147,7 +170,7 @@ Sheet name: **"Robotin Finance 2026"**
 
 `finance.py` — entry point with CLI commands (parse-text, parse-photo, add, report, etc.)
 
-### Library modules (10) `[AUDIT]`
+### Library modules (11) `[AUDIT]`
 
 | Module | Purpose |
 |--------|---------|
@@ -161,6 +184,7 @@ Sheet name: **"Robotin Finance 2026"**
 | `sheets.py` | Google Sheets read/write (gspread) |
 | `logger.py` | Logging |
 | `config.py` | Configuration loading |
+| `batch_receipts.py` | Batch receipt link processing with dedup and CSV row replacement |
 
 ### Config files `[AUDIT]`
 
@@ -170,6 +194,8 @@ Sheet name: **"Robotin Finance 2026"**
 | `rules.json` | Auto-categorization rules (merchant → category) |
 | `payments.json` | Bill due dates, amounts, APR |
 | `savings.json` | Savings goals with targets and deadlines |
+| `processed_receipts.json` | Dedup tracker for batch receipt links |
+| `pending_categories.json` | AI-suggested categories awaiting user approval |
 
 ### Utility scripts
 
@@ -228,7 +254,65 @@ Each transaction gets two additional fields:
 
 ---
 
-# 10. MODEL ROUTING
+# 10. AI BATCH CLASSIFICATION
+
+When the Rule Engine has no rule for a merchant and the reconciler would default to "Other", the system instead:
+
+1. Collects all unknown expense merchants from the CSV batch
+2. Deduplicates by normalized name
+3. Sends ONE prompt to LiteLLM with all merchants at once
+4. AI classifies each into an existing category
+5. Auto-creates rules in rules.json (confidence 0.80, created_by: ai_auto)
+6. Next CSV import with the same merchant uses the saved rule (zero AI calls)
+
+Model: chatgpt-gpt54 via LiteLLM (Codex OAuth, $0/token)
+Cost: ~$0.01 per batch of 50 merchants
+
+Function: `_ai_classify_merchants()` in reconcile.py
+Integration point: `_ensure_rules_for_merchants()` runs before auto-logging in `reconcile_csv()`
+
+---
+
+# 11. INCOME TRACKING
+
+Patterns detected automatically: "me pagaron", "paycheck", "ingreso:", "income:", "cobré", "deposito:", "nómina", "sueldo"
+
+When income is detected:
+1. Transaction logged with type = "income" to Google Sheets
+2. available_balance auto-updated (old_balance + income)
+3. Monthly income total tracked
+
+Commands:
+| Command | What it does |
+|---------|-------------|
+| "me pagaron 2800" | Register income + auto-update balance |
+| "income 2800 paycheck" | Quick income with source label |
+| "payday: biweekly 2800 5,19" | Set pay schedule + expected amount |
+
+Payday config stored in budgets.json: pay_schedule, pay_dates, expected_paycheck
+
+---
+
+# 12. BATCH RECEIPT PROCESSING
+
+Processes multiple receipt links (Walmart w-mt.co, Target, etc.) at once.
+
+Command: `finance.py batch-receipts <file_with_links> [--account Chase]`
+
+Flow:
+1. Fetch each link, extract items via `__NEXT_DATA__` JSON (Walmart) or AI
+2. For each receipt: find matching CSV transaction (exact amount + date ±2d + merchant)
+3. Delete the generic CSV row (e.g., "Walmart $87.43 Groceries")
+4. Insert detailed line-item rows (split by category)
+5. Collect Airbnb-flaggable items across all receipts
+6. Batch-ask user: "¿Personal o Airbnb?" for all at once
+7. Dedup: processed_receipts.json tracks which links have been done
+
+Dedup file: `config/processed_receipts.json`
+
+---
+
+# 13. MODEL ROUTING
 
 | Component | Model | Cost |
 |-----------|-------|------|
@@ -240,7 +324,7 @@ Each transaction gets two additional fields:
 
 ---
 
-# 11. PERSONAL FINANCIAL CONTEXT `[FIN]`
+# 14. PERSONAL FINANCIAL CONTEXT `[FIN]`
 
 ### Snapshot (March 2026)
 
@@ -275,7 +359,7 @@ Wells Fargo + Chase → Citi 0% APR through Aug 2027. Upstart refinance for Achi
 
 ---
 
-# 12. COMMERCIALIZATION PLAN
+# 15. COMMERCIALIZATION PLAN
 
 | Phase | Timeline | What | Target |
 |-------|----------|------|--------|
@@ -288,44 +372,51 @@ Wells Fargo + Chase → Citi 0% APR through Aug 2027. Upstart refinance for Achi
 
 ---
 
-# 13. CURRENT STATE `[AUDIT]`
+# 16. CURRENT STATE `[AUDIT]`
 
 ### Working ✅
 - SKILL.md exists and is deployed `[AUDIT]`
-- 10 library modules present `[AUDIT]`
-- 4 config files (budgets, rules, payments, savings) `[AUDIT]`
+- 11 library modules present (10 original + batch_receipts.py) `[CHANGES]`
+- 6 config files (budgets, rules, payments, savings, processed_receipts, pending_categories) `[CHANGES]`
 - Google Sheets OAuth token valid `[AUDIT]`
 - 4 cron jobs ACTIVE and configured `[AUDIT]`
 - **Reconciliation v2 deployed** — false positive elimination, multi-month CSV, Wells Fargo support `[CHANGES]`
 - **Cashflow_Ledger tab** added to Google Sheets `[CHANGES]`
 - **18 categories** (4 new: Pets, Debt_Interest, Bank_Fees, Refunds) `[CHANGES]`
 - **Batch writes** to avoid 429 quota errors `[CHANGES]`
+- **AI batch classification deployed and tested** `[CHANGES]`
+- **Income tracking** (parse + auto-balance update) `[CHANGES]`
+- **Batch receipt processor operational** — 17 Walmart receipts processed `[CHANGES]`
+- **Cashflow_Ledger tab** with signed amounts and flow types `[CHANGES]`
+- **Wells Fargo checking CSV support** `[CHANGES]`
+- **Reconciliation fixes:** no false positives, correct payment classification, multi-month `[CHANGES]`
 
 ### Issues ⚠️
-- **Smoke test failed** — `finance.py parse-text '$15.50 uber'` → traceback `[AUDIT]`
 - **NOT referenced in CEO AGENTS.md** — skill auto-discovered by OpenClaw but not explicitly routed `[AUDIT]`
 - **google_client_secret.json naming** — file is `google-client.json` instead `[AUDIT]`
-
-### Not implemented
-- Multi-category receipt splitting (designed in upgrade doc) `[UPG]`
-- Tax deduction tracking (designed in upgrade doc) `[UPG]`
-- CSV backfill of 2025-2026 historical data `[BUILD]`
-- **Batch Receipt Processor** (spec ready in BATCH_RECEIPT_INSTRUCTIONS.md) `[BATCH]`
+- **Cron jobs designed but NOT configured** (cashflow 7:30AM, payments 9AM, weekly Sun, monthly 1st) `[PENDING]`
+- **PDF statement support designed but NOT built** `[PENDING]`
+- **Smart category creation (AI suggests new categories) designed but NOT built** `[PENDING]`
 
 ---
 
-# 14. TECHNICAL LESSONS
+# 17. TECHNICAL LESSONS
 
 | ID | Lesson | Impact |
 |----|--------|--------|
-| TL-29 | Google Sheets OAuth in WSL: use `run_local_server(port=18900, open_browser=False)` | Setup |
-| TL-30 | Google Sheets needs BOTH spreadsheets AND drive scopes | Setup |
+| TL-28 | Google Sheets OAuth in WSL: use `run_local_server(port=18900, open_browser=False)` | Setup |
+| TL-29 | Google Sheets needs BOTH spreadsheets AND drive scopes | Setup |
 | TL-26 (PL) | When 3+ dollar amounts in receipt, auto-activate split mode | UX |
 | TL-27 (PL) | gspread needs `pip install gspread google-auth google-auth-oauthlib` in litellm-venv | Dependency |
+| TL-30 | Receipt parsing: use re.findall + max() for amounts, not re.search. Total > line items | Bug fix |
+| TL-31 | When parsing receipts with 3+ dollar amounts, auto-activate split mode | UX |
+| TL-32 | Credit card payments are POSITIVE amounts in Chase CSV — classify before splitting by sign | Classification bug |
+| TL-33 | Spanish payment keywords (SU PAGO, PAGO AUTOMATICO) must be in classifier | i18n |
+| TL-34 | AI batch classification costs ~$0.01 for 50 merchants — cheaper than defaulting to Other | Cost/quality tradeoff |
 
 ---
 
-# 15. CONNECTIONS
+# 18. CONNECTIONS
 
 ```
 Telegram (@Robotin1620_Bot) ──user input──→ Finance Tracker (skill)
@@ -341,27 +432,30 @@ LiteLLM SpendLogs ──(separate)──→ tracks API costs (not finance tracke
 
 ---
 
-# 16. DIRECTORY STRUCTURE `[AUDIT]`
+# 19. DIRECTORY STRUCTURE `[AUDIT]`
 
 ```
 ~/.openclaw/workspace/skills/finance-tracker/
 ├── SKILL.md
 ├── config/
-│   ├── budgets.json          — Monthly budgets per category
-│   ├── rules.json            — Auto-categorization rules
-│   ├── payments.json         — Bill due dates and amounts
-│   └── savings.json          — Savings goals
+│   ├── budgets.json              — Monthly budgets per category
+│   ├── rules.json                — Auto-categorization rules
+│   ├── payments.json             — Bill due dates and amounts
+│   ├── savings.json              — Savings goals
+│   ├── processed_receipts.json   — Batch receipt dedup tracker
+│   └── pending_categories.json   — AI-suggested categories awaiting approval
 ├── scripts/
-│   ├── finance.py            — Main entry point
-│   ├── add_category.sh       — Safe category addition
-│   ├── cron_runner.sh        — Cron job wrapper
-│   └── lib/                  — 10 modules
+│   ├── finance.py                — Main entry point
+│   ├── add_category.sh           — Safe category addition
+│   ├── cron_runner.sh            — Cron job wrapper
+│   └── lib/                      — 11 modules
 │       ├── parser.py, rules.py, budget.py, cashflow.py
 │       ├── payments.py, analyst.py, reconcile.py
 │       ├── sheets.py, logger.py, config.py
+│       ├── batch_receipts.py
 │       └── __init__.py
-├── logs/                     — Runtime logs
-└── templates/                — Report templates
+├── logs/                         — Runtime logs
+└── templates/                    — Report templates
 
 ~/.openclaw/credentials/
 ├── finance-tracker-token.json  — Google Sheets OAuth
@@ -370,18 +464,19 @@ LiteLLM SpendLogs ──(separate)──→ tracks API costs (not finance tracke
 
 ---
 
-# 17. PENDING ITEMS (prioritized)
+# 20. PENDING ITEMS (prioritized)
 
 | Priority | Item | Blocker | Est. effort |
 |----------|------|---------|-------------|
-| 🔴 | Debug smoke test traceback (parse-text) | None | 30 min |
-| 🔴 | Verify cron jobs actually execute and send Telegram messages | Wait for next cron trigger | 15 min |
-| 🟡 | Implement multi-category receipt splitting | None — doc ready | 3 hours |
-| 🟡 | Implement Airbnb tax deduction tracking | After split works | 3 hours |
-| 🟡 | CSV backfill of 2025-2026 historical data | Bank CSV exports | 2 hours |
+| ~~🔴~~ | ~~Debug smoke test traceback~~ | ~~None~~ | DONE (fixed parser, batch writes, classification) |
+| ~~🔴~~ | ~~Verify cron jobs~~ | ~~Wait for trigger~~ | STILL PENDING (designed, not configured) |
+| 🔴 | Configure 4 cron jobs (cashflow, payments, weekly, monthly) | None | 1 hour |
+| 🟡 | PDF bank statement support | None — spec ready | 3 hours |
+| 🟡 | Smart category creation (AI suggests + user approves) | None — spec ready | 2 hours |
+| 🟡 | CSV backfill verification — audit Transactions for misclassified items | None | 1 hour |
 | 🟡 | Add Finance Tracker reference to CEO AGENTS.md | None | 10 min |
 | 🟢 | Build unified cost dashboard (finance + LiteLLM spend) | Design needed | 4 hours |
-| 🟢 | Start collecting personal use case studies for SaaS | 3 months of use | Ongoing |
+| 🟢 | SaaS multi-tenant conversion | After 3 months personal use | 4-6 weeks |
 
 ---
 

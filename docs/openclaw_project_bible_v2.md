@@ -68,7 +68,7 @@
    
    All marketing runs via scripts in `~/.openclaw/marketing-system/`. Planned to be operated via a dedicated Telegram ops bot (Phase 4A code exists, needs dedicated token — currently not operational).
 
-3. **Finance Tracker** — personal expense tracking via Robotin CEO bot + Google Sheets. An OpenClaw skill inside the CEO workspace (`workspace/skills/finance-tracker/`). Not a separate bot.
+3. **Finance Tracker** — personal expense tracking, budget monitoring, tax deduction tracking for Airbnb. Runs as a skill inside the CEO bot (@Robotin1620_Bot). Data stored in Google Sheets.
 
 4. **Meta-Workflow Planner** — takes raw ideas through multi-model analysis and produces buildable workflow plans. Managed by the Planner agent.
 
@@ -118,6 +118,8 @@ command = service ssh start; sudo -u robotin bash /home/robotin/.openclaw/start_
 | OpenClaw Gateway | 18789 | `nohup openclaw gateway` (via startup script) | `curl :18789` |
 
 All three managed by `~/.openclaw/start_all_services.sh` (60 lines, idempotent). `[AUDIT]`
+
+| Google Sheets API | — | Finance tracker data store ("Robotin Finance 2026") |
 
 ## Auto-Start `[AUDIT]`
 
@@ -602,11 +604,32 @@ CEO routes "Planifica:" or "Plan:" prefixed messages to the planner. Currently o
 **NOTE:** This contradicts the git history which shows commits for Phase B (ff75f65) and Phase C (30ebae2). The phases ARE implemented in code but the CEO hasn't been updated to use them. `[AUDIT]`
 # 11. FINANCE TRACKER
 
-## Overview
+Personal finance automation system running as an OpenClaw skill on @Robotin1620_Bot.
 
-Personal expense tracking via Telegram (CEO bot) + Google Sheets storage.
+## Core capabilities
+- Receipt photo/text parsing with AI + Rule Engine
+- Multi-category receipt splitting (one Walmart receipt → multiple category rows)
+- Airbnb tax deduction tracking per line item
+- Bank CSV reconciliation with exact amount matching
+- Batch receipt link processing (Walmart w-mt.co, etc.)
+- AI batch classification for unknown merchants (auto-creates rules)
+- Daily cashflow calculation ("safe to spend today")
+- Budget monitoring (80/95/100% alerts)
+- Payment reminders (3-day, 1-day, day-of)
+- Income tracking with auto-balance update
+- Monthly AI-powered analysis report
 
-## Location: `~/.openclaw/workspace/skills/finance-tracker/` `[AUDIT]`
+## Data
+- Google Sheet: "Robotin Finance 2026" (ID: 1RcYfnreucTaRck9s_X65p190MSippBTimaFAdWl16pY)
+- 8 tabs: Transactions, Budget, Payment Calendar, Monthly Summary, Debt Tracker, Rules, Reconciliation_Log, Cashflow_Ledger
+- 18 spending categories + income type
+- 87+ auto-categorization rules
+
+## Files
+- Skill: `~/.openclaw/workspace/skills/finance-tracker/`
+- Config: `config/rules.json`, `budgets.json`, `payments.json`, `savings.json`
+- Scripts: `scripts/finance.py` (CLI) + `scripts/lib/` (11 modules)
+- Credentials: `~/.openclaw/credentials/finance-tracker-token.json`
 
 ## Structure `[AUDIT]`
 
@@ -617,13 +640,16 @@ finance-tracker/
 │   ├── budgets.json
 │   ├── payments.json
 │   ├── rules.json
-│   └── savings.json
+│   ├── savings.json
+│   ├── processed_receipts.json
+│   └── pending_categories.json
 ├── scripts/
 │   ├── finance.py
 │   ├── cron_runner.sh
-│   └── lib/ (10 modules)
+│   └── lib/ (11 modules)
 │       ├── analyst.py, budget.py, cashflow.py, config.py, logger.py
 │       ├── parser.py, payments.py, reconcile.py, rules.py, sheets.py
+│       └── batch_receipts.py
 ├── logs/
 └── templates/
 ```
@@ -631,9 +657,9 @@ finance-tracker/
 ## Google Sheets OAuth `[AUDIT]`
 
 - Token: `~/.openclaw/credentials/finance-tracker-token.json` — EXISTS
-- Client: `~/.openclaw/credentials/google-client.json` — EXISTS (note: named `google-client.json`, not `google_client_secret.json`)
+- Client: `~/.openclaw/credentials/google-client.json` — EXISTS
 
-## Cron jobs: 4 ACTIVE `[AUDIT]`
+## Cron jobs: 4 DESIGNED `[AUDIT]`
 
 | Schedule | Job | Command |
 |----------|-----|---------|
@@ -642,11 +668,18 @@ finance-tracker/
 | 8:00 AM EST Sundays | Weekly summary | `cron_runner.sh weekly-summary weekly-summary` |
 | 8:00 AM EST 1st | Monthly report | `cron_runner.sh monthly-report monthly-report` |
 
-## Status `[AUDIT]`
+## Costs
+- AI parsing: ~$0.002/receipt (only when Rule Engine has no match)
+- AI batch classification: ~$0.01 per 50 merchants
+- Total estimated: $1-3/month at normal usage
 
-- SKILL.md: EXISTS
-- NOT referenced in CEO AGENTS.md (skill is auto-discovered by OpenClaw)
-- Smoke test (parse-text): FAILED with traceback — needs debugging `[INCONCLUSIVE]`
+## Status
+- OPERATIONAL since 2026-03-27
+- Reconciliation fixes deployed 2026-03-31
+- AI classification deployed 2026-03-31
+- Batch receipt processor deployed 2026-03-31
+- Cron jobs: DESIGNED but NOT configured
+- PDF support: DESIGNED but NOT built
 
 ## Commercialization plan
 
@@ -1144,6 +1177,12 @@ Renumbered sequentially from all sources.
 | TL-33 | LiteLLM Prisma: duplicate model LiteLLM_DeletedTeamTable — warning, not blocking | LiteLLM |
 | TL-34 | verify_db_parity.py needs psycopg2 installed in the venv that runs it | DB |
 | TL-35 | litellm.env: only API keys + UI creds. Extra vars (TELEGRAM_*) crash LiteLLM | Config |
+| TL-36 | Google Sheets OAuth in WSL: port 18900, open_browser=False | Finance setup |
+| TL-37 | Google Sheets needs spreadsheets + drive scopes | Finance setup |
+| TL-38 | Receipt amounts: re.findall + max() beats re.search (first match) | Finance bug |
+| TL-39 | Credit card payments are POSITIVE in Chase CSV — check payment keywords before sign split | Finance classification |
+| TL-40 | Spanish payment keywords needed in classifier (SU PAGO, PAGO AUTOMATICO) | Finance i18n |
+| TL-41 | AI batch classification ~$0.01/50 merchants — always cheaper than defaulting to Other | Finance cost |
 
 ---
 
@@ -1208,9 +1247,51 @@ Brand guide (8 pages, 14 SVGs), web redesign (14 components, 6 pages), admin pan
 
 FB Page, IG Business, FB Developer App (Phase 3), IONOS email setup, n8n/OpenClaw auto-publishing planning.
 
-## Session 7: 2026-03-29/30 — Bible Consolidation (this session)
+## Session 7: 2026-03-29/30 — Bible Consolidation
 
 Gap analysis across 6+ chats, audit script v2.1, system verification, Bible v2 production.
+
+## Session 8: 2026-03-31 — Finance Tracker (Complete Build)
+
+### What was built
+- Complete personal finance tracking system (9 modules) as OpenClaw skill
+- Google Sheets integration (8 tabs, OAuth configured)
+- 87+ merchant auto-categorization rules
+- Multi-category receipt splitting with Airbnb tax deduction tracking
+- AI batch classification for unknown merchants
+- Bank CSV reconciliation (Chase, Discover, Citi, Wells Fargo)
+- Batch receipt processor for Walmart links
+- Income tracking with auto-balance update
+- Daily cashflow calculator
+
+### Financial analysis performed
+- Full analysis of all bank statements (Jan 2025 — Mar 2026)
+- AI spending breakdown: $888 total (Claude $134 sub + $317 API, OpenAI $261 sub + $109 API, Google $67)
+- Debt timeline: Wells Fargo $200 (pay now), Discover $566/mo x 11, Citibank $288/mo x 17
+- Payment calendar built from real bank data (6 debts + subscriptions + utilities)
+
+### Bugs fixed
+- Receipt parser: re.search → re.findall + max() for amounts
+- Reconciliation: false positive probable_match eliminated (amount-only match removed)
+- Classification: positive amounts on credit cards (payments) misclassified as refunds
+- Spanish keywords missing: SU PAGO, PAGO AUTOMATICO
+- CATEGORIES list out of sync with budgets.json
+- Single-month reconciliation → multi-month
+
+### Documents created
+- Workflow specification V1 (docx, 9 sections)
+- V1.1 Addendum: Reconciliation + Rule Engine + Daily Cashflow (docx)
+- Financial control plan (md)
+- Presentation deck (11 slides, pptx)
+- Project Bible gaps document with verification script
+- AI Classification + PDF + Smart Categories spec
+- Batch Receipt Instructions spec
+
+### Commercialization plan
+- Phase 1 (NOW): Personal use 3 months
+- Phase 2 (Q3): OpenClaw skill marketplace $49-99
+- Phase 3 (Q4): SaaS via Telegram $19/mo (target: Airbnb hosts)
+- Phase 4 (2027): Scale or white-label to accountants
 
 ---
 
@@ -1241,6 +1322,11 @@ Gap analysis across 6+ chats, audit script v2.1, system verification, Bible v2 p
 | 19 | Optimization Plan phases 0-6A | Session 3 |
 | 20 | Codex OAuth ($0/token GPT) | Session 3 |
 | 21 | Bible v2 (this document) | Session 7 |
+| 22 | Finance Tracker complete build (9 modules + batch receipts) | Session 8 |
+| 23 | AI batch classification for unknown merchants | Session 8 |
+| 24 | 87+ auto-categorization rules deployed | Session 8 |
+| 25 | Bank CSV reconciliation (Chase, Discover, Wells, Amex) | Session 8 |
+| 26 | Batch receipt processor (17 Walmart receipts) | Session 8 |
 
 ## PENDING 🔲
 
@@ -1261,7 +1347,11 @@ Gap analysis across 6+ chats, audit script v2.1, system verification, Bible v2 p
 | Landing pages SEO content | Placeholder content in PersonaLanding | After marketing content system |
 | safe_backup.sh recreation | Missing | Create script + cron |
 | psycopg2 install for verify_db_parity | Bug | `pip install psycopg2-binary` |
-| Finance tracker smoke test fix | Traceback | Debug parse-text command |
+| ~~Finance tracker smoke test fix~~ | ~~Traceback~~ | DONE (Session 8) |
+| Finance: Configure 4 cron jobs | Not configured | None |
+| Finance: PDF bank statement support | Spec ready | None |
+| Finance: Smart category creation (AI suggests + user approves) | Spec ready | None |
+| Finance: SaaS multi-tenant conversion | Q4 2026 | After 3 months personal use |
 | Archive stale workspaces | workspace-content-distribution, workspace-image-generator | Move to ~/openclaw-archive/ |
 | CEO AGENTS.md + MEMORY.md update | Stale version/model info | Update to match openclaw.json |
 | GOG_KEYRING_PASSWORD duplicate in .env | Bug | Remove duplicate line |
