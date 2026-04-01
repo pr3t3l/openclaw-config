@@ -118,5 +118,9 @@
     "generated_at": "2026-04-01T17:24:32.927049"
   },
   "payments": [],
-  "savings": []
+  "savings": [],
+  "telemetry": {
+    "install_id": "2f3c9851-d473-4c5c-b2be-03df0f63f642",
+    "enabled": true
+  }
 }

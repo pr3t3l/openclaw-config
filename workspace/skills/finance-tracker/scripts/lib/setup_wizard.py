@@ -176,6 +176,11 @@ def run_setup_wizard(interactive: bool = True) -> dict:
     print(f"   Next: run 'finance.py setup-sheets' to create the Google Sheet")
     print("=" * 50)
 
+    # Track setup completion
+    from . import telemetry as T
+    T.track_install()
+    T.track_setup_complete()
+
     return config
 
 

@@ -249,6 +249,10 @@ def reconcile_csv(csv_content: str, bank: str = "auto") -> dict:
             f"{ai_note}"
         )
 
+    # Track reconciliation stats
+    from . import telemetry as T
+    T.track_reconcile(bank, len(csv_rows), len(matched), ai_rules_created)
+
     return {
         "summary": summary,
         "matched": len(matched),

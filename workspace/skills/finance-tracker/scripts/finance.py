@@ -35,6 +35,7 @@ Usage:
   python3 finance.py list-goals
   python3 finance.py add-goal <name> <target> [deadline]
   python3 finance.py save <goal> <amount>
+  python3 finance.py telemetry [on|off|status|info]
 """
 
 import json
@@ -595,6 +596,24 @@ def main():
     cmd = sys.argv[1]
     args = sys.argv[2:]
 
+    # Telemetry commands
+    if cmd == "telemetry":
+        from lib import telemetry as T
+        subcmd = args[0] if args else "status"
+        if subcmd == "off":
+            T.set_enabled(False)
+            print("Telemetry disabled.")
+        elif subcmd == "on":
+            T.set_enabled(True)
+            print("Telemetry enabled.")
+        elif subcmd == "info":
+            print(T.get_info_text())
+        else:
+            print(f"Telemetry: {'enabled' if T.is_enabled() else 'disabled'}")
+            print(f"Install ID: {T._get_install_id()}")
+            print("Run 'finance.py telemetry info' for details on what is collected.")
+        return
+
     # Setup check — gentle reminder on first run
     if not C.is_setup_complete() and cmd not in ("setup", "setup-sheets"):
         print("First time? Run the setup wizard first:")
@@ -645,7 +664,16 @@ def main():
         print(__doc__)
         sys.exit(1)
 
-    commands[cmd]()
+    # Execute with telemetry
+    from lib import telemetry as T
+    import time
+    t0 = time.time()
+    try:
+        commands[cmd]()
+        T.track_command(cmd, int((time.time() - t0) * 1000))
+    except Exception as e:
+        T.track_error(cmd, type(e).__name__)
+        raise
 
 
 if __name__ == "__main__":
