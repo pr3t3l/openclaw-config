@@ -1,0 +1,455 @@
+{
+  "schema_version": "3.0",
+  "product_id": "misterio-semanal",
+  "generated_at": "2026-04-01T00:00:00Z",
+  "value_proposition": {
+    "cpm": "We help true-crime-loving adults turn an ordinary night at home into a suspenseful detective experience through premium instant-download case files they can solve tonight, without shipping delays, subscription commitment, or cheesy party-game energy.",
+    "tagline": "Open the file. Solve the case.",
+    "elevator_pitch": "Declassified Cases turns passive true-crime nights into active investigations. Each digital case delivers a premium dossier-style mystery with layered documents, clues, and narrative progression you can start in minutes, whether you're playing solo, with a partner, or with a small group.",
+    "paradigm_shift": {
+      "old_way": "Buying a mystery game meant choosing between shipped subscription boxes, big party formats, or cheap-looking printable PDFs.",
+      "new_way": "This is not just a mystery game. It is a premium at-home detective night: instant, story-rich, adult-feeling entertainment that bridges true-crime bingeing, escape-room energy, and a one-night shared experience."
+    }
+  },
+  "differentiation_pillars": [
+    {
+      "pillar": "Play-Tonight Immediacy",
+      "why_it_matters": "Customers often decide the same night they want something better than streaming, and waiting for shipping kills momentum.",
+      "how_to_communicate": "Lead with 'instant access after purchase' and 'start in minutes tonight' in headlines, product pages, and ads.",
+      "against_whom": "Beats Unsolved Case Files and Hunt A Killer by removing shipping delay and making same-night play possible."
+    },
+    {
+      "pillar": "Low-Commitment Premium Experience",
+      "why_it_matters": "Many buyers want a complete 2-4 hour experience without getting locked into subscriptions or long multi-box arcs.",
+      "how_to_communicate": "Frame each case as a complete one-night investigation for $19.99 with no subscription required.",
+      "against_whom": "Beats Hunt A Killer by offering category satisfaction without recurring commitment, higher spend, or multi-box pacing."
+    },
+    {
+      "pillar": "Adult Date-Night Fit",
+      "why_it_matters": "Couples want an activity that feels memorable and collaborative, not awkward, childish, or overly gamer-centric.",
+      "how_to_communicate": "Use date-night-oriented copy, show two-person play, and describe it as a shared investigation rather than role-play.",
+      "against_whom": "Beats Cryptic Killers and murder mystery party game alternatives by focusing on intimate 2-player and small-group solving instead of hosted party theatrics."
+    },
+    {
+      "pillar": "Premium Dossier Aesthetic",
+      "why_it_matters": "Digital mystery buyers are skeptical of cheap-looking PDFs and generic downloadable content.",
+      "how_to_communicate": "Show polished file previews, envelope progression, document counts, and declassified-file branding to signal craftsmanship.",
+      "against_whom": "Beats Etsy printables and weaker downloadable competitors by positioning as a premium digital file case, not a commodity printable."
+    },
+    {
+      "pillar": "Narrative-Led Investigation",
+      "why_it_matters": "Players care more about uncovering a coherent case than solving random puzzles disconnected from the story.",
+      "how_to_communicate": "Emphasize evidence, scenes, suspects, clues, and a complete narrative arc instead of generic puzzle language.",
+      "against_whom": "Beats escape-room-at-home kits and puzzle-forward alternatives by offering stronger detective-story immersion and evidence-based progression."
+    },
+    {
+      "pillar": "Flexible Social Format",
+      "why_it_matters": "The same product must work for solo players, couples, and small groups without feeling compromised.",
+      "how_to_communicate": "Clearly state 1-6 players, show multiple use cases, and explain that collaboration scales naturally across player counts.",
+      "against_whom": "Beats party-only formats and some detective games that implicitly favor larger groups or solo-only play."
+    },
+    {
+      "pillar": "Strong Value Versus Going Out",
+      "why_it_matters": "Buyers compare the purchase against escape rooms, dinner out, streaming, and board games, not just direct competitors.",
+      "how_to_communicate": "Anchor value around 2-4 hours of entertainment, 14-21 documents, and one purchase for up to 6 players.",
+      "against_whom": "Beats in-person escape rooms and out-of-home activities by delivering a lower-cost, lower-friction at-home alternative."
+    }
+  ],
+  "message_house": [
+    {
+      "segment_id": "couples_date_night",
+      "core_message": "Turn tonight at home into a suspenseful case you solve together, without the cost, planning, or awkwardness of a typical date-night activity.",
+      "supporting_proof_points": [
+        "Instant access after purchase means you can start tonight without waiting for shipping.",
+        "Designed for 1-6 players, so it works naturally as a two-person date-night experience.",
+        "Each case delivers 2-4 hours of story-driven entertainment for $19.99, often less than one out-of-home activity for two."
+      ],
+      "objection_neutralizer": "This is not a cheesy party game or scripted role-play night. It is a guided detective experience with documents, clues, and a mature dossier feel built for collaborative solving.",
+      "sample_headlines": [
+        "Date Night, But Make It a Case File.",
+        "Skip Another Movie Night. Solve a Mystery Together.",
+        "The At-Home Date Night That Starts in Minutes."
+      ]
+    },
+    {
+      "segment_id": "game_night_hosts",
+      "core_message": "Give your group a fresh, story-led game night centerpiece that feels more immersive than a board game and easier to run than a murder mystery party.",
+      "supporting_proof_points": [
+        "Works for 1-6 players, making it a fit for small groups and casual hosted nights.",
+        "The 4-envelope structure and document-based flow create easy progression without needing a facilitator.",
+        "Instant digital delivery removes shipping delays when weekend plans come together fast."
+      ],
+      "objection_neutralizer": "You do not need costumes, a host script, or a complicated rules explanation. The case itself guides the group through the investigation.",
+      "sample_headlines": [
+        "Your Next Game Night Needs a Case, Not Another Board.",
+        "A Small-Group Mystery That Does Not Need a Game Master.",
+        "Bring One New Thing to Game Night: A Case to Solve."
+      ]
+    },
+    {
+      "segment_id": "gift_buyers_experience_seekers",
+      "core_message": "Give a thoughtful mystery experience they can start instantly, instead of another generic gift that gets forgotten.",
+      "supporting_proof_points": [
+        "Instant access after purchase makes it ideal for same-day or last-minute gifting.",
+        "It fits multiple play styles: solo, couple, or small-group, which lowers gifting risk.",
+        "At $19.99, it feels more memorable than a gift card while staying within a practical gift budget."
+      ],
+      "objection_neutralizer": "Even if they are not a 'gamer,' the experience is framed around true-crime-style investigation and storytelling, not hardcore game mechanics.",
+      "sample_headlines": [
+        "Gift an Experience, Not More Stuff.",
+        "A Last-Minute Gift That Still Feels Thoughtful.",
+        "For the Person Who Loves True Crime More Than Clutter."
+      ]
+    }
+  ],
+  "voice_and_tone": {
+    "personality_adjectives": [
+      "immersive",
+      "sharp",
+      "cinematic",
+      "adult",
+      "intriguing"
+    ],
+    "tone_by_context": [
+      {
+        "context": "ad",
+        "tone": "hook-driven, suspenseful, immediate, and benefit-first",
+        "example_copy": "You could scroll for another hour... or open a case file and spend tonight solving one. Instant access. 2-4 hours. No shipping. No subscription."
+      },
+      {
+        "context": "product_page",
+        "tone": "clear, confidence-building, polished, and detail-oriented",
+        "example_copy": "Inside the case: 4 envelopes, 14-21 documents, and a full investigation designed for 1-6 players. Download instantly, follow the evidence, and uncover the truth in a 2-4 hour experience."
+      },
+      {
+        "context": "email",
+        "tone": "inviting, narrative, and conversion-focused without sounding pushy",
+        "example_copy": "Tonight's plan is sitting in your inbox. One case. Four envelopes. A trail of evidence waiting to be untangled. If movie night feels too predictable, open the file instead."
+      },
+      {
+        "context": "social_post",
+        "tone": "curious, culturally aware, and lightly playful with a true-crime wink",
+        "example_copy": "For people who say 'just one more true crime episode' and mean three: this time, you are the investigator. Start a digital case tonight."
+      },
+      {
+        "context": "telegram",
+        "tone": "direct, insider, and exclusive-feeling",
+        "example_copy": "Case drop: if you want a better plan for tonight, this is it. Grab the file, open the first envelope, and see how far your instincts get you."
+      }
+    ],
+    "language_style": {
+      "formality": "semiformal",
+      "humor": "light",
+      "urgency": "medium",
+      "technical_level": "low"
+    }
+  },
+  "claims": {
+    "allowed": [
+      {
+        "claim": "Instant access after purchase",
+        "evidence": "Listed in verified facts and allowed claims.",
+        "source_type": "product_fact"
+      },
+      {
+        "claim": "Each case is a 2-4 hour experience",
+        "evidence": "Listed in verified facts and allowed claims.",
+        "source_type": "product_fact"
+      },
+      {
+        "claim": "Playable solo, as a couple, or with a group of up to 6",
+        "evidence": "Verified player range is 1-6 players.",
+        "source_type": "product_fact"
+      },
+      {
+        "claim": "Each case includes 4 envelopes with documents and clues",
+        "evidence": "Verified facts specify 4 envelopes per case and 14-21 documents per case.",
+        "source_type": "product_fact"
+      },
+      {
+        "claim": "100% digital format",
+        "evidence": "Verified format is digital download only.",
+        "source_type": "product_fact"
+      },
+      {
+        "claim": "Priced at $19.99 per case",
+        "evidence": "Verified facts and allowed claims specify the per-case price.",
+        "source_type": "product_fact"
+      },
+      {
+        "claim": "Lower upfront cost than many shipped mystery box competitors",
+        "evidence": "Competitor pricing in market analysis places major physical brands commonly around $29.99-$50+.",
+        "source_type": "comparison"
+      },
+      {
+        "claim": "An at-home alternative to escape-room-style spending",
+        "evidence": "Market analysis notes in-person escape rooms commonly run about $30-$50 per person, while this product is $19.99 per case.",
+        "source_type": "comparison"
+      },
+      {
+        "claim": "Built for same-night play convenience",
+        "evidence": "Instant access after purchase supports play without shipping wait or advance planning.",
+        "source_type": "inference"
+      }
+    ],
+    "restricted": [
+      {
+        "claim": "The only premium digital detective experience for adults",
+        "reason": "Exclusivity cannot be claimed without evidence, and the category includes other digital competitors."
+      },
+      {
+        "claim": "Based on real cases or real police files",
+        "reason": "The product context explicitly forbids implying real cases or real police reports because these are fictional."
+      },
+      {
+        "claim": "Award-winning or critically acclaimed",
+        "reason": "There are no verified awards or press mentions."
+      },
+      {
+        "claim": "Loved by thousands of players",
+        "reason": "There are no verified customer counts or review volumes."
+      },
+      {
+        "claim": "Guaranteed satisfaction or risk-free purchase",
+        "reason": "No refund or satisfaction guarantee is verified."
+      },
+      {
+        "claim": "Weekly new case releases",
+        "reason": "The brand name suggests regularity, but no verified release cadence is provided and unsupported promises should not be made."
+      },
+      {
+        "claim": "Better than competitor X by measured satisfaction or quality metrics",
+        "reason": "No validated comparative performance data exists."
+      },
+      {
+        "claim": "Handcrafted by expert detectives or crime professionals",
+        "reason": "No verified credentials or authorship details are provided."
+      }
+    ],
+    "compliance_notes": [
+      "Do not fabricate testimonials, ratings, review counts, or customer statistics.",
+      "Do not imply the cases are real crimes, real police files, or based on true events unless a case explicitly states that.",
+      "Use competitor comparisons only for observable differences like price model, shipping friction, or format, not unsupported quality claims.",
+      "Avoid claiming a fixed number of documents for every case beyond the verified range of 14-21.",
+      "Do not promise ongoing release cadence, exclusivity, or guarantees unless those become verified product facts."
+    ]
+  },
+  "creative_angles_library": [
+    {
+      "angle_id": "ANG-01",
+      "angle_name": "Tonight Needs a Case",
+      "emotion_type": "urgency",
+      "target_segment": "universal",
+      "sample_hook": "No plans? Good. Your case file is ready in minutes.",
+      "when_to_use": "Impulse social ads, retargeting, weekend evening campaigns",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-02",
+      "angle_name": "Netflix Replacement",
+      "emotion_type": "curiosity",
+      "target_segment": "couples_date_night",
+      "sample_hook": "Instead of watching another mystery tonight, solve one together.",
+      "when_to_use": "Instagram Reels, TikTok, date-night ad creative",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-03",
+      "angle_name": "Escape Room Without the Booking",
+      "emotion_type": "aspiration",
+      "target_segment": "couples_date_night",
+      "sample_hook": "All the detective-night energy, none of the booking, driving, or per-person cost.",
+      "when_to_use": "Search ads, comparison landing pages, couple-focused social",
+      "source_type": "competitor_analysis"
+    },
+    {
+      "angle_id": "ANG-04",
+      "angle_name": "Date Night with a Plot",
+      "emotion_type": "aspiration",
+      "target_segment": "couples_date_night",
+      "sample_hook": "Make tonight feel like a story you were actually inside.",
+      "when_to_use": "Pinterest, Instagram, anniversary and rainy-day campaigns",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-05",
+      "angle_name": "Host Something Better",
+      "emotion_type": "aspiration",
+      "target_segment": "game_night_hosts",
+      "sample_hook": "Give your group something better than the same three board games.",
+      "when_to_use": "Facebook, Reddit, YouTube pre-roll, game-night planning content",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-06",
+      "angle_name": "No Game Master Required",
+      "emotion_type": "fear",
+      "target_segment": "game_night_hosts",
+      "sample_hook": "A group mystery night that does not need costumes, scripts, or a host voice.",
+      "when_to_use": "Product page sections, educational ads, objection-handling email",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-07",
+      "angle_name": "Gift an Experience, Not Stuff",
+      "emotion_type": "aspiration",
+      "target_segment": "gift_buyers_experience_seekers",
+      "sample_hook": "For the person who is impossible to shop for: give them a case, not clutter.",
+      "when_to_use": "Pinterest, gift guides, holiday and birthday landing pages",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-08",
+      "angle_name": "Last-Minute but Thoughtful",
+      "emotion_type": "urgency",
+      "target_segment": "gift_buyers_experience_seekers",
+      "sample_hook": "Forgot the gift? This one still feels intentional.",
+      "when_to_use": "Search ads, seasonal email, occasion-based social creative",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-09",
+      "angle_name": "From Passive Fan to Active Detective",
+      "emotion_type": "curiosity",
+      "target_segment": "true_crime_solo_players",
+      "sample_hook": "You love true crime. What happens when you are the one solving it?",
+      "when_to_use": "TikTok, YouTube Shorts, podcast-adjacent creative",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-10",
+      "angle_name": "Solo Night, Sharper Than Streaming",
+      "emotion_type": "aspiration",
+      "target_segment": "true_crime_solo_players",
+      "sample_hook": "A solo night in, but with suspects, evidence, and an actual payoff.",
+      "when_to_use": "Solo-play landing pages, search ads, retargeting",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-11",
+      "angle_name": "Premium, Not Printable-Cheap",
+      "emotion_type": "fear",
+      "target_segment": "universal",
+      "sample_hook": "This is not a flimsy PDF. It is a case file built to feel opened, sorted, and solved.",
+      "when_to_use": "Product page, comparison ads, buyer-objection sections",
+      "source_type": "competitor_analysis"
+    },
+    {
+      "angle_id": "ANG-12",
+      "angle_name": "One Price, Whole Night",
+      "emotion_type": "aspiration",
+      "target_segment": "universal",
+      "sample_hook": "$19.99 for 2-4 hours of mystery night beats paying by the person.",
+      "when_to_use": "Value-focused ads, comparison tables, checkout reinforcement",
+      "source_type": "competitor_analysis"
+    },
+    {
+      "angle_id": "ANG-13",
+      "angle_name": "Open the First Envelope",
+      "emotion_type": "curiosity",
+      "target_segment": "universal",
+      "sample_hook": "The hardest part is resisting the first envelope for five more seconds.",
+      "when_to_use": "Creative hooks, teaser reels, homepage hero variants",
+      "source_type": "hypothesis"
+    },
+    {
+      "angle_id": "ANG-14",
+      "angle_name": "The Conversation Starter",
+      "emotion_type": "social_proof",
+      "target_segment": "game_night_hosts",
+      "sample_hook": "The best part of game night is when everyone starts arguing over the same clue.",
+      "when_to_use": "UGC-style ads, social clips, host-focused content",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-15",
+      "angle_name": "Small Group Sweet Spot",
+      "emotion_type": "aspiration",
+      "target_segment": "game_night_hosts",
+      "sample_hook": "Built for the kind of night where three to six people want one thing to rally around.",
+      "when_to_use": "Group-play explainers, Facebook ads, landing-page modules",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-16",
+      "angle_name": "Adult Atmosphere Only",
+      "emotion_type": "fear",
+      "target_segment": "dinner_party_planners",
+      "sample_hook": "A mystery night that feels sophisticated, not costume-party chaotic.",
+      "when_to_use": "Pinterest, dinner-party campaigns, polished static ads",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-17",
+      "angle_name": "After-Dinner Centerpiece",
+      "emotion_type": "aspiration",
+      "target_segment": "dinner_party_planners",
+      "sample_hook": "Dinner was the opening act. The case is what they will remember.",
+      "when_to_use": "Hosting content, Pinterest pins, email features",
+      "source_type": "hypothesis"
+    },
+    {
+      "angle_id": "ANG-18",
+      "angle_name": "Skip the Subscription",
+      "emotion_type": "relief",
+      "target_segment": "subscription_fatigued_mystery_buyers",
+      "sample_hook": "No recurring box. No waiting. Just one complete case for tonight.",
+      "when_to_use": "Search campaigns, comparison pages, retargeting for competitor-aware traffic",
+      "source_type": "competitor_analysis"
+    },
+    {
+      "angle_id": "ANG-19",
+      "angle_name": "Digital as an Upgrade",
+      "emotion_type": "curiosity",
+      "target_segment": "subscription_fatigued_mystery_buyers",
+      "sample_hook": "What if the best part of going digital is not cheaper shipping, but no shipping at all?",
+      "when_to_use": "Competitor conquesting, email, product page FAQ",
+      "source_type": "competitor_analysis"
+    },
+    {
+      "angle_id": "ANG-20",
+      "angle_name": "For People Who Think They'd Crack the Case",
+      "emotion_type": "exclusivity",
+      "target_segment": "universal",
+      "sample_hook": "You have opinions during every crime documentary. Time to test them.",
+      "when_to_use": "Top-of-funnel social, meme-adjacent creative, personality-led hooks",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-21",
+      "angle_name": "A Better Rainy Night Plan",
+      "emotion_type": "urgency",
+      "target_segment": "couples_date_night",
+      "sample_hook": "Rain check on going out? Good. Stay in and crack a case.",
+      "when_to_use": "Weather-timed ads, seasonal creatives, retargeting",
+      "source_type": "hypothesis"
+    },
+    {
+      "angle_id": "ANG-22",
+      "angle_name": "The True-Crime Brain Itch",
+      "emotion_type": "curiosity",
+      "target_segment": "true_crime_solo_players",
+      "sample_hook": "If podcasts leave you wanting one more theory, this is where the theory becomes yours.",
+      "when_to_use": "Solo-player creative, podcast audience targeting, TikTok captions",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-23",
+      "angle_name": "Worth Talking About Tomorrow",
+      "emotion_type": "social_proof",
+      "target_segment": "couples_date_night",
+      "sample_hook": "The best date nights are the ones you keep talking about the next day.",
+      "when_to_use": "Date-night landing pages, testimonial placeholders, social ads",
+      "source_type": "hypothesis"
+    },
+    {
+      "angle_id": "ANG-24",
+      "angle_name": "Mystery Without the Cringe",
+      "emotion_type": "fear",
+      "target_segment": "universal",
+      "sample_hook": "No fake accents. No awkward acting. Just a smart case and the evidence to solve it.",
+      "when_to_use": "Objection-handling copy, ads for skeptical buyers, FAQ sections",
+      "source_type": "research"
+    }
+  ]
+}

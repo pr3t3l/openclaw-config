@@ -1,0 +1,914 @@
+{
+  "schema_version": "3.0",
+  "product_id": "misterio-semanal",
+  "generated_at": "2026-04-01T00:00:00Z",
+  "segment_trigger_channel_matrix": [
+    {
+      "segment_id": "couples_date_night",
+      "trigger_id": "couples_friday_no_plan",
+      "channel": "Instagram Reels",
+      "content_format": "UGC 15s vertical video",
+      "landing_url": "/date-night-mystery-games",
+      "offer": "single case $19.99",
+      "cta": "Start your date-night case tonight",
+      "urgency": "high"
+    },
+    {
+      "segment_id": "couples_date_night",
+      "trigger_id": "couples_post_true_crime",
+      "channel": "TikTok",
+      "content_format": "creator-style 20s hook video",
+      "landing_url": "/date-night-mystery-games",
+      "offer": "single case $19.99",
+      "cta": "Open the file tonight",
+      "urgency": "high"
+    },
+    {
+      "segment_id": "couples_date_night",
+      "trigger_id": "couples_anniversary_rainy_day",
+      "channel": "Pinterest",
+      "content_format": "idea pin with polished stills",
+      "landing_url": "/date-night-mystery-games",
+      "offer": "single case $19.99",
+      "cta": "Plan a better night in",
+      "urgency": "medium"
+    },
+    {
+      "segment_id": "couples_date_night",
+      "trigger_id": "couples_anniversary_rainy_day",
+      "channel": "Google Search",
+      "content_format": "responsive search ad",
+      "landing_url": "/date-night-mystery-games",
+      "offer": "single case $19.99",
+      "cta": "Find a mystery date night",
+      "urgency": "medium"
+    },
+    {
+      "segment_id": "game_night_hosts",
+      "trigger_id": "hosts_weekend_plan",
+      "channel": "Google Search",
+      "content_format": "responsive search ad",
+      "landing_url": "/game-night-mystery-games",
+      "offer": "single case $19.99",
+      "cta": "Host a mystery game night",
+      "urgency": "medium"
+    },
+    {
+      "segment_id": "game_night_hosts",
+      "trigger_id": "hosts_rotation_stale",
+      "channel": "Facebook",
+      "content_format": "square image + short copy ad",
+      "landing_url": "/game-night-mystery-games",
+      "offer": "single case $19.99",
+      "cta": "Bring one new thing to game night",
+      "urgency": "medium"
+    },
+    {
+      "segment_id": "game_night_hosts",
+      "trigger_id": "hosts_same_day_need",
+      "channel": "Instagram Reels",
+      "content_format": "UGC 15s vertical video",
+      "landing_url": "/game-night-mystery-games",
+      "offer": "single case $19.99",
+      "cta": "Download tonight's group activity",
+      "urgency": "high"
+    },
+    {
+      "segment_id": "game_night_hosts",
+      "trigger_id": "hosts_rotation_stale",
+      "channel": "YouTube",
+      "content_format": "30s explainer pre-roll",
+      "landing_url": "/game-night-mystery-games",
+      "offer": "single case $19.99",
+      "cta": "See how group play works",
+      "urgency": "medium"
+    },
+    {
+      "segment_id": "dinner_party_planners",
+      "trigger_id": "dinner_party_weekend_plan",
+      "channel": "Pinterest",
+      "content_format": "vertical idea pin",
+      "landing_url": "/murder-mystery-dinner-party-kits",
+      "offer": "single case $19.99",
+      "cta": "Make dinner memorable",
+      "urgency": "medium"
+    },
+    {
+      "segment_id": "dinner_party_planners",
+      "trigger_id": "dinner_party_hosting_inspo",
+      "channel": "Instagram",
+      "content_format": "carousel with dossier previews",
+      "landing_url": "/murder-mystery-dinner-party-kits",
+      "offer": "single case $19.99",
+      "cta": "See the after-dinner activity",
+      "urgency": "low"
+    },
+    {
+      "segment_id": "dinner_party_planners",
+      "trigger_id": "dinner_party_small_group_shift",
+      "channel": "Google Search",
+      "content_format": "responsive search ad",
+      "landing_url": "/murder-mystery-dinner-party-kits",
+      "offer": "single case $19.99",
+      "cta": "Find an easy dinner-party mystery",
+      "urgency": "medium"
+    },
+    {
+      "segment_id": "true_crime_solo_players",
+      "trigger_id": "solo_post_podcast",
+      "channel": "TikTok",
+      "content_format": "creator-style 20s vertical video",
+      "landing_url": "/true-crime-mystery-box",
+      "offer": "single case $19.99",
+      "cta": "Stop watching. Start solving.",
+      "urgency": "high"
+    },
+    {
+      "segment_id": "true_crime_solo_players",
+      "trigger_id": "solo_weekend_activity",
+      "channel": "Google Search",
+      "content_format": "responsive search ad",
+      "landing_url": "/solo-detective-challenges",
+      "offer": "single case $19.99",
+      "cta": "Find a solo case to solve",
+      "urgency": "medium"
+    },
+    {
+      "segment_id": "true_crime_solo_players",
+      "trigger_id": "solo_instant_access_discovery",
+      "channel": "Instagram Reels",
+      "content_format": "15s native vertical video",
+      "landing_url": "/solo-detective-challenges",
+      "offer": "single case $19.99",
+      "cta": "Play solo tonight",
+      "urgency": "high"
+    },
+    {
+      "segment_id": "true_crime_solo_players",
+      "trigger_id": "solo_weekend_activity",
+      "channel": "YouTube",
+      "content_format": "45s case-preview video ad",
+      "landing_url": "/solo-detective-challenges",
+      "offer": "single case $19.99",
+      "cta": "Preview the investigation",
+      "urgency": "medium"
+    },
+    {
+      "segment_id": "gift_buyers_experience_seekers",
+      "trigger_id": "gift_last_minute",
+      "channel": "Google Search",
+      "content_format": "responsive search ad",
+      "landing_url": "/unique-mystery-gifts",
+      "offer": "single case $19.99",
+      "cta": "Get an instant gift now",
+      "urgency": "high"
+    },
+    {
+      "segment_id": "gift_buyers_experience_seekers",
+      "trigger_id": "gift_experience_inspo",
+      "channel": "Pinterest",
+      "content_format": "gift-focused vertical pin",
+      "landing_url": "/unique-mystery-gifts",
+      "offer": "single case $19.99",
+      "cta": "Gift an experience, not stuff",
+      "urgency": "medium"
+    },
+    {
+      "segment_id": "gift_buyers_experience_seekers",
+      "trigger_id": "gift_holiday_budget",
+      "channel": "Email",
+      "content_format": "seasonal promo email",
+      "landing_url": "/themes/christmas-mystery-game",
+      "offer": "single case $19.99",
+      "cta": "Send a mystery gift tonight",
+      "urgency": "high"
+    },
+    {
+      "segment_id": "solo_true_crime_night",
+      "trigger_id": "solo_winddown_post_show",
+      "channel": "TikTok",
+      "content_format": "15s hook-first vertical video",
+      "landing_url": "/solo-detective-challenges",
+      "offer": "single case $19.99",
+      "cta": "Keep the mystery going tonight",
+      "urgency": "high"
+    },
+    {
+      "segment_id": "solo_true_crime_night",
+      "trigger_id": "solo_quiet_evening",
+      "channel": "Google Search",
+      "content_format": "responsive search ad",
+      "landing_url": "/solo-detective-challenges",
+      "offer": "single case $19.99",
+      "cta": "Start a solo mystery tonight",
+      "urgency": "medium"
+    },
+    {
+      "segment_id": "solo_true_crime_night",
+      "trigger_id": "solo_compare_no_shipping",
+      "channel": "Instagram",
+      "content_format": "story ad with swipe-up",
+      "landing_url": "/printable-murder-mystery",
+      "offer": "single case $19.99",
+      "cta": "Skip shipping and solve now",
+      "urgency": "medium"
+    },
+    {
+      "segment_id": "escape_room_alternative_seekers",
+      "trigger_id": "escape_room_backup_plan",
+      "channel": "Google Search",
+      "content_format": "responsive search ad",
+      "landing_url": "/date-night-mystery-games",
+      "offer": "single case $19.99",
+      "cta": "Try the at-home alternative",
+      "urgency": "medium"
+    },
+    {
+      "segment_id": "escape_room_alternative_seekers",
+      "trigger_id": "escape_room_weekend_fallthrough",
+      "channel": "Facebook",
+      "content_format": "image ad with value comparison copy",
+      "landing_url": "/game-night-mystery-games",
+      "offer": "single case $19.99",
+      "cta": "Save tonight's plans",
+      "urgency": "high"
+    },
+    {
+      "segment_id": "escape_room_alternative_seekers",
+      "trigger_id": "escape_room_comparison_content",
+      "channel": "YouTube",
+      "content_format": "30s comparison-style video ad",
+      "landing_url": "/printable-murder-mystery",
+      "offer": "single case $19.99",
+      "cta": "See the no-booking alternative",
+      "urgency": "medium"
+    },
+    {
+      "segment_id": "subscription_fatigued_mystery_buyers",
+      "trigger_id": "subfat_compare_physical_vs_digital",
+      "channel": "Google Search",
+      "content_format": "responsive search ad",
+      "landing_url": "/mystery-subscription-box",
+      "offer": "single case $19.99",
+      "cta": "Skip the subscription",
+      "urgency": "medium"
+    },
+    {
+      "segment_id": "subscription_fatigued_mystery_buyers",
+      "trigger_id": "subfat_mystery_itch",
+      "channel": "Email",
+      "content_format": "comparison email",
+      "landing_url": "/mystery-subscription-box",
+      "offer": "single case $19.99",
+      "cta": "Get one complete case tonight",
+      "urgency": "medium"
+    },
+    {
+      "segment_id": "subscription_fatigued_mystery_buyers",
+      "trigger_id": "subfat_weekend_memory",
+      "channel": "Facebook",
+      "content_format": "feed ad with dossier preview",
+      "landing_url": "/mystery-subscription-box",
+      "offer": "single case $19.99",
+      "cta": "Come back to mystery night",
+      "urgency": "medium"
+    }
+  ],
+  "channels": [
+    {
+      "channel_name": "Google Search",
+      "priority": "primary",
+      "target_segments": [
+        "couples_date_night",
+        "game_night_hosts",
+        "gift_buyers_experience_seekers",
+        "solo_true_crime_night",
+        "subscription_fatigued_mystery_buyers",
+        "escape_room_alternative_seekers"
+      ],
+      "content_format": "responsive search ads mapped to use-case landing pages",
+      "platform_specs": {
+        "aspect_ratio": "text-only",
+        "max_duration": "n/a",
+        "character_limits": "headlines up to 30 chars, descriptions up to 90 chars",
+        "native_features": [
+          "sitelinks",
+          "callouts",
+          "structured snippets",
+          "promotion extensions"
+        ]
+      },
+      "posting_frequency": "always-on with weekly keyword and copy updates",
+      "estimated_budget_pct": 34,
+      "kpis": [
+        {
+          "metric": "CTR",
+          "threshold": ">= 4.5%",
+          "measurement": "Google Ads campaign and ad-group level"
+        },
+        {
+          "metric": "CPC",
+          "threshold": "<= $1.20",
+          "measurement": "Google Ads keyword report"
+        },
+        {
+          "metric": "Landing page CVR",
+          "threshold": ">= 2.5%",
+          "measurement": "GA4 purchase conversion by landing page"
+        }
+      ]
+    },
+    {
+      "channel_name": "Instagram",
+      "priority": "primary",
+      "target_segments": [
+        "couples_date_night",
+        "game_night_hosts",
+        "dinner_party_planners",
+        "solo_true_crime_night",
+        "true_crime_solo_players"
+      ],
+      "content_format": "Reels, Stories, and carousels with dossier previews and UGC framing",
+      "platform_specs": {
+        "aspect_ratio": "9:16 for Reels/Stories, 4:5 for feed, 1:1 for carousel",
+        "max_duration": "90s for Reels, best practice 15-30s",
+        "character_limits": "captions flexible; keep hooks under 125 chars",
+        "native_features": [
+          "reels",
+          "stories",
+          "carousels",
+          "poll stickers"
+        ]
+      },
+      "posting_frequency": "3-4 organic posts per week plus low-budget retargeting ads",
+      "estimated_budget_pct": 18,
+      "kpis": [
+        {
+          "metric": "Thumb-stop rate",
+          "threshold": ">= 25%",
+          "measurement": "Meta video hold and 3-second plays"
+        },
+        {
+          "metric": "CTR",
+          "threshold": ">= 1.2%",
+          "measurement": "Meta Ads Manager"
+        },
+        {
+          "metric": "CPA",
+          "threshold": "<= $18.00",
+          "measurement": "Meta Ads Manager purchase attribution"
+        }
+      ]
+    },
+    {
+      "channel_name": "TikTok",
+      "priority": "primary",
+      "target_segments": [
+        "couples_date_night",
+        "true_crime_solo_players",
+        "solo_true_crime_night"
+      ],
+      "content_format": "native-feeling creator videos, hooks, clue reveals, and night-in comparisons",
+      "platform_specs": {
+        "aspect_ratio": "9:16",
+        "max_duration": "10m, best practice 15-30s",
+        "character_limits": "captions up to 2200 chars; keep core hook under 100 chars",
+        "native_features": [
+          "trending sounds",
+          "text overlays",
+          "stitches",
+          "comments as social proof"
+        ]
+      },
+      "posting_frequency": "4-5 organic posts per week; paid boosts only for top performers",
+      "estimated_budget_pct": 14,
+      "kpis": [
+        {
+          "metric": "Hook rate",
+          "threshold": ">= 35%",
+          "measurement": "2-second video views / impressions"
+        },
+        {
+          "metric": "CTR",
+          "threshold": ">= 0.9%",
+          "measurement": "TikTok Ads Manager"
+        },
+        {
+          "metric": "CPA",
+          "threshold": "<= $17.50",
+          "measurement": "TikTok pixel attributed purchases"
+        }
+      ]
+    },
+    {
+      "channel_name": "Pinterest",
+      "priority": "secondary",
+      "target_segments": [
+        "couples_date_night",
+        "dinner_party_planners",
+        "gift_buyers_experience_seekers"
+      ],
+      "content_format": "idea pins, static vertical pins, and occasion-led graphics",
+      "platform_specs": {
+        "aspect_ratio": "2:3 preferred, 1000x1500",
+        "max_duration": "60s for video pins",
+        "character_limits": "title up to 100 chars, description up to 500 chars",
+        "native_features": [
+          "idea pins",
+          "boards",
+          "product pins",
+          "seasonal saves"
+        ]
+      },
+      "posting_frequency": "8-10 pins per week scheduled in batches",
+      "estimated_budget_pct": 8,
+      "kpis": [
+        {
+          "metric": "Outbound CTR",
+          "threshold": ">= 0.8%",
+          "measurement": "Pinterest Analytics"
+        },
+        {
+          "metric": "Save rate",
+          "threshold": ">= 4%",
+          "measurement": "Pinterest Analytics"
+        },
+        {
+          "metric": "CPC",
+          "threshold": "<= $0.80",
+          "measurement": "Pinterest Ads reporting"
+        }
+      ]
+    },
+    {
+      "channel_name": "Facebook",
+      "priority": "secondary",
+      "target_segments": [
+        "game_night_hosts",
+        "gift_buyers_experience_seekers",
+        "escape_room_alternative_seekers",
+        "subscription_fatigued_mystery_buyers"
+      ],
+      "content_format": "static ads, short videos, and community-friendly link posts",
+      "platform_specs": {
+        "aspect_ratio": "1:1 or 4:5 for feed, 9:16 for stories",
+        "max_duration": "241m, best practice 15-30s",
+        "character_limits": "primary text flexible; strongest first 125 chars",
+        "native_features": [
+          "feed ads",
+          "groups",
+          "stories",
+          "carousel ads"
+        ]
+      },
+      "posting_frequency": "2-3 posts per week and retargeting/interest ads",
+      "estimated_budget_pct": 7,
+      "kpis": [
+        {
+          "metric": "CTR",
+          "threshold": ">= 1.1%",
+          "measurement": "Meta Ads Manager"
+        },
+        {
+          "metric": "CPA",
+          "threshold": "<= $18.50",
+          "measurement": "Meta Ads Manager"
+        },
+        {
+          "metric": "LPV rate",
+          "threshold": ">= 75%",
+          "measurement": "Landing page views / link clicks"
+        }
+      ]
+    },
+    {
+      "channel_name": "Email",
+      "priority": "primary",
+      "target_segments": [
+        "gift_buyers_experience_seekers",
+        "subscription_fatigued_mystery_buyers",
+        "couples_date_night",
+        "solo_true_crime_night"
+      ],
+      "content_format": "lead magnet delivery, abandoned browse, seasonal gift pushes, and use-case segmentation",
+      "platform_specs": {
+        "aspect_ratio": "mobile-first single-column",
+        "max_duration": "n/a",
+        "character_limits": "subject line 30-50 chars, preview text 35-90 chars",
+        "native_features": [
+          "subject line A/B tests",
+          "segmentation",
+          "automation flows",
+          "behavioral triggers"
+        ]
+      },
+      "posting_frequency": "1 campaign per week plus triggered automations",
+      "estimated_budget_pct": 6,
+      "kpis": [
+        {
+          "metric": "Open rate",
+          "threshold": ">= 35%",
+          "measurement": "ESP reporting"
+        },
+        {
+          "metric": "Click rate",
+          "threshold": ">= 2.5%",
+          "measurement": "ESP reporting"
+        },
+        {
+          "metric": "Conversion rate",
+          "threshold": ">= 3.0%",
+          "measurement": "GA4 and ESP attributed purchases"
+        }
+      ]
+    },
+    {
+      "channel_name": "YouTube",
+      "priority": "experimental",
+      "target_segments": [
+        "game_night_hosts",
+        "true_crime_solo_players",
+        "escape_room_alternative_seekers"
+      ],
+      "content_format": "short explainer ads, comparison clips, and case-preview videos",
+      "platform_specs": {
+        "aspect_ratio": "16:9 for standard video, 9:16 for Shorts",
+        "max_duration": "15-60s ads, 30-120s explainers",
+        "character_limits": "headline up to 100 chars for ads",
+        "native_features": [
+          "in-stream ads",
+          "shorts",
+          "end screens",
+          "cards"
+        ]
+      },
+      "posting_frequency": "2 videos per month and selective paid tests",
+      "estimated_budget_pct": 5,
+      "kpis": [
+        {
+          "metric": "View rate",
+          "threshold": ">= 20%",
+          "measurement": "Google Ads video campaign report"
+        },
+        {
+          "metric": "CTR",
+          "threshold": ">= 0.7%",
+          "measurement": "Google Ads"
+        },
+        {
+          "metric": "Assisted conversions",
+          "threshold": ">= 1 per month",
+          "measurement": "GA4 attribution paths"
+        }
+      ]
+    },
+    {
+      "channel_name": "Reddit",
+      "priority": "experimental",
+      "target_segments": [
+        "game_night_hosts",
+        "true_crime_solo_players",
+        "subscription_fatigued_mystery_buyers"
+      ],
+      "content_format": "community participation, soft-sell posts, and occasional promoted posts",
+      "platform_specs": {
+        "aspect_ratio": "1:1 or link post native",
+        "max_duration": "n/a",
+        "character_limits": "subreddit-dependent",
+        "native_features": [
+          "promoted posts",
+          "comment threads",
+          "AMA-style engagement",
+          "community targeting"
+        ]
+      },
+      "posting_frequency": "2-3 community interactions per week; paid tests monthly",
+      "estimated_budget_pct": 3,
+      "kpis": [
+        {
+          "metric": "CTR",
+          "threshold": ">= 0.6%",
+          "measurement": "Reddit Ads dashboard"
+        },
+        {
+          "metric": "Engagement rate",
+          "threshold": ">= 3%",
+          "measurement": "upvotes + comments / impressions"
+        },
+        {
+          "metric": "CPC",
+          "threshold": "<= $0.90",
+          "measurement": "Reddit Ads dashboard"
+        }
+      ]
+    },
+    {
+      "channel_name": "SEO Content",
+      "priority": "primary",
+      "target_segments": [
+        "couples_date_night",
+        "game_night_hosts",
+        "gift_buyers_experience_seekers",
+        "solo_true_crime_night",
+        "subscription_fatigued_mystery_buyers"
+      ],
+      "content_format": "landing pages and long-tail comparison or guide articles",
+      "platform_specs": {
+        "aspect_ratio": "n/a",
+        "max_duration": "n/a",
+        "character_limits": "title tags 50-60 chars, meta descriptions 140-160 chars",
+        "native_features": [
+          "long-tail pages",
+          "internal linking",
+          "schema markup",
+          "comparison content"
+        ]
+      },
+      "posting_frequency": "1 landing or blog page per month given budget constraints",
+      "estimated_budget_pct": 5,
+      "kpis": [
+        {
+          "metric": "Organic sessions",
+          "threshold": ">= 100 monthly by month 3",
+          "measurement": "GA4 organic traffic"
+        },
+        {
+          "metric": "Keyword rankings",
+          "threshold": "Top 30 for 5 target keywords by month 3",
+          "measurement": "Search Console and rank tracker"
+        },
+        {
+          "metric": "Organic CVR",
+          "threshold": ">= 1.5%",
+          "measurement": "GA4 purchase conversion from organic"
+        }
+      ]
+    }
+  ],
+  "platform_native_specs": {
+    "TikTok": {
+      "creative_structure": "Hook in first 1-3 seconds, show evidence or use-case payoff by 3-6 seconds, present instant-access benefit, end with clear CTA.",
+      "best_practices": [
+        "Use native text overlays like 'No plans tonight?' or 'Stop watching mysteries. Solve one.'",
+        "Keep a DIY creator feel rather than polished ad polish.",
+        "Feature tactile dossier shots, envelope reveals, or couple/group reaction moments.",
+        "Use trending sounds only when they do not undercut the adult suspense tone."
+      ],
+      "specs": {
+        "aspect_ratio": "9:16",
+        "duration": "15-30 seconds preferred",
+        "caption_style": "short curiosity-led caption with one direct CTA",
+        "cta_style": "Start tonight, open the file, or solve tonight"
+      }
+    },
+    "Meta": {
+      "creative_structure": "Lead with problem-solution in first 3-5 seconds, show use case, reinforce instant access and 2-4 hour payoff, close with one simple CTA.",
+      "best_practices": [
+        "Build creative variety across couples, solo, gift, and group angles.",
+        "Use 1:1 and 9:16 assets for Advantage+ compatibility.",
+        "Open with friction-killing lines like 'No shipping. No subscription. Start tonight.'",
+        "Use carousels to preview documents, envelopes, and player scenarios."
+      ],
+      "specs": {
+        "aspect_ratio": "1:1, 4:5, and 9:16",
+        "duration": "15-30 seconds for video",
+        "copy_style": "front-load benefit in first 125 characters",
+        "cta_style": "Learn More or Shop Now mapped to use-case page"
+      }
+    },
+    "YouTube": {
+      "creative_structure": "Use ABCD: Attract with boredom/date-night problem, Brand with dossier visuals, Connect through play scenario, Direct with instant-download CTA.",
+      "best_practices": [
+        "Keep ads between 30 seconds and 2 minutes for explainers; 15-30 seconds for paid tests.",
+        "Use voiceover plus quick evidence visuals.",
+        "Show exactly how the experience works to reduce digital-product skepticism.",
+        "Use comparison hooks for escape-room and subscription-box alternatives."
+      ],
+      "specs": {
+        "aspect_ratio": "16:9 standard, 9:16 for Shorts",
+        "duration": "30-120 seconds organic, 15-30 seconds paid",
+        "copy_style": "one message per ad",
+        "cta_style": "Preview the case or solve tonight"
+      }
+    },
+    "Email": {
+      "creative_structure": "Short subject line, use-case-based opener, one clear visual or proof block, single primary CTA.",
+      "best_practices": [
+        "A/B test subject lines around urgency versus curiosity.",
+        "Segment by persona: date night, solo, group, gift, and comparison intent.",
+        "Trigger automations for lead magnet opt-in, abandoned product views, and seasonal gifts.",
+        "Design mobile-first with concise paragraphs and one-button CTA."
+      ],
+      "specs": {
+        "layout": "single-column mobile-first",
+        "subject_line": "30-50 characters",
+        "preview_text": "35-90 characters",
+        "cta_style": "one main button per email"
+      }
+    },
+    "Google Search": {
+      "creative_structure": "Match long-tail transactional keyword intent, mirror query language, route to segment-specific landing page, reinforce instant access and no shipping.",
+      "best_practices": [
+        "Prioritize date night, gift, solo, and mystery-subscription-alternative keywords.",
+        "Use ad extensions for 1-6 players, instant access, and 2-4 hours.",
+        "Split campaigns by use case rather than one generic campaign.",
+        "Send each ad group to the exact relevant landing page from the SEO architecture."
+      ],
+      "specs": {
+        "format": "responsive search ads",
+        "headlines": "up to 15 headlines with core use-case variations",
+        "descriptions": "up to 4 descriptions",
+        "cta_style": "Start tonight, instant download, no shipping"
+      }
+    },
+    "Pinterest": {
+      "creative_structure": "Lead with use-case aspiration, show polished lifestyle setup, use overlaid text to clarify the product, and end with gift/date-night/hosting CTA.",
+      "best_practices": [
+        "Create boards for date night ideas, mystery gifts, and dinner party activities.",
+        "Use vertical pins with premium dossier imagery and adult atmosphere.",
+        "Lean into seasonal spikes like holidays, anniversaries, and rainy-night plans.",
+        "Use keyword-rich titles and descriptions tied to gifting and hosting intent."
+      ],
+      "specs": {
+        "aspect_ratio": "2:3 vertical",
+        "duration": "6-15 seconds for video pins, static pins also effective",
+        "copy_style": "title-first clarity with light intrigue",
+        "cta_style": "Plan it, gift it, or save for tonight"
+      }
+    }
+  },
+  "funnel": {
+    "awareness": {
+      "goal": "Introduce the product as a premium, instant-download mystery night for adults and create demand around key use cases.",
+      "channels": [
+        "TikTok",
+        "Instagram",
+        "Pinterest",
+        "YouTube",
+        "SEO Content"
+      ],
+      "content_types": [
+        "UGC hooks",
+        "short explainer videos",
+        "occasion-led pins",
+        "comparison creatives",
+        "long-tail discovery articles"
+      ],
+      "kpis": [
+        "video hook rate",
+        "impressions",
+        "reach",
+        "organic sessions",
+        "save rate"
+      ],
+      "budget_pct": 34
+    },
+    "consideration": {
+      "goal": "Reduce skepticism by showing dossier quality, player fit, and instant-access convenience for specific use cases.",
+      "channels": [
+        "Instagram",
+        "Facebook",
+        "YouTube",
+        "Pinterest",
+        "Email",
+        "SEO Content"
+      ],
+      "content_types": [
+        "carousel previews",
+        "case walkthroughs",
+        "landing-page comparisons",
+        "lead magnet emails",
+        "FAQ and objection-handling content"
+      ],
+      "kpis": [
+        "CTR",
+        "landing page engagement rate",
+        "email sign-up rate",
+        "video completion rate"
+      ],
+      "budget_pct": 22
+    },
+    "conversion": {
+      "goal": "Capture high-intent buyers searching for date-night, group, solo, gift, or no-subscription alternatives and convert them profitably.",
+      "channels": [
+        "Google Search",
+        "Email",
+        "Instagram",
+        "Facebook"
+      ],
+      "content_types": [
+        "transactional search ads",
+        "abandoned browse emails",
+        "retargeting stories",
+        "use-case-specific landing pages"
+      ],
+      "kpis": [
+        "CPA",
+        "conversion rate",
+        "ROAS",
+        "checkout completion rate"
+      ],
+      "budget_pct": 36
+    },
+    "retention": {
+      "goal": "Drive repeat case purchases and seasonal reactivation without relying on subscriptions.",
+      "channels": [
+        "Email",
+        "Facebook",
+        "Instagram"
+      ],
+      "content_types": [
+        "new case announcements",
+        "gift reminders",
+        "occasion-based campaigns",
+        "cross-sell emails"
+      ],
+      "kpis": [
+        "repeat purchase rate",
+        "email revenue per recipient",
+        "reactivation rate"
+      ],
+      "budget_pct": 8
+    }
+  },
+  "lead_magnet": {
+    "type": "free mini-case preview",
+    "title": "Case File Preview: The First Envelope",
+    "description": "A free short preview that includes the opening case setup, sample dossier pages, and one starter clue sequence so buyers can judge the tone, polish, and flow before purchasing.",
+    "delivery_channel": "email",
+    "target_segments": [
+      "couples_date_night",
+      "true_crime_solo_players",
+      "gift_buyers_experience_seekers",
+      "subscription_fatigued_mystery_buyers"
+    ],
+    "expected_conversion_rate": "18-28% opt-in to purchase within 14 days",
+    "follow_up_sequence": "Email 1 delivers the preview immediately; Email 2 after 1 day explains how full cases work for solo, couples, and groups; Email 3 after 3 days compares the offer against shipped mystery boxes and streaming; Email 4 after 5 days highlights instant access and a clear buy-now CTA; Email 5 after 10 days reframes as date-night or gift idea depending on segment."
+  },
+  "budget_allocation": {
+    "monthly_total_usd": 50,
+    "channels": [
+      {
+        "channel": "Google Search",
+        "budget_pct": 34,
+        "budget_usd": 17,
+        "justification": "Highest-intent traffic and the best fit for a tiny budget because date-night, gift, solo, and comparison buyers already know what they want."
+      },
+      {
+        "channel": "Instagram",
+        "budget_pct": 18,
+        "budget_usd": 9,
+        "justification": "Strongest visual channel for couples and social proof through dossier previews, plus useful low-cost retargeting."
+      },
+      {
+        "channel": "TikTok",
+        "budget_pct": 14,
+        "budget_usd": 7,
+        "justification": "Best low-cost awareness test for impulse 'tonight' messaging among true-crime and date-night audiences."
+      },
+      {
+        "channel": "Pinterest",
+        "budget_pct": 8,
+        "budget_usd": 4,
+        "justification": "Useful for planners and gift buyers with evergreen saves, especially when the budget cannot support heavy paid social."
+      },
+      {
+        "channel": "Facebook",
+        "budget_pct": 7,
+        "budget_usd": 3.5,
+        "justification": "Efficient for hosts, older buyers, and retargeting against game-night and subscription-alternative angles."
+      },
+      {
+        "channel": "Email",
+        "budget_pct": 6,
+        "budget_usd": 3,
+        "justification": "Highest long-term ROI channel once leads are captured, especially important because replayability drives repeat purchases."
+      },
+      {
+        "channel": "YouTube",
+        "budget_pct": 5,
+        "budget_usd": 2.5,
+        "justification": "Small test budget for explainer-style creative where visual proof helps overcome skepticism."
+      },
+      {
+        "channel": "SEO Content",
+        "budget_pct": 5,
+        "budget_usd": 2.5,
+        "justification": "Supports long-tail demand capture over time even if immediate output is limited to one high-priority page or article per month."
+      },
+      {
+        "channel": "Reddit",
+        "budget_pct": 3,
+        "budget_usd": 1.5,
+        "justification": "Reserved for community and occasional promoted-post experiments in highly relevant mystery and game-night communities."
+      }
+    ],
+    "testing_budget_pct": 10,
+    "kpi_targets": {
+      "cpa_ceiling_usd": 18.99,
+      "cpl_target_usd": 2.5,
+      "conversion_rate_target_pct": 2.8,
+      "roas_floor": 1.5
+    }
+  }
+}

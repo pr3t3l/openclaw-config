@@ -1,0 +1,1006 @@
+{
+  "schema_version": "3.0",
+  "product_id": "misterio-semanal",
+  "generated_at": "2026-03-31T23:39:22.223546",
+  "segments": [
+    {
+      "segment_id": "couples_date_night",
+      "segment_name": "Couples / Date Night Seekers",
+      "priority": "primary",
+      "use_case": "They buy a case when they want an at-home date night that feels more memorable than another movie, without paying escape-room prices or planning days in advance.",
+      "avatar": {
+        "name": "Lauren",
+        "age": 31,
+        "occupation": "Marketing manager",
+        "context": "Lauren lives with her partner in Chicago and is always looking for low-friction ways to make Friday nights feel special. They like true crime shows and casual puzzles but do not identify as hardcore gamers.",
+        "routine_summary": "Her weekdays are packed with work, workouts, and errands; by Friday she wants something easy to start at home that still feels like a real shared experience."
+      },
+      "motivation": "Turn a routine night in into a collaborative, story-driven experience that feels intimate, fun, and worth talking about afterward.",
+      "pain_points": [
+        {
+          "pain": "We keep defaulting to Netflix, and it doesn't feel like we're actually doing something together.",
+          "source_type": "industry_report",
+          "evidence_excerpt": "Market analysis notes consumers increasingly accept at-home interactive entertainment as an alternative to out-of-home date night and group activities."
+        },
+        {
+          "pain": "Escape rooms are fun, but by the time we book, drive there, and pay per person, it becomes a whole production.",
+          "source_type": "inference",
+          "evidence_excerpt": "In-person escape rooms are positioned as higher-cost, higher-planning alternatives at $30-$50 per person versus a $19.99 digital case.",
+          "assumption_flag": true
+        },
+        {
+          "pain": "A lot of downloadable games look cheap or cheesy, and I don't want date night to feel like a bad PDF.",
+          "source_type": "competitor_gap",
+          "evidence_excerpt": "Audience intelligence shows buyers are sensitive to products that look cheap, generic, or overly printable without premium presentation."
+        },
+        {
+          "pain": "We want something we can start tonight without waiting for shipping or learning a bunch of rules first.",
+          "source_type": "competitor_gap",
+          "evidence_excerpt": "Audience intelligence highlights that customers value experiences that can be started the same day with minimal setup."
+        }
+      ],
+      "buying_triggers": [
+        {
+          "trigger": "A Friday night arrives and they realize they have no real plan besides scrolling streaming apps.",
+          "timing": "impulse",
+          "urgency": "high",
+          "channel": "TikTok or Instagram Reels while looking for date-night ideas",
+          "source_type": "competitor_gap",
+          "evidence_excerpt": "Market gap identifies fast, premium-feeling digital detective cases for same-night play as under-served.",
+          "assumption_flag": false
+        },
+        {
+          "trigger": "They finish a true crime show or podcast episode and want to do something interactive instead of just watching more.",
+          "timing": "impulse",
+          "urgency": "high",
+          "channel": "Instagram, Facebook, or social ads after media consumption",
+          "source_type": "industry_report",
+          "evidence_excerpt": "Trend notes true-crime fandom continues to expand adjacent demand for fictional detective and case-solving entertainment."
+        },
+        {
+          "trigger": "They are planning an anniversary, rainy-day date, or no-babysitter night and want a low-cost but thoughtful activity.",
+          "timing": "planned_short",
+          "urgency": "medium",
+          "channel": "Pinterest, Google search, or couples activity blogs",
+          "source_type": "competitor_gap",
+          "evidence_excerpt": "Market gap highlights a strong opportunity for 2-player detective date-night positioning."
+        }
+      ],
+      "purchase_barriers": [
+        {
+          "barrier": "They worry it will feel awkward, cringe, or less exciting than it sounds.",
+          "objection_handling": "Show the dossier aesthetic, clue previews, and copy that frames it as a suspenseful collaborative investigation rather than role-play."
+        },
+        {
+          "barrier": "They are unsure whether two people can enjoy it without a larger group.",
+          "objection_handling": "State clearly that the experience is designed for 1-6 players and feature date-night-focused messaging and examples of two people solving together."
+        },
+        {
+          "barrier": "They compare it against cheaper Etsy printables or a monthly streaming subscription.",
+          "objection_handling": "Anchor value around 2-4 hours of shared entertainment, 14-21 documents, instant delivery, and a lower total cost than most out-of-home dates."
+        }
+      ],
+      "preferred_channels": [
+        "Instagram",
+        "TikTok",
+        "Pinterest",
+        "Google Search",
+        "Facebook"
+      ],
+      "preferred_content_format": "ugc",
+      "acceptable_price_range": {
+        "min": 14.99,
+        "max": 24.99,
+        "sweet_spot": 19.99
+      },
+      "required_proof": "A landing page preview showing the case-file quality, clear date-night positioning, estimated play time, and a few sample document spreads or screenshots.",
+      "ticket_expected": 19.99
+    },
+    {
+      "segment_id": "game_night_hosts",
+      "segment_name": "Game Night Hosts",
+      "priority": "primary",
+      "use_case": "They buy a case as a fresh small-group activity for a weekend game night when they want something more immersive than a standard board game but easier to organize than a hosted murder mystery party.",
+      "avatar": {
+        "name": "Marcus",
+        "age": 34,
+        "occupation": "Project manager",
+        "context": "Marcus hosts friends at his apartment once or twice a month and likes being the person who brings new experiences to the group. His crowd enjoys board games and escape rooms but gets bored with repeating the same formats.",
+        "routine_summary": "He works a full week, texts friends to coordinate weekend plans, and usually scrambles to find one activity everyone can understand quickly once people arrive."
+      },
+      "motivation": "Give the group an experience that feels novel, social, and conversation-heavy without requiring costumes, a host script, or a big budget.",
+      "pain_points": [
+        {
+          "pain": "I need something better than the same three board games we always pull out.",
+          "source_type": "review_analysis",
+          "evidence_excerpt": "Audience intelligence notes players value social collaboration and immersive narrative progression rather than disconnected mechanics."
+        },
+        {
+          "pain": "Party mystery games can be fun, but they often need too many people or too much setup to pull off casually.",
+          "source_type": "inference",
+          "evidence_excerpt": "Indirect competitors like murder mystery party games are positioned as serving larger gatherings and depending more on hosting roles and coordination.",
+          "assumption_flag": true
+        },
+        {
+          "pain": "If a group activity takes forever to explain, people check out before we even start.",
+          "source_type": "competitor_gap",
+          "evidence_excerpt": "Audience intelligence highlights customer preference for same-day experiences with minimal setup."
+        },
+        {
+          "pain": "I don't want to recommend something that ends with a weak reveal and leaves everyone saying that was it?",
+          "source_type": "review_analysis",
+          "evidence_excerpt": "Audience intelligence shows users reject weak endings or solutions that feel under-earned after a long setup."
+        }
+      ],
+      "buying_triggers": [
+        {
+          "trigger": "They are hosting friends this weekend and want one new anchor activity that works for 3-6 people.",
+          "timing": "planned_short",
+          "urgency": "medium",
+          "channel": "Google search, Reddit, or Facebook groups for game night ideas",
+          "source_type": "review_analysis",
+          "evidence_excerpt": "Mixed-use occasions trend shows solo, couples, and small group social play coexist in the category."
+        },
+        {
+          "trigger": "Their regular game rotation feels stale and they want something more story-led than another strategy game.",
+          "timing": "planned_short",
+          "urgency": "medium",
+          "channel": "Board game forums, YouTube, or social discovery content",
+          "source_type": "review_analysis",
+          "evidence_excerpt": "Audience intelligence indicates users value strong narrative hooks and sequential evidence discovery."
+        },
+        {
+          "trigger": "A same-day plan comes together and they need an instant-download group activity without shipping delays.",
+          "timing": "impulse",
+          "urgency": "high",
+          "channel": "Google search or mobile social ads",
+          "source_type": "competitor_extrapolation",
+          "evidence_excerpt": "Trend states instant-delivery digital formats reduce friction for impulse purchases, especially for same-day plans."
+        }
+      ],
+      "purchase_barriers": [
+        {
+          "barrier": "They worry the case may not scale well for a group and could leave some people disengaged.",
+          "objection_handling": "Clarify ideal player counts, explain collaborative play, and show how documents can be shared across 3-6 players without needing one person to control everything."
+        },
+        {
+          "barrier": "They fear the materials will feel like low-effort printouts instead of a premium social experience.",
+          "objection_handling": "Use polished dossier visuals, organized envelope structure, and close-up previews to signal a premium digital file case rather than a generic printable."
+        },
+        {
+          "barrier": "They compare it to a board game they can replay.",
+          "objection_handling": "Position it as a one-night event experience with stronger occasion value, and encourage follow-up purchases through the growing case catalog."
+        }
+      ],
+      "preferred_channels": [
+        "Google Search",
+        "Facebook Groups",
+        "YouTube",
+        "Reddit",
+        "Instagram"
+      ],
+      "preferred_content_format": "educational",
+      "acceptable_price_range": {
+        "min": 17.99,
+        "max": 29.99,
+        "sweet_spot": 22.99
+      },
+      "required_proof": "They need to see how the case works for a small group, what the documents look like, and reassurance that the narrative payoff is satisfying and not flimsy.",
+      "ticket_expected": 19.99
+    },
+    {
+      "segment_id": "dinner_party_planners",
+      "segment_name": "Dinner Party Planners",
+      "priority": "secondary",
+      "use_case": "They buy a case to give a dinner party or couples hangout a built-in activity, using the mystery as the memorable centerpiece after food and drinks.",
+      "avatar": {
+        "name": "Nina",
+        "age": 37,
+        "occupation": "HR business partner",
+        "context": "Nina and her spouse host another couple or a few friends for dinner every few weeks. She likes being seen as thoughtful and creative, but she does not want an event that feels overproduced or stressful to run.",
+        "routine_summary": "She balances work, household logistics, and social plans, often searching for simple ways to make gatherings feel special without adding hours of prep."
+      },
+      "motivation": "Make a home gathering feel distinctive and interactive so guests remember the night for more than just the meal.",
+      "pain_points": [
+        {
+          "pain": "I want people to actually do something together after dinner instead of everyone drifting back to their phones.",
+          "source_type": "review_analysis",
+          "evidence_excerpt": "Audience intelligence emphasizes social collaboration as a core value driver for mystery and detective products."
+        },
+        {
+          "pain": "Hosted murder mystery parties look fun, but they often seem too elaborate for a casual dinner with friends.",
+          "source_type": "inference",
+          "evidence_excerpt": "Indirect competitors are described as larger-group experiences that can depend on hosting roles, costumes, or more coordination.",
+          "assumption_flag": true
+        },
+        {
+          "pain": "I can't risk planning an activity that's confusing or childish because it changes the whole vibe of the night.",
+          "source_type": "competitor_gap",
+          "evidence_excerpt": "Market analysis notes digital products face trust gaps and need stronger proof of polish, structure, and premium presentation."
+        },
+        {
+          "pain": "I need something that feels worth the money but still cheaper than taking everyone out somewhere.",
+          "source_type": "industry_report",
+          "evidence_excerpt": "Trend shows at-home interactive entertainment is positioned as an alternative to higher-cost out-of-home date night and group activities."
+        }
+      ],
+      "buying_triggers": [
+        {
+          "trigger": "They are planning a weekend dinner party and want one easy activity to elevate the night.",
+          "timing": "planned_short",
+          "urgency": "medium",
+          "channel": "Pinterest, Google search, or Facebook",
+          "source_type": "industry_report",
+          "evidence_excerpt": "Trend notes consumers increasingly accept at-home interactive entertainment as an alternative to out-of-home group activities."
+        },
+        {
+          "trigger": "They see content about hosting ideas, couples dinners, or game-night alternatives and want something more original.",
+          "timing": "planned_short",
+          "urgency": "low",
+          "channel": "Pinterest or Instagram",
+          "source_type": "inference",
+          "evidence_excerpt": "Channel fit is inferred from the planning-oriented nature of dinner-party inspiration content.",
+          "assumption_flag": true
+        },
+        {
+          "trigger": "A guest list shrinks to a small group, making a simple collaborative mystery feel easier than a full party game.",
+          "timing": "planned_short",
+          "urgency": "medium",
+          "channel": "Google search on the day before the event",
+          "source_type": "competitor_extrapolation",
+          "evidence_excerpt": "Mixed-use occasions trend suggests small-group social play is a meaningful category use case."
+        }
+      ],
+      "purchase_barriers": [
+        {
+          "barrier": "They worry the activity will interrupt the flow of dinner or require them to act as a game master.",
+          "objection_handling": "Position the case as self-guided, easy to start after the meal, and suitable for small groups without costumes, scripts, or a facilitator."
+        },
+        {
+          "barrier": "They are uncertain whether guests with different personalities will all enjoy it.",
+          "objection_handling": "Highlight that it works for mixed groups because it combines story, discussion, and collaborative clue-solving rather than gamer-heavy mechanics."
+        },
+        {
+          "barrier": "They hesitate because downloadable products can feel risky without quality proof.",
+          "objection_handling": "Provide sample files, a clear explanation of the 4-envelope structure, player guidance, and polished visual presentation before purchase."
+        }
+      ],
+      "preferred_channels": [
+        "Pinterest",
+        "Instagram",
+        "Google Search",
+        "Facebook",
+        "YouTube"
+      ],
+      "preferred_content_format": "polished",
+      "acceptable_price_range": {
+        "min": 19.99,
+        "max": 29.99,
+        "sweet_spot": 24.99
+      },
+      "required_proof": "They need polished previews, clear hosting guidance, and reassurance that the experience feels adult, easy to run, and suitable for a post-dinner group setting.",
+      "ticket_expected": 19.99
+    },
+    {
+      "segment_id": "true_crime_solo_players",
+      "segment_name": "True Crime Fans / Solo Players",
+      "priority": "secondary",
+      "use_case": "They buy a case for a solo evening or quiet weekend when they want to move from passively consuming crime content to actively solving a fictional investigation themselves.",
+      "avatar": {
+        "name": "Emily",
+        "age": 29,
+        "occupation": "Paralegal",
+        "context": "Emily listens to true crime podcasts on commutes and watches investigative docuseries at night. She enjoys logic games and journaling-style hobbies, and she likes immersive activities she can do alone without needing to coordinate with anyone.",
+        "routine_summary": "Her week is structured and screen-heavy, so she looks for solo downtime that feels mentally engaging rather than passive scrolling."
+      },
+      "motivation": "Get the satisfaction of being inside a case narrative and piecing together clues personally, instead of only listening to someone else tell the story.",
+      "pain_points": [
+        {
+          "pain": "I love true crime, but most nights I'm just consuming it passively instead of doing anything interactive.",
+          "source_type": "inference",
+          "evidence_excerpt": "Market gap identifies an opportunity to convert true-crime consumers from passive media into participatory entertainment.",
+          "assumption_flag": true
+        },
+        {
+          "pain": "A lot of mystery games assume you have a group, and I want something that still feels satisfying solo.",
+          "source_type": "competitor_extrapolation",
+          "evidence_excerpt": "Mixed-use occasions trend indicates solo play is viable but less prominently marketed than couples or groups."
+        },
+        {
+          "pain": "If the clues feel random instead of logically connected, I lose interest fast.",
+          "source_type": "review_analysis",
+          "evidence_excerpt": "Audience intelligence states customers dislike puzzles that feel arbitrary or detached from the story world."
+        },
+        {
+          "pain": "I need to trust that the writing and presentation are polished, not generic AI-feeling mystery filler.",
+          "source_type": "inference",
+          "evidence_excerpt": "Trend notes AI-generated low-quality mystery content is likely to increase buyer skepticism and raise the importance of polish and coherence.",
+          "assumption_flag": true
+        }
+      ],
+      "buying_triggers": [
+        {
+          "trigger": "They finish a podcast episode or crime documentary and want to keep the investigative mood going.",
+          "timing": "impulse",
+          "urgency": "high",
+          "channel": "Podcast-adjacent browsing, Instagram, or TikTok",
+          "source_type": "industry_report",
+          "evidence_excerpt": "Trend shows true-crime fandom remains a top demand driver for detective and case-solving entertainment."
+        },
+        {
+          "trigger": "They want a solo weekend activity that feels more immersive than a TV binge but less commitment-heavy than a video game.",
+          "timing": "planned_short",
+          "urgency": "medium",
+          "channel": "Google search, Reddit, or YouTube",
+          "source_type": "inference",
+          "evidence_excerpt": "Indirect substitute analysis contrasts detective video games with non-gamer-friendly detective file experiences.",
+          "assumption_flag": true
+        },
+        {
+          "trigger": "They discover that the case can be downloaded instantly and started the same night.",
+          "timing": "impulse",
+          "urgency": "high",
+          "channel": "Google search or direct-response social ad",
+          "source_type": "competitor_extrapolation",
+          "evidence_excerpt": "Trend states instant-delivery digital formats reduce friction for impulse purchases."
+        }
+      ],
+      "purchase_barriers": [
+        {
+          "barrier": "They worry the experience is really meant for couples or groups and may feel flat alone.",
+          "objection_handling": "Include solo-play framing, note the 1-6 player range prominently, and show how one person can work through the documents at their own pace."
+        },
+        {
+          "barrier": "They are skeptical that a digital mystery at $19.99 will feel premium enough compared with cheaper content online.",
+          "objection_handling": "Use sample spreads, document counts, and narrative-depth messaging to show this is a full 2-4 hour experience rather than a throwaway printable."
+        },
+        {
+          "barrier": "They fear a disappointing solution after investing several hours.",
+          "objection_handling": "Set expectations around evidence-based investigation and emphasize handcrafted clue logic and cohesive storytelling."
+        }
+      ],
+      "preferred_channels": [
+        "TikTok",
+        "YouTube",
+        "Reddit",
+        "Instagram",
+        "Google Search"
+      ],
+      "preferred_content_format": "entertaining",
+      "acceptable_price_range": {
+        "min": 12.99,
+        "max": 21.99,
+        "sweet_spot": 18.99
+      },
+      "required_proof": "They need evidence that the case is logically constructed, immersive for solo play, and visually polished enough to justify choosing it over free or cheaper entertainment.",
+      "ticket_expected": 19.99
+    },
+    {
+      "segment_id": "gift_buyers_experience_seekers",
+      "segment_name": "Gift Buyers / Experience Givers",
+      "priority": "secondary",
+      "use_case": "They buy a case as a last-minute birthday, holiday, anniversary, or stocking-stuffer style gift for someone who loves true crime, puzzles, or unusual experiences.",
+      "avatar": {
+        "name": "Lauren",
+        "age": 34,
+        "occupation": "HR manager",
+        "context": "Lauren often buys thoughtful but practical gifts for her partner, sister, and close friends. She wants something more personal than a generic gift card but easier than planning a full event.",
+        "routine_summary": "Her weekdays are busy with work and errands, and she usually shops for gifts in short bursts at night or during lunch breaks. She often remembers occasions late and prefers fast digital options."
+      },
+      "motivation": "To give a memorable, conversation-worthy experience that feels more thoughtful than a generic item and can be delivered instantly.",
+      "pain_points": [
+        {
+          "pain": "I always end up panic-buying something generic because I remember gifts too late.",
+          "source_type": "inference",
+          "evidence_excerpt": "Instant-delivery digital formats reduce friction for impulse purchases, especially for same-day plans.",
+          "assumption_flag": true
+        },
+        {
+          "pain": "Gift cards feel lazy, but a lot of novelty gifts just become clutter.",
+          "source_type": "forum_insight",
+          "evidence_excerpt": "Gift-idea discussions across Reddit frequently favor consumable or experience-based gifts over physical clutter, especially for adults who are hard to shop for."
+        },
+        {
+          "pain": "I need something they will actually use, not something that looks clever and then sits unopened.",
+          "source_type": "review_analysis",
+          "evidence_excerpt": "Category buyers value complete one-night entertainment and reject products that require too much setup or commitment."
+        },
+        {
+          "pain": "I'm nervous about buying a mystery game if I can't tell whether it feels polished or cheap.",
+          "source_type": "review_analysis",
+          "evidence_excerpt": "Digital mystery listings often lack strong trust signaling, and buyers are sensitive to products that look cheap, generic, or overly printable."
+        }
+      ],
+      "buying_triggers": [
+        {
+          "trigger": "They need a same-day or next-day gift for a birthday, anniversary, or celebration.",
+          "timing": "planned_short",
+          "urgency": "high",
+          "channel": "Google search and Pinterest gift searches",
+          "source_type": "inference",
+          "evidence_excerpt": "Instant access after purchase makes digital products especially relevant for last-minute occasions.",
+          "assumption_flag": true
+        },
+        {
+          "trigger": "They see a 'gift an experience, not a thing' message while browsing gift inspiration content.",
+          "timing": "planned_long",
+          "urgency": "medium",
+          "channel": "Pinterest, Instagram, and gift roundups",
+          "source_type": "inference",
+          "evidence_excerpt": "Consumers increasingly accept at-home interactive entertainment as an alternative to traditional purchases, supporting experience-led gift framing.",
+          "assumption_flag": true
+        },
+        {
+          "trigger": "Holiday shopping makes them look for affordable, non-clutter gifts under a clear budget.",
+          "timing": "seasonal",
+          "urgency": "high",
+          "channel": "Google Shopping-style search, Pinterest, and email",
+          "source_type": "inference",
+          "evidence_excerpt": "The product's $19.99 price sits at the low end of the category core tier, making it compatible with gift budget searches.",
+          "assumption_flag": true
+        }
+      ],
+      "purchase_barriers": [
+        {
+          "barrier": "They worry the recipient may not be into games enough to enjoy it.",
+          "objection_handling": "Position it as an interactive true-crime experience rather than a 'gamer product,' and show examples of solo, couple, and casual friend play."
+        },
+        {
+          "barrier": "A digital download can feel less giftable than a physical box.",
+          "objection_handling": "Provide a clean gift-forward presentation preview and message instant delivery as a strength for last-minute thoughtful gifting."
+        },
+        {
+          "barrier": "They cannot judge quality without reviews or proof.",
+          "objection_handling": "Use sample dossier pages, document previews, and transparent details on playtime, player count, and structure to reduce uncertainty."
+        }
+      ],
+      "preferred_channels": [
+        "Pinterest",
+        "Google Search",
+        "Instagram",
+        "Facebook"
+      ],
+      "preferred_content_format": "polished",
+      "acceptable_price_range": {
+        "min": 14,
+        "max": 25,
+        "sweet_spot": 19.99
+      },
+      "required_proof": "A polished preview of the case files, clear explanation of who it is for, and visible cues that it works well as a thoughtful instant gift.",
+      "ticket_expected": 19.99
+    },
+    {
+      "segment_id": "solo_true_crime_night",
+      "segment_name": "Solo True Crime Wind-Down",
+      "priority": "secondary",
+      "use_case": "They buy a case for a solo evening when they want something more interactive than streaming but still cozy, immersive, and self-paced.",
+      "avatar": {
+        "name": "Monica",
+        "age": 31,
+        "occupation": "Paralegal",
+        "context": "Monica loves true crime podcasts, documentary series, and puzzle apps. She often wants a screen-light solo activity that feels mentally engaging after work.",
+        "routine_summary": "Her weekdays are structured and mentally demanding, so she looks for low-friction entertainment in the evenings. She alternates between streaming, reading, and puzzle-based hobbies."
+      },
+      "motivation": "To turn passive true-crime interest into an active, satisfying solo detective experience without needing a group or special setup.",
+      "pain_points": [
+        {
+          "pain": "I love true crime, but most nights I'm just passively watching instead of doing something engaging.",
+          "source_type": "inference",
+          "evidence_excerpt": "A market gap exists for turning true-crime fans from passive content consumers into active solvers.",
+          "assumption_flag": true
+        },
+        {
+          "pain": "A lot of games feel too gamer-y or require a whole setup, and I just want to start tonight.",
+          "source_type": "review_analysis",
+          "evidence_excerpt": "Convenience matters: customers like experiences that can be started the same day with minimal setup."
+        },
+        {
+          "pain": "If the logic is sloppy or the ending is weak, I feel like I wasted my whole night.",
+          "source_type": "review_analysis",
+          "evidence_excerpt": "Users reject weak endings or solutions that feel under-earned and dislike puzzles that feel arbitrary or detached from the story."
+        },
+        {
+          "pain": "I don't want to commit to a subscription just to try one mystery.",
+          "source_type": "review_analysis",
+          "evidence_excerpt": "Review themes around category leaders mention cost, subscription fatigue, and resistance to recurring commitments."
+        }
+      ],
+      "buying_triggers": [
+        {
+          "trigger": "They finish a true crime show or podcast episode and want to keep the mood going with something interactive.",
+          "timing": "impulse",
+          "urgency": "high",
+          "channel": "TikTok, Instagram Reels, or retargeting social ads",
+          "source_type": "industry_report",
+          "evidence_excerpt": "True-crime fandom continues to expand adjacent demand for fictional detective and case-solving entertainment."
+        },
+        {
+          "trigger": "They have a quiet evening alone and want a 2-4 hour experience that feels more immersive than streaming.",
+          "timing": "impulse",
+          "urgency": "medium",
+          "channel": "Google search and direct site visit",
+          "source_type": "competitor_gap",
+          "evidence_excerpt": "At-home interactive entertainment is increasingly accepted as an alternative to passive or out-of-home activities."
+        },
+        {
+          "trigger": "They encounter messaging about instant access and no-shipping while comparing mystery products.",
+          "timing": "planned_short",
+          "urgency": "medium",
+          "channel": "Google search and comparison browsing",
+          "source_type": "competitor_gap",
+          "evidence_excerpt": "Fast, premium-feeling digital detective cases for same-night play are under-served relative to shipped physical boxes."
+        }
+      ],
+      "purchase_barriers": [
+        {
+          "barrier": "They worry the experience may be too simple or feel like a cheap printable PDF.",
+          "objection_handling": "Show the number of documents, envelope structure, and sample materials to communicate depth and polish."
+        },
+        {
+          "barrier": "They are unsure whether it works well for one player.",
+          "objection_handling": "Explicitly show solo play as a first-class use case with examples of pacing and self-guided solving."
+        },
+        {
+          "barrier": "They may compare it to cheaper digital entertainment like apps, games, or streaming.",
+          "objection_handling": "Frame it as a full 2-4 hour immersive case experience with narrative discovery, not just a PDF puzzle sheet."
+        }
+      ],
+      "preferred_channels": [
+        "TikTok",
+        "Instagram",
+        "Reddit",
+        "Google Search"
+      ],
+      "preferred_content_format": "educational",
+      "acceptable_price_range": {
+        "min": 12,
+        "max": 22,
+        "sweet_spot": 17.99
+      },
+      "required_proof": "A clear preview of the investigation flow, reassurance that solo play is satisfying, and evidence that the case is coherent and polished rather than generic.",
+      "ticket_expected": 19.99
+    },
+    {
+      "segment_id": "escape_room_alternative_seekers",
+      "segment_name": "Escape Room Alternative Seekers",
+      "priority": "exploratory",
+      "use_case": "They buy a case when they want the puzzle-solving and teamwork energy of an escape room but need a cheaper, easier at-home option for tonight or the weekend.",
+      "avatar": {
+        "name": "Chris",
+        "age": 36,
+        "occupation": "Project coordinator",
+        "context": "Chris likes escape rooms and interactive challenges but does not always want to coordinate schedules, drive somewhere, or pay per person. He looks for alternatives that still feel immersive.",
+        "routine_summary": "He works standard office hours and plans social activities around weekends. He often compares options based on convenience, cost, and whether they feel worth the effort."
+      },
+      "motivation": "To get a high-engagement, collaborative mystery night without the scheduling, travel, and per-person cost of out-of-home entertainment.",
+      "pain_points": [
+        {
+          "pain": "I want something more memorable than sitting around watching TV, but organizing a whole outing is a pain.",
+          "source_type": "industry_report",
+          "evidence_excerpt": "Consumers increasingly accept at-home interactive entertainment as an alternative to out-of-home date night and group activities."
+        },
+        {
+          "pain": "Escape rooms get expensive fast once you multiply the price by everyone going.",
+          "source_type": "inference",
+          "evidence_excerpt": "In-person escape rooms are typically priced around $30-$50 per person, creating a meaningful cost contrast versus a $19.99 digital case.",
+          "assumption_flag": true
+        },
+        {
+          "pain": "A lot of party mystery games need costumes, hosts, or too many people to make them work.",
+          "source_type": "inference",
+          "evidence_excerpt": "Indirect substitutes like murder mystery party games often depend on larger gatherings and hosting roles, unlike this product's 1-6 player setup.",
+          "assumption_flag": true
+        },
+        {
+          "pain": "I still want the experience to feel immersive, not like a watered-down printable substitute.",
+          "source_type": "review_analysis",
+          "evidence_excerpt": "Buyers are sensitive to products that look cheap or generic, and they value tactile-feeling evidence and realistic case materials."
+        }
+      ],
+      "buying_triggers": [
+        {
+          "trigger": "They want a lower-cost backup when an escape room feels too expensive or inconvenient.",
+          "timing": "planned_short",
+          "urgency": "medium",
+          "channel": "Google search and comparison browsing",
+          "source_type": "inference",
+          "evidence_excerpt": "The product can be positioned as the affordable at-home alternative for spontaneous detective fun without travel or per-person pricing.",
+          "assumption_flag": true
+        },
+        {
+          "trigger": "Weekend plans fall through and they need an engaging at-home group activity fast.",
+          "timing": "impulse",
+          "urgency": "high",
+          "channel": "Instagram, Facebook, and direct search",
+          "source_type": "competitor_gap",
+          "evidence_excerpt": "Fast, premium-feeling digital detective cases for same-night play are under-served and benefit from 'play tonight' messaging."
+        },
+        {
+          "trigger": "They see content comparing at-home mysteries with escape rooms or board-game nights.",
+          "timing": "planned_short",
+          "urgency": "medium",
+          "channel": "TikTok, YouTube, and social ads",
+          "source_type": "inference",
+          "evidence_excerpt": "Escape room at-home kits are a high-threat substitute, meaning comparison-driven demand likely exists in adjacent content.",
+          "assumption_flag": true
+        }
+      ],
+      "purchase_barriers": [
+        {
+          "barrier": "They fear an at-home mystery will not deliver the same energy as an escape room.",
+          "objection_handling": "Emphasize collaborative deduction, evidence handling, and narrative tension rather than speed-puzzle mechanics."
+        },
+        {
+          "barrier": "They may expect a stronger social payoff for larger groups than the product is optimized for.",
+          "objection_handling": "Position it clearly as ideal for 2-4 players and intimate group solving rather than a giant party format."
+        },
+        {
+          "barrier": "They may compare it to physical kits that look more premium at first glance.",
+          "objection_handling": "Use strong visual branding, file previews, and instant-access messaging to show the digital format is a convenience upgrade, not a quality downgrade."
+        }
+      ],
+      "preferred_channels": [
+        "Google Search",
+        "YouTube",
+        "Instagram",
+        "Facebook"
+      ],
+      "preferred_content_format": "educational",
+      "acceptable_price_range": {
+        "min": 15,
+        "max": 25,
+        "sweet_spot": 19.99
+      },
+      "required_proof": "Side-by-side value framing versus out-of-home activities, visual proof of immersive materials, and clear guidance on ideal group size and play style.",
+      "ticket_expected": 19.99
+    },
+    {
+      "segment_id": "subscription_fatigued_mystery_buyers",
+      "segment_name": "Subscription-Fatigued Mystery Buyers",
+      "priority": "exploratory",
+      "use_case": "They buy a case because they already like the mystery category but want a one-night standalone purchase instead of a mailed box, recurring subscription, or multi-episode commitment.",
+      "avatar": {
+        "name": "Danielle",
+        "age": 40,
+        "occupation": "Operations lead",
+        "context": "Danielle has tried subscription boxes and boxed mystery products before. She still enjoys detective entertainment, but now she wants something simpler, cheaper, and faster to start.",
+        "routine_summary": "She manages a busy household and makes practical entertainment purchases. She researches briefly, compares prices, and prefers products with obvious convenience and low commitment."
+      },
+      "motivation": "To get the detective-story satisfaction of the category without shipping delays, subscriptions, or a larger commitment than one evening.",
+      "pain_points": [
+        {
+          "pain": "I like mystery boxes, but I do not want another subscription to manage.",
+          "source_type": "review_analysis",
+          "evidence_excerpt": "Recurring review themes across Hunt A Killer discussions mention cost, subscription management, and pacing fatigue."
+        },
+        {
+          "pain": "Waiting for shipping kills the momentum when I want to play now.",
+          "source_type": "competitor_extrapolation",
+          "evidence_excerpt": "Instant-delivery digital formats reduce friction for impulse purchases, especially for same-day plans."
+        },
+        {
+          "pain": "Some mystery products drag on too long when I really want one complete night of entertainment.",
+          "source_type": "competitor_gap",
+          "evidence_excerpt": "Some audiences resist subscriptions or long multi-box arcs when they want a complete one-night activity."
+        },
+        {
+          "pain": "If I'm buying digital instead of physical, it has to still feel premium and worth the money.",
+          "source_type": "competitor_gap",
+          "evidence_excerpt": "There is a quality vacuum between cheap printables and expensive subscription boxes, leaving room for a polished mid-price digital brand."
+        }
+      ],
+      "buying_triggers": [
+        {
+          "trigger": "They compare a physical mystery box with a cheaper instant-download option and choose convenience.",
+          "timing": "planned_short",
+          "urgency": "medium",
+          "channel": "Google search and competitor comparison browsing",
+          "source_type": "review_analysis",
+          "evidence_excerpt": "Single-purchase digital cases can win customers who like the genre but do not want a subscription or a box to wait for."
+        },
+        {
+          "trigger": "They want to scratch the mystery-game itch without re-entering a recurring commitment.",
+          "timing": "planned_short",
+          "urgency": "medium",
+          "channel": "Email retargeting, search, and direct site visits",
+          "source_type": "inference",
+          "evidence_excerpt": "The market has validated demand for mystery entertainment, but category fatigue with recurring commitments creates opportunity for standalone offers.",
+          "assumption_flag": true
+        },
+        {
+          "trigger": "A weekend plan arises and they remember they used to enjoy this category.",
+          "timing": "impulse",
+          "urgency": "medium",
+          "channel": "Facebook, Instagram, and search",
+          "source_type": "inference",
+          "evidence_excerpt": "Mixed-use occasions and home entertainment demand suggest lapsed category buyers can re-enter through low-friction standalone products.",
+          "assumption_flag": true
+        }
+      ],
+      "purchase_barriers": [
+        {
+          "barrier": "They may assume digital means less immersive than the physical products they know.",
+          "objection_handling": "Use premium creative, show dossier-style materials, and stress the narrative depth, document count, and envelope progression."
+        },
+        {
+          "barrier": "They may wonder if a one-case product will feel too short or shallow compared with multi-box arcs.",
+          "objection_handling": "Anchor expectations around a complete 2-4 hour story and position it as focused, satisfying one-night entertainment."
+        },
+        {
+          "barrier": "They may hesitate if only a few cases are currently available.",
+          "objection_handling": "Frame the current catalog clearly and emphasize new/ongoing releases without making unsupported cadence promises beyond the product brand positioning."
+        }
+      ],
+      "preferred_channels": [
+        "Google Search",
+        "Facebook",
+        "Email",
+        "Reddit"
+      ],
+      "preferred_content_format": "educational",
+      "acceptable_price_range": {
+        "min": 16,
+        "max": 28,
+        "sweet_spot": 19.99
+      },
+      "required_proof": "A strong value comparison against shipped mystery boxes, transparent explanation of what is included, and visual proof that the digital format still feels immersive.",
+      "ticket_expected": 19.99
+    }
+  ],
+  "comparative_table": [
+    {
+      "segment_id": "couples_date_night",
+      "use_case": "At-home date night with a shared mystery-solving experience.",
+      "priority": "primary",
+      "motivation": "Replace passive nights with a memorable, collaborative experience for two.",
+      "top_objection": "Will this actually feel romantic/fun rather than awkward or overly game-like?",
+      "ticket_expected": 19.99,
+      "repeat_potential": "high",
+      "best_channel": "Instagram"
+    },
+    {
+      "segment_id": "game_night_hosts",
+      "use_case": "Host a small-group game night without complicated prep.",
+      "priority": "primary",
+      "motivation": "Give friends a fresh shared activity that stands out from board games.",
+      "top_objection": "Will this work smoothly for a group without turning into confusion?",
+      "ticket_expected": 19.99,
+      "repeat_potential": "high",
+      "best_channel": "Facebook"
+    },
+    {
+      "segment_id": "dinner_party_planners",
+      "use_case": "Anchor a dinner party or intimate gathering with a structured activity.",
+      "priority": "secondary",
+      "motivation": "Make the gathering feel memorable and well-planned.",
+      "top_objection": "Will this be too much setup or derail the flow of the evening?",
+      "ticket_expected": 19.99,
+      "repeat_potential": "medium",
+      "best_channel": "Pinterest"
+    },
+    {
+      "segment_id": "true_crime_fans_solo",
+      "use_case": "Solo detective-style entertainment for true-crime enthusiasts.",
+      "priority": "primary",
+      "motivation": "Turn passive true-crime consumption into active solving.",
+      "top_objection": "Will it be immersive and logical enough to justify the time?",
+      "ticket_expected": 19.99,
+      "repeat_potential": "medium",
+      "best_channel": "TikTok"
+    },
+    {
+      "segment_id": "gift_buyers_experience_seekers",
+      "use_case": "Gift an instant, memorable mystery experience for birthdays, holidays, or anniversaries.",
+      "priority": "secondary",
+      "motivation": "Give something thoughtful without buying more physical clutter.",
+      "top_objection": "Will they actually like and use a digital mystery gift?",
+      "ticket_expected": 19.99,
+      "repeat_potential": "medium",
+      "best_channel": "Pinterest"
+    },
+    {
+      "segment_id": "solo_true_crime_night",
+      "use_case": "Spend a solo evening solving an interactive case instead of just streaming content.",
+      "priority": "secondary",
+      "motivation": "Get a mentally engaging but cozy night-in activity.",
+      "top_objection": "Will this feel polished enough for solo play or like a cheap PDF?",
+      "ticket_expected": 19.99,
+      "repeat_potential": "medium",
+      "best_channel": "TikTok"
+    },
+    {
+      "segment_id": "escape_room_alternative_seekers",
+      "use_case": "Choose an at-home alternative to escape rooms for a couple or small group.",
+      "priority": "exploratory",
+      "motivation": "Capture immersive puzzle-night energy without travel or per-person pricing.",
+      "top_objection": "Will it feel exciting enough compared with an escape room?",
+      "ticket_expected": 19.99,
+      "repeat_potential": "medium",
+      "best_channel": "Google Search"
+    },
+    {
+      "segment_id": "subscription_fatigued_mystery_buyers",
+      "use_case": "Buy one standalone digital case instead of committing to subscriptions or shipped boxes.",
+      "priority": "exploratory",
+      "motivation": "Get category enjoyment with lower cost, less commitment, and instant access.",
+      "top_objection": "Will digital feel premium enough compared with physical mystery kits?",
+      "ticket_expected": 19.99,
+      "repeat_potential": "high",
+      "best_channel": "Google Search"
+    }
+  ],
+  "priority_ranking": [
+    {
+      "rank": 1,
+      "segment_id": "couples_date_night",
+      "use_case": "At-home date night with a shared mystery-solving experience.",
+      "justification": "This is the strongest fit with the clearest market gap: couples are explicitly under-served in the category, the product price is an easy alternative to going out, and the instant-access format matches same-night decision-making. The segment also has strong repeat potential because date-night buyers regularly need fresh activities.",
+      "conversion_potential": "high",
+      "reachability": "high",
+      "expected_aov": 19.99
+    },
+    {
+      "rank": 2,
+      "segment_id": "game_night_hosts",
+      "use_case": "Host a small-group game night without complicated prep.",
+      "justification": "Hosts actively look for social activities and can justify the full ticket across multiple participants, making the value proposition straightforward. They are reachable through Facebook, Instagram, and search content around game-night ideas, and they can become repeat buyers whenever they need a new hosted activity.",
+      "conversion_potential": "high",
+      "reachability": "medium",
+      "expected_aov": 19.99
+    },
+    {
+      "rank": 3,
+      "segment_id": "gift_buyers_experience_seekers",
+      "use_case": "Gift an instant, memorable mystery experience for birthdays, holidays, or anniversaries.",
+      "justification": "Gift buyers have strong intent around specific occasions and respond well to instant delivery and affordable pricing. While repeat frequency depends on gifting moments rather than weekly use, they are reachable through Pinterest and Google with relatively clear search intent, and the product is well-positioned as a thoughtful but low-friction experience gift.",
+      "conversion_potential": "medium",
+      "reachability": "high",
+      "expected_aov": 19.99
+    }
+  ],
+  "universal_fears": [
+    {
+      "fear_id": "FK-01",
+      "fear": "What if this is boring or cringe once we start?",
+      "severity": "critical",
+      "counter_strategy": "Show the case as a tense, narrative-led investigation with realistic evidence handling, not a cheesy party skit. Use previews of documents, clue progression, and positioning around immersive solving rather than gimmicks.",
+      "applicable_segments": [
+        "couples_date_night",
+        "game_night_hosts",
+        "dinner_party_planners",
+        "true_crime_fans_solo",
+        "gift_buyers_experience_seekers",
+        "solo_true_crime_night",
+        "escape_room_alternative_seekers",
+        "subscription_fatigued_mystery_buyers"
+      ]
+    },
+    {
+      "fear_id": "FK-02",
+      "fear": "I do not want something complicated to set up.",
+      "severity": "critical",
+      "counter_strategy": "Lead with instant digital delivery, clear player count, and a 'start in minutes' message. Every landing page and ad should reduce perceived friction by showing the simple flow from purchase to play.",
+      "applicable_segments": [
+        "couples_date_night",
+        "game_night_hosts",
+        "dinner_party_planners",
+        "true_crime_fans_solo",
+        "gift_buyers_experience_seekers",
+        "solo_true_crime_night",
+        "escape_room_alternative_seekers",
+        "subscription_fatigued_mystery_buyers"
+      ]
+    },
+    {
+      "fear_id": "FK-03",
+      "fear": "I am worried this will feel childish, fake, or unrealistic.",
+      "severity": "high",
+      "counter_strategy": "Use mature art direction, declassified-file aesthetics, and evidence-based storytelling language. Emphasize the narrative depth, document structure, and adult-friendly tone instead of novelty-game framing.",
+      "applicable_segments": [
+        "couples_date_night",
+        "game_night_hosts",
+        "dinner_party_planners",
+        "true_crime_fans_solo",
+        "gift_buyers_experience_seekers",
+        "solo_true_crime_night",
+        "escape_room_alternative_seekers",
+        "subscription_fatigued_mystery_buyers"
+      ]
+    },
+    {
+      "fear_id": "FK-04",
+      "fear": "If I give this as a gift, what if they do not like it?",
+      "severity": "high",
+      "counter_strategy": "Show the product's flexible fit across solo, couple, and small-group play, and frame it as an experience for true-crime fans and puzzle lovers. Gift-facing messaging should make the recipient use case immediately obvious.",
+      "applicable_segments": [
+        "gift_buyers_experience_seekers"
+      ]
+    },
+    {
+      "fear_id": "FK-05",
+      "fear": "I do not want to wait for shipping.",
+      "severity": "critical",
+      "counter_strategy": "Hammer instant access across every asset: hero lines, product tiles, checkout messaging, and retargeting. Treat no-shipping and same-night play as a core conversion driver, not a footnote.",
+      "applicable_segments": [
+        "couples_date_night",
+        "game_night_hosts",
+        "dinner_party_planners",
+        "true_crime_fans_solo",
+        "gift_buyers_experience_seekers",
+        "solo_true_crime_night",
+        "escape_room_alternative_seekers",
+        "subscription_fatigued_mystery_buyers"
+      ]
+    }
+  ],
+  "activation_timeline": [
+    {
+      "time_horizon": "T-5min",
+      "trigger_type": "Bored tonight / need instant entertainment",
+      "urgency": "high",
+      "key_message": "Start your case in minutes with instant access - no shipping, no planning, just solve tonight.",
+      "best_channel": "TikTok, Instagram Reels",
+      "applicable_segments": [
+        "couples_date_night",
+        "true_crime_fans_solo",
+        "solo_true_crime_night",
+        "escape_room_alternative_seekers"
+      ]
+    },
+    {
+      "time_horizon": "T-1hour",
+      "trigger_type": "Post-Netflix or post-podcast impulse",
+      "urgency": "high",
+      "key_message": "Do not just watch the mystery - solve one yourself tonight.",
+      "best_channel": "Social ads",
+      "applicable_segments": [
+        "true_crime_fans_solo",
+        "solo_true_crime_night",
+        "couples_date_night"
+      ]
+    },
+    {
+      "time_horizon": "T-3days",
+      "trigger_type": "Date night planning",
+      "urgency": "medium",
+      "key_message": "Turn one night at home into a case you'll both remember.",
+      "best_channel": "Instagram, Pinterest",
+      "applicable_segments": [
+        "couples_date_night"
+      ]
+    },
+    {
+      "time_horizon": "T-1week",
+      "trigger_type": "Game night or dinner party planning",
+      "urgency": "medium",
+      "key_message": "Give your group a mystery to solve, not just another thing to watch.",
+      "best_channel": "Facebook, Google Search",
+      "applicable_segments": [
+        "game_night_hosts",
+        "dinner_party_planners",
+        "escape_room_alternative_seekers"
+      ]
+    },
+    {
+      "time_horizon": "T-2weeks",
+      "trigger_type": "Gift shopping for a birthday, holiday, or anniversary",
+      "urgency": "medium",
+      "key_message": "Gift an experience, not a thing - thoughtful, affordable, and instantly delivered.",
+      "best_channel": "Google Search, Pinterest",
+      "applicable_segments": [
+        "gift_buyers_experience_seekers"
+      ]
+    },
+    {
+      "time_horizon": "T-2days",
+      "trigger_type": "Comparing alternatives to subscriptions or shipped mystery boxes",
+      "urgency": "medium",
+      "key_message": "Skip the subscription and shipping wait - get one complete digital case for tonight or this weekend.",
+      "best_channel": "Google Search, Facebook",
+      "applicable_segments": [
+        "subscription_fatigued_mystery_buyers",
+        "escape_room_alternative_seekers"
+      ]
+    }
+  ]
+}

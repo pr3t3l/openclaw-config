@@ -30,7 +30,7 @@ SCRIPTS_DIR = Path(__file__).parent
 SKILLS_DIR = SCRIPTS_DIR.parent / "skills"
 PRODUCTS_DIR = Path("/home/robotin/.openclaw/products")
 
-CREATIVE_MODEL = "claude-sonnet46"
+CREATIVE_MODEL = "chatgpt-gpt54"  # was claude-sonnet46, swapped due to Anthropic credit depletion
 UTILITY_MODEL = "chatgpt-gpt54"
 
 sys.path.insert(0, str(SCRIPTS_DIR))

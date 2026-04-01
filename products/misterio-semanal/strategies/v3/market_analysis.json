@@ -1,0 +1,392 @@
+{
+  "schema_version": "3.0",
+  "product_id": "misterio-semanal",
+  "generated_at": "2026-03-31T23:37:38.658631",
+  "market_size": {
+    "tam_usd": 11200000000,
+    "tam_scope": "Global tabletop and at-home mystery/escape/puzzle game spending relevant to narrative detective experiences, combining board/card detective games, subscription mystery boxes, and printable/digital at-home escape-style products",
+    "tam_source_type": "industry_report",
+    "tam_confidence": "medium",
+    "sam_usd": 1650000000,
+    "sam_scope": "US consumer spending addressable by English-language at-home mystery and detective entertainment for adults, including mystery subscription boxes, boxed case-file games, and downloadable/printable mystery experiences",
+    "sam_source_type": "competitor_extrapolation",
+    "sam_confidence": "medium",
+    "som_usd": 330000,
+    "som_methodology": "Bottoms-up conservative estimate based on a solo founder digital product capturing roughly 0.02% of SAM over time through low-budget direct-to-consumer acquisition, equivalent to approximately 16,500 case sales at $19.99 gross revenue",
+    "som_source_type": "inference",
+    "som_confidence": "low",
+    "usa_breakout": {
+      "tam_usd": 3900000000,
+      "tam_source_type": "industry_report",
+      "tam_confidence": "medium",
+      "sam_usd": 1650000000,
+      "sam_source_type": "competitor_extrapolation",
+      "sam_confidence": "medium",
+      "som_usd": 330000,
+      "som_source_type": "inference",
+      "som_confidence": "low"
+    },
+    "cagr_pct": 8.6,
+    "cagr_source_type": "industry_report",
+    "cagr_confidence": "medium",
+    "year_reference": 2024,
+    "source_type": "industry_report",
+    "confidence": "medium",
+    "sources": [
+      "Grand View Research - Board Games Market Size, Share & Trends Analysis Report (global board games market used as outer entertainment proxy)",
+      "The Business Research Company - Escape Room Market Report (used as demand proxy for escape/mystery entertainment interest)",
+      "Verified competitor pricing from Hunt A Killer, Unsolved Case Files, Cold Case Inc, and Cryptic Killers websites/product listings",
+      "Methodology inference: narrowed from broad game/interactive entertainment categories to adult US mystery/detective at-home experiences using competitor price bands and likely buyer overlap"
+    ]
+  },
+  "trends": [
+    {
+      "trend": "True-crime fandom continues to expand adjacent demand for fictional detective and case-solving entertainment",
+      "relevance": "high",
+      "source_type": "industry_report",
+      "source_ref": "Edison Research - The Infinite Dial and multiple podcast industry reports showing strong true-crime podcast consumption; true-crime remains a top podcast category in the US",
+      "implication": "Products framed as immersive detective experiences can tap into an already-educated audience that enjoys clues, suspects, timelines, and solving narratives.",
+      "assumption_flag": false
+    },
+    {
+      "trend": "Consumers increasingly accept at-home interactive entertainment as an alternative to out-of-home date night and group activities",
+      "relevance": "high",
+      "source_type": "industry_report",
+      "source_ref": "Board game and home-entertainment category growth reported by Grand View Research and Circana category coverage; continued strength in social home-based play post-2020",
+      "implication": "A 2-4 hour mystery case can be positioned as a lower-cost date night or group-night substitute versus escape rooms or dining out.",
+      "assumption_flag": false
+    },
+    {
+      "trend": "Instant-delivery digital formats reduce friction for impulse purchases, especially for same-day plans",
+      "relevance": "high",
+      "source_type": "competitor_extrapolation",
+      "source_ref": "Observed market split between shipped products and printable/downloadable mystery games across Etsy, independent shops, and direct-to-consumer mystery game brands",
+      "implication": "Instant access is a meaningful conversion lever if messaging emphasizes 'play tonight' convenience and no shipping wait.",
+      "assumption_flag": false
+    },
+    {
+      "trend": "Physical subscription mystery boxes helped validate the category, but buyers also show fatigue with recurring commitments and shipping costs",
+      "relevance": "high",
+      "source_type": "review_analysis",
+      "source_ref": "Recurring review themes across Hunt A Killer discussions on Reddit, Trustpilot-style review ecosystems, and customer comments mentioning cost, subscription management, and pacing",
+      "implication": "Single-purchase digital cases at $19.99 can win customers who like the genre but do not want a subscription or a box to wait for.",
+      "assumption_flag": false
+    },
+    {
+      "trend": "Etsy and marketplace listings have trained buyers to compare mystery experiences on price very aggressively",
+      "relevance": "high",
+      "source_type": "platform_data",
+      "source_ref": "Observed pricing on Etsy and downloadable murder mystery/escape listings commonly clustering below premium boxed experiences",
+      "implication": "The product needs stronger value communication around narrative depth, number of documents, and playtime to avoid looking like a commodity PDF.",
+      "assumption_flag": false
+    },
+    {
+      "trend": "Replayability remains structurally low in detective case products, increasing pressure for catalogs, series, and repeat release cadence",
+      "relevance": "high",
+      "source_type": "inference",
+      "source_ref": "N/A - inference based on one-time-solution nature of case-file products and recurring release models used by category leaders",
+      "implication": "A weekly or regular release promise can materially increase LTV because customers need fresh cases after solving the current one.",
+      "assumption_flag": true
+    },
+    {
+      "trend": "Mixed-use occasions are growing: solo play, couples, and small group social play all coexist within the same mystery product category",
+      "relevance": "medium",
+      "source_type": "competitor_extrapolation",
+      "source_ref": "Competitor positioning commonly highlights solo, date night, family night, or group play across Unsolved Case Files, Cryptic Killers, and similar products",
+      "implication": "Messaging should not lock into one use case; separate landing-page blocks for solo, couples, and groups can broaden conversion without changing the product.",
+      "assumption_flag": false
+    },
+    {
+      "trend": "AI-generated low-quality mystery content is likely to increase buyer skepticism and raise the importance of polish, coherence, and proof of craftsmanship",
+      "relevance": "medium",
+      "source_type": "inference",
+      "source_ref": "N/A - inference from broader digital content markets where generative tools increase supply and reduce trust in undifferentiated downloadable products",
+      "implication": "The product should emphasize handcrafted case design, logical clue chains, and sample pages or previews to reassure buyers before purchase.",
+      "assumption_flag": true
+    }
+  ],
+  "competitive_landscape": {
+    "tier_1_direct": [
+      {
+        "name": "Unsolved Case Files",
+        "url": "https://www.unsolvedcasefiles.com",
+        "pricing": "Single case products commonly listed around $29.99-$34.99 on brand and retail channels; multi-case bundles vary by retailer.",
+        "model": "single_purchase",
+        "strengths": [
+          "Strong category recognition in cold-case style mystery games",
+          "Clear giftable physical product format",
+          "Large retail footprint across Amazon and mass-market channels"
+        ],
+        "weaknesses": [
+          "Physical shipping adds delay versus instant-play digital products",
+          "Less convenient for spontaneous date-night or same-day group play",
+          "Physical format can feel less flexible for remote or repeat access"
+        ],
+        "counter_play": "Win on immediacy and convenience: position as instant-download mystery entertainment for tonight, undercut physical pricing, and emphasize lower friction for couples and small groups.",
+        "audience_size_estimate": "Large US consumer audience; inference based on broad Amazon visibility, retail distribution, and extensive review volume across listings.",
+        "source_type": "competitor_website",
+        "confidence": "medium"
+      },
+      {
+        "name": "Hunt A Killer",
+        "url": "https://www.huntakiller.com",
+        "pricing": "Standalone experiences and box sets commonly marketed roughly in the $30-$50+ range; subscriptions and bundles priced higher depending on arc length and format.",
+        "model": "subscription",
+        "strengths": [
+          "Well-known brand with immersive long-form storytelling",
+          "Broad catalog across mysteries and licensed themes",
+          "Strong retention model through subscriptions and serialized arcs"
+        ],
+        "weaknesses": [
+          "Higher total cost than a single digital case",
+          "Longer commitment and more setup than a one-night experience",
+          "Physical delivery slows time-to-play"
+        ],
+        "counter_play": "Compete as the low-commitment alternative: one affordable digital case, instant access, and 2-4 hour completion for date night without subscription fatigue.",
+        "audience_size_estimate": "Large national audience; inference based on longstanding brand presence, subscription model, and broad media/retail recognition.",
+        "source_type": "competitor_website",
+        "confidence": "medium"
+      },
+      {
+        "name": "Cold Case Inc.",
+        "url": "https://coldcaseinc.com",
+        "pricing": "Per-case digital and printable mystery products commonly sold in the approximately $20-$30 range depending on pack and format.",
+        "model": "single_purchase",
+        "strengths": [
+          "Closer format match to downloadable detective experiences",
+          "Printable/at-home flexibility",
+          "Strong thematic alignment with true-crime-style audiences"
+        ],
+        "weaknesses": [
+          "Less mainstream brand awareness than top retail leaders",
+          "Design and polish may vary across cases",
+          "Can blend into a crowded 'downloadable mystery' market"
+        ],
+        "counter_play": "Differentiate on cleaner UX, stronger branded presentation, and a weekly-release style promise. Emphasize a premium digital narrative and smoother instant-access experience.",
+        "audience_size_estimate": "Niche-to-mid sized digital mystery audience; inference based on category relevance but lower mass-market visibility.",
+        "source_type": "competitor_website",
+        "confidence": "medium"
+      },
+      {
+        "name": "Cryptic Killers",
+        "url": "https://cryptickillers.co.uk",
+        "pricing": "Downloadable and boxed murder mystery products commonly span about $15-$35 equivalent depending on format and bundle.",
+        "model": "bundle",
+        "strengths": [
+          "Broad murder mystery catalog",
+          "Mix of downloadable and physical options",
+          "Appeal for parties and social group play"
+        ],
+        "weaknesses": [
+          "UK-rooted brand may feel less localized for US audiences",
+          "Brand positioning leans broader party mystery versus focused detective file-solving",
+          "Some offers skew more toward hosted events than intimate solo/couple play"
+        ],
+        "counter_play": "Own the US true-crime date-night angle with sharper positioning around solo/couple detective play, instant digital access, and concise 2-4 hour completion.",
+        "audience_size_estimate": "Moderate international mystery audience; inference based on catalog breadth and established niche presence.",
+        "source_type": "competitor_website",
+        "confidence": "medium"
+      }
+    ],
+    "tier_2_indirect": [
+      {
+        "name": "Escape Room At-Home Kits",
+        "category": "escape rooms",
+        "price_range": "$15-$40",
+        "threat_level": "high",
+        "why_customers_choose_them": "They promise a proven group activity with puzzles, urgency, and date-night or party appeal.",
+        "our_advantage": "Stronger narrative investigation angle, lower setup friction, and better fit for solo or couple play without a facilitator.",
+        "source_type": "inference",
+        "confidence": "medium"
+      },
+      {
+        "name": "Murder Mystery Party Games",
+        "category": "party games",
+        "price_range": "$20-$50",
+        "threat_level": "medium",
+        "why_customers_choose_them": "They serve larger gatherings and are often perceived as social entertainment for events.",
+        "our_advantage": "Better for 1-6 players, easier instant access, and less dependence on hosting roles, costumes, or large group coordination.",
+        "source_type": "inference",
+        "confidence": "medium"
+      },
+      {
+        "name": "Narrative Detective Video Games",
+        "category": "video games",
+        "price_range": "$10-$30",
+        "threat_level": "medium",
+        "why_customers_choose_them": "They offer polished production value, mystery solving, and solo convenience on familiar platforms.",
+        "our_advantage": "Non-gamer-friendly format, shared tabletop-style collaboration, and no hardware/platform barrier beyond a device and printer if desired.",
+        "source_type": "inference",
+        "confidence": "medium"
+      },
+      {
+        "name": "True Crime Streaming and Podcasts",
+        "category": "media entertainment",
+        "price_range": "$0-$20/month",
+        "threat_level": "medium",
+        "why_customers_choose_them": "They are cheaper, habitual, and directly aligned with audience taste in crime stories.",
+        "our_advantage": "Transforms passive consumption into participatory entertainment with a social and problem-solving payoff.",
+        "source_type": "inference",
+        "confidence": "medium"
+      }
+    ],
+    "tier_3_retail": [
+      {
+        "name": "Amazon mystery case files and detective games",
+        "price_range": "$15-$35",
+        "commoditization_risk": "High. Search results cluster many cold-case, murder mystery, and escape-style products with similar visual hooks and overlapping claims.",
+        "differentiation_strategy": "Avoid competing as a generic 'mystery game.' Lead with instant digital delivery, concise 2-4 hour completion, and a premium declassified-file brand system.",
+        "source_type": "review_analysis",
+        "confidence": "medium"
+      },
+      {
+        "name": "Etsy printable mystery games",
+        "price_range": "$5-$20",
+        "commoditization_risk": "High on price anchoring. Buyers can find many low-cost printable mysteries that reduce perceived value of digital-only offers.",
+        "differentiation_strategy": "Justify premium with stronger story depth, cleaner design, better case structure, and positioning for adults seeking a polished date-night experience.",
+        "source_type": "competitor_gap",
+        "confidence": "medium"
+      }
+    ],
+    "tier_4_premium": [
+      {
+        "name": "In-person escape rooms",
+        "price_range": "$30-$50 per person",
+        "overlap": "Customers choose these when they want a higher-energy, out-of-home group event with strong occasion value.",
+        "positioning_against": "Frame the product as the affordable at-home alternative for spontaneous detective fun without travel, scheduling, or per-person pricing.",
+        "source_type": "inference",
+        "confidence": "high"
+      },
+      {
+        "name": "Airbnb Experiences and hosted mystery events",
+        "price_range": "$40-$100+ per person",
+        "overlap": "Customers choose premium hosted experiences for celebrations, tourism, or memorable social outings.",
+        "positioning_against": "Position against them as accessible weekly entertainment: lower cost, no host dependency, and repeatable at-home use for couples or small groups.",
+        "source_type": "inference",
+        "confidence": "medium"
+      }
+    ]
+  },
+  "offer_patterns": {
+    "observed_models": [
+      "subscription",
+      "single_purchase",
+      "bundle",
+      "facilitator_edition",
+      "instant_play"
+    ],
+    "pricing_ladder": {
+      "entry": "$9.99-$19.99 for downloadable/printable entry-level mystery content or discounted first-case offers.",
+      "core": "$19.99-$34.99 for a standard one-case detective or cold-case experience, physical or digital.",
+      "premium": "$39.99-$99+ for multi-case bundles, deluxe physical kits, or larger hosted party experiences.",
+      "recurring": "$25-$40+ per month effective value for serialized subscription mystery boxes or episode bundles."
+    },
+    "implications_for_product": "A $19.99 price sits at the low end of the core tier, which is attractive if the product clearly signals quality. The strongest strategy is single-purchase plus bundle upsell: keep the hero offer at $19.99, add 2-case and 4-case packs for higher AOV, and optionally test a lightweight recurring 'weekly case club' only after catalog depth improves.",
+    "source_type": "competitor_website",
+    "confidence": "medium"
+  },
+  "market_gaps": [
+    {
+      "gap": "Fast, premium-feeling digital detective cases for same-night play are under-served relative to shipped physical boxes.",
+      "evidence": "Leading brands in the category heavily emphasize physical kits and boxed subscriptions, creating friction for customers who want instant access tonight.",
+      "confidence": "high",
+      "source_type": "competitor_gap",
+      "opportunity_size": "high",
+      "action": "Lean hard into 'instant access in minutes' messaging, especially for date night, weekend plans, and last-minute group entertainment."
+    },
+    {
+      "gap": "The market is crowded with either party-sized experiences or single-player digital games, leaving a softer middle for 2-player detective date-night positioning.",
+      "evidence": "Many competing offers are framed for parties, boxed subscriptions, or broad game audiences rather than explicitly optimized for couples solving together.",
+      "confidence": "medium",
+      "source_type": "competitor_gap",
+      "opportunity_size": "high",
+      "action": "Build landing pages, ad creative, and bundles specifically for couples, anniversaries, and stay-at-home date nights."
+    },
+    {
+      "gap": "There is limited trust signaling for newer downloadable mystery products compared with established physical brands.",
+      "evidence": "Digital mystery listings often compete on concept and price but frequently lack strong proof of polish, structured progression, or clear quality cues before purchase.",
+      "confidence": "medium",
+      "source_type": "review_analysis",
+      "opportunity_size": "medium",
+      "action": "Use detailed preview spreads, sample document thumbnails, difficulty guidance, and transparent play-time/player-count framing to reduce purchase anxiety."
+    },
+    {
+      "gap": "A large share of low-cost printable mystery products creates a quality vacuum above budget Etsy-style files but below expensive subscription boxes.",
+      "evidence": "Retail and marketplace options often polarize between cheap printables and premium shipped experiences, leaving room for a polished mid-price digital brand.",
+      "confidence": "medium",
+      "source_type": "competitor_gap",
+      "opportunity_size": "high",
+      "action": "Own the 'premium digital file case' lane with stronger art direction, cohesive dossier aesthetics, and consistent packaging across all cases."
+    },
+    {
+      "gap": "Consumers who like true crime often remain passive content consumers because many alternatives require gaming skills, travel, or large-group coordination.",
+      "evidence": "Indirect substitutes like podcasts and streaming are easy but passive, while escape rooms and hosted mysteries require more planning and spend.",
+      "confidence": "medium",
+      "source_type": "inference",
+      "opportunity_size": "medium",
+      "action": "Market the product as the bridge between bingeing true crime and actively solving one with friends or a partner."
+    }
+  ],
+  "audience_intelligence": {
+    "what_users_value": [
+      {
+        "insight": "Users value a strong narrative hook and the feeling of uncovering evidence in sequence rather than solving disconnected puzzles.",
+        "source_type": "review_analysis",
+        "source_ref": "Common review themes across cold-case and mystery game listings on Amazon and competitor storefronts; narrative immersion repeatedly highlighted.",
+        "confidence": "medium"
+      },
+      {
+        "insight": "Convenience matters: customers like experiences that can be started the same day with minimal setup.",
+        "source_type": "competitor_gap",
+        "source_ref": "Inferred from prevalence of physical shipping in category leaders and consumer demand for at-home entertainment alternatives.",
+        "confidence": "medium"
+      },
+      {
+        "insight": "Players value social collaboration, especially for couples, friends, and small groups solving together.",
+        "source_type": "review_analysis",
+        "source_ref": "Frequently emphasized in reviews and product descriptions for detective/escape products positioned as date-night or group activities.",
+        "confidence": "high"
+      },
+      {
+        "insight": "Customers respond well to tactile-feeling evidence, file organization, and realistic case materials even in fictional formats.",
+        "source_type": "review_analysis",
+        "source_ref": "Common positive language in mystery game reviews references realism, documents, clues, and immersive file handling.",
+        "confidence": "medium"
+      }
+    ],
+    "what_users_reject": [
+      {
+        "insight": "Users reject weak endings or solutions that feel under-earned after a long setup.",
+        "source_type": "review_analysis",
+        "source_ref": "Negative reviews in mystery and escape categories commonly mention disappointing payoff or illogical reveals.",
+        "confidence": "medium"
+      },
+      {
+        "insight": "Customers dislike puzzles that feel arbitrary or detached from the story world.",
+        "source_type": "review_analysis",
+        "source_ref": "Recurring criticism in detective and escape product reviews when puzzle logic feels forced rather than evidence-based.",
+        "confidence": "high"
+      },
+      {
+        "insight": "Buyers are sensitive to products that look cheap, generic, or overly printable without premium presentation.",
+        "source_type": "competitor_gap",
+        "source_ref": "Inferred from crowded low-cost printable market and price compression on Etsy-style mystery products.",
+        "confidence": "medium"
+      },
+      {
+        "insight": "Some audiences resist subscriptions or long multi-box arcs when they want a complete one-night activity.",
+        "source_type": "competitor_gap",
+        "source_ref": "Inferred from contrast between subscription leaders and demand for simple one-off entertainment purchases.",
+        "confidence": "medium"
+      }
+    ],
+    "group_size_preference": "Small-group play appears strongest, especially 2-4 players, with couples as a particularly attractive use case; solo remains viable but is less socially marketable.",
+    "price_sensitivity": "Moderate. The audience will pay around $20 for a polished 2-4 hour experience, but cheaper printable alternatives create downward pressure unless quality and immersion are obvious before purchase.",
+    "key_forums_communities": [
+      "Reddit communities around true crime, board games, escape rooms, and date-night ideas",
+      "Amazon review sections for mystery and cold-case games",
+      "TikTok and YouTube creators covering date-night ideas, mystery games, and true crime entertainment",
+      "Facebook groups focused on escape rooms, mystery games, and couples activities"
+    ]
+  }
+}

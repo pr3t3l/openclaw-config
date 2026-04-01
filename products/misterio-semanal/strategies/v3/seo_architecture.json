@@ -1,0 +1,1102 @@
+{
+  "schema_version": "3.0",
+  "product_id": "misterio-semanal",
+  "generated_at": "2026-03-31T23:44:26.284748",
+  "keyword_clusters": [
+    {
+      "cluster_id": "core_transactional",
+      "cluster_name": "Core Transactional",
+      "keywords": [
+        {
+          "keyword": "buy digital murder mystery game",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/printable-murder-mystery",
+          "confidence": "high"
+        },
+        {
+          "keyword": "instant download mystery game for adults",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/printable-murder-mystery",
+          "confidence": "high"
+        },
+        {
+          "keyword": "detective mystery game download",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/printable-murder-mystery",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "digital detective case files game",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/true-crime-mystery-box",
+          "confidence": "high"
+        },
+        {
+          "keyword": "adult mystery game instant access",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/printable-murder-mystery",
+          "confidence": "high"
+        },
+        {
+          "keyword": "murder mystery game no shipping",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/printable-murder-mystery",
+          "confidence": "high"
+        },
+        {
+          "keyword": "one night mystery game for adults",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/printable-murder-mystery",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "mystery case file game online",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/true-crime-mystery-box",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "downloadable detective game for adults",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/printable-murder-mystery",
+          "confidence": "high"
+        },
+        {
+          "keyword": "digital cold case game for adults",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/true-crime-mystery-box",
+          "confidence": "high"
+        },
+        {
+          "keyword": "at home detective game instant download",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/printable-murder-mystery",
+          "confidence": "high"
+        },
+        {
+          "keyword": "interactive mystery files download",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/true-crime-mystery-box",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "cluster_id": "use_case_date_night",
+      "cluster_name": "Use Case Date Night",
+      "keywords": [
+        {
+          "keyword": "date night mystery game for couples",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/date-night-mystery-games",
+          "confidence": "high"
+        },
+        {
+          "keyword": "at home mystery date night",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/date-night-mystery-games",
+          "confidence": "high"
+        },
+        {
+          "keyword": "murder mystery for two at home",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/date-night-mystery-games",
+          "confidence": "high"
+        },
+        {
+          "keyword": "detective game for couples",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/date-night-mystery-games",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "printable date night mystery game",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/date-night-mystery-games",
+          "confidence": "high"
+        },
+        {
+          "keyword": "romantic mystery game for couples",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/date-night-mystery-games",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "stay at home date night mystery",
+          "intent": "informational",
+          "competition_estimate": "low",
+          "recommended_page": "/date-night-mystery-games",
+          "confidence": "high"
+        },
+        {
+          "keyword": "mystery solving game for couples",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/date-night-mystery-games",
+          "confidence": "high"
+        },
+        {
+          "keyword": "instant download date night game for adults",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/date-night-mystery-games",
+          "confidence": "high"
+        },
+        {
+          "keyword": "true crime date night idea",
+          "intent": "informational",
+          "competition_estimate": "low",
+          "recommended_page": "/date-night-mystery-games",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "escape room alternative for couples at home",
+          "intent": "informational",
+          "competition_estimate": "medium",
+          "recommended_page": "/date-night-mystery-games",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "2 player mystery game printable",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/date-night-mystery-games",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "cluster_id": "use_case_game_night",
+      "cluster_name": "Use Case Game Night",
+      "keywords": [
+        {
+          "keyword": "mystery game night ideas for adults",
+          "intent": "informational",
+          "competition_estimate": "low",
+          "recommended_page": "/game-night-mystery-games",
+          "confidence": "high"
+        },
+        {
+          "keyword": "group detective game for adults",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/game-night-mystery-games",
+          "confidence": "high"
+        },
+        {
+          "keyword": "mystery game for small group",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/game-night-mystery-games",
+          "confidence": "high"
+        },
+        {
+          "keyword": "instant download game night mystery",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/game-night-mystery-games",
+          "confidence": "high"
+        },
+        {
+          "keyword": "adult mystery party game for 4 people",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/game-night-mystery-games",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "cooperative detective game for friends",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/game-night-mystery-games",
+          "confidence": "high"
+        },
+        {
+          "keyword": "weekend game night mystery activity",
+          "intent": "informational",
+          "competition_estimate": "low",
+          "recommended_page": "/game-night-mystery-games",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "murder mystery game for 3 to 6 players",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/game-night-mystery-games",
+          "confidence": "high"
+        },
+        {
+          "keyword": "story based game night activity",
+          "intent": "informational",
+          "competition_estimate": "low",
+          "recommended_page": "/game-night-mystery-games",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "detective case game for friends night",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/game-night-mystery-games",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "mystery game instead of board game",
+          "intent": "informational",
+          "competition_estimate": "low",
+          "recommended_page": "/game-night-mystery-games",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "easy setup mystery game for adults",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/game-night-mystery-games",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "cluster_id": "use_case_dinner_party",
+      "cluster_name": "Use Case Dinner Party",
+      "keywords": [
+        {
+          "keyword": "murder mystery dinner party kit for adults",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/murder-mystery-dinner-party-kits",
+          "confidence": "high"
+        },
+        {
+          "keyword": "after dinner mystery game",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/murder-mystery-dinner-party-kits",
+          "confidence": "high"
+        },
+        {
+          "keyword": "dinner party mystery game for small group",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/murder-mystery-dinner-party-kits",
+          "confidence": "high"
+        },
+        {
+          "keyword": "adult dinner party entertainment ideas mystery",
+          "intent": "informational",
+          "competition_estimate": "low",
+          "recommended_page": "/murder-mystery-dinner-party-kits",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "instant download murder mystery dinner party",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/murder-mystery-dinner-party-kits",
+          "confidence": "high"
+        },
+        {
+          "keyword": "casual dinner party mystery activity",
+          "intent": "informational",
+          "competition_estimate": "low",
+          "recommended_page": "/murder-mystery-dinner-party-kits",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "no host required mystery dinner game",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/murder-mystery-dinner-party-kits",
+          "confidence": "high"
+        },
+        {
+          "keyword": "mystery game for couples dinner party",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/murder-mystery-dinner-party-kits",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "post dinner group mystery game",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/murder-mystery-dinner-party-kits",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "adult mystery night for dinner guests",
+          "intent": "informational",
+          "competition_estimate": "low",
+          "recommended_page": "/murder-mystery-dinner-party-kits",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "cluster_id": "use_case_solo",
+      "cluster_name": "Use Case Solo",
+      "keywords": [
+        {
+          "keyword": "solo detective game for adults",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/solo-detective-challenges",
+          "confidence": "high"
+        },
+        {
+          "keyword": "single player mystery game printable",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/solo-detective-challenges",
+          "confidence": "high"
+        },
+        {
+          "keyword": "true crime game for one person",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/solo-detective-challenges",
+          "confidence": "high"
+        },
+        {
+          "keyword": "solo cold case game download",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/solo-detective-challenges",
+          "confidence": "high"
+        },
+        {
+          "keyword": "mystery game for one adult",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/solo-detective-challenges",
+          "confidence": "high"
+        },
+        {
+          "keyword": "interactive detective story for one player",
+          "intent": "informational",
+          "competition_estimate": "low",
+          "recommended_page": "/solo-detective-challenges",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "solo mystery night ideas",
+          "intent": "informational",
+          "competition_estimate": "low",
+          "recommended_page": "/solo-detective-challenges",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "downloadable mystery puzzle for adults solo",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/solo-detective-challenges",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "at home detective game for one",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/solo-detective-challenges",
+          "confidence": "high"
+        },
+        {
+          "keyword": "solo true crime activity at home",
+          "intent": "informational",
+          "competition_estimate": "low",
+          "recommended_page": "/solo-detective-challenges",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "mystery case files for solo play",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/solo-detective-challenges",
+          "confidence": "high"
+        },
+        {
+          "keyword": "instant download solo mystery experience",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/solo-detective-challenges",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "cluster_id": "use_case_gift",
+      "cluster_name": "Gift and experience-gift intent keywords",
+      "keywords": [
+        {
+          "keyword": "mystery gift for true crime fans",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/unique-mystery-gifts",
+          "confidence": "high"
+        },
+        {
+          "keyword": "detective game gift for adults",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/unique-mystery-gifts",
+          "confidence": "high"
+        },
+        {
+          "keyword": "last minute digital gift for couples",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/unique-mystery-gifts",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "experience gift for true crime lover",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/unique-mystery-gifts",
+          "confidence": "high"
+        },
+        {
+          "keyword": "gift for someone who loves murder mystery games",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/unique-mystery-gifts",
+          "confidence": "high"
+        },
+        {
+          "keyword": "birthday gift for mystery lover",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/unique-mystery-gifts",
+          "confidence": "high"
+        },
+        {
+          "keyword": "anniversary mystery date night gift",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/unique-mystery-gifts",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "giftable digital mystery game",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/unique-mystery-gifts",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "cluster_id": "product_format",
+      "cluster_name": "Format, delivery, and product model keywords",
+      "keywords": [
+        {
+          "keyword": "printable murder mystery game for adults",
+          "intent": "transactional",
+          "competition_estimate": "high",
+          "recommended_page": "/printable-murder-mystery",
+          "confidence": "high"
+        },
+        {
+          "keyword": "digital detective game download",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/printable-murder-mystery",
+          "confidence": "high"
+        },
+        {
+          "keyword": "instant download mystery game",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/printable-murder-mystery",
+          "confidence": "high"
+        },
+        {
+          "keyword": "downloadable cold case game",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/printable-murder-mystery",
+          "confidence": "high"
+        },
+        {
+          "keyword": "mystery game no shipping",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/printable-murder-mystery",
+          "confidence": "high"
+        },
+        {
+          "keyword": "online detective mystery game for adults",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/printable-murder-mystery",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "single purchase mystery box alternative",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/mystery-subscription-box",
+          "confidence": "high"
+        },
+        {
+          "keyword": "mystery subscription box alternative",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/mystery-subscription-box",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "cluster_id": "niche_true_crime_realism",
+      "cluster_name": "True crime fandom and realistic case-file keywords",
+      "keywords": [
+        {
+          "keyword": "true crime mystery game for adults",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/true-crime-mystery-box",
+          "confidence": "high"
+        },
+        {
+          "keyword": "realistic detective game with evidence",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/true-crime-mystery-box",
+          "confidence": "high"
+        },
+        {
+          "keyword": "cold case file game for true crime fans",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/true-crime-mystery-box",
+          "confidence": "high"
+        },
+        {
+          "keyword": "detective case file game adults",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/true-crime-mystery-box",
+          "confidence": "high"
+        },
+        {
+          "keyword": "immersive crime solving game",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/true-crime-mystery-box",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "murder investigation game with clues",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/true-crime-mystery-box",
+          "confidence": "high"
+        },
+        {
+          "keyword": "true crime game you can solve at home",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/true-crime-mystery-box",
+          "confidence": "high"
+        },
+        {
+          "keyword": "detective files game for adults",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/true-crime-mystery-box",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "cluster_id": "themes",
+      "cluster_name": "Seasonal and themed mystery keywords",
+      "keywords": [
+        {
+          "keyword": "halloween mystery game for adults",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/themes/halloween-mystery-game",
+          "confidence": "high"
+        },
+        {
+          "keyword": "christmas mystery game for family adults",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/themes/christmas-mystery-game",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "noir detective game at home",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/themes/noir-detective-game",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "spy mystery game for adults",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/themes/spy-mystery-game",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "halloween date night mystery",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/themes/halloween-mystery-game",
+          "confidence": "high"
+        },
+        {
+          "keyword": "christmas gift mystery game download",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/themes/christmas-mystery-game",
+          "confidence": "high"
+        },
+        {
+          "keyword": "detective game for spooky night in",
+          "intent": "informational",
+          "competition_estimate": "low",
+          "recommended_page": "/themes/halloween-mystery-game",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "adult mystery game theme ideas",
+          "intent": "informational",
+          "competition_estimate": "low",
+          "recommended_page": "/blog/mystery-game-theme-ideas-for-adults",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "cluster_id": "commercial_modifiers",
+      "cluster_name": "Commercial comparison and modifier keywords",
+      "keywords": [
+        {
+          "keyword": "best mystery game for date night",
+          "intent": "commercial",
+          "competition_estimate": "high",
+          "recommended_page": "/date-night-mystery-games",
+          "confidence": "high"
+        },
+        {
+          "keyword": "best printable murder mystery game",
+          "intent": "commercial",
+          "competition_estimate": "medium",
+          "recommended_page": "/printable-murder-mystery",
+          "confidence": "high"
+        },
+        {
+          "keyword": "best detective game for adults at home",
+          "intent": "commercial",
+          "competition_estimate": "medium",
+          "recommended_page": "/true-crime-mystery-box",
+          "confidence": "high"
+        },
+        {
+          "keyword": "cheap mystery game for adults",
+          "intent": "transactional",
+          "competition_estimate": "medium",
+          "recommended_page": "/printable-murder-mystery",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "mystery game under 20 dollars",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/printable-murder-mystery",
+          "confidence": "high"
+        },
+        {
+          "keyword": "mystery box alternative review",
+          "intent": "informational",
+          "competition_estimate": "low",
+          "recommended_page": "/mystery-subscription-box",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "murder mystery game instant download review",
+          "intent": "informational",
+          "competition_estimate": "low",
+          "recommended_page": "/blog/instant-download-murder-mystery-games-reviewed",
+          "confidence": "medium"
+        },
+        {
+          "keyword": "unsolved case files alternative digital",
+          "intent": "transactional",
+          "competition_estimate": "low",
+          "recommended_page": "/mystery-subscription-box",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "url_architecture": [
+    {
+      "url": "/date-night-mystery-games",
+      "page_type": "landing_page",
+      "target_segment": "couples_date_night",
+      "primary_keywords": [
+        "date night mystery game",
+        "mystery date night at home",
+        "detective game for couples"
+      ],
+      "search_intent": "transactional",
+      "content_brief": "Couple-focused landing page that positions the product as a same-night at-home date alternative. Highlight instant access, 2-4 hour playtime, 1-6 player flexibility, premium dossier visuals, and why it feels more engaging than streaming."
+    },
+    {
+      "url": "/game-night-mystery-games",
+      "page_type": "landing_page",
+      "target_segment": "game_night_hosts",
+      "primary_keywords": [
+        "game night mystery game",
+        "mystery game for friends",
+        "group detective game"
+      ],
+      "search_intent": "transactional",
+      "content_brief": "Small-group page for hosts looking for a fresh social activity. Explain ideal group size, easy setup, collaborative clue flow, and why it works better than another board game or a facilitator-heavy party mystery."
+    },
+    {
+      "url": "/murder-mystery-dinner-party-kits",
+      "page_type": "landing_page",
+      "target_segment": "dinner_party_planners",
+      "primary_keywords": [
+        "murder mystery dinner party game",
+        "after dinner mystery game",
+        "adult dinner party activity"
+      ],
+      "search_intent": "transactional",
+      "content_brief": "Hosting-oriented page that frames the case as an after-dinner centerpiece for adults. Cover polished presentation, self-guided play, no costumes or scripts, and suitability for intimate gatherings."
+    },
+    {
+      "url": "/solo-detective-challenges",
+      "page_type": "landing_page",
+      "target_segment": "solo_true_crime_night",
+      "primary_keywords": [
+        "solo detective game",
+        "true crime game for one",
+        "single player mystery game"
+      ],
+      "search_intent": "transactional",
+      "content_brief": "Solo-play landing page that reassures buyers the experience works well for one player. Emphasize immersive case files, logical clue chains, self-paced play, and the transition from passive true-crime watching to active solving."
+    },
+    {
+      "url": "/unique-mystery-gifts",
+      "page_type": "landing_page",
+      "target_segment": "gift_buyers_experience_seekers",
+      "primary_keywords": [
+        "mystery gift for adults",
+        "true crime gift",
+        "experience gift mystery"
+      ],
+      "search_intent": "transactional",
+      "content_brief": "Gift-focused page built around instant delivery and thoughtful experience gifting. Include birthday, holiday, anniversary, and last-minute gift angles with clear explanation of who the product is for and how it can be gifted digitally."
+    },
+    {
+      "url": "/printable-murder-mystery",
+      "page_type": "pillar_page",
+      "target_segment": "subscription_fatigued_mystery_buyers",
+      "primary_keywords": [
+        "printable murder mystery game",
+        "digital detective game download",
+        "instant download mystery game"
+      ],
+      "search_intent": "mixed",
+      "content_brief": "Core format pillar that educates searchers comparing printable, digital, and shipped mystery products. Position the brand as a premium instant-download alternative, clarify no shipping, and address concerns about digital quality."
+    },
+    {
+      "url": "/mystery-subscription-box",
+      "page_type": "pillar_page",
+      "target_segment": "subscription_fatigued_mystery_buyers",
+      "primary_keywords": [
+        "mystery subscription box alternative",
+        "single purchase mystery game",
+        "unsolved case files alternative digital"
+      ],
+      "search_intent": "mixed",
+      "content_brief": "Comparison-led pillar for buyers fatigued by subscriptions and shipped boxes. Contrast recurring models versus one-off digital cases, focusing on affordability, convenience, and a complete 2-4 hour standalone experience."
+    },
+    {
+      "url": "/true-crime-mystery-box",
+      "page_type": "pillar_page",
+      "target_segment": "true_crime_solo_players",
+      "primary_keywords": [
+        "true crime mystery game",
+        "realistic detective game",
+        "cold case file game"
+      ],
+      "search_intent": "mixed",
+      "content_brief": "True-crime intent pillar that speaks to fans of podcasts and documentaries. Emphasize fictional but realistic-feeling investigation, evidence-driven storytelling, adult tone, and flexible solo/couple/group play."
+    },
+    {
+      "url": "/themes/halloween-mystery-game",
+      "page_type": "landing_page",
+      "target_segment": "couples_date_night",
+      "primary_keywords": [
+        "halloween mystery game for adults",
+        "halloween date night mystery",
+        "spooky mystery game"
+      ],
+      "search_intent": "transactional",
+      "content_brief": "Seasonal page for Halloween demand. Blend spooky-night-in and date-night messaging with instant-download convenience and adult atmosphere."
+    },
+    {
+      "url": "/themes/christmas-mystery-game",
+      "page_type": "landing_page",
+      "target_segment": "gift_buyers_experience_seekers",
+      "primary_keywords": [
+        "christmas mystery game",
+        "christmas gift mystery game download",
+        "holiday mystery game for adults"
+      ],
+      "search_intent": "transactional",
+      "content_brief": "Holiday page focused on gifting and family-adjacent adult entertainment. Highlight instant delivery, stocking-stuffer potential, and easy holiday gathering use cases."
+    },
+    {
+      "url": "/themes/noir-detective-game",
+      "page_type": "landing_page",
+      "target_segment": "true_crime_solo_players",
+      "primary_keywords": [
+        "noir detective game",
+        "at home detective noir game",
+        "adult mystery noir game"
+      ],
+      "search_intent": "transactional",
+      "content_brief": "Theme landing page for noir-flavored search demand. Lean into cinematic investigation language, suspenseful atmosphere, and evidence-focused storytelling."
+    },
+    {
+      "url": "/themes/spy-mystery-game",
+      "page_type": "landing_page",
+      "target_segment": "game_night_hosts",
+      "primary_keywords": [
+        "spy mystery game for adults",
+        "spy detective game at home",
+        "group spy mystery game"
+      ],
+      "search_intent": "transactional",
+      "content_brief": "Theme landing page for spy-themed searches. Position as a social, story-rich alternative to typical group games with quick start and collaborative deduction."
+    }
+  ],
+  "pillar_cluster_strategy": [
+    {
+      "pillar_page": "/printable-murder-mystery",
+      "pillar_topic": "Printable and instant-download murder mystery experiences for adults",
+      "cluster_articles": [
+        {
+          "title": "Printable vs Physical Murder Mystery Games: Which Is Better for Tonight?",
+          "url_slug": "/blog/printable-vs-physical-murder-mystery-games",
+          "target_keyword": "printable vs physical murder mystery game",
+          "content_type": "comparison",
+          "word_count_target": 1800
+        },
+        {
+          "title": "How Instant Download Mystery Games Work From Purchase to First Clue",
+          "url_slug": "/blog/how-instant-download-mystery-games-work",
+          "target_keyword": "instant download mystery game",
+          "content_type": "guide",
+          "word_count_target": 1400
+        },
+        {
+          "title": "Best Printable Murder Mystery Games for Adults Who Want a Premium Feel",
+          "url_slug": "/blog/best-printable-murder-mystery-games-for-adults",
+          "target_keyword": "best printable murder mystery game",
+          "content_type": "listicle",
+          "word_count_target": 2000
+        },
+        {
+          "title": "What Makes a Digital Detective Game Feel Premium Instead of Cheap",
+          "url_slug": "/blog/premium-digital-detective-game-features",
+          "target_keyword": "digital detective game download",
+          "content_type": "guide",
+          "word_count_target": 1500
+        }
+      ]
+    },
+    {
+      "pillar_page": "/true-crime-mystery-box",
+      "pillar_topic": "True-crime-inspired mystery games and realistic detective experiences",
+      "cluster_articles": [
+        {
+          "title": "Best True Crime Games for Adults Who Want to Solve a Case at Home",
+          "url_slug": "/blog/best-true-crime-games-for-adults",
+          "target_keyword": "true crime mystery game for adults",
+          "content_type": "listicle",
+          "word_count_target": 2200
+        },
+        {
+          "title": "What to Look for in a Realistic Detective Game With Evidence",
+          "url_slug": "/blog/realistic-detective-game-with-evidence",
+          "target_keyword": "realistic detective game with evidence",
+          "content_type": "guide",
+          "word_count_target": 1600
+        },
+        {
+          "title": "Cold Case Games vs Puzzle Games: What True Crime Fans Actually Want",
+          "url_slug": "/blog/cold-case-games-vs-puzzle-games",
+          "target_keyword": "cold case file game for true crime fans",
+          "content_type": "comparison",
+          "word_count_target": 1800
+        },
+        {
+          "title": "How to Turn Your True Crime Habit Into an Interactive Night In",
+          "url_slug": "/blog/interactive-night-in-for-true-crime-fans",
+          "target_keyword": "true crime game you can solve at home",
+          "content_type": "guide",
+          "word_count_target": 1400
+        }
+      ]
+    },
+    {
+      "pillar_page": "/mystery-subscription-box",
+      "pillar_topic": "Alternatives to mystery subscription boxes and shipped case files",
+      "cluster_articles": [
+        {
+          "title": "Best Alternatives to Mystery Subscription Boxes for Adults",
+          "url_slug": "/blog/best-alternatives-to-mystery-subscription-boxes",
+          "target_keyword": "mystery subscription box alternative",
+          "content_type": "listicle",
+          "word_count_target": 2100
+        },
+        {
+          "title": "Why Single-Purchase Mystery Games Are Beating Monthly Boxes for Busy Adults",
+          "url_slug": "/blog/single-purchase-mystery-games-vs-monthly-boxes",
+          "target_keyword": "single purchase mystery box alternative",
+          "content_type": "comparison",
+          "word_count_target": 1700
+        },
+        {
+          "title": "Digital Alternatives to Unsolved Case Files and Other Shipped Mystery Games",
+          "url_slug": "/blog/unsolved-case-files-alternative-digital",
+          "target_keyword": "unsolved case files alternative digital",
+          "content_type": "comparison",
+          "word_count_target": 1800
+        },
+        {
+          "title": "No Shipping, No Subscription: The New Way to Plan a Mystery Night",
+          "url_slug": "/blog/no-shipping-no-subscription-mystery-night",
+          "target_keyword": "mystery game no shipping",
+          "content_type": "blog_post",
+          "word_count_target": 1300
+        }
+      ]
+    }
+  ],
+  "content_calendar": [
+    {
+      "priority": 1,
+      "url_or_slug": "/date-night-mystery-games",
+      "content_type": "landing_page",
+      "target_keyword": "date night mystery game",
+      "reason": "Highest-conversion use case with strong product-market fit, clear buyer urgency, and long-tail transactional intent that is less crowded than broad murder mystery terms.",
+      "estimated_effort": "medium"
+    },
+    {
+      "priority": 2,
+      "url_or_slug": "/printable-murder-mystery",
+      "content_type": "pillar_page",
+      "target_keyword": "instant download mystery game",
+      "reason": "Captures strong format-driven search demand and differentiates the offer around instant access, no shipping, and premium digital positioning.",
+      "estimated_effort": "high"
+    },
+    {
+      "priority": 3,
+      "url_or_slug": "/true-crime-mystery-box",
+      "content_type": "pillar_page",
+      "target_keyword": "true crime mystery game for adults",
+      "reason": "Aligns tightly with audience behavior and taps into true-crime adjacent demand with better specificity than generic game terms.",
+      "estimated_effort": "high"
+    },
+    {
+      "priority": 4,
+      "url_or_slug": "/solo-detective-challenges",
+      "content_type": "landing_page",
+      "target_keyword": "solo detective game",
+      "reason": "Solo intent is underserved and relatively lower competition, making it a good early long-tail acquisition page for non-group buyers.",
+      "estimated_effort": "medium"
+    },
+    {
+      "priority": 5,
+      "url_or_slug": "/game-night-mystery-games",
+      "content_type": "landing_page",
+      "target_keyword": "game night mystery game",
+      "reason": "Reaches hosts with clear planning intent and strong repeat-buy potential while avoiding the broadest head-term competition.",
+      "estimated_effort": "medium"
+    },
+    {
+      "priority": 6,
+      "url_or_slug": "/unique-mystery-gifts",
+      "content_type": "landing_page",
+      "target_keyword": "mystery gift for true crime fans",
+      "reason": "Gift intent is commercially strong, especially around seasonal spikes, and the instant-delivery angle creates a compelling last-minute value proposition.",
+      "estimated_effort": "medium"
+    },
+    {
+      "priority": 7,
+      "url_or_slug": "/blog/best-alternatives-to-mystery-subscription-boxes",
+      "content_type": "listicle",
+      "target_keyword": "mystery subscription box alternative",
+      "reason": "Low-to-medium competition comparison intent can siphon traffic from established box brands by matching the product's no-subscription positioning.",
+      "estimated_effort": "medium"
+    },
+    {
+      "priority": 8,
+      "url_or_slug": "/blog/realistic-detective-game-with-evidence",
+      "content_type": "guide",
+      "target_keyword": "realistic detective game with evidence",
+      "reason": "Strong differentiation keyword that matches the dossier and clue-based format while facing less head-term competition.",
+      "estimated_effort": "medium"
+    },
+    {
+      "priority": 9,
+      "url_or_slug": "/murder-mystery-dinner-party-kits",
+      "content_type": "landing_page",
+      "target_keyword": "adult dinner party activity",
+      "reason": "Useful mid-funnel page for planners seeking a polished social centerpiece; niche intent keeps competition lower than generic party-game queries.",
+      "estimated_effort": "medium"
+    },
+    {
+      "priority": 10,
+      "url_or_slug": "/blog/best-printable-murder-mystery-games-for-adults",
+      "content_type": "listicle",
+      "target_keyword": "best printable murder mystery game",
+      "reason": "Commercial investigation traffic is valuable and can funnel readers into the printable format pillar, though competition is moderately higher.",
+      "estimated_effort": "high"
+    },
+    {
+      "priority": 11,
+      "url_or_slug": "/themes/halloween-mystery-game",
+      "content_type": "landing_page",
+      "target_keyword": "halloween mystery game for adults",
+      "reason": "Seasonal page with meaningful intent spikes and a strong fit for date-night and group messaging; should be published ahead of seasonal demand.",
+      "estimated_effort": "low"
+    },
+    {
+      "priority": 12,
+      "url_or_slug": "/blog/unsolved-case-files-alternative-digital",
+      "content_type": "comparison",
+      "target_keyword": "unsolved case files alternative digital",
+      "reason": "Low-competition comparison term offers high commercial intent from category-aware shoppers looking for a faster, cheaper alternative.",
+      "estimated_effort": "medium"
+    }
+  ],
+  "seo_warning": "Generic high-volume terms are dominated by Amazon and established retailers. Win on long-tail: combine use case + format + context. Example: instead of 'murder mystery game', target 'printable murder mystery for date night' or equivalent in target language."
+}

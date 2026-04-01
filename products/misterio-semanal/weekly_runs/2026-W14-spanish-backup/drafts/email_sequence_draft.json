@@ -1,0 +1,182 @@
+{
+  "schema_version": "3.0",
+  "product_id": "misterio-semanal",
+  "run_id": "2026-W14",
+  "generated_at": "2026-04-01T00:00:00.000000",
+  "strategy_version_used": "v2",
+  "sequences": [
+    {
+      "sequence_id": "SEQ-WEEKLY-CASE-W14",
+      "sequence_name": "Secuencia Semanal — The Miracle Withdrawal",
+      "behavioral_trigger": "Suscriptor activo en lista semanal de nuevos casos",
+      "target_segments": [
+        "parejas_noche_cita",
+        "fans_true_crime_solo",
+        "anfitriones_noche_juegos"
+      ],
+      "emails": [
+        {
+          "email_id": "E1-W14",
+          "position": 1,
+          "send_delay_hours": 0,
+          "purpose": "tease",
+          "persona_id": "fans_true_crime_solo",
+          "subject_line_a": "Un medicamento milagroso. Una científica muerta.",
+          "subject_line_b": "La retiraron antes de que alguien preguntara por qué.",
+          "preheader": "Cambridge, marzo 2026. El accidente oficial no cuadra con nada.",
+          "body_markdown": "**Agente Torres te escribe desde Cambridge.**\n\nHelixure Biologics tenía lo que todos buscaban: un medicamento que funcionaba de verdad. GF-102 estaba curando una enfermedad crónica cuando nadie más podía hacerlo.\n\nLuego retiraron el fármaco sin explicación.\n\nY la científica principal que lo desarrolló apareció muerta en una escalera de servicio del edificio.\n\nLa versión oficial: un accidente. Una caída. Nada que ver.\n\nEl problema es que en un laboratorio con cámaras en cada pasillo, sensores en cada puerta y registros de cada movimiento... hay un punto ciego exactamente donde cayó la Dra. Mara Ellison.\n\nEso no es mala suerte. Eso es planificación.\n\n**El expediente acaba de ser desclasificado.**\n\n4 sobres. 21 documentos. 2 a 4 horas para descubrir quién convirtió la presión corporativa en violencia.\n\nEl caso estará disponible a partir de mañana.\n\n¿Estás listo para abrirlo?\n\n— Det. Harlan Torres\n*Unidad de Crímenes Mayores, Cambridge PD*",
+          "pain_point_addressed": "Escucho todos los podcasts de true crime pero siempre soy espectadora — quiero ser yo quien resuelva el caso.",
+          "fear_neutralized": "FK-05 — No quiero esperar días para recibirlo",
+          "cta_text": "Ver el expediente mañana",
+          "cta_url": "https://theclassifiedcases.shop/juego-interactivo-true-crime-espanol",
+          "compliance_notes": "No se afirma que sea un caso real. No se fabrican testimonios ni garantías. Todos los datos del caso provienen de weekly_case_brief.json.",
+          "tone": "Cómplice y personal — como si el detective jefe te escribiera directamente. Tono de mensaje confidencial.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "email_id": "E2-W14",
+          "position": 2,
+          "send_delay_hours": 48,
+          "purpose": "reveal",
+          "persona_id": "parejas_noche_cita",
+          "subject_line_a": "El expediente está abierto. Esto es lo que encontrarás.",
+          "subject_line_b": "21 documentos. 4 sospechosos. Una sola noche para resolverlo.",
+          "preheader": "Informes forenses, registros del edificio y una coartada que no cierra. Todo tuyo.",
+          "body_markdown": "**El caso The Miracle Withdrawal ya está disponible.**\n\nEsto es lo que tienes sobre la mesa esta noche:\n\n**📁 4 sobres con 21 documentos clasificados:**\n- Informe preliminar de la Policía de Cambridge\n- Fichas de los 4 sospechosos con motivos y accesos\n- Capturas del hilo viral en X sobre el medicamento GF-102\n- Plano anotado del Edificio 7 con el punto ciego de las cámaras\n- Registro del sistema de gestión del edificio — alguien silenció las alarmas\n- Informe forense del Condado de Middlesex\n\n**Los sospechosos:**\n- **Evan Kline** (CFO) — su paquete de equity depende de que el acuerdo no se caiga\n- **Nadia Reyes** (asistente de laboratorio) — trabajó tarde con Ellison esa noche\n- **Tom Briggs** (seguridad del edificio) — tenía acceso a los sistemas de alarma\n- **Raina Patel** (directora de QA) — firmó los informes que ahora están bajo escrutinio\n\nCuatro personas con motivo. Una con acceso a los sistemas exactos que fallaron esa noche.\n\n**Duración estimada: 2 a 4 horas.** Perfecto para una noche de viernes sin salir de casa.\n\nAcceso inmediato tras la compra — sin esperas, sin instalaciones.\n\n→ **$19.99 por caso completo para todo el grupo.**",
+          "pain_point_addressed": "Quiero algo que nos haga hablar y pensar juntos, no solo mirar una pantalla en silencio.",
+          "fear_neutralized": "FK-01 — ¿Será aburrido o demasiado fácil?",
+          "cta_text": "Descargar el caso ahora",
+          "cta_url": "https://theclassifiedcases.shop/noche-cita-misterio-pareja",
+          "compliance_notes": "Todos los datos (21 documentos, 4 sobres, 4 sospechosos, 2-4 horas, $19.99) provienen de verified_facts y weekly_case_brief. No se fabrican testimonios. No se afirma garantía de devolución.",
+          "tone": "Inmersivo y detallado — el usuario ya está interesado, ahora hay que convencerlo con profundidad.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "email_id": "E3-W14",
+          "position": 3,
+          "send_delay_hours": 96,
+          "purpose": "urgency",
+          "persona_id": "anfitriones_noche_juegos",
+          "subject_line_a": "Último aviso: el caso cierra esta semana.",
+          "subject_line_b": "¿Quién silenció las alarmas esa noche? Tú decides.",
+          "preheader": "Un medicamento retirado. Una científica muerta. 4 sospechosos. El expediente es tuyo.",
+          "body_markdown": "**Esta es tu última oportunidad esta semana.**\n\nThe Miracle Withdrawal cierra el viernes.\n\nSi todavía no abriste el expediente, esto es lo que te estás perdiendo:\n\nUna científica de biotecnología muere en una escalera de servicio de un laboratorio de alta seguridad. La versión oficial dice accidente. Pero alguien silenció el monitor de oxígeno, purgó nitrógeno en el espacio confinado y generó un informe de \"falla de sensor\" en tiempo real para que la historia oficial quedara lista antes de que llegara la policía.\n\nEso no es un accidente. Eso es un plan.\n\n**¿Quién lo hizo?**\n\nTienes 4 sospechosos, 21 documentos y 4 sobres para descubrirlo. 2 a 4 horas de investigación activa — no de ver cómo otro lo resuelve.\n\n**Para grupos:**\n$19.99 para todo el grupo. Menos de $4 por persona si son 5. Menos que una ronda de bebidas. Más memorable que cualquier noche de UNO.\n\n**Para parejas:**\nCompra ahora, descarga en 2 minutos, empiecen esta noche. Sin esperas. Sin instalaciones.\n\n**Para detectives solitarios:**\nEl expediente tiene todo lo que necesitas. Nada depende de conocimiento externo. Todo está en los archivos.\n\nEl nuevo caso de la semana que viene ya está en camino. Este cierra el viernes.\n\n→ Abre el expediente antes de que sea tarde.",
+          "pain_point_addressed": "Los escape rooms físicos están bien pero son caros y hay que coordinar, reservar, ir hasta allá... para un martes no vale la pena.",
+          "fear_neutralized": "FK-03 — ¿Será infantil o poco realista?",
+          "cta_text": "Abrir el expediente — $19.99",
+          "cta_url": "https://theclassifiedcases.shop/noche-juegos-misterio-grupo",
+          "compliance_notes": "La urgencia es real (rotación semanal de casos). No se fabrican testimonios ni reseñas. No se afirma garantía de devolución. El precio $19.99 proviene de verified_facts. Los detalles del caso (nitrógeno, monitor de oxígeno, informe de sensor) provienen de weekly_case_brief.",
+          "tone": "Urgente y seductor — crea intriga inmediata, habla directamente al deseo de la noche de hoy.",
+          "strategy_version_used": "v2"
+        }
+      ]
+    },
+    {
+      "sequence_id": "SEQ-WELCOME-W14",
+      "sequence_name": "Secuencia de Bienvenida — Nuevos Suscriptores",
+      "behavioral_trigger": "Usuario descarga el lead magnet (preview gratuito del caso muestra) o se suscribe a la lista",
+      "target_segments": [
+        "fans_true_crime_solo",
+        "parejas_noche_cita",
+        "anfitriones_noche_juegos"
+      ],
+      "emails": [
+        {
+          "email_id": "EW1-W14",
+          "position": 1,
+          "send_delay_hours": 0,
+          "purpose": "welcome",
+          "persona_id": "fans_true_crime_solo",
+          "subject_line_a": "Tu primer expediente está listo. Empieza aquí.",
+          "subject_line_b": "Bienvenida, detective. El caso muestra ya está en tu bandeja.",
+          "preheader": "Acceso inmediato a los primeros archivos. Sin instalaciones. Sin esperas.",
+          "body_markdown": "**Bienvenida a Declassified Cases.**\n\nEres detective ahora. No espectadora.\n\nAcabas de descargar los primeros archivos del caso muestra. Esto es lo que tienes:\n\n- Informe policial inicial\n- Fotografía de la escena\n- Testimonio del primer testigo\n- Una carta del sospechoso principal\n\n**¿Puedes resolver el crimen con esto?**\n\nSi en algún momento sientes que necesitas más contexto, el caso completo incluye todos los archivos, pistas y la resolución narrativa — 2 a 4 horas de investigación activa en español, por $19.99.\n\nPero primero: abre los archivos. Lee el informe. Mira la fotografía de la escena.\n\nHay algo que no cuadra desde el principio.\n\n**Cómo empezar:**\n1. Abre los archivos en el orden indicado\n2. Toma notas — los mejores detectives siempre lo hacen\n3. Cuando tengas una teoría, el caso completo te espera\n\nEsta semana tenemos un nuevo caso disponible: *The Miracle Withdrawal* — una científica de biotecnología muerta en un laboratorio de alta seguridad, un medicamento retirado sin explicación y cuatro sospechosos con motivo.\n\n¿Te interesa? El expediente completo está disponible ahora.\n\n— El equipo de Declassified Cases",
+          "pain_point_addressed": "Ya vi todas las series de misterio en Netflix y Amazon — necesito algo nuevo que me desafíe de verdad.",
+          "fear_neutralized": "FK-02 — ¿Será complicado de configurar?",
+          "cta_text": "Ver el caso de esta semana",
+          "cta_url": "https://theclassifiedcases.shop/juego-interactivo-true-crime-espanol",
+          "compliance_notes": "No se fabrican testimonios. No se afirma garantía de devolución. El precio $19.99 proviene de verified_facts. La descripción del caso proviene de weekly_case_brief.",
+          "tone": "Cómplice y personal — como si el detective jefe te escribiera directamente.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "email_id": "EW2-W14",
+          "position": 2,
+          "send_delay_hours": 24,
+          "purpose": "welcome",
+          "persona_id": "parejas_noche_cita",
+          "subject_line_a": "¿Resolviste el caso muestra? El expediente completo tiene 21 archivos más.",
+          "subject_line_b": "Hay algo en el caso muestra que no te contamos todavía.",
+          "preheader": "El caso completo de esta semana: Cambridge, un laboratorio y una muerte que no fue accidente.",
+          "body_markdown": "**Ayer te enviamos los primeros archivos.**\n\nSi ya los abriste, sabes que algo no cuadra desde el informe inicial.\n\nSi todavía no los abriste — esta noche es perfecta.\n\n**El caso completo de esta semana va mucho más lejos:**\n\n*The Miracle Withdrawal* — Cambridge, marzo 2026.\n\nUna científica desarrolla un medicamento que cura una enfermedad crónica. La empresa lo retira antes de que nadie pueda preguntar por qué funciona tan bien. Esa misma noche, la científica muere en una escalera de servicio.\n\nLa policía dice accidente. Los registros del edificio dicen otra cosa.\n\n**Lo que recibes al comprar:**\n- 4 sobres con 21 documentos clasificados\n- Plano del edificio con el punto ciego de las cámaras\n- Registros del sistema de alarmas — alguien los manipuló\n- Informe forense completo\n- 4 fichas de sospechosos con motivos y accesos\n\n**Para jugar en pareja:** 2 a 4 horas. Acceso inmediato. $19.99 para los dos.\n\nMenos que salir a cenar. Más memorable que cualquier noche de Netflix.\n\n→ Descarga el caso completo ahora.",
+          "pain_point_addressed": "Siempre terminamos viendo Netflix y a los 20 minutos ninguno de los dos está realmente presente — cada uno con el teléfono.",
+          "fear_neutralized": "FK-01 — ¿Será aburrido o demasiado fácil?",
+          "cta_text": "Descargar el caso completo — $19.99",
+          "cta_url": "https://theclassifiedcases.shop/noche-cita-misterio-pareja",
+          "compliance_notes": "Todos los datos del caso provienen de weekly_case_brief. No se fabrican testimonios ni garantías. Precio $19.99 de verified_facts.",
+          "tone": "Cómplice y personal con urgencia narrativa.",
+          "strategy_version_used": "v2"
+        },
+        {
+          "email_id": "EW3-W14",
+          "position": 3,
+          "send_delay_hours": 72,
+          "purpose": "welcome",
+          "persona_id": "fans_true_crime_solo",
+          "subject_line_a": "Última llamada: oferta de lanzamiento para nuevos detectives.",
+          "subject_line_b": "El caso cierra esta semana. Esto es lo que incluye.",
+          "preheader": "4 sobres, 21 documentos, 2-4 horas. Acceso inmediato. $19.99.",
+          "body_markdown": "**Tres días desde que te uniste a Declassified Cases.**\n\nSi todavía no diste el salto al caso completo, quiero que sepas exactamente qué estás considerando:\n\n**The Miracle Withdrawal** no es un puzzle abstracto. No es un juego de mesa con cartas genéricas.\n\nEs un expediente policial completo sobre la muerte de la Dra. Mara Ellison — científica principal de Helixure Biologics — en un laboratorio de alta seguridad en Cambridge.\n\nAlguien silenció el monitor de oxígeno. Purgó nitrógeno en el espacio confinado. Generó un informe de \"falla de sensor\" para que la historia oficial quedara lista antes de que llegara la policía.\n\nCuatro sospechosos. Todos con motivo. Solo uno con acceso a los sistemas exactos que fallaron esa noche.\n\n**Todo lo que necesitas para resolver el caso está en el expediente.** Nada depende de conocimiento externo.\n\n**Formato 100% digital:**\n- Descarga inmediata tras la compra\n- Sin instalaciones ni aplicaciones\n- Para jugar solo, en pareja o en grupo (1-6 jugadores)\n- En español\n\n**$19.99 · Acceso inmediato · Esta semana**\n\nEl siguiente caso llega la semana que viene. Este cierra el viernes.\n\n→ Abrir el expediente ahora.",
+          "pain_point_addressed": "Quiero la sensación de tener archivos reales, fotos del caso, informes — como si fuera una detective de verdad.",
+          "fear_neutralized": "FK-03 — ¿Será infantil o poco realista?",
+          "cta_text": "Abrir el expediente — $19.99",
+          "cta_url": "https://theclassifiedcases.shop/juego-interactivo-true-crime-espanol",
+          "compliance_notes": "No se fabrican testimonios ni garantías. Todos los detalles del caso provienen de weekly_case_brief. Precio, formato y jugadores de verified_facts. La urgencia de cierre semanal es real.",
+          "tone": "Urgente y seductor con tono de expediente oficial.",
+          "strategy_version_used": "v2"
+        }
+      ]
+    },
+    {
+      "sequence_id": "SEQ-REENGAGEMENT-W14",
+      "sequence_name": "Secuencia de Reactivación — Suscriptores Inactivos",
+      "behavioral_trigger": "Suscriptor sin apertura de email en los últimos 30 días",
+      "target_segments": [
+        "fans_true_crime_solo",
+        "parejas_noche_cita"
+      ],
+      "emails": [
+        {
+          "email_id": "ER1-W14",
+          "position": 1,
+          "send_delay_hours": 0,
+          "purpose": "reengagement",
+          "persona_id": "fans_true_crime_solo",
+          "subject_line_a": "¿Sigues ahí, detective? Tenemos un caso nuevo.",
+          "subject_line_b": "Hace un mes que no abres el expediente. Este vale la pena.",
+          "preheader": "Un laboratorio de alta seguridad. Una muerte que no fue accidente. 21 documentos esperando.",
+          "body_markdown": "**Ha pasado un tiempo.**\n\nNo te culpamos — el true crime no para y hay mucho donde elegir.\n\nPero esta semana tenemos algo diferente:\n\n*The Miracle Withdrawal* — Cambridge, marzo 2026.\n\nUna empresa de biotecnología desarrolla un medicamento que cura una enfermedad crónica. Antes de que nadie pueda preguntar cómo funciona, retiran el fármaco. Esa misma noche, la científica principal aparece muerta en una escalera de servicio.\n\nLa versión oficial: accidente.\n\nEl registro del sistema de alarmas del edificio: alguien lo manipuló exactamente 23 minutos antes de que encontraran el cuerpo.\n\n**Este no es un podcast que escuchas mientras haces otra cosa.**\n\nEste es un expediente que tú resuelves. 4 sobres. 21 documentos. 4 sospechosos. 2 a 4 horas de investigación activa en español.\n\nAcceso inmediato. $19.99.\n\nSi después de este email decides que Declassified Cases no es para ti, puedes darte de baja abajo. Sin problema.\n\nPero si el caso te genera aunque sea un poco de curiosidad — el expediente está esperando.\n\n→ Ver el caso de esta semana.",
+          "pain_point_addressed": "Ya vi todas las series de misterio en Netflix y Amazon — necesito algo nuevo que me desafíe de verdad.",
+          "fear_neutralized": "FK-05 — No quiero esperar días para recibirlo",
+          "cta_text": "Ver el caso de esta semana",
+          "cta_url": "https://theclassifiedcases.shop/juego-interactivo-true-crime-espanol",
+          "compliance_notes": "No se fabrican testimonios ni garantías. Todos los detalles del caso provienen de weekly_case_brief. Precio y formato de verified_facts. Se incluye opción de baja para cumplimiento de buenas prácticas de email.",
+          "tone": "Cómplice y directo — reconoce la inactividad sin dramatizar, vuelve a enganchar con el caso.",
+          "strategy_version_used": "v2"
+        }
+      ]
+    }
+  ],
+  "narrative_arc": "La secuencia principal construye tensión en tres actos: el Email 1 (tease) establece el misterio con la muerte de Ellison y la retirada inexplicable del medicamento, creando intriga sin revelar nada del caso. El Email 2 (reveal) abre el expediente y muestra exactamente qué recibirá el jugador — documentos, sospechosos, planos — convirtiendo la curiosidad en deseo concreto de compra. El Email 3 (urgency) cierra el ciclo con la mecánica del caso como evidencia de calidad (el monitor de oxígeno silenciado, el informe de sensor fabricado en tiempo real) y la urgencia real de la rotación semanal. La secuencia de bienvenida replica esta progresión para nuevos suscriptores, llevándolos del preview gratuito al caso completo en 72 horas. La secuencia de reactivación usa el caso de la semana como gancho de retorno, reconociendo la inactividad sin culpa y ofreciendo una salida limpia si el producto ya no es relevante.",
+  "optimization_applied": [
+    "OPT-W14-001: Email 2 (reveal) incluye lista visual detallada de archivos del caso para mostrar exactamente qué recibirá el comprador, reduciendo fricción de decisión identificada en diagnóstico W14",
+    "OPT-W14-002: Los tres emails de la secuencia principal usan ángulo de 'unboxing narrativo' — mostrando documentos específicos (plano con punto ciego, registro de alarmas, informe forense) para activar el deseo de ver los archivos reales",
+    "OPT-W14-003: Segmentación de CTAs por persona — fans de true crime van a /juego-interactivo-true-crime-espanol, parejas a /noche-cita-misterio-pareja, grupos a /noche-juegos-misterio-grupo"
+  ],
+  "kb_patterns_used": [
+    "WP-001: Hooks de curiosidad y pregunta retórica usados en subjects de E1 y ER1 para mantener CTR funcional",
+    "LP-001: Emails E2 y EW2 incluyen descripción detallada del contenido del caso para reducir fricción post-clic identificada en W14",
+    "LP-002: Cada email tiene un único CTA claro con URL persona-específica para mejorar calidad del tráfico hacia la landing"
+  ],
+  "status": "draft"
+}

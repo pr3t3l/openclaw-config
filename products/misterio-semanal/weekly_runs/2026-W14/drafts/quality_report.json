@@ -2,104 +2,1742 @@
   "schema_version": "3.0",
   "product_id": "misterio-semanal",
   "run_id": "2026-W14",
-  "generated_at": "2026-04-01T12:00:00Z",
-  "overall_status": "pass_with_warnings",
-  "critical_issues_count": 0,
-  "warning_count": 8,
+  "generated_at": "2026-04-01T00:00:00Z",
+  "overall_status": "fail",
+  "critical_issues_count": 6,
+  "warning_count": 14,
   "assets": [
     {
-      "asset_type": "meta_ad",
-      "asset_ref": "AD-04-C",
-      "persona_id": "compradores_regalo",
-      "status": "flagged",
+      "asset_type": "reels_script",
+      "asset_ref": "W14-CDN-TT-01A",
+      "persona_id": "couples_date_night",
+      "status": "pass",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Specific persona_id `couples_date_night` present."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Specific trigger_id `couples_post_true_crime` present."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Explicitly neutralizes FK-01 by framing the experience as a smart shared investigation rather than passive watching."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Includes dossier preview, victim card, suspect board, Stairwell 4B imagery, and case-specific document count."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "Uses `/date-night-mystery-games`, which is mapped to the couples persona."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "pass",
+          "detail": "Testing variable specified: direct Netflix-replacement phrasing vs cinematic case-logline hook."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "TikTok-native 9:16-style creator script with short hook, overlays, and concise CTA."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "pass",
+          "detail": "Hook is immediate and concise: 'Finished the episode? Solve one instead.'"
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA clearly directs the viewer to open the file tonight."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Targets the real couples pain point of defaulting to passive true-crime or streaming instead of doing something together."
+        }
+      ],
+      "issues": []
+    },
+    {
+      "asset_type": "reels_script",
+      "asset_ref": "W14-CDN-TT-01B",
+      "persona_id": "couples_date_night",
+      "status": "pass",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Specific persona_id `couples_date_night` present."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Specific trigger_id `couples_post_true_crime` present."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Addresses FK-03 by emphasizing adult-feeling date-night positioning and premium dossier visuals."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Uses named victim, setting, suspect count, and visible document previews as proof."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "Uses `/date-night-mystery-games`, which is persona-specific."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "pass",
+          "detail": "Testing variable specified for hook type comparison."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Fits TikTok creator/trailer hybrid structure with short runtime and on-screen overlays."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "pass",
+          "detail": "The opening line is concise and suspenseful, suitable for the first 3 seconds."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA tells the viewer to turn tonight into the case and start in minutes."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Addresses the desire for a memorable at-home date night that feels more engaging than another movie."
+        }
+      ],
+      "issues": []
+    },
+    {
+      "asset_type": "reels_script",
+      "asset_ref": "W14-GNH-IG-02A",
+      "persona_id": "game_night_hosts",
+      "status": "pass_with_warnings",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Specific persona_id `game_night_hosts` present."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Specific trigger_id `hosts_same_day_need` present."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Addresses FK-02 by reducing setup friction and showing no game master or long rules talk."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Shows envelope progression, suspect cards, and group-play behavior."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "Uses `/game-night-mystery-games`, mapped to the host persona."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "pass",
+          "detail": "Testing variable specified: group-play demo vs premium dossier close-up montage."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Instagram Reels-native structure with social footage, overlays, and concise value delivery."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "pass",
+          "detail": "Hook is short and immediate."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "warning",
+          "detail": "CTA is directionally clear but generic; it does not reinforce the exact landing outcome or hosting benefit as strongly as channel strategy suggests."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Directly addresses same-day hosting friction and the need for an easy anchor activity."
+        }
+      ],
       "issues": [
         {
           "severity": "warning",
-          "type": "forbidden_claim",
-          "description": "El copy 'Caso real para resolver' puede implicar que el caso está basado en hechos reales. product_brief prohíbe explícitamente afirmar 'basado en hechos reales' y mencionar 'caso real' en referencia al crimen.",
-          "location": "compliance_notes: 'Caso real para resolver se refiere a la experiencia de investigación, no a un crimen real'",
-          "fix_suggestion": "Cambiar a 'Un caso de misterio para resolver' o 'Una experiencia detectivesca completa'. La nota de compliance reconoce el riesgo pero no lo resuelve en el copy visible."
+          "type": "weak_cta",
+          "description": "CTA is usable but could be more specific to the host use case, such as seeing how group play works or hosting a mystery game night.",
+          "location": "cta.text",
+          "fix_suggestion": "Replace with a more specific host CTA like 'See how group play works tonight' or 'Host a mystery game night tonight.'"
+        }
+      ]
+    },
+    {
+      "asset_type": "reels_script",
+      "asset_ref": "W14-GNH-IG-02B",
+      "persona_id": "game_night_hosts",
+      "status": "pass_with_warnings",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Specific persona_id `game_night_hosts` present."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Specific trigger_id `hosts_same_day_need` present."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Addresses skepticism about cheap-looking printables and boring execution."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Provides visual proof through timeline strip, suspect cards, and case layout close-ups."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "Uses `/game-night-mystery-games`, which is persona-specific."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "pass",
+          "detail": "Explicit proof-style testing variable included."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Fits short-form Meta video specs and native dossier-closeup style."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "pass",
+          "detail": "Hook is short and front-loaded."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "warning",
+          "detail": "CTA is understandable but not as action-specific as the mapped channel CTA for hosts."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Addresses the fear that downloadable group activities will feel low-effort or confusing."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "warning",
+          "type": "weak_cta",
+          "description": "CTA is broad and less specific than the host channel strategy recommends.",
+          "location": "cta.text",
+          "fix_suggestion": "Use a host-specific CTA such as 'See how group play works' or 'Host a mystery game night.'"
+        }
+      ]
+    },
+    {
+      "asset_type": "reels_script",
+      "asset_ref": "W14-GBE-IG-03A",
+      "persona_id": "gift_buyers_experience_seekers",
+      "status": "pass_with_warnings",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Specific persona_id `gift_buyers_experience_seekers` present."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Specific trigger_id `gift_last_minute` present."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Addresses FK-04 by making the gift feel intentional and flexible for multiple recipient types."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Provides proof via real dossier preview and concrete product facts."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "Uses `/unique-mystery-gifts`, which is gift-persona specific."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "pass",
+          "detail": "CTA style testing variable is explicitly listed."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Instagram Reels-native gift/DM framing fits the platform."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "pass",
+          "detail": "Hook is immediate and concise."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA clearly directs the viewer to get an instant gift now."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Addresses panic-buying and the need for a same-day thoughtful gift."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "warning",
+          "type": "compliance",
+          "description": "The phrase 'a mystery they can actually open tonight' slightly edges toward outcome implication without showing gifting mechanics or delivery flow to the buyer.",
+          "location": "body.text",
+          "fix_suggestion": "Clarify how the gift is delivered digitally to avoid ambiguity, e.g. 'send a digital case link they can open tonight.'"
+        }
+      ]
+    },
+    {
+      "asset_type": "reels_script",
+      "asset_ref": "W14-GBE-IG-03B",
+      "persona_id": "gift_buyers_experience_seekers",
+      "status": "pass_with_warnings",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Specific persona_id `gift_buyers_experience_seekers` present."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Specific trigger_id `gift_last_minute` present."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Addresses gift hesitation by emphasizing broad play-fit and low-friction delivery."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Shows recipient-use proof plus visible case previews."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "Uses `/unique-mystery-gifts`, which is persona-specific."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "pass",
+          "detail": "Testing variable included: convenience-led CTA vs thoughtfulness-led CTA."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Gift-forward recipient-reaction structure is native enough for Instagram Reels."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "pass",
+          "detail": "Hook is concise and quick."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA clearly directs the viewer to send a mystery gift tonight."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Addresses the need for a memorable gift that avoids clutter and shipping delays."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "warning",
+          "type": "tone_drift",
+          "description": "The line 'A gift they will talk about tomorrow' is plausible but slightly softens the sharper, confidence-led brand tone into a more generic gifting promise.",
+          "location": "hook.text",
+          "fix_suggestion": "Sharpen the hook with a more suspenseful angle, e.g. 'A last-minute gift with an actual plot.'"
+        }
+      ]
+    },
+    {
+      "asset_type": "meta_ad",
+      "asset_ref": "AD-01-A",
+      "persona_id": "couples_date_night",
+      "status": "pass_with_warnings",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Specific persona_id `couples_date_night` present."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Specific trigger_id `couples_post_true_crime` present."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Fear FK-01 is explicitly identified and the copy reframes the product as a shared suspenseful night."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Includes concrete proof points: instant access, 2-4 hours, 4 envelopes, and 21 documents in this case."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "Uses couples-specific landing page `/date-night-mystery-games`."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "Has a hypothesis but no explicit testing variable field or distinct variable definition."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Fits Meta short-copy ad structure with headline, primary text, description, and CTA."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "Static ad copy; hook timing check not applicable."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "warning",
+          "detail": "CTA uses generic 'Learn More' rather than a more specific destination/action."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Targets the couples pain point of replacing passive true-crime viewing with a shared activity."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "The ad includes a hypothesis but does not specify the explicit element being tested.",
+          "location": "hypothesis",
+          "fix_suggestion": "Add a testing variable such as 'hook framing: post-binge language vs date-night language.'"
+        },
+        {
+          "severity": "warning",
+          "type": "weak_cta",
+          "description": "Using 'Learn More' weakens action specificity for a high-intent couples use case.",
+          "location": "cta_text",
+          "fix_suggestion": "Use a more specific CTA such as 'Start your date-night case tonight' or 'Open the file tonight.'"
+        }
+      ]
+    },
+    {
+      "asset_type": "meta_ad",
+      "asset_ref": "AD-01-B",
+      "persona_id": "couples_date_night",
+      "status": "pass_with_warnings",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Specific persona_id present."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Specific trigger_id present."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Addresses FK-02 by emphasizing quick start and same-night convenience."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Provides price, player count, duration, and instant-start proof."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "Landing page is persona-specific."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "No explicit testing variable is defined."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Copy length and structure fit Meta static/video ad norms."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "Not a video timing review."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "warning",
+          "detail": "`Shop Now` is serviceable but less specific than the mapped couple-specific CTA."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Addresses comparison against streaming and the desire for a better night in."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "No explicit test variable is stated despite the requirement for a defined variable.",
+          "location": "variant",
+          "fix_suggestion": "State the exact variable, e.g. 'value-led opener vs mystery-led opener.'"
+        },
+        {
+          "severity": "warning",
+          "type": "weak_cta",
+          "description": "CTA is less specific than the channel strategy's couples CTA.",
+          "location": "cta_text",
+          "fix_suggestion": "Use 'Start your date-night case tonight' to match the use case and destination."
+        }
+      ]
+    },
+    {
+      "asset_type": "meta_ad",
+      "asset_ref": "AD-01-C",
+      "persona_id": "couples_date_night",
+      "status": "pass_with_warnings",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Specific persona_id present."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Specific trigger_id present."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Addresses FK-05 by emphasizing same-night start and download-now framing."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Uses case-specific proof through the staged accident premise and suspect framing."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "Uses couples-specific landing URL."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "Only a general hypothesis is present; no explicit test variable named."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Formatted suitably for Meta ad copy."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "Not applicable to text ad evaluation."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "warning",
+          "detail": "`Learn More` is generic and not destination-specific."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Targets same-night indecision and lack of a date-night plan."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "Testing variable is missing.",
+          "location": "variant",
+          "fix_suggestion": "Specify the variable being tested, such as urgency-led copy vs story-led copy."
+        },
+        {
+          "severity": "warning",
+          "type": "weak_cta",
+          "description": "Generic CTA lowers urgency and specificity for a same-night couples intent.",
+          "location": "cta_text",
+          "fix_suggestion": "Use 'Open the file tonight' or 'Start your date-night case tonight.'"
+        }
+      ]
+    },
+    {
+      "asset_type": "meta_ad",
+      "asset_ref": "AD-02-A",
+      "persona_id": "game_night_hosts",
+      "status": "pass_with_warnings",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Specific host persona present."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Specific trigger `hosts_same_day_need` present."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Addresses boredom and the need for a fresh social centerpiece."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Includes 1-6 players and self-guided 4-envelope structure."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "Uses `/game-night-mystery-games`."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "No explicit testing variable identified."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Appropriate for Meta ad format."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "Not applicable."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "warning",
+          "detail": "`Learn More` is generic relative to the mapped CTA for hosts."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Addresses stale game nights and the desire to bring something new."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "Explicit testing variable is missing.",
+          "location": "variant",
+          "fix_suggestion": "Define the variable, e.g. 'freshness angle vs ease-of-hosting angle.'"
+        },
+        {
+          "severity": "warning",
+          "type": "weak_cta",
+          "description": "CTA is generic and not tightly aligned with the host use case.",
+          "location": "cta_text",
+          "fix_suggestion": "Use 'Bring one new thing to game night' or 'Host a mystery game night.'"
+        }
+      ]
+    },
+    {
+      "asset_type": "meta_ad",
+      "asset_ref": "AD-02-B",
+      "persona_id": "game_night_hosts",
+      "status": "pass_with_warnings",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Specific host persona present."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Specific trigger present."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Addresses setup anxiety and confusion."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Offers price, instant access, duration, and 21 documents as proof."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "Uses the correct host landing page."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "Hypothesis present, but no explicit testing variable field."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Works as Meta ad copy."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "Not applicable."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "warning",
+          "detail": "`Shop Now` is generic and less use-case specific than the channel plan."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Directly addresses setup complexity and whether the activity justifies the price."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "No explicit testing variable is stated.",
+          "location": "variant",
+          "fix_suggestion": "Specify the test variable, e.g. 'proof-heavy opener vs ease-heavy opener.'"
+        },
+        {
+          "severity": "warning",
+          "type": "weak_cta",
+          "description": "CTA lacks host-specific direction.",
+          "location": "cta_text",
+          "fix_suggestion": "Use 'See how group play works' or 'Host a mystery game night.'"
+        }
+      ]
+    },
+    {
+      "asset_type": "meta_ad",
+      "asset_ref": "AD-02-C",
+      "persona_id": "game_night_hosts",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Specific host persona present."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Specific trigger present."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Addresses fear of childish or low-energy group dynamics by centering debate and theory-building."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "warning",
+          "detail": "Provides story setup but lacks stronger tangible proof beyond the suspect count and general group fit."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "Uses persona-specific host landing page."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "No explicit testing variable provided."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Format is acceptable for Meta."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "Not applicable."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "warning",
+          "detail": "`Learn More` is generic."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "fail",
+          "detail": "The copy emphasizes social debate but does not directly attack the host's core pain around stale rotations, setup friction, or weak reveals."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "generic_pain",
+          "description": "The ad leans on a social dynamic but misses the sharper host pain points documented in the persona, such as stale game-night options, setup friction, and concern about weak payoff.",
+          "location": "primary_text and description",
+          "fix_suggestion": "Reframe the ad around a real host pain: 'Tired of the same three board games?' or 'No long rules talk, just one case your group can start tonight.'"
         },
         {
           "severity": "warning",
           "type": "no_proof",
-          "description": "Variante de social_proof sin prueba social real. El approach es 'social_proof' pero no incluye ningún testimonio, reseña ni dato de usuarios — solo copy de producto.",
-          "location": "AD-04-C approach: social_proof",
-          "fix_suggestion": "Cambiar approach a 'emotional' o 'aspiration' para alinear con el contenido real del anuncio, o añadir placeholder [TESTIMONIAL] si se dispone de uno verificable."
+          "description": "The ad underuses proof compared with stronger variants and does not show enough tangible structure or payoff.",
+          "location": "primary_text and description",
+          "fix_suggestion": "Add one proof point like '4 envelopes' or '2-4 hours' to reduce skepticism."
+        },
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "Testing variable missing.",
+          "location": "variant",
+          "fix_suggestion": "Specify the variable, e.g. 'social dynamic hook vs setup-ease hook.'"
+        },
+        {
+          "severity": "warning",
+          "type": "weak_cta",
+          "description": "CTA is generic instead of host-specific.",
+          "location": "cta_text",
+          "fix_suggestion": "Use 'Bring one new thing to game night' or 'See how group play works.'"
+        }
+      ]
+    },
+    {
+      "asset_type": "meta_ad",
+      "asset_ref": "AD-03-A",
+      "persona_id": "gift_buyers_experience_seekers",
+      "status": "pass_with_warnings",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Specific gift persona present."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Specific `gift_last_minute` trigger present."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Addresses gifting fear by positioning as more thoughtful than a gift card."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "warning",
+          "detail": "Moderate proof through audience fit, but limited concrete product proof in the actual ad copy."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "Uses gift-specific landing page."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "No explicit testing variable stated."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Appropriate for Meta feed ad copy."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "Not applicable."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "warning",
+          "detail": "`Learn More` is generic for a last-minute gift intent."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Addresses the real pain of panic-buying generic gifts."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "warning",
+          "type": "no_proof",
+          "description": "The ad could do more to prove quality or delivery specifics beyond general recipient fit.",
+          "location": "primary_text and description",
+          "fix_suggestion": "Add one proof point such as instant access, 2-4 hours, or dossier-style case files."
+        },
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "No explicit testing variable provided.",
+          "location": "variant",
+          "fix_suggestion": "Add a variable like 'gift-card comparison vs experience-led hook.'"
+        },
+        {
+          "severity": "warning",
+          "type": "weak_cta",
+          "description": "CTA is generic and weaker than the mapped gift CTA.",
+          "location": "cta_text",
+          "fix_suggestion": "Use 'Get an instant gift now' to match channel strategy."
         }
       ]
     },
     {
       "asset_type": "meta_ad",
       "asset_ref": "AD-03-B",
-      "persona_id": "anfitriones_noche_juegos",
-      "status": "flagged",
-      "issues": [
+      "persona_id": "gift_buyers_experience_seekers",
+      "status": "pass_with_warnings",
+      "checklist": [
         {
-          "severity": "warning",
-          "type": "factual_error",
-          "description": "El headline 'Escape room: $180. Esto: $19.99' presenta $180 como dato concreto. La compliance_note reconoce que es una estimación ($90-210 según market_analysis). Usar un número exacto sin rango puede ser engañoso.",
-          "location": "AD-03-B headline y compliance_notes",
-          "fix_suggestion": "Cambiar a 'Un escape room para 6: hasta $180. Este caso: $19.99.' o usar 'Escape room para 6: $90-180. Este caso: $19.99.' para reflejar el rango real documentado."
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Specific gift persona present."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Specific trigger present."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Addresses same-day gifting anxiety and shipping delay fear."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Provides price, instant access, duration, and flexible player fit."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "Uses the correct gift landing page."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "No explicit testing variable is stated."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Suitable Meta ad format."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "Not applicable."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "warning",
+          "detail": "`Shop Now` is not as specific as the mapped gift CTA."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Directly addresses last-minute thoughtful gifting."
         }
-      ]
-    },
-    {
-      "asset_type": "reels_script",
-      "asset_ref": "DC-W14-S3B-GRUPO-REACCION",
-      "persona_id": "anfitriones_noche_juegos",
-      "status": "flagged",
+      ],
       "issues": [
         {
           "severity": "warning",
-          "type": "no_proof",
-          "description": "El script indica 'mostrar al grupo real interactuando con los documentos — reacciones genuinas' como proof_element, pero no existe UGC verificable según publishing_calendar (content_mix nota: 'déficit de social_proof por falta de testimonios reales'). Si se publica sin ese material real, el proof_element es ficticio.",
-          "location": "proof_element y audio_notes: 'risas de fondo auténticas'",
-          "fix_suggestion": "Usar actores o equipo interno claramente no presentados como clientes reales, o reemplazar el proof_element por unboxing de documentos (como S3-A) hasta disponer de UGC verificable."
+          "type": "no_test_variable",
+          "description": "No explicit test variable defined.",
+          "location": "variant",
+          "fix_suggestion": "Specify a variable like 'price-led opener vs flexibility-led opener.'"
         },
         {
           "severity": "warning",
-          "type": "factual_error",
-          "description": "El body menciona 'Un caso de misterio real' — mismo riesgo que AD-04-C. El caso es ficción profesional, no un crimen real.",
-          "location": "body.text: 'Un caso de misterio real'",
-          "fix_suggestion": "Cambiar a 'Un caso de misterio' o 'Una historia de misterio profesional'. Aplicar corrección consistente en todos los scripts que usen esta frase."
+          "type": "weak_cta",
+          "description": "CTA is generic for a last-minute gift use case.",
+          "location": "cta_text",
+          "fix_suggestion": "Use 'Get an instant gift now' or 'Send a mystery gift tonight.'"
         }
       ]
     },
     {
-      "asset_type": "reels_script",
-      "asset_ref": "DC-W14-S2A-TRUECRIME-IDENTIDAD",
-      "persona_id": "fans_true_crime_solo",
-      "status": "flagged",
+      "asset_type": "meta_ad",
+      "asset_ref": "AD-03-C",
+      "persona_id": "gift_buyers_experience_seekers",
+      "status": "pass_with_warnings",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Specific gift persona present."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "pass",
+          "detail": "Specific gift trigger present."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Addresses FK-04 by making the gift feel more personal than clutter."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Provides proof via 4 envelopes, clues, and instant access."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "Uses the correct gift landing page."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "Testing variable not explicitly stated."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Suitable for Meta ads."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "Not applicable."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "warning",
+          "detail": "`Learn More` is weaker than a direct gift CTA."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Hits the real pain of forgotten gifts and same-day need."
+        }
+      ],
       "issues": [
         {
           "severity": "warning",
-          "type": "factual_error",
-          "description": "El body menciona 'Un caso de misterio real en Cambridge' — el caso es ficción ambientada en Cambridge, no un caso real. Riesgo de implicación engañosa.",
-          "location": "body.text: 'Un caso de misterio real en Cambridge'",
-          "fix_suggestion": "Cambiar a 'Un caso de misterio ambientado en Cambridge' o simplemente 'Un caso de misterio en Cambridge, 2026'."
+          "type": "no_test_variable",
+          "description": "No explicit test variable is defined.",
+          "location": "variant",
+          "fix_suggestion": "Specify the test variable, e.g. 'urgency-led opener vs anti-clutter framing.'"
+        },
+        {
+          "severity": "warning",
+          "type": "weak_cta",
+          "description": "CTA is generic and less specific than the gift channel strategy recommends.",
+          "location": "cta_text",
+          "fix_suggestion": "Use 'Get an instant gift now' or 'Send a mystery gift tonight.'"
         }
       ]
     },
     {
       "asset_type": "email",
-      "asset_ref": "E3-W14",
-      "persona_id": "anfitriones_noche_juegos",
-      "status": "flagged",
-      "issues": [
+      "asset_ref": "E1",
+      "persona_id": "couples_date_night",
+      "status": "fail",
+      "checklist": [
         {
-          "severity": "warning",
-          "type": "no_proof",
-          "description": "El email de urgencia menciona 'El nuevo caso de la semana que viene ya está en camino' como mecanismo de urgencia. Si no hay un caso confirmado para W15, esta afirmación es una promesa no verificada que puede dañar la credibilidad.",
-          "location": "body_markdown: 'El nuevo caso de la semana que viene ya está en camino'",
-          "fix_suggestion": "Cambiar a 'Cada semana hay un nuevo caso' o 'El catálogo sigue creciendo' si W15 no está confirmado. Solo usar la promesa de nuevo caso si está verificada en el pipeline de producción."
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Specific persona_id `couples_date_night` present."
         },
         {
-          "severity": "note",
-          "type": "tone_drift",
-          "description": "El email mezcla tres segmentos (grupos, parejas, detectives solitarios) en un solo cuerpo con secciones separadas. Aunque la persona_id es anfitriones_noche_juegos, el contenido es genérico multi-segmento, lo que diluye la personalización.",
-          "location": "body_markdown: secciones 'Para grupos', 'Para parejas', 'Para detectives solitarios'",
-          "fix_suggestion": "Si el sistema de email permite segmentación, enviar versiones separadas por segmento. Si no, priorizar el segmento declarado (anfitriones) y mover los otros a emails separados o menciones secundarias."
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "fail",
+          "detail": "Email-level trigger_id is missing; only sequence-level behavioral_trigger exists."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Fear is explicitly neutralized: 'What if this is boring or cringe once we start?'"
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Provides 4 envelopes, 21 documents, 2-4 hour duration, and 1-6 player fit."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "Uses couples-specific landing page."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "No explicit testing variable included."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Email structure fits mobile-friendly narrative/conversion format."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "Not applicable to email."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA is specific: 'Start Your Date-Night Case.'"
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Directly attacks the Netflix/default-streaming pain point."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "missing_trigger",
+          "description": "The email asset lacks a specific trigger_id field, which is required by the checklist; sequence-level behavioral wording does not satisfy asset-level trigger specificity.",
+          "location": "email metadata",
+          "fix_suggestion": "Add a concrete email-level trigger_id aligned to channel strategy, such as `couples_post_true_crime` or a clearly mapped email trigger."
+        },
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "No explicit testing variable is defined for this email.",
+          "location": "email metadata",
+          "fix_suggestion": "Add a test variable such as subject line style, opener framing, or CTA wording."
+        }
+      ]
+    },
+    {
+      "asset_type": "email",
+      "asset_ref": "E2",
+      "persona_id": "game_night_hosts",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Specific host persona present."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "fail",
+          "detail": "Email asset is missing a specific trigger_id."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutralizes setup complexity fear."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Delivers strong proof via 4 envelopes, 21 documents, named suspects, and clear group-play explanation."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "Uses host-specific landing page."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "No explicit testing variable provided."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Fits email channel conventions."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "Not applicable."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA clearly points to seeing how group play works."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Directly addresses explanation/setup friction for groups."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "missing_trigger",
+          "description": "The email does not include a specific trigger_id at the asset level.",
+          "location": "email metadata",
+          "fix_suggestion": "Add a trigger_id such as `hosts_same_day_need` or another mapped host trigger."
+        },
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "No explicit testing variable is stated.",
+          "location": "email metadata",
+          "fix_suggestion": "Add a test variable like subject line angle or proof-block emphasis."
+        }
+      ]
+    },
+    {
+      "asset_type": "email",
+      "asset_ref": "E3",
+      "persona_id": "solo_true_crime_night",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Specific solo persona present."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "fail",
+          "detail": "Email-level trigger_id is missing."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutralizes the shipping-wait fear explicitly."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Provides instant access, duration, player count, and case intrigue details."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "Uses solo-specific landing page."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "No explicit testing variable listed."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Matches narrative email best practices."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "Not applicable."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA clearly directs solo play tonight."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Attacks passive true-crime consumption directly."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "missing_trigger",
+          "description": "This email lacks a specific trigger_id field, failing the strategic checklist.",
+          "location": "email metadata",
+          "fix_suggestion": "Add a mapped trigger_id such as `solo_winddown_post_show` or `solo_quiet_evening`."
+        },
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "No explicit testing variable is present.",
+          "location": "email metadata",
+          "fix_suggestion": "Add a testing variable such as urgency framing vs intrigue framing in subject line or opener."
+        }
+      ]
+    },
+    {
+      "asset_type": "email",
+      "asset_ref": "E1",
+      "persona_id": "subscription_fatigued_mystery_buyers",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Specific persona present."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "fail",
+          "detail": "No email-level trigger_id is included."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Addresses setup and subscription friction clearly."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Provides digital download, instant access, duration, envelopes, document count, and player count."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "Uses the subscription-alternative landing page."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "No explicit testing variable is defined."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Email is segmented and single-CTA oriented, matching strategy."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "Not applicable."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "warning",
+          "detail": "`View Full Cases` is clear but less tailored to the no-subscription comparison angle."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Directly attacks subscription fatigue and shipping delays."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "missing_trigger",
+          "description": "The email lacks a specific asset-level trigger_id.",
+          "location": "email metadata",
+          "fix_suggestion": "Add a trigger_id such as `subfat_compare_physical_vs_digital` or `subfat_mystery_itch`."
+        },
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "No explicit testing variable provided.",
+          "location": "email metadata",
+          "fix_suggestion": "Add a test variable such as comparison-led opener vs convenience-led opener."
+        },
+        {
+          "severity": "warning",
+          "type": "weak_cta",
+          "description": "CTA could better match the subscription-alternative intent.",
+          "location": "cta_text",
+          "fix_suggestion": "Use 'Skip the subscription' or 'Get one complete case tonight.'"
+        }
+      ]
+    },
+    {
+      "asset_type": "email",
+      "asset_ref": "E2",
+      "persona_id": "couples_date_night",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Specific couples persona present."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "fail",
+          "detail": "Email-level trigger_id is missing."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Neutralizes fear that the experience will feel childish or unrealistic."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Provides strong proof with envelope count, document range, duration, digital format, instant access, and price."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "Uses couples-specific landing page."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "No explicit testing variable included."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Works well for segmented email format."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "Not applicable."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA is specific and destination-linked."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Targets the desire to start tonight without shipping or rules friction."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "missing_trigger",
+          "description": "Email lacks a required specific trigger_id.",
+          "location": "email metadata",
+          "fix_suggestion": "Add a trigger_id like `couples_friday_no_plan` or another mapped couples trigger."
+        },
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "No explicit test variable is stated.",
+          "location": "email metadata",
+          "fix_suggestion": "Add a testing variable such as quality-proof framing vs date-night framing."
+        }
+      ]
+    },
+    {
+      "asset_type": "email",
+      "asset_ref": "E3",
+      "persona_id": "gift_buyers_experience_seekers",
+      "status": "fail",
+      "checklist": [
+        {
+          "check_number": 1,
+          "check_name": "Has persona_id?",
+          "result": "pass",
+          "detail": "Specific gift persona present."
+        },
+        {
+          "check_number": 2,
+          "check_name": "Has trigger_id?",
+          "result": "fail",
+          "detail": "No specific trigger_id at the email level."
+        },
+        {
+          "check_number": 3,
+          "check_name": "Neutralizes a fear?",
+          "result": "pass",
+          "detail": "Addresses the fear that the recipient may not like it."
+        },
+        {
+          "check_number": 4,
+          "check_name": "Delivers proof?",
+          "result": "pass",
+          "detail": "Provides instant access, flexible fit, duration, and price as proof."
+        },
+        {
+          "check_number": 5,
+          "check_name": "Landing URL persona-specific?",
+          "result": "pass",
+          "detail": "Uses gift-specific landing page."
+        },
+        {
+          "check_number": 6,
+          "check_name": "Has testing variable?",
+          "result": "warning",
+          "detail": "No explicit testing variable is listed."
+        },
+        {
+          "check_number": 7,
+          "check_name": "Platform-native format?",
+          "result": "pass",
+          "detail": "Well-structured for a gift-focused conversion email."
+        },
+        {
+          "check_number": 8,
+          "check_name": "Hook <= 3 seconds? (video)",
+          "result": "n/a",
+          "detail": "Not applicable."
+        },
+        {
+          "check_number": 9,
+          "check_name": "CTA clear and specific?",
+          "result": "pass",
+          "detail": "CTA is specific and action-oriented."
+        },
+        {
+          "check_number": 10,
+          "check_name": "Attacks real pain point?",
+          "result": "pass",
+          "detail": "Directly addresses panic-buying generic gifts."
+        }
+      ],
+      "issues": [
+        {
+          "severity": "critical",
+          "type": "missing_trigger",
+          "description": "The email does not include a specific asset-level trigger_id.",
+          "location": "email metadata",
+          "fix_suggestion": "Add a trigger_id such as `gift_last_minute` or `gift_experience_inspo`."
+        },
+        {
+          "severity": "warning",
+          "type": "no_test_variable",
+          "description": "Explicit test variable missing.",
+          "location": "email metadata",
+          "fix_suggestion": "Add a testing variable such as urgency-led subject line vs thoughtfulness-led subject line."
         }
       ]
     }
@@ -109,10 +1747,10 @@
     "override_reason": "",
     "overridden_by": ""
   },
-  "summary": "El batch 2026-W14 pasa sin issues críticos y puede publicarse con correcciones menores. Los 8 warnings se concentran en tres patrones: uso inconsistente de 'caso real' (ficción presentada como real en 3 assets), proof_element de social_proof sin UGC verificable (2 assets), y un dato de precio de escape room presentado como exacto cuando es una estimación de rango.",
+  "summary": "The batch shows strong brand alignment, factual discipline, and generally solid persona-to-landing mapping, but it fails the strategic gate because multiple email assets are missing required asset-level trigger_id fields and one host ad does not attack a real documented pain point. Several ads also lack explicit testing variables and use generic CTAs, reducing strategic clarity even where the core copy is sound.",
   "recommendations": [
-    "Aplicar corrección global de 'caso real' → 'caso de misterio' en todos los scripts y ads antes de publicar — afecta al menos 3 assets y es un riesgo de compliance con product_brief.",
-    "Reemplazar proof_elements de UGC en S3-B y AD-04-C hasta disponer de testimonios verificables; usar unboxing de documentos como alternativa de prueba social que no requiere usuarios reales.",
-    "Revisar el headline de AD-03-B para usar rango de precio ($90-180) en lugar del valor puntual $180, y confirmar si el caso W15 está en producción antes de enviar E3-W14 con la promesa de nuevo caso semanal."
+    "Add a specific asset-level `trigger_id` to every email and align each one to the channel strategy matrix before rerunning QA.",
+    "Regenerate `AD-02-C` so it attacks a documented host pain point such as stale game-night rotation, setup friction, or concern about weak payoff.",
+    "Standardize explicit testing variables and stronger persona-specific CTAs across all ad variants to improve strategic rigor and channel fit."
   ]
 }

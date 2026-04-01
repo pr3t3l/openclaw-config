@@ -1,8 +1,8 @@
 {
   "product_id": "misterio-semanal",
   "run_id": "2026-W14",
-  "started_at": "2026-03-31T23:53:12.393372",
-  "strategy_version_used": "v3",
+  "started_at": "2026-03-31T22:03:00",
+  "strategy_version_used": "v2",
   "status": "awaiting_gate_M2",
   "gates": {
     "M1_content": {
@@ -21,5 +21,5 @@
     "quality_report.json": "drafts/quality_report.json"
   },
   "cost_usd": 0.0,
-  "completed_at": "2026-04-01T00:02:01.035001"
+  "completed_at": "2026-03-31T22:35:11.599542"
 }

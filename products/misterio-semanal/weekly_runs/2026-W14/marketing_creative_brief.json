@@ -1,0 +1,76 @@
+{
+  "image_prompts": [
+    {
+      "prompt": "A film noir, photorealistic evidence desk scene in warm moody tones, combining deep charcoal brown #2c2520 shadows with parchment highlights #f5e6d0. A metal table in a Major Crimes briefing room is covered with manila folders, coffee rings, clipped witness notes, a ruler-straight timeline strip with visible timestamps but unreadable from angle, red string linking photos pinned to a corkboard in the background, a yellow highlighter, a desk lamp casting dramatic side light, faint fluorescent spill overhead, cinematic shallow depth of field, atmospheric detective mystery mood, no character faces, no text, no words, no letters, no writing",
+      "persona_target": "True Crime Bingers",
+      "platform": "instagram_feed",
+      "caption": "Every clue fits. Until one doesn\u2019t.",
+      "hook": "The thrill of building a conspiracy from tiny procedural details."
+    },
+    {
+      "prompt": "A sterile biotech lab corridor in Kendall Square, film noir photorealism with warm cinematic grading, dark cocoa shadows #2c2520 and soft parchment glow #f5e6d0 reflecting on polished floors. Badge-locked doors, glass panels, a discreet security camera dome, cold stainless trim, a sealed cGMP hallway stretching into silence, one pocket of shadow near a side door suggesting a blind spot, moody volumetric light, suspenseful corporate secrecy, no people, no text, no words, no letters, no writing",
+      "persona_target": "Sci-Fi Conspiracy Seekers",
+      "platform": "facebook_feed",
+      "caption": "A miracle drug vanished behind these doors.",
+      "hook": "Forbidden access and the sense that the building itself is hiding the truth."
+    },
+    {
+      "prompt": "A moody close-up scene of sealed evidence envelopes and a tamper-proof specimen case on a dark wooden desk, film noir photorealistic style, warm amber lamp light over parchment beige #f5e6d0 papers against dense brown-black #2c2520 shadows. Latex gloves set aside, a steel keycard, red scene tape curling across the frame, blurred detective board behind, tactile textures, suspenseful and elegant, no people visible, no text, no words, no letters, no writing",
+      "persona_target": "Puzzle Solvers",
+      "platform": "instagram_feed",
+      "caption": "Open the wrong envelope and the whole story changes.",
+      "hook": "Curiosity around hidden proof and the fear of what one sealed item could reveal."
+    },
+    {
+      "prompt": "A stark stairwell landing inside a biotech building, film noir photorealism with warm toned grading despite harsh fluorescent light. Painted concrete block walls, steel handrail, heavy fire door, thin red scene tape stretched across the landing, small evidence markers visible but unreadable, a ceiling camera pointed almost everywhere except one shadowed corner, polished cold surfaces, tension between sterility and violence, #2c2520 shadow pockets and #f5e6d0 highlights, no people, no text, no words, no letters, no writing",
+      "persona_target": "True Crime Bingers",
+      "platform": "facebook_feed",
+      "caption": "It looks like an accident. The floor disagrees.",
+      "hook": "The eerie certainty that a staged death leaves a geometric flaw behind."
+    },
+    {
+      "prompt": "A detective board scene with photos, lab floor plan fragments, security camera diagrams, string connections, binder clips, push pins, and coffee-stained papers arranged in obsessive order, film noir photorealistic style, warm desk-lamp glow #f5e6d0 against deep #2c2520 room shadows. The board suggests biotech intrigue, blind spots, and corporate cover-up without readable details, rich textures, moody investigative atmosphere, no humans, no text, no words, no letters, no writing",
+      "persona_target": "Strategy Gamers",
+      "platform": "instagram_feed",
+      "caption": "Someone engineered the cure. Someone engineered the silence.",
+      "hook": "Mastery, deduction, and the satisfaction of seeing a hidden system emerge."
+    },
+    {
+      "prompt": "Exterior of a sleek Kendall Square biotech building on a wet March morning, film noir photorealism with warm-toned cinematic reinterpretation, overcast sky reflected in glass, lobby security desk and turnstiles faintly visible inside, wet pavement, concrete planters, bike racks, discreet camera domes under the awning, the facade elegant but ominous, palette anchored by #2c2520 and #f5e6d0, corporate perfection with quiet menace, no people in focus, no text, no words, no letters, no writing",
+      "persona_target": "Prestige Thriller Fans",
+      "platform": "facebook_feed",
+      "caption": "From the sidewalk, it looks flawless.",
+      "hook": "The contrast between public perfection and private corruption."
+    }
+  ],
+  "video_prompts": [
+    {
+      "prompt": "9:16 vertical, 8-second cinematic slow pan across a detective evidence table in a dim briefing room. Manila folders, clipped photos, red string, a cooling cup of coffee, gloved hands entering frame to slide one photograph beside a sealed evidence bag, warm noir lighting with deep #2c2520 shadows and parchment #f5e6d0 highlights, subtle film grain, photorealistic, tense and premium, no faces, no text, no titles, no words on screen",
+      "persona_target": "True Crime Bingers",
+      "platform": "instagram_reels",
+      "caption": "A clean case file is usually the dirtiest kind.",
+      "hook": "The suspense of piecing together a death that was meant to look ordinary."
+    },
+    {
+      "prompt": "9:16 vertical, 8-second cinematic shot in a sterile biotech corridor at night. Camera glides slowly forward past badge-locked doors and reflective floors toward a shadowed junction near a stairwell, a security camera dome catches light, one area remains strangely unobserved, warm noir color grade over clinical architecture, photorealistic, subtle ambient hum, no people, no text, no titles, no words on screen",
+      "persona_target": "Sci-Fi Conspiracy Seekers",
+      "platform": "tiktok",
+      "caption": "In a building this controlled, blind spots are chosen.",
+      "hook": "The unsettling idea that surveillance can be designed to miss exactly one thing."
+    },
+    {
+      "prompt": "9:16 vertical, 8-second cinematic close shot of gloved hands opening a sealed envelope on a dark desk under a single lamp. Wax seal breaks, photos and clinical documents slide partway into view without readable details, red scene tape and a keycard rest nearby, warm moody film noir palette with #2c2520 and #f5e6d0, photorealistic macro textures, high tension, no text, no titles, no words on screen",
+      "persona_target": "Puzzle Solvers",
+      "platform": "instagram_reels",
+      "caption": "The truth was sealed for a reason.",
+      "hook": "The intimate dread and excitement of uncovering forbidden evidence."
+    },
+    {
+      "prompt": "9:16 vertical, 8-second cinematic exterior shot of a glass biotech headquarters in wet March weather at dawn. Camera tilts up from rain-slick pavement and melting snow to the lobby windows where sterile lights glow, reflections ripple across the facade, the building feels rich, silent, and defensive, film noir photorealism with warm undertones, moody atmosphere, no visible faces, no text, no titles, no words on screen",
+      "persona_target": "Prestige Thriller Fans",
+      "platform": "tiktok",
+      "caption": "Miracles are expensive. Cover-ups cost more.",
+      "hook": "A prestige-drama sense of power, money, and danger hiding in plain sight."
+    }
+  ]
+}

@@ -1,0 +1,360 @@
+{
+  "schema_version": "3.0",
+  "product_id": "misterio-semanal",
+  "run_id": "2026-W14",
+  "generated_at": "2026-04-01T12:00:00Z",
+  "strategy_version_used": "v2",
+  "week_start": "2026-03-30",
+  "week_end": "2026-04-05",
+  "schedule": [
+    {
+      "day": "Monday",
+      "date": "2026-03-30",
+      "time": "08:30",
+      "timezone": "America/New_York",
+      "channel": "meta_ads",
+      "content_ref": "AD-02-A",
+      "content_type": "ad",
+      "persona_id": "fans_true_crime_solo",
+      "content_category": "educational",
+      "notes": "Lanzar pauta de conversion Monday-Friday para capturar demanda post-podcast y post-documental; usar creatividades de caso especifico con CTA a investigacion inmediata."
+    },
+    {
+      "day": "Monday",
+      "date": "2026-03-30",
+      "time": "09:15",
+      "timezone": "America/New_York",
+      "channel": "google",
+      "content_ref": "AD-05-C",
+      "content_type": "ad",
+      "persona_id": "fans_true_crime_solo",
+      "content_category": "promotional",
+      "notes": "Activar campana always-on con mayor puja Thursday-Sunday; keywords foco: juego interactivo true crime en espanol, juego de detective en espanol, caso de misterio digital."
+    },
+    {
+      "day": "Monday",
+      "date": "2026-03-30",
+      "time": "11:30",
+      "timezone": "America/New_York",
+      "channel": "google",
+      "content_ref": "AD-03-B",
+      "content_type": "ad",
+      "persona_id": "anfitriones_noche_juegos",
+      "content_category": "promotional",
+      "notes": "Grupo de anuncios para planificacion de noche de juegos; mantener activo hasta Friday minimo con extensiones de precio y comparacion contra escape room fisico."
+    },
+    {
+      "day": "Monday",
+      "date": "2026-03-30",
+      "time": "19:30",
+      "timezone": "America/New_York",
+      "channel": "instagram",
+      "content_ref": "DC-W14-S2B-TRUECRIME-UNBOXING",
+      "content_type": "reel",
+      "persona_id": "fans_true_crime_solo",
+      "content_category": "educational",
+      "notes": "Publicacion organica de unboxing digital para reducir friccion sobre que incluye el caso; usar capturas reales de documentos y cierre con acceso inmediato."
+    },
+    {
+      "day": "Tuesday",
+      "date": "2026-03-31",
+      "time": "08:00",
+      "timezone": "America/New_York",
+      "channel": "email",
+      "content_ref": "E1-W14",
+      "content_type": "email",
+      "persona_id": "fans_true_crime_solo",
+      "content_category": "entertaining",
+      "notes": "Respetar send_delay_hours 0 de la secuencia semanal; enviar teaser narrativo en franja alta de apertura matutina."
+    },
+    {
+      "day": "Tuesday",
+      "date": "2026-03-31",
+      "time": "12:30",
+      "timezone": "America/New_York",
+      "channel": "pinterest",
+      "content_ref": "DC-W14-04A",
+      "content_type": "pin",
+      "persona_id": "compradores_regalo",
+      "content_category": "promotional",
+      "notes": "Pin vertical enfocado en regalo digital inmediato para fans del true crime; usar mockup de entrega por WhatsApp y precio visible."
+    },
+    {
+      "day": "Tuesday",
+      "date": "2026-03-31",
+      "time": "20:30",
+      "timezone": "America/New_York",
+      "channel": "tiktok",
+      "content_ref": "DC-W14-S4B-TRUECRIME-PREGUNTA-RETORICA",
+      "content_type": "reel",
+      "persona_id": "fans_true_crime_solo",
+      "content_category": "entertaining",
+      "notes": "Ventana peak nocturna para audiencia true crime; priorizar hook de desafio y visual de expediente desclasificado."
+    },
+    {
+      "day": "Wednesday",
+      "date": "2026-04-01",
+      "time": "13:00",
+      "timezone": "America/New_York",
+      "channel": "instagram",
+      "content_ref": "DC-W14-04B",
+      "content_type": "post",
+      "persona_id": "compradores_regalo",
+      "content_category": "educational",
+      "notes": "Carrusel feed mostrando como funciona el regalo digital y que recibe el destinatario; orientado a compradores de ultimo momento."
+    },
+    {
+      "day": "Wednesday",
+      "date": "2026-04-01",
+      "time": "21:00",
+      "timezone": "America/New_York",
+      "channel": "instagram",
+      "content_ref": "DC-W14-S5A-PAREJA-POST-SERIE",
+      "content_type": "reel",
+      "persona_id": "parejas_noche_cita",
+      "content_category": "entertaining",
+      "notes": "Publicar en ventana post-streaming para activar trigger T-1hora; enfoque dejar de ver y empezar a resolver juntos."
+    },
+    {
+      "day": "Wednesday",
+      "date": "2026-04-01",
+      "time": "21:30",
+      "timezone": "America/New_York",
+      "channel": "meta_ads",
+      "content_ref": "AD-01-C",
+      "content_type": "ad",
+      "persona_id": "parejas_noche_cita",
+      "content_category": "promotional",
+      "notes": "Abrir conjunto de anuncios para parejas con mayor intensidad Wednesday-Friday noche; CTA compra ahora y juegan hoy."
+    },
+    {
+      "day": "Thursday",
+      "date": "2026-04-02",
+      "time": "08:00",
+      "timezone": "America/New_York",
+      "channel": "email",
+      "content_ref": "EW2-W14",
+      "content_type": "email",
+      "persona_id": "parejas_noche_cita",
+      "content_category": "educational",
+      "notes": "Secuencia welcome con send_delay_hours 24 desde alta; mostrar detalle de archivos y valor para noche de cita."
+    },
+    {
+      "day": "Thursday",
+      "date": "2026-04-02",
+      "time": "13:15",
+      "timezone": "America/New_York",
+      "channel": "email",
+      "content_ref": "E2-W14",
+      "content_type": "email",
+      "persona_id": "parejas_noche_cita",
+      "content_category": "educational",
+      "notes": "Secuencia semanal reveal respetando send_delay_hours 48; enfatizar 4 sobres, 21 documentos y acceso inmediato."
+    },
+    {
+      "day": "Thursday",
+      "date": "2026-04-02",
+      "time": "20:45",
+      "timezone": "America/New_York",
+      "channel": "tiktok",
+      "content_ref": "DC-W14-S1A-PAREJA-MIEDO-RUTINA",
+      "content_type": "reel",
+      "persona_id": "parejas_noche_cita",
+      "content_category": "entertaining",
+      "notes": "Publicacion clave pre-fin de semana para parejas; usar hook de rutina Netflix y cierre con compra inmediata."
+    },
+    {
+      "day": "Friday",
+      "date": "2026-04-03",
+      "time": "12:00",
+      "timezone": "America/New_York",
+      "channel": "google",
+      "content_ref": "AD-01-B",
+      "content_type": "ad",
+      "persona_id": "parejas_noche_cita",
+      "content_category": "promotional",
+      "notes": "Aumentar puja Friday 12h-24h para keywords de noche de cita en casa y alternativa a Netflix para parejas."
+    },
+    {
+      "day": "Friday",
+      "date": "2026-04-03",
+      "time": "18:30",
+      "timezone": "America/New_York",
+      "channel": "pinterest",
+      "content_ref": "DC-W14-04C",
+      "content_type": "pin",
+      "persona_id": "dinner_party_planners",
+      "content_category": "social_proof",
+      "notes": "Pin de inspiracion para experiencia/regalo con enfoque en ocasion especial y uso inmediato durante el fin de semana."
+    },
+    {
+      "day": "Friday",
+      "date": "2026-04-03",
+      "time": "20:30",
+      "timezone": "America/New_York",
+      "channel": "instagram",
+      "content_ref": "DC-W14-S3B-GRUPO-REACCION",
+      "content_type": "reel",
+      "persona_id": "anfitriones_noche_juegos",
+      "content_category": "social_proof",
+      "notes": "Ventana peak para grupos definiendo plan del sabado; mostrar reaccion del grupo y facilidad de inicio con guia incluida."
+    },
+    {
+      "day": "Friday",
+      "date": "2026-04-03",
+      "time": "21:15",
+      "timezone": "America/New_York",
+      "channel": "tiktok",
+      "content_ref": "DC-W14-S6A-GRUPO-UNBOXING",
+      "content_type": "reel",
+      "persona_id": "anfitriones_noche_juegos",
+      "content_category": "educational",
+      "notes": "Publicacion de unboxing para anfitriones en modo planificacion de ultima hora; destacar contenido por sobre y precio por grupo."
+    },
+    {
+      "day": "Saturday",
+      "date": "2026-04-04",
+      "time": "10:30",
+      "timezone": "America/New_York",
+      "channel": "instagram",
+      "content_ref": "DC-W14-S1B-PAREJA-PROMESA-CONEXION",
+      "content_type": "story",
+      "persona_id": "parejas_noche_cita",
+      "content_category": "social_proof",
+      "notes": "Story de fin de semana con sticker de encuesta 'Netflix o expediente'; empujar compras para usar el mismo sabado."
+    },
+    {
+      "day": "Saturday",
+      "date": "2026-04-04",
+      "time": "11:00",
+      "timezone": "America/New_York",
+      "channel": "tiktok",
+      "content_ref": "DC-W14-S3A-GRUPO-PRECIO-PERSONA",
+      "content_type": "reel",
+      "persona_id": "anfitriones_noche_juegos",
+      "content_category": "promotional",
+      "notes": "Horario de planificacion de sabado; usar comparacion con escape room y menos de 4 USD por persona."
+    },
+    {
+      "day": "Saturday",
+      "date": "2026-04-04",
+      "time": "20:00",
+      "timezone": "America/New_York",
+      "channel": "instagram",
+      "content_ref": "DC-W14-S2A-TRUECRIME-IDENTIDAD",
+      "content_type": "reel",
+      "persona_id": "fans_true_crime_solo",
+      "content_category": "entertaining",
+      "notes": "Slot nocturno para audiencia sola en casa; empujar modo detective y uso inmediato del caso en la misma noche."
+    },
+    {
+      "day": "Sunday",
+      "date": "2026-04-05",
+      "time": "08:00",
+      "timezone": "America/New_York",
+      "channel": "email",
+      "content_ref": "EW3-W14",
+      "content_type": "email",
+      "persona_id": "fans_true_crime_solo",
+      "content_category": "promotional",
+      "notes": "Secuencia welcome con send_delay_hours 72; reforzar detalle del expediente y cierre de oportunidad semanal."
+    },
+    {
+      "day": "Sunday",
+      "date": "2026-04-05",
+      "time": "20:30",
+      "timezone": "America/New_York",
+      "channel": "instagram",
+      "content_ref": "DC-W14-S4A-TRUECRIME-CASO-ESPECIFICO",
+      "content_type": "reel",
+      "persona_id": "fans_true_crime_solo",
+      "content_category": "entertaining",
+      "notes": "Cierre de semana con gancho del caso especifico para capturar audiencia de domingo noche que busca algo inteligente para terminar el fin de semana."
+    }
+  ],
+  "testing_schedule": [
+    {
+      "test_id": "TEST-W14-01",
+      "test_name": "Parejas: miedo a la rutina vs promesa de conexion",
+      "channel": "tiktok",
+      "variant_a_ref": "DC-W14-S1A-PAREJA-MIEDO-RUTINA",
+      "variant_b_ref": "DC-W14-S1B-PAREJA-PROMESA-CONEXION",
+      "start_date": "2026-04-02",
+      "end_date": "2026-04-05",
+      "success_metric": "CTR",
+      "minimum_sample": "1500 impresiones por variante",
+      "decision_rule": "Elegir ganadora si logra >=20% lift en CTR y al menos 1 conversion asistida con 95% de confianza direccional"
+    },
+    {
+      "test_id": "TEST-W14-02",
+      "test_name": "True crime: identidad detective vs unboxing digital",
+      "channel": "instagram",
+      "variant_a_ref": "DC-W14-S2A-TRUECRIME-IDENTIDAD",
+      "variant_b_ref": "DC-W14-S2B-TRUECRIME-UNBOXING",
+      "start_date": "2026-03-30",
+      "end_date": "2026-04-05",
+      "success_metric": "conversion_rate",
+      "minimum_sample": "800 reproducciones completas o 200 clics combinados",
+      "decision_rule": "Declarar ganadora si mejora conversion_rate >=15% manteniendo costo por clic dentro de 10% del control"
+    },
+    {
+      "test_id": "TEST-W14-03",
+      "test_name": "Grupos: precio por persona vs reaccion del grupo",
+      "channel": "instagram",
+      "variant_a_ref": "DC-W14-S3A-GRUPO-PRECIO-PERSONA",
+      "variant_b_ref": "DC-W14-S3B-GRUPO-REACCION",
+      "start_date": "2026-04-03",
+      "end_date": "2026-04-05",
+      "success_metric": "CTR",
+      "minimum_sample": "1200 impresiones por variante",
+      "decision_rule": "Elegir ganadora si obtiene >=20% lift en CTR y mayor tasa de guardados sin elevar CPC mas de 15%"
+    },
+    {
+      "test_id": "TEST-W14-04",
+      "test_name": "Meta ads parejas: argumento emocional vs urgencia de uso hoy",
+      "channel": "meta_ads",
+      "variant_a_ref": "DC-W14-01A",
+      "variant_b_ref": "DC-W14-01C",
+      "start_date": "2026-03-30",
+      "end_date": "2026-04-03",
+      "success_metric": "conversion_rate",
+      "minimum_sample": "100 clics por variante",
+      "decision_rule": "Declarar ganadora si logra >=15% lift en conversion_rate o CPA <=12 USD con volumen minimo"
+    }
+  ],
+  "content_mix": {
+    "target_ratio": {
+      "educational": 30,
+      "promotional": 35,
+      "social_proof": 15,
+      "entertaining": 20
+    },
+    "actual_ratio": {
+      "educational": 32,
+      "promotional": 32,
+      "social_proof": 14,
+      "entertaining": 22
+    },
+    "balance_notes": "La mezcla queda equilibrada y evita sobrecarga promocional. Hay ligero exceso de contenido entertaining por el peso de Reels nocturnos y leve deficit de social_proof por falta de testimonios reales; compensar en W15 si ya existen UGC verificables."
+  },
+  "summary": {
+    "total_posts": 23,
+    "by_channel": {
+      "instagram": 9,
+      "tiktok": 6,
+      "meta_ads": 2,
+      "email": 5,
+      "pinterest": 3,
+      "google": 4
+    },
+    "by_persona": {
+      "fans_true_crime_solo": 9,
+      "parejas_noche_cita": 7,
+      "anfitriones_noche_juegos": 5,
+      "compradores_regalo": 2,
+      "dinner_party_planners": 1
+    },
+    "estimated_reach": "9000-13000 impresiones combinadas entre organico y paid, con pico Thursday night-Saturday night y mayor eficiencia esperada en audiencias de true crime y parejas"
+  },
+  "status": "draft"
+}
