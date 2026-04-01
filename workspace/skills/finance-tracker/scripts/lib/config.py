@@ -7,11 +7,6 @@ from pathlib import Path
 SKILL_DIR = Path(__file__).resolve().parent.parent.parent  # finance-tracker/
 CONFIG_DIR = SKILL_DIR / "config"
 SCRIPTS_DIR = SKILL_DIR / "scripts"
-CREDENTIALS_DIR = Path.home() / ".openclaw" / "credentials"
-
-GOOGLE_CLIENT_FILE = CREDENTIALS_DIR / "google-client.json"
-GOOGLE_TOKEN_FILE = CREDENTIALS_DIR / "finance-tracker-token.json"
-
 # AI model config
 LITELLM_URL = "http://127.0.0.1:4000/v1/chat/completions"
 LITELLM_KEY = "sk-litellm-local"

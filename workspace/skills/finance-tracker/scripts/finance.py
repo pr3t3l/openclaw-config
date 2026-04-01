@@ -532,7 +532,7 @@ def cmd_batch_receipts(file_path: str, account: str = "Chase"):
 
 def cmd_setup_sheets():
     """Create the Google Spreadsheet with all required tabs (5 data tabs)."""
-    client = sheets.get_client(allow_interactive=True)
+    client = sheets.get_client()
     spreadsheet_name = C.get_spreadsheet_name()
 
     try:

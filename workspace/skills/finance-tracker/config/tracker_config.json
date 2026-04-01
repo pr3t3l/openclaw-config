@@ -2,8 +2,8 @@
   "user": {
     "name": "Alfredo",
     "language": "es",
-    "currency": "USD",
     "spreadsheet_name": "Robotin Finance 2026",
+    "currency": "USD",
     "cards": [
       "Chase",
       "Discover",
@@ -12,47 +12,39 @@
       "Cash"
     ],
     "setup_complete": true,
-    "created_at": "2026-04-01T00:00:00"
+    "created_at": "2026-04-01T16:21:07.864640"
   },
   "categories": {
     "Groceries": {
-      "monthly": 250,
+      "monthly": 300,
       "threshold": 0.8
     },
     "Restaurants": {
-      "monthly": 100,
-      "threshold": 0.8
-    },
-    "Gas": {
-      "monthly": 120,
-      "threshold": 0.8
-    },
-    "Shopping": {
       "monthly": 150,
       "threshold": 0.8
     },
-    "Entertainment": {
-      "monthly": 50,
-      "threshold": 0.8
-    },
-    "Subscriptions_AI": {
-      "monthly": 500,
-      "threshold": 0.9
-    },
-    "Subscriptions_Other": {
-      "monthly": 80,
-      "threshold": 0.9
-    },
-    "Childcare": {
-      "monthly": 400,
-      "threshold": null
-    },
-    "Home": {
+    "Gas": {
       "monthly": 100,
       "threshold": 0.8
     },
+    "Shopping": {
+      "monthly": 200,
+      "threshold": 0.8
+    },
+    "Entertainment": {
+      "monthly": 75,
+      "threshold": 0.8
+    },
+    "Subscriptions": {
+      "monthly": 100,
+      "threshold": 0.9
+    },
+    "Home": {
+      "monthly": 150,
+      "threshold": 0.8
+    },
     "Personal": {
-      "monthly": 50,
+      "monthly": 75,
       "threshold": 0.8
     },
     "Travel": {
@@ -60,236 +52,272 @@
       "threshold": null
     },
     "Work_Tools": {
-      "monthly": 200,
+      "monthly": 100,
       "threshold": 0.8
     },
     "Health": {
-      "monthly": 50,
+      "monthly": 75,
       "threshold": 0.8
     },
     "Other": {
       "monthly": 50,
       "threshold": 0.8
-    },
-    "Pets": {
-      "monthly": 50,
-      "threshold": 0.8
-    },
-    "Debt_Interest": {
-      "monthly": 0,
-      "threshold": 0.8
-    },
-    "Bank_Fees": {
-      "monthly": 0,
-      "threshold": 0.8
-    },
-    "Refunds": {
-      "monthly": 0,
-      "threshold": 0.8
     }
   },
   "balance": {
-    "available": 1178.14,
-    "last_updated": "2026-03-28T09:33:52.439107",
+    "available": 0,
+    "last_updated": null,
     "pay_schedule": "biweekly",
     "pay_dates": [
-      5,
-      19
+      1,
+      15
     ],
-    "expected_paycheck": 2800.0
+    "expected_paycheck": 0
   },
   "tax": {
-    "enabled": true,
-    "business_type": "Airbnb rental property",
+    "business_type": "Short-term residential rental property operated as an Airbnb in Goose Creek, South Carolina.",
     "schedule_type": "Schedule E",
     "business_name": "Airbnb Goose Creek",
     "tax_categories": [
       {
-        "id": "airbnb_supplies",
-        "label": "Supplies (cleaning, towels, linens)"
+        "id": "cleaning_and_turnover",
+        "label": "Cleaning and Turnover Supplies"
       },
       {
-        "id": "airbnb_repair",
-        "label": "Repairs (tools, hardware, paint)"
+        "id": "repairs_and_maintenance",
+        "label": "Repairs and Maintenance"
       },
       {
-        "id": "airbnb_cleaning",
-        "label": "Cleaning services"
+        "id": "utilities_and_services",
+        "label": "Utilities and Property Services"
       },
       {
-        "id": "airbnb_utilities",
-        "label": "Utilities"
+        "id": "host_fees_and_platform",
+        "label": "Host Platform and Booking Fees"
       },
       {
-        "id": "airbnb_insurance",
-        "label": "Insurance"
+        "id": "guest_supplies_and_amenities",
+        "label": "Guest Supplies and Amenities"
       },
       {
-        "id": "airbnb_mortgage_interest",
-        "label": "Mortgage interest"
+        "id": "furnishings_and_household",
+        "label": "Furnishings and Household Items"
       },
       {
-        "id": "business_expense",
-        "label": "Business expenses (Work_Tools)"
+        "id": "insurance_and_legal",
+        "label": "Insurance, Licensing, and Professional Fees"
       }
     ],
     "ask_rules": [
       {
-        "trigger": "Cleaning products and supplies",
+        "trigger": "Charges for cleaning products, laundry items, or turnover services that may be used for the Airbnb between guest stays.",
         "keywords": [
           "clorox",
           "lysol",
           "bleach",
-          "mop",
-          "sponge",
+          "disinfectant",
+          "paper towels",
+          "toilet paper",
+          "trash bags",
+          "laundry detergent",
+          "detergente",
+          "fabric softener",
+          "dryer sheets",
+          "airbnb cleaning",
+          "cleaning service",
+          "housekeeping",
+          "janitorial",
+          "mop refill",
+          "vacuum bags",
           "sponges",
-          "wipes",
-          "cleaning",
-          "fabuloso",
-          "pine-sol",
-          "mr clean",
-          "ajax",
-          "brillo"
+          "guantes de limpieza",
+          "fabuloso"
         ],
-        "tax_category": "airbnb_supplies"
+        "tax_category": "cleaning_and_turnover"
       },
       {
-        "trigger": "Linens and textiles",
+        "trigger": "Payments for repairs, hardware, or maintenance supplies that could relate to the rental property.",
         "keywords": [
-          "towel",
-          "towels",
-          "sheets",
-          "pillowcase",
-          "blanket",
-          "blankets",
-          "linens",
-          "bath towel",
-          "hand towel",
-          "washcloth",
-          "duvet",
-          "comforter"
-        ],
-        "tax_category": "airbnb_supplies"
-      },
-      {
-        "trigger": "Home repair and maintenance",
-        "keywords": [
-          "lowe",
-          "lowes",
           "home depot",
+          "lowes",
           "ace hardware",
-          "tools",
           "hardware",
           "paint",
-          "light bulb",
+          "caulk",
+          "light bulbs",
+          "bombillas",
           "air filter",
+          "hvac filter",
+          "plumbing",
+          "fontaneria",
+          "drain cleaner",
+          "lockset",
+          "deadbolt",
+          "smoke detector",
+          "battery pack",
           "pest control",
-          "plumber",
-          "wrench",
-          "drill",
-          "screw"
+          "handyman",
+          "maintenance"
         ],
-        "tax_category": "airbnb_repair"
+        "tax_category": "repairs_and_maintenance"
       },
       {
-        "trigger": "Bathroom and kitchen supplies in bulk",
+        "trigger": "Bills or service charges for utilities, internet, lawn care, pest control, or other recurring property services.",
         "keywords": [
-          "toilet paper",
-          "paper towel",
-          "soap",
+          "dominion energy",
+          "berkeley electric",
+          "water bill",
+          "sewer",
+          "trash pickup",
+          "recycling",
+          "comcast",
+          "xfinity",
+          "at&t internet",
+          "internet",
+          "wifi",
+          "lawn care",
+          "landscaping",
+          "yard service",
+          "control de plagas",
+          "pest control",
+          "terminix",
+          "orkin",
+          "pool service",
+          "security monitoring"
+        ],
+        "tax_category": "utilities_and_services"
+      },
+      {
+        "trigger": "Platform charges, booking commissions, and software tools used to manage Airbnb reservations or guests.",
+        "keywords": [
+          "airbnb service fee",
+          "airbnb host fee",
+          "vrbo",
+          "booking.com",
+          "hostaway",
+          "lodgify",
+          "guesty",
+          "hospitable",
+          "smartbnb",
+          "turno",
+          "pricelabs",
+          "wheelhouse",
+          "channel manager",
+          "reservation software",
+          "dynamic pricing",
+          "calendar sync",
+          "stripe fee",
+          "payment processing",
+          "merchant fee",
+          "comision airbnb"
+        ],
+        "tax_category": "host_fees_and_platform"
+      },
+      {
+        "trigger": "Purchases of guest consumables and welcome items that may be stocked for short-term rental guests.",
+        "keywords": [
+          "coffee pods",
+          "k-cups",
+          "tea bags",
+          "bottled water",
+          "agua embotellada",
+          "snacks",
+          "granola bars",
           "shampoo",
           "conditioner",
-          "trash bag",
-          "trash bags",
+          "body wash",
+          "jabon",
+          "soap bars",
+          "hand soap",
           "dish soap",
-          "detergent"
+          "esponjas",
+          "welcome basket",
+          "guest supplies",
+          "travel size toiletries",
+          "toiletries",
+          "amenities"
         ],
-        "tax_category": "airbnb_supplies"
+        "tax_category": "guest_supplies_and_amenities"
+      },
+      {
+        "trigger": "Furniture, decor, linens, kitchenware, or household items that may be placed in the Airbnb.",
+        "keywords": [
+          "ikea",
+          "wayfair",
+          "target home",
+          "walmart home",
+          "amazon home",
+          "bed sheets",
+          "sabanas",
+          "pillows",
+          "comforter",
+          "towels",
+          "toallas",
+          "nightstand",
+          "lamp",
+          "curtain rod",
+          "shower curtain",
+          "cookware",
+          "utensils",
+          "silverware",
+          "coffee maker",
+          "air mattress"
+        ],
+        "tax_category": "furnishings_and_household"
+      },
+      {
+        "trigger": "Payments for insurance, permits, licenses, tax prep, accounting, or legal help related to the rental.",
+        "keywords": [
+          "landlord insurance",
+          "dwelling policy",
+          "insurance premium",
+          "liability insurance",
+          "umbrella policy",
+          "city permit",
+          "business license",
+          "license renewal",
+          "permit fee",
+          "occupancy tax filing",
+          "tax preparation",
+          "tax prep",
+          "bookkeeping",
+          "accountant",
+          "cpa",
+          "legal services",
+          "attorney",
+          "llc filing",
+          "registered agent",
+          "permiso"
+        ],
+        "tax_category": "insurance_and_legal"
       }
     ],
     "never_ask": [
-      "food",
-      "groceries",
-      "clothing",
-      "medicine",
-      "entertainment",
-      "alcohol",
-      "toys",
       "restaurant",
-      "gas",
-      "fuel"
+      "fast food",
+      "doordash",
+      "ubereats",
+      "starbucks",
+      "bar",
+      "alcohol",
+      "beer",
+      "wine",
+      "movie theater",
+      "netflix",
+      "concert",
+      "sporting event",
+      "clothing",
+      "ropa",
+      "shoes",
+      "farmacia",
+      "pharmacy",
+      "medicine",
+      "medical bill"
     ],
-    "generated_by": "migration_from_hardcoded",
-    "generated_at": "2026-04-01T00:00:00"
+    "enabled": true,
+    "generated_by": "ai_setup_wizard",
+    "generated_at": "2026-04-01T16:21:35.808998"
   },
-  "payments": [
-    {
-      "name": "Mortgage (DHI)",
-      "due_day": 5,
-      "amount": 1909,
-      "account": "Bank",
-      "autopay": true,
-      "apr": 5.5,
-      "promo_expiry": null
-    },
-    {
-      "name": "Chase Auto",
-      "due_day": 4,
-      "amount": 447,
-      "account": "Chase",
-      "autopay": true,
-      "apr": 6.44,
-      "promo_expiry": null
-    },
-    {
-      "name": "Wells Fargo CC",
-      "due_day": 6,
-      "amount": 200,
-      "account": "WellsFargo",
-      "autopay": true,
-      "apr": 1.0,
-      "promo_expiry": "2026-05-01"
-    },
-    {
-      "name": "Upstart Loan",
-      "due_day": 20,
-      "amount": 343,
-      "account": "Upstart",
-      "autopay": true,
-      "apr": 11.01,
-      "promo_expiry": null
-    },
-    {
-      "name": "Citibank CC",
-      "due_day": 20,
-      "amount": 288,
-      "account": "Citi",
-      "autopay": true,
-      "apr": 0.0,
-      "promo_expiry": "2027-08-01"
-    },
-    {
-      "name": "Discover CC",
-      "due_day": 28,
-      "amount": 566,
-      "account": "Discover",
-      "autopay": true,
-      "apr": 3.99,
-      "promo_expiry": "2027-02-01"
-    }
-  ],
-  "savings": [
-    {
-      "goal": "Colombia",
-      "target": 2000,
-      "saved": 0,
-      "deadline": "2026-07-01"
-    },
-    {
-      "goal": "Vietnam",
-      "target": 3000,
-      "saved": 0,
-      "deadline": "2026-09-01"
-    }
-  ]
+  "payments": [],
+  "savings": []
 }

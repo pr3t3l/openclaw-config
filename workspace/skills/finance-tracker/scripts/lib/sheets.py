@@ -1,10 +1,18 @@
-"""Google Sheets client for the finance tracker."""
+"""Google Sheets client for the finance tracker.
 
+Auth: uses GOG (Google OAuth Gateway) credentials from OpenClaw.
+No own OAuth flow — GOG must have sheets scope authorized.
+"""
+
+import json
+import subprocess
+import sys
 import time
+from pathlib import Path
+
 import gspread
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import InstalledAppFlow
 
 from . import config as C
 
@@ -17,33 +25,82 @@ _CLIENT = None
 _SPREADSHEET = None
 _SHEET_CACHE = {}
 
+_GOG_CONFIG_DIR = Path.home() / ".config" / "gogcli"
+_GOG_CREDENTIALS_FILE = _GOG_CONFIG_DIR / "credentials.json"
 
-def get_credentials(allow_interactive: bool = False) -> Credentials:
-    creds = None
-    if C.GOOGLE_TOKEN_FILE.exists():
-        creds = Credentials.from_authorized_user_file(str(C.GOOGLE_TOKEN_FILE), SCOPES)
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        elif allow_interactive:
-            flow = InstalledAppFlow.from_client_secrets_file(str(C.GOOGLE_CLIENT_FILE), SCOPES)
-            # Use local server on fixed port — WSL forwards to Windows browser
-            print("Opening OAuth flow on http://localhost:18900/")
-            print("If browser doesn't open, copy the URL from the terminal.")
-            creds = flow.run_local_server(port=18900, open_browser=False)
-            C.GOOGLE_TOKEN_FILE.write_text(creds.to_json())
-        else:
-            raise RuntimeError(
-                "Google Sheets not authenticated. Run: "
-                "finance.py setup-sheets --auth to complete OAuth."
-            )
+
+def get_credentials() -> Credentials:
+    """Get Google credentials from GOG. Fails if GOG is not configured."""
+    if not _GOG_CREDENTIALS_FILE.exists():
+        print("Google Sheets not authorized. GOG is not installed or configured.", file=sys.stderr)
+        print("Install GOG and run: gog auth login", file=sys.stderr)
+        sys.exit(1)
+
+    # Find the GOG account email from stored tokens
+    tmp = Path("/tmp/finance-gog-export.json")
+    result = subprocess.run(
+        ["gog", "auth", "tokens", "list", "--json", "--no-input"],
+        capture_output=True, text=True, timeout=10,
+    )
+    if result.returncode != 0 or not result.stdout.strip():
+        print("Google Sheets not authorized. No GOG tokens found.", file=sys.stderr)
+        print("Run: gog auth login", file=sys.stderr)
+        sys.exit(1)
+
+    token_data = json.loads(result.stdout)
+    keys = token_data.get("keys", [])
+    if not keys:
+        print("Google Sheets not authorized. No GOG tokens found.", file=sys.stderr)
+        print("Run: gog auth login", file=sys.stderr)
+        sys.exit(1)
+
+    # Extract email from key like "token:default:user@gmail.com"
+    email = keys[0].rsplit(":", 1)[-1]
+
+    # Export the token
+    result = subprocess.run(
+        ["gog", "auth", "tokens", "export", "--out", str(tmp), "--overwrite",
+         "--no-input", email],
+        capture_output=True, text=True, timeout=10,
+    )
+    if result.returncode != 0:
+        print(f"Failed to export GOG token: {result.stderr.strip()}", file=sys.stderr)
+        sys.exit(1)
+
+    export = json.loads(tmp.read_text())
+    tmp.unlink(missing_ok=True)
+
+    refresh_token = export.get("refresh_token")
+    if not refresh_token:
+        print("GOG token has no refresh_token.", file=sys.stderr)
+        sys.exit(1)
+
+    # Check scopes
+    gog_scopes = export.get("scopes", [])
+    has_sheets = any("spreadsheets" in s for s in gog_scopes)
+    if not has_sheets:
+        print("Google Sheets not authorized. GOG is missing sheets scope.", file=sys.stderr)
+        print("Run: gog auth add sheets", file=sys.stderr)
+        sys.exit(1)
+
+    # Build credentials from GOG's client_id + refresh_token
+    gog_creds = json.loads(_GOG_CREDENTIALS_FILE.read_text())
+    creds = Credentials(
+        token=None,
+        refresh_token=refresh_token,
+        client_id=gog_creds["client_id"],
+        client_secret=gog_creds["client_secret"],
+        token_uri="https://oauth2.googleapis.com/token",
+        scopes=SCOPES,
+    )
+    creds.refresh(Request())
     return creds
 
 
-def get_client(allow_interactive: bool = False) -> gspread.Client:
+def get_client() -> gspread.Client:
     global _CLIENT
     if _CLIENT is None:
-        _CLIENT = gspread.authorize(get_credentials(allow_interactive))
+        _CLIENT = gspread.authorize(get_credentials())
     return _CLIENT
 
 
