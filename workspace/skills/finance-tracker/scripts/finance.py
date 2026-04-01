@@ -261,6 +261,16 @@ def cmd_airbnb(month: str = None):
     print("\n".join(lines))
 
 
+def cmd_batch_receipts(file_path: str, account: str = "Chase"):
+    from lib.batch_receipts import process_receipt_batch
+    with open(file_path) as f:
+        links = [line.strip() for line in f if line.strip() and line.strip().startswith("http")]
+    result = process_receipt_batch(links, account)
+    print(result["summary"])
+    if result.get("pending_airbnb"):
+        print(result["airbnb_prompt"])
+
+
 def cmd_setup_sheets():
     """Create the Google Spreadsheet with all required tabs."""
     client = sheets.get_client(allow_interactive=True)
@@ -301,6 +311,10 @@ def cmd_setup_sheets():
         C.TAB_RECONCILIATION: [
             "date", "amount", "merchant_bank", "merchant_receipt",
             "status", "receipt_row", "csv_row", "resolved_by", "notes"
+        ],
+        C.TAB_CASHFLOW: [
+            "date", "account", "merchant", "amount_signed", "flow_type",
+            "category", "subcategory", "notes", "source", "timestamp", "month"
         ],
     }
 
@@ -383,6 +397,7 @@ def main():
         "log-split": lambda: cmd_log_split(args[0]),
         "taxes": lambda: cmd_taxes(args[0] if args else None),
         "airbnb": lambda: cmd_airbnb(args[0] if args else None),
+        "batch-receipts": lambda: cmd_batch_receipts(args[0], args[1] if len(args) > 1 else "Chase"),
         "setup-sheets": cmd_setup_sheets,
     }
 

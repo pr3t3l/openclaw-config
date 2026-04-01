@@ -59,6 +59,18 @@
     "Pets": {
       "monthly": 50,
       "threshold": 0.8
+    },
+    "Debt_Interest": {
+      "monthly": 0,
+      "threshold": 0.8
+    },
+    "Bank_Fees": {
+      "monthly": 0,
+      "threshold": 0.8
+    },
+    "Refunds": {
+      "monthly": 0,
+      "threshold": 0.8
     }
   },
   "available_balance": 1178.14,

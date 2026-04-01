@@ -12,7 +12,7 @@ SYSTEM_PROMPT = """You are Alfredo's personal expense tracking assistant. Extrac
 
 RULES:
 - Output ONLY valid JSON, nothing else
-- category MUST be one of: Groceries, Restaurants, Gas, Shopping, Entertainment, Subscriptions_AI, Subscriptions_Other, Childcare, Home, Personal, Travel, Work_Tools, Health, Pets, Other
+- category MUST be one of: Groceries, Restaurants, Gas, Shopping, Entertainment, Subscriptions_AI, Subscriptions_Other, Childcare, Home, Personal, Travel, Work_Tools, Health, Pets, Debt_Interest, Bank_Fees, Refunds, Other
 - amounts must be positive numbers
 - dates in ISO format YYYY-MM-DD
 - If image is unclear, set confidence < 0.5 and add a note

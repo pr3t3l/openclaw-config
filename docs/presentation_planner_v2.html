@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meta-Workflow Planner — OpenClaw Workflow</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+:root{--espresso:#2c2520;--parchment:#f5e6d0;--blood:#9b2c2c;--sand:#d4c4a8;--charcoal:#1a1714;--leather:#463b32;--ash:#8a7e6a;--vivid:#c0392b;--ivory:#e8dcc8;--solved:#2d6a4f;--clue:#b8860b;--mystery:#6c3483;--trust:#1a5276;--bg:#1a1714;--s1:#2c2520;--s2:#352e28;--bd:#4a3f35;--tx:#f5e6d0;--dm:#8a7e6a}
+*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--tx);font-family:'Source Sans 3',sans-serif;line-height:1.75;font-size:16px}::selection{background:rgba(155,44,44,.4);color:var(--parchment)}.wrap{max-width:860px;margin:0 auto;padding:60px 28px 80px}
+.hero{text-align:center;margin-bottom:72px;position:relative}.hero::after{content:'';display:block;width:100px;height:3px;background:var(--blood);margin:24px auto 0}.stamp{font-family:'Courier Prime',monospace;font-size:.68rem;color:var(--blood);text-transform:uppercase;letter-spacing:.22em;display:inline-block;border:2px solid var(--blood);padding:4px 14px;transform:rotate(-2deg);margin-bottom:20px}h1{font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--parchment);margin-bottom:8px;letter-spacing:-.01em}.hero .tagline{font-family:'Courier Prime',monospace;font-size:.74rem;color:var(--ash);letter-spacing:.08em;text-transform:uppercase}.hero .intro{font-size:.95rem;color:var(--sand);margin-top:20px;max-width:640px;margin-left:auto;margin-right:auto;line-height:1.85}
+.section{margin-bottom:64px}.section-head{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--parchment);margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px}.section-head .num{font-family:'Courier Prime',monospace;font-size:.72rem;color:var(--blood);letter-spacing:.06em;min-width:24px}.section-head .rule{flex:1;height:1px;background:var(--blood);opacity:.3}
+.prose{font-size:.92rem;color:var(--sand);line-height:1.85;margin-bottom:20px}.prose+.prose{margin-top:-4px}.prose strong{color:var(--parchment);font-weight:600}.prose em{color:var(--ivory);font-style:italic}
+.callout{font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;color:var(--ivory);border-left:3px solid var(--blood);padding:12px 20px;margin:28px 0;background:rgba(155,44,44,.04)}
+.tech-note{font-family:'Courier Prime',monospace;font-size:.72rem;color:var(--ash);background:var(--s1);border:1px solid var(--bd);border-radius:3px;padding:10px 14px;margin:16px 0;line-height:1.7}.tech-note .label{color:var(--blood);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-right:6px}
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:4px;padding:22px;margin-bottom:14px;position:relative;overflow:hidden;transition:border-color .3s}.card:hover{border-color:var(--sand)}.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blood)}.card.green::before{background:var(--solved)}.card.gold::before{background:var(--clue)}.card.purple::before{background:var(--mystery)}.card.blue::before{background:var(--trust)}.card.none::before{background:transparent}
+.card-title{font-family:'Playfair Display',serif;font-size:1rem;color:var(--parchment);margin-bottom:6px}.card-body{font-size:.84rem;color:var(--sand);line-height:1.7}
+.grid{display:grid;gap:14px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}
+table.dt{width:100%;border-collapse:collapse;font-size:.78rem;margin:4px 0}table.dt th{text-align:left;padding:10px 12px;border-bottom:2px solid var(--bd);font-family:'Courier Prime',monospace;font-size:.64rem;color:var(--ash);text-transform:uppercase;letter-spacing:.08em}table.dt td{padding:9px 12px;border-bottom:1px solid rgba(74,63,53,.4);color:var(--sand)}table.dt tr:hover{background:var(--s2)}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.pill{background:var(--bg);padding:5px 10px;border-radius:3px;font-family:'Courier Prime',monospace;font-size:.64rem;border:1px solid var(--bd)}.pill .l{color:var(--ash);margin-right:4px}.pill .v{color:var(--parchment);font-weight:700}.pill .v.ok{color:var(--solved)}.pill .v.warn{color:var(--clue)}.pill .v.err{color:var(--vivid)}
+.layer{padding:20px 24px;margin-bottom:4px;border-radius:4px;border-left:4px solid}.layer.a{border-color:var(--trust);background:rgba(26,82,118,.06)}.layer.b{border-color:var(--mystery);background:rgba(108,52,131,.06)}.layer.c{border-color:var(--solved);background:rgba(45,106,79,.06)}
+.layer-name{font-family:'Courier Prime',monospace;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}.layer.a .layer-name{color:var(--trust)}.layer.b .layer-name{color:var(--mystery)}.layer.c .layer-name{color:var(--solved)}
+.layer-body{font-size:.84rem;color:var(--sand);line-height:1.75}.layer-body strong{color:var(--parchment)}
+.flow-arrow{text-align:center;color:var(--blood);font-weight:700;font-size:.9rem;padding:6px 0}
+.conn{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(74,63,53,.3);font-size:.82rem}.conn:last-child{border-bottom:none}.conn-from,.conn-to{font-family:'Courier Prime',monospace;font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:3px;min-width:90px;text-align:center}.conn-from{background:rgba(26,82,118,.15);color:var(--trust);border:1px solid rgba(26,82,118,.3)}.conn-to{background:rgba(45,106,79,.15);color:var(--solved);border:1px solid rgba(45,106,79,.3)}.conn-arrow{color:var(--blood);font-weight:700}.conn-label{color:var(--sand);font-size:.78rem;flex:1}
+.footer{text-align:center;font-family:'Courier Prime',monospace;font-size:.64rem;color:var(--ash);padding-top:36px;border-top:1px solid var(--bd);margin-top:60px;letter-spacing:.04em;line-height:1.8}.footer .hl{color:var(--blood)}
+@media(max-width:768px){.g2,.g3{grid-template-columns:1fr}h1{font-size:1.8rem}.wrap{padding:40px 18px 60px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <div class="stamp">CASE FILE — META-WORKFLOW PLANNER</div>
+  <h1>Meta-Workflow Planner</h1>
+  <div class="tagline">THE WORKFLOW THAT BUILDS WORKFLOWS · V3.1</div>
+  <div class="intro">
+    The Declassified Cases Pipeline took 9 versions to get right. The Planner exists so that never happens again. It takes a raw, unstructured idea — "I need a system that does X" — validates it through multi-model debate, identifies gaps before any code is written, and produces a buildable implementation plan. When the architecture docs are already solid, skip it and go straight to code. When the idea is fuzzy, this is where it gets sharp.
+  </div>
+</div>
+
+<!-- ═══════════════════ 01 — HOW IT WAS DESIGNED ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">01</span>Designed by 4 AI Models<span class="rule"></span></div>
+
+  <p class="prose">
+    The Planner was designed through the same cross-model collaboration it now facilitates. <strong>Claude Opus</strong> produced the first version: 10 agents, 4 phases, always-debate architecture. <strong>GPT-5.4</strong> challenged it with a counter-proposal and 7 design principles — the most impactful being P-01: <em>"Close gaps first, then design."</em> Instead of jumping straight to architecture, find what's missing from the idea first.
+  </p>
+
+  <p class="prose">
+    Claude merged the best of both into v2. GPT reviewed v2 and added 4 more fixes (no symlinks, config-based routing, gate persistence, proper error handling). Then <strong>Gemini 3.1 Pro</strong> and <strong>MiniMax M2.7</strong> contributed input on edge cases and failure modes. The final v3 — a 966-line master plan — was locked and built in 4 phases over a single day.
+  </p>
+
+  <div class="callout">
+    "First close gaps, then design." — GPT-5.4's key insight that became Principle P-01
+  </div>
+</div>
+
+<!-- ═══════════════════ 02 — THREE PHASES ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">02</span>Three Phases: Clarify → Design → Build Plan<span class="rule"></span></div>
+
+  <p class="prose">
+    Every idea goes through three phases. Each produces validated JSON artifacts, and each ends with a human gate where you review the output and decide whether to proceed, adjust, or stop. The system never auto-approves — early versions did, and quality issues went unnoticed until they compounded.
+  </p>
+
+  <div class="layer a">
+    <div class="layer-name">Phase A — Clarify</div>
+    <div class="layer-body">
+      The <strong>Intake Analyst</strong> extracts structure from the raw idea. The <strong>Gap Finder</strong> adversarially identifies what's missing and assigns a readiness score (0-100) — a score of 38 means "this idea has 12 major gaps." The <strong>Scope Framer</strong> proposes three tiers: MVP, Standard, and Advanced. The system supports up to 5 rounds of clarifying questions before forcing the idea to "ready" status.
+    </div>
+    <div class="pills">
+      <div class="pill"><span class="l">Agents</span><span class="v">3 (intake, gaps, scope)</span></div>
+      <div class="pill"><span class="l">Gate</span><span class="v">#1 — human reviews gaps & scope</span></div>
+    </div>
+  </div>
+  <div class="flow-arrow">↓ Gate #1 — Human reviews: idea, gaps, scope, readiness</div>
+
+  <div class="layer b">
+    <div class="layer-name">Phase B — Design</div>
+    <div class="layer-body">
+      The <strong>Data Flow Mapper</strong> defines all artifacts: what data moves, who produces it, who consumes it. The <strong>Contract Designer</strong> creates JSON schemas for every artifact — ensuring all components agree on data formats before code exists. The <strong>Architecture Planner</strong> triggers a multi-model debate (see next section) to design the system architecture. For critical ideas, a Red Team attacks the result looking for flaws.
+    </div>
+    <div class="pills">
+      <div class="pill"><span class="l">Agents</span><span class="v">3 + debate + red team</span></div>
+      <div class="pill"><span class="l">Gate</span><span class="v">#2 — human reviews architecture</span></div>
+    </div>
+  </div>
+  <div class="flow-arrow">↓ Gate #2 — Human reviews architecture decision</div>
+
+  <div class="layer c">
+    <div class="layer-name">Phase C — Buildability</div>
+    <div class="layer-body">
+      The <strong>Implementation Planner</strong> creates a phased build plan with specific tests for each phase. The <strong>Cost Estimator</strong> is a pure Python script (not an AI call) that calculates expected costs deterministically — math doesn't need tokens. The <strong>Lessons Validator</strong> checks the plan against a library of past mistakes (things like "never use symlinks across workspaces" or "SKILL.md must include JSON skeletons").
+    </div>
+    <div class="pills">
+      <div class="pill"><span class="l">Agents</span><span class="v">2 AI + 1 script</span></div>
+      <div class="pill"><span class="l">Gate</span><span class="v">#3 — human approves final plan</span></div>
+    </div>
+  </div>
+
+  <div class="tech-note">
+    <span class="label">OUTPUT:</span> 9 validated JSON artifacts (00_intake_summary through 08_plan_review). Each conforms to a schema in the <code>schemas/</code> directory.
+  </div>
+</div>
+
+<!-- ═══════════════════ 03 — DEBATE ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">03</span>The 3-Round Multi-Model Debate<span class="rule"></span></div>
+
+  <p class="prose">
+    Not every idea needs a debate. <strong>Simple</strong> ideas get a single model producing one proposal. <strong>Complex</strong> ideas (multi-component systems) get two models debating. <strong>Critical</strong> ideas (infrastructure, high-cost, novel architectures) get three models plus a Red Team attack and a judge. The principle: <em>debate is conditional, not ritual</em> — simple ideas don't need three models arguing about them.
+  </p>
+
+  <div class="grid g3">
+    <div class="card blue">
+      <div class="card-title">Round 1: Propose</div>
+      <div class="card-body">Each model produces an independent architecture proposal. No cross-contamination — each thinks from its own perspective and training biases.</div>
+    </div>
+    <div class="card purple">
+      <div class="card-title">Round 2: Cross-Critique</div>
+      <div class="card-body">Each model sees the others' proposals, critiques them specifically ("your caching strategy ignores X"), and revises its own. Best ideas propagate across models.</div>
+    </div>
+    <div class="card green">
+      <div class="card-title">Round 3: Consolidate</div>
+      <div class="card-body">Synthesize the best elements into a unified proposal. For critical ideas: Red Team then attacks it looking for 10+ flaws. A judge model evaluates the final result.</div>
+    </div>
+  </div>
+
+  <div class="card none" style="padding:0;overflow:hidden; margin-top: 14px;">
+    <table class="dt">
+      <tr><th>Level</th><th>When</th><th>Models</th><th>Cost</th></tr>
+      <tr><td><strong>Simple</strong></td><td>Straightforward ideas</td><td>Claude Sonnet (1 model, no debate)</td><td>~$0.15</td></tr>
+      <tr><td><strong>Complex</strong></td><td>Multi-component systems</td><td>Claude Opus + GPT-5.4 (judge: Sonnet)</td><td>~$0.45</td></tr>
+      <tr><td><strong>Critical / Deep</strong></td><td>Infrastructure, novel, high-cost</td><td>Opus + GPT-5.4 + Gemini 3.1 Pro (judge + Red Team: Opus)</td><td>~$0.48</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════ 04 — 7 PRINCIPLES ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">04</span>GPT's 7 Principles<span class="rule"></span></div>
+
+  <p class="prose">
+    These emerged from GPT-5.4's review of Claude's first design and became the Planner's operating philosophy. They're not just design rules — they're lessons from what went wrong in the 9 versions of the Pipeline.
+  </p>
+
+  <div class="grid g2">
+    <div class="card none" style="border-left: 4px solid var(--mystery);">
+      <div class="card-body">
+        <strong>P-01: Gap Finder first.</strong> Understand what's missing before designing anything. The Pipeline's V6 failure (58 schema errors) happened because gaps weren't identified upfront.<br><br>
+        <strong>P-02: Data flow before architecture.</strong> Define what data moves before deciding who moves it.<br><br>
+        <strong>P-03: Contracts before code.</strong> Agree on JSON schemas before writing implementation. Components that disagree on data formats break at integration time.
+      </div>
+    </div>
+    <div class="card none" style="border-left: 4px solid var(--trust);">
+      <div class="card-body">
+        <strong>P-04: Debate is conditional, not ritual.</strong> Simple ideas don't need 3-model debate — it's a waste of money and time.<br><br>
+        <strong>P-05: Cost estimator is a script.</strong> Math is deterministic. Don't waste tokens on arithmetic.<br><br>
+        <strong>P-06: Human gates persist decisions.</strong> No auto-approvals. Decisions are recorded and immutable.<br><br>
+        <strong>P-07: Model routing in config, not code.</strong> One file to update when models change.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ 05 — COMPLETED RUNS ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">05</span>Completed Runs<span class="rule"></span></div>
+
+  <div class="card none" style="padding:0;overflow:hidden">
+    <table class="dt">
+      <tr><th>Run</th><th>Type</th><th>Debate Level</th><th>Cost</th><th>Result</th></tr>
+      <tr><td><strong>declassified-marketing</strong></td><td>E2E</td><td>Critical</td><td>$1.148</td><td style="color:var(--solved)">Became the real Marketing System</td></tr>
+      <tr><td>finance-test</td><td>E2E test</td><td>Simple</td><td>$0.577</td><td>12 gaps found, readiness score 38</td></tr>
+      <tr><td>marketing-workflow-1</td><td>Production</td><td>—</td><td>—</td><td style="color:var(--clue)">NEEDS_REVISION (13 items)</td></tr>
+      <tr><td>strategy-runtime-1</td><td>Production</td><td>—</td><td>—</td><td style="color:var(--solved)">Triggered Marketing System design</td></tr>
+    </table>
+  </div>
+
+  <p class="prose" style="margin-top: 20px;">
+    The <strong>declassified-marketing</strong> run is the proof of concept. A raw idea ("I need a marketing system for my product") went through all three phases with a Critical-level debate. The output was so implementation-ready that Claude Code built the entire Marketing System from it in 35 minutes. However, the verdict was also clear: <em>when architecture docs are already this detailed, skip the Planner and go straight to Code</em>.
+  </p>
+</div>
+
+<!-- ═══════════════════ 06 — HOW TO USE ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">06</span>How to Use It<span class="rule"></span></div>
+
+  <p class="prose">
+    The Planner has its own dedicated Telegram bot (<strong>@Super_Workflow_Creator_bot</strong>). Send it a message describing your idea — in natural language, no special format required — and it starts Phase A. The CEO bot (Robotin) can also route "Planifica:" prefixed messages to the Planner, though direct access is preferred because the CEO's fallback model sometimes ignores complex routing.
+  </p>
+
+  <p class="prose">
+    <strong>When to use it:</strong> Raw, unstructured ideas that need validation. "I want to build an automated invoicing system" — the Planner will find what's missing, design the architecture, and produce a buildable plan. <strong>When to skip it:</strong> When you already have detailed architecture docs. The Marketing System's planner run proved that if the docs are implementation-ready, going straight to Claude Code saves hours.
+  </p>
+</div>
+
+<!-- ═══════════════════ 07 — CONNECTIONS ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">07</span>Connections to Other Workflows<span class="rule"></span></div>
+
+  <div class="card none" style="padding: 20px 24px;">
+    <div class="conn">
+      <div class="conn-from">Planner</div>
+      <div class="conn-arrow">→</div>
+      <div class="conn-label"><strong>Implementation plans</strong> → Claude Code builds the actual system from the plan</div>
+      <div class="conn-to">Code</div>
+    </div>
+    <div class="conn">
+      <div class="conn-from">Pipeline</div>
+      <div class="conn-arrow">→</div>
+      <div class="conn-label"><strong>lessons_learned.json</strong> — past failures feed the Lessons Validator to prevent repeating mistakes</div>
+      <div class="conn-to">Planner</div>
+    </div>
+    <div class="conn">
+      <div class="conn-from">CEO</div>
+      <div class="conn-arrow">→</div>
+      <div class="conn-label"><strong>"Planifica:" routing</strong> — Robotin can forward planning requests to the Planner bot</div>
+      <div class="conn-to">Planner</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ 08 — STATE ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">08</span>Current State & What's Next<span class="rule"></span></div>
+
+  <div class="grid g2">
+    <div class="card green">
+      <div class="card-title" style="color:var(--solved)">Working ✅</div>
+      <div class="card-body">
+        14 skills deployed (8 core + 6 conditional). 22 scripts. 3-round debate live. Iterative intake live (5 rounds × 3 questions). Human gates with adjust live. Two analysis levels (regular vs deep). Report generator live. Own bot: @Super_Workflow_Creator_bot. Version tracked.
+      </div>
+    </div>
+    <div class="card" style="border-color: var(--vivid);">
+      <div class="card-title" style="color:var(--vivid)">Issues ⚠️</div>
+      <div class="card-body">
+        CEO AGENTS.md incorrectly says Phases B and C are "not implemented" — they are live. Pricing in models.json uses pre-Codex OAuth prices (actual is $0/token for GPT). spawn_core.py in shared/ is a pinned copy that must be manually synced.
+      </div>
+    </div>
+  </div>
+
+  <div class="card none" style="padding:0;overflow:hidden; margin-top: 14px;">
+    <table class="dt">
+      <tr><th>Priority</th><th>Item</th><th>Blocker</th></tr>
+      <tr><td style="color:var(--vivid)">🔴</td><td>Update CEO AGENTS.md — Phases B+C ARE live</td><td>None</td></tr>
+      <tr><td style="color:var(--vivid)">🔴</td><td>Update models.json pricing for Codex OAuth ($0 for GPT)</td><td>None</td></tr>
+      <tr><td style="color:var(--clue)">🟡</td><td>Run a full Deep Analysis on a new real idea (post-upgrade test)</td><td>None</td></tr>
+      <tr><td style="color:var(--clue)">🟡</td><td>Update MASTER_PLAN.md with current v3.1 state</td><td>None</td></tr>
+      <tr><td style="color:var(--solved)">🟢</td><td>Sync spawn_core.py if upstream changed</td><td>Check needed</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="footer">
+  OPENCLAW · META-WORKFLOW PLANNER v3.1 · SOURCE: workflow_bible_planner.md<br>
+  <span class="hl">14 skills · 22 scripts · 3-round debate · 4 completed runs · verified 2026-03-31</span>
+</div>
+
+</div>
+</body>
+</html>

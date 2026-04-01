@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenClaw Platform & Robotin — OpenClaw Workflow</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+:root{--espresso:#2c2520;--parchment:#f5e6d0;--blood:#9b2c2c;--sand:#d4c4a8;--charcoal:#1a1714;--leather:#463b32;--ash:#8a7e6a;--vivid:#c0392b;--ivory:#e8dcc8;--solved:#2d6a4f;--clue:#b8860b;--mystery:#6c3483;--trust:#1a5276;--bg:#1a1714;--s1:#2c2520;--s2:#352e28;--bd:#4a3f35;--tx:#f5e6d0;--dm:#8a7e6a}
+*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--tx);font-family:'Source Sans 3',sans-serif;line-height:1.75;font-size:16px}::selection{background:rgba(155,44,44,.4);color:var(--parchment)}.wrap{max-width:860px;margin:0 auto;padding:60px 28px 80px}
+.hero{text-align:center;margin-bottom:72px;position:relative}.hero::after{content:'';display:block;width:100px;height:3px;background:var(--blood);margin:24px auto 0}.stamp{font-family:'Courier Prime',monospace;font-size:.68rem;color:var(--blood);text-transform:uppercase;letter-spacing:.22em;display:inline-block;border:2px solid var(--blood);padding:4px 14px;transform:rotate(-2deg);margin-bottom:20px}h1{font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--parchment);margin-bottom:8px;letter-spacing:-.01em}.hero .tagline{font-family:'Courier Prime',monospace;font-size:.74rem;color:var(--ash);letter-spacing:.08em;text-transform:uppercase}.hero .intro{font-size:.95rem;color:var(--sand);margin-top:20px;max-width:640px;margin-left:auto;margin-right:auto;line-height:1.85}
+.section{margin-bottom:64px}.section-head{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--parchment);margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px}.section-head .num{font-family:'Courier Prime',monospace;font-size:.72rem;color:var(--blood);letter-spacing:.06em;min-width:24px}.section-head .rule{flex:1;height:1px;background:var(--blood);opacity:.3}
+.prose{font-size:.92rem;color:var(--sand);line-height:1.85;margin-bottom:20px}.prose+.prose{margin-top:-4px}.prose strong{color:var(--parchment);font-weight:600}.prose em{color:var(--ivory);font-style:italic}
+.callout{font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;color:var(--ivory);border-left:3px solid var(--blood);padding:12px 20px;margin:28px 0;background:rgba(155,44,44,.04)}
+.tech-note{font-family:'Courier Prime',monospace;font-size:.72rem;color:var(--ash);background:var(--s1);border:1px solid var(--bd);border-radius:3px;padding:10px 14px;margin:16px 0;line-height:1.7}.tech-note .label{color:var(--blood);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-right:6px}
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:4px;padding:22px;margin-bottom:14px;position:relative;overflow:hidden;transition:border-color .3s}.card:hover{border-color:var(--sand)}.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blood)}.card.green::before{background:var(--solved)}.card.gold::before{background:var(--clue)}.card.purple::before{background:var(--mystery)}.card.blue::before{background:var(--trust)}.card.none::before{background:transparent}
+.card-title{font-family:'Playfair Display',serif;font-size:1rem;color:var(--parchment);margin-bottom:6px}.card-body{font-size:.84rem;color:var(--sand);line-height:1.7}
+.grid{display:grid;gap:14px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}
+table.dt{width:100%;border-collapse:collapse;font-size:.78rem;margin:4px 0}table.dt th{text-align:left;padding:10px 12px;border-bottom:2px solid var(--bd);font-family:'Courier Prime',monospace;font-size:.64rem;color:var(--ash);text-transform:uppercase;letter-spacing:.08em}table.dt td{padding:9px 12px;border-bottom:1px solid rgba(74,63,53,.4);color:var(--sand)}table.dt tr:hover{background:var(--s2)}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.pill{background:var(--bg);padding:5px 10px;border-radius:3px;font-family:'Courier Prime',monospace;font-size:.64rem;border:1px solid var(--bd)}.pill .l{color:var(--ash);margin-right:4px}.pill .v{color:var(--parchment);font-weight:700}.pill .v.ok{color:var(--solved)}.pill .v.warn{color:var(--clue)}.pill .v.err{color:var(--vivid)}
+.svc{padding:18px;border-radius:4px;text-align:center;background:var(--s1);border:1px solid var(--bd)}.svc-port{font-family:'Courier Prime',monospace;font-size:1.3rem;font-weight:700;color:var(--blood);margin-bottom:4px}.svc-name{font-size:.85rem;font-weight:600;color:var(--parchment);margin-bottom:2px}.svc-st{font-family:'Courier Prime',monospace;font-size:.68rem;color:var(--solved)}
+.mem-layer{padding:14px 18px;margin-bottom:10px;border-radius:4px;border-left:4px solid var(--trust);background:rgba(26,82,118,.06)}.mem-n{font-family:'Courier Prime',monospace;font-size:.78rem;font-weight:700;color:var(--trust);margin-bottom:4px}.mem-d{font-size:.82rem;color:var(--sand);line-height:1.7}
+.conn{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(74,63,53,.3);font-size:.82rem}.conn:last-child{border-bottom:none}.conn-from,.conn-to{font-family:'Courier Prime',monospace;font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:3px;min-width:90px;text-align:center}.conn-from{background:rgba(26,82,118,.15);color:var(--trust);border:1px solid rgba(26,82,118,.3)}.conn-to{background:rgba(45,106,79,.15);color:var(--solved);border:1px solid rgba(45,106,79,.3)}.conn-arrow{color:var(--blood);font-weight:700}.conn-label{color:var(--sand);font-size:.78rem;flex:1}
+.footer{text-align:center;font-family:'Courier Prime',monospace;font-size:.64rem;color:var(--ash);padding-top:36px;border-top:1px solid var(--bd);margin-top:60px;letter-spacing:.04em;line-height:1.8}.footer .hl{color:var(--blood)}
+@media(max-width:768px){.g2,.g3{grid-template-columns:1fr}h1{font-size:1.8rem}.wrap{padding:40px 18px 60px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <div class="stamp">CASE FILE — PLATFORM</div>
+  <h1>OpenClaw Platform & Robotin</h1>
+  <div class="tagline">INFRASTRUCTURE · CEO AGENT · MEMORY · MODEL ROUTING</div>
+  <div class="intro">
+    The foundation that runs everything else. Three services (a database, an AI model proxy, and a gateway), 24 AI models, 3 Telegram bots, and a CEO agent named Robotin that orchestrates daily operations. This is the infrastructure layer — if it goes down, nothing works. If it runs well, you forget it exists.
+  </div>
+</div>
+
+<!-- ═══════════════════ 01 — THREE SERVICES ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">01</span>Three Services That Start Themselves<span class="rule"></span></div>
+
+  <p class="prose">
+    Everything runs on <strong>WSL Ubuntu</strong> on a Windows machine. When the machine boots, a startup shortcut triggers WSL, which runs a boot hook that calls a master startup script. That script starts three services in order — database first, then the AI model proxy, then the gateway that connects everything to Telegram. The script is idempotent: running it twice doesn't break anything, and it checks whether each service is already running before attempting to start it.
+  </p>
+
+  <div class="grid g3">
+    <div class="svc"><div class="svc-port">:5432</div><div class="svc-name">PostgreSQL 16</div><div class="svc-st">● Marketing DB (24 tables)</div></div>
+    <div class="svc"><div class="svc-port">:4000</div><div class="svc-name">LiteLLM</div><div class="svc-st">● 24/24 models active</div></div>
+    <div class="svc"><div class="svc-port">:18789</div><div class="svc-name">OpenClaw Gateway</div><div class="svc-st">● v2026.3.24</div></div>
+  </div>
+
+  <p class="prose" style="margin-top: 20px;">
+    <strong>LiteLLM</strong> is the model proxy — a single endpoint that routes API calls to 24 different AI models from OpenAI, Anthropic, Google, and OpenRouter. When a skill needs "a thinking-capable model," it calls LiteLLM at port 4000, and LiteLLM routes to the right provider with the right credentials. This means model changes happen in one config file, not across dozens of scripts.
+  </p>
+
+  <div class="tech-note">
+    <span class="label">BOOT CHAIN:</span> Windows boot → WSL.lnk (in shell:startup) → WSL starts → wsl.conf [boot] command → start_all_services.sh → PostgreSQL → LiteLLM → OpenClaw Gateway → 3 Telegram bots come online.
+  </div>
+</div>
+
+<!-- ═══════════════════ 02 — COST OPTIMIZATION ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">02</span>From $43/week to ~$0 for GPT<span class="rule"></span></div>
+
+  <p class="prose">
+    In early March 2026, the system was spending <strong>$43.36 per week</strong> on API calls — 96% of it on GPT-5.2 medium, which all three agents used as their primary model. That's $173/month just on language model tokens.
+  </p>
+
+  <p class="prose">
+    The fix: <strong>Codex OAuth</strong>. OpenAI's Pro subscription ($200/month) includes unlimited API access through a device-code OAuth flow. All three agents now use <code>openai-codex/gpt-5.4</code> as their primary model at $0/token. Pipeline skills use the same models through LiteLLM. The only remaining variable cost is Claude Sonnet for document rendering in the Pipeline (~$2 per case, paid directly to Anthropic).
+  </p>
+
+  <div class="callout">
+    The $200/month Pro subscription replaced $173/month in per-token costs — and upgraded all agents from GPT-5.2 to GPT-5.4 in the process.
+  </div>
+
+  <div class="tech-note">
+    <span class="label">IMPORTANT:</span> GPT-5.4-pro (thinking model) is NOT available on the Pro subscription via Codex. Only the standard GPT-5.4. Claude handles rendering. Gemini handles some image generation.
+  </div>
+</div>
+
+<!-- ═══════════════════ 03 — ROBOTIN ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">03</span>Robotin: The CEO Agent<span class="rule"></span></div>
+
+  <p class="prose">
+    <strong>Robotin</strong> is the personal AI assistant and system orchestrator. It handles daily tasks (questions, lookups, writing), system administration (service health, model availability, API spend monitoring), finance tracking (the Finance Tracker is a skill inside Robotin), and routes complex tasks to specialized agents. It lives in Telegram at <strong>@Robotin1620_Bot</strong>.
+  </p>
+
+  <p class="prose">
+    Every session starts the same way: Robotin reads its personality file (<code>SOUL.md</code>: "Be genuinely helpful, not performatively helpful"), the user profile, today's and yesterday's daily notes for recent context, and — in main sessions — its long-term memory file. This gives it continuity across conversations.
+  </p>
+
+  <div class="grid g2">
+    <div class="card blue">
+      <div class="card-title">What Robotin Does</div>
+      <div class="card-body">
+        Answers questions, manages system health, routes "Planifica:" messages to the Workflow Creator bot, sends budget alerts and payment reminders (via Finance Tracker skill), monitors API costs, and handles marketing operations.
+      </div>
+    </div>
+    <div class="card gold">
+      <div class="card-title">What It Doesn't Do</div>
+      <div class="card-body">
+        Robotin never modifies the Declassified workspace directly — workspace isolation is enforced. It never uses mini/nano models for content or QA tasks (quality floor). And it never auto-approves decisions without human confirmation.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ 04 — 3 BOTS ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">04</span>The 3 Telegram Bots<span class="rule"></span></div>
+
+  <p class="prose">
+    Each bot maps to an OpenClaw agent with its own workspace, personality, and model configuration. Agent-to-agent communication is enabled between CEO and Declassified only — the Planner is intentionally isolated to prevent cross-contamination of planning context.
+  </p>
+
+  <div class="card none" style="padding:0;overflow:hidden">
+    <table class="dt">
+      <tr><th>Agent</th><th>Bot</th><th>Primary Model</th><th>Fallbacks</th><th>Heartbeat</th></tr>
+      <tr><td><strong>CEO</strong></td><td>@Robotin1620_Bot</td><td>openai-codex/gpt-5.4</td><td>gpt52-medium → M2.7</td><td>30 min</td></tr>
+      <tr><td><strong>Declassified</strong></td><td>@APVDeclassified_bot</td><td>openai-codex/gpt-5.4</td><td>gpt52-medium → M2.7</td><td>120 min</td></tr>
+      <tr><td><strong>Planner</strong></td><td>@Super_Workflow_Creator_bot</td><td>openai-codex/gpt-5.4</td><td>gpt52-medium → M2.7</td><td>5 min</td></tr>
+    </table>
+  </div>
+
+  <p class="prose" style="margin-top: 20px;">
+    A <strong>4th bot</strong> is planned for marketing operations — the code exists (<code>telegram_ops.py</code>) but it can't run yet because it shares the CEO bot's token. It needs its own dedicated token via BotFather.
+  </p>
+</div>
+
+<!-- ═══════════════════ 05 — MEMORY ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">05</span>The 3-Layer Memory System<span class="rule"></span></div>
+
+  <p class="prose">
+    AI agents forget everything between conversations. The memory system gives Robotin continuity — it remembers what happened yesterday, what decisions were made last month, and can search across its entire history.
+  </p>
+
+  <div class="mem-layer">
+    <div class="mem-n">Layer 1: Daily Notes</div>
+    <div class="mem-d">Files named by date (<code>memory/YYYY-MM-DD.md</code>) — raw logs of what happened each day. Today's and yesterday's notes are loaded automatically at the start of every session. Written by the agent during conversations.</div>
+  </div>
+  <div class="mem-layer">
+    <div class="mem-n">Layer 2: Long-Term Memory</div>
+    <div class="mem-d">A curated file (<code>MEMORY.md</code>) containing decisions, preferences, key facts, and system state. Loaded only in main sessions — not in sub-agent or heartbeat sessions. Manually maintained.</div>
+  </div>
+  <div class="mem-layer">
+    <div class="mem-n">Layer 3: Semantic Search (QMD)</div>
+    <div class="mem-d">QMD 2.0.1 + Bun runtime — semantic search across all memory files. Updates every 5 minutes, returns up to 6 results within a 4-second timeout. Only available in direct chats, not sub-agent contexts.</div>
+  </div>
+
+  <p class="prose" style="margin-top: 16px;">
+    When the agent's context window gets full, a <strong>compaction</strong> process kicks in. But before any context is pruned, a <code>memoryFlush</code> at 6,000 tokens saves the current conversation state to daily notes. This prevents the agent from "forgetting" what it was doing mid-task.
+  </p>
+</div>
+
+<!-- ═══════════════════ 06 — TWO PERMISSION LAYERS ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">06</span>Model Routing: Two Permission Layers<span class="rule"></span></div>
+
+  <p class="prose">
+    Adding a new AI model to the system requires updating <strong>two places</strong> in the configuration — and forgetting either one means the agent can't use it. The first layer (<code>models.providers.litellm.models</code>) declares which models exist and what capabilities they have. The second layer (<code>agents.defaults.models</code>) authorizes specific models for agent use.
+  </p>
+
+  <p class="prose">
+    This two-layer design is intentional — it prevents agents from accidentally using expensive or inappropriate models. But it's also a common source of confusion: if you add a model to LiteLLM but forget to authorize it in <code>openclaw.json</code>, the agent will fail silently.
+  </p>
+
+  <div class="tech-note">
+    <span class="label">24 MODELS:</span> Spanning OpenAI (GPT-5.4, GPT-5.2), Anthropic (Claude Sonnet 4.6, Opus 4.6), Google (Gemini 3.1 Pro, Flash), and OpenRouter (MiniMax M2.7, Step 3.5, Kimi). All accessible through a single LiteLLM endpoint at localhost:4000.
+  </div>
+</div>
+
+<!-- ═══════════════════ 07 — REMOTE ACCESS ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">07</span>Remote Access<span class="rule"></span></div>
+
+  <p class="prose">
+    The system is accessible remotely via <strong>Tailscale</strong> — a mesh VPN that connects devices without port forwarding. SSH from phone via Termius to the WSL instance, then use <strong>tmux</strong> sessions for persistent work that survives disconnections. Claude Code can be dispatched remotely through these sessions, making it possible to manage the entire system from a phone while traveling.
+  </p>
+
+  <div class="tech-note">
+    <span class="label">ACCESS:</span> SSH to 100.80.39.23:22 as robotin → <code>tmux new -s tarea1</code> for persistent sessions. Dashboard at pretel-laptop.tail600a27.ts.net (Tailscale serve not yet configured — needs <code>tailscale serve --bg 18789</code>).
+  </div>
+</div>
+
+<!-- ═══════════════════ 08 — WHAT IT PROVIDES ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">08</span>What the Platform Provides to Each Workflow<span class="rule"></span></div>
+
+  <div class="card none" style="padding: 20px 24px;">
+    <div class="conn">
+      <div class="conn-from">Platform</div>
+      <div class="conn-arrow">→</div>
+      <div class="conn-label"><strong>Runtime</strong> — OpenClaw gateway, LiteLLM model proxy, Telegram bot bindings</div>
+      <div class="conn-to">Pipeline</div>
+    </div>
+    <div class="conn">
+      <div class="conn-from">Platform</div>
+      <div class="conn-arrow">→</div>
+      <div class="conn-label"><strong>Database + API keys</strong> — PostgreSQL, model routing, credential management</div>
+      <div class="conn-to">Marketing</div>
+    </div>
+    <div class="conn">
+      <div class="conn-from">Platform</div>
+      <div class="conn-arrow">→</div>
+      <div class="conn-label"><strong>Dedicated bot binding</strong> — separate Telegram account + model routing</div>
+      <div class="conn-to">Planner</div>
+    </div>
+    <div class="conn">
+      <div class="conn-from">Finance</div>
+      <div class="conn-arrow">→</div>
+      <div class="conn-label"><strong>Skill inside CEO workspace</strong> — runs through Robotin's Telegram bot, not separate infrastructure</div>
+      <div class="conn-to">Platform</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ 09 — DECISIONS ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">09</span>Key Decisions & Lessons<span class="rule"></span></div>
+
+  <div class="card none" style="padding:0;overflow:hidden">
+    <table class="dt">
+      <tr><th>#</th><th>Decision</th><th>Why</th></tr>
+      <tr><td>1</td><td><strong>Two permission layers for models</strong></td><td>Prevents accidental use of expensive models. Both must be updated together.</td></tr>
+      <tr><td>2</td><td><strong>Codex OAuth for $0/token GPT</strong></td><td>Eliminated $43/week in API costs</td></tr>
+      <tr><td>3</td><td><strong>Tailscale (not port forwarding)</strong></td><td>OpenClaw rejects bind:0.0.0.0. Tailscale is native integration</td></tr>
+      <tr><td>4</td><td><strong>No master_key on LiteLLM</strong></td><td>Breaks OpenClaw auth. Dashboard runs without auth (localhost-only)</td></tr>
+      <tr><td>5</td><td><strong>3-layer memory</strong></td><td>Each layer serves a different retention need: daily, curated, searchable</td></tr>
+      <tr><td>6</td><td><strong>compaction: safeguard + memoryFlush</strong></td><td>Agents save context before compaction — never lose mid-task state</td></tr>
+      <tr><td>7</td><td><strong>WSL.lnk + wsl.conf boot hook</strong></td><td>More reliable than .bat keepalive. Native WSL auto-start.</td></tr>
+      <tr><td>8</td><td><strong>CEO workspace isolation</strong></td><td>NEVER modify workspace-declassified/ from CEO context</td></tr>
+      <tr><td>9</td><td><strong>No mini/nano models for content or QA</strong></td><td>Quality floor. Budget models only for mechanical tasks.</td></tr>
+    </table>
+  </div>
+
+  <div class="tech-note" style="margin-top: 16px;">
+    <span class="label">LESSONS:</span>
+    OpenClaw doesn't resolve ${ENV_VARS} in apiKey — use literal values.
+    <code>echo >></code> for .env creates duplicates — edit with nano.
+    LiteLLM Prisma gives duplicate model warnings (not blocking, just noisy).
+    Gemini Flash hallucinated model names in a boot loop, burning credits (always verify model names).
+    When LiteLLM can't bind to its port, it silently falls back to a random high port.
+  </div>
+</div>
+
+<!-- ═══════════════════ 10 — STATE ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">10</span>Current State & What's Next<span class="rule"></span></div>
+
+  <div class="grid g2">
+    <div class="card green">
+      <div class="card-title" style="color:var(--solved)">Working ✅</div>
+      <div class="card-body">
+        OpenClaw v2026.3.24 (gateway HTTP 200). LiteLLM 24/24 models active. PostgreSQL accepting connections. Startup script idempotent. WSL auto-start via boot hook. Codex OAuth active for all 3 agents. QMD semantic search configured. Claude Code installed. Git repo on GitHub.
+      </div>
+    </div>
+    <div class="card" style="border-color: var(--vivid);">
+      <div class="card-title" style="color:var(--vivid)">Issues ⚠️</div>
+      <div class="card-body">
+        CEO AGENTS.md and MEMORY.md are stale — version, model count, primary model, and repo name are all wrong. Tailscale serve not configured. safe_backup.sh does not exist (no automated backup). Database parity checker broken (psycopg2). 11 dirty files in git. 2 stale workspaces need archiving. GOG_KEYRING_PASSWORD duplicated in .env.
+      </div>
+    </div>
+  </div>
+
+  <div class="card none" style="padding:0;overflow:hidden; margin-top: 14px;">
+    <table class="dt">
+      <tr><th>Priority</th><th>Item</th><th>Blocker</th></tr>
+      <tr><td style="color:var(--vivid)">🔴</td><td>Update CEO AGENTS.md + MEMORY.md (stale info)</td><td>None</td></tr>
+      <tr><td style="color:var(--vivid)">🔴</td><td>Clean git: commit or gitignore 11 dirty files</td><td>None</td></tr>
+      <tr><td style="color:var(--vivid)">🔴</td><td>Install psycopg2 for database parity checker</td><td>Single pip install</td></tr>
+      <tr><td style="color:var(--vivid)">🔴</td><td>Recreate safe_backup.sh + configure cron</td><td>None</td></tr>
+      <tr><td style="color:var(--clue)">🟡</td><td>Archive stale workspaces (content-distribution, image-generator)</td><td>None</td></tr>
+      <tr><td style="color:var(--clue)">🟡</td><td>Fix GOG_KEYRING_PASSWORD duplicate in .env</td><td>None</td></tr>
+      <tr><td style="color:var(--clue)">🟡</td><td>Configure Tailscale serve for remote dashboard</td><td>None</td></tr>
+      <tr><td style="color:var(--clue)">🟡</td><td>Create dedicated TELEGRAM_OPS_TOKEN</td><td>BotFather</td></tr>
+      <tr><td style="color:var(--solved)">🟢</td><td>Optimization Phase 6B: A/B test M2.7 as CEO model</td><td>Post-OAuth cost data</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="footer">
+  OPENCLAW · PLATFORM & ROBOTIN (CEO) · SOURCE: workflow_bible_platform.md<br>
+  <span class="hl">24 models · 3 bots · v2026.3.24 · 3-layer memory · verified 2026-03-29</span>
+</div>
+
+</div>
+</body>
+</html>

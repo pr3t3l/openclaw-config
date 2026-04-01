@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing System — OpenClaw Workflow</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+
+:root {
+  --espresso: #2c2520;
+  --parchment: #f5e6d0;
+  --blood: #9b2c2c;
+  --sand: #d4c4a8;
+  --charcoal: #1a1714;
+  --leather: #463b32;
+  --ash: #8a7e6a;
+  --vivid: #c0392b;
+  --ivory: #e8dcc8;
+  --solved: #2d6a4f;
+  --clue: #b8860b;
+  --mystery: #6c3483;
+  --trust: #1a5276;
+  --bg: #1a1714;
+  --s1: #2c2520;
+  --s2: #352e28;
+  --bd: #4a3f35;
+  --tx: #f5e6d0;
+  --dm: #8a7e6a;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--tx);
+  font-family: 'Source Sans 3', sans-serif;
+  line-height: 1.75;
+  font-size: 16px;
+}
+
+::selection { background: rgba(155,44,44,.4); color: var(--parchment); }
+
+.wrap { max-width: 860px; margin: 0 auto; padding: 60px 28px 80px; }
+
+/* ── HEADER ── */
+.hero { text-align: center; margin-bottom: 72px; position: relative; }
+.hero::after { content: ''; display: block; width: 100px; height: 3px; background: var(--blood); margin: 24px auto 0; }
+
+.stamp {
+  font-family: 'Courier Prime', monospace;
+  font-size: .68rem;
+  color: var(--blood);
+  text-transform: uppercase;
+  letter-spacing: .22em;
+  display: inline-block;
+  border: 2px solid var(--blood);
+  padding: 4px 14px;
+  transform: rotate(-2deg);
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  color: var(--parchment);
+  margin-bottom: 8px;
+  letter-spacing: -.01em;
+}
+
+.hero .tagline {
+  font-family: 'Courier Prime', monospace;
+  font-size: .74rem;
+  color: var(--ash);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.hero .intro {
+  font-size: .95rem;
+  color: var(--sand);
+  margin-top: 20px;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.85;
+}
+
+/* ── SECTIONS ── */
+.section { margin-bottom: 64px; }
+
+.section-head {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  color: var(--parchment);
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--bd);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-head .num {
+  font-family: 'Courier Prime', monospace;
+  font-size: .72rem;
+  color: var(--blood);
+  letter-spacing: .06em;
+  min-width: 24px;
+}
+.section-head .rule { flex: 1; height: 1px; background: var(--blood); opacity: .3; }
+
+/* ── PROSE ── */
+.prose {
+  font-size: .92rem;
+  color: var(--sand);
+  line-height: 1.85;
+  margin-bottom: 20px;
+}
+.prose + .prose { margin-top: -4px; }
+.prose strong { color: var(--parchment); font-weight: 600; }
+.prose em { color: var(--ivory); font-style: italic; }
+
+.callout {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--ivory);
+  border-left: 3px solid var(--blood);
+  padding: 12px 20px;
+  margin: 28px 0;
+  background: rgba(155,44,44,.04);
+}
+
+/* ── CONTEXT TAG ── */
+.ctx-tag {
+  display: inline-block;
+  font-family: 'Courier Prime', monospace;
+  font-size: .6rem;
+  color: var(--trust);
+  background: rgba(26,82,118,.12);
+  border: 1px solid rgba(26,82,118,.3);
+  border-radius: 3px;
+  padding: 2px 8px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: 12px;
+}
+
+/* ── TECH INLINE ── */
+.tech-note {
+  font-family: 'Courier Prime', monospace;
+  font-size: .72rem;
+  color: var(--ash);
+  background: var(--s1);
+  border: 1px solid var(--bd);
+  border-radius: 3px;
+  padding: 10px 14px;
+  margin: 16px 0;
+  line-height: 1.7;
+}
+.tech-note .label {
+  color: var(--blood);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-weight: 700;
+  margin-right: 6px;
+}
+
+/* ── CARDS ── */
+.card {
+  background: var(--s1);
+  border: 1px solid var(--bd);
+  border-radius: 4px;
+  padding: 22px;
+  margin-bottom: 14px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .3s;
+}
+.card:hover { border-color: var(--sand); }
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--blood);
+}
+.card.green::before { background: var(--solved); }
+.card.gold::before { background: var(--clue); }
+.card.purple::before { background: var(--mystery); }
+.card.blue::before { background: var(--trust); }
+.card.none::before { background: transparent; }
+
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--parchment);
+  margin-bottom: 6px;
+}
+
+.card-body {
+  font-size: .84rem;
+  color: var(--sand);
+  line-height: 1.7;
+}
+
+/* ── GRIDS ── */
+.grid { display: grid; gap: 14px; }
+.g2 { grid-template-columns: 1fr 1fr; }
+.g3 { grid-template-columns: 1fr 1fr 1fr; }
+
+/* ── LAYER BLOCKS ── */
+.layer {
+  padding: 20px 24px;
+  margin-bottom: 4px;
+  border-radius: 4px;
+  border-left: 4px solid;
+}
+.layer.strategy { border-color: var(--mystery); background: rgba(108,52,131,.06); }
+.layer.weekly { border-color: var(--trust); background: rgba(26,82,118,.06); }
+.layer.growth { border-color: var(--solved); background: rgba(45,106,79,.06); }
+.layer.runtime { border-color: var(--clue); background: rgba(184,134,11,.06); }
+
+.layer-name {
+  font-family: 'Courier Prime', monospace;
+  font-size: .78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: 8px;
+}
+.layer.strategy .layer-name { color: var(--mystery); }
+.layer.weekly .layer-name { color: var(--trust); }
+.layer.growth .layer-name { color: var(--solved); }
+.layer.runtime .layer-name { color: var(--clue); }
+
+.layer-body { font-size: .84rem; color: var(--sand); line-height: 1.75; }
+.layer-body strong { color: var(--parchment); }
+
+.flow-arrow {
+  text-align: center;
+  color: var(--blood);
+  font-weight: 700;
+  font-size: .9rem;
+  padding: 6px 0;
+}
+
+/* ── TABLES ── */
+table.dt {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .78rem;
+  margin: 4px 0;
+}
+table.dt th {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 2px solid var(--bd);
+  font-family: 'Courier Prime', monospace;
+  font-size: .64rem;
+  color: var(--ash);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+table.dt td {
+  padding: 9px 12px;
+  border-bottom: 1px solid rgba(74,63,53,.4);
+  color: var(--sand);
+}
+table.dt tr:hover { background: var(--s2); }
+
+/* ── KPIs ── */
+.kpi { text-align: center; padding: 18px 12px; }
+.kpi-val {
+  font-family: 'Courier Prime', monospace;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--parchment);
+}
+.kpi-val.ok { color: var(--solved); }
+.kpi-val.warn { color: var(--clue); }
+.kpi-lbl {
+  font-size: .7rem;
+  color: var(--ash);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+/* ── STAT PILLS ── */
+.pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.pill {
+  background: var(--bg);
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-family: 'Courier Prime', monospace;
+  font-size: .64rem;
+  border: 1px solid var(--bd);
+}
+.pill .l { color: var(--ash); margin-right: 4px; }
+.pill .v { color: var(--parchment); font-weight: 700; }
+.pill .v.ok { color: var(--solved); }
+.pill .v.warn { color: var(--clue); }
+.pill .v.err { color: var(--vivid); }
+
+/* ── VERTICAL PIPELINE ── */
+.vpipe { margin: 24px 0; }
+.vpipe-step {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 12px 0;
+}
+.vpipe-step + .vpipe-step { border-top: 1px solid rgba(74,63,53,.3); }
+.vpipe-num {
+  font-family: 'Courier Prime', monospace;
+  font-size: .68rem;
+  font-weight: 700;
+  color: var(--blood);
+  min-width: 22px;
+  padding-top: 2px;
+}
+.vpipe-body { flex: 1; }
+.vpipe-title {
+  font-size: .86rem;
+  font-weight: 600;
+  color: var(--parchment);
+  margin-bottom: 2px;
+}
+.vpipe-desc {
+  font-size: .78rem;
+  color: var(--ash);
+  line-height: 1.55;
+}
+.vpipe-tag {
+  font-family: 'Courier Prime', monospace;
+  font-size: .6rem;
+  padding: 2px 7px;
+  border-radius: 3px;
+  margin-left: auto;
+  white-space: nowrap;
+  align-self: center;
+}
+.vpipe-tag.script { background: rgba(184,134,11,.15); color: var(--clue); border: 1px solid rgba(184,134,11,.3); }
+.vpipe-tag.ai { background: rgba(108,52,131,.15); color: var(--mystery); border: 1px solid rgba(108,52,131,.3); }
+.vpipe-tag.human { background: rgba(155,44,44,.15); color: var(--vivid); border: 1px solid rgba(155,44,44,.3); }
+
+/* ── EXAMPLE BLOCKS ── */
+.example-block {
+  background: var(--s1);
+  border: 1px solid var(--bd);
+  border-radius: 4px;
+  padding: 18px 20px;
+  margin: 16px 0;
+}
+.example-block .ex-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: .66rem;
+  color: var(--blood);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+.example-block .ex-item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 5px 0;
+  font-size: .82rem;
+  line-height: 1.6;
+}
+.example-block .ex-icon {
+  font-size: .72rem;
+  min-width: 16px;
+  text-align: center;
+}
+.example-block .ex-text { color: var(--sand); }
+.example-block .ex-text strong { color: var(--parchment); }
+
+/* ── CONNECTION MAP ── */
+.conn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(74,63,53,.3);
+  font-size: .82rem;
+}
+.conn:last-child { border-bottom: none; }
+.conn-from, .conn-to {
+  font-family: 'Courier Prime', monospace;
+  font-size: .72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 3px;
+  min-width: 90px;
+  text-align: center;
+}
+.conn-from { background: rgba(26,82,118,.15); color: var(--trust); border: 1px solid rgba(26,82,118,.3); }
+.conn-to { background: rgba(45,106,79,.15); color: var(--solved); border: 1px solid rgba(45,106,79,.3); }
+.conn-arrow { color: var(--blood); font-weight: 700; }
+.conn-label { color: var(--sand); font-size: .78rem; flex: 1; }
+
+/* ── FOOTER ── */
+.footer {
+  text-align: center;
+  font-family: 'Courier Prime', monospace;
+  font-size: .64rem;
+  color: var(--ash);
+  padding-top: 36px;
+  border-top: 1px solid var(--bd);
+  margin-top: 60px;
+  letter-spacing: .04em;
+  line-height: 1.8;
+}
+.footer .hl { color: var(--blood); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .g2, .g3 { grid-template-columns: 1fr; }
+  h1 { font-size: 1.8rem; }
+  .wrap { padding: 40px 18px 60px; }
+  .vpipe-step { flex-wrap: wrap; }
+  .vpipe-tag { margin-left: 36px; margin-top: 4px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<div class="hero">
+  <div class="stamp">CASE FILE — MARKETING SYSTEM</div>
+  <h1>The Marketing System</h1>
+  <div class="tagline">3-LAYER AUTOMATED CONTENT ENGINE · STRATEGY + WEEKLY + GROWTH</div>
+  <div class="intro">
+    A product-agnostic AI engine that generates, verifies, and optimizes marketing content for any product. Give it a product brief — what you sell, who buys it, what's true about it — and it produces 30 verified content pieces per week, learns from performance, and improves every cycle. Currently powering Declassified Cases. Tomorrow it could power candles, cars, SaaS, or anything else.
+  </div>
+</div>
+
+<!-- ═══════════════════ 01 — HOW IT WORKS ═══════════════════ -->
+<div class="section">
+  <div class="section-head">
+    <span class="num">01</span>
+    How It Works: Three Layers
+    <span class="rule"></span>
+  </div>
+
+  <p class="prose">
+    The system has three layers that work in a cycle. The <strong>Strategy Layer</strong> runs once per product and defines <em>who</em> to talk to and <em>what</em> to say. The <strong>Weekly Layer</strong> generates the actual content every week. The <strong>Growth Layer</strong> measures what worked, diagnoses why, and feeds optimization back into the next week. A fourth component — the <strong>Runtime</strong> — coordinates everything and enforces one rule that cannot be overridden: <em>marketing never runs without a valid, approved strategy.</em>
+  </p>
+
+  <p class="prose">
+    Everything is organized around a <strong>product_id</strong>. To market a new product, you create a <code>product_brief.json</code> (describing the product, its verified facts, and its constraints) and run the strategy layer. The weekly and growth layers adapt automatically — the same engine, different product.
+  </p>
+
+  <div class="layer strategy">
+    <div class="layer-name">Layer 1 — Strategy (runs once per product)</div>
+    <div class="layer-body">
+      Analyzes the competitive landscape, defines buyer personas, maps SEO keywords, creates creative angles, and builds a channel strategy. Five AI skills run in sequence, each producing a structured JSON file that downstream layers consume automatically. Two human approval gates ensure nothing proceeds until the strategy makes sense. The entire layer costs less than $2 and only needs to re-run if the market changes significantly.
+    </div>
+    <div class="pills">
+      <div class="pill"><span class="l">Output</span><span class="v">5 JSON artifacts</span></div>
+      <div class="pill"><span class="l">Gates</span><span class="v">S1, S2</span></div>
+      <div class="pill"><span class="l">Cost</span><span class="v">&lt;$2</span></div>
+      <div class="pill"><span class="l">Frequency</span><span class="v">Once per product, updated quarterly</span></div>
+    </div>
+  </div>
+  <div class="flow-arrow">↓ feeds personas, brand, keywords, channels</div>
+
+  <div class="layer weekly">
+    <div class="layer-name">Layer 2 — Marketing Weekly (runs every week)</div>
+    <div class="layer-body">
+      Generates the week's content: <strong>12 video scripts</strong> across 6 creative lanes, <strong>12 ad copies</strong> targeting 4 persona groups, <strong>6 emails</strong> in 3 behavioral sequences, and a publishing calendar. Each piece passes through a <strong>Claim Linter</strong> that checks every statement against verified product facts, followed by a <strong>Quality Reviewer</strong> that evaluates strategic alignment. Both are hard blocks — if either fails, nothing gets published.
+    </div>
+    <div class="pills">
+      <div class="pill"><span class="l">Output</span><span class="v">30 content pieces</span></div>
+      <div class="pill"><span class="l">Gates</span><span class="v">M1, M2</span></div>
+      <div class="pill"><span class="l">Cost</span><span class="v">~$0.09/week</span></div>
+      <div class="pill"><span class="l">Quality</span><span class="v ok">0 false claims (latest run)</span></div>
+    </div>
+  </div>
+  <div class="flow-arrow">↓ publishes content, collects metrics</div>
+
+  <div class="layer growth">
+    <div class="layer-name">Layer 3 — Growth Intelligence (runs after execution)</div>
+    <div class="layer-body">
+      Three deterministic scripts handle the math (calculating metrics like CTR, cost per click, and return on ad spend — all at $0 because they're pure computation). Three AI-powered components interpret what the numbers mean, diagnose root causes like creative fatigue or audience mismatch, and extract patterns. Winning patterns get promoted from "tentative" to "confirmed" only after meeting evidence thresholds.
+    </div>
+    <div class="pills">
+      <div class="pill"><span class="l">Components</span><span class="v">3 scripts + 3 AI skills</span></div>
+      <div class="pill"><span class="l">Cost</span><span class="v">~$0.042/week</span></div>
+      <div class="pill"><span class="l">Status</span><span class="v warn">Awaiting first real metrics</span></div>
+    </div>
+  </div>
+  <div class="flow-arrow">↓ feeds optimization + strategy alerts</div>
+
+  <div class="layer runtime">
+    <div class="layer-name">Runtime — Orchestrator (always on)</div>
+    <div class="layer-body">
+      Coordinates the three layers. Manages <strong>version pinning</strong> — when a weekly run starts, it locks to the current strategy version; if a new strategy appears mid-week, the running week stays on the old one. Handles <strong>strategy invalidation</strong>: hard triggers (price change >20%, audience change) block marketing immediately; soft triggers (sales drop >30% for 2+ weeks, strategy >90 days old) ask the human via Telegram before deciding.
+    </div>
+    <div class="pills">
+      <div class="pill"><span class="l">Cost</span><span class="v">$0</span></div>
+      <div class="pill"><span class="l">Manifests</span><span class="v">3 levels (product, strategy, run)</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ 02 — PRODUCT BRIEF ═══════════════════ -->
+<div class="section">
+  <div class="section-head">
+    <span class="num">02</span>
+    The Product Brief: How Any Product Plugs In
+    <span class="rule"></span>
+  </div>
+
+  <p class="prose">
+    Every product that uses the Marketing System starts with a <strong>product brief</strong> — a structured JSON file (<code>product_brief.json</code>) that tells the system what the product is, what can be said about it, and what must never be claimed. This file is the single source of truth that all content generators read from, and the Claim Linter verifies against.
+  </p>
+
+  <p class="prose">
+    A product brief contains three sections: <strong>verified facts</strong> (claims the generators are allowed to make), <strong>allowed claims</strong> (softer claims that are permissible with exact wording), and <strong>forbidden claims</strong> (things that must be blocked if the AI generates them). When you add a new product, you write this brief, run the Strategy Layer, and the system adapts everything — personas, keywords, content, and quality checks — to that product.
+  </p>
+
+  <div class="ctx-tag">EXAMPLE — Current product: Declassified Cases</div>
+
+  <div class="example-block">
+    <div class="ex-label">Verified Facts — the ONLY claims generators can use</div>
+    <div class="ex-item"><span class="ex-icon" style="color:var(--solved)">✓</span><span class="ex-text"><strong>"Instant digital download — play tonight"</strong> — true and verifiable on the store</span></div>
+    <div class="ex-item"><span class="ex-icon" style="color:var(--solved)">✓</span><span class="ex-text"><strong>"Starts at $19.99 per case"</strong> — real price listed on declassified.shop</span></div>
+    <div class="ex-item"><span class="ex-icon" style="color:var(--solved)">✓</span><span class="ex-text"><strong>"15-25 documents per case: police files, forensic reports, witness interviews"</strong> — actual product contents</span></div>
+    <div class="ex-item"><span class="ex-icon" style="color:var(--solved)">✓</span><span class="ex-text"><strong>"Designed for groups over video calls"</strong> — real feature of the product</span></div>
+  </div>
+
+  <div class="example-block">
+    <div class="ex-label">Forbidden Claims — hard-blocked if detected</div>
+    <div class="ex-item"><span class="ex-icon" style="color:var(--vivid)">✗</span><span class="ex-text"><strong>Fake testimonials</strong> — "María says it changed her weekends" (person doesn't exist, no real customers yet)</span></div>
+    <div class="ex-item"><span class="ex-icon" style="color:var(--vivid)">✗</span><span class="ex-text"><strong>Invented statistics</strong> — "95% of players recommend it" (no survey was ever conducted)</span></div>
+    <div class="ex-item"><span class="ex-icon" style="color:var(--vivid)">✗</span><span class="ex-text"><strong>Fake awards or press</strong> — "Award-winning experience" (no awards exist)</span></div>
+    <div class="ex-item"><span class="ex-icon" style="color:var(--vivid)">✗</span><span class="ex-text"><strong>Competitor disparagement</strong> — "Better than [competitor]" (unverifiable comparative claim)</span></div>
+    <div class="ex-item"><span class="ex-icon" style="color:var(--vivid)">✗</span><span class="ex-text"><strong>Urgency fabrication</strong> — "Only 5 left!" (digital product = unlimited supply)</span></div>
+  </div>
+
+  <div class="example-block">
+    <div class="ex-label">Allowed Claims — permitted but must use exact wording</div>
+    <div class="ex-item"><span class="ex-icon" style="color:var(--clue)">~</span><span class="ex-text"><strong>"New case every week"</strong> — true at current cadence, subject to change</span></div>
+    <div class="ex-item"><span class="ex-icon" style="color:var(--clue)">~</span><span class="ex-text"><strong>"Perfect for date night"</strong> — subjective but matches a real use case</span></div>
+    <div class="ex-item"><span class="ex-icon" style="color:var(--clue)">~</span><span class="ex-text"><strong>"Growing catalog"</strong> — true as long as production continues</span></div>
+  </div>
+
+  <p class="prose">
+    For a different product — say, artisan candles — the brief would contain entirely different facts ("hand-poured soy wax", "$24.99", "40-hour burn time"), different forbidden claims ("all-natural" if some fragrance oils are synthetic), and different personas. The system doesn't care what you sell. It cares that every claim is provably true.
+  </p>
+</div>
+
+<!-- ═══════════════════ 03 — STRATEGY ═══════════════════ -->
+<div class="section">
+  <div class="section-head">
+    <span class="num">03</span>
+    The Strategy Layer: What It Produces
+    <span class="rule"></span>
+  </div>
+
+  <p class="prose">
+    The Strategy Layer generates five foundational artifacts that define everything downstream: who the audience is, how to position against competitors, what keywords to target, what creative angles to use, and which channels to prioritize for each persona. These five files live in a versioned directory per product, and the Weekly Layer reads from them automatically.
+  </p>
+
+  <div class="grid g3">
+    <div class="card purple">
+      <div class="card-title">Buyer Personas</div>
+      <div class="card-body">5-10 segments defined by use case, motivation, preferred channel, and emotional trigger. Each persona gets tailored messaging in the Weekly Layer.</div>
+    </div>
+    <div class="card blue">
+      <div class="card-title">SEO Keywords</div>
+      <div class="card-body">60-100 keywords distributed across pillar pages. Each maps to a persona and a content angle for organic search targeting.</div>
+    </div>
+    <div class="card gold">
+      <div class="card-title">Creative Angles</div>
+      <div class="card-body">25 angles approaching the product from different emotional triggers — curiosity, urgency, social proof, exclusivity, nostalgia. Prevents content repetition across weeks.</div>
+    </div>
+  </div>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card">
+      <div class="card-title">Competitor Matrix</div>
+      <div class="card-body">4-tier competitive analysis: direct competitors, adjacent competitors, substitutes, and aspirational brands. Includes pricing, positioning, and differentiators.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Channel × Persona Matrix</div>
+      <div class="card-body">Maps each persona to their preferred channels, emotional triggers, and optimal timing. Drives the publishing calendar and ad targeting.</div>
+    </div>
+  </div>
+
+  <div class="ctx-tag">EXAMPLE — Current product: Declassified Cases</div>
+
+  <div class="card none" style="border-left: 4px solid var(--mystery); padding: 18px 22px;">
+    <div class="card-body">
+      Strategy v2 (approved): <strong>6 personas</strong> (couples_date_night, game_night_hosts, true_crime_solo, gift_buyers, family_detectives, educators), <strong>105 keywords</strong> across 5 pillar pages, <strong>25 creative angles</strong>, <strong>4 direct competitors</strong> (Hunt A Killer, Unsolved Case Files, Cold Case Inc, Escape Room Kits).
+    </div>
+  </div>
+
+  <div class="tech-note">
+    <span class="label">5 SKILLS:</span> market-analysis → competitor matrix, TAM/SAM/SOM. buyer-persona → segments by use case. brand-strategy → paradigm shift + angles. seo-architecture → keyword map. channel-strategy → segment × trigger × channel.
+  </div>
+</div>
+
+<!-- ═══════════════════ 04 — CREATIVE ENGINE ═══════════════════ -->
+<div class="section">
+  <div class="section-head">
+    <span class="num">04</span>
+    The Creative Engine: 6 Lanes
+    <span class="rule"></span>
+  </div>
+
+  <p class="prose">
+    Content isn't generated randomly. Every week's output follows <strong>6 creative lanes</strong> — each lane targets a specific emotional trigger. This prevents the #1 enemy of paid social content: <em>creative fatigue</em>, where audiences stop responding because they've seen the same angle too many times. Research from 30+ DTC marketing sources showed that 15-30 ad variants per week are needed to maintain engagement — the 6-lane system produces exactly that level of structured variation.
+  </p>
+
+  <p class="prose">
+    The <strong>12 video scripts</strong> (2 per lane) are short-form scripts for Reels and TikTok, designed to hook within the first 3 seconds. The <strong>12 ad copies</strong> target the persona groups defined in the strategy — each with messaging that speaks to their specific motivation. The <strong>6 emails</strong> use three behavioral sequences: curiosity (create intrigue), urgency (time-limited hooks), and social proof (show others engaging with the product).
+  </p>
+
+  <div class="grid g3">
+    <div class="card blue">
+      <div class="kpi">
+        <div class="kpi-val">12</div>
+        <div class="kpi-lbl">Video scripts<br>6 lanes × 2 each</div>
+      </div>
+    </div>
+    <div class="card purple">
+      <div class="kpi">
+        <div class="kpi-val">12</div>
+        <div class="kpi-lbl">Ad copies<br>Persona-targeted sets</div>
+      </div>
+    </div>
+    <div class="card gold">
+      <div class="kpi">
+        <div class="kpi-val">6</div>
+        <div class="kpi-lbl">Emails<br>3 behavioral sequences</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tech-note">
+    <span class="label">RUNNER SEQUENCE:</span> Preflight (is strategy valid?) → Scripts → Ads → Emails → Calendar → Gate M1 (human reviews) → Claim Linter (hard block) → Quality Reviewer (hard block on criticals) → Gate M2 (human approves).
+  </div>
+</div>
+
+<!-- ═══════════════════ 05 — QUALITY ═══════════════════ -->
+<div class="section">
+  <div class="section-head">
+    <span class="num">05</span>
+    Zero Fabrications: The Quality Gate
+    <span class="rule"></span>
+  </div>
+
+  <p class="prose">
+    The first time the system generated content for a real product, the quality checks caught <strong>24 critical problems</strong>. The AI was confidently inventing things: fake customer testimonials, made-up statistics, nonexistent awards. These aren't minor copy edits — a fake testimonial published publicly is a legal liability and a trust destroyer for any brand.
+  </p>
+
+  <div class="callout">
+    "If it can't be proven from the product brief, it doesn't exist."
+  </div>
+
+  <p class="prose">
+    The <strong>Claim Linter</strong> is a Python script that uses 16 pattern-matching rules and 7 cross-reference checks to scan every piece of generated content against the product brief. It looks for things like:
+  </p>
+
+  <div class="example-block">
+    <div class="ex-label">What the linter catches</div>
+    <div class="ex-item"><span class="ex-icon" style="color:var(--vivid)">✗</span><span class="ex-text"><strong>Quoted testimonials</strong> — any "Customer X says..." when no real customers exist yet</span></div>
+    <div class="ex-item"><span class="ex-icon" style="color:var(--vivid)">✗</span><span class="ex-text"><strong>Percentage statistics</strong> — "95% agree" when no survey or study has been conducted</span></div>
+    <div class="ex-item"><span class="ex-icon" style="color:var(--vivid)">✗</span><span class="ex-text"><strong>Superlative claims</strong> — "the best", "the only", "#1" without verifiable source</span></div>
+    <div class="ex-item"><span class="ex-icon" style="color:var(--vivid)">✗</span><span class="ex-text"><strong>Award or press references</strong> — "featured in...", "award-winning" that don't exist</span></div>
+    <div class="ex-item"><span class="ex-icon" style="color:var(--vivid)">✗</span><span class="ex-text"><strong>Artificial scarcity</strong> — "limited stock" on a digital/unlimited product</span></div>
+    <div class="ex-item"><span class="ex-icon" style="color:var(--vivid)">✗</span><span class="ex-text"><strong>Claims not in verified_facts</strong> — any product feature or benefit not explicitly listed in the brief</span></div>
+  </div>
+
+  <p class="prose">
+    If <em>any</em> critical issue is found, the pipeline stops completely — the AI quality reviewer doesn't even run. This is <strong>fail-closed</strong> design: when in doubt, block everything. The system published zero fabricated claims after this was implemented.
+  </p>
+
+  <p class="prose">
+    The <strong>Quality Reviewer</strong> is an AI-powered second pass that evaluates strategic alignment: is the content targeting the right persona? Does the emotional tone match the creative lane? Is the call-to-action clear? This runs on Claude Sonnet because GPT timed out when processing the full context (30 content pieces plus strategy documents). Critical findings block the pipeline; warnings are logged but don't stop publication.
+  </p>
+</div>
+
+<!-- ═══════════════════ 06 — GROWTH ═══════════════════ -->
+<div class="section">
+  <div class="section-head">
+    <span class="num">06</span>
+    Growth Intelligence: The Feedback Loop
+    <span class="rule"></span>
+  </div>
+
+  <div class="callout">
+    "Mide antes de opinar. Diagnostica antes de cambiar."<br>
+    <span style="font-size:.82rem; font-style:normal; color:var(--ash)">Measure before you have opinions. Diagnose before you change anything.</span>
+  </div>
+
+  <p class="prose">
+    Growth Intelligence separates into two levels. <strong>Tactical optimization</strong> (week-to-week adjustments to copy, timing, and targeting) happens every week — AI proposes changes, the human approves. <strong>Strategic optimization</strong> (market positioning, pricing, audience shifts) happens quarterly, or is triggered automatically when hard thresholds are crossed.
+  </p>
+
+  <p class="prose">
+    The feedback loop produces three outputs. <strong>Optimization actions</strong> are injected directly into the next week's content generation prompts. <strong>Knowledge base patterns</strong> accumulate over time — confirmed patterns are used automatically, tentative ones are surfaced as suggestions. <strong>Strategy alerts</strong> can trigger invalidation of the current strategy, forcing a re-run.
+  </p>
+
+  <div class="card none" style="border-left: 4px solid var(--solved); padding: 20px 24px;">
+    <div class="card-title" style="margin-bottom: 14px;">The 10-Step Pipeline</div>
+    <div class="vpipe">
+      <div class="vpipe-step">
+        <div class="vpipe-num">01</div>
+        <div class="vpipe-body"><div class="vpipe-title">Collect Metrics</div><div class="vpipe-desc">Pull performance data from publishing platforms and payment provider</div></div>
+        <div class="vpipe-tag script">SCRIPT · $0</div>
+      </div>
+      <div class="vpipe-step">
+        <div class="vpipe-num">02</div>
+        <div class="vpipe-body"><div class="vpipe-title">Calculate</div><div class="vpipe-desc">CTR (click-through rate), CPC (cost per click), CPM (cost per thousand impressions), CPA (cost per acquisition), ROAS (return on ad spend), week-over-week deltas, trend flags</div></div>
+        <div class="vpipe-tag script">SCRIPT · $0</div>
+      </div>
+      <div class="vpipe-step">
+        <div class="vpipe-num">03</div>
+        <div class="vpipe-body"><div class="vpipe-title">Interpret</div><div class="vpipe-desc">AI reads calculated metrics and writes a performance narrative — what improved, what declined, what's notable</div></div>
+        <div class="vpipe-tag ai">AI SKILL</div>
+      </div>
+      <div class="vpipe-step">
+        <div class="vpipe-num">04</div>
+        <div class="vpipe-body"><div class="vpipe-title">Diagnose</div><div class="vpipe-desc">AI identifies root causes — creative fatigue in a lane, audience mismatch on a segment, timing issues, content decay</div></div>
+        <div class="vpipe-tag ai">AI SKILL</div>
+      </div>
+      <div class="vpipe-step">
+        <div class="vpipe-num">05</div>
+        <div class="vpipe-body"><div class="vpipe-title">Extract Patterns</div><div class="vpipe-desc">AI identifies winning and losing patterns from the data and adds them to the knowledge base</div></div>
+        <div class="vpipe-tag ai">AI SKILL</div>
+      </div>
+      <div class="vpipe-step">
+        <div class="vpipe-num">06</div>
+        <div class="vpipe-body"><div class="vpipe-title">Manage Experiments</div><div class="vpipe-desc">Track active A/B tests — register new ones, close completed ones, record hypothesis → result</div></div>
+        <div class="vpipe-tag script">SCRIPT · $0</div>
+      </div>
+      <div class="vpipe-step">
+        <div class="vpipe-num">07</div>
+        <div class="vpipe-body"><div class="vpipe-title">Promote Patterns</div><div class="vpipe-desc">Patterns meeting evidence thresholds move from "tentative" (suggested) to "confirmed" (used automatically)</div></div>
+        <div class="vpipe-tag script">SCRIPT · $0</div>
+      </div>
+      <div class="vpipe-step">
+        <div class="vpipe-num">08</div>
+        <div class="vpipe-body"><div class="vpipe-title">Generate Actions</div><div class="vpipe-desc">Produce optimization_actions.json — specific recommendations injected into next week's content prompts</div></div>
+        <div class="vpipe-tag ai">AI SKILL</div>
+      </div>
+      <div class="vpipe-step">
+        <div class="vpipe-num">09</div>
+        <div class="vpipe-body"><div class="vpipe-title">Check Strategy</div><div class="vpipe-desc">Evaluate whether the current strategy is still valid or needs hard/soft invalidation based on trends</div></div>
+        <div class="vpipe-tag script">SCRIPT · $0</div>
+      </div>
+      <div class="vpipe-step">
+        <div class="vpipe-num">10</div>
+        <div class="vpipe-body"><div class="vpipe-title">Human Gate G1</div><div class="vpipe-desc">Human reviews diagnosis, approves or adjusts proposed actions before they affect next week</div></div>
+        <div class="vpipe-tag human">HUMAN</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ 07 — PUBLISHING PLAN ═══════════════════ -->
+<div class="section">
+  <div class="section-head">
+    <span class="num">07</span>
+    Publishing & Metrics: Closing the Loop
+    <span class="rule"></span>
+  </div>
+
+  <p class="prose">
+    Content generation is automated. Publishing and metrics collection are not — yet. The plan is to connect to each platform's API for both <strong>automated publishing</strong> (post content without manual intervention) and <strong>automated metrics collection</strong> (pull engagement data back into the Growth Intelligence pipeline). This closes the loop: generate → publish → measure → optimize → generate better.
+  </p>
+
+  <div class="card none" style="padding:0;overflow:hidden;">
+    <table class="dt">
+      <tr><th>Platform</th><th>Publishing via</th><th>Metrics via</th><th>Status</th></tr>
+      <tr><td><strong>Facebook</strong></td><td>Meta API (<code>pages_manage_posts</code>)</td><td>Meta API (<code>pages_read_engagement</code>)</td><td style="color:var(--clue)">⏳ FB App Phase 3</td></tr>
+      <tr><td><strong>Instagram</strong></td><td>Meta API (<code>instagram_content_publish</code>)</td><td>Meta API (<code>instagram_basic</code>)</td><td style="color:var(--clue)">⏳ FB App Phase 3</td></tr>
+      <tr><td><strong>TikTok</strong></td><td>TikTok Content API</td><td>TikTok Analytics API</td><td style="color:var(--vivid)">⏳ Account pending</td></tr>
+      <tr><td><strong>YouTube</strong></td><td>YouTube Data API v3</td><td>YouTube Analytics API</td><td style="color:var(--vivid)">⏳ Channel pending</td></tr>
+      <tr><td><strong>Email</strong></td><td>Resend API</td><td>Resend webhooks (opens, clicks)</td><td style="color:var(--solved)">✅ Working</td></tr>
+      <tr><td><strong>Payments</strong></td><td>—</td><td>Stripe sync → PostgreSQL</td><td style="color:var(--solved)">✅ Connected</td></tr>
+    </table>
+  </div>
+
+  <p class="prose" style="margin-top: 20px;">
+    Publishing automation will route through <strong>n8n</strong> (an open-source workflow automation tool) and <strong>OpenClaw's Telegram ops bot</strong>. The immediate blocker is obtaining Meta API tokens through the Facebook Developer App review process. Once Meta works, TikTok and YouTube follow the same pattern.
+  </p>
+</div>
+
+<!-- ═══════════════════ 08 — MEDIA ═══════════════════ -->
+<div class="section">
+  <div class="section-head">
+    <span class="num">08</span>
+    Media Generation: Videos & Images
+    <span class="rule"></span>
+  </div>
+
+  <p class="prose">
+    After the weekly content is approved, the system generates visual media. <strong>Videos</strong> are created using Google's Veo 3 — a dedicated skill translates approved scripts into optimized video prompts. <strong>Images</strong> use DALL-E 3 for marketing visuals — hero images, persona-targeted thumbnails, social media graphics. Both integrate with the product brief to maintain brand consistency.
+  </p>
+
+  <div class="card none" style="padding:0;overflow:hidden;">
+    <table class="dt">
+      <tr><th>Service</th><th>Script</th><th>Status</th><th>Cost</th></tr>
+      <tr><td><strong>Veo 3 (video)</strong></td><td>generate_marketing_videos.py</td><td style="color:var(--solved)">✅ Tested</td><td>$0.15/s Fast · $0.40/s Standard</td></tr>
+      <tr><td><strong>DALL-E 3 (images)</strong></td><td>generate_marketing_images.py</td><td style="color:var(--clue)">⏳ Config exists, untested</td><td>~$0.08 per HD image</td></tr>
+    </table>
+  </div>
+
+  <div class="tech-note">
+    <span class="label">COST STRATEGY:</span> Veo 3 Fast ($0.15/sec) for drafts and review. Standard ($0.40/sec) only for final approved versions. An 8-second video: $1.20 on Fast vs $3.20 on Standard.
+  </div>
+</div>
+
+<!-- ═══════════════════ 09 — PRODUCT INPUT ═══════════════════ -->
+<div class="section">
+  <div class="section-head">
+    <span class="num">09</span>
+    Product Input: How Content Gets Its Material
+    <span class="rule"></span>
+  </div>
+
+  <p class="prose">
+    The Marketing System doesn't invent what to market — it needs input from the product. How that input arrives depends on the product type. For products with a content pipeline (like Declassified Cases), a <strong>bridge script</strong> extracts marketing-ready material from the product's output. For simpler products (a candle line, a SaaS tool), the input might just be the product brief itself plus photos and descriptions.
+  </p>
+
+  <div class="ctx-tag">EXAMPLE — Current product: Declassified Cases</div>
+
+  <div class="card none" style="border-left: 4px solid var(--trust); padding: 18px 22px;">
+    <div class="card-body">
+      A bridge script (<code>case_to_brief.py</code>) extracts an enriched summary from each new case: scene descriptions for video prompts, character descriptions for image generation, key clues for social media hooks, the emotional arc for email sequences, and hook angles for ads. The brief is <strong>anti-spoiler verified</strong> — it never reveals the culprit, so marketing can tease and intrigue without ruining the game.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ 10 — WEEKLY RHYTHM ═══════════════════ -->
+<div class="section">
+  <div class="section-head">
+    <span class="num">10</span>
+    The Weekly Rhythm
+    <span class="rule"></span>
+  </div>
+
+  <p class="prose">
+    The human time investment is roughly <strong>3-4 hours per week</strong>. Monday is the heaviest day — start the run, review content, generate media, approve. Tuesday through Friday is publishing. Saturday is measurement day.
+  </p>
+
+  <div class="grid g3">
+    <div class="card blue">
+      <div class="card-title">Monday</div>
+      <div class="card-body">Prepare product input → start weekly run → review 30 generated pieces → generate videos and images → approve final package</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Tue → Fri</div>
+      <div class="card-body">Publish to social media (manual today, automated after platform APIs connected). Send email campaigns.</div>
+    </div>
+    <div class="card gold">
+      <div class="card-title">Saturday</div>
+      <div class="card-body">Sync payment data → run Growth Intelligence → review diagnosis and patterns → decide next week's adjustments</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ 11 — CONNECTIONS ═══════════════════ -->
+<div class="section">
+  <div class="section-head">
+    <span class="num">11</span>
+    Connections to Other Workflows
+    <span class="rule"></span>
+  </div>
+
+  <p class="prose">
+    The Marketing System is one of five workflows in OpenClaw. It needs <strong>product input</strong> (from whatever creates the product), runs on the <strong>Platform</strong> infrastructure, was designed by the <strong>Meta-Workflow Planner</strong>, and its costs are tracked through the <strong>Finance Tracker</strong>.
+  </p>
+
+  <div class="card none" style="padding: 20px 24px;">
+    <div class="conn">
+      <div class="conn-from">Product</div>
+      <div class="conn-arrow">→</div>
+      <div class="conn-label"><strong>Product brief + input</strong> — feeds all content generators. No product input = nothing to market.</div>
+      <div class="conn-to">Marketing</div>
+    </div>
+    <div class="conn">
+      <div class="conn-from">Strategy</div>
+      <div class="conn-arrow">→</div>
+      <div class="conn-label"><strong>5 JSON artifacts</strong> — personas, brand, channels, SEO, competitors define all content</div>
+      <div class="conn-to">Weekly</div>
+    </div>
+    <div class="conn">
+      <div class="conn-from">Growth</div>
+      <div class="conn-arrow">→</div>
+      <div class="conn-label"><strong>optimization_actions.json</strong> — injected into next week's content prompts</div>
+      <div class="conn-to">Weekly</div>
+    </div>
+    <div class="conn">
+      <div class="conn-from">Payments</div>
+      <div class="conn-arrow">→</div>
+      <div class="conn-label"><strong>Payment sync</strong> — orders flow back into Growth for revenue analysis</div>
+      <div class="conn-to">PostgreSQL</div>
+    </div>
+    <div class="conn">
+      <div class="conn-from">Planner</div>
+      <div class="conn-arrow">→</div>
+      <div class="conn-label"><strong>The planner run that originally designed this system's architecture</strong></div>
+      <div class="conn-to">Marketing</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ 12 — DECISIONS ═══════════════════ -->
+<div class="section">
+  <div class="section-head">
+    <span class="num">12</span>
+    Key Decisions & Lessons
+    <span class="rule"></span>
+  </div>
+
+  <div class="card none" style="padding:0;overflow:hidden">
+    <table class="dt">
+      <tr><th>#</th><th>Decision</th><th>Why</th></tr>
+      <tr><td>1</td><td><strong>Product-agnostic architecture</strong></td><td>Everything keyed to product_id — same engine for any product</td></tr>
+      <tr><td>2</td><td><strong>No patches — fix root system</strong></td><td>Strategy v1 was mediocre; instead of patching, all skills were rewritten</td></tr>
+      <tr><td>3</td><td><strong>Claim linter fail-closed</strong></td><td>First run had fabricated claims. Zero tolerance — block everything if any issue found</td></tr>
+      <tr><td>4</td><td><strong>6 creative lanes</strong></td><td>Prevents content fatigue through structured emotional variation</td></tr>
+      <tr><td>5</td><td><strong>Version pinning on strategy</strong></td><td>Weekly run locks to current strategy version and never changes mid-execution</td></tr>
+      <tr><td>6</td><td><strong>DB = source of truth, JSON = backup</strong></td><td>Dual-write approach. PostgreSQL enforces integrity with 142 CHECK constraints</td></tr>
+      <tr><td>7</td><td><strong>Quality reviewer on Claude Sonnet</strong></td><td>GPT timed out processing 75K+ tokens of accumulated context</td></tr>
+      <tr><td>8</td><td><strong>Hard/soft strategy invalidation</strong></td><td>Hard = block marketing now. Soft = ask human via Telegram first</td></tr>
+      <tr><td>9</td><td><strong>Deterministic math, AI interpretation</strong></td><td>Growth metrics calculated by scripts ($0), interpreted by AI — separation of concerns</td></tr>
+    </table>
+  </div>
+
+  <div class="tech-note" style="margin-top: 16px;">
+    <span class="label">LESSONS:</span>
+    LiteLLM model names ≠ provider names (use claude-sonnet46, not claude-sonnet-4-6).
+    Sonnet truncates JSON above ~8K tokens — generate content in blocks.
+    PostgreSQL GENERATED columns can't use ::TEXT casts — use IMMUTABLE functions.
+    Veo 3 uses -001 suffix, not -preview.
+    litellm.env accepts only API keys + UI creds — extra vars crash the proxy.
+  </div>
+</div>
+
+<!-- ═══════════════════ 13 — STATE ═══════════════════ -->
+<div class="section">
+  <div class="section-head">
+    <span class="num">13</span>
+    Current State & What's Next
+    <span class="rule"></span>
+  </div>
+
+  <div class="grid g2">
+    <div class="card green">
+      <div class="card-title" style="color:var(--solved)">Working ✅</div>
+      <div class="card-body">
+        15 AI skills deployed. 24 scripts present. Strategy layer producing valid artifacts. 4 weekly runs completed. Claim linter enforcing with zero fabricated claims. PostgreSQL 24 tables with dual-write. Email delivery verified. Veo 3 video tested. Product bridge operational.
+      </div>
+    </div>
+    <div class="card" style="border-color: var(--vivid);">
+      <div class="card-title" style="color:var(--vivid)">Issues ⚠️</div>
+      <div class="card-body">
+        Database parity checker broken (missing dependency). Telegram ops bot not running (token conflict with CEO bot). DALL-E 3 image generation not tested via LiteLLM. Zero real sales — Growth Intelligence has no actual metrics to analyze. Landing pages have placeholder content. No Meta API tokens for automated publishing.
+      </div>
+    </div>
+  </div>
+
+  <div class="card gold" style="margin-top: 14px;">
+    <div class="card-title" style="color:var(--clue)">The Path to First Revenue</div>
+    <div class="card-body" style="font-size: .86rem; line-height: 1.8;">
+      The content engine works. What remains is the <strong>first end-to-end cycle</strong>: product input → content from Marketing → published to social media → a customer buys → payment syncs → Growth Intelligence analyzes what worked. Everything after that is optimization. The immediate blockers: Meta API tokens for automated publishing, landing page content for organic SEO, and the first real sale.
+    </div>
+  </div>
+
+  <div class="card none" style="padding:0;overflow:hidden; margin-top: 14px;">
+    <table class="dt">
+      <tr><th>Priority</th><th>Item</th><th>Blocker</th></tr>
+      <tr><td style="color:var(--vivid)">🔴</td><td>Install psycopg2 for database parity checker</td><td>Single pip install</td></tr>
+      <tr><td style="color:var(--vivid)">🔴</td><td>Create dedicated Telegram ops bot token</td><td>BotFather → new bot</td></tr>
+      <tr><td style="color:var(--vivid)">🔴</td><td>Complete FB Developer App Phase 3 → Meta API tokens</td><td>Meta app review</td></tr>
+      <tr><td style="color:var(--clue)">🟡</td><td>Test DALL-E 3 image generation via LiteLLM</td><td>Proxy restart</td></tr>
+      <tr><td style="color:var(--clue)">🟡</td><td>Populate persona landing pages with real content</td><td>Content needed</td></tr>
+      <tr><td style="color:var(--clue)">🟡</td><td>First real E2E cycle: input → content → publish → sell → metrics</td><td>All above</td></tr>
+      <tr><td style="color:var(--solved)">🟢</td><td>Create TikTok + YouTube accounts</td><td>After Meta works</td></tr>
+      <tr><td style="color:var(--solved)">🟢</td><td>Build weekly_cycle.py (automates full week)</td><td>After integrations stable</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════ APPENDIX ═══════════════════ -->
+<div class="section">
+  <div class="section-head">
+    <span class="num">A</span>
+    Appendix: Directory Structure
+    <span class="rule"></span>
+  </div>
+
+  <div class="tech-note" style="line-height: 2; font-size: .68rem;">
+<span class="label">~/.openclaw/marketing-system/</span>         — The engine (product-agnostic)
+├── skills/                    — 15 AI skill definitions (SKILL.md each)
+│   ├── market-analysis/ buyer-persona/ brand-strategy/ seo-architecture/ channel-strategy/
+│   ├── script-generator/ ad-copy-generator/ email-generator/ calendar-generator/ quality-reviewer/
+│   ├── metrics-interpreter/ diagnosis-agent/ learning-extractor/
+│   └── video-prompt-generator/ strategy-report-generator/
+├── scripts/                   — 24 Python scripts (runners, linter, integrations)
+└── config/                    — email_config.json, telegram_security.json
+
+<span class="label">~/.openclaw/products/&lt;product_id&gt;/</span>    — Per-product data
+├── product_brief.json         — verified_facts + allowed/forbidden claims
+├── strategies/vN/             — Versioned strategy artifacts
+├── weekly_runs/               — Generated content per week
+└── runtime/                   — State, invalidation log
+  </div>
+</div>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<div class="footer">
+  OPENCLAW · MARKETING SYSTEM WORKFLOW · SOURCE: workflow_bible_marketing.md<br>
+  <span class="hl">15 skills · 24 scripts · 24 DB tables · product-agnostic · $0.09/week per product</span><br>
+  Last verified: 2026-03-29 (audit v2.1)
+</div>
+
+</div>
+</body>
+</html>

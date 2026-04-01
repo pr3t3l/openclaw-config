@@ -1,5 +1,6 @@
 """Google Sheets client for the finance tracker."""
 
+import time
 import gspread
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -11,6 +12,10 @@ SCOPES = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive",
 ]
+
+_CLIENT = None
+_SPREADSHEET = None
+_SHEET_CACHE = {}
 
 
 def get_credentials(allow_interactive: bool = False) -> Credentials:
@@ -36,21 +41,27 @@ def get_credentials(allow_interactive: bool = False) -> Credentials:
 
 
 def get_client(allow_interactive: bool = False) -> gspread.Client:
-    return gspread.authorize(get_credentials(allow_interactive))
+    global _CLIENT
+    if _CLIENT is None:
+        _CLIENT = gspread.authorize(get_credentials(allow_interactive))
+    return _CLIENT
 
 
 def get_spreadsheet() -> gspread.Spreadsheet:
-    return get_client().open(C.SPREADSHEET_NAME)
+    global _SPREADSHEET
+    if _SPREADSHEET is None:
+        _SPREADSHEET = get_client().open(C.SPREADSHEET_NAME)
+    return _SPREADSHEET
 
 
 def get_sheet(tab_name: str) -> gspread.Worksheet:
-    return get_spreadsheet().worksheet(tab_name)
+    if tab_name not in _SHEET_CACHE:
+        _SHEET_CACHE[tab_name] = get_spreadsheet().worksheet(tab_name)
+    return _SHEET_CACHE[tab_name]
 
 
-def append_transaction(tx: dict):
-    """Append a transaction row to the Transactions tab."""
-    ws = get_sheet(C.TAB_TRANSACTIONS)
-    row = [
+def _tx_to_row(tx: dict):
+    return [
         tx.get("date", ""),
         tx.get("amount", 0),
         tx.get("merchant", ""),
@@ -71,7 +82,23 @@ def append_transaction(tx: dict):
         tx.get("tax_category", "none"),
         tx.get("type", "expense"),
     ]
-    ws.append_row(row, value_input_option="USER_ENTERED")
+
+
+def append_transaction(tx: dict):
+    """Append a transaction row to the Transactions tab."""
+    append_transactions([tx])
+
+
+def append_transactions(transactions: list[dict], chunk_size: int = 100):
+    """Append many transaction rows in batches to avoid Sheets quota spikes."""
+    if not transactions:
+        return
+    ws = get_sheet(C.TAB_TRANSACTIONS)
+    rows = [_tx_to_row(tx) for tx in transactions]
+    for i in range(0, len(rows), chunk_size):
+        ws.append_rows(rows[i:i + chunk_size], value_input_option="USER_ENTERED")
+        if i + chunk_size < len(rows):
+            time.sleep(1.0)
 
 
 def get_month_spending(category: str, month: str) -> float:
@@ -153,10 +180,40 @@ def update_budget_cell(cell: str, value):
     ws.update_acell(cell, value)
 
 
+def append_cashflow_rows(rows_in: list[dict], chunk_size: int = 100):
+    """Append cashflow ledger rows in batches."""
+    if not rows_in:
+        return
+    ws = get_sheet(C.TAB_CASHFLOW)
+    rows = [[
+        row.get("date", ""),
+        row.get("account", ""),
+        row.get("merchant", ""),
+        row.get("amount_signed", 0),
+        row.get("flow_type", ""),
+        row.get("category", ""),
+        row.get("subcategory", ""),
+        row.get("notes", ""),
+        row.get("source", "csv"),
+        row.get("timestamp", ""),
+        row.get("month", ""),
+    ] for row in rows_in]
+    for i in range(0, len(rows), chunk_size):
+        ws.append_rows(rows[i:i + chunk_size], value_input_option="USER_ENTERED")
+        if i + chunk_size < len(rows):
+            time.sleep(1.0)
+
+
 def append_reconciliation_row(row: dict):
-    """Append a row to the Reconciliation_Log tab."""
+    append_reconciliation_rows([row])
+
+
+def append_reconciliation_rows(rows_in: list[dict], chunk_size: int = 100):
+    """Append reconciliation rows in batches."""
+    if not rows_in:
+        return
     ws = get_sheet(C.TAB_RECONCILIATION)
-    ws.append_row([
+    rows = [[
         row.get("date", ""),
         row.get("amount", 0),
         row.get("merchant_bank", ""),
@@ -166,4 +223,8 @@ def append_reconciliation_row(row: dict):
         row.get("csv_row", ""),
         row.get("resolved_by", ""),
         row.get("notes", ""),
-    ], value_input_option="USER_ENTERED")
+    ] for row in rows_in]
+    for i in range(0, len(rows), chunk_size):
+        ws.append_rows(rows[i:i + chunk_size], value_input_option="USER_ENTERED")
+        if i + chunk_size < len(rows):
+            time.sleep(1.0)

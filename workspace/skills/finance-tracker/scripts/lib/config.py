@@ -16,12 +16,14 @@ SPREADSHEET_NAME = "Robotin Finance 2026"
 LITELLM_URL = "http://127.0.0.1:4000/v1/chat/completions"
 LITELLM_KEY = "sk-litellm-local"
 PARSE_MODEL = "chatgpt-gpt54"
+CLASSIFY_MODEL = "chatgpt-gpt54"
 ANALYSIS_MODEL = "chatgpt-gpt54-thinking"
 
 CATEGORIES = [
     "Groceries", "Restaurants", "Gas", "Shopping", "Entertainment",
     "Subscriptions_AI", "Subscriptions_Other", "Childcare", "Home",
-    "Personal", "Travel", "Work_Tools", "Health", "Other"
+    "Personal", "Travel", "Work_Tools", "Health", "Other",
+    "Pets", "Debt_Interest", "Bank_Fees", "Refunds",
 ]
 
 CARDS = ["Chase", "Discover", "Citi", "WellsFargo", "Cash"]
@@ -34,6 +36,7 @@ TAB_MONTHLY = "Monthly Summary"
 TAB_DEBT = "Debt Tracker"
 TAB_RULES = "Rules"
 TAB_RECONCILIATION = "Reconciliation_Log"
+TAB_CASHFLOW = "Cashflow_Ledger"
 
 
 def load_json(path: Path) -> dict | list:

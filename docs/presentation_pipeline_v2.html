@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Declassified Cases Pipeline V9 — OpenClaw Workflow</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+:root{--espresso:#2c2520;--parchment:#f5e6d0;--blood:#9b2c2c;--sand:#d4c4a8;--charcoal:#1a1714;--leather:#463b32;--ash:#8a7e6a;--vivid:#c0392b;--ivory:#e8dcc8;--solved:#2d6a4f;--clue:#b8860b;--mystery:#6c3483;--trust:#1a5276;--bg:#1a1714;--s1:#2c2520;--s2:#352e28;--bd:#4a3f35;--tx:#f5e6d0;--dm:#8a7e6a}
+*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--tx);font-family:'Source Sans 3',sans-serif;line-height:1.75;font-size:16px}::selection{background:rgba(155,44,44,.4);color:var(--parchment)}.wrap{max-width:860px;margin:0 auto;padding:60px 28px 80px}
+.hero{text-align:center;margin-bottom:72px;position:relative}.hero::after{content:'';display:block;width:100px;height:3px;background:var(--blood);margin:24px auto 0}.stamp{font-family:'Courier Prime',monospace;font-size:.68rem;color:var(--blood);text-transform:uppercase;letter-spacing:.22em;display:inline-block;border:2px solid var(--blood);padding:4px 14px;transform:rotate(-2deg);margin-bottom:20px}h1{font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--parchment);margin-bottom:8px;letter-spacing:-.01em}.hero .tagline{font-family:'Courier Prime',monospace;font-size:.74rem;color:var(--ash);letter-spacing:.08em;text-transform:uppercase}.hero .intro{font-size:.95rem;color:var(--sand);margin-top:20px;max-width:640px;margin-left:auto;margin-right:auto;line-height:1.85}
+.section{margin-bottom:64px}.section-head{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--parchment);margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px}.section-head .num{font-family:'Courier Prime',monospace;font-size:.72rem;color:var(--blood);letter-spacing:.06em;min-width:24px}.section-head .rule{flex:1;height:1px;background:var(--blood);opacity:.3}
+.prose{font-size:.92rem;color:var(--sand);line-height:1.85;margin-bottom:20px}.prose+.prose{margin-top:-4px}.prose strong{color:var(--parchment);font-weight:600}.prose em{color:var(--ivory);font-style:italic}
+.callout{font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;color:var(--ivory);border-left:3px solid var(--blood);padding:12px 20px;margin:28px 0;background:rgba(155,44,44,.04)}
+.tech-note{font-family:'Courier Prime',monospace;font-size:.72rem;color:var(--ash);background:var(--s1);border:1px solid var(--bd);border-radius:3px;padding:10px 14px;margin:16px 0;line-height:1.7}.tech-note .label{color:var(--blood);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-right:6px}
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:4px;padding:22px;margin-bottom:14px;position:relative;overflow:hidden;transition:border-color .3s}.card:hover{border-color:var(--sand)}.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blood)}.card.green::before{background:var(--solved)}.card.gold::before{background:var(--clue)}.card.purple::before{background:var(--mystery)}.card.blue::before{background:var(--trust)}.card.none::before{background:transparent}
+.card-title{font-family:'Playfair Display',serif;font-size:1rem;color:var(--parchment);margin-bottom:6px}.card-body{font-size:.84rem;color:var(--sand);line-height:1.7}
+.grid{display:grid;gap:14px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}
+table.dt{width:100%;border-collapse:collapse;font-size:.78rem;margin:4px 0}table.dt th{text-align:left;padding:10px 12px;border-bottom:2px solid var(--bd);font-family:'Courier Prime',monospace;font-size:.64rem;color:var(--ash);text-transform:uppercase;letter-spacing:.08em}table.dt td{padding:9px 12px;border-bottom:1px solid rgba(74,63,53,.4);color:var(--sand)}table.dt tr:hover{background:var(--s2)}
+.kpi{text-align:center;padding:18px 12px}.kpi-val{font-family:'Courier Prime',monospace;font-size:1.5rem;font-weight:700;color:var(--parchment)}.kpi-val.ok{color:var(--solved)}.kpi-val.warn{color:var(--clue)}.kpi-lbl{font-size:.7rem;color:var(--ash);margin-top:4px;line-height:1.4}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.pill{background:var(--bg);padding:5px 10px;border-radius:3px;font-family:'Courier Prime',monospace;font-size:.64rem;border:1px solid var(--bd)}.pill .l{color:var(--ash);margin-right:4px}.pill .v{color:var(--parchment);font-weight:700}.pill .v.ok{color:var(--solved)}.pill .v.warn{color:var(--clue)}.pill .v.err{color:var(--vivid)}
+.vpipe{margin:24px 0}.vpipe-step{display:flex;gap:14px;align-items:flex-start;padding:12px 0}.vpipe-step+.vpipe-step{border-top:1px solid rgba(74,63,53,.3)}.vpipe-num{font-family:'Courier Prime',monospace;font-size:.68rem;font-weight:700;color:var(--blood);min-width:22px;padding-top:2px}.vpipe-body{flex:1}.vpipe-title{font-size:.86rem;font-weight:600;color:var(--parchment);margin-bottom:2px}.vpipe-desc{font-size:.78rem;color:var(--ash);line-height:1.55}.vpipe-tag{font-family:'Courier Prime',monospace;font-size:.6rem;padding:2px 7px;border-radius:3px;margin-left:auto;white-space:nowrap;align-self:center}.vpipe-tag.script{background:rgba(184,134,11,.15);color:var(--clue);border:1px solid rgba(184,134,11,.3)}.vpipe-tag.ai{background:rgba(108,52,131,.15);color:var(--mystery);border:1px solid rgba(108,52,131,.3)}.vpipe-tag.human{background:rgba(155,44,44,.15);color:var(--vivid);border:1px solid rgba(155,44,44,.3)}.vpipe-tag.render{background:rgba(26,82,118,.15);color:var(--trust);border:1px solid rgba(26,82,118,.3)}
+.example-block{background:var(--s1);border:1px solid var(--bd);border-radius:4px;padding:18px 20px;margin:16px 0}.example-block .ex-label{font-family:'Courier Prime',monospace;font-size:.66rem;color:var(--blood);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;font-weight:700}.example-block .ex-item{display:flex;align-items:baseline;gap:10px;padding:5px 0;font-size:.82rem;line-height:1.6}.example-block .ex-icon{font-size:.72rem;min-width:16px;text-align:center}.example-block .ex-text{color:var(--sand)}.example-block .ex-text strong{color:var(--parchment)}
+.conn{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(74,63,53,.3);font-size:.82rem}.conn:last-child{border-bottom:none}.conn-from,.conn-to{font-family:'Courier Prime',monospace;font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:3px;min-width:90px;text-align:center}.conn-from{background:rgba(26,82,118,.15);color:var(--trust);border:1px solid rgba(26,82,118,.3)}.conn-to{background:rgba(45,106,79,.15);color:var(--solved);border:1px solid rgba(45,106,79,.3)}.conn-arrow{color:var(--blood);font-weight:700}.conn-label{color:var(--sand);font-size:.78rem;flex:1}
+.footer{text-align:center;font-family:'Courier Prime',monospace;font-size:.64rem;color:var(--ash);padding-top:36px;border-top:1px solid var(--bd);margin-top:60px;letter-spacing:.04em;line-height:1.8}.footer .hl{color:var(--blood)}
+@media(max-width:768px){.g2,.g3{grid-template-columns:1fr}h1{font-size:1.8rem}.wrap{padding:40px 18px 60px}.vpipe-step{flex-wrap:wrap}.vpipe-tag{margin-left:36px;margin-top:4px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <div class="stamp">CASE FILE — PIPELINE V9</div>
+  <h1>Declassified Cases Pipeline</h1>
+  <div class="tagline">10-PHASE AI CASE GENERATION · CONCEPT → PACKAGED PDFs</div>
+  <div class="intro">
+    Declassified Cases are mystery detective games — sealed evidence envelopes containing police files, forensic reports, witness interviews, and other documents. Players solve fictional crimes using the clues embedded across 15-25 documents. This pipeline is the AI system that generates these cases from a one-line concept to packaged, store-ready PDFs. No templates — every document is unique.
+  </div>
+</div>
+
+<!-- ═══════════════════ 01 — THE 10 PHASES ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">01</span>The 10 Phases: Concept to Product<span class="rule"></span></div>
+
+  <p class="prose">
+    A case starts as a concept — a setting, a victim, a crime — and moves through 10 phases until it becomes a ZIP file containing PDF envelopes ready for sale at <strong>declassified.shop</strong>. Each phase is handled by a specialized AI skill or script. The entire process costs <strong>$6-8 per case</strong>, with the rendering phase (where Claude generates the visual HTML for each document) accounting for most of the cost.
+  </p>
+
+  <div class="card none" style="border-left: 4px solid var(--trust); padding: 20px 24px;">
+    <div class="vpipe">
+      <div class="vpipe-step">
+        <div class="vpipe-num">01</div>
+        <div class="vpipe-body"><div class="vpipe-title">Initialize</div><div class="vpipe-desc">Create the case folder, generate manifest.json with metadata. A shell script (<code>start_new_case.sh</code>) sets up the workspace.</div></div>
+        <div class="vpipe-tag script">SCRIPT · $0</div>
+      </div>
+      <div class="vpipe-step">
+        <div class="vpipe-num">02</div>
+        <div class="vpipe-body"><div class="vpipe-title">Narrative Architect</div><div class="vpipe-desc">The brain of the case. Produces two outputs: a <strong>case plan</strong> (setting, victim, suspects, motive, method, the "aha" moment) and a <strong>clue catalog</strong> — every clue, red herring, and piece of evidence mapped across envelopes with difficulty ratings. Generated per envelope to avoid output size limits.</div></div>
+        <div class="vpipe-tag ai">AI · THINKING</div>
+      </div>
+      <div class="vpipe-step">
+        <div class="vpipe-num">03</div>
+        <div class="vpipe-body"><div class="vpipe-title">Art Director</div><div class="vpipe-desc">Creates art briefs for POI (Person of Interest) portraits and scene descriptions — what each character looks like, what style to use (police booking photo, LinkedIn headshot, surveillance still).</div></div>
+        <div class="vpipe-tag ai">AI · MEDIUM</div>
+      </div>
+      <div class="vpipe-step">
+        <div class="vpipe-num">04</div>
+        <div class="vpipe-body"><div class="vpipe-title">Experience Designer</div><div class="vpipe-desc">Designs the emotional arc — where the player should feel suspense, when the "aha" moment hits, which document creates conflicting empathy. Adds detective annotations ("This doesn't add up...") to guide without revealing.</div></div>
+        <div class="vpipe-tag ai">AI · THINKING</div>
+      </div>
+      <div class="vpipe-step">
+        <div class="vpipe-num">05</div>
+        <div class="vpipe-body"><div class="vpipe-title">Production Engine</div><div class="vpipe-desc">Writes the actual content for each document — the interrogation transcript, the newspaper article, the social media screenshot text. Each document gets a <code>_content.md</code> file with embedded <code>[IMAGE:]</code> tags for visual placement. Runs per envelope to stay within output limits.</div></div>
+        <div class="vpipe-tag ai">AI · THINKING</div>
+      </div>
+      <div class="vpipe-step">
+        <div class="vpipe-num">06</div>
+        <div class="vpipe-body"><div class="vpipe-title">Playthrough QA</div><div class="vpipe-desc">An AI plays through the entire case as a detective, scoring it against a 6-pillar quality framework (60 points total). Checks whether the case is solvable, fair, emotionally engaging, and free of plot holes.</div></div>
+        <div class="vpipe-tag ai">AI · THINKING</div>
+      </div>
+      <div class="vpipe-step">
+        <div class="vpipe-num">07</div>
+        <div class="vpipe-body"><div class="vpipe-title">Image Generator</div><div class="vpipe-desc">Generates POI portrait photos using DALL-E 3 or Gemini's nano-banana model. Small, optimized images (100px JPEG quality 70) — 15x cheaper than full-size PNGs. Images are only generated <em>after</em> QA passes to avoid wasting money on rejected cases.</div></div>
+        <div class="vpipe-tag ai">AI · IMAGE</div>
+      </div>
+      <div class="vpipe-step">
+        <div class="vpipe-num">08</div>
+        <div class="vpipe-body"><div class="vpipe-title">AI Render</div><div class="vpipe-desc">The most expensive phase. Claude Sonnet reads each <code>_content.md</code> and generates complete standalone HTML — styled to look like a real police file, newspaper, social media post, or forensic report. Then Chromium converts each HTML to PDF. This is the "zero templates" revolution: no Handlebars, no templates — Claude designs every document from scratch.</div></div>
+        <div class="vpipe-tag render">CLAUDE · ~$2/case</div>
+      </div>
+      <div class="vpipe-step">
+        <div class="vpipe-num">09</div>
+        <div class="vpipe-body"><div class="vpipe-title">Package</div><div class="vpipe-desc">Merges individual document PDFs into per-envelope files (Envelope_A.pdf, Envelope_B.pdf, etc.) and runs final validation — checks all documents present, all clues accounted for, no broken references.</div></div>
+        <div class="vpipe-tag script">SCRIPT · $0</div>
+      </div>
+      <div class="vpipe-step">
+        <div class="vpipe-num">10</div>
+        <div class="vpipe-body"><div class="vpipe-title">Distribution</div><div class="vpipe-desc">Packages everything into a ZIP, uploads to Google Drive, and sends via Telegram for final human review. Ready for the web store.</div></div>
+        <div class="vpipe-tag script">SCRIPT · $0</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tech-note">
+    <span class="label">COST BREAKDOWN:</span> Phases 2-7 use GPT-5.4 via Codex OAuth ($0/token). Phase 8 uses direct Anthropic API (Claude Sonnet, paid per token). Phase 8 is the primary cost driver at ~$2 per case. Total target: $6-8 per case.
+  </div>
+</div>
+
+<!-- ═══════════════════ 02 — ZERO TEMPLATES ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">02</span>The Zero-Templates Revolution<span class="rule"></span></div>
+
+  <p class="prose">
+    Before V9, the pipeline used Handlebars templates — pre-built HTML skeletons where content was inserted into fixed slots. This worked for simple documents but broke down fast. A police interrogation transcript needs a completely different layout than a social media screenshot or a newspaper front page. Templates were too rigid. When the AI wanted to create a floor plan diagram or a surveillance camera timeline, the templates couldn't handle it.
+  </p>
+
+  <p class="prose">
+    V9 eliminated templates entirely. Now Claude receives the content (a <code>_content.md</code> file with text and <code>[IMAGE:]</code> placement tags) plus a design brief, and generates <strong>complete standalone HTML</strong> from scratch — CSS, layout, typography, aging effects, stamps, everything. Then headless Chromium converts it to PDF. Every document is unique. A forensic toxicology report looks different from an Instagram DM screenshot, which looks different from a handwritten note.
+  </p>
+
+  <div class="callout">
+    "Quality is designed in the clue catalog, not QA'd afterwards."
+  </div>
+
+  <p class="prose">
+    The pipeline uses a two-tier prompt system for rendering: <strong>text-heavy documents</strong> (transcripts, court orders, witness statements) get a minimal styling prompt, while <strong>visual documents</strong> (social media mockups, floor plans, POI sheets) get a full design system prompt with detailed visual instructions. One strict rule applies to all documents: <em>backgrounds must always be white or light</em> — these are meant to look like real paper documents, not dark-themed web pages.
+  </p>
+</div>
+
+<!-- ═══════════════════ 03 — SPAWN ARCHITECTURE ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">03</span>The Spawn Problem (and Its Solution)<span class="rule"></span></div>
+
+  <p class="prose">
+    OpenClaw's built-in sub-agent spawner (<code>sessions_spawn</code>) is broken for file-writing tasks. Sub-agents complete with "(no output)" and zero tokens — the work vanishes. This was confirmed broken 6+ times across multiple cases and phases. It's an upstream platform limitation that can't be fixed.
+  </p>
+
+  <p class="prose">
+    The replacement: three <strong>spawn scripts</strong> that bypass OpenClaw's spawner entirely. Each script calls the AI API directly via streaming curl (Python's <code>requests</code> library fails in WSL for long API calls — a hard-learned lesson), and the <em>script</em> writes the output files, not the sub-agent. This means cost tracking works, file writing is reliable, and timeouts are controllable.
+  </p>
+
+  <div class="grid g3">
+    <div class="card green">
+      <div class="card-title">spawn_agent.py</div>
+      <div class="card-body">Generic content generation. Used for Art Director, Experience Designer, Production Engine, and QA phases. Calls the API, receives the response, writes files to disk.</div>
+    </div>
+    <div class="card green">
+      <div class="card-title">spawn_narrative.py</div>
+      <div class="card-body">Specialized for the Narrative Architect. Supports <code>--phase plan</code> (case plan) and <code>--phase catalog --envelope X</code> (per-envelope clue catalog generation).</div>
+    </div>
+    <div class="card green">
+      <div class="card-title">spawn_images.py</div>
+      <div class="card-body">POI portrait generation via DALL-E 3 or Gemini's nano-banana model. Downloads images with wget (not curl — another lesson learned).</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ 04 — QUALITY FRAMEWORK ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">04</span>Quality: 6 Pillars, 60 Points<span class="rule"></span></div>
+
+  <p class="prose">
+    Every case is scored against a 6-pillar quality framework totaling 60 points. The framework was developed by benchmarking against competitors (Hunt A Killer, mododetective.store) and an internal gold standard case. The key insight: <strong>User Experience / Emotional Arc gets 2x weight</strong> — a case with perfect clue structure but no emotional payoff is a bad product.
+  </p>
+
+  <div class="card none" style="padding:0;overflow:hidden">
+    <table class="dt">
+      <tr><th>Pillar</th><th>Weight</th><th>Max</th><th>What it measures</th></tr>
+      <tr><td><strong>UX / Emotional Arc</strong></td><td><strong>2x</strong></td><td><strong>20</strong></td><td>"Aha!" moments, suspense, immersion, conflicting empathy, catharsis</td></tr>
+      <tr><td>Information Relevance</td><td>1x</td><td>10</td><td>Every clue is purposeful — no filler documents</td></tr>
+      <tr><td>Clue Structure</td><td>1x</td><td>10</td><td>Cognitive load management, progressive revelation across envelopes</td></tr>
+      <tr><td>Visual Support</td><td>1x</td><td>10</td><td>Document design enhances the content (not just decorates it)</td></tr>
+      <tr><td>Dynamic Variety</td><td>1x</td><td>5</td><td>Document types are varied — not 15 interrogation transcripts</td></tr>
+      <tr><td>Document as Experience</td><td>1x</td><td>5</td><td>Each document has personality — it feels like a real artifact</td></tr>
+    </table>
+  </div>
+
+  <p class="prose" style="margin-top: 20px;">
+    The pipeline targets a specific emotional journey: intellectual "aha!" satisfaction, suspense and tension, immersion and flow, conflicting empathy vs suspicion toward suspects, the pleasure of not knowing, smugness when deducing early, catharsis at resolution, frustration from well-placed red herrings, and camaraderie in group solving. QA is <strong>87% deterministic</strong> (scripts check structure, completeness, clue coverage) — the AI is only used for narrative judgment calls.
+  </p>
+
+  <div class="card none" style="padding:0;overflow:hidden; margin-top: 14px;">
+    <table class="dt">
+      <tr><th>Case</th><th>Score</th><th>Source</th></tr>
+      <tr><td>Linda Oward (internal gold standard)</td><td style="color:var(--solved)">88% (53/60)</td><td>Internal benchmark</td></tr>
+      <tr><td><strong>The Last Livestream (Pipeline V8)</strong></td><td style="color:var(--solved)"><strong>86% (51.3/60)</strong></td><td>Pipeline output</td></tr>
+      <tr><td>Steve Jacobs (competitor)</td><td>83% (50/60)</td><td>mododetective.store</td></tr>
+      <tr><td>Carmen García (competitor)</td><td>82% (49/60)</td><td>mododetective.store</td></tr>
+      <tr><td>Murder in Automated Home (V7)</td><td style="color:var(--vivid)">45% (27/60)</td><td>Pipeline — NOT production-ready</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════ 05 — TIERS & DOCUMENTS ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">05</span>Case Tiers & Document Types<span class="rule"></span></div>
+
+  <p class="prose">
+    Cases come in three tiers — SHORT, NORMAL, and PREMIUM — each with different constraints on complexity, document count, and production cost. The pipeline currently produces NORMAL tier cases. PREMIUM tier includes audio narration via ElevenLabs TTS (designed but untested).
+  </p>
+
+  <div class="card none" style="padding:0;overflow:hidden">
+    <table class="dt">
+      <tr><th>Dimension</th><th>SHORT</th><th>NORMAL</th><th>PREMIUM</th></tr>
+      <tr><td>Suspects</td><td>4-5</td><td>6-8</td><td>8-12</td></tr>
+      <tr><td>Documents</td><td>10-15</td><td>15-22</td><td>22-30</td></tr>
+      <tr><td>Pages</td><td>15-25</td><td>25-38</td><td>38-55</td></tr>
+      <tr><td>Envelopes</td><td>2-3</td><td>3-4</td><td>4-5</td></tr>
+      <tr><td>Social media mockups</td><td>1-2</td><td>3-5</td><td>5-8</td></tr>
+      <tr><td>Cross-envelope links</td><td>2-3</td><td>4-6</td><td>6-10</td></tr>
+    </table>
+  </div>
+
+  <p class="prose" style="margin-top: 20px;">
+    Only <strong>2 documents are mandatory</strong> in every case: a Case Introduction (always first in Envelope A) and a POI Sheet (always second). All other documents are chosen by the Narrative Architect based on the story. The system has an extensible document type catalog — interrogation transcripts, official memos, newspaper articles, social media screenshots, floor plans, forensic reports, court orders, and many more. Custom types use a <code>design_hint</code> field to guide the renderer.
+  </p>
+
+  <p class="prose">
+    Cases also follow one of two experiential styles: <strong>físico/local</strong> (handwritten notes, receipts, napkin messages — intimate, tactile feeling) or <strong>digital/corporativo</strong> (social media posts, Slack messages, app screenshots — modern, tech-savvy feeling). The Narrative Architect chooses the style based on the story's setting and characters.
+  </p>
+</div>
+
+<!-- ═══════════════════ 06 — THE EVOLUTION ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">06</span>The Evolution: V5 → V9<span class="rule"></span></div>
+
+  <p class="prose">
+    The pipeline didn't start at V9. It took 9 iterations to reach the current architecture, and each version taught something critical. The journey from V5 to V9 is why the <strong>Meta-Workflow Planner</strong> was eventually built — to avoid needing 9 versions for every future workflow.
+  </p>
+
+  <div class="card none" style="padding:0;overflow:hidden">
+    <table class="dt">
+      <tr><th>Version</th><th>Key Change</th><th>Lesson</th></tr>
+      <tr><td><strong>V5.1</strong></td><td>First real redesign: skills, tiers, templates, "quality through structure"</td><td>Structure the content pipeline, don't just generate randomly</td></tr>
+      <tr><td><strong>V6</strong></td><td>Model abstraction layer, smart retry, lessons-learned agent, kill expected_X.json</td><td>First test run failed with 58 schema errors — AI needs concrete JSON skeletons, not just field lists</td></tr>
+      <tr><td><strong>V8</strong></td><td>Benchmark-driven quality framework (6 pillars, 60 pts)</td><td>Score 86% — competitive with commercial products. UX needs 2x weight.</td></tr>
+      <tr><td><strong>V9</strong></td><td>Zero templates revolution: Claude generates ALL HTML directly</td><td>Templates too rigid. AI can design any document type from scratch.</td></tr>
+      <tr><td><strong>V9 fixes</strong></td><td>sessions_spawn → spawn scripts, envelope-by-envelope generation</td><td>OpenClaw's spawner is broken. Generate large outputs in chunks, not monoliths.</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════ 07 — CASES ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">07</span>Cases Produced<span class="rule"></span></div>
+
+  <div class="card none" style="padding:0;overflow:hidden">
+    <table class="dt">
+      <tr><th>Case</th><th>Status</th><th>Tier</th><th>POIs</th><th>Docs</th><th>Score</th></tr>
+      <tr><td><strong>The Last Livestream</strong></td><td style="color:var(--solved)">✅ Distributed</td><td>Normal</td><td>5</td><td>18</td><td>86%</td></tr>
+      <tr><td>The Influencer Who Erased Herself</td><td style="color:var(--solved)">✅ Distributed</td><td>Normal</td><td>—</td><td>20</td><td>Needs V9 re-render</td></tr>
+      <tr><td>The Miracle Withdrawal (GPT re-run)</td><td style="color:var(--solved)">✅ Distributed</td><td>Normal</td><td>—</td><td>21</td><td>—</td></tr>
+      <tr><td>Cyber Ghost</td><td style="color:var(--clue)">⏸️ Paused</td><td>Normal</td><td>4</td><td>20</td><td>—</td></tr>
+      <tr><td>Asalto Cronometrado</td><td style="color:var(--ash)">🆕 Initialized</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════ 08 — CONNECTIONS ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">08</span>Connections to Other Workflows<span class="rule"></span></div>
+
+  <p class="prose">
+    The Pipeline produces the product. Everything else in the OpenClaw ecosystem supports getting that product to customers and tracking results.
+  </p>
+
+  <div class="card none" style="padding: 20px 24px;">
+    <div class="conn">
+      <div class="conn-from">Pipeline</div>
+      <div class="conn-arrow">→</div>
+      <div class="conn-label"><strong>case_to_brief.py</strong> — enriched case brief feeds the Marketing System's content generators</div>
+      <div class="conn-to">Marketing</div>
+    </div>
+    <div class="conn">
+      <div class="conn-from">Pipeline</div>
+      <div class="conn-arrow">→</div>
+      <div class="conn-label"><strong>exports/slug/</strong> — packaged PDFs go to the web store (declassified.shop, Stripe)</div>
+      <div class="conn-to">Store</div>
+    </div>
+    <div class="conn">
+      <div class="conn-from">Pipeline</div>
+      <div class="conn-arrow">→</div>
+      <div class="conn-label"><strong>lessons_learned.json</strong> — failure patterns feed the Planner's Lessons Validator</div>
+      <div class="conn-to">Planner</div>
+    </div>
+    <div class="conn">
+      <div class="conn-from">Brand</div>
+      <div class="conn-arrow">→</div>
+      <div class="conn-label"><strong>design_system.json</strong> + SVGs — visual identity feeds the render phase</div>
+      <div class="conn-to">Pipeline</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ 09 — DECISIONS ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">09</span>Key Decisions & Lessons<span class="rule"></span></div>
+
+  <div class="card none" style="padding:0;overflow:hidden">
+    <table class="dt">
+      <tr><th>#</th><th>Decision</th><th>Why</th></tr>
+      <tr><td>1</td><td><strong>Zero templates (V9)</strong></td><td>Templates too rigid — Claude can generate any document type from scratch</td></tr>
+      <tr><td>2</td><td><strong>Quality through structure</strong></td><td>Quality is designed in the clue catalog, not QA'd afterwards</td></tr>
+      <tr><td>3</td><td><strong>Images AFTER QA</strong></td><td>DALL-E costs wasted if content rejected — generate only after approval</td></tr>
+      <tr><td>4</td><td><strong>Hybrid QA (87% deterministic)</strong></td><td>Scripts check structure; LLM only for narrative judgment</td></tr>
+      <tr><td>5</td><td><strong>Model abstraction</strong></td><td>SKILL.md references reasoning levels, not model names — one config to update</td></tr>
+      <tr><td>6</td><td><strong>Smart retry (3 max)</strong></td><td>Each retry must diagnose the failure. Never blind retry. After 3 → stop + alert</td></tr>
+      <tr><td>7</td><td><strong>Envelope-by-envelope generation</strong></td><td>Full clue catalog too large for single spawn (~50KB crashes). Generate in chunks.</td></tr>
+      <tr><td>8</td><td><strong>Lessons-learned agent</strong></td><td>Each case improves by learning past failures from structured JSON</td></tr>
+      <tr><td>9</td><td><strong>Dynamic document selection</strong></td><td>Only 2 mandatory docs. Narrative Architect chooses the rest per story.</td></tr>
+      <tr><td>10</td><td><strong>Skills not agents</strong></td><td>Pipeline "agents" are skills in the workspace, not separate OpenClaw agents</td></tr>
+    </table>
+  </div>
+
+  <div class="tech-note" style="margin-top: 16px;">
+    <span class="label">LESSONS:</span>
+    Python requests DIES in WSL for long API calls — always streaming curl via subprocess.
+    subprocess timeout must exceed curl --max-time (650 > 600).
+    NEVER dark backgrounds in rendered HTML — documents are paper.
+    Sonnet truncates JSON above ~8K tokens — generate by blocks.
+    SKILL.md needs concrete JSON skeleton examples, not just field lists.
+    Never patch failed output with scripts — delete and re-run with augmented prompt.
+  </div>
+</div>
+
+<!-- ═══════════════════ 10 — STATE ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">10</span>Current State & What's Next<span class="rule"></span></div>
+
+  <div class="grid g2">
+    <div class="card green">
+      <div class="card-title" style="color:var(--solved)">Working ✅</div>
+      <div class="card-body">
+        11 skills deployed and active. All spawn scripts operational. AI render with correct parameters. Model routing updated to Codex OAuth ($0/token for phases 2-7). 3 cases distributed, 6 total exports. All validators present. AGENTS.md updated to use spawn scripts.
+      </div>
+    </div>
+    <div class="card" style="border-color: var(--vivid);">
+      <div class="card-title" style="color:var(--vivid)">Issues ⚠️</div>
+      <div class="card-body">
+        Art brief validator has a false-positive bug. Cost tracking is invisible for orchestrator tokens (only spawn scripts log costs). AGENTS.md gets truncated 13% during bootstrap injection (rules at the end may not be seen). Cyber Ghost case paused at image injection + merge step. Manifest.json returns "unknown" for case name and cost.
+      </div>
+    </div>
+  </div>
+
+  <div class="card none" style="padding:0;overflow:hidden; margin-top: 14px;">
+    <table class="dt">
+      <tr><th>Priority</th><th>Item</th><th>Blocker</th></tr>
+      <tr><td style="color:var(--vivid)">🔴</td><td>Fix validate_art.py false-positive bug</td><td>None</td></tr>
+      <tr><td style="color:var(--vivid)">🔴</td><td>Complete Cyber Ghost: inject photos + merge + distribute</td><td>API credits</td></tr>
+      <tr><td style="color:var(--vivid)">🔴</td><td>Fix manifest.json to capture case_name and cost</td><td>Schema update</td></tr>
+      <tr><td style="color:var(--clue)">🟡</td><td>Reduce AGENTS.md below bootstrap truncation threshold</td><td>Optimization</td></tr>
+      <tr><td style="color:var(--clue)">🟡</td><td>Test DALL-E 3 via LiteLLM</td><td>Proxy restart</td></tr>
+      <tr><td style="color:var(--clue)">🟡</td><td>Re-render Case 2 (Influencer) with V9 pipeline</td><td>Time</td></tr>
+      <tr><td style="color:var(--solved)">🟢</td><td>Test PREMIUM tier (TTS via ElevenLabs)</td><td>Case needed</td></tr>
+      <tr><td style="color:var(--solved)">🟢</td><td>New case: asalto-cronometrado</td><td>Time</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════ APPENDIX ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">A</span>Appendix: 11 Skills<span class="rule"></span></div>
+  <div class="card none" style="padding:0;overflow:hidden">
+    <table class="dt">
+      <tr><th>Skill</th><th>Phase</th><th>Model Tier</th><th>What it produces</th></tr>
+      <tr><td>narrative-architect</td><td>2</td><td>thinking</td><td>Case plan + per-envelope clue catalog</td></tr>
+      <tr><td>art-director</td><td>3</td><td>medium</td><td>Art briefs + scene descriptions</td></tr>
+      <tr><td>experience-designer</td><td>4</td><td>thinking</td><td>Emotional beats + detective annotations</td></tr>
+      <tr><td>production-engine</td><td>5</td><td>thinking</td><td>_content.md per document with [IMAGE:] tags</td></tr>
+      <tr><td>quality-auditor</td><td>6</td><td>thinking</td><td>Playthrough QA + benchmark scoring</td></tr>
+      <tr><td>image-generator</td><td>7</td><td>medium</td><td>POI portrait generation</td></tr>
+      <tr><td>content-distribution</td><td>10</td><td>none</td><td>ZIP → Google Drive → Telegram</td></tr>
+      <tr><td>lessons-learned</td><td>post</td><td>medium</td><td>Failure analysis → lessons_learned.json</td></tr>
+      <tr><td>document-designer</td><td>legacy</td><td>medium</td><td>Legacy (may be unused in V9)</td></tr>
+      <tr><td>nano-banana-2-gemini</td><td>7</td><td>medium</td><td>Image generation via Gemini</td></tr>
+      <tr><td>tts-script-writer</td><td>PREMIUM</td><td>thinking</td><td>Audio narration scripts</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="footer">
+  OPENCLAW · DECLASSIFIED CASES PIPELINE V9 · SOURCE: workflow_bible_pipeline_v9.md<br>
+  <span class="hl">11 skills · 17 scripts · 10 phases · $6-8/case · audit-verified 2026-03-29</span>
+</div>
+
+</div>
+</body>
+</html>

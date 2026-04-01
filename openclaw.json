@@ -439,7 +439,7 @@
       "provider": "elevenlabs",
       "elevenlabs": {
         "apiKey": "${ELEVENLABS_API_KEY}",
-        "voiceId": "CwhRBWXzGAHq8TQ4Fs17",
+        "voiceId": "XrExE9yKIg1WjnnlVkGX",
         "modelId": "eleven_multilingual_v2"
       }
     }

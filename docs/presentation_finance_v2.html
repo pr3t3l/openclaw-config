@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finance Tracker (Robotin Finance) — OpenClaw Workflow</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+:root{--espresso:#2c2520;--parchment:#f5e6d0;--blood:#9b2c2c;--sand:#d4c4a8;--charcoal:#1a1714;--leather:#463b32;--ash:#8a7e6a;--vivid:#c0392b;--ivory:#e8dcc8;--solved:#2d6a4f;--clue:#b8860b;--mystery:#6c3483;--trust:#1a5276;--bg:#1a1714;--s1:#2c2520;--s2:#352e28;--bd:#4a3f35;--tx:#f5e6d0;--dm:#8a7e6a}
+*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--tx);font-family:'Source Sans 3',sans-serif;line-height:1.75;font-size:16px}::selection{background:rgba(155,44,44,.4);color:var(--parchment)}.wrap{max-width:860px;margin:0 auto;padding:60px 28px 80px}
+.hero{text-align:center;margin-bottom:72px;position:relative}.hero::after{content:'';display:block;width:100px;height:3px;background:var(--blood);margin:24px auto 0}.stamp{font-family:'Courier Prime',monospace;font-size:.68rem;color:var(--blood);text-transform:uppercase;letter-spacing:.22em;display:inline-block;border:2px solid var(--blood);padding:4px 14px;transform:rotate(-2deg);margin-bottom:20px}h1{font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--parchment);margin-bottom:8px;letter-spacing:-.01em}.hero .tagline{font-family:'Courier Prime',monospace;font-size:.74rem;color:var(--ash);letter-spacing:.08em;text-transform:uppercase}.hero .intro{font-size:.95rem;color:var(--sand);margin-top:20px;max-width:640px;margin-left:auto;margin-right:auto;line-height:1.85}
+.section{margin-bottom:64px}.section-head{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--parchment);margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px}.section-head .num{font-family:'Courier Prime',monospace;font-size:.72rem;color:var(--blood);letter-spacing:.06em;min-width:24px}.section-head .rule{flex:1;height:1px;background:var(--blood);opacity:.3}
+.prose{font-size:.92rem;color:var(--sand);line-height:1.85;margin-bottom:20px}.prose+.prose{margin-top:-4px}.prose strong{color:var(--parchment);font-weight:600}.prose em{color:var(--ivory);font-style:italic}
+.callout{font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;color:var(--ivory);border-left:3px solid var(--blood);padding:12px 20px;margin:28px 0;background:rgba(155,44,44,.04)}
+.tech-note{font-family:'Courier Prime',monospace;font-size:.72rem;color:var(--ash);background:var(--s1);border:1px solid var(--bd);border-radius:3px;padding:10px 14px;margin:16px 0;line-height:1.7}.tech-note .label{color:var(--blood);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-right:6px}
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:4px;padding:22px;margin-bottom:14px;position:relative;overflow:hidden;transition:border-color .3s}.card:hover{border-color:var(--sand)}.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blood)}.card.green::before{background:var(--solved)}.card.gold::before{background:var(--clue)}.card.purple::before{background:var(--mystery)}.card.blue::before{background:var(--trust)}.card.none::before{background:transparent}
+.card-title{font-family:'Playfair Display',serif;font-size:1rem;color:var(--parchment);margin-bottom:6px}.card-body{font-size:.84rem;color:var(--sand);line-height:1.7}
+.grid{display:grid;gap:14px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}
+table.dt{width:100%;border-collapse:collapse;font-size:.78rem;margin:4px 0}table.dt th{text-align:left;padding:10px 12px;border-bottom:2px solid var(--bd);font-family:'Courier Prime',monospace;font-size:.64rem;color:var(--ash);text-transform:uppercase;letter-spacing:.08em}table.dt td{padding:9px 12px;border-bottom:1px solid rgba(74,63,53,.4);color:var(--sand)}table.dt tr:hover{background:var(--s2)}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.pill{background:var(--bg);padding:5px 10px;border-radius:3px;font-family:'Courier Prime',monospace;font-size:.64rem;border:1px solid var(--bd)}.pill .l{color:var(--ash);margin-right:4px}.pill .v{color:var(--parchment);font-weight:700}.pill .v.ok{color:var(--solved)}.pill .v.warn{color:var(--clue)}.pill .v.err{color:var(--vivid)}
+.vpipe{margin:24px 0}.vpipe-step{display:flex;gap:14px;align-items:flex-start;padding:12px 0}.vpipe-step+.vpipe-step{border-top:1px solid rgba(74,63,53,.3)}.vpipe-num{font-family:'Courier Prime',monospace;font-size:.68rem;font-weight:700;color:var(--blood);min-width:22px;padding-top:2px}.vpipe-body{flex:1}.vpipe-title{font-size:.86rem;font-weight:600;color:var(--parchment);margin-bottom:2px}.vpipe-desc{font-size:.78rem;color:var(--ash);line-height:1.55}
+.footer{text-align:center;font-family:'Courier Prime',monospace;font-size:.64rem;color:var(--ash);padding-top:36px;border-top:1px solid var(--bd);margin-top:60px;letter-spacing:.04em;line-height:1.8}.footer .hl{color:var(--blood)}
+@media(max-width:768px){.g2,.g3{grid-template-columns:1fr}h1{font-size:1.8rem}.wrap{padding:40px 18px 60px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <div class="stamp">CASE FILE — FINANCE TRACKER</div>
+  <h1>Robotin Finance</h1>
+  <div class="tagline">PERSONAL EXPENSE TRACKING · AIRBNB TAX DEDUCTIONS · TELEGRAM</div>
+  <div class="intro">
+    A personal finance tracker that lives inside Telegram. Send a photo of a receipt or type "$15.50 Uber" — AI parses it, categorizes it, logs it to Google Sheets, and monitors your budget. The differentiator: it automatically flags expenses that might be tax-deductible for rental property owners. Built as a skill inside the CEO agent (Robotin), with a commercialization path toward a standalone SaaS product.
+  </div>
+</div>
+
+<!-- ═══════════════════ 01 — THE FLOW ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">01</span>How It Works: From Receipt to Insight<span class="rule"></span></div>
+
+  <div class="grid g2">
+    <div class="card blue">
+      <div class="card-title">📸 Send a receipt or text</div>
+      <div class="card-body">Take a photo of a receipt or type "$15.50 Uber" in Telegram. The <strong>Rule Engine</strong> checks first — if it recognizes the merchant (Walmart, Uber, Netflix), it auto-categorizes at $0 cost without calling AI. If the merchant is unknown, the <strong>Expense Parser</strong> uses AI to extract merchant, amount, date, category, and individual items.</div>
+    </div>
+    <div class="card green">
+      <div class="card-title">✅ Confirm and log</div>
+      <div class="card-body">Robotin shows the parsed result: <em>"Walmart $87.43 Groceries — ¿Confirmar?"</em> You tap yes or correct it. The <strong>Transaction Logger</strong> writes the confirmed transaction to Google Sheets automatically.</div>
+    </div>
+    <div class="card gold">
+      <div class="card-title">📊 Daily cashflow</div>
+      <div class="card-body">Every morning at 7:30 AM (weekdays), you get: <em>"Safe to spend today: $42."</em> The <strong>Daily Cashflow</strong> module calculates this as: remaining budget minus upcoming bills, divided by days until next payday.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">⚠️ Budget alerts</div>
+      <div class="card-body">When spending hits 80% of a category budget: <em>"Shopping: $120 of $150 used (80%). 11 days left in month."</em> Plus payment reminders 3 days before due dates for bills and loans.</div>
+    </div>
+  </div>
+
+  <div class="tech-note">
+    <span class="label">COST:</span> Rule Engine matches = $0 per parse. AI parsing (unknown merchants) = ~$0.001-$0.003 for text, ~$0.005-$0.01 for photos. Monthly AI analyst report = ~$0.01. Everything else is deterministic and free.
+  </div>
+</div>
+
+<!-- ═══════════════════ 02 — 8 MODULES ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">02</span>The 8 Modules<span class="rule"></span></div>
+
+  <p class="prose">
+    The tracker is built as 8 modules, each with a clear responsibility. The Rule Engine runs first (cheapest path), then AI parsing if needed, then logging, then monitoring. Monthly analysis and bank reconciliation run on their own schedules.
+  </p>
+
+  <div class="card none" style="border-left: 4px solid var(--clue); padding: 20px 24px;">
+    <div class="vpipe">
+      <div class="vpipe-step">
+        <div class="vpipe-num">01</div>
+        <div class="vpipe-body"><div class="vpipe-title">Rule Engine</div><div class="vpipe-desc">Auto-categorize known merchants via pattern matching. If "Walmart" → Groceries. If "Netflix" → Subscriptions_Other. No AI needed, $0 per parse. Rules stored in <code>rules.json</code>.</div></div>
+      </div>
+      <div class="vpipe-step">
+        <div class="vpipe-num">02</div>
+        <div class="vpipe-body"><div class="vpipe-title">Expense Parser</div><div class="vpipe-desc">AI-powered receipt parsing for unknown merchants. Handles both photos (vision model) and text input. Extracts merchant name, amount, date, category, and individual line items.</div></div>
+      </div>
+      <div class="vpipe-step">
+        <div class="vpipe-num">03</div>
+        <div class="vpipe-body"><div class="vpipe-title">Transaction Logger</div><div class="vpipe-desc">Writes confirmed transactions to Google Sheets via gspread API. Uses batch writes to avoid Google's 429 rate limit errors.</div></div>
+      </div>
+      <div class="vpipe-step">
+        <div class="vpipe-num">04</div>
+        <div class="vpipe-body"><div class="vpipe-title">Budget Monitor</div><div class="vpipe-desc">Checks spending against category budgets. Alerts via Telegram when spending approaches configurable thresholds (default: 80%).</div></div>
+      </div>
+      <div class="vpipe-step">
+        <div class="vpipe-num">05</div>
+        <div class="vpipe-body"><div class="vpipe-title">Payment Reminder</div><div class="vpipe-desc">Checks payment calendar for bills due within 3 days. Sends Telegram alerts with amount, creditor, and account.</div></div>
+      </div>
+      <div class="vpipe-step">
+        <div class="vpipe-num">06</div>
+        <div class="vpipe-body"><div class="vpipe-title">Daily Cashflow</div><div class="vpipe-desc">Calculates "safe to spend today" = (remaining budget - upcoming bills) / days until payday. Runs weekday mornings at 7:30 AM.</div></div>
+      </div>
+      <div class="vpipe-step">
+        <div class="vpipe-num">07</div>
+        <div class="vpipe-body"><div class="vpipe-title">Monthly Analyst</div><div class="vpipe-desc">AI-generated month-end report: spending trends, budget vs actual, category breakdown, and recommendations. The only module besides the parser that uses AI.</div></div>
+      </div>
+      <div class="vpipe-step">
+        <div class="vpipe-num">08</div>
+        <div class="vpipe-body"><div class="vpipe-title">Reconciliation (v2)</div><div class="vpipe-desc">Matches logged receipts against bank CSV exports. Multi-month support, false positive elimination, signed amounts in a dedicated Cashflow_Ledger tab. Supports Wells Fargo checking CSV format.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="prose">
+    A <strong>9th module</strong> has been designed but not implemented: <strong>Batch Receipt Processor</strong>. It processes 17+ receipt links at once (Walmart, Target, etc.), replacing generic CSV-imported transactions with detailed line-item breakdowns. Includes deduplication and batch Airbnb confirmation for cleaning/supply items.
+  </p>
+</div>
+
+<!-- ═══════════════════ 03 — AIRBNB TAX ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">03</span>Airbnb Tax Deduction Tracking<span class="rule"></span></div>
+
+  <p class="prose">
+    This is the feature that differentiates this tracker from every other expense app. For rental property owners, certain expenses — cleaning supplies, linens, repairs, a portion of utilities — are tax-deductible on Schedule E. Most expense trackers don't handle this. Robotin Finance does.
+  </p>
+
+  <p class="prose">
+    When the parser detects items that <em>could</em> be Airbnb-related (cleaning supplies at Home Depot, property insurance, utility bills), it asks: <strong>"Personal or Airbnb?"</strong> The answer is tagged in Google Sheets with two fields: <code>tax_deductible</code> (true/false/null) and <code>tax_category</code> (airbnb_supply, airbnb_repair, airbnb_utility, airbnb_insurance, or personal). For utility bills, it asks the split percentage — how much is for the rental vs personal use.
+  </p>
+
+  <p class="prose">
+    At tax time, the command <strong>"Tax summary"</strong> generates a total deductible amount by category. <strong>"Tax export"</strong> produces a CSV formatted for Schedule E that can be sent directly to an accountant.
+  </p>
+
+  <div class="tech-note">
+    <span class="label">STATUS:</span> Designed and spec'd in the upgrade document. Not yet implemented. This is the core feature for the SaaS commercialization path.
+  </div>
+</div>
+
+<!-- ═══════════════════ 04 — CATEGORIES & CRONS ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">04</span>18 Categories & 4 Automated Jobs<span class="rule"></span></div>
+
+  <p class="prose">
+    The tracker uses 18 fixed spending categories, each with a monthly budget and an alert threshold. Categories range from everyday spending (Groceries at $250/mo, Restaurants at $100/mo) to specialized tracking (Subscriptions_AI at $500/mo for OpenAI, Claude, and Gemini subscriptions, or Debt_Interest for credit card interest charges). New categories can be added safely with <code>add_category.sh</code>, which updates the budget config, the parser's category list, and Google Sheets in one atomic operation.
+  </p>
+
+  <div class="card none" style="padding:0;overflow:hidden">
+    <table class="dt">
+      <tr><th>Schedule</th><th>Job</th><th>What it does</th></tr>
+      <tr><td>7:30 AM Mon-Fri</td><td>Daily Cashflow</td><td>Calculates "safe to spend today" and sends via Telegram</td></tr>
+      <tr><td>9:00 AM daily</td><td>Payment Check</td><td>Alerts if any bill is due within 3 days</td></tr>
+      <tr><td>8:00 AM Sundays</td><td>Weekly Summary</td><td>Spending breakdown for the week by category</td></tr>
+      <tr><td>8:00 AM 1st of month</td><td>Monthly Report</td><td>Full month AI-generated analysis with trends and recommendations</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════ 05 — DATA STORAGE ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">05</span>Google Sheets as Database<span class="rule"></span></div>
+
+  <p class="prose">
+    All data lives in a Google Sheets workbook called <strong>"Robotin Finance 2026"</strong> with 8 tabs. Sheets was chosen over a database for three reasons: it's immediately visible (you can open it on your phone and see your spending), it supports manual corrections without tools, and it's free. The trade-off is speed — Google's API has rate limits that required implementing batch writes.
+  </p>
+
+  <div class="card none" style="padding:0;overflow:hidden">
+    <table class="dt">
+      <tr><th>Tab</th><th>Purpose</th></tr>
+      <tr><td><strong>Transactions</strong></td><td>Every expense: date, amount, merchant, category, card, confidence, tax_deductible flag</td></tr>
+      <tr><td><strong>Budget</strong></td><td>Monthly budgets per category + available balance + next payday</td></tr>
+      <tr><td><strong>Payment Calendar</strong></td><td>Bills and loans: creditor, due day, amount, autopay status, APR, promo expiry</td></tr>
+      <tr><td><strong>Monthly Summary</strong></td><td>AI-generated monthly reports: totals, by category, vs budget, insights</td></tr>
+      <tr><td><strong>Debt Tracker</strong></td><td>Debt balances, APR, minimum payments, promotional rates and expiry dates</td></tr>
+      <tr><td><strong>Rules</strong></td><td>Merchant pattern → category mapping for the Rule Engine</td></tr>
+      <tr><td><strong>Reconciliation_Log</strong></td><td>Bank CSV matching results: matched, unmatched, duplicate flags</td></tr>
+      <tr><td><strong>Cashflow_Ledger</strong></td><td>Signed transaction amounts with running balance for daily cashflow</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════ 06 — COMMERCIALIZATION ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">06</span>Commercialization Path<span class="rule"></span></div>
+
+  <p class="prose">
+    The tracker was built for personal use, but the Airbnb tax deduction feature has commercial potential. Most expense trackers (Mint, YNAB, Monarch) don't auto-categorize rental property deductions. For Airbnb hosts who do their own taxes, this is a real pain point.
+  </p>
+
+  <div class="card none" style="padding:0;overflow:hidden">
+    <table class="dt">
+      <tr><th>Phase</th><th>Timeline</th><th>What</th><th>Target</th></tr>
+      <tr><td>1</td><td>Now → Q2 2026</td><td>Personal use for 3 months — build case studies and refine UX</td><td>Personal</td></tr>
+      <tr><td>2</td><td>Q3 2026</td><td>OpenClaw skill marketplace ($49-99 one-time)</td><td>OpenClaw users</td></tr>
+      <tr><td>3</td><td>Q4 2026</td><td>Standalone SaaS via Telegram ($19/mo)</td><td>Airbnb hosts</td></tr>
+      <tr><td>4</td><td>2027</td><td>Scale or white-label to accounting firms</td><td>Small businesses</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════ 07 — CONNECTIONS ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">07</span>Connections to Other Workflows<span class="rule"></span></div>
+
+  <p class="prose">
+    The Finance Tracker is a <strong>skill inside the CEO agent</strong> (Robotin) — not a separate bot or service. It's auto-discovered by OpenClaw and runs through the same Telegram bot (@Robotin1620_Bot). It's currently not connected to the PostgreSQL marketing database, Stripe, or the Pipeline's cost tracking. A future integration could pull LiteLLM SpendLogs into the tracker for a unified view of all expenses (subscriptions + API costs + personal spending).
+  </p>
+</div>
+
+<!-- ═══════════════════ 08 — STATE ═══════════════════ -->
+<div class="section">
+  <div class="section-head"><span class="num">08</span>Current State & What's Next<span class="rule"></span></div>
+
+  <div class="grid g2">
+    <div class="card green">
+      <div class="card-title" style="color:var(--solved)">Working ✅</div>
+      <div class="card-body">
+        10 library modules present. 4 config files (budgets, rules, payments, savings). Google Sheets OAuth valid. 4 cron jobs active. Reconciliation v2 deployed with false positive elimination. 18 categories. Batch writes to avoid rate limits. Cashflow_Ledger tab live.
+      </div>
+    </div>
+    <div class="card" style="border-color: var(--vivid);">
+      <div class="card-title" style="color:var(--vivid)">Issues ⚠️</div>
+      <div class="card-body">
+        Smoke test fails with traceback on parse-text command. Not referenced in CEO AGENTS.md (auto-discovered but not explicitly routed). Google client config file has naming mismatch (<code>google-client.json</code> vs expected <code>google_client_secret.json</code>).
+      </div>
+    </div>
+  </div>
+
+  <div class="card none" style="padding:0;overflow:hidden; margin-top: 14px;">
+    <table class="dt">
+      <tr><th>Priority</th><th>Item</th><th>Blocker</th></tr>
+      <tr><td style="color:var(--vivid)">🔴</td><td>Debug smoke test traceback (parse-text)</td><td>None</td></tr>
+      <tr><td style="color:var(--vivid)">🔴</td><td>Verify cron jobs actually execute and send Telegram messages</td><td>Wait for next trigger</td></tr>
+      <tr><td style="color:var(--clue)">🟡</td><td>Implement multi-category receipt splitting</td><td>Designed, doc ready</td></tr>
+      <tr><td style="color:var(--clue)">🟡</td><td>Implement Airbnb tax deduction tracking</td><td>After split works</td></tr>
+      <tr><td style="color:var(--clue)">🟡</td><td>CSV backfill of 2025-2026 historical data</td><td>Bank CSV exports</td></tr>
+      <tr><td style="color:var(--clue)">🟡</td><td>Add Finance Tracker reference to CEO AGENTS.md</td><td>None</td></tr>
+      <tr><td style="color:var(--solved)">🟢</td><td>Build unified cost dashboard (finance + LiteLLM spend)</td><td>Design needed</td></tr>
+      <tr><td style="color:var(--solved)">🟢</td><td>Build batch receipt processor (spec ready)</td><td>Time</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="footer">
+  OPENCLAW · FINANCE TRACKER (ROBOTIN FINANCE) · SOURCE: workflow_bible_finance.md<br>
+  <span class="hl">8 modules · 18 categories · 4 cron jobs · verified 2026-03-29</span>
+</div>
+
+</div>
+</body>
+</html>
