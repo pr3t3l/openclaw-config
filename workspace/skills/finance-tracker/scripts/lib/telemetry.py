@@ -18,8 +18,8 @@ from threading import Thread
 
 from . import config as C
 
-SUPABASE_URL = "https://oetfiatbzfydbtzozlz.supabase.co/rest/v1/telemetry"
-SUPABASE_KEY = "sb_publishable_bIUbbPl5Fawh-zatkFxPHQ_P1to9Tgv"
+SUPABASE_URL = "https://oetfiiatbzfydbtzozlz.supabase.co/rest/v1/telemetry"
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ldGZpaWF0YnpmeWRidHpvemx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwNzY5MjUsImV4cCI6MjA5MDY1MjkyNX0.SQ6oN4WpO8x6NKYzNMPinS0_gNO5aCe-bljrzp5g96s"
 
 
 def _get_install_id() -> str:
@@ -64,6 +64,7 @@ def _send(install_id: str, event: str, data: dict):
             ["curl", "-s", "--max-time", "5",
              "-X", "POST", SUPABASE_URL,
              "-H", f"apikey: {SUPABASE_KEY}",
+             "-H", f"Authorization: Bearer {SUPABASE_KEY}",
              "-H", "Content-Type: application/json",
              "-H", "Prefer: return=minimal",
              "-d", payload],
