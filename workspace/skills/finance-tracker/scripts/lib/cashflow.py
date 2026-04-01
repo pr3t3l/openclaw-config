@@ -193,8 +193,10 @@ def _days_to_payday(balance_info: dict) -> int:
             return (pay_day - today).days
 
     # Next month's first pay date
-    from dateutil.relativedelta import relativedelta
-    next_month = today + relativedelta(months=1)
+    import calendar
+    from datetime import timedelta
+    days_in_month = calendar.monthrange(today.year, today.month)[1]
+    next_month = today + timedelta(days=days_in_month - today.day + 1)
     next_pay = next_month.replace(day=min(pay_dates[0], 28))
     return (next_pay - today).days
 

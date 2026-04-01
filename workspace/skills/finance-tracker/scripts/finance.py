@@ -499,9 +499,9 @@ def cmd_add_goal(name: str, target: str, deadline: str = None):
     """Add a savings goal."""
     from datetime import date
     if not deadline:
-        # Default: 6 months from now
-        from dateutil.relativedelta import relativedelta
-        deadline = (date.today() + relativedelta(months=6)).isoformat()
+        # Default: ~6 months from now
+        from datetime import timedelta
+        deadline = (date.today() + timedelta(days=180)).isoformat()
     config = C._load_tracker_config()
     config.setdefault("savings", []).append({
         "goal": name,

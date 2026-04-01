@@ -7,12 +7,61 @@ from pathlib import Path
 SKILL_DIR = Path(__file__).resolve().parent.parent.parent  # finance-tracker/
 CONFIG_DIR = SKILL_DIR / "config"
 SCRIPTS_DIR = SKILL_DIR / "scripts"
-# AI model config
-LITELLM_URL = "http://127.0.0.1:4000/v1/chat/completions"
-LITELLM_KEY = "sk-litellm-local"
-PARSE_MODEL = "chatgpt-gpt54"
-CLASSIFY_MODEL = "chatgpt-gpt54"
-ANALYSIS_MODEL = "chatgpt-gpt54-thinking"
+# AI model config — auto-detected from openclaw.json if available
+def _detect_litellm_config() -> dict:
+    """Try to read LiteLLM config from OpenClaw's openclaw.json."""
+    oc_path = Path.home() / ".openclaw" / "openclaw.json"
+    if not oc_path.exists():
+        return {}
+    try:
+        oc = json.loads(oc_path.read_text())
+        litellm = oc.get("models", {}).get("providers", {}).get("litellm", {})
+        if not (litellm.get("baseUrl") and litellm.get("apiKey")):
+            return {}
+        result = {
+            "url": litellm["baseUrl"].rstrip("/") + "/v1/chat/completions",
+            "key": litellm["apiKey"],
+        }
+        # Try to pick the cheapest/fastest model for parsing
+        models = [m.get("id", "") for m in litellm.get("models", [])]
+        if models:
+            # Prefer: gpt5-mini > gpt-4o-mini > first non-reasoning model
+            for candidate in ["gpt5-mini", "gpt-4o-mini", "gpt41-mini"]:
+                if candidate in models:
+                    result["parse_model"] = candidate
+                    result["classify_model"] = candidate
+                    break
+            if "parse_model" not in result:
+                # Pick first non-reasoning model
+                non_reasoning = [m for m in litellm.get("models", []) if not m.get("reasoning")]
+                if non_reasoning:
+                    result["parse_model"] = non_reasoning[0]["id"]
+                    result["classify_model"] = non_reasoning[0]["id"]
+                else:
+                    result["parse_model"] = models[0]
+                    result["classify_model"] = models[0]
+            # For analysis, prefer a reasoning model
+            for candidate in ["gpt52-medium", "gpt52-thinking", "gpt-4o"]:
+                if candidate in models:
+                    result["analysis_model"] = candidate
+                    break
+            if "analysis_model" not in result:
+                reasoning = [m for m in litellm.get("models", []) if m.get("reasoning")]
+                if reasoning:
+                    result["analysis_model"] = reasoning[0]["id"]
+                else:
+                    result["analysis_model"] = result.get("parse_model", models[0])
+        return result
+    except Exception:
+        pass
+    return {}
+
+_LITELLM_AUTO = _detect_litellm_config()
+LITELLM_URL = _LITELLM_AUTO.get("url", "http://127.0.0.1:4000/v1/chat/completions")
+LITELLM_KEY = _LITELLM_AUTO.get("key", "YOUR_API_KEY")
+PARSE_MODEL = _LITELLM_AUTO.get("parse_model", "gpt-4o-mini")
+CLASSIFY_MODEL = _LITELLM_AUTO.get("classify_model", "gpt-4o-mini")
+ANALYSIS_MODEL = _LITELLM_AUTO.get("analysis_model", "gpt-4o")
 
 # ═══════════════════════════════════════════
 # SINGLE CONFIG FILE: tracker_config.json

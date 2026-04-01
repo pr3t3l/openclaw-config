@@ -1,9 +1,9 @@
 """Module 5: Monthly Analyst — month-end AI report."""
 
+import calendar
 import json
 import subprocess
-from datetime import datetime, date
-from dateutil.relativedelta import relativedelta
+from datetime import datetime, date, timedelta
 
 from . import config as C
 from . import sheets
@@ -12,7 +12,9 @@ from . import sheets
 def monthly_report(month: str = None) -> str:
     """Generate the full monthly report."""
     if not month:
-        last_month = date.today() - relativedelta(months=1)
+        today = date.today()
+        first_of_month = today.replace(day=1)
+        last_month = first_of_month - timedelta(days=1)
         month = f"{last_month.year}-{last_month.month:02d}"
 
     transactions = sheets.get_transactions_for_month(month)

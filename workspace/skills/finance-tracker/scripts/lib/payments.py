@@ -1,7 +1,7 @@
 """Module 4: Payment Reminder — alerts before due dates + promo APR warnings."""
 
-from datetime import datetime, date
-from dateutil.relativedelta import relativedelta
+import calendar
+from datetime import datetime, date, timedelta
 
 from . import config as C
 
@@ -94,6 +94,7 @@ def _days_until_due(due_day: int, today: date) -> int:
     if this_month_due >= today:
         return (this_month_due - today).days
     # Next month
-    next_month = today + relativedelta(months=1)
+    days_in_month = calendar.monthrange(today.year, today.month)[1]
+    next_month = today + timedelta(days=days_in_month - today.day + 1)
     next_due = next_month.replace(day=min(due_day, 28))
     return (next_due - today).days
