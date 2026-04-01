@@ -17,7 +17,7 @@ def _ai_classify_merchants(merchants: list[str]) -> dict[str, str]:
     if not merchants:
         return {}
 
-    categories_str = ", ".join(C.CATEGORIES)
+    categories_str = ", ".join(C.get_categories())
     merchant_list = "\n".join(f"- {m}" for m in merchants)
 
     payload = {
@@ -52,7 +52,7 @@ def _ai_classify_merchants(merchants: list[str]) -> dict[str, str]:
         # Validate categories
         valid = {}
         for m, cat in classifications.items():
-            if cat in C.CATEGORIES:
+            if cat in C.get_categories():
                 valid[m] = cat
             else:
                 valid[m] = "Other"
@@ -237,16 +237,29 @@ def reconcile_csv(csv_content: str, bank: str = "auto") -> dict:
         pass  # Would need row-level update in sheets
 
     month_str = ", ".join(months) if months else "unknown"
-    ai_note = f"\n{ai_rules_created} merchants clasificados por AI → reglas creadas" if ai_rules_created else ""
-    summary = (
-        f"RECONCILIACIÓN COMPLETA — {bank} ({month_str})\n"
-        f"{len(csv_rows)} transacciones en CSV\n"
-        f"{len(matched)} matched con recibos\n"
-        f"{auto_logged} nuevas (sin recibo) → auto-logged\n"
-        f"{len(probable)} probable match → necesita tu confirmación\n"
-        f"{len(unmatched_receipt)} recibos sin match → revisar"
-        f"{ai_note}"
-    )
+    lang = C.get_language()
+    if lang == "es":
+        ai_note = f"\n{ai_rules_created} merchants clasificados por AI → reglas creadas" if ai_rules_created else ""
+        summary = (
+            f"RECONCILIACIÓN COMPLETA — {bank} ({month_str})\n"
+            f"{len(csv_rows)} transacciones en CSV\n"
+            f"{len(matched)} matched con recibos\n"
+            f"{auto_logged} nuevas (sin recibo) → auto-logged\n"
+            f"{len(probable)} probable match → necesita tu confirmación\n"
+            f"{len(unmatched_receipt)} recibos sin match → revisar"
+            f"{ai_note}"
+        )
+    else:
+        ai_note = f"\n{ai_rules_created} merchants classified by AI → rules created" if ai_rules_created else ""
+        summary = (
+            f"RECONCILIATION COMPLETE — {bank} ({month_str})\n"
+            f"{len(csv_rows)} transactions in CSV\n"
+            f"{len(matched)} matched with receipts\n"
+            f"{auto_logged} new (no receipt) → auto-logged\n"
+            f"{len(probable)} probable match → needs confirmation\n"
+            f"{len(unmatched_receipt)} receipts without match → review"
+            f"{ai_note}"
+        )
 
     return {
         "summary": summary,

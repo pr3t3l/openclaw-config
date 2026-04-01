@@ -21,13 +21,13 @@ def log_income(tx: dict) -> dict:
 
     sheets.append_transaction(tx)
 
-    # Auto-update available balance
-    budgets = C.load_budgets()
-    old_balance = budgets.get("available_balance", 0)
+    # Auto-update available balance in tracker_config.json
+    config = C._load_tracker_config()
+    old_balance = config["balance"].get("available", 0)
     new_balance = old_balance + tx["amount"]
-    budgets["available_balance"] = new_balance
-    budgets["last_balance_update"] = now.isoformat()
-    C.save_json(C.CONFIG_DIR / "budgets.json", budgets)
+    config["balance"]["available"] = new_balance
+    config["balance"]["last_updated"] = now.isoformat()
+    C.save_tracker_config(config)
 
     # Get month income total
     month_income = sheets.get_month_income(tx["month"])
@@ -65,9 +65,8 @@ def log_transaction(tx: dict) -> dict:
     month = tx["month"]
     month_total = sheets.get_month_spending(category, month)
 
-    # Get budget info
-    budgets = C.load_budgets()
-    cat_budget = budgets["categories"].get(category, {})
+    # Get budget info from tracker_config.json
+    cat_budget = C.get_category_budgets().get(category, {})
     monthly_limit = cat_budget.get("monthly")
     threshold = cat_budget.get("threshold")
 
@@ -85,15 +84,25 @@ def log_transaction(tx: dict) -> dict:
         result["pct"] = round(pct * 100, 1)
         result["remaining"] = round(remaining, 2)
 
+        lang = C.get_language()
         if pct >= 1.0:
             result["alert"] = "over_budget"
-            result["alert_msg"] = f"EXCEDIDO: {category} ${month_total:.0f}/${monthly_limit}. Estás ${abs(remaining):.0f} por encima."
+            if lang == "es":
+                result["alert_msg"] = f"EXCEDIDO: {category} ${month_total:.0f}/${monthly_limit}. Estás ${abs(remaining):.0f} por encima."
+            else:
+                result["alert_msg"] = f"OVER BUDGET: {category} ${month_total:.0f}/${monthly_limit}. ${abs(remaining):.0f} over."
         elif pct >= 0.95:
             result["alert"] = "critical"
-            result["alert_msg"] = f"ALERTA: {category} ${month_total:.0f}/${monthly_limit} ({result['pct']}%). Solo ${remaining:.0f} restantes."
+            if lang == "es":
+                result["alert_msg"] = f"ALERTA: {category} ${month_total:.0f}/${monthly_limit} ({result['pct']}%). Solo ${remaining:.0f} restantes."
+            else:
+                result["alert_msg"] = f"ALERT: {category} ${month_total:.0f}/${monthly_limit} ({result['pct']}%). Only ${remaining:.0f} remaining."
         elif pct >= threshold:
             result["alert"] = "warning"
-            result["alert_msg"] = f"Cuidado: {category} ${month_total:.0f}/${monthly_limit} ({result['pct']}%). Te quedan ${remaining:.0f}."
+            if lang == "es":
+                result["alert_msg"] = f"Cuidado: {category} ${month_total:.0f}/${monthly_limit} ({result['pct']}%). Te quedan ${remaining:.0f}."
+            else:
+                result["alert_msg"] = f"Caution: {category} ${month_total:.0f}/${monthly_limit} ({result['pct']}%). ${remaining:.0f} left."
         else:
             result["alert"] = None
 
@@ -118,39 +127,58 @@ def log_split_receipt(receipt: dict) -> list[dict]:
 
 
 def format_income_confirmation(tx: dict, result: dict) -> str:
-    """Format the Telegram confirmation message for an income."""
-    msg = (
-        f"💰 Ingreso registrado: ${tx['amount']:,.2f}"
+    """Format the confirmation message for an income."""
+    lang = C.get_language()
+    if lang == "es":
+        return (
+            f"💰 Ingreso registrado: ${tx['amount']:,.2f}"
+            f" ({result.get('source', 'other')})\n"
+            f"Saldo anterior: ${result['old_balance']:,.2f}\n"
+            f"Saldo nuevo: ${result['new_balance']:,.2f}\n"
+            f"Ingresos este mes: ${result.get('month_income', 0):,.2f}"
+        )
+    return (
+        f"💰 Income logged: ${tx['amount']:,.2f}"
         f" ({result.get('source', 'other')})\n"
-        f"Saldo anterior: ${result['old_balance']:,.2f}\n"
-        f"Saldo nuevo: ${result['new_balance']:,.2f}\n"
-        f"Ingresos este mes: ${result.get('month_income', 0):,.2f}"
+        f"Previous balance: ${result['old_balance']:,.2f}\n"
+        f"New balance: ${result['new_balance']:,.2f}\n"
+        f"Income this month: ${result.get('month_income', 0):,.2f}"
     )
-    return msg
 
 
 def format_confirmation(tx: dict, budget_info: dict) -> str:
-    """Format the Telegram confirmation message for a single transaction."""
-    msg = f"Registrado: ${tx['amount']:.2f} en {tx['merchant']} ({tx['category']})"
-    if tx.get("card"):
-        msg += f" con {tx['card']}"
-    msg += "."
+    """Format the confirmation message for a single transaction."""
+    lang = C.get_language()
+    if lang == "es":
+        msg = f"Registrado: ${tx['amount']:.2f} en {tx['merchant']} ({tx['category']})"
+        if tx.get("card"):
+            msg += f" con {tx['card']}"
+        msg += "."
+    else:
+        msg = f"Logged: ${tx['amount']:.2f} at {tx['merchant']} ({tx['category']})"
+        if tx.get("card"):
+            msg += f" with {tx['card']}"
+        msg += "."
 
     if tx.get("tax_deductible"):
-        msg += f" [Deducible: {tx.get('tax_category', 'airbnb_supplies')}]"
+        msg += f" [Deductible: {tx.get('tax_category', 'business_expense')}]"
 
     if budget_info.get("monthly_limit"):
-        msg += f"\n{tx['category']} este mes: ${budget_info['month_total']:.0f}/${budget_info['monthly_limit']} ({budget_info.get('pct', 0)}%)."
+        msg += f"\n{tx['category']}: ${budget_info['month_total']:.0f}/${budget_info['monthly_limit']} ({budget_info.get('pct', 0)}%)."
 
     if budget_info.get("alert_msg"):
         msg += f"\n{budget_info['alert_msg']}"
 
-    msg += "\n¿Correcto?"
+    if lang == "es":
+        msg += "\n¿Correcto?"
+    else:
+        msg += "\nCorrect?"
     return msg
 
 
 def format_split_confirmation(receipt: dict) -> str:
-    """Format the Telegram message for a split receipt with tax questions."""
+    """Format the message for a split receipt with tax questions."""
+    lang = C.get_language()
     total = sum(tx["amount"] for tx in receipt.get("transactions", []))
     merchant = receipt["transactions"][0]["merchant"] if receipt["transactions"] else "Unknown"
     n_groups = len(receipt["transactions"])
@@ -158,22 +186,33 @@ def format_split_confirmation(receipt: dict) -> str:
     auto_items = [tx for tx in receipt["transactions"] if not tx.get("needs_confirmation")]
     pending_items = [tx for tx in receipt["transactions"] if tx.get("needs_confirmation")]
 
-    lines = [f"{merchant} ${total:.2f} — {n_groups} grupos detectados", ""]
+    if lang == "es":
+        lines = [f"{merchant} ${total:.2f} — {n_groups} grupos detectados", ""]
+    else:
+        lines = [f"{merchant} ${total:.2f} — {n_groups} groups detected", ""]
 
     if auto_items:
-        lines.append("Auto-registrado:")
+        lines.append("Auto-logged:" if lang == "en" else "Auto-registrado:")
         for tx in auto_items:
             item_desc = ", ".join(i["name"] for i in tx.get("items", [])[:3])
             lines.append(f"  ✔ ${tx['amount']:.2f} → {tx['category']} ({item_desc})")
 
     if pending_items:
         lines.append("")
-        lines.append("¿Personal o Airbnb?")
+        tax_profile = C.get_tax_profile()
+        biz_type = tax_profile.get("business_type", "business") if tax_profile.get("enabled") else "business"
+        if lang == "es":
+            lines.append(f"¿Personal o {biz_type}?")
+        else:
+            lines.append(f"Personal or {biz_type}?")
         for i, tx in enumerate(pending_items, 1):
             item_desc = ", ".join(i_item["name"] for i_item in tx.get("items", [])[:3])
             reason = tx.get("confirmation_reason", "")
             lines.append(f"  {i}. ${tx['amount']:.2f} — {item_desc} ({reason})")
         lines.append("")
-        lines.append('Responde: "todos airbnb", "1,3 airbnb 2 personal", o por número')
+        if lang == "es":
+            lines.append(f'Responde: "todos {biz_type}", "1,3 {biz_type} 2 personal", o por número')
+        else:
+            lines.append(f'Reply: "all {biz_type}", "1,3 {biz_type} 2 personal", or by number')
 
     return "\n".join(lines)

@@ -1,1 +1,1 @@
-# Robotin Finance Tracker — Library package
+# Finance Tracker — Library package

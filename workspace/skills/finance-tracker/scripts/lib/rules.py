@@ -61,8 +61,9 @@ def add_rule(merchant_pattern: str, category: str, confidence: float = 0.85,
              subcategory: str = "", default_account: str = "Chase",
              amount_condition: str = "any", created_by: str = "manual"):
     """Add a new rule to the rules config."""
-    if category not in C.CATEGORIES:
-        raise ValueError(f"Invalid category: {category}. Must be one of {C.CATEGORIES}")
+    valid_categories = C.get_categories()
+    if category not in valid_categories:
+        raise ValueError(f"Invalid category: {category}. Must be one of {valid_categories}")
 
     rules = C.load_rules()
     # Check for existing rule with same pattern + amount_condition

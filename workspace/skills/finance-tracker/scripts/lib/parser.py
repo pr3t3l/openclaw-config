@@ -8,19 +8,50 @@ from datetime import datetime
 from . import config as C
 from .rules import match_rules, normalize_merchant
 
-SYSTEM_PROMPT = """You are Alfredo's personal expense tracking assistant. Extract expense data from receipt images or text descriptions.
+
+def _build_system_prompt() -> str:
+    """Build system prompt from config files — no hardcoded values."""
+    name = C.get_owner_name()
+    categories = C.get_categories()
+    cards = C.get_cards()
+    tax_profile = C.get_tax_profile()
+
+    categories_str = ", ".join(categories)
+    cards_str = "|".join(cards)
+
+    # Build tax section
+    if tax_profile.get("enabled") and tax_profile.get("ask_rules"):
+        biz_type = tax_profile.get("business_type", "Business")
+        tax_lines = [f"TAX DEDUCTION FLAGGING ({biz_type}):"]
+        tax_lines.append("For each item, set needs_confirmation = true if the items match these business expense patterns:")
+        for rule in tax_profile["ask_rules"]:
+            kw = ", ".join(rule["keywords"][:10])
+            tax_lines.append(f'- {rule["trigger"]} ({kw}) → tax_category: "{rule["tax_category"]}"')
+        tax_lines.append("")
+        tax_lines.append("Set needs_confirmation = false and tax_deductible = false for:")
+        for item in tax_profile.get("never_ask", []):
+            tax_lines.append(f"- {item} (NEVER ask)")
+        tax_lines.append("")
+        tax_lines.append('When needs_confirmation = true, set tax_category = "pending"')
+        tax_lines.append('When needs_confirmation = false, set tax_category = "none"')
+        tax_section = "\n".join(tax_lines)
+    else:
+        tax_section = """TAX DEDUCTION FLAGGING:
+Tax tracking is disabled. Set tax_deductible = false and tax_category = "none" for all items."""
+
+    return f"""You are {name}'s personal expense tracking assistant. Extract expense data from receipt images or text descriptions.
 
 RULES:
 - Output ONLY valid JSON, nothing else
-- category MUST be one of: Groceries, Restaurants, Gas, Shopping, Entertainment, Subscriptions_AI, Subscriptions_Other, Childcare, Home, Personal, Travel, Work_Tools, Health, Pets, Debt_Interest, Bank_Fees, Refunds, Other
+- category MUST be one of: {categories_str}
 - amounts must be positive numbers
 - dates in ISO format YYYY-MM-DD
 - If image is unclear, set confidence < 0.5 and add a note
 - If user doesn't specify card, guess based on merchant and set confidence to 0.7
 - If user says "para trabajo" or "work", categorize as Work_Tools
-- If user says "para airbnb" or "airbnb", set tax_deductible to true
 - For CSV: parse each row, output JSON array
 - For receipts: extract line items into "items" array when readable
+- cards: {cards_str}
 
 RECEIPT ITEM SPLITTING:
 When parsing a receipt photo with multiple items:
@@ -30,65 +61,45 @@ When parsing a receipt photo with multiple items:
 4. Extract receipt_number if visible on the receipt
 5. Extract store_address if visible on the receipt
 
-TAX DEDUCTION FLAGGING:
-For each item group, set needs_confirmation = true and confirmation_reason if the items are:
-- Cleaning products (Clorox, Lysol, bleach, mop, sponges, etc.) → confirmation_reason: "cleaning_supplies"
-- Linens (towels, sheets, pillowcases, blankets) → confirmation_reason: "linens"
-- Home repair items (tools, hardware, paint, light bulbs) → confirmation_reason: "repair_supplies"
-- Home maintenance (air filters, pest control) → confirmation_reason: "maintenance"
-- Bathroom/kitchen supplies in bulk → confirmation_reason: "bathroom_supplies" or "kitchen_supplies"
-
-Set needs_confirmation = false and tax_deductible = false for:
-- Food and groceries (NEVER ask)
-- Clothing and personal items (NEVER ask)
-- Medicine (NEVER ask)
-
-When needs_confirmation = true, set tax_category = "pending"
-When needs_confirmation = false, set tax_category = "none"
+{tax_section}
 
 Output schema for receipt photos with multiple categories:
-{
+{{
   "receipt_id": "<merchant-YYYYMMDD-totalcents>",
   "receipt_number": "<string or null>",
   "store_address": "<string or null>",
   "transactions": [
-    {
+    {{
       "amount": <number>,
       "merchant": "<string>",
       "date": "<YYYY-MM-DD>",
-      "category": "<one of 14 categories>",
-      "card": "<Chase|Discover|Citi|WellsFargo|Cash>",
+      "category": "<one of: {categories_str}>",
+      "card": "<{cards_str}>",
       "confidence": <0.0-1.0>,
-      "items": [{"name": "<string>", "amount": <number>}],
+      "items": [{{"name": "<string>", "amount": <number>}}],
       "tax_deductible": <true|false|null>,
       "tax_category": "<none|pending>",
       "needs_confirmation": <boolean>,
       "confirmation_reason": "<string or null>"
-    }
+    }}
   ]
-}
+}}
 
 Output schema for single-category (text input):
-{
+{{
   "amount": <number>,
   "merchant": "<string>",
   "date": "<YYYY-MM-DD>",
-  "category": "<one of 14 categories>",
+  "category": "<one of: {categories_str}>",
   "subcategory": "<optional string>",
-  "card": "<Chase|Discover|Citi|WellsFargo|Cash>",
+  "card": "<{cards_str}>",
   "input_method": "<photo|text|csv>",
   "confidence": <0.0-1.0>,
   "notes": "<string>",
-  "items": [{"name": "<string>", "amount": <number>}],
+  "items": [{{"name": "<string>", "amount": <number>}}],
   "tax_deductible": <boolean>,
   "tax_category": "<string>"
-}"""
-
-TAX_CATEGORIES = [
-    "none", "airbnb_supplies", "airbnb_repair", "airbnb_cleaning",
-    "airbnb_utilities", "airbnb_insurance", "airbnb_mortgage_interest",
-    "business_expense", "pending",
-]
+}}"""
 
 
 INCOME_PATTERNS = [
@@ -143,6 +154,30 @@ def _detect_income_source(text: str) -> str:
     return "other"
 
 
+def _is_tax_deductible_keyword(text: str) -> bool:
+    """Check if text contains tax-deductible business keywords from config."""
+    tax_profile = C.get_tax_profile()
+    if not tax_profile.get("enabled"):
+        return False
+    text_lower = text.lower()
+    for rule in tax_profile.get("ask_rules", []):
+        for kw in rule.get("keywords", []):
+            if kw in text_lower:
+                return True
+    return False
+
+
+def _infer_tax_category(category: str) -> str:
+    """Infer the tax_category from the spending category using config."""
+    tax_profile = C.get_tax_profile()
+    if not tax_profile.get("enabled"):
+        return "none"
+    # Try to find a matching tax category from rules
+    for rule in tax_profile.get("ask_rules", []):
+        return rule.get("tax_category", "business_expense")
+    return "business_expense"
+
+
 def parse_text(text: str) -> dict:
     """Parse a free-text expense message. Tries rules first, then AI."""
     text_lower = text.lower()
@@ -151,7 +186,7 @@ def parse_text(text: str) -> dict:
     if is_income_text(text):
         return parse_income(text)
 
-    is_airbnb = "airbnb" in text_lower or "para airbnb" in text_lower
+    is_deductible = _is_tax_deductible_keyword(text)
     wants_split = "split" in text_lower
 
     # Auto-detect split: 3+ dollar amounts in the text means itemized receipt
@@ -182,11 +217,11 @@ def parse_text(text: str) -> dict:
                 "items": [],
                 "rule_matched": True,
                 "needs_confirmation": rule["confidence"] < 0.9,
-                "tax_deductible": True if is_airbnb else False,
-                "tax_category": _infer_tax_category(rule["category"]) if is_airbnb else "none",
+                "tax_deductible": True if is_deductible else False,
+                "tax_category": _infer_tax_category(rule["category"]) if is_deductible else "none",
             }
-            # ask_airbnb merchants always need confirmation (unless user said "airbnb")
-            if rule.get("ask_airbnb") and not is_airbnb:
+            # ask_airbnb merchants always need confirmation (unless user flagged deductible)
+            if rule.get("ask_airbnb") and not is_deductible:
                 tx["needs_confirmation"] = True
                 tx["tax_deductible"] = None
                 tx["tax_category"] = "pending"
@@ -195,20 +230,11 @@ def parse_text(text: str) -> dict:
 
     # Fall through to AI
     result = _ai_parse(text, input_method="text")
-    # If user said "airbnb", force tax fields
-    if is_airbnb and isinstance(result, dict):
+    # If user flagged deductible, force tax fields
+    if is_deductible and isinstance(result, dict):
         result["tax_deductible"] = True
         result["tax_category"] = _infer_tax_category(result.get("category", "Other"))
     return result
-
-
-def _infer_tax_category(category: str) -> str:
-    """Infer the tax_category from the spending category."""
-    mapping = {
-        "Home": "airbnb_supplies",
-        "Work_Tools": "business_expense",
-    }
-    return mapping.get(category, "airbnb_supplies")
 
 
 def parse_photo(image_path: str) -> dict:
@@ -245,7 +271,7 @@ def _extract_text_fields(text: str) -> tuple:
     card = None
 
     # Extract card if mentioned
-    for c in C.CARDS:
+    for c in C.get_cards():
         if c.lower() in text_lower:
             card = c
             break
@@ -264,7 +290,7 @@ def _extract_text_fields(text: str) -> tuple:
     # Remove amount patterns
     cleaned = re.sub(r"\$?[\d,]+\.?\d{0,2}", "", cleaned)
     # Remove card names
-    for c in C.CARDS:
+    for c in C.get_cards():
         cleaned = re.sub(re.escape(c), "", cleaned, flags=re.IGNORECASE)
     # Remove common filler words
     for word in ["gasté", "gaste", "en", "para", "trabajo", "work", "personal", "con"]:
@@ -278,7 +304,8 @@ def _extract_text_fields(text: str) -> tuple:
 
 def _ai_parse(content: str, input_method: str = "text", is_image: bool = False) -> dict | list:
     """Call LiteLLM AI for parsing."""
-    messages = [{"role": "system", "content": SYSTEM_PROMPT}]
+    system_prompt = _build_system_prompt()
+    messages = [{"role": "system", "content": system_prompt}]
 
     if is_image:
         import base64

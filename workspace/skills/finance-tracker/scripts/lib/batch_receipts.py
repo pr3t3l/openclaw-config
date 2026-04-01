@@ -237,7 +237,7 @@ def _ai_classify_items(items: list[dict]) -> dict[str, str]:
     item_list = "\n".join(f"- {it['name']}" for it in items)
     prompt = (
         f"Classify each Walmart item into exactly ONE category.\n"
-        f"Categories: {', '.join(C.CATEGORIES)}\n\n"
+        f"Categories: {', '.join(C.get_categories())}\n\n"
         f"Items:\n{item_list}\n\n"
         f"Reply ONLY with JSON: {{\"item_name\": \"Category\", ...}}"
     )

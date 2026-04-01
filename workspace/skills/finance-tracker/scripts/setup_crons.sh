@@ -5,7 +5,8 @@
 
 set -euo pipefail
 
-RUNNER="/home/robotin/.openclaw/workspace/skills/finance-tracker/scripts/cron_runner.sh"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+RUNNER="$SCRIPT_DIR/cron_runner.sh"
 TAG="# finance-tracker"
 
 # All times in EST (America/New_York)

@@ -8,22 +8,36 @@ from . import config as C
 
 def check_payments() -> list[str]:
     """Check all payments and return alerts for today."""
-    payments = C.load_payments()
+    payments = C.get_payments()
     today = date.today()
+    lang = C.get_language()
     alerts = []
 
     for p in payments:
         days_until = _days_until_due(p["due_day"], today)
         name = p["name"]
         amount = p["amount"]
-        autopay = "Autopay activo." if p.get("autopay") else "⚠ Sin autopay."
+
+        if lang == "es":
+            autopay = "Autopay activo." if p.get("autopay") else "⚠ Sin autopay."
+        else:
+            autopay = "Autopay on." if p.get("autopay") else "⚠ No autopay."
 
         if days_until == 0:
-            alerts.append(f"HOY VENCE: {name} ${amount}. {autopay}")
+            if lang == "es":
+                alerts.append(f"HOY VENCE: {name} ${amount}. {autopay}")
+            else:
+                alerts.append(f"DUE TODAY: {name} ${amount}. {autopay}")
         elif days_until == 1:
-            alerts.append(f"MAÑANA vence {name} (${amount}). Verifica fondos. {autopay}")
+            if lang == "es":
+                alerts.append(f"MAÑANA vence {name} (${amount}). Verifica fondos. {autopay}")
+            else:
+                alerts.append(f"DUE TOMORROW: {name} (${amount}). Check funds. {autopay}")
         elif days_until == 3:
-            alerts.append(f"Recordatorio: {name} (${amount}) vence el día {p['due_day']} (en 3 días). {autopay}")
+            if lang == "es":
+                alerts.append(f"Recordatorio: {name} (${amount}) vence el día {p['due_day']} (en 3 días). {autopay}")
+            else:
+                alerts.append(f"Reminder: {name} (${amount}) due on day {p['due_day']} (in 3 days). {autopay}")
 
         # Promo APR expiry warnings
         promo = p.get("promo_expiry")
@@ -31,23 +45,36 @@ def check_payments() -> list[str]:
             promo_date = date.fromisoformat(promo)
             days_to_promo = (promo_date - today).days
             if days_to_promo in [60, 30, 7]:
-                alerts.append(
-                    f"⚠ PROMO: {name} — tasa promocional de {p['apr']}% "
-                    f"expira en {days_to_promo} días ({promo}). "
-                    f"Prepara un plan de pago."
-                )
+                if lang == "es":
+                    alerts.append(
+                        f"⚠ PROMO: {name} — tasa promocional de {p['apr']}% "
+                        f"expira en {days_to_promo} días ({promo}). "
+                        f"Prepara un plan de pago."
+                    )
+                else:
+                    alerts.append(
+                        f"⚠ PROMO: {name} — promotional rate {p['apr']}% "
+                        f"expires in {days_to_promo} days ({promo}). "
+                        f"Prepare a payoff plan."
+                    )
             elif days_to_promo == 0:
-                alerts.append(
-                    f"🔴 HOY EXPIRA la tasa promo de {name} ({p['apr']}%). "
-                    f"La tasa normal entra en efecto."
-                )
+                if lang == "es":
+                    alerts.append(
+                        f"🔴 HOY EXPIRA la tasa promo de {name} ({p['apr']}%). "
+                        f"La tasa normal entra en efecto."
+                    )
+                else:
+                    alerts.append(
+                        f"🔴 PROMO EXPIRES TODAY for {name} ({p['apr']}%). "
+                        f"Standard rate takes effect."
+                    )
 
     return alerts
 
 
 def payment_summary_14d() -> tuple[float, list[str]]:
     """Sum of payments due in next 14 days + list of details."""
-    payments = C.load_payments()
+    payments = C.get_payments()
     today = date.today()
     total = 0
     details = []

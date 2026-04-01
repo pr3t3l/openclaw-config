@@ -13,16 +13,18 @@ JOB_NAME="${1:?Usage: cron_runner.sh <job_name> <subcommand> [args...]}"
 shift
 SUBCMD=("$@")
 
-# Paths
-PYTHON="/home/robotin/litellm-venv/bin/python"
-FINANCE="/home/robotin/.openclaw/workspace/skills/finance-tracker/scripts/finance.py"
-LOG_DIR="/home/robotin/.openclaw/workspace/skills/finance-tracker/logs"
+# Paths — derived from script location, no hardcoded usernames
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+SKILL_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+PYTHON="${PYTHON:-python3}"
+FINANCE="$SCRIPT_DIR/finance.py"
+LOG_DIR="$SKILL_DIR/logs"
 LOG_FILE="${LOG_DIR}/${JOB_NAME}.log"
 
 # Telegram config
-source /home/robotin/.openclaw/.env
+source "$HOME/.openclaw/.env"
 BOT_TOKEN="${TELEGRAM_BOT_TOKEN}"
-CHAT_ID="8024871665"
+CHAT_ID="${TELEGRAM_CHAT_ID}"
 TG_API="https://api.telegram.org/bot${BOT_TOKEN}/sendMessage"
 
 send_telegram() {
@@ -52,7 +54,7 @@ OUTPUT=$("$PYTHON" "$FINANCE" "${SUBCMD[@]}" 2>&1) && STATUS=0 || STATUS=$?
 
 if [ $STATUS -eq 0 ]; then
     # Success — send output if non-empty
-    if [ -n "$OUTPUT" ] && [ "$OUTPUT" != "No hay alertas de pago hoy." ]; then
+    if [ -n "$OUTPUT" ] && [ "$OUTPUT" != "No hay alertas de pago hoy." ] && [ "$OUTPUT" != "No payment alerts today." ]; then
         send_telegram "$OUTPUT"
         echo "[$TS] OK — sent to Telegram (${#OUTPUT} chars)" >> "$LOG_FILE"
     else

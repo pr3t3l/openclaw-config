@@ -50,7 +50,7 @@ def get_client(allow_interactive: bool = False) -> gspread.Client:
 def get_spreadsheet() -> gspread.Spreadsheet:
     global _SPREADSHEET
     if _SPREADSHEET is None:
-        _SPREADSHEET = get_client().open(C.SPREADSHEET_NAME)
+        _SPREADSHEET = get_client().open(C.get_spreadsheet_name())
     return _SPREADSHEET
 
 
@@ -167,17 +167,6 @@ def get_tax_deductions(year: str = None, month: str = None) -> list[dict]:
         results.append(r)
     return results
 
-
-def get_budget_cell(cell: str):
-    """Read a named cell from the Budget tab."""
-    ws = get_sheet(C.TAB_BUDGET)
-    return ws.acell(cell).value
-
-
-def update_budget_cell(cell: str, value):
-    """Update a named cell in the Budget tab."""
-    ws = get_sheet(C.TAB_BUDGET)
-    ws.update_acell(cell, value)
 
 
 def append_cashflow_rows(rows_in: list[dict], chunk_size: int = 100):
