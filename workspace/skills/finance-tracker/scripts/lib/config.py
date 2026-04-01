@@ -1,67 +1,132 @@
 """Paths, constants, and config loaders for the finance tracker."""
 
 import json
+import os
 from pathlib import Path
 
 # Paths — use relative + $HOME, never hardcoded username
 SKILL_DIR = Path(__file__).resolve().parent.parent.parent  # finance-tracker/
 CONFIG_DIR = SKILL_DIR / "config"
 SCRIPTS_DIR = SKILL_DIR / "scripts"
-# AI model config — auto-detected from openclaw.json if available
-def _detect_litellm_config() -> dict:
-    """Try to read LiteLLM config from OpenClaw's openclaw.json."""
-    oc_path = Path.home() / ".openclaw" / "openclaw.json"
-    if not oc_path.exists():
-        return {}
-    try:
-        oc = json.loads(oc_path.read_text())
-        litellm = oc.get("models", {}).get("providers", {}).get("litellm", {})
-        if not (litellm.get("baseUrl") and litellm.get("apiKey")):
-            return {}
-        result = {
-            "url": litellm["baseUrl"].rstrip("/") + "/v1/chat/completions",
-            "key": litellm["apiKey"],
-        }
-        # Try to pick the cheapest/fastest model for parsing
-        models = [m.get("id", "") for m in litellm.get("models", [])]
-        if models:
-            # Prefer: gpt5-mini > gpt-4o-mini > first non-reasoning model
-            for candidate in ["gpt5-mini", "gpt-4o-mini", "gpt41-mini"]:
-                if candidate in models:
-                    result["parse_model"] = candidate
-                    result["classify_model"] = candidate
-                    break
-            if "parse_model" not in result:
-                # Pick first non-reasoning model
-                non_reasoning = [m for m in litellm.get("models", []) if not m.get("reasoning")]
-                if non_reasoning:
-                    result["parse_model"] = non_reasoning[0]["id"]
-                    result["classify_model"] = non_reasoning[0]["id"]
-                else:
-                    result["parse_model"] = models[0]
-                    result["classify_model"] = models[0]
-            # For analysis, prefer a reasoning model
-            for candidate in ["gpt52-medium", "gpt52-thinking", "gpt-4o"]:
-                if candidate in models:
-                    result["analysis_model"] = candidate
-                    break
-            if "analysis_model" not in result:
-                reasoning = [m for m in litellm.get("models", []) if m.get("reasoning")]
-                if reasoning:
-                    result["analysis_model"] = reasoning[0]["id"]
-                else:
-                    result["analysis_model"] = result.get("parse_model", models[0])
-        return result
-    except Exception:
-        pass
-    return {}
 
-_LITELLM_AUTO = _detect_litellm_config()
-LITELLM_URL = _LITELLM_AUTO.get("url", "http://127.0.0.1:4000/v1/chat/completions")
-LITELLM_KEY = _LITELLM_AUTO.get("key", "YOUR_API_KEY")
-PARSE_MODEL = _LITELLM_AUTO.get("parse_model", "gpt-4o-mini")
-CLASSIFY_MODEL = _LITELLM_AUTO.get("classify_model", "gpt-4o-mini")
-ANALYSIS_MODEL = _LITELLM_AUTO.get("analysis_model", "gpt-4o")
+
+# ═══════════════════════════════════════════
+# AI MODEL AUTO-DETECTION
+# Priority: openclaw.json custom provider → openclaw.json env → system env → defaults
+# Supports: LiteLLM proxy, OpenAI direct, any OpenAI-compatible endpoint
+# ═══════════════════════════════════════════
+
+def _detect_ai_config() -> dict:
+    """Auto-detect AI config from OpenClaw's openclaw.json and environment."""
+    result = {}
+    oc_path = Path.home() / ".openclaw" / "openclaw.json"
+
+    if oc_path.exists():
+        try:
+            oc = json.loads(oc_path.read_text())
+            # --- Try 1: Custom provider with baseUrl (LiteLLM, Ollama, etc.) ---
+            providers = oc.get("models", {}).get("providers", {})
+            for name, prov in providers.items():
+                if prov.get("baseUrl") and prov.get("apiKey"):
+                    base = prov["baseUrl"].rstrip("/")
+                    # Normalize: add /v1/chat/completions if not already a full path
+                    if "/chat/completions" not in base:
+                        if not base.endswith("/v1"):
+                            base += "/v1"
+                        base += "/chat/completions"
+                    result["url"] = base
+                    result["key"] = prov["apiKey"]
+                    # Pick models from this provider's catalog
+                    models = prov.get("models", [])
+                    if models:
+                        _pick_models(result, models)
+                    break  # Use first provider with baseUrl
+
+            # --- Try 2: env section in openclaw.json ---
+            oc_env = oc.get("env", {})
+            if not result.get("key"):
+                if oc_env.get("OPENAI_API_KEY"):
+                    result["url"] = "https://api.openai.com/v1/chat/completions"
+                    result["key"] = oc_env["OPENAI_API_KEY"]
+                    result.setdefault("parse_model", "gpt-4o-mini")
+                    result.setdefault("classify_model", "gpt-4o-mini")
+                    result.setdefault("analysis_model", "gpt-4o")
+
+            # --- Try 3: Infer from agents.defaults.model ---
+            if not result.get("key"):
+                default_model = (oc.get("agents", {}).get("defaults", {})
+                                 .get("model", {}).get("primary", ""))
+                if "/" in default_model:
+                    provider, model_id = default_model.split("/", 1)
+                    if provider == "openai":
+                        result.setdefault("parse_model", "gpt-4o-mini")
+                        result.setdefault("classify_model", "gpt-4o-mini")
+                        result.setdefault("analysis_model", model_id)
+                    elif provider == "anthropic":
+                        # Anthropic via OpenAI-compatible proxy is handled by LiteLLM above
+                        # For direct Anthropic users, they need a proxy or LiteLLM
+                        result.setdefault("parse_model", model_id)
+                        result.setdefault("classify_model", model_id)
+                        result.setdefault("analysis_model", model_id)
+        except Exception:
+            pass
+
+    # --- Try 4: System environment variables ---
+    if not result.get("key"):
+        for env_key, api_url in [
+            ("OPENAI_API_KEY", "https://api.openai.com/v1/chat/completions"),
+            ("OPENROUTER_API_KEY", "https://openrouter.ai/api/v1/chat/completions"),
+        ]:
+            val = os.environ.get(env_key)
+            if val:
+                result["url"] = api_url
+                result["key"] = val
+                result.setdefault("parse_model", "gpt-4o-mini")
+                result.setdefault("classify_model", "gpt-4o-mini")
+                result.setdefault("analysis_model", "gpt-4o")
+                break
+
+    return result
+
+
+def _pick_models(result: dict, models: list[dict]):
+    """Pick parse/classify (cheap) and analysis (reasoning) models from a catalog."""
+    ids = [m.get("id", "") for m in models]
+
+    # Parse/classify: prefer cheapest non-reasoning
+    for candidate in ["gpt5-mini", "gpt-4o-mini", "gpt41-mini"]:
+        if candidate in ids:
+            result["parse_model"] = candidate
+            result["classify_model"] = candidate
+            break
+    if "parse_model" not in result:
+        non_reasoning = [m for m in models if not m.get("reasoning")]
+        if non_reasoning:
+            result["parse_model"] = non_reasoning[0]["id"]
+            result["classify_model"] = non_reasoning[0]["id"]
+        elif ids:
+            result["parse_model"] = ids[0]
+            result["classify_model"] = ids[0]
+
+    # Analysis: prefer reasoning model
+    for candidate in ["gpt52-medium", "gpt52-thinking", "gpt-4o", "gpt52-none"]:
+        if candidate in ids:
+            result["analysis_model"] = candidate
+            break
+    if "analysis_model" not in result:
+        reasoning = [m for m in models if m.get("reasoning")]
+        if reasoning:
+            result["analysis_model"] = reasoning[0]["id"]
+        else:
+            result["analysis_model"] = result.get("parse_model", ids[0] if ids else "gpt-4o-mini")
+
+
+_AI_CONFIG = _detect_ai_config()
+LITELLM_URL = _AI_CONFIG.get("url", "http://127.0.0.1:4000/v1/chat/completions")
+LITELLM_KEY = _AI_CONFIG.get("key", "YOUR_API_KEY")
+PARSE_MODEL = _AI_CONFIG.get("parse_model", "gpt-4o-mini")
+CLASSIFY_MODEL = _AI_CONFIG.get("classify_model", "gpt-4o-mini")
+ANALYSIS_MODEL = _AI_CONFIG.get("analysis_model", "gpt-4o")
 
 # ═══════════════════════════════════════════
 # SINGLE CONFIG FILE: tracker_config.json
