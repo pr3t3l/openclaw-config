@@ -553,7 +553,7 @@ def cmd_setup(answers_json: str = None):
     """Run the first-time setup wizard.
 
     Non-interactive mode (for LLM/bot usage):
-      python3 finance.py setup '{"name":"Alfredo","language":"es","currency":"USD","cards":"Chase,Discover,Cash","tax":"none"}'
+      python3 finance.py setup '{"name":"User","language":"es","currency":"USD","cards":"Chase,Discover,Cash","tax":"none"}'
 
     Supported answer keys:
       name, language (en/es), currency, cards (comma-separated),
