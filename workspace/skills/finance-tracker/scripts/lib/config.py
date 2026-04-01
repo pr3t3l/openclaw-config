@@ -21,7 +21,7 @@ def read_user_md() -> dict:
     for line in text.splitlines():
         low = line.lower().strip()
         if low.startswith("- **name:**") or low.startswith("**name:**"):
-            # Extract: "- **Name:** Alfredo Pretel (Alf)" → "Alfredo Pretel"
+            # Extract: "- **Name:** First Last (Nick)" → "First"
             val = line.split(":**", 1)[-1].strip()
             # Take first name only, remove parenthetical
             val = val.split("(")[0].strip()
