@@ -1,7 +1,6 @@
 """First-run setup wizard — AI-powered configuration."""
 
 import json
-import subprocess
 from datetime import datetime
 from pathlib import Path
 
@@ -174,7 +173,7 @@ def run_setup_wizard(interactive: bool = True) -> dict:
     print("\n" + "=" * 50)
     print("✅ Setup complete!")
     print(f"   Spreadsheet: {sheet_name}")
-    print(f"   Next: run 'finance.py setup-sheets --auth' to connect Google Sheets")
+    print(f"   Next: run 'finance.py setup-sheets' to create the Google Sheet")
     print("=" * 50)
 
     return config
@@ -266,31 +265,20 @@ Respond ONLY with valid JSON, no markdown fences, no explanation."""
         "temperature": 0.3,
     }
 
-    try:
-        import re
-        result = subprocess.run(
-            ["curl", "-s", "--max-time", "30", C.LITELLM_URL,
-             "-H", "Content-Type: application/json",
-             "-H", f"Authorization: Bearer {C.LITELLM_KEY}",
-             "-d", json.dumps(payload)],
-            capture_output=True, text=True, timeout=35
-        )
-        resp = json.loads(result.stdout)
-        ai_text = resp["choices"][0]["message"]["content"]
-        # Strip markdown fences if present
-        json_match = re.search(r"```(?:json)?\s*([\s\S]*?)```", ai_text)
-        if json_match:
-            ai_text = json_match.group(1)
-        profile = json.loads(ai_text.strip())
+    ai_text = C.ai_extract_text(payload, timeout=60)
+    if not ai_text:
+        print(f"  AI error: empty response from {C.LITELLM_URL} (model: {C.CLASSIFY_MODEL})")
+        return None
 
-        # Add metadata
+    try:
+        profile = json.loads(ai_text)
         profile["enabled"] = True
         profile["generated_by"] = "ai_setup_wizard"
         profile["generated_at"] = datetime.now().isoformat()
         return profile
-
-    except Exception as e:
-        print(f"  AI error: {e}")
+    except json.JSONDecodeError as e:
+        print(f"  AI error: model returned invalid JSON: {e}")
+        print(f"  Response: {ai_text[:300]}")
         return None
 
 

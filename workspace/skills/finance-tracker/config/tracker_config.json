@@ -1,18 +1,19 @@
 {
   "user": {
     "name": "Alfredo",
-    "language": "es",
-    "spreadsheet_name": "Robotin Finance 2026",
+    "language": "en",
+    "spreadsheet_name": "Alfredo Finance 2026",
     "currency": "USD",
     "cards": [
-      "Chase",
-      "Discover",
-      "Citi",
-      "WellsFargo",
-      "Cash"
+      "Chase CC",
+      "Amex CC",
+      "Wells Fargo CC",
+      "Discovery CC",
+      "Citi CC",
+      "Wells Fargo Checking"
     ],
     "setup_complete": true,
-    "created_at": "2026-04-01T16:21:07.864640"
+    "created_at": "2026-04-01T17:22:07.500321"
   },
   "categories": {
     "Groceries": {
@@ -75,248 +76,46 @@
     "expected_paycheck": 0
   },
   "tax": {
-    "business_type": "Short-term residential rental property operated as an Airbnb in Goose Creek, South Carolina.",
-    "schedule_type": "Schedule E",
-    "business_name": "Airbnb Goose Creek",
+    "enabled": true,
+    "business_type": "Airbnb",
+    "schedule_type": "E",
+    "business_name": "Airbnb",
     "tax_categories": [
       {
-        "id": "cleaning_and_turnover",
-        "label": "Cleaning and Turnover Supplies"
+        "id": "business_expense",
+        "label": "General Business Expense"
       },
       {
-        "id": "repairs_and_maintenance",
-        "label": "Repairs and Maintenance"
-      },
-      {
-        "id": "utilities_and_services",
-        "label": "Utilities and Property Services"
-      },
-      {
-        "id": "host_fees_and_platform",
-        "label": "Host Platform and Booking Fees"
-      },
-      {
-        "id": "guest_supplies_and_amenities",
-        "label": "Guest Supplies and Amenities"
-      },
-      {
-        "id": "furnishings_and_household",
-        "label": "Furnishings and Household Items"
-      },
-      {
-        "id": "insurance_and_legal",
-        "label": "Insurance, Licensing, and Professional Fees"
+        "id": "business_supplies",
+        "label": "Business Supplies"
       }
     ],
     "ask_rules": [
       {
-        "trigger": "Charges for cleaning products, laundry items, or turnover services that may be used for the Airbnb between guest stays.",
+        "trigger": "Potential business purchase",
         "keywords": [
-          "clorox",
-          "lysol",
-          "bleach",
-          "disinfectant",
-          "paper towels",
-          "toilet paper",
-          "trash bags",
-          "laundry detergent",
-          "detergente",
-          "fabric softener",
-          "dryer sheets",
-          "airbnb cleaning",
-          "cleaning service",
-          "housekeeping",
-          "janitorial",
-          "mop refill",
-          "vacuum bags",
-          "sponges",
-          "guantes de limpieza",
-          "fabuloso"
+          "supply",
+          "supplies",
+          "equipment",
+          "tool",
+          "tools",
+          "professional",
+          "business"
         ],
-        "tax_category": "cleaning_and_turnover"
-      },
-      {
-        "trigger": "Payments for repairs, hardware, or maintenance supplies that could relate to the rental property.",
-        "keywords": [
-          "home depot",
-          "lowes",
-          "ace hardware",
-          "hardware",
-          "paint",
-          "caulk",
-          "light bulbs",
-          "bombillas",
-          "air filter",
-          "hvac filter",
-          "plumbing",
-          "fontaneria",
-          "drain cleaner",
-          "lockset",
-          "deadbolt",
-          "smoke detector",
-          "battery pack",
-          "pest control",
-          "handyman",
-          "maintenance"
-        ],
-        "tax_category": "repairs_and_maintenance"
-      },
-      {
-        "trigger": "Bills or service charges for utilities, internet, lawn care, pest control, or other recurring property services.",
-        "keywords": [
-          "dominion energy",
-          "berkeley electric",
-          "water bill",
-          "sewer",
-          "trash pickup",
-          "recycling",
-          "comcast",
-          "xfinity",
-          "at&t internet",
-          "internet",
-          "wifi",
-          "lawn care",
-          "landscaping",
-          "yard service",
-          "control de plagas",
-          "pest control",
-          "terminix",
-          "orkin",
-          "pool service",
-          "security monitoring"
-        ],
-        "tax_category": "utilities_and_services"
-      },
-      {
-        "trigger": "Platform charges, booking commissions, and software tools used to manage Airbnb reservations or guests.",
-        "keywords": [
-          "airbnb service fee",
-          "airbnb host fee",
-          "vrbo",
-          "booking.com",
-          "hostaway",
-          "lodgify",
-          "guesty",
-          "hospitable",
-          "smartbnb",
-          "turno",
-          "pricelabs",
-          "wheelhouse",
-          "channel manager",
-          "reservation software",
-          "dynamic pricing",
-          "calendar sync",
-          "stripe fee",
-          "payment processing",
-          "merchant fee",
-          "comision airbnb"
-        ],
-        "tax_category": "host_fees_and_platform"
-      },
-      {
-        "trigger": "Purchases of guest consumables and welcome items that may be stocked for short-term rental guests.",
-        "keywords": [
-          "coffee pods",
-          "k-cups",
-          "tea bags",
-          "bottled water",
-          "agua embotellada",
-          "snacks",
-          "granola bars",
-          "shampoo",
-          "conditioner",
-          "body wash",
-          "jabon",
-          "soap bars",
-          "hand soap",
-          "dish soap",
-          "esponjas",
-          "welcome basket",
-          "guest supplies",
-          "travel size toiletries",
-          "toiletries",
-          "amenities"
-        ],
-        "tax_category": "guest_supplies_and_amenities"
-      },
-      {
-        "trigger": "Furniture, decor, linens, kitchenware, or household items that may be placed in the Airbnb.",
-        "keywords": [
-          "ikea",
-          "wayfair",
-          "target home",
-          "walmart home",
-          "amazon home",
-          "bed sheets",
-          "sabanas",
-          "pillows",
-          "comforter",
-          "towels",
-          "toallas",
-          "nightstand",
-          "lamp",
-          "curtain rod",
-          "shower curtain",
-          "cookware",
-          "utensils",
-          "silverware",
-          "coffee maker",
-          "air mattress"
-        ],
-        "tax_category": "furnishings_and_household"
-      },
-      {
-        "trigger": "Payments for insurance, permits, licenses, tax prep, accounting, or legal help related to the rental.",
-        "keywords": [
-          "landlord insurance",
-          "dwelling policy",
-          "insurance premium",
-          "liability insurance",
-          "umbrella policy",
-          "city permit",
-          "business license",
-          "license renewal",
-          "permit fee",
-          "occupancy tax filing",
-          "tax preparation",
-          "tax prep",
-          "bookkeeping",
-          "accountant",
-          "cpa",
-          "legal services",
-          "attorney",
-          "llc filing",
-          "registered agent",
-          "permiso"
-        ],
-        "tax_category": "insurance_and_legal"
+        "tax_category": "business_expense"
       }
     ],
     "never_ask": [
-      "restaurant",
-      "fast food",
-      "doordash",
-      "ubereats",
-      "starbucks",
-      "bar",
-      "alcohol",
-      "beer",
-      "wine",
-      "movie theater",
-      "netflix",
-      "concert",
-      "sporting event",
+      "food",
+      "groceries",
       "clothing",
-      "ropa",
-      "shoes",
-      "farmacia",
-      "pharmacy",
       "medicine",
-      "medical bill"
+      "entertainment",
+      "alcohol",
+      "toys"
     ],
-    "enabled": true,
-    "generated_by": "ai_setup_wizard",
-    "generated_at": "2026-04-01T16:21:35.808998"
+    "generated_by": "basic_fallback",
+    "generated_at": "2026-04-01T17:24:32.927049"
   },
   "payments": [],
   "savings": []

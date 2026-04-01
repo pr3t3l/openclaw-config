@@ -128,6 +128,41 @@ PARSE_MODEL = _AI_CONFIG.get("parse_model", "gpt-4o-mini")
 CLASSIFY_MODEL = _AI_CONFIG.get("classify_model", "gpt-4o-mini")
 ANALYSIS_MODEL = _AI_CONFIG.get("analysis_model", "gpt-4o")
 
+def ai_call(payload: dict, timeout: int = 60) -> dict | None:
+    """Make an AI API call via curl. Returns parsed response or None on error."""
+    import subprocess
+    result = subprocess.run(
+        ["curl", "-s", "--max-time", str(timeout), LITELLM_URL,
+         "-H", "Content-Type: application/json",
+         "-H", f"Authorization: Bearer {LITELLM_KEY}",
+         "-d", json.dumps(payload)],
+        capture_output=True, text=True, timeout=timeout + 5
+    )
+    if result.returncode != 0 or not result.stdout or not result.stdout.strip():
+        return None
+    try:
+        resp = json.loads(result.stdout)
+    except json.JSONDecodeError:
+        return None
+    if "error" in resp or "choices" not in resp:
+        return None
+    return resp
+
+
+def ai_extract_text(payload: dict, timeout: int = 60) -> str | None:
+    """Make an AI call and return the text content, or None on error."""
+    import re
+    resp = ai_call(payload, timeout)
+    if not resp:
+        return None
+    text = resp["choices"][0]["message"]["content"]
+    # Strip markdown fences if present
+    json_match = re.search(r"```(?:json)?\s*([\s\S]*?)```", text)
+    if json_match:
+        text = json_match.group(1)
+    return text.strip()
+
+
 # ═══════════════════════════════════════════
 # SINGLE CONFIG FILE: tracker_config.json
 # ═══════════════════════════════════════════

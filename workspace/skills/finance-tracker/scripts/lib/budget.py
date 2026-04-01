@@ -1,7 +1,6 @@
 """Module 3: Budget Monitor — real-time alerts and weekly summaries."""
 
 import json
-import subprocess
 from datetime import datetime
 
 from . import config as C
@@ -117,15 +116,4 @@ Budgets: {json.dumps({k: v.get('monthly') for k, v in budgets.items() if v.get('
         "temperature": 0.7,
     }
 
-    try:
-        result = subprocess.run(
-            ["curl", "-s", C.LITELLM_URL,
-             "-H", "Content-Type: application/json",
-             "-H", f"Authorization: Bearer {C.LITELLM_KEY}",
-             "-d", json.dumps(payload)],
-            capture_output=True, text=True, timeout=30
-        )
-        resp = json.loads(result.stdout)
-        return resp["choices"][0]["message"]["content"].strip()
-    except Exception:
-        return ""
+    return C.ai_extract_text(payload, timeout=30) or ""

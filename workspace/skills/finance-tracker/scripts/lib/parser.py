@@ -2,7 +2,6 @@
 
 import json
 import re
-import subprocess
 from datetime import datetime
 
 from . import config as C
@@ -332,23 +331,11 @@ def _ai_parse(content: str, input_method: str = "text", is_image: bool = False) 
         "temperature": 0.1,
     }
 
-    result = subprocess.run(
-        ["curl", "-s", C.LITELLM_URL,
-         "-H", "Content-Type: application/json",
-         "-H", f"Authorization: Bearer {C.LITELLM_KEY}",
-         "-d", json.dumps(payload)],
-        capture_output=True, text=True, timeout=60
-    )
+    ai_text = C.ai_extract_text(payload)
+    if not ai_text:
+        raise RuntimeError("AI parsing failed: empty or invalid response from model")
 
-    resp = json.loads(result.stdout)
-    ai_text = resp["choices"][0]["message"]["content"]
-
-    # Extract JSON from response (handle markdown code blocks)
-    json_match = re.search(r"```(?:json)?\s*([\s\S]*?)```", ai_text)
-    if json_match:
-        ai_text = json_match.group(1)
-
-    parsed = json.loads(ai_text.strip())
+    parsed = json.loads(ai_text)
 
     # Handle split receipt format (has "transactions" key)
     if isinstance(parsed, dict) and "transactions" in parsed:

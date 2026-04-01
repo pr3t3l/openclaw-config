@@ -4,7 +4,6 @@ import csv
 import io
 import json
 import re
-import subprocess
 from datetime import datetime, timedelta
 
 from . import config as C
@@ -34,22 +33,11 @@ def _ai_classify_merchants(merchants: list[str]) -> dict[str, str]:
         "temperature": 0.0,
     }
 
+    ai_text = C.ai_extract_text(payload, timeout=30)
+    if not ai_text:
+        return {}
     try:
-        result = subprocess.run(
-            ["curl", "-s", C.LITELLM_URL,
-             "-H", "Content-Type: application/json",
-             "-H", f"Authorization: Bearer {C.LITELLM_KEY}",
-             "-d", json.dumps(payload)],
-            capture_output=True, text=True, timeout=30
-        )
-        resp = json.loads(result.stdout)
-        ai_text = resp["choices"][0]["message"]["content"]
-        # Strip markdown code fences if present
-        json_match = re.search(r"```(?:json)?\s*([\s\S]*?)```", ai_text)
-        if json_match:
-            ai_text = json_match.group(1)
-        classifications = json.loads(ai_text.strip())
-        # Validate categories
+        classifications = json.loads(ai_text)
         valid = {}
         for m, cat in classifications.items():
             if cat in C.get_categories():
@@ -57,7 +45,7 @@ def _ai_classify_merchants(merchants: list[str]) -> dict[str, str]:
             else:
                 valid[m] = "Other"
         return valid
-    except Exception:
+    except (json.JSONDecodeError, AttributeError):
         return {}
 
 

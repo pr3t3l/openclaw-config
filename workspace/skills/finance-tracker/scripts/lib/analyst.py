@@ -2,7 +2,6 @@
 
 import calendar
 import json
-import subprocess
 from datetime import datetime, date, timedelta
 
 from . import config as C
@@ -126,18 +125,7 @@ Total: ${total:.0f}"""
         "temperature": 0.7,
     }
 
-    try:
-        result = subprocess.run(
-            ["curl", "-s", C.LITELLM_URL,
-             "-H", "Content-Type: application/json",
-             "-H", f"Authorization: Bearer {C.LITELLM_KEY}",
-             "-d", json.dumps(payload)],
-            capture_output=True, text=True, timeout=60
-        )
-        resp = json.loads(result.stdout)
-        return resp["choices"][0]["message"]["content"].strip()
-    except Exception:
-        return "(AI analysis unavailable)"
+    return C.ai_extract_text(payload) or "(AI analysis unavailable)"
 
 
 def _tax_deduction_summary(month: str) -> list[str]:

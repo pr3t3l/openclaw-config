@@ -248,21 +248,14 @@ def _ai_classify_items(items: list[dict]) -> dict[str, str]:
         "temperature": 0,
     }
 
+    ai_text = C.ai_extract_text(payload)
+    if not ai_text:
+        return {}
     try:
-        result = subprocess.run(
-            ["curl", "-s", C.LITELLM_URL,
-             "-H", "Content-Type: application/json",
-             "-H", f"Authorization: Bearer {C.LITELLM_KEY}",
-             "-d", json.dumps(payload)],
-            capture_output=True, text=True, timeout=60,
-        )
-        resp = json.loads(result.stdout)
-        content = resp["choices"][0]["message"]["content"]
-        # Extract JSON from response
-        json_match = re.search(r"\{[^{}]+\}", content, re.DOTALL)
+        json_match = re.search(r"\{[^{}]+\}", ai_text, re.DOTALL)
         if json_match:
             return json.loads(json_match.group())
-    except Exception:
+    except (json.JSONDecodeError, AttributeError):
         pass
     return {}
 
