@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Recurring Bill",
+  "description": "A recurring payment or subscription for reminder and cashflow calculations.",
+  "type": "object",
+  "required": ["name", "amount", "due_day"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Bill or subscription name",
+      "minLength": 1
+    },
+    "amount": {
+      "type": "number",
+      "description": "Payment amount per cycle",
+      "minimum": 0
+    },
+    "due_day": {
+      "type": "integer",
+      "description": "Day of month payment is due (1-28)",
+      "minimum": 1,
+      "maximum": 28
+    },
+    "account": {
+      "type": "string",
+      "description": "Account used for payment",
+      "default": "Bank"
+    },
+    "autopay": {
+      "type": "boolean",
+      "description": "Whether autopay is enabled",
+      "default": false
+    },
+    "apr": {
+      "type": "number",
+      "description": "APR if applicable (0 for non-credit bills)",
+      "minimum": 0,
+      "default": 0
+    },
+    "promo_expiry": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Promotional rate expiry (YYYY-MM-DD) or null"
+    }
+  },
+  "additionalProperties": false
+}

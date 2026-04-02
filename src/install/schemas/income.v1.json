@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Income Source",
+  "description": "A recurring income source for pay schedule and cashflow calculations.",
+  "type": "object",
+  "required": ["name", "amount", "frequency"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Income source name (e.g. Day Job, Freelance, Rental)",
+      "minLength": 1
+    },
+    "amount": {
+      "type": "number",
+      "description": "Gross amount per pay period",
+      "minimum": 0
+    },
+    "frequency": {
+      "type": "string",
+      "enum": ["weekly", "biweekly", "monthly"],
+      "description": "Pay frequency"
+    },
+    "pay_dates": {
+      "type": "array",
+      "items": { "type": "integer", "minimum": 1, "maximum": 28 },
+      "description": "Day(s) of month for monthly/biweekly pay"
+    },
+    "account": {
+      "type": "string",
+      "description": "Bank account deposited to"
+    }
+  },
+  "additionalProperties": false
+}
