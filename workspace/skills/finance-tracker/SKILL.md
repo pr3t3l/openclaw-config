@@ -150,35 +150,95 @@ Correct?
 - "no", "cancel" → discard
 - If user corrects the category → the system learns (auto-creates rules after 2 corrections for same merchant)
 
-## Finance Commands
+## User Commands Reference
 
-| User says | Action |
-|-----------|--------|
-| `balance: 3200` or `saldo: 3200` | `finance.py balance 3200` |
-| `cashflow` or `flujo` | `finance.py cashflow` |
-| `status` or `status Groceries` | `finance.py status [category]` |
-| `weekly` or `weekly summary` | `finance.py weekly-summary` |
-| `monthly` or `monthly report` | `finance.py monthly-report [YYYY-MM]` |
-| `reconcile` + CSV attachment | `finance.py reconcile /path/to/csv` |
-| `rule: target → Shopping 0.95` | `finance.py add-rule "target" Shopping 0.95` |
-| `savings colombia 200` | `finance.py savings colombia 200` |
-| `savings-target colombia 2500` | `finance.py savings-target colombia 2500` |
-| `payday: biweekly 2800` | `finance.py payday biweekly 2800` |
-| `payments` | `finance.py payment-check` |
-| `taxes 2026` | `finance.py taxes 2026` |
-| `setup` | `finance.py setup '<json>'` (ALWAYS pass JSON, never run without args) |
-| `new-tax-profile` | `finance.py new-tax-profile ['<json>']` |
-| `update-tax-profile` | `finance.py update-tax-profile [regenerate\|remove-rule N\|add-keywords N 'kw1,kw2']` |
-| `current-tax-profile` | `finance.py current-tax-profile` |
+All commands use the prefix `finance-` so the user knows they belong to this skill.
+When the user types a command, translate it to the corresponding `finance.py` subcommand.
 
-## Tax Profiles
+### Setup
+| User command | finance.py |
+|---|---|
+| `/finance-setup` | `finance.py setup '<json>'` — ALWAYS pass JSON |
+| `/finance-setup-sheets` | `finance.py setup-sheets` |
 
-Tax deduction tracking is configurable per user's business type. Configured via:
-- `finance.py new-tax-profile` — AI-powered wizard to create a new tax profile
-- `finance.py update-tax-profile` — modify existing rules
-- `finance.py current-tax-profile` — view current profile
+### Categories + Budgets
+| User command | finance.py |
+|---|---|
+| `/finance-list-categories` | `finance.py list-categories` |
+| `/finance-add-category Utilities 200` | `finance.py add-category Utilities 200` |
+| `/finance-modify-budget Groceries 350` | `finance.py modify-budget Groceries 350` |
+| `/finance-remove-category Utilities` | `finance.py remove-category Utilities yes` |
 
-Supports: rental properties, freelancers, small businesses, and custom business types.
+### Balance + Income
+| User command | finance.py |
+|---|---|
+| `/finance-balance 1500` | `finance.py balance 1500` |
+| `/finance-income 2800` | `finance.py income 2800` |
+| `/finance-payday biweekly 2800 5,19` | `finance.py payday biweekly 2800 5,19` |
+
+### Payments
+| User command | finance.py |
+|---|---|
+| `/finance-list-payments` | `finance.py list-payments` |
+| `/finance-add-payment Mortgage 1500 1 Chase` | `finance.py add-payment Mortgage 1500 1 Chase` |
+| `/finance-modify-payment Mortgage 1600` | `finance.py modify-payment Mortgage 1600` |
+| `/finance-remove-payment Mortgage` | `finance.py remove-payment Mortgage` |
+| `/finance-payment-check` | `finance.py payment-check` |
+
+### Debts
+| User command | finance.py |
+|---|---|
+| `/finance-list-debts` | `finance.py list-debts` |
+| `/finance-add-debt Chase 5000 24.99` | `finance.py add-debt Chase 5000 24.99` |
+| `/finance-update-debt Chase 4500` | `finance.py update-debt Chase 4500` |
+| `/finance-pay-debt Chase 500` | `finance.py pay-debt Chase 500` |
+
+### Cards
+| User command | finance.py |
+|---|---|
+| `/finance-add-card "Amex Gold"` | `finance.py add-card "Amex Gold"` |
+| `/finance-remove-card Citi` | `finance.py remove-card Citi` |
+
+### Savings Goals
+| User command | finance.py |
+|---|---|
+| `/finance-list-goals` | `finance.py list-goals` |
+| `/finance-add-goal Vacation 2000 2026-09-01` | `finance.py add-goal Vacation 2000 2026-09-01` |
+| `/finance-save Vacation 500` | `finance.py save Vacation 500` |
+| `/finance-remove-goal Vacation` | `finance.py remove-goal Vacation` |
+
+### Tax Profile
+| User command | finance.py |
+|---|---|
+| `/finance-new-tax-profile` | `finance.py new-tax-profile ['<json>']` |
+| `/finance-update-tax-profile` | `finance.py update-tax-profile [regenerate\|remove-rule N\|add-keywords N 'kw']` |
+| `/finance-current-tax-profile` | `finance.py current-tax-profile` |
+
+### Reports
+| User command | finance.py |
+|---|---|
+| `/finance-cashflow` | `finance.py cashflow` |
+| `/finance-status [category]` | `finance.py status [category]` |
+| `/finance-weekly` | `finance.py weekly-summary` |
+| `/finance-monthly [YYYY-MM]` | `finance.py monthly-report [YYYY-MM]` |
+| `/finance-taxes [year]` | `finance.py taxes [year]` |
+
+### Data / Reconciliation
+| User command | finance.py |
+|---|---|
+| `/finance-reconcile` + CSV | `finance.py reconcile /path/to/csv [bank]` |
+| `/finance-batch-receipts` + links file | `finance.py batch-receipts /path/to/file [account]` |
+| `/finance-add-rule "target" Shopping 0.95` | `finance.py add-rule "target" Shopping 0.95` |
+
+### Telemetry
+| User command | finance.py |
+|---|---|
+| `/finance-telemetry status` | `finance.py telemetry status` |
+| `/finance-telemetry off` | `finance.py telemetry off` |
+| `/finance-telemetry on` | `finance.py telemetry on` |
+| `/finance-telemetry info` | `finance.py telemetry info` |
+
+**Note:** Users can also type natural language like "balance 1500", "$45 Publix", "me pagaron 2800" — the agent should recognize the intent and run the appropriate command.
 
 ## Noise Control Rules
 

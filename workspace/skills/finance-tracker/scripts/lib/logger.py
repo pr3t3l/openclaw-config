@@ -149,13 +149,16 @@ def format_income_confirmation(tx: dict, result: dict) -> str:
 def format_confirmation(tx: dict, budget_info: dict) -> str:
     """Format the confirmation message for a single transaction."""
     lang = C.get_language()
+    amount = tx.get('amount', 0)
+    merchant = tx.get('merchant', 'Unknown')
+    category = tx.get('category', 'Other')
     if lang == "es":
-        msg = f"Registrado: ${tx['amount']:.2f} en {tx['merchant']} ({tx['category']})"
+        msg = f"Registrado: ${amount:.2f} en {merchant} ({category})"
         if tx.get("card"):
             msg += f" con {tx['card']}"
         msg += "."
     else:
-        msg = f"Logged: ${tx['amount']:.2f} at {tx['merchant']} ({tx['category']})"
+        msg = f"Logged: ${amount:.2f} at {merchant} ({category})"
         if tx.get("card"):
             msg += f" with {tx['card']}"
         msg += "."
@@ -164,7 +167,7 @@ def format_confirmation(tx: dict, budget_info: dict) -> str:
         msg += f" [Deductible: {tx.get('tax_category', 'business_expense')}]"
 
     if budget_info.get("monthly_limit"):
-        msg += f"\n{tx['category']}: ${budget_info['month_total']:.0f}/${budget_info['monthly_limit']} ({budget_info.get('pct', 0)}%)."
+        msg += f"\n{category}: ${budget_info['month_total']:.0f}/${budget_info['monthly_limit']} ({budget_info.get('pct', 0)}%)."
 
     if budget_info.get("alert_msg"):
         msg += f"\n{budget_info['alert_msg']}"

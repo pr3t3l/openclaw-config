@@ -28,12 +28,17 @@ Usage:
   python3 finance.py remove-category <name>
   python3 finance.py list-payments
   python3 finance.py add-payment <name> <amount> <due_day> [account] [autopay]
+  python3 finance.py modify-payment <name> <amount>
   python3 finance.py remove-payment <name>
   python3 finance.py list-debts
+  python3 finance.py add-debt <name> <balance> [apr]
+  python3 finance.py update-debt <name> <balance>
+  python3 finance.py pay-debt <name> <amount>
   python3 finance.py add-card <name>
   python3 finance.py remove-card <name>
   python3 finance.py list-goals
   python3 finance.py add-goal <name> <target> [deadline]
+  python3 finance.py remove-goal <name>
   python3 finance.py save <goal> <amount>
   python3 finance.py telemetry [on|off|status|info]
 """
@@ -540,7 +545,6 @@ def cmd_add_goal(name: str, target: str, deadline: str = None):
     """Add a savings goal."""
     from datetime import date
     if not deadline:
-        # Default: ~6 months from now
         from datetime import timedelta
         deadline = (date.today() + timedelta(days=180)).isoformat()
     config = C._load_tracker_config()
@@ -553,6 +557,87 @@ def cmd_add_goal(name: str, target: str, deadline: str = None):
     C.save_tracker_config(config)
     C.invalidate_config_cache()
     print(f"✅ Goal '{name}' added: ${target} by {deadline}")
+
+
+def cmd_remove_goal(name: str):
+    """Remove a savings goal by name."""
+    config = C._load_tracker_config()
+    savings = config.get("savings", [])
+    idx = next((i for i, s in enumerate(savings) if s["goal"].lower() == name.lower()), None)
+    if idx is None:
+        print(f"Goal '{name}' not found.")
+        return
+    removed = savings.pop(idx)
+    C.save_tracker_config(config)
+    C.invalidate_config_cache()
+    print(f"✅ Goal '{removed['goal']}' removed (saved: ${removed.get('saved', 0):,.0f}).")
+
+
+def cmd_modify_payment(name: str, amount: str):
+    """Change the amount for an existing payment."""
+    config = C._load_tracker_config()
+    payments = config.get("payments", [])
+    match = next((p for p in payments if p["name"].lower() == name.lower()), None)
+    if not match:
+        print(f"Payment '{name}' not found.")
+        return
+    old = match["amount"]
+    match["amount"] = float(amount)
+    C.save_tracker_config(config)
+    C.invalidate_config_cache()
+    print(f"✅ {match['name']}: ${old} → ${amount}")
+
+
+def cmd_add_debt(name: str, balance: str, apr: str = "0"):
+    """Add a debt to the Debt Tracker tab in Sheets."""
+    now = datetime.now()
+    row = [
+        now.strftime("%Y-%m"),
+        name,
+        float(balance),
+        0,  # minimum_payment — user can update later
+        float(apr),
+        f"Added {now.strftime('%Y-%m-%d')}",
+    ]
+    try:
+        ws = sheets.get_sheet(C.TAB_DEBT)
+        ws.append_row(row, value_input_option="USER_ENTERED")
+        print(f"✅ Debt '{name}' added: ${balance} at {apr}% APR")
+    except Exception as e:
+        print(f"Error adding debt: {e}")
+
+
+def cmd_update_debt(name: str, balance: str):
+    """Update the balance for an existing debt."""
+    try:
+        ws = sheets.get_sheet(C.TAB_DEBT)
+        rows = ws.get_all_records()
+        for i, r in enumerate(rows, start=2):  # row 1 is header
+            if str(r.get("creditor", "")).lower() == name.lower():
+                old = r.get("balance", 0)
+                ws.update_cell(i, 3, float(balance))  # column 3 = balance
+                print(f"✅ {name}: ${old} → ${balance}")
+                return
+        print(f"Debt '{name}' not found in Debt Tracker.")
+    except Exception as e:
+        print(f"Error updating debt: {e}")
+
+
+def cmd_pay_debt(name: str, amount: str):
+    """Record a debt payment — reduces balance."""
+    try:
+        ws = sheets.get_sheet(C.TAB_DEBT)
+        rows = ws.get_all_records()
+        for i, r in enumerate(rows, start=2):
+            if str(r.get("creditor", "")).lower() == name.lower():
+                old = float(r.get("balance", 0))
+                new = old - float(amount)
+                ws.update_cell(i, 3, max(new, 0))
+                print(f"✅ Paid ${amount} to {name}: ${old:,.0f} → ${max(new, 0):,.0f}")
+                return
+        print(f"Debt '{name}' not found in Debt Tracker.")
+    except Exception as e:
+        print(f"Error recording payment: {e}")
 
 
 def cmd_setup(answers_json: str = None):
@@ -703,12 +788,17 @@ def main():
         "remove-category": lambda: cmd_remove_category(args[0], args[1] if len(args) > 1 else None),
         "list-payments": cmd_list_payments,
         "add-payment": lambda: cmd_add_payment(args[0], args[1], args[2], args[3] if len(args) > 3 else "Bank", args[4] if len(args) > 4 else "true"),
+        "modify-payment": lambda: cmd_modify_payment(args[0], args[1]),
         "remove-payment": lambda: cmd_remove_payment(args[0]),
         "list-debts": cmd_list_debts,
+        "add-debt": lambda: cmd_add_debt(args[0], args[1], args[2] if len(args) > 2 else "0"),
+        "update-debt": lambda: cmd_update_debt(args[0], args[1]),
+        "pay-debt": lambda: cmd_pay_debt(args[0], args[1]),
         "add-card": lambda: cmd_add_card(args[0]),
         "remove-card": lambda: cmd_remove_card(args[0]),
         "list-goals": cmd_list_goals,
         "add-goal": lambda: cmd_add_goal(args[0], args[1], args[2] if len(args) > 2 else None),
+        "remove-goal": lambda: cmd_remove_goal(args[0]),
         "save": lambda: cmd_savings(args[0], args[1]),
     }
 
