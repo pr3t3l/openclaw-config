@@ -146,3 +146,90 @@ Aligned state machine with spec at `docs/workflow_bible_finance specs V2.md` §3
 4. **sheets.py** — gspread integration with sheetId-based tab references
 5. **Transaction commands** — parse-text, parse-photo, log, log-split
 6. **Rules engine** — Two-tier: merchant_rules.json + line-item rules from rulepacks
+
+---
+
+## Phase 2: AI Parser, Sheets Integration, Crons, Onboarding (2026-04-02)
+
+### Phase 1.1 Fixes Applied
+
+| Fix | Detail |
+|-----|--------|
+| Bills frequency | Added `frequency` field (monthly/quarterly/semi_annual/annual) to bills collector, confirm, schema, and config builder. Shows monthly equivalent for non-monthly bills (e.g., "$600 semi-annual ($100.00/mo)"). Enables sinking fund calculations. |
+| Interactive onboarding | Onboarding missions are now tracked in `tracker_config.json["onboarding"]`. Mission 1 completes on add/parse-text/log. Mission 2 on budget-status. Mission 3 on safe-to-spend/cashflow. Shows "Mission N complete!" and prompts the next. After all 3: "You're all set!" |
+
+### Files Created
+
+| File | Purpose |
+|------|---------|
+| `src/scripts/lib/ai_parser.py` | LLM calls via subprocess+curl to LiteLLM. Functions: parse_income, parse_debt, parse_transaction, parse_receipt_lines. Auto-detects AI config from openclaw.json providers → env → system env. |
+| `src/scripts/lib/sheets.py` | Google Sheets via gspread + google-client.json/finance-tracker-token.json. create_spreadsheet() creates 10 tabs with headers and initial data via batch_update. All tab references use numeric sheetId. Saves sheets_config.json. |
+
+### Files Modified
+
+| File | Changes |
+|------|---------|
+| `src/scripts/lib/state_machine.py` | SHEETS_CREATE now calls sheets.py (stays in state on failure for retry). CRONS_SETUP outputs 4 OpenClaw native cron job specs as JSON. Onboarding missions interactive with check_onboarding() API. Bills collector/confirm show frequency + monthly equivalent. |
+| `src/scripts/finance.py` | Added `onboarding-check` command. Imports check_onboarding. |
+| `src/install/schemas/bill.v1.json` | Added `frequency` as required field (monthly/quarterly/semi_annual/annual). |
+
+### Architecture Decisions
+
+1. **AI via subprocess+curl** — NOT Python requests (fails in WSL for long calls). Cherry-picked from v1 `config.py:157-198`.
+2. **AI config cascade** — openclaw.json providers → env section → system env vars → fallback to localhost:4000.
+3. **Sheets by sheetId** — All tabs referenced by numeric `sheetId` (never by name). User can rename tabs without breaking anything.
+4. **batch_update** — All initial sheet writes go in one API call (headers, budget data, payment calendar, debt tracker, businesses). Respects Google's 60 req/min limit.
+5. **sheets_config.json** — Stores spreadsheet_id, url, and all tab sheetIds with schema versions. Enables migration path.
+6. **SHEETS_CREATE retry** — On failure, stays in state with typed error. User types "retry" to attempt again.
+7. **Cron job specs as JSON** — CRONS_SETUP outputs full OpenClaw native cron job specs. The SKILL.md instructs the agent to register them via the cron tool.
+8. **Onboarding in config** — Mission progress in tracker_config.json, not setup_state.json (persists after setup reset).
+
+### Cherry-Picked from v1
+
+| Pattern | Source | Adaptation |
+|---------|--------|------------|
+| AI config auto-detection | `v1/config.py:45-155` | Same cascade: providers → env → system vars. Simplified to single parse model. |
+| curl payload for AI | `v1/config.py:157-198` | Same subprocess+curl pattern with timeout handling. |
+| JSON fence stripping | `v1/config.py:211-222` | Same regex to extract JSON from markdown fences. |
+| gspread connection | `v1/sheets.py:100-117` | Adapted from GOG to direct google-client.json + token. |
+| Tab headers + structure | `v1/sheets.py:120-277` | Same transaction schema (19 cols + business_id). Added 4 new tabs. |
+
+### 10 Tabs Created
+
+| Tab | Purpose |
+|-----|---------|
+| Transactions | All income/expense entries (20 columns) |
+| Budget | Category budgets with type (fixed/variable) and usage tracking |
+| Payment Calendar | Recurring bills with frequency for sinking fund calculations |
+| Monthly Summary | Aggregated monthly financial overview |
+| Debt Tracker | Debt balances, APR, payoff estimates |
+| Rules | Merchant categorization rules (auto-learned + manual) |
+| Reconciliation Log | Bank CSV reconciliation results |
+| Cashflow Ledger | Signed amounts for daily cashflow tracking |
+| Businesses | Multi-business support (rulepack references) |
+| Savings Goals | Savings targets with daily required calculations |
+
+### Tests Run
+
+| Test | Result | Notes |
+|------|--------|-------|
+| `install-check` | PASS (all green) | All schemas, rulepacks, deps, and OAuth creds (with test token) verified |
+| Full 21-state flow | PASS | Start → mode → income(2) → confirm → biz rules(rental, 9 cats) → confirm → debts(skip) → budget(2 entries) → confirm → bills(Power monthly + Car Insurance semi-annual) → confirm → review → sheets(auth error expected) → manual advance → crons(4 jobs) → telemetry(yes) → onboarding(mission 1) → COMPLETE |
+| Bills frequency display | PASS | "Car Insurance — $600.00 semi-annual due day 1 ($100.00/mo)" |
+| Bills confirm total | PASS | "Monthly equivalent: $220.00" (correctly calculates $120 + $600/6) |
+| SHEETS_CREATE error handling | PASS | Returns SHEETS_CREATE_FAILED, stays in state for retry |
+| CRONS_SETUP job specs | PASS | 4 cron jobs with proper schedule, timezone, payload, delivery |
+| Onboarding mission 1 (add) | PASS | "Misión 1 completa! Misión 2: budget status" |
+| Onboarding mission 2 (budget-status) | PASS | "Misión 2 completa! Misión 3: safe to spend" |
+| Onboarding mission 3 (cashflow) | PASS | "Misión 3 completa! Ya estás listo." |
+| Onboarding after all complete | PASS | Returns null (no more missions) |
+
+### What Phase 3 Needs
+
+1. **Transaction commands** — parse-text, parse-photo, log, log-split, income wired to AI parser + sheets
+2. **Rules engine** — Two-tier merchant + line-item matching from rulepacks
+3. **Budget monitoring** — budget-status, threshold alerts
+4. **Cashflow calculator** — safe-to-spend with sinking fund calculations
+5. **Payment reminders** — payment-check with upcoming due dates
+6. **Reconciliation** — Bank CSV import + reconcile
+7. **Reports** — weekly-summary, monthly-report with AI analysis

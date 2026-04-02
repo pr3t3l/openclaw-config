@@ -22,7 +22,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from lib import config as C
 from lib.errors import FinanceError, ErrorCode
 from lib.state_machine import (
-    SetupStateMachine, install_check, preflight, setup_status,
+    SetupStateMachine, install_check, preflight, setup_status, check_onboarding,
 )
 
 
@@ -58,6 +58,14 @@ def cmd_setup_status():
     _out(setup_status())
 
 
+def cmd_onboarding_check(command: str):
+    result = check_onboarding(command)
+    if result:
+        _out(result)
+    else:
+        _out({"onboarding_message": None})
+
+
 def cmd_setup_reset():
     C.clear_setup_state()
     C.invalidate_config_cache()
@@ -82,6 +90,11 @@ def main():
         "setup-status": cmd_setup_status,
         "setup-reset": cmd_setup_reset,
     }
+
+    if cmd == "onboarding-check":
+        command_name = sys.argv[2] if len(sys.argv) > 2 else ""
+        cmd_onboarding_check(command_name)
+        return
 
     if cmd == "setup-next":
         user_input = sys.argv[2] if len(sys.argv) > 2 else ""

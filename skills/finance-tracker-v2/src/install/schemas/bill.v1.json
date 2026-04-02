@@ -3,7 +3,7 @@
   "title": "Recurring Bill",
   "description": "A recurring payment or subscription for reminder and cashflow calculations.",
   "type": "object",
-  "required": ["name", "amount", "due_day"],
+  "required": ["name", "amount", "due_day", "frequency"],
   "properties": {
     "name": {
       "type": "string",
@@ -20,6 +20,12 @@
       "description": "Day of month payment is due (1-28)",
       "minimum": 1,
       "maximum": 28
+    },
+    "frequency": {
+      "type": "string",
+      "enum": ["monthly", "quarterly", "semi_annual", "annual"],
+      "description": "Billing frequency — enables sinking fund calculations for non-monthly bills",
+      "default": "monthly"
     },
     "account": {
       "type": "string",

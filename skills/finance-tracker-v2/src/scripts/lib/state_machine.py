@@ -917,12 +917,16 @@ class SetupStateMachine:
         if lang == "es":
             msg = (f"Paso {step} — Bills y Suscripciones Recurrentes\n"
                    f"Dime tus pagos recurrentes: nombre, monto, día de vencimiento, frecuencia.\n"
-                   f"Ejemplo: Power, 120, 15, monthly\n\n"
+                   f"Frecuencia: monthly, quarterly, semi_annual, annual\n"
+                   f"Ejemplo: Power, 120, 15, monthly\n"
+                   f"Ejemplo: Car Insurance, 600, 1, semi_annual\n\n"
                    f"'done' para terminar, 'skip' para saltar.")
         else:
             msg = (f"Step {step} — Recurring Bills & Subscriptions\n"
-                   f"Tell me your recurring bills: name, amount, due date, frequency.\n"
-                   f"Example: Power, 120, 15, monthly\n\n"
+                   f"Tell me your recurring bills: name, amount, due day, frequency.\n"
+                   f"Frequency: monthly, quarterly, semi_annual, annual\n"
+                   f"Example: Power, 120, 15, monthly\n"
+                   f"Example: Car Insurance, 600, 1, semi_annual\n\n"
                    f"'done' when finished, 'skip' to skip.")
         return _response(msg, self.state, schema=_load_schema("bill"))
 
@@ -934,7 +938,7 @@ class SetupStateMachine:
         items = self.collected.setdefault("bills", [])
         parts = [p.strip() for p in text.split(",")]
         if len(parts) < 3:
-            return _response("Format: name, amount, due_day", self.state,
+            return _response("Format: name, amount, due_day[, frequency]", self.state,
                              error=ErrorCode.SETUP_INVALID_INPUT.value)
         try:
             amount = float(parts[1])
@@ -946,10 +950,22 @@ class SetupStateMachine:
             return _response("Due day must be 1-28.", self.state,
                              error=ErrorCode.SETUP_INVALID_INPUT.value)
 
+        freq = "monthly"
+        if len(parts) >= 4:
+            freq = parts[3].lower().strip()
+            if freq not in ("monthly", "quarterly", "semi_annual", "annual"):
+                return _response("Frequency: monthly, quarterly, semi_annual, or annual", self.state,
+                                 error=ErrorCode.SETUP_INVALID_INPUT.value)
+
+        # Calculate monthly equivalent for sinking fund display
+        monthly_equiv = amount * {"monthly": 1, "quarterly": 1/3, "semi_annual": 1/6, "annual": 1/12}[freq]
+
         items.append({"name": parts[0], "amount": amount, "due_day": due_day,
-                       "autopay": False, "apr": 0})
+                       "frequency": freq, "autopay": False, "apr": 0})
         self._save()
-        return _response(f"Added: {parts[0]} — ${amount:.2f} due day {due_day}\nAnother? or 'done'",
+        freq_label = freq.replace("_", "-")
+        extra = f" (${monthly_equiv:.2f}/mo)" if freq != "monthly" else ""
+        return _response(f"Added: {parts[0]} — ${amount:.2f} {freq_label} due day {due_day}{extra}\nAnother? or 'done'",
                          self.state, items_count=len(items))
 
     # ── BILLS_CONFIRM ─────────────────────────────────
@@ -965,16 +981,21 @@ class SetupStateMachine:
             return _response(msg, self.state)
 
         lines = []
-        total = 0
+        total_monthly = 0
+        freq_multiplier = {"monthly": 1, "quarterly": 1/3, "semi_annual": 1/6, "annual": 1/12}
         for i, b in enumerate(items, 1):
-            lines.append(f"  {i}. {b['name']}: ${b['amount']:,.2f} due day {b['due_day']}")
-            total += b["amount"]
+            freq = b.get("frequency", "monthly")
+            monthly = b["amount"] * freq_multiplier.get(freq, 1)
+            total_monthly += monthly
+            freq_label = freq.replace("_", "-")
+            extra = f" (${monthly:.2f}/mo)" if freq != "monthly" else ""
+            lines.append(f"  {i}. {b['name']}: ${b['amount']:,.2f} {freq_label} due day {b['due_day']}{extra}")
         summary = "\n".join(lines)
         if lang == "es":
-            msg = f"Resumen de Bills:\n{summary}\n\nTotal mensual: ${total:,.2f}\n\nCorrecto? (yes / edit N / add more)"
+            msg = f"Resumen de Bills:\n{summary}\n\nTotal mensual equivalente: ${total_monthly:,.2f}\n\nCorrecto? (yes / edit N / add more)"
         else:
-            msg = f"Bills Summary:\n{summary}\n\nMonthly total: ${total:,.2f}\n\nCorrect? (yes / edit N / add more)"
-        return _response(msg, self.state, bills=items, total_bills=round(total, 2))
+            msg = f"Bills Summary:\n{summary}\n\nMonthly equivalent: ${total_monthly:,.2f}\n\nCorrect? (yes / edit N / add more)"
+        return _response(msg, self.state, bills=items, total_bills_monthly=round(total_monthly, 2))
 
     def _state_bills_confirm(self, text: str) -> dict:
         if _is_confirm(text) or (not text and not self.collected.get("bills")):
@@ -1011,7 +1032,8 @@ class SetupStateMachine:
             inc["amount"] * {"weekly": 4.33, "biweekly": 2.17, "monthly": 1, "irregular": 1}.get(inc["frequency"], 1)
             for inc in income
         )
-        total_bills = sum(b["amount"] for b in bills)
+        freq_mult = {"monthly": 1, "quarterly": 1/3, "semi_annual": 1/6, "annual": 1/12}
+        total_bills = sum(b["amount"] * freq_mult.get(b.get("frequency", "monthly"), 1) for b in bills)
         total_budget = sum(b["monthly"] for b in budgets)
         total_debt_min = sum(d.get("minimum_payment", 0) for d in debts)
         surplus = total_monthly_income - total_bills - total_debt_min
@@ -1095,40 +1117,94 @@ class SetupStateMachine:
     # ── SHEETS_CREATE ─────────────────────────────────
 
     def _state_sheets_create(self, text: str) -> dict:
-        # Phase 2 will implement actual sheet creation
-        # For now, advance to CRONS_SETUP without marking complete
-        self._advance(SetupState.CRONS_SETUP)
         lang = _lang(self.collected)
-        if lang == "es":
-            msg = "Sheet creado (placeholder). Configurando cron jobs..."
-        else:
-            msg = "Sheet created (placeholder). Setting up cron jobs..."
-        return _response(msg, self.state)
+        config = C._load_tracker_config()
+        try:
+            from .sheets import create_spreadsheet
+            sheets_config = create_spreadsheet(config)
+            self._advance(SetupState.CRONS_SETUP)
+            url = sheets_config.get("spreadsheet_url", "")
+            tab_count = len(sheets_config.get("tabs", {}))
+            if lang == "es":
+                msg = f"Google Sheet creado con {tab_count} tabs!\n{url}"
+            else:
+                msg = f"Google Sheet created with {tab_count} tabs!\n{url}"
+            return _response(msg, self.state, spreadsheet_url=url)
+        except Exception as e:
+            error_msg = str(e)
+            if lang == "es":
+                msg = f"Error creando Sheet: {error_msg}\nEscribe 'retry' para reintentar."
+            else:
+                msg = f"Error creating Sheet: {error_msg}\nType 'retry' to try again."
+            return _response(msg, self.state, error="SHEETS_CREATE_FAILED")
 
     # ── CRONS_SETUP ───────────────────────────────────
 
     def _state_crons_setup(self, text: str) -> dict:
-        # Phase 2 will register OpenClaw native crons
         tz = self.collected.get("context", {}).get("timezone", "America/New_York")
-        self.collected["crons"] = {
-            "timezone": tz,
-            "jobs": ["daily_cashflow", "payment_check", "weekly_review", "monthly_report"],
-        }
+        base_dir = str(C.SCRIPTS_DIR)
+
+        cron_jobs = [
+            {
+                "name": "Finance: Daily Cashflow",
+                "schedule": {"kind": "cron", "cron": "30 7 * * 1-5", "tz": tz},
+                "sessionTarget": "isolated",
+                "payload": {
+                    "kind": "agentTurn",
+                    "message": f"Run: python3 {base_dir}/finance.py cashflow\nShow the result to the user.",
+                },
+                "delivery": {"mode": "announce", "channel": "last"},
+            },
+            {
+                "name": "Finance: Payment Check",
+                "schedule": {"kind": "cron", "cron": "0 9 * * *", "tz": tz},
+                "sessionTarget": "isolated",
+                "payload": {
+                    "kind": "agentTurn",
+                    "message": f"Run: python3 {base_dir}/finance.py payment-check\nShow the result to the user.",
+                },
+                "delivery": {"mode": "announce", "channel": "last"},
+            },
+            {
+                "name": "Finance: Weekly Review",
+                "schedule": {"kind": "cron", "cron": "0 8 * * 0", "tz": tz},
+                "sessionTarget": "isolated",
+                "payload": {
+                    "kind": "agentTurn",
+                    "message": f"Run: python3 {base_dir}/finance.py weekly-review\nShow the result to the user.",
+                },
+                "delivery": {"mode": "announce", "channel": "last"},
+            },
+            {
+                "name": "Finance: Monthly Report",
+                "schedule": {"kind": "cron", "cron": "0 8 1 * *", "tz": tz},
+                "sessionTarget": "isolated",
+                "payload": {
+                    "kind": "agentTurn",
+                    "message": f"Run: python3 {base_dir}/finance.py monthly-report\nShow the result to the user.",
+                },
+                "delivery": {"mode": "announce", "channel": "last"},
+            },
+        ]
+
+        self.collected["crons"] = {"timezone": tz, "jobs": cron_jobs}
         self._advance(SetupState.TELEMETRY_OPT)
         lang = _lang(self.collected)
         if lang == "es":
-            msg = (f"4 cron jobs configurados (TZ: {tz}):\n"
+            msg = (f"4 cron jobs listos (TZ: {tz}):\n"
                    f"  - Cashflow diario (L-V 7:30am)\n"
                    f"  - Verificación de pagos (diario 9am)\n"
                    f"  - Resumen semanal (domingos 8am)\n"
-                   f"  - Reporte mensual (día 1, 8am)")
+                   f"  - Reporte mensual (día 1, 8am)\n\n"
+                   f"El agente los registrará vía OpenClaw cron.")
         else:
-            msg = (f"4 cron jobs configured (TZ: {tz}):\n"
+            msg = (f"4 cron jobs ready (TZ: {tz}):\n"
                    f"  - Daily cashflow (Mon-Fri 7:30am)\n"
                    f"  - Payment check (daily 9am)\n"
                    f"  - Weekly review (Sundays 8am)\n"
-                   f"  - Monthly report (1st of month, 8am)")
-        return _response(msg, self.state)
+                   f"  - Monthly report (1st of month, 8am)\n\n"
+                   f"The agent will register them via OpenClaw cron.")
+        return _response(msg, self.state, cron_jobs=cron_jobs)
 
     # ── TELEMETRY_OPT ─────────────────────────────────
 
@@ -1164,27 +1240,29 @@ class SetupStateMachine:
     def _state_onboarding_missions(self, text: str) -> dict:
         lang = _lang(self.collected)
 
-        # Mark setup complete NOW
+        # Mark setup complete NOW, initialize onboarding tracking
         config = C._load_tracker_config()
         config["user"]["setup_complete"] = True
         config["telemetry"] = {"enabled": self.collected.get("telemetry", False)}
+        config["onboarding"] = {
+            "mission_1": False,  # add or add-photo command
+            "mission_2": False,  # budget-status command
+            "mission_3": False,  # safe-to-spend command
+            "all_complete": False,
+        }
         C.save_tracker_config(config)
         C.clear_setup_state()
         self.state = SetupState.COMPLETE
 
         if lang == "es":
             msg = ("Setup completo! Tu Finance Tracker está listo.\n\n"
-                   "Probemos 3 cosas rápidas:\n\n"
-                   "Misión 1: Envíame una foto de un recibo o escribe '$15 Uber'\n"
-                   "Misión 2: Escribe 'budget status'\n"
-                   "Misión 3: Escribe 'safe to spend'")
+                   "Probemos algo rápido para empezar:\n\n"
+                   "Misión 1 de 3: Envíame una foto de un recibo o escribe '$15 Uber'")
         else:
             msg = ("Setup complete! Your Finance Tracker is ready.\n\n"
-                   "Let's try 3 quick things to get you started:\n\n"
-                   "Mission 1: Send a receipt photo or type '$15 Uber'\n"
-                   "Mission 2: Say 'budget status'\n"
-                   "Mission 3: Say 'safe to spend'")
-        return _response(msg, self.state, done=True)
+                   "Let's try something quick to get started:\n\n"
+                   "Mission 1 of 3: Send a receipt photo or type '$15 Uber'")
+        return _response(msg, self.state, done=True, onboarding_mission=1)
 
     # ── COMPLETE ──────────────────────────────────────
 
@@ -1222,7 +1300,8 @@ class SetupStateMachine:
         for bill in self.collected.get("bills", []):
             payments.append({
                 "name": bill["name"], "amount": bill["amount"],
-                "due_day": bill["due_day"], "account": bill.get("account", "Bank"),
+                "due_day": bill["due_day"], "frequency": bill.get("frequency", "monthly"),
+                "account": bill.get("account", "Bank"),
                 "autopay": bill.get("autopay", False), "apr": bill.get("apr", 0),
                 "promo_expiry": None,
             })
@@ -1271,6 +1350,56 @@ class SetupStateMachine:
 
 
 # ── Public API ────────────────────────────────────────
+
+def check_onboarding(command: str) -> dict | None:
+    """Check if a command completes an onboarding mission. Returns message or None."""
+    config = C._load_tracker_config()
+    onboarding = config.get("onboarding")
+    if not onboarding or onboarding.get("all_complete"):
+        return None
+
+    lang = config.get("user", {}).get("language", "en")
+    mission_map = {
+        1: {"key": "mission_1", "commands": {"add", "add-photo", "parse-text", "parse-photo", "log"}},
+        2: {"key": "mission_2", "commands": {"budget-status", "status"}},
+        3: {"key": "mission_3", "commands": {"safe-to-spend", "cashflow"}},
+    }
+
+    # Find current mission
+    for num in (1, 2, 3):
+        m = mission_map[num]
+        if not onboarding.get(m["key"]) and command in m["commands"]:
+            onboarding[m["key"]] = True
+
+            # Check if next mission exists
+            next_num = num + 1
+            if next_num <= 3:
+                next_prompts_es = {
+                    2: "Misión 2 de 3: Escribe 'budget status'",
+                    3: "Misión 3 de 3: Escribe 'safe to spend'",
+                }
+                next_prompts_en = {
+                    2: "Mission 2 of 3: Say 'budget status'",
+                    3: "Mission 3 of 3: Say 'safe to spend'",
+                }
+                if lang == "es":
+                    msg = f"Misión {num} completa!\n\n{next_prompts_es[next_num]}"
+                else:
+                    msg = f"Mission {num} complete!\n\n{next_prompts_en[next_num]}"
+            else:
+                onboarding["all_complete"] = True
+                if lang == "es":
+                    msg = "Misión 3 completa! Ya estás listo. Escribe /finance_tracker para ver el menú completo."
+                else:
+                    msg = "Mission 3 complete! You're all set! Say /finance_tracker for the full command menu."
+
+            config["onboarding"] = onboarding
+            C.save_tracker_config(config)
+            return {"onboarding_message": msg, "mission_completed": num,
+                    "all_complete": onboarding["all_complete"]}
+
+    return None
+
 
 def setup_status() -> dict:
     state_data = C.load_setup_state()
