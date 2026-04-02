@@ -1,7 +1,11 @@
 """AI parser for Finance Tracker v2.
 
-Uses subprocess + curl to LiteLLM (NOT Python requests — fails in WSL for long calls).
-Cherry-picked from v1 config.py ai_call pattern.
+3-level cascade for AI backend detection:
+  Level 1 — llm-task: Returns prompt as request dict (agent processes via llm-task tool).
+  Level 2 — LiteLLM proxy: http://127.0.0.1:4000 (discovers models dynamically).
+  Level 3 — Direct API: OPENAI_API_KEY, ANTHROPIC_API_KEY, GEMINI_API_KEY from env.
+
+Uses subprocess+curl (NOT Python requests — fails in WSL for long calls).
 """
 
 import json
@@ -13,18 +17,84 @@ from pathlib import Path
 from . import config as C
 
 
-# ── AI config auto-detection (cherry-picked from v1) ──
+# ── Backend detection ─────────────────────────────────
 
-def _detect_ai_config() -> dict:
-    """Auto-detect AI endpoint and model from openclaw.json or env."""
-    result = {}
+def _check_litellm_health() -> bool:
+    """Check if LiteLLM proxy is running at localhost:4000."""
+    try:
+        r = subprocess.run(
+            ["curl", "-s", "--max-time", "3", "http://127.0.0.1:4000/health"],
+            capture_output=True, text=True, timeout=5,
+        )
+        return r.returncode == 0 and r.stdout.strip().startswith("{")
+    except Exception:
+        return False
+
+
+def _discover_litellm_models() -> list[str]:
+    """GET /models from LiteLLM and return model IDs."""
+    try:
+        r = subprocess.run(
+            ["curl", "-s", "--max-time", "5", "http://127.0.0.1:4000/v1/models"],
+            capture_output=True, text=True, timeout=7,
+        )
+        if r.returncode != 0 or not r.stdout.strip():
+            return []
+        data = json.loads(r.stdout)
+        return [m.get("id", "") for m in data.get("data", []) if m.get("id")]
+    except Exception:
+        return []
+
+
+def _pick_cheapest_model(models: list[str]) -> str:
+    """Pick the smallest/cheapest model from a list for parsing tasks."""
+    # Prefer small/mini models for parsing (cheap + fast)
+    preferences = [
+        "gpt-4.1-mini", "gpt-4o-mini", "gpt-4.1-nano",
+        "claude-3-5-haiku", "claude-haiku", "claude-3-haiku",
+        "gemini-2.0-flash", "gemini-1.5-flash",
+        "gpt-3.5-turbo",
+    ]
+    for pref in preferences:
+        for m in models:
+            if pref in m.lower():
+                return m
+    # Fallback: shortest model name (heuristic: shorter = simpler)
+    return min(models, key=len) if models else ""
+
+
+def detect_ai_backend() -> dict:
+    """Detect available AI backend. Returns {backend, model, url, key}.
+
+    Level 2 — LiteLLM proxy (fast, local)
+    Level 3 — Direct API (env vars)
+    Level 1 — llm-task (handled outside Python by SKILL.md)
+    """
+    # Level 2: LiteLLM proxy
+    if _check_litellm_health():
+        models = _discover_litellm_models()
+        if models:
+            model = _pick_cheapest_model(models)
+            return {
+                "backend": "litellm",
+                "model": model,
+                "url": "http://127.0.0.1:4000/v1/chat/completions",
+                "key": "sk-litellm",  # LiteLLM default key
+            }
+
+    # Level 3: Direct API from env vars
+    # Check openclaw.json env section first
     oc_path = Path.home() / ".openclaw" / "openclaw.json"
-
+    env_keys = {}
     if oc_path.exists():
         try:
             oc = json.loads(oc_path.read_text())
+            oc_env = oc.get("env", {})
+            for k in ("OPENAI_API_KEY", "ANTHROPIC_API_KEY", "GEMINI_API_KEY"):
+                if oc_env.get(k):
+                    env_keys[k] = oc_env[k]
 
-            # Try 1: Custom provider with baseUrl
+            # Also check providers
             providers = oc.get("models", {}).get("providers", {})
             for name, prov in providers.items():
                 if prov.get("baseUrl") and prov.get("apiKey"):
@@ -33,64 +103,82 @@ def _detect_ai_config() -> dict:
                         if not base.endswith("/v1"):
                             base += "/v1"
                         base += "/chat/completions"
-                    result["url"] = base
-                    result["key"] = prov["apiKey"]
-                    models = prov.get("models", [])
-                    if models:
-                        ids = [m.get("id", "") for m in models]
-                        for candidate in ["gpt5-mini", "gpt-4o-mini", "gpt41-mini"]:
-                            if candidate in ids:
-                                result["model"] = candidate
-                                break
-                        if "model" not in result and ids:
-                            result["model"] = ids[0]
-                    break
-
-            # Try 2: env section
-            oc_env = oc.get("env", {})
-            if not result.get("key") and oc_env.get("OPENAI_API_KEY"):
-                result["url"] = "https://api.openai.com/v1/chat/completions"
-                result["key"] = oc_env["OPENAI_API_KEY"]
-                result.setdefault("model", "gpt-4o-mini")
-
+                    models = [m.get("id", "") for m in prov.get("models", []) if m.get("id")]
+                    model = _pick_cheapest_model(models) if models else "auto"
+                    return {
+                        "backend": "provider",
+                        "model": model,
+                        "url": base,
+                        "key": prov["apiKey"],
+                    }
         except Exception:
             pass
 
-    # Try 3: System env
-    if not result.get("key"):
-        for env_key, api_url in [
-            ("OPENAI_API_KEY", "https://api.openai.com/v1/chat/completions"),
-            ("OPENROUTER_API_KEY", "https://openrouter.ai/api/v1/chat/completions"),
-        ]:
-            val = os.environ.get(env_key)
+    # System env vars
+    for k in ("OPENAI_API_KEY", "ANTHROPIC_API_KEY", "GEMINI_API_KEY"):
+        if k not in env_keys:
+            val = os.environ.get(k)
             if val:
-                result["url"] = api_url
-                result["key"] = val
-                result.setdefault("model", "gpt-4o-mini")
-                break
+                env_keys[k] = val
 
-    return result
+    if env_keys.get("OPENAI_API_KEY"):
+        return {
+            "backend": "openai",
+            "model": "gpt-4o-mini",
+            "url": "https://api.openai.com/v1/chat/completions",
+            "key": env_keys["OPENAI_API_KEY"],
+        }
+    if env_keys.get("ANTHROPIC_API_KEY"):
+        return {
+            "backend": "anthropic",
+            "model": "claude-3-5-haiku-20251022",
+            "url": "https://api.anthropic.com/v1/messages",
+            "key": env_keys["ANTHROPIC_API_KEY"],
+        }
+    if env_keys.get("GEMINI_API_KEY"):
+        return {
+            "backend": "gemini",
+            "model": "gemini-2.0-flash",
+            "url": "https://generativelanguage.googleapis.com/v1beta/chat/completions",
+            "key": env_keys["GEMINI_API_KEY"],
+        }
+
+    return {"backend": "none", "model": "", "url": "", "key": ""}
 
 
-_AI = _detect_ai_config()
-LITELLM_URL = _AI.get("url", "http://127.0.0.1:4000/v1/chat/completions")
-LITELLM_KEY = _AI.get("key", "")
-PARSE_MODEL = _AI.get("model", "gpt-4o-mini")
+# Lazy-initialized backend config
+_BACKEND: dict | None = None
+
+
+def _get_backend() -> dict:
+    global _BACKEND
+    if _BACKEND is None:
+        _BACKEND = detect_ai_backend()
+    return _BACKEND
 
 
 # ── Core AI call via subprocess+curl ──────────────────
 
 def ai_call(payload: dict, timeout: int = 60) -> dict | None:
-    """Make an AI API call via curl. Returns parsed response or None on error."""
-    if not LITELLM_KEY:
+    """Make an AI API call via curl. Returns parsed response or None."""
+    backend = _get_backend()
+    if backend["backend"] == "none":
         return None
+
+    url = backend["url"]
+    key = backend["key"]
+
+    # Anthropic uses different headers/format
+    if backend["backend"] == "anthropic":
+        return _anthropic_call(payload, url, key, timeout)
+
     try:
         result = subprocess.run(
-            ["curl", "-s", "--max-time", str(timeout), LITELLM_URL,
+            ["curl", "-s", "--max-time", str(timeout), url,
              "-H", "Content-Type: application/json",
-             "-H", f"Authorization: Bearer {LITELLM_KEY}",
+             "-H", f"Authorization: Bearer {key}",
              "-d", json.dumps(payload)],
-            capture_output=True, text=True, timeout=timeout + 5
+            capture_output=True, text=True, timeout=timeout + 5,
         )
     except (subprocess.TimeoutExpired, Exception):
         return None
@@ -105,13 +193,55 @@ def ai_call(payload: dict, timeout: int = 60) -> dict | None:
     return resp
 
 
+def _anthropic_call(payload: dict, url: str, key: str, timeout: int) -> dict | None:
+    """Anthropic Messages API has a different format."""
+    messages = payload.get("messages", [])
+    system_msg = ""
+    user_messages = []
+    for m in messages:
+        if m["role"] == "system":
+            system_msg = m["content"]
+        else:
+            user_messages.append(m)
+
+    anthropic_payload = {
+        "model": payload.get("model", "claude-3-5-haiku-20251022"),
+        "max_tokens": 2048,
+        "messages": user_messages,
+    }
+    if system_msg:
+        anthropic_payload["system"] = system_msg
+
+    try:
+        result = subprocess.run(
+            ["curl", "-s", "--max-time", str(timeout), url,
+             "-H", "Content-Type: application/json",
+             "-H", f"x-api-key: {key}",
+             "-H", "anthropic-version: 2023-06-01",
+             "-d", json.dumps(anthropic_payload)],
+            capture_output=True, text=True, timeout=timeout + 5,
+        )
+    except (subprocess.TimeoutExpired, Exception):
+        return None
+    if result.returncode != 0 or not result.stdout:
+        return None
+    try:
+        resp = json.loads(result.stdout)
+    except json.JSONDecodeError:
+        return None
+    # Convert Anthropic format to OpenAI-compatible
+    if "content" in resp and isinstance(resp["content"], list):
+        text = resp["content"][0].get("text", "")
+        return {"choices": [{"message": {"content": text}}]}
+    return None
+
+
 def ai_extract_json(payload: dict, timeout: int = 60) -> dict | list | None:
     """Make AI call, extract JSON from response text."""
     resp = ai_call(payload, timeout)
     if not resp:
         return None
     text = resp["choices"][0]["message"]["content"]
-    # Strip markdown fences if present
     json_match = re.search(r"```(?:json)?\s*([\s\S]*?)```", text)
     if json_match:
         text = json_match.group(1)
@@ -121,69 +251,35 @@ def ai_extract_json(payload: dict, timeout: int = 60) -> dict | list | None:
         return None
 
 
-# ── Income parser ─────────────────────────────────────
+def _get_model() -> str:
+    return _get_backend().get("model", "auto")
 
-def parse_income(text: str, lang: str = "en") -> dict | None:
-    """Parse free-form income text into structured JSON."""
-    schema = _load_schema_text("income")
-    prompt = f"""Parse this income description into JSON matching this schema:
-{schema}
 
-source_type must be one of: salary, freelance, rental, business, other
-frequency must be one of: weekly, biweekly, monthly, irregular
-is_regular should be true for salary, false for freelance/rental/business/other
-account_label is the bank account name. If not mentioned, use "Primary Checking".
+# ── Level 1: llm-task request mode ────────────────────
 
-Input ({lang}): {text}
+def build_llm_request(system: str, user: str) -> dict:
+    """Build an llm-task request dict for the agent to process.
 
-Respond ONLY with valid JSON, no explanation."""
-
-    payload = {
-        "model": PARSE_MODEL,
-        "messages": [
-            {"role": "system", "content": "You are a financial data parser. Output only valid JSON."},
-            {"role": "user", "content": prompt},
-        ],
-        "temperature": 0.1,
+    The SKILL.md instructs the agent to call llm-task with this payload.
+    Returns: {"llm_request": True, "system": ..., "user": ..., "response_format": "json"}
+    """
+    return {
+        "llm_request": True,
+        "system": system,
+        "user": user,
+        "response_format": "json",
     }
-    result = ai_extract_json(payload)
-    if isinstance(result, dict):
-        # Ensure required fields
-        result.setdefault("is_regular", result.get("source_type") == "salary")
-        result.setdefault("account_label", "Primary Checking")
-        result.setdefault("frequency", "monthly")
-        result.setdefault("source_type", "other")
-    return result
 
 
-# ── Debt parser ───────────────────────────────────────
-
-def parse_debt(text: str, lang: str = "en") -> dict | None:
-    """Parse free-form debt text into structured JSON."""
-    schema = _load_schema_text("debt")
-    prompt = f"""Parse this debt description into JSON matching this schema:
-{schema}
-
-type should be one of: credit_card, personal_loan, auto_loan, mortgage, student_loan, other
-If APR is not mentioned, use 0. If minimum payment is not mentioned, use 0.
-
-Input ({lang}): {text}
-
-Respond ONLY with valid JSON, no explanation."""
-
-    payload = {
-        "model": PARSE_MODEL,
-        "messages": [
-            {"role": "system", "content": "You are a financial data parser. Output only valid JSON."},
-            {"role": "user", "content": prompt},
-        ],
-        "temperature": 0.1,
-    }
-    result = ai_extract_json(payload)
-    if isinstance(result, dict):
-        result.setdefault("apr", 0)
-        result.setdefault("minimum_payment", 0)
-    return result
+def process_llm_response(response_text: str) -> dict | list | None:
+    """Process the response from an llm-task call."""
+    json_match = re.search(r"```(?:json)?\s*([\s\S]*?)```", response_text)
+    if json_match:
+        response_text = json_match.group(1)
+    try:
+        return json.loads(response_text.strip())
+    except json.JSONDecodeError:
+        return None
 
 
 # ── Transaction parser ────────────────────────────────
@@ -195,7 +291,8 @@ def parse_transaction(text: str, lang: str = "en",
     cats = categories or C.get_categories()
     accts = cards or C.get_cards()
 
-    prompt = f"""Parse this expense or income into JSON:
+    system = "You are a financial transaction parser. Output only valid JSON."
+    user = f"""Parse this expense or income into JSON:
 
 Input ({lang}): {text}
 
@@ -215,11 +312,15 @@ Return JSON with these fields:
 
 Respond ONLY with valid JSON, no explanation."""
 
+    backend = _get_backend()
+    if backend["backend"] == "none":
+        return build_llm_request(system, user)
+
     payload = {
-        "model": PARSE_MODEL,
+        "model": _get_model(),
         "messages": [
-            {"role": "system", "content": "You are a financial transaction parser. Output only valid JSON."},
-            {"role": "user", "content": prompt},
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
         ],
         "temperature": 0.1,
     }
@@ -231,14 +332,13 @@ Respond ONLY with valid JSON, no explanation."""
     return result
 
 
-# ── Receipt line item parser ──────────────────────────
-
 def parse_receipt_lines(text: str, lang: str = "en",
                         categories: list[str] | None = None) -> dict | None:
     """Parse a receipt into line items with categories."""
     cats = categories or C.get_categories()
 
-    prompt = f"""Parse this receipt into line items.
+    system = "You are a receipt parser. Output only valid JSON."
+    user = f"""Parse this receipt into line items.
 
 Input ({lang}): {text}
 
@@ -247,7 +347,7 @@ Valid categories: {json.dumps(cats)}
 Return JSON with:
 - "merchant": string
 - "date": "YYYY-MM-DD"
-- "receipt_id": "merchant-YYYYMMDD-totalcents" (e.g. "walmart-20260402-8743")
+- "receipt_id": "merchant-YYYYMMDD-totalcents"
 - "total": number
 - "transactions": array of objects, each with:
   - "amount": number
@@ -258,11 +358,15 @@ Return JSON with:
 
 Respond ONLY with valid JSON, no explanation."""
 
+    backend = _get_backend()
+    if backend["backend"] == "none":
+        return build_llm_request(system, user)
+
     payload = {
-        "model": PARSE_MODEL,
+        "model": _get_model(),
         "messages": [
-            {"role": "system", "content": "You are a receipt parser. Output only valid JSON."},
-            {"role": "user", "content": prompt},
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
         ],
         "temperature": 0.1,
     }
@@ -272,7 +376,6 @@ Respond ONLY with valid JSON, no explanation."""
 # ── Helper ────────────────────────────────────────────
 
 def _load_schema_text(name: str) -> str:
-    """Load schema as text for embedding in prompts."""
     path = C.SCHEMAS_DIR / f"{name}.v1.json"
     if path.exists():
         return path.read_text()

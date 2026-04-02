@@ -233,3 +233,107 @@ Aligned state machine with spec at `docs/workflow_bible_finance specs V2.md` §3
 5. **Payment reminders** — payment-check with upcoming due dates
 6. **Reconciliation** — Bank CSV import + reconcile
 7. **Reports** — weekly-summary, monthly-report with AI analysis
+
+---
+
+## Phase 3: Runtime Commands (2026-04-02)
+
+### AI Parser Fix
+
+Rewrote `ai_parser.py` with 3-level backend detection cascade:
+- **Level 1 (llm-task):** Returns `{llm_request: true, system, user}` for agent to process via llm-task tool. Used when no AI backend is available.
+- **Level 2 (LiteLLM):** Checks `localhost:4000/health`, discovers models via `GET /models`, picks cheapest for parsing. No hardcoded model names.
+- **Level 3 (Direct API):** Reads OPENAI_API_KEY, ANTHROPIC_API_KEY, GEMINI_API_KEY from openclaw.json env or system env. Anthropic Messages API supported with format translation.
+
+New function `detect_ai_backend()` returns `{backend, model, url, key}`.
+
+### Files Created
+
+| File | Lines | Purpose |
+|------|-------|---------|
+| `merchant_rules.py` | 146 | Two-tier merchant rules: single-category auto-match + multi-category line-item flag. normalize_merchant(), lookup_merchant(), save_merchant_rule() with auto-learn. |
+| `rules.py` | 85 | Base rules + user overlay for tax deductions. match_tax_deduction() with keyword matching against rulepack keywords. |
+| `parser.py` | 157 | Transaction parsing: regex → merchant rules → AI fallback. Income detection, amount/merchant/card extraction. |
+| `budget.py` | 108 | Budget status with Fixed/Variable distinction, 3-tier alerts (80%/95%/100%). |
+| `cashflow.py` | 170 | Safe-to-spend: balance - upcoming bills - debt min - savings - sinking funds. Risk levels. |
+| `payments.py` | 133 | Payment calendar, due-soon alerts (0/1/3 days), promo APR expiry warnings, sinking fund summary. |
+
+### Files Modified
+
+| File | Changes |
+|------|---------|
+| `ai_parser.py` | Full rewrite: 3-level cascade, Anthropic support, llm-task request mode, dynamic model discovery |
+| `finance.py` | Full rewrite: 15+ runtime commands (add, budget-status, safe-to-spend, list-categories, list-rules, add-rule, payment-check, etc.) |
+
+### CLI Commands Added
+
+| Command | What it does |
+|---------|-------------|
+| `add "text"` | Parse + log transaction (rules → AI fallback, auto-learn merchant) |
+| `add-photo "path"` | Parse receipt photo via AI |
+| `budget-status` | Per-category budget overview with Fixed/Variable |
+| `safe-to-spend` | Daily cashflow number with breakdown |
+| `cashflow` | Alias for safe-to-spend |
+| `transactions [N]` | List last N transactions (Sheets pending) |
+| `list-categories` | Show budget categories |
+| `add-category name budget type` | Add new category |
+| `remove-category name` | Remove category |
+| `list-rules` | Show merchant rules |
+| `add-rule pattern category [confidence]` | Add custom merchant rule |
+| `update-balance account amount` | Manual balance update |
+| `payment-check` | Due-soon alerts + upcoming 7d payments |
+| `ai-backend` | Show detected AI backend |
+
+### Add Command Flow
+
+```
+input → regex extract (amount, merchant, card)
+  → normalize_merchant → lookup merchant_rules.json
+  → if known + single-category + confidence > 0.8:
+      auto-categorize, implicit confirm: "Added: $15 → Transportation (Uber). Reply 'undo' to revert."
+  → if multi-category merchant (walmart, target, etc):
+      AI parse line items
+  → if unknown merchant:
+      AI parse → save merchant rule if single-category result
+```
+
+### Merchant Rule Auto-Learning
+
+After `add "$15 Uber"`:
+1. Regex extracts $15 + "Uber"
+2. No existing rule → regex-only fallback categorizes to "Other"
+3. ... but wait, AI backend detected "provider" → AI returns {category: "Transportation", confidence: 0.98}
+4. save_merchant_rule("uber", "Transportation", 0.98, created_by="auto")
+5. Next `add "$22 Uber"` → rule match (confidence 0.98, rule_matched=True) → $0 AI cost
+
+### Safe-to-Spend Calculation
+
+Tested with: balance=$3200, biweekly pay dates [1,15], 3 bills (Power $120/mo, Car Insurance $600/semi-annual, Netflix $15.99/mo)
+
+Result: **$221.28/day** = ($3200 - $135.99 upcoming - $65 debt min) / 13 days to pay - $6.07 savings - $3.33 sinking fund
+
+Sinking fund: Car Insurance $600/180 days = $3.33/day provisioned.
+
+### Tests Run
+
+| Test | Result | Notes |
+|------|--------|-------|
+| `add "$15 Uber"` | PASS | Parsed via AI, auto-learned rule, implicit confirm in Spanish, onboarding mission 1 complete |
+| `add "$22 Uber"` (2nd) | PASS | Hit cached merchant rule (confidence 0.98, rule_matched=true) — $0 AI |
+| `budget-status` | PASS | 9 categories with Fixed/Variable display, onboarding mission 2 |
+| `safe-to-spend` | PASS | $221.28/day, sinking fund $3.33/day, onboarding mission 3 |
+| `list-categories` | PASS | 9 categories with type and budget |
+| `add-category / remove-category` | PASS | Adds/removes from config |
+| `list-rules` | PASS | Shows auto-learned "uber" rule |
+| `add-rule "starbucks" "Restaurants"` | PASS | Manual rule creation |
+| `payment-check` | PASS | 1 alert (Netflix in 3d), 1 upcoming |
+| `ai-backend` | PASS | Detected "provider" with LiteLLM proxy model |
+| `transactions` | PASS | Returns empty (Sheets pending) |
+
+### What Phase 4 Needs
+
+1. **Sheets read/write** — Wire transactions to Google Sheets (append, read recent, get month spending)
+2. **Reconciliation** — Bank CSV import with auto-detection
+3. **Weekly/monthly reports** — AI-powered analysis
+4. **Undo system** — Revert last transaction within 5 minutes
+5. **Debt optimizer** — Avalanche vs snowball payoff strategy
