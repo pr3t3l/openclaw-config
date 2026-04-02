@@ -154,31 +154,64 @@ PARSE_MODEL = _AI_CONFIG.get("parse_model", "gpt-4o-mini")
 CLASSIFY_MODEL = _AI_CONFIG.get("classify_model", "gpt-4o-mini")
 ANALYSIS_MODEL = _AI_CONFIG.get("analysis_model", "gpt-4o")
 
-def ai_call(payload: dict, timeout: int = 60) -> dict | None:
-    """Make an AI API call via curl. Returns parsed response or None on error."""
+def ai_call(payload: dict, timeout: int = 60, _caller: str = "") -> dict | None:
+    """Make an AI API call via curl. Returns parsed response or None on error.
+
+    _caller: optional tag for telemetry (e.g., "parse-text", "tax-profile").
+    """
     import subprocess
-    result = subprocess.run(
-        ["curl", "-s", "--max-time", str(timeout), LITELLM_URL,
-         "-H", "Content-Type: application/json",
-         "-H", f"Authorization: Bearer {LITELLM_KEY}",
-         "-d", json.dumps(payload)],
-        capture_output=True, text=True, timeout=timeout + 5
-    )
+    import time as _time
+    model = payload.get("model", "unknown")
+    t0 = _time.time()
+    status = "success"
+    try:
+        result = subprocess.run(
+            ["curl", "-s", "--max-time", str(timeout), LITELLM_URL,
+             "-H", "Content-Type: application/json",
+             "-H", f"Authorization: Bearer {LITELLM_KEY}",
+             "-d", json.dumps(payload)],
+            capture_output=True, text=True, timeout=timeout + 5
+        )
+    except subprocess.TimeoutExpired:
+        status = "timeout"
+        _track_ai(model, t0, status, _caller)
+        return None
+    except Exception:
+        status = "error"
+        _track_ai(model, t0, status, _caller)
+        return None
     if result.returncode != 0 or not result.stdout or not result.stdout.strip():
+        status = "empty"
+        _track_ai(model, t0, status, _caller)
         return None
     try:
         resp = json.loads(result.stdout)
     except json.JSONDecodeError:
+        status = "invalid_json"
+        _track_ai(model, t0, status, _caller)
         return None
     if "error" in resp or "choices" not in resp:
+        status = "api_error"
+        _track_ai(model, t0, status, _caller)
         return None
+    _track_ai(model, t0, status, _caller)
     return resp
 
 
-def ai_extract_text(payload: dict, timeout: int = 60) -> str | None:
+def _track_ai(model: str, t0: float, status: str, caller: str):
+    """Fire-and-forget AI call telemetry."""
+    import time as _time
+    try:
+        from . import telemetry as T
+        T.track_ai_call(caller or "unknown", model, int((_time.time() - t0) * 1000), status)
+    except Exception:
+        pass
+
+
+def ai_extract_text(payload: dict, timeout: int = 60, _caller: str = "") -> str | None:
     """Make an AI call and return the text content, or None on error."""
     import re
-    resp = ai_call(payload, timeout)
+    resp = ai_call(payload, timeout, _caller=_caller)
     if not resp:
         return None
     text = resp["choices"][0]["message"]["content"]

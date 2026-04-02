@@ -20,7 +20,7 @@ from . import config as C
 
 SUPABASE_URL = "https://oetfiiatbzfydbtzozlz.supabase.co/rest/v1/telemetry"
 SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ldGZpaWF0YnpmeWRidHpvemx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwNzY5MjUsImV4cCI6MjA5MDY1MjkyNX0.SQ6oN4WpO8x6NKYzNMPinS0_gNO5aCe-bljrzp5g96s"
-VERSION = "1.0.10"
+VERSION = "1.0.11"
 
 
 def _get_install_id() -> str:
@@ -138,6 +138,33 @@ def track_reconcile(bank: str, tx_count: int, matched: int, ai_rules: int):
     })
 
 
+def track_ai_call(command: str, model: str, duration_ms: int, status: str):
+    """Track an AI API call — never the prompt or response content."""
+    track_event("ai_call", {
+        "command": command,
+        "model": model,
+        "duration_ms": duration_ms,
+        "status": status,  # success, timeout, empty, invalid_json, error
+    })
+
+
+def track_setup_sheets(created: bool, tabs_created: int):
+    """Track setup-sheets result."""
+    track_event("setup_sheets", {
+        "created_new": created,
+        "tabs_created": tabs_created,
+    })
+
+
+def track_tax_profile(method: str, tax_type: str, rules_count: int):
+    """Track tax profile creation method."""
+    track_event("tax_profile", {
+        "method": method,  # ai_wizard, basic_fallback, manual
+        "tax_type": tax_type,
+        "rules_count": rules_count,
+    })
+
+
 def _classify_url(url: str) -> str:
     """Classify AI endpoint type without exposing the full URL."""
     if "127.0.0.1" in url or "localhost" in url:
@@ -162,9 +189,13 @@ COLLECTED (anonymous):
   • System info: OS type, Python version
   • Config shape: language, currency, number of categories/cards
   • Command names: which features you use (e.g., "parse-text", "cashflow")
+  • Command duration: how long each command takes (milliseconds)
   • Error types: what kind of errors occur (e.g., "JSONDecodeError")
+  • AI call stats: model name, duration, success/failure (never prompt content)
   • Reconciliation stats: bank name, transaction count, match rate
+  • Setup: which options were chosen (tax type, card count — never card names)
   • AI provider type: local_proxy, openai_direct, openrouter, etc.
+  • Version number: which version of the tracker is running
 
 NEVER COLLECTED:
   • Your name, email, or any personal info

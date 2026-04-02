@@ -77,6 +77,12 @@ Data:
 33. /batch-receipts + links — Process receipt links
 34. /add-rule <pattern> <category> [confidence] — Add categorization rule
 
+Telemetry:
+35. /telemetry-on — Enable anonymous analytics
+36. /telemetry-off — Disable anonymous analytics
+37. /telemetry-status — Show current status
+38. /telemetry-info — What data is collected
+
 Reply with a number or command name.
 ```
 
@@ -87,13 +93,15 @@ When the user replies with a number (1-34) or a command name, execute the corres
 When the user selects a command (by number or name), here is exactly what to do:
 
 ### 1. /setup
-Ask the user 3 questions (cards, currency, tax type), then run:
+Ask the user 3 questions ONE AT A TIME (cards, currency, tax type). See "First Run" section for full details.
+Map natural language to tax types: Airbnb/VRBO = rental, consulting = freelancer, etc.
+Then run:
 ```bash
 python3 finance.py setup '{"cards":"CARDS","currency":"CURRENCY","tax":"TYPE"}'
 python3 finance.py setup-sheets
 python3 finance.py parse-text '$25 Starbucks'
 ```
-See "First Run" section below for full details. NEVER run setup without JSON.
+NEVER run setup without JSON.
 
 ### 2. /list-categories
 ```bash
@@ -289,19 +297,47 @@ Ask: pattern, category, confidence (optional). Then:
 python3 finance.py add-rule "<pattern>" <Category> [confidence]
 ```
 
+### 35. /telemetry-on
+```bash
+python3 finance.py telemetry on
+```
+
+### 36. /telemetry-off
+```bash
+python3 finance.py telemetry off
+```
+
+### 37. /telemetry-status
+```bash
+python3 finance.py telemetry status
+```
+
+### 38. /telemetry-info
+```bash
+python3 finance.py telemetry info
+```
+
 ## First Run — Installation & Setup
 
-**IMPORTANT: Follow this sequence WITHOUT stopping. Only pause to ask the user the 3 required questions.**
+**IMPORTANT: Follow this sequence WITHOUT stopping. Ask questions ONE AT A TIME, wait for each answer.**
 
 ### After setup.sh completes, do this immediately:
 
-**Step 1:** Ask the user these 3 questions (all at once in a single message):
-1. What bank cards/accounts do you use? (e.g., Chase Visa, Discover, Cash)
-2. What currency? (e.g., USD, EUR, GBP)
-3. Do you have a business for tax deductions? (no / rental property / freelancer / small business)
-   - If yes: briefly describe it (e.g., "Airbnb beach house")
+**Step 1:** Ask: "What bank cards or accounts do you use? (e.g., Chase Visa, Discover, Cash)"
+Wait for answer.
 
-**Step 2:** Once the user answers, run these 3 commands in sequence (do NOT stop between them):
+**Step 2:** Ask: "What currency? (e.g., USD, EUR, GBP, COP)"
+Wait for answer.
+
+**Step 3:** Ask: "Do you have a business for tax deductions? Options: no, rental, freelancer, business"
+Wait for answer.
+- If the user says anything related to rental/Airbnb/VRBO → use `"tax":"rental"`
+- If the user says freelancer/contractor/consulting → use `"tax":"freelancer"`
+- If the user says business/shop/store/side hustle → use `"tax":"business"`
+- If anything else that is not "no" → use `"tax":"other"` and ask for a short description
+- IMPORTANT: map the user's natural language to the correct tax type. "Airbnb" = rental, not literal "Airbnb".
+
+**Step 4:** Run these 3 commands in sequence (do NOT stop between them):
 
 ```bash
 cd ~/.openclaw/workspace/skills/finance-tracker/scripts

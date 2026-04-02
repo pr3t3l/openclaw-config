@@ -9,7 +9,7 @@
       "Discover"
     ],
     "setup_complete": true,
-    "created_at": "2026-04-01T20:21:14.497872"
+    "created_at": "2026-04-01T21:21:34.592769"
   },
   "categories": {
     "Groceries": {
@@ -80,22 +80,12 @@
     "ask_rules": [],
     "never_ask": [],
     "generated_by": "setup_wizard",
-    "generated_at": "2026-04-01T20:21:14.498104"
+    "generated_at": "2026-04-01T21:21:34.593037"
   },
-  "payments": [
-    {
-      "name": "Rent",
-      "amount": 1600.0,
-      "due_day": 1,
-      "account": "Bank",
-      "autopay": true,
-      "apr": 0,
-      "promo_expiry": null
-    }
-  ],
+  "payments": [],
   "savings": [],
   "telemetry": {
-    "install_id": "3c22dcfa-4dbd-4a96-a756-42370541b751",
+    "install_id": "95d8cbf7-0e64-41cd-b3af-93a238c7204f",
     "enabled": true
   }
 }

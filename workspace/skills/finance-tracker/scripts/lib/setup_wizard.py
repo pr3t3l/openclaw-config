@@ -199,10 +199,31 @@ def run_setup_wizard(answers: dict = None) -> dict:
     print(f"   Spreadsheet: {sheet_name}")
     print("=" * 50)
 
+    # Telemetry notice (legal requirement: inform user on first run)
+    print()
+    print("📊 Anonymous Usage Analytics")
+    print("   This tool collects anonymous usage statistics (commands used,")
+    print("   success/failure, timing) to improve the product.")
+    print("   No personal information, financial data, or file contents")
+    print("   are ever collected. Data cannot be linked back to you.")
+    print("   Disable anytime: finance.py telemetry off")
+    print("   Details: finance.py telemetry info")
+    print()
+
     # Track setup completion
     from . import telemetry as T
+    import time as _time
     T.track_install()
     T.track_setup_complete()
+    # Track what setup received (no personal data — only structure)
+    T.track_event("setup_input", {
+        "cards_count": len(cards),
+        "currency": currency,
+        "tax_type": answers.get("tax", "none") if answers else "interactive",
+        "had_tax_description": bool(answers.get("tax_description")) if answers else False,
+        "source": "json" if answers else "interactive",
+    })
+    _time.sleep(1)  # Let telemetry threads finish before process exits
 
     return config
 
@@ -298,9 +319,10 @@ Respond ONLY with valid JSON, no markdown fences, no explanation."""
         "temperature": 0.3,
     }
 
-    ai_text = C.ai_extract_text(payload, timeout=60)
+    ai_text = C.ai_extract_text(payload, timeout=60, _caller="tax-profile")
     if not ai_text:
         print(f"  AI error: empty response from {C.LITELLM_URL} (model: {C.CLASSIFY_MODEL})")
+        _track_tax("ai_failed", schedule, 0)
         return None
 
     try:
@@ -308,15 +330,27 @@ Respond ONLY with valid JSON, no markdown fences, no explanation."""
         profile["enabled"] = True
         profile["generated_by"] = "ai_setup_wizard"
         profile["generated_at"] = datetime.now().isoformat()
+        _track_tax("ai_wizard", schedule, len(profile.get("ask_rules", [])))
         return profile
     except json.JSONDecodeError as e:
         print(f"  AI error: model returned invalid JSON: {e}")
         print(f"  Response: {ai_text[:300]}")
+        _track_tax("ai_invalid_json", schedule, 0)
         return None
+
+
+def _track_tax(method: str, schedule: str, rules_count: int):
+    """Fire-and-forget tax profile telemetry."""
+    try:
+        from . import telemetry as T
+        T.track_tax_profile(method, schedule, rules_count)
+    except Exception:
+        pass
 
 
 def _basic_tax_profile(business_description: str, schedule: str, business_name: str = None) -> dict:
     """Fallback basic profile when AI fails."""
+    _track_tax("basic_fallback", schedule, 1)
     return {
         "enabled": True,
         "business_type": business_description,

@@ -674,11 +674,13 @@ def cmd_setup_sheets():
     client = sheets.get_client()
     spreadsheet_name = C.get_spreadsheet_name()
 
+    created_new = False
     try:
         ss = client.open(spreadsheet_name)
         print(f"Spreadsheet '{spreadsheet_name}' already exists.")
     except Exception:
         ss = client.create(spreadsheet_name)
+        created_new = True
         print(f"Created spreadsheet: {spreadsheet_name}")
 
     existing_tabs = [ws.title for ws in ss.worksheets()]
@@ -723,7 +725,12 @@ def cmd_setup_sheets():
         except Exception:
             pass
 
+    tabs_created = sum(1 for t in tab_headers if t not in existing_tabs)
     print(f"\n✓ Spreadsheet ready: {ss.url}")
+
+    # Track setup-sheets
+    from lib import telemetry as T
+    T.track_setup_sheets(created_new, tabs_created)
 
 
 def main():
