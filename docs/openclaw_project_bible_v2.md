@@ -1382,10 +1382,20 @@ Gap analysis across 6+ chats, audit script v2.1, system verification, Bible v2 p
 - Success banner on FinanceTracker page when redirected with `?success=true`
 - Tested end-to-end: payment → webhook → email → download confirmed
 
+### Finance Tracker v1.0.12 — product-ready cron/Telegram
+- Setup wizard now captures bot_token, chat_id, timezone during installation
+- New `setup-telegram` command for post-setup Telegram configuration
+- `cron_runner.sh`: reads Telegram config from `tracker_config.json` (not system `.env`)
+- `setup_crons.sh`: reads timezone from config (not hardcoded)
+- Pre-flight checks: validates finance.py exists, python available, config present, Telegram configured
+- Logs failures to `logs/` and sends Telegram alert before exiting
+- Restored accidentally deleted skill files from git
+
 ### Bugs fixed
 - Stripe SDK v12 didn't support apiVersion 2024-11-20 → upgraded to v14 + removed explicit version
 - Frontend called wrong Supabase project → `.env` updated
 - $47 fallback shown instead of real price → Edge Function deployed + working
+- Cron jobs pointing to deleted skill path → files restored, cron_runner hardened
 
 ---
 
@@ -1433,6 +1443,7 @@ Gap analysis across 6+ chats, audit script v2.1, system verification, Bible v2 p
 | 36 | Profile updates: M.AI completed, Automotive skills, ScrollToTop | Session 10 |
 | 37 | Headline copy optimization for conversion | Session 10 |
 | 38 | Product delivery system: Stripe webhook → Resend email → Google Drive download | Session 10 |
+| 39 | Finance Tracker v1.0.12: product-ready Telegram/cron config, pre-flight checks | Session 10 |
 
 ## PENDING 🔲
 

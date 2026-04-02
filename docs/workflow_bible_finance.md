@@ -605,6 +605,7 @@ Website ──checkout──→ Stripe Payment Link
 | v1.0.9 | 2026-04-01 | 5 new commands, KeyError fix, version tracking in telemetry |
 | v1.0.10 | 2026-04-01 | Numbered command menu (38 items), VERSION bump |
 | v1.0.11 | 2026-04-01 | Questions one-at-a-time, telemetry notice, enhanced events, natural language tax mapping |
+| v1.0.12 | 2026-04-02 | Product-ready: setup wizard captures Telegram config (bot_token, chat_id, timezone); cron_runner reads from tracker_config.json instead of system .env; setup_crons.sh uses dynamic timezone; pre-flight checks for missing files/config; new setup-telegram command; restored accidentally deleted skill files |
 
 ---
 
