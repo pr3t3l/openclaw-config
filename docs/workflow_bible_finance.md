@@ -1,7 +1,7 @@
 # WORKFLOW BIBLE — FINANCE TRACKER (ROBOTIN FINANCE)
 ## Documento técnico autoritativo
-### Last verified: 2026-03-29 (audit v2.1)
-### Sources: Build Instructions + v1.1 Addendum + Split/Tax Upgrade + Plan Financiero + Bible v2 §11
+### Last verified: 2026-04-01 (audit v3.0)
+### Sources: Build Instructions + v1.1 Addendum + Split/Tax Upgrade + Plan Financiero + Bible v2 §11 + v1.0.8–v1.0.11 changelogs
 
 > **Source tags:** `[AUDIT]` = machine-verified 2026-03-29. `[BUILD]` = from build instructions.
 > `[UPG]` = from upgrade docs. `[FIN]` = from plan financiero. `[BIBLE]` = from Project Bible v2.
@@ -54,10 +54,26 @@ The Finance Tracker is a personal expense tracking system built as an OpenClaw s
 | 2026-03-31 | Cashflow_Ledger tab added | Signed amounts, flow_type classification (expense/refund/income/payment/transfer) | [CHANGES] |
 | 2026-03-31 | Wells Fargo checking CSV support | _parse_csv_row_wells() for WF format | [CHANGES] |
 | 2026-03-31 | 17 Walmart receipts batch-processed | First real batch import with line-item splitting | [CHANGES] |
+| 2026-04-01 | v1.0.8: Setup UX overhaul — auto-detect name/language from USER.md, only ask 3 questions (cards, currency, tax), JSON-only setup (no interactive mode) | EOFError x7 eliminated | [v1.0.8] |
+| 2026-04-01 | v1.0.8: Schedule E parsing fixed — "Airbnb" maps to "rental" automatically | Tax type mapping bug fixed | [v1.0.8] |
+| 2026-04-01 | v1.0.8: Personal name removed from code comment (leak scanner) | Privacy fix | [v1.0.8] |
+| 2026-04-01 | v1.0.9: 5 new commands (modify-payment, add-debt, update-debt, pay-debt, remove-goal) | 34→38 CLI subcommands | [v1.0.9] |
+| 2026-04-01 | v1.0.9: KeyError fix in logger.py — format_confirmation uses .get() with defaults | Supabase telemetry id 40 | [v1.0.9] |
+| 2026-04-01 | v1.0.9: Version tracking in telemetry — every event includes "v" field | Telemetry improvement | [v1.0.9] |
+| 2026-04-01 | v1.0.10: Numbered command menu (38 items) when user sends /finance_tracker | UX overhaul | [v1.0.10] |
+| 2026-04-01 | v1.0.11: Setup asks questions one at a time (not all 3 at once) | UX improvement | [v1.0.11] |
+| 2026-04-01 | v1.0.11: Telemetry notice shown after setup (GDPR/CCPA compliance) | Legal requirement | [v1.0.11] |
+| 2026-04-01 | v1.0.11: Enhanced telemetry — setup_input, ai_call, setup_sheets, tax_profile events | Observability | [v1.0.11] |
+| 2026-04-01 | v1.0.11: Natural language tax type mapping ("Airbnb" → rental, "consulting" → freelancer) | SKILL.md improvement | [v1.0.11] |
+| 2026-04-01 | Supabase telemetry: `reviewed` column added, events ≤46 marked reviewed | Ops improvement | [INFRA] |
+| 2026-04-01 | Website: price updated $120 → $47, Stripe Payment Link connected | Commercialization | [WEB] |
+| 2026-04-01 | Website: Privacy Policy page created at /products/finance-tracker-privacy | Legal/compliance | [WEB] |
+| 2026-04-01 | Website: Dynamic pricing via Stripe API (Supabase Edge Function get-stripe-price) | Infrastructure | [WEB] |
+| 2026-04-01 | Website: Portfolio card updated — "(Robotin)" → "(OpenClaw Skill)", chips show product features | Branding | [WEB] |
 
 ---
 
-# 3. ARCHITECTURE — 9 MODULES
+# 3. ARCHITECTURE — 10 MODULES
 
 | Phase | Module | Priority | What it does | Uses AI? |
 |-------|--------|----------|-------------|----------|
@@ -86,7 +102,9 @@ Transaction Logger: writes to Google Sheets
 Budget Monitor: checks if near limit → alerts if needed
 ```
 
+| 4 | **Setup Wizard** | Interactive setup (cards, currency, tax), auto-detect name/language from USER.md, Google Sheets creation | setup_wizard.py |
 | 9 | **Batch Receipt Processor** | Process multiple receipt links, match against CSV rows, replace generic rows with detailed line items | batch_receipts.py |
+| 10 | **Telemetry** | Anonymous usage analytics to Supabase, version tracking, opt-out support | telemetry.py |
 
 **Flow:**
 
@@ -170,7 +188,7 @@ Sheet name: **"Robotin Finance 2026"**
 
 `finance.py` — entry point with CLI commands (parse-text, parse-photo, add, report, etc.)
 
-### Library modules (11) `[AUDIT]`
+### Library modules (13) `[AUDIT v3.0]`
 
 | Module | Purpose |
 |--------|---------|
@@ -182,25 +200,26 @@ Sheet name: **"Robotin Finance 2026"**
 | `analyst.py` | Monthly AI analysis report |
 | `reconcile.py` | Bank CSV reconciliation |
 | `sheets.py` | Google Sheets read/write (gspread) |
-| `logger.py` | Logging |
-| `config.py` | Configuration loading |
+| `logger.py` | Transaction logging + confirmation formatting |
+| `config.py` | Configuration loading + AI call wrapper with telemetry |
 | `batch_receipts.py` | Batch receipt link processing with dedup and CSV row replacement |
+| `setup_wizard.py` | First-run setup wizard — auto-detect name/language, 3 questions, Sheets creation |
+| `telemetry.py` | Anonymous usage analytics to Supabase (opt-out, version tracking) |
 
-### Config files `[AUDIT]`
+### Config files `[AUDIT v3.0]`
 
 | File | Purpose |
 |------|---------|
-| `budgets.json` | Monthly budgets per category |
+| `tracker_config.json` | Unified config — cards, currency, categories, budgets, payments, savings, tax profile |
 | `rules.json` | Auto-categorization rules (merchant → category) |
-| `payments.json` | Bill due dates, amounts, APR |
-| `savings.json` | Savings goals with targets and deadlines |
 | `processed_receipts.json` | Dedup tracker for batch receipt links |
-| `pending_categories.json` | AI-suggested categories awaiting user approval |
 
 ### Utility scripts
 
-- `add_category.sh` — safely adds a new category (updates budgets.json, parser.py, Google Sheets)
+- `add_category.sh` — safely adds a new category
 - `cron_runner.sh` — wrapper for cron job execution
+- `setup_crons.sh` — install/remove cron jobs
+- `test_crons.sh` — test cron job execution
 
 ---
 
@@ -359,44 +378,114 @@ Wells Fargo + Chase → Citi 0% APR through Aug 2027. Upstart refinance for Achi
 
 ---
 
-# 15. COMMERCIALIZATION PLAN
+# 15. TELEMETRY SYSTEM `[v1.0.9+]`
 
-| Phase | Timeline | What | Target |
-|-------|----------|------|--------|
-| 1 | NOW → Q2 2026 | Personal use for 3 months — build case studies | Alfredo |
-| 2 | Q3 2026 | OpenClaw skill marketplace ($49-99) | OpenClaw users |
-| 3 | Q4 2026 | SaaS via Telegram ($19/mo) | Airbnb hosts |
-| 4 | 2027 | Scale or white-label to accounting firms | Small businesses |
+### Infrastructure
+- **Supabase project:** oetfiiatbzfydbtzozlz (separate from website Supabase)
+- **Table:** `telemetry` with columns: id, install_id, event, data (JSONB), created_at, reviewed (bool)
+- **Version tracking:** every event includes `"v": "1.0.11"` in data field
 
-**Key differentiator for SaaS:** Airbnb deduction tracking is the hook. Most expense trackers don't auto-categorize rental property deductions.
+### Events tracked
+| Event | Data | Source |
+|-------|------|--------|
+| `install` | os, python_version, v | First run |
+| `setup_complete` | language, currency, categories_count, cards_count, v | After setup |
+| `setup_input` | cards_count, currency, tax_type, had_tax_description, source | After setup |
+| `parse_text` / `parse_photo` | duration_ms, had_rule, confidence, v | Each parse |
+| `command` | name, success, duration_ms, v | Each CLI command |
+| `ai_call` | command, model, duration_ms, status (success/timeout/empty/invalid_json/error) | Each AI call |
+| `setup_sheets` | created_new, tabs_created | setup-sheets command |
+| `tax_profile` | method (ai_wizard/basic_fallback/ai_failed), tax_type, rules_count | Tax profile creation |
+| `error` | error_type, command, v | On exceptions |
+| `reconcile` | bank, tx_count, matched, match_rate, v | CSV reconciliation |
+
+### Opt-out
+- `finance.py telemetry off` — disables, no data sent
+- `finance.py telemetry on` — re-enables
+- `finance.py telemetry status` — shows current state
+- `finance.py telemetry info` — shows what is collected
+
+### Reviewed column
+- `reviewed = false` (default) — new unreviewed events
+- Query: `SELECT * FROM telemetry WHERE reviewed = false ORDER BY id DESC;`
+- After review: `UPDATE telemetry SET reviewed = true WHERE id <= N;`
+
+### Never collected
+Names, emails, financial data, transaction amounts, merchant names, receipt contents, spreadsheet URLs, file paths, IP addresses.
 
 ---
 
-# 16. CURRENT STATE `[AUDIT]`
+# 16. COMMERCIALIZATION — LIVE `[WEB]`
+
+### Product page
+- URL: https://alfredopretelvargas.com/products/finance-tracker
+- Privacy: https://alfredopretelvargas.com/products/finance-tracker-privacy
+- **Price: dynamic from Stripe** (Supabase Edge Function `get-stripe-price`)
+- Stripe Price ID: `price_1THabeAcsyW8mQQCrokjTr0H`
+- Checkout: `https://buy.stripe.com/dRm9ASekt1a7gPx6bYawo00`
+
+### Website Supabase (separate from telemetry)
+- Project: `tajcmrnpnkfkkjunzkae`
+- Edge Function: `get-stripe-price` (verify_jwt: false)
+- Secret: `STRIPE_API_KEY` (must be set in this project)
+
+### Frontend architecture
+- `useStripePrice(priceId, fallback)` hook with in-memory cache
+- Used in: FinanceTracker.tsx (product page) + PortfolioSection.tsx (home page card)
+- Fallback price shown instantly, replaced when Stripe responds
+
+### Portfolio card (Home page)
+- Title: "Finance Tracker (OpenClaw Skill)"
+- Chips: AI Receipt Parsing, Tax Deductions, Budget Alerts, Self-Hosted
+
+### Pricing history
+| Date | Price | Reason |
+|------|-------|--------|
+| 2026-03-31 | $120 | Initial listing |
+| 2026-04-01 | $47 | Adjusted for launch |
+
+**Key differentiator:** Airbnb deduction tracking is the hook. Most expense trackers don't auto-categorize rental property deductions.
+
+---
+
+# 17. CURRENT STATE `[AUDIT v3.0]`
+
+### Version: v1.0.11 (68K ZIP)
 
 ### Working ✅
-- SKILL.md exists and is deployed `[AUDIT]`
-- 11 library modules present (10 original + batch_receipts.py) `[CHANGES]`
-- 6 config files (budgets, rules, payments, savings, processed_receipts, pending_categories) `[CHANGES]`
+- SKILL.md: 38-command numbered menu + full agent instructions `[v1.0.10]`
+- 13 library modules (11 original + setup_wizard.py + telemetry.py) `[v1.0.11]`
+- 38 CLI subcommands in finance.py `[v1.0.10]`
+- Unified config: tracker_config.json (replaced 4 separate JSON files) `[v1.0.8]`
+- Setup wizard: 3 questions one-at-a-time, auto-detect name/language from USER.md `[v1.0.11]`
+- Natural language tax type mapping: "Airbnb" → rental, "consulting" → freelancer `[v1.0.11]`
+- Telemetry: anonymous analytics to Supabase with version tracking `[v1.0.9]`
+- Telemetry notice shown after setup (GDPR/CCPA compliant) `[v1.0.11]`
+- Enhanced telemetry events: setup_input, ai_call, setup_sheets, tax_profile `[v1.0.11]`
+- KeyError fix in logger format_confirmation (.get() with defaults) `[v1.0.9]`
 - Google Sheets OAuth token valid `[AUDIT]`
-- 4 cron jobs ACTIVE and configured `[AUDIT]`
-- **Reconciliation v2 deployed** — false positive elimination, multi-month CSV, Wells Fargo support `[CHANGES]`
-- **Cashflow_Ledger tab** added to Google Sheets `[CHANGES]`
-- **18 categories** (4 new: Pets, Debt_Interest, Bank_Fees, Refunds) `[CHANGES]`
-- **Batch writes** to avoid 429 quota errors `[CHANGES]`
-- **AI batch classification deployed and tested** `[CHANGES]`
-- **Income tracking** (parse + auto-balance update) `[CHANGES]`
-- **Batch receipt processor operational** — 17 Walmart receipts processed `[CHANGES]`
-- **Cashflow_Ledger tab** with signed amounts and flow types `[CHANGES]`
-- **Wells Fargo checking CSV support** `[CHANGES]`
-- **Reconciliation fixes:** no false positives, correct payment classification, multi-month `[CHANGES]`
+- 4 cron jobs configured via setup_crons.sh `[v1.0.8]`
+- Reconciliation v2: false positive elimination, multi-month CSV, Wells Fargo `[CHANGES]`
+- AI batch classification + income tracking + batch receipt processor `[CHANGES]`
+- Website live: product page + privacy policy + Stripe checkout `[WEB]`
+- Dynamic pricing: Stripe → Supabase Edge Function → frontend `[WEB]`
+- Leak scanner: package.sh checks for personal data before packaging `[v1.0.8]`
 
-### Issues ⚠️
-- **NOT referenced in CEO AGENTS.md** — skill auto-discovered by OpenClaw but not explicitly routed `[AUDIT]`
-- **google_client_secret.json naming** — file is `google-client.json` instead `[AUDIT]`
-- **Cron jobs designed but NOT configured** (cashflow 7:30AM, payments 9AM, weekly Sun, monthly 1st) `[PENDING]`
-- **PDF statement support designed but NOT built** `[PENDING]`
-- **Smart category creation (AI suggests new categories) designed but NOT built** `[PENDING]`
+### Bugs fixed (v1.0.8–v1.0.11)
+| Bug | Fix | Version |
+|-----|-----|---------|
+| EOFError x7 — setup without JSON | JSON-only setup, NEVER run without args | v1.0.8 |
+| Schedule E parsing — "Airbnb" not recognized | Auto-map natural language to tax types | v1.0.8 |
+| Personal name in code comment | Leak scanner + removed | v1.0.8 |
+| KeyError in logger (Supabase id 40) | .get() with defaults in format_confirmation | v1.0.9 |
+| Setup questions overwhelm user | Ask one at a time, not all 3 together | v1.0.11 |
+
+### Known issue ⚠️
+| Issue | Impact | Workaround |
+|-------|--------|------------|
+| AI tax profile generation fails when LiteLLM proxy is down | Falls back to basic_profile | User can retry with /finance-new-tax-profile later |
+| NOT referenced in CEO AGENTS.md | Skill auto-discovered but not explicitly routed | Add reference |
+| PDF statement support NOT built | Spec ready | — |
 
 ---
 
@@ -422,40 +511,46 @@ Wells Fargo + Chase → Citi 0% APR through Aug 2027. Upstart refinance for Achi
 Telegram (@Robotin1620_Bot) ──user input──→ Finance Tracker (skill)
 Finance Tracker ──writes──→ Google Sheets ("Robotin Finance 2026")
 Finance Tracker ──alerts──→ Telegram (budget warnings, payment reminders)
+Finance Tracker ──telemetry──→ Supabase (oetfiiatbzfydbtzozlz)
 Cron jobs ──trigger──→ Finance Tracker (cashflow, payments, weekly, monthly)
 LiteLLM SpendLogs ──(separate)──→ tracks API costs (not finance tracker)
+Website ──Stripe price──→ Supabase Edge Function (tajcmrnpnkfkkjunzkae) ──→ Stripe API
+Website ──checkout──→ Stripe Payment Link
 ```
 
-**NOT connected to:** PostgreSQL marketing DB, Stripe, Declassified pipeline costs.
+**Two Supabase projects:**
+- `oetfiiatbzfydbtzozlz` — telemetry (STRIPE_API_KEY configured here for webhook)
+- `tajcmrnpnkfkkjunzkae` — website (STRIPE_API_KEY needed here for get-stripe-price)
 
 **Future:** Could integrate LiteLLM SpendLogs into the finance tracker for a unified view of all expenses (subscription + API + personal).
 
 ---
 
-# 19. DIRECTORY STRUCTURE `[AUDIT]`
+# 19. DIRECTORY STRUCTURE `[AUDIT v3.0]`
 
 ```
 ~/.openclaw/workspace/skills/finance-tracker/
-├── SKILL.md
+├── SKILL.md                         — 38-command menu + agent instructions
 ├── config/
-│   ├── budgets.json              — Monthly budgets per category
-│   ├── rules.json                — Auto-categorization rules
-│   ├── payments.json             — Bill due dates and amounts
-│   ├── savings.json              — Savings goals
-│   ├── processed_receipts.json   — Batch receipt dedup tracker
-│   └── pending_categories.json   — AI-suggested categories awaiting approval
+│   ├── tracker_config.json          — Unified config (cards, currency, categories, budgets, payments, savings, tax)
+│   ├── rules.json                   — Auto-categorization rules
+│   └── processed_receipts.json      — Batch receipt dedup tracker
+├── docs/
+│   └── SYSTEM_GUIDE.md              — Complete system reference (521 lines)
 ├── scripts/
-│   ├── finance.py                — Main entry point
-│   ├── add_category.sh           — Safe category addition
-│   ├── cron_runner.sh            — Cron job wrapper
-│   └── lib/                      — 11 modules
+│   ├── finance.py                   — Main entry point (38 CLI subcommands)
+│   ├── add_category.sh              — Safe category addition
+│   ├── cron_runner.sh               — Cron job wrapper
+│   ├── setup_crons.sh               — Install/remove cron jobs
+│   ├── test_crons.sh                — Test cron execution
+│   └── lib/                         — 13 modules
 │       ├── parser.py, rules.py, budget.py, cashflow.py
 │       ├── payments.py, analyst.py, reconcile.py
 │       ├── sheets.py, logger.py, config.py
-│       ├── batch_receipts.py
+│       ├── batch_receipts.py, setup_wizard.py, telemetry.py
 │       └── __init__.py
-├── logs/                         — Runtime logs
-└── templates/                    — Report templates
+├── logs/                            — Runtime logs
+└── templates/                       — Report templates
 
 ~/.openclaw/credentials/
 ├── finance-tracker-token.json  — Google Sheets OAuth
@@ -464,22 +559,39 @@ LiteLLM SpendLogs ──(separate)──→ tracks API costs (not finance tracke
 
 ---
 
-# 20. PENDING ITEMS (prioritized)
+# 20. VERSION HISTORY
+
+| Version | Date | Key changes |
+|---------|------|-------------|
+| v1.0.0–v1.0.7 | 2026-03-27–31 | Initial build through reconciliation fixes |
+| v1.0.8 | 2026-04-01 | Setup UX overhaul, EOFError fix, Schedule E fix, leak scanner |
+| v1.0.9 | 2026-04-01 | 5 new commands, KeyError fix, version tracking in telemetry |
+| v1.0.10 | 2026-04-01 | Numbered command menu (38 items), VERSION bump |
+| v1.0.11 | 2026-04-01 | Questions one-at-a-time, telemetry notice, enhanced events, natural language tax mapping |
+
+---
+
+# 21. PENDING ITEMS (prioritized)
 
 | Priority | Item | Blocker | Est. effort |
 |----------|------|---------|-------------|
-| ~~🔴~~ | ~~Debug smoke test traceback~~ | ~~None~~ | DONE (fixed parser, batch writes, classification) |
-| ~~🔴~~ | ~~Verify cron jobs~~ | ~~Wait for trigger~~ | STILL PENDING (designed, not configured) |
-| 🔴 | Configure 4 cron jobs (cashflow, payments, weekly, monthly) | None | 1 hour |
+| ~~🔴~~ | ~~Debug smoke test traceback~~ | ~~None~~ | DONE (v1.0.7) |
+| ~~🔴~~ | ~~EOFError x7 in setup~~ | ~~None~~ | DONE (v1.0.8) |
+| ~~🔴~~ | ~~Schedule E parsing bug~~ | ~~None~~ | DONE (v1.0.8) |
+| ~~🔴~~ | ~~KeyError in logger~~ | ~~None~~ | DONE (v1.0.9) |
+| ~~🔴~~ | ~~Stripe checkout + dynamic pricing~~ | ~~None~~ | DONE (website) |
+| 🔴 | Deploy get-stripe-price Edge Function to Supabase (tajcmrnpnkfkkjunzkae) | `supabase functions deploy` + set STRIPE_API_KEY secret | 15 min |
+| 🔴 | Set STRIPE_API_KEY in website Supabase project | Need secret key | 5 min |
 | 🟡 | PDF bank statement support | None — spec ready | 3 hours |
 | 🟡 | Smart category creation (AI suggests + user approves) | None — spec ready | 2 hours |
-| 🟡 | CSV backfill verification — audit Transactions for misclassified items | None | 1 hour |
 | 🟡 | Add Finance Tracker reference to CEO AGENTS.md | None | 10 min |
+| 🟡 | AI tax profile: add retry logic when LiteLLM is down | None | 1 hour |
 | 🟢 | Build unified cost dashboard (finance + LiteLLM spend) | Design needed | 4 hours |
 | 🟢 | SaaS multi-tenant conversion | After 3 months personal use | 4-6 weeks |
+| 🟢 | Stripe webhook for delivery automation | After sales volume justifies | 2 hours |
 
 ---
 
 **END OF WORKFLOW BIBLE — FINANCE TRACKER**
 
-*Consolidates: Build Instructions, v1.1 Addendum, Split/Tax Upgrade doc, Plan Financiero, and Project Bible v2 §11. Verified against system audit 2026-03-29.*
+*Consolidates: Build Instructions, v1.1 Addendum, Split/Tax Upgrade doc, Plan Financiero, Project Bible v2 §11, and v1.0.8–v1.0.11 changelogs. Verified against system audit 2026-04-01.*

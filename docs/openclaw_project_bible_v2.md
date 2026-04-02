@@ -602,9 +602,10 @@ spawn_planner_agent.py, spawn_debate.py, cost_estimator.py, start_plan.sh, start
 CEO routes "Planifica:" or "Plan:" prefixed messages to the planner. Currently only Fase A is operational via CEO. CEO AGENTS.md explicitly says "NO ejecutes Fase B o C — aún no están implementadas."
 
 **NOTE:** This contradicts the git history which shows commits for Phase B (ff75f65) and Phase C (30ebae2). The phases ARE implemented in code but the CEO hasn't been updated to use them. `[AUDIT]`
-# 11. FINANCE TRACKER
+# 11. FINANCE TRACKER — v1.0.11
 
 Personal finance automation system running as an OpenClaw skill on @Robotin1620_Bot.
+Packaged as a ZIP product, sold at https://alfredopretelvargas.com/products/finance-tracker
 
 ## Core capabilities
 - Receipt photo/text parsing with AI + Rule Engine
@@ -618,6 +619,9 @@ Personal finance automation system running as an OpenClaw skill on @Robotin1620_
 - Payment reminders (3-day, 1-day, day-of)
 - Income tracking with auto-balance update
 - Monthly AI-powered analysis report
+- Setup wizard: auto-detect name/language, 3 questions one-at-a-time
+- Telemetry: anonymous usage analytics to Supabase (opt-out)
+- 38 CLI subcommands, numbered menu via /finance_tracker in Telegram
 
 ## Data
 - Google Sheet: "Robotin Finance 2026" (ID: 1RcYfnreucTaRck9s_X65p190MSippBTimaFAdWl16pY)
@@ -627,29 +631,31 @@ Personal finance automation system running as an OpenClaw skill on @Robotin1620_
 
 ## Files
 - Skill: `~/.openclaw/workspace/skills/finance-tracker/`
-- Config: `config/rules.json`, `budgets.json`, `payments.json`, `savings.json`
-- Scripts: `scripts/finance.py` (CLI) + `scripts/lib/` (11 modules)
+- Config: `config/tracker_config.json` (unified), `config/rules.json`
+- Scripts: `scripts/finance.py` (CLI) + `scripts/lib/` (13 modules)
+- Docs: `docs/SYSTEM_GUIDE.md` (521 lines — complete reference)
 - Credentials: `~/.openclaw/credentials/finance-tracker-token.json`
+- Packaging: `~/finance-tracker-product/package.sh` (leak scanner + ZIP builder)
 
-## Structure `[AUDIT]`
+## Structure `[AUDIT v3.0]`
 
 ```
 finance-tracker/
-├── SKILL.md
+├── SKILL.md                    — 38-command menu + agent instructions
 ├── config/
-│   ├── budgets.json
-│   ├── payments.json
+│   ├── tracker_config.json     — Unified config
 │   ├── rules.json
-│   ├── savings.json
-│   ├── processed_receipts.json
-│   └── pending_categories.json
+│   └── processed_receipts.json
+├── docs/
+│   └── SYSTEM_GUIDE.md
 ├── scripts/
-│   ├── finance.py
-│   ├── cron_runner.sh
-│   └── lib/ (11 modules)
+│   ├── finance.py              — 38 CLI subcommands
+│   ├── cron_runner.sh, setup_crons.sh, test_crons.sh, add_category.sh
+│   └── lib/ (13 modules)
 │       ├── analyst.py, budget.py, cashflow.py, config.py, logger.py
 │       ├── parser.py, payments.py, reconcile.py, rules.py, sheets.py
-│       └── batch_receipts.py
+│       ├── batch_receipts.py, setup_wizard.py, telemetry.py
+│       └── __init__.py
 ├── logs/
 └── templates/
 ```
@@ -659,7 +665,7 @@ finance-tracker/
 - Token: `~/.openclaw/credentials/finance-tracker-token.json` — EXISTS
 - Client: `~/.openclaw/credentials/google-client.json` — EXISTS
 
-## Cron jobs: 4 DESIGNED `[AUDIT]`
+## Cron jobs: 4 configured via setup_crons.sh
 
 | Schedule | Job | Command |
 |----------|-----|---------|
@@ -668,25 +674,33 @@ finance-tracker/
 | 8:00 AM EST Sundays | Weekly summary | `cron_runner.sh weekly-summary weekly-summary` |
 | 8:00 AM EST 1st | Monthly report | `cron_runner.sh monthly-report monthly-report` |
 
+## Telemetry
+- Supabase: `oetfiiatbzfydbtzozlz` (table: telemetry, `reviewed` column for triage)
+- Events: install, setup_complete, setup_input, ai_call, setup_sheets, tax_profile, command, error, reconcile
+- Every event includes version (`"v": "1.0.11"`)
+- Opt-out: `finance.py telemetry off`
+
 ## Costs
 - AI parsing: ~$0.002/receipt (only when Rule Engine has no match)
 - AI batch classification: ~$0.01 per 50 merchants
 - Total estimated: $1-3/month at normal usage
 
-## Status
-- OPERATIONAL since 2026-03-27
-- Reconciliation fixes deployed 2026-03-31
-- AI classification deployed 2026-03-31
-- Batch receipt processor deployed 2026-03-31
-- Cron jobs: DESIGNED but NOT configured
-- PDF support: DESIGNED but NOT built
+## Status (2026-04-01)
+- v1.0.11 OPERATIONAL — packaged as 68K ZIP
+- Website live with Stripe checkout ($47, dynamic pricing)
+- Privacy policy published at /products/finance-tracker-privacy
+- All v1.0.8–v1.0.11 bugs fixed (EOFError, KeyError, Schedule E, setup UX)
+- Pending: deploy get-stripe-price Edge Function, PDF support, AI tax retry logic
 
-## Commercialization plan
+## Commercialization — LIVE
 
-- Phase 1 (NOW): Personal use for 3 months — build case studies
-- Phase 2 (Q3 2026): OpenClaw skill marketplace ($49-99)
+- Product page: https://alfredopretelvargas.com/products/finance-tracker
+- Stripe Price ID: `price_1THabeAcsyW8mQQCrokjTr0H`
+- Checkout: `https://buy.stripe.com/dRm9ASekt1a7gPx6bYawo00`
+- Dynamic pricing via Supabase Edge Function `get-stripe-price`
+- Phase 1 (NOW): Personal use + first sales
+- Phase 2 (Q3 2026): Scale marketing, collect testimonials
 - Phase 3 (Q4 2026): SaaS via Telegram ($19/mo) — target Airbnb hosts
-- Phase 4 (2027): Scale or white-label to accounting firms
 
 ---
 
@@ -1293,6 +1307,38 @@ Gap analysis across 6+ chats, audit script v2.1, system verification, Bible v2 p
 - Phase 3 (Q4): SaaS via Telegram $19/mo (target: Airbnb hosts)
 - Phase 4 (2027): Scale or white-label to accountants
 
+## Session 9: 2026-04-01 — Finance Tracker v1.0.8–v1.0.11 + Commercialization
+
+### What was built
+- **v1.0.8:** Setup UX overhaul (auto-detect name/language, JSON-only, 3 questions), Schedule E fix, leak scanner
+- **v1.0.9:** 5 new commands (modify-payment, add-debt, update-debt, pay-debt, remove-goal), KeyError fix, version tracking in telemetry
+- **v1.0.10:** 38-command numbered menu for /finance_tracker, VERSION bump
+- **v1.0.11:** Questions one-at-a-time, telemetry notice (GDPR/CCPA), enhanced telemetry events (setup_input, ai_call, setup_sheets, tax_profile), natural language tax mapping
+
+### Supabase telemetry improvements
+- Added `reviewed` column to telemetry table for triage
+- Marked all existing events (≤46) as reviewed
+- Every event now includes version number
+
+### Website / Commercialization
+- Price updated: $120 → $47
+- Stripe Payment Link connected
+- Dynamic pricing via Supabase Edge Function (get-stripe-price) + useStripePrice hook
+- Privacy Policy page at /products/finance-tracker-privacy
+- Portfolio card: "(Robotin)" → "(OpenClaw Skill)", chips show product features
+- SYSTEM_GUIDE.md: 521-line complete system reference
+
+### Bugs fixed
+- EOFError x7 (setup without JSON)
+- Schedule E parsing ("Airbnb" not recognized as rental)
+- Personal name in code comment (leak)
+- KeyError in format_confirmation (direct key access)
+- Setup UX: 3 questions at once → one at a time
+
+### Documentation updated
+- workflow_bible_finance.md — full audit v3.0
+- openclaw_project_bible_v2.md §11 — updated to v1.0.11
+
 ---
 
 # 25. CURRENT STATE & PENDING ITEMS
@@ -1327,6 +1373,11 @@ Gap analysis across 6+ chats, audit script v2.1, system verification, Bible v2 p
 | 24 | 87+ auto-categorization rules deployed | Session 8 |
 | 25 | Bank CSV reconciliation (Chase, Discover, Wells, Amex) | Session 8 |
 | 26 | Batch receipt processor (17 Walmart receipts) | Session 8 |
+| 27 | Finance Tracker v1.0.8–v1.0.11 (setup wizard, telemetry, 38 commands) | Session 9 |
+| 28 | Stripe checkout + dynamic pricing for Finance Tracker | Session 9 |
+| 29 | Privacy Policy page (GDPR/CCPA compliant) | Session 9 |
+| 30 | Supabase telemetry: reviewed column, version tracking, enhanced events | Session 9 |
+| 31 | SYSTEM_GUIDE.md (521 lines — complete system reference) | Session 9 |
 
 ## PENDING 🔲
 
@@ -1348,9 +1399,14 @@ Gap analysis across 6+ chats, audit script v2.1, system verification, Bible v2 p
 | safe_backup.sh recreation | Missing | Create script + cron |
 | psycopg2 install for verify_db_parity | Bug | `pip install psycopg2-binary` |
 | ~~Finance tracker smoke test fix~~ | ~~Traceback~~ | DONE (Session 8) |
-| Finance: Configure 4 cron jobs | Not configured | None |
+| ~~Finance: EOFError, KeyError, Schedule E bugs~~ | ~~Multiple~~ | DONE (Session 9, v1.0.8–v1.0.9) |
+| ~~Finance: Setup UX + telemetry + commands~~ | ~~v1.0.8–v1.0.11~~ | DONE (Session 9) |
+| ~~Finance: Stripe checkout + dynamic pricing~~ | ~~Website~~ | DONE (Session 9) |
+| Finance: Deploy get-stripe-price Edge Function | Code in repo, needs `supabase functions deploy` | None |
+| Finance: Set STRIPE_API_KEY in website Supabase | Need secret | None |
 | Finance: PDF bank statement support | Spec ready | None |
 | Finance: Smart category creation (AI suggests + user approves) | Spec ready | None |
+| Finance: AI tax profile retry logic | LiteLLM down → basic fallback | None |
 | Finance: SaaS multi-tenant conversion | Q4 2026 | After 3 months personal use |
 | Archive stale workspaces | workspace-content-distribution, workspace-image-generator | Move to ~/openclaw-archive/ |
 | CEO AGENTS.md + MEMORY.md update | Stale version/model info | Update to match openclaw.json |
