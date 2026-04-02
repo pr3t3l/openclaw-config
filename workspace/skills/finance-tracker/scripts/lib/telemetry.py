@@ -20,7 +20,7 @@ from . import config as C
 
 SUPABASE_URL = "https://oetfiiatbzfydbtzozlz.supabase.co/rest/v1/telemetry"
 SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ldGZpaWF0YnpmeWRidHpvemx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwNzY5MjUsImV4cCI6MjA5MDY1MjkyNX0.SQ6oN4WpO8x6NKYzNMPinS0_gNO5aCe-bljrzp5g96s"
-VERSION = "1.0.9"
+VERSION = "1.0.10"
 
 
 def _get_install_id() -> str:
