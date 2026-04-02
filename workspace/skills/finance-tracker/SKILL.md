@@ -16,6 +16,279 @@ All scripts live at: `~/.openclaw/workspace/skills/finance-tracker/scripts/`
 python3 ~/.openclaw/workspace/skills/finance-tracker/scripts/finance.py <subcommand> [args]
 ```
 
+## When User Sends /finance_tracker
+
+When the user sends `/finance_tracker` with no arguments or just wants to see what's available, respond with this menu:
+
+```
+Finance Tracker — Commands
+
+Setup:
+ 1. /setup — Initial setup wizard
+
+Categories + Budgets:
+ 2. /list-categories — View all with budget & spending
+ 3. /add-category <name> <budget> — New category
+ 4. /modify-budget <category> <amount> — Change budget
+ 5. /remove-category <name> — Delete category
+
+Balance + Income:
+ 6. /balance <amount> — Set current balance
+ 7. /income <amount> — Register income
+ 8. /payday <schedule> <amount> [days] — Configure pay schedule
+
+Payments:
+ 9. /list-payments — View all bills
+10. /add-payment <name> <amount> <day> [account] — Add bill
+11. /modify-payment <name> <amount> — Change amount
+12. /remove-payment <name> — Delete bill
+13. /payment-check — Check upcoming bills
+
+Debts:
+14. /list-debts — View all debts
+15. /add-debt <name> <balance> [apr] — Add debt
+16. /update-debt <name> <balance> — Update balance
+17. /pay-debt <name> <amount> — Record payment
+
+Cards:
+18. /add-card <name> — Add card/account
+19. /remove-card <name> — Remove card/account
+
+Savings:
+20. /list-goals — View savings goals
+21. /add-goal <name> <target> [deadline] — New goal
+22. /save <goal> <amount> — Contribute to goal
+23. /remove-goal <name> — Delete goal
+
+Tax:
+24. /new-tax-profile — AI tax deduction wizard
+25. /update-tax-profile — Modify tax rules
+26. /current-tax-profile — View active profile
+
+Reports:
+27. /cashflow — Daily safe-to-spend
+28. /status [category] — Budget overview
+29. /weekly — Weekly summary
+30. /monthly [YYYY-MM] — Monthly report
+31. /taxes [year] — Tax deduction report
+
+Data:
+32. /reconcile + CSV — Match bank statement
+33. /batch-receipts + links — Process receipt links
+34. /add-rule <pattern> <category> [confidence] — Add categorization rule
+
+Reply with a number or command name.
+```
+
+When the user replies with a number (1-34) or a command name, execute the corresponding action below.
+
+## Command Actions
+
+When the user selects a command (by number or name), here is exactly what to do:
+
+### 1. /setup
+Ask the user 3 questions (cards, currency, tax type), then run:
+```bash
+python3 finance.py setup '{"cards":"CARDS","currency":"CURRENCY","tax":"TYPE"}'
+python3 finance.py setup-sheets
+python3 finance.py parse-text '$25 Starbucks'
+```
+See "First Run" section below for full details. NEVER run setup without JSON.
+
+### 2. /list-categories
+```bash
+python3 finance.py list-categories
+```
+Show the output to the user.
+
+### 3. /add-category
+Ask: category name and monthly budget. Then:
+```bash
+python3 finance.py add-category <name> <budget>
+```
+
+### 4. /modify-budget
+Ask: which category and new amount. Then:
+```bash
+python3 finance.py modify-budget <category> <amount>
+```
+
+### 5. /remove-category
+Ask: which category. Then:
+```bash
+python3 finance.py remove-category <name> yes
+```
+
+### 6. /balance
+Ask: current balance amount. Then:
+```bash
+python3 finance.py balance <amount>
+```
+
+### 7. /income
+Ask: income amount and source (optional). Then:
+```bash
+python3 finance.py income <amount> [source]
+```
+
+### 8. /payday
+Ask: schedule type (biweekly/monthly), amount, pay days. Then:
+```bash
+python3 finance.py payday <schedule> <amount> [days]
+```
+
+### 9. /list-payments
+```bash
+python3 finance.py list-payments
+```
+
+### 10. /add-payment
+Ask: name, amount, due day, account (optional). Then:
+```bash
+python3 finance.py add-payment <name> <amount> <day> [account]
+```
+
+### 11. /modify-payment
+Ask: payment name and new amount. Then:
+```bash
+python3 finance.py modify-payment <name> <amount>
+```
+
+### 12. /remove-payment
+Ask: payment name. Then:
+```bash
+python3 finance.py remove-payment <name>
+```
+
+### 13. /payment-check
+```bash
+python3 finance.py payment-check
+```
+
+### 14. /list-debts
+```bash
+python3 finance.py list-debts
+```
+
+### 15. /add-debt
+Ask: creditor name, balance, APR (optional). Then:
+```bash
+python3 finance.py add-debt <name> <balance> [apr]
+```
+
+### 16. /update-debt
+Ask: creditor name and current balance. Then:
+```bash
+python3 finance.py update-debt <name> <balance>
+```
+
+### 17. /pay-debt
+Ask: creditor name and payment amount. Then:
+```bash
+python3 finance.py pay-debt <name> <amount>
+```
+
+### 18. /add-card
+Ask: card/account name. Then:
+```bash
+python3 finance.py add-card "<name>"
+```
+
+### 19. /remove-card
+Ask: card name. Then:
+```bash
+python3 finance.py remove-card <name>
+```
+
+### 20. /list-goals
+```bash
+python3 finance.py list-goals
+```
+
+### 21. /add-goal
+Ask: goal name, target amount, deadline (optional). Then:
+```bash
+python3 finance.py add-goal <name> <target> [YYYY-MM-DD]
+```
+
+### 22. /save
+Ask: goal name and amount. Then:
+```bash
+python3 finance.py save <goal> <amount>
+```
+
+### 23. /remove-goal
+Ask: goal name. Then:
+```bash
+python3 finance.py remove-goal <name>
+```
+
+### 24. /new-tax-profile
+Ask: business type (rental/freelancer/business) and description. Then:
+```bash
+python3 finance.py new-tax-profile '{"tax":"TYPE","tax_description":"DESCRIPTION"}'
+```
+
+### 25. /update-tax-profile
+Show current profile, then ask what to do (regenerate / remove rule / add keywords). Then:
+```bash
+python3 finance.py update-tax-profile regenerate
+python3 finance.py update-tax-profile remove-rule <number>
+python3 finance.py update-tax-profile add-keywords <number> "kw1,kw2,kw3"
+```
+
+### 26. /current-tax-profile
+```bash
+python3 finance.py current-tax-profile
+```
+
+### 27. /cashflow
+```bash
+python3 finance.py cashflow
+```
+
+### 28. /status
+Ask: specific category (optional, default = all). Then:
+```bash
+python3 finance.py status [category]
+```
+
+### 29. /weekly
+```bash
+python3 finance.py weekly-summary
+```
+
+### 30. /monthly
+Ask: month (optional, default = current). Then:
+```bash
+python3 finance.py monthly-report [YYYY-MM]
+```
+
+### 31. /taxes
+Ask: year (optional, default = current). Then:
+```bash
+python3 finance.py taxes [year]
+```
+
+### 32. /reconcile
+User must attach a CSV file. Save to `/tmp/bank_statement.csv`, then:
+```bash
+python3 finance.py reconcile /tmp/bank_statement.csv [bank]
+```
+Supported banks: Chase, Discover, Citi, Wells Fargo. Show summary and ask confirmation for probable matches.
+
+### 33. /batch-receipts
+User must provide a file with receipt URLs. Save to `/tmp/receipt_links.txt`, then:
+```bash
+python3 finance.py batch-receipts /tmp/receipt_links.txt [account]
+```
+
+### 34. /add-rule
+Ask: pattern, category, confidence (optional). Then:
+```bash
+python3 finance.py add-rule "<pattern>" <Category> [confidence]
+```
+
 ## First Run — Installation & Setup
 
 **IMPORTANT: Follow this sequence WITHOUT stopping. Only pause to ask the user the 3 required questions.**
@@ -150,96 +423,6 @@ Correct?
 - "no", "cancel" → discard
 - If user corrects the category → the system learns (auto-creates rules after 2 corrections for same merchant)
 
-## User Commands Reference
-
-All commands use the prefix `finance-` so the user knows they belong to this skill.
-When the user types a command, translate it to the corresponding `finance.py` subcommand.
-
-### Setup
-| User command | finance.py |
-|---|---|
-| `/finance-setup` | `finance.py setup '<json>'` — ALWAYS pass JSON |
-| `/finance-setup-sheets` | `finance.py setup-sheets` |
-
-### Categories + Budgets
-| User command | finance.py |
-|---|---|
-| `/finance-list-categories` | `finance.py list-categories` |
-| `/finance-add-category Utilities 200` | `finance.py add-category Utilities 200` |
-| `/finance-modify-budget Groceries 350` | `finance.py modify-budget Groceries 350` |
-| `/finance-remove-category Utilities` | `finance.py remove-category Utilities yes` |
-
-### Balance + Income
-| User command | finance.py |
-|---|---|
-| `/finance-balance 1500` | `finance.py balance 1500` |
-| `/finance-income 2800` | `finance.py income 2800` |
-| `/finance-payday biweekly 2800 5,19` | `finance.py payday biweekly 2800 5,19` |
-
-### Payments
-| User command | finance.py |
-|---|---|
-| `/finance-list-payments` | `finance.py list-payments` |
-| `/finance-add-payment Mortgage 1500 1 Chase` | `finance.py add-payment Mortgage 1500 1 Chase` |
-| `/finance-modify-payment Mortgage 1600` | `finance.py modify-payment Mortgage 1600` |
-| `/finance-remove-payment Mortgage` | `finance.py remove-payment Mortgage` |
-| `/finance-payment-check` | `finance.py payment-check` |
-
-### Debts
-| User command | finance.py |
-|---|---|
-| `/finance-list-debts` | `finance.py list-debts` |
-| `/finance-add-debt Chase 5000 24.99` | `finance.py add-debt Chase 5000 24.99` |
-| `/finance-update-debt Chase 4500` | `finance.py update-debt Chase 4500` |
-| `/finance-pay-debt Chase 500` | `finance.py pay-debt Chase 500` |
-
-### Cards
-| User command | finance.py |
-|---|---|
-| `/finance-add-card "Amex Gold"` | `finance.py add-card "Amex Gold"` |
-| `/finance-remove-card Citi` | `finance.py remove-card Citi` |
-
-### Savings Goals
-| User command | finance.py |
-|---|---|
-| `/finance-list-goals` | `finance.py list-goals` |
-| `/finance-add-goal Vacation 2000 2026-09-01` | `finance.py add-goal Vacation 2000 2026-09-01` |
-| `/finance-save Vacation 500` | `finance.py save Vacation 500` |
-| `/finance-remove-goal Vacation` | `finance.py remove-goal Vacation` |
-
-### Tax Profile
-| User command | finance.py |
-|---|---|
-| `/finance-new-tax-profile` | `finance.py new-tax-profile ['<json>']` |
-| `/finance-update-tax-profile` | `finance.py update-tax-profile [regenerate\|remove-rule N\|add-keywords N 'kw']` |
-| `/finance-current-tax-profile` | `finance.py current-tax-profile` |
-
-### Reports
-| User command | finance.py |
-|---|---|
-| `/finance-cashflow` | `finance.py cashflow` |
-| `/finance-status [category]` | `finance.py status [category]` |
-| `/finance-weekly` | `finance.py weekly-summary` |
-| `/finance-monthly [YYYY-MM]` | `finance.py monthly-report [YYYY-MM]` |
-| `/finance-taxes [year]` | `finance.py taxes [year]` |
-
-### Data / Reconciliation
-| User command | finance.py |
-|---|---|
-| `/finance-reconcile` + CSV | `finance.py reconcile /path/to/csv [bank]` |
-| `/finance-batch-receipts` + links file | `finance.py batch-receipts /path/to/file [account]` |
-| `/finance-add-rule "target" Shopping 0.95` | `finance.py add-rule "target" Shopping 0.95` |
-
-### Telemetry
-| User command | finance.py |
-|---|---|
-| `/finance-telemetry status` | `finance.py telemetry status` |
-| `/finance-telemetry off` | `finance.py telemetry off` |
-| `/finance-telemetry on` | `finance.py telemetry on` |
-| `/finance-telemetry info` | `finance.py telemetry info` |
-
-**Note:** Users can also type natural language like "balance 1500", "$45 Publix", "me pagaron 2800" — the agent should recognize the intent and run the appropriate command.
-
 ## Noise Control Rules
 
 - Max 3 budget alerts per day per category
@@ -268,7 +451,7 @@ These run automatically — do NOT run them when processing messages:
 
 Categories are loaded dynamically from `tracker_config.json`. Default set created by setup wizard; add more with:
 ```bash
-bash add_category.sh "CategoryName" <budget> [threshold]
+python3 finance.py add-category "CategoryName" <budget>
 ```
 
 ## Language
