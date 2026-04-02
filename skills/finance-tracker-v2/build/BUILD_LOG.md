@@ -486,3 +486,71 @@ src/
 | 5 | SKILL.md router, telemetry, migrations, docs, manifest |
 
 Total: **14 Python modules**, **4 JSON schemas**, **4 tax rulepacks**, **1 migration**, **1 SKILL.md**, **1 SYSTEM_GUIDE.md**, **30+ CLI commands**, **21-state setup flow**.
+
+---
+
+## Phase 6: Post-Test Fixes (2026-04-02)
+
+Based on real end-to-end testing in Telegram with GPT-5.4 agent.
+
+### Fix 1: SKILL.md governance enforcement (CRITICAL)
+
+Agent ignored "DO NOT add commentary" and added its own questions/recommendations. Rewrote Setup section with harder language:
+- "CRITICAL: Setup Protocol" as FIRST section
+- "YOU ARE NOT A FINANCIAL ADVISOR DURING SETUP. YOU ARE A MESSAGE RELAY."
+- Explicit prohibitions: "Do NOT add recommendations", "Do NOT ask questions the script didn't ask", "Do NOT reformat or normalize user input"
+- Rules section: "NEVER add Nota:, Ojo:, tips, or financial advice during setup"
+
+### Fix 2: AI parser fallback in ALL collectors (CRITICAL)
+
+Income collector rejected "Scout Motors $3190 biweekly salary wells fargo" three times. Added AI fallback flow to all 4 collectors:
+
+1. Check done signals (Python)
+2. Check meta commands (undo, list, edit N)
+3. Try regex/comma parsing
+4. **NEW: If regex fails → call ai_parser to convert free text to JSON**
+5. Validate parsed result
+6. If AI also fails → ask user to clarify
+
+New ai_parser functions: `parse_income()`, `parse_debt()`, `parse_budget()`, `parse_bill()` with proper prompts and schema enforcement.
+
+### Fix 3: Preflight OAuth validation (CRITICAL)
+
+Token from GOG had partial permissions (403 on write). Added live OAuth test:
+- `sheets.test_auth()` — calls `client.list_spreadsheet_files(limit=1)`
+- install_check now reports `auth_live: true/false`
+- PREFLIGHT blocks unless both files exist AND live test passes
+
+### Fix 4: import-csv command (NEW)
+
+New command: `finance.py import-csv "<csv_path>" [--dry-run]`
+- Detects bank format, parses all rows
+- Classifies each: expense, return (negative), payment, transfer, income
+- Applies merchant rules for categorization
+- --dry-run shows summary without writing
+- Batch writes to Sheets
+
+### Fix 5: Cron setup — no bot token needed
+
+Verified: state_machine.py has zero Telegram references. OpenClaw native cron with `delivery: {mode: "announce", channel: "last"}` handles delivery internally.
+
+### Fix 6: Telemetry — installation only
+
+Removed `track_command()` and `track_error()` from telemetry.py. Kept only setup-stage functions. Updated consent message: "We collect anonymous performance data DURING SETUP ONLY to improve the installation experience. No data is collected during daily use."
+
+### Fix 7: Budget collector multiline input
+
+Budget collector now splits input by newlines and processes each line independently:
+- "4. $250\n5. $100\n6. $120" → "Added 3: Groceries: $250, Restaurants: $100, Gas: $120"
+
+### Tests Run
+
+| Test | Result | Notes |
+|------|--------|-------|
+| `add "$15 Uber"` | PASS | Regex parse → Transportation, auto-learned rule |
+| Income AI fallback | PASS | "Scout Motors $3190 biweekly salary wells fargo" → parsed correctly via AI |
+| Preflight auth_live | PASS | Fake token correctly detected as invalid (auth_live: false) |
+| Budget multiline | PASS | "4. $250\n5. $100\n6. $120" → 3 items added in one message |
+| Budget done → defaults | PASS | Empty budgets → uses defaults with $0 |
+| import-csv (no file) | PASS | Returns proper error |
+| SKILL.md governance | PASS | "CRITICAL: Setup Protocol" as first section, aggressive prohibitions |

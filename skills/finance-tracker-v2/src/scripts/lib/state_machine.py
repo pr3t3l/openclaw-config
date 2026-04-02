@@ -170,15 +170,25 @@ def install_check() -> dict:
     # curl
     checks["curl"] = {"ok": shutil.which("curl") is not None}
 
-    # Google OAuth credentials (spec §3.2)
+    # Google OAuth credentials (spec §3.2) + live test
     creds_dir = Path.home() / ".openclaw" / "credentials"
     client_json = creds_dir / "google-client.json"
     token_json = creds_dir / "finance-tracker-token.json"
+    files_ok = client_json.exists() and token_json.exists()
+    auth_live = False
+    if files_ok:
+        try:
+            from .sheets import test_auth
+            auth_live = test_auth()
+        except Exception:
+            pass
     checks["google_oauth"] = {
-        "ok": client_json.exists() and token_json.exists(),
+        "ok": files_ok and auth_live,
         "client_json": client_json.exists(),
         "token_json": token_json.exists(),
-        "hint": "Set up GOG skill first: https://docs.openclaw.ai/tools/gog",
+        "auth_live": auth_live,
+        "hint": "Set up GOG skill first: https://docs.openclaw.ai/tools/gog" if not files_ok
+                else "Token invalid. Re-run OAuth: reconnect-sheets" if not auth_live else "",
     }
 
     # schemas
@@ -446,50 +456,65 @@ class SetupStateMachine:
             return self._prompt_income_collect()
 
         items = self.collected.setdefault("income", [])
-        parts = [p.strip() for p in text.split(",")]
-        if len(parts) < 5:
-            lang = _lang(self.collected)
+        lang = _lang(self.collected)
+
+        # Try comma parsing first
+        entry = self._try_parse_income_csv(text)
+
+        # AI fallback if comma parsing fails
+        if not entry:
+            from . import ai_parser as AI
+            ai_result = AI.parse_income(text, lang)
+            if ai_result and isinstance(ai_result, dict) and not ai_result.get("llm_request"):
+                # Validate required fields
+                if ai_result.get("amount") and ai_result.get("name"):
+                    entry = {
+                        "name": ai_result["name"],
+                        "amount": float(ai_result["amount"]),
+                        "frequency": ai_result.get("frequency", "monthly"),
+                        "source_type": ai_result.get("source_type", "other"),
+                        "account_label": ai_result.get("account_label", "Primary Checking"),
+                        "is_regular": ai_result.get("is_regular", False),
+                    }
+
+        if not entry:
             if lang == "es":
-                return _response("Formato: nombre, monto, frecuencia, tipo, cuenta", self.state,
+                return _response("No pude entender. Formato: nombre, monto, frecuencia, tipo, cuenta\nEjemplo: Trabajo, 3000, biweekly, salary, Wells Fargo", self.state,
                                  error=ErrorCode.SETUP_INVALID_INPUT.value)
-            return _response("Format: name, amount, frequency, source_type, account_label", self.state,
+            return _response("Couldn't parse. Format: name, amount, frequency, type, account\nExample: Day Job, 3000, biweekly, salary, Wells Fargo", self.state,
                              error=ErrorCode.SETUP_INVALID_INPUT.value)
 
-        name = parts[0]
-        try:
-            amount = float(parts[1])
-        except ValueError:
-            return _response("Amount must be a number.", self.state,
-                             error=ErrorCode.SETUP_INVALID_INPUT.value)
-
-        freq = parts[2].lower().strip()
-        if freq not in ("biweekly", "monthly", "weekly", "irregular"):
-            return _response("Frequency: weekly, biweekly, monthly, or irregular", self.state,
-                             error=ErrorCode.SETUP_INVALID_INPUT.value)
-
-        source_type = parts[3].lower().strip()
-        if source_type not in ("salary", "freelance", "rental", "business", "other"):
-            return _response("Type: salary, freelance, rental, business, or other", self.state,
-                             error=ErrorCode.SETUP_INVALID_INPUT.value)
-
-        account_label = parts[4].strip()
-        is_regular = source_type == "salary"
-
-        entry = {
-            "name": name, "amount": amount, "frequency": freq,
-            "source_type": source_type, "account_label": account_label,
-            "is_regular": is_regular,
-        }
         items.append(entry)
         self._save()
-
-        lang = _lang(self.collected)
-        added = f"{name} — ${amount:.2f}/{freq} → {account_label} ({source_type})"
+        added = f"{entry['name']} — ${entry['amount']:.2f}/{entry['frequency']} → {entry['account_label']} ({entry['source_type']})"
         if lang == "es":
             msg = f"Agregado: {added}\nOtro ingreso? o 'listo'"
         else:
             msg = f"Added: {added}\nAnother? or 'done'"
         return _response(msg, self.state, items_count=len(items))
+
+    def _try_parse_income_csv(self, text: str) -> dict | None:
+        """Try strict comma-separated parsing for income."""
+        parts = [p.strip() for p in text.split(",")]
+        if len(parts) < 3:
+            return None
+        name = parts[0]
+        try:
+            amount = float(parts[1].replace("$", "").replace(",", ""))
+        except ValueError:
+            return None
+        freq = parts[2].lower().strip()
+        if freq not in ("biweekly", "monthly", "weekly", "irregular"):
+            return None
+        source_type = parts[3].lower().strip() if len(parts) > 3 else "salary"
+        if source_type not in ("salary", "freelance", "rental", "business", "other"):
+            source_type = "other"
+        account_label = parts[4].strip() if len(parts) > 4 else "Primary Checking"
+        return {
+            "name": name, "amount": amount, "frequency": freq,
+            "source_type": source_type, "account_label": account_label,
+            "is_regular": source_type == "salary",
+        }
 
     # ── INCOME_CONFIRM ────────────────────────────────
 
@@ -656,46 +681,51 @@ class SetupStateMachine:
             return self._prompt_debt_confirm()
 
         items = self.collected.setdefault("debts", [])
+        lang = _lang(self.collected)
+        entry = None
+
+        # Try comma parsing
         parts = [p.strip() for p in text.split(",")]
-        if len(parts) < 3:
-            return _response("Format: name, type, balance[, APR%, min_payment]", self.state,
-                             error=ErrorCode.SETUP_INVALID_INPUT.value)
-        name = parts[0]
-        debt_type = parts[1].lower().strip()
-        try:
-            balance = float(parts[2])
-        except ValueError:
-            return _response("Balance must be a number.", self.state,
-                             error=ErrorCode.SETUP_INVALID_INPUT.value)
-        if balance < 0:
-            return _response("Balance should be a positive number.", self.state,
-                             error=ErrorCode.SETUP_INVALID_INPUT.value)
-
-        apr = 0.0
-        min_payment = 0.0
-        if len(parts) >= 4:
+        if len(parts) >= 3:
             try:
-                apr = float(parts[3])
-            except ValueError:
-                pass
-        if len(parts) >= 5:
-            try:
-                min_payment = float(parts[4])
+                name = parts[0]
+                debt_type = parts[1].lower().strip()
+                balance = float(parts[2])
+                apr = float(parts[3]) if len(parts) >= 4 else 0.0
+                min_payment = float(parts[4]) if len(parts) >= 5 else 0.0
+                if balance >= 0:
+                    entry = {"name": name, "type": debt_type, "balance": balance,
+                             "apr": apr, "minimum_payment": min_payment}
             except ValueError:
                 pass
 
-        # Sanity warnings
+        # AI fallback
+        if not entry:
+            from . import ai_parser as AI
+            ai_result = AI.parse_debt(text, lang)
+            if ai_result and isinstance(ai_result, dict) and not ai_result.get("llm_request"):
+                if ai_result.get("name") and ai_result.get("balance"):
+                    entry = {
+                        "name": ai_result["name"],
+                        "type": ai_result.get("type", "other"),
+                        "balance": float(ai_result["balance"]),
+                        "apr": float(ai_result.get("apr", 0)),
+                        "minimum_payment": float(ai_result.get("minimum_payment", 0)),
+                    }
+
+        if not entry:
+            return _response("Format: name, type, balance[, APR%, min_payment]\nExample: Chase Visa, credit_card, 2500, 24.99, 65",
+                             self.state, error=ErrorCode.SETUP_INVALID_INPUT.value)
+
         warnings = []
-        if apr > 50:
-            warnings.append("APR > 50% seems very high. Double-check.")
-        if min_payment > balance:
+        if entry["apr"] > 50:
+            warnings.append("APR > 50% seems very high.")
+        if entry["minimum_payment"] > entry["balance"]:
             warnings.append("Min payment exceeds balance.")
 
-        items.append({"name": name, "type": debt_type, "balance": balance,
-                       "apr": apr, "minimum_payment": min_payment})
+        items.append(entry)
         self._save()
-
-        msg = f"Added: {name} — ${balance:,.2f} @ {apr}% APR, min ${min_payment:.2f}"
+        msg = f"Added: {entry['name']} — ${entry['balance']:,.2f} @ {entry['apr']}% APR, min ${entry['minimum_payment']:.2f}"
         if warnings:
             msg += "\n  Warning: " + "; ".join(warnings)
         msg += "\nAnother? or 'done'"
@@ -797,7 +827,6 @@ class SetupStateMachine:
 
     def _state_budget_collect(self, text: str) -> dict:
         if _is_done(text) or not text:
-            # If no budgets entered, use defaults with $0
             if not self.collected.get("budgets"):
                 defaults = self.collected.get("_budget_defaults", [])
                 self.collected["budgets"] = [
@@ -809,61 +838,92 @@ class SetupStateMachine:
 
         items = self.collected.setdefault("budgets", [])
         defaults = self.collected.get("_budget_defaults", [])
-
-        # Handle "new Category $amount type"
-        if text.lower().startswith("new "):
-            rest = text[4:].strip()
-            parts = rest.rsplit(maxsplit=1)
-            if len(parts) >= 1:
-                # Parse: "Pets $200 variable" or "Pets 200"
-                import re
-                m = re.match(r"(.+?)\s+\$?(\d+(?:\.\d+)?)\s*(fixed|variable)?$", rest, re.IGNORECASE)
-                if m:
-                    cat_name = m.group(1).strip()
-                    amount = float(m.group(2))
-                    btype = (m.group(3) or "variable").lower()
-                    items.append({"category": cat_name, "monthly": amount,
-                                  "type": btype, "threshold": 0.8})
-                    self._save()
-                    return _response(f"Added: {cat_name} — ${amount:.2f}/mo ({btype})", self.state)
-            return _response("Format: new CategoryName $amount [fixed|variable]", self.state,
-                             error=ErrorCode.SETUP_INVALID_INPUT.value)
-
-        # Handle "N. $amount" pattern (referencing defaults)
         import re
-        entries = re.findall(r"(\d+)\.\s*\$?(\d+(?:\.\d+)?)", text)
+
+        # Split by newlines for multi-line input (Fix 7)
+        lines = [l.strip() for l in text.split("\n") if l.strip()]
+        if len(lines) == 1:
+            lines = [text]
+
+        added = []
+        failed = []
+
+        for line in lines:
+            parsed = self._try_parse_budget_line(line, defaults, items)
+            if parsed:
+                added.append(parsed)
+            else:
+                failed.append(line)
+
+        # AI fallback for any failed lines
+        if failed and not added:
+            from . import ai_parser as AI
+            lang = _lang(self.collected)
+            ai_result = AI.parse_budget(text, lang, defaults)
+            if ai_result and isinstance(ai_result, list):
+                for entry in ai_result:
+                    if entry.get("category") and entry.get("monthly"):
+                        items.append({
+                            "category": entry["category"],
+                            "monthly": float(entry["monthly"]),
+                            "type": entry.get("type", "variable"),
+                            "threshold": 0.8,
+                        })
+                        added.append(f"{entry['category']}: ${float(entry['monthly']):.2f}")
+                failed = []
+
+        if added:
+            self._save()
+            msg = f"Added {len(added)}: {', '.join(added)}"
+            if failed:
+                msg += f"\nCouldn't parse: {'; '.join(failed)}"
+            msg += "\nMore? or 'done'"
+            return _response(msg, self.state, items_count=len(items))
+
+        return _response("Format: N. $amount  OR  category, amount, type  OR  new Name $amount type",
+                         self.state, error=ErrorCode.SETUP_INVALID_INPUT.value)
+
+    def _try_parse_budget_line(self, line: str, defaults: list, items: list) -> str | None:
+        """Try to parse a single budget line. Returns display string or None."""
+        import re
+
+        # "new Category $amount type"
+        if line.lower().startswith("new "):
+            rest = line[4:].strip()
+            m = re.match(r"(.+?)\s+\$?(\d+(?:\.\d+)?)\s*(fixed|variable)?$", rest, re.IGNORECASE)
+            if m:
+                cat_name, amount, btype = m.group(1).strip(), float(m.group(2)), (m.group(3) or "variable").lower()
+                items.append({"category": cat_name, "monthly": amount, "type": btype, "threshold": 0.8})
+                return f"{cat_name}: ${amount:.2f}"
+
+        # "N. $amount" pattern
+        entries = re.findall(r"(\d+)\.\s*\$?(\d+(?:\.\d+)?)", line)
         if entries:
-            added = []
+            parts = []
             for idx_str, amt_str in entries:
                 idx = int(idx_str) - 1
                 if 0 <= idx < len(defaults):
                     cat_name, btype = defaults[idx]
                     amount = float(amt_str)
-                    items.append({"category": cat_name, "monthly": amount,
-                                  "type": btype, "threshold": 0.8})
-                    added.append(f"{cat_name}: ${amount:.2f}")
-            if added:
-                self._save()
-                return _response(f"Added: {', '.join(added)}\nMore? or 'done'", self.state)
+                    items.append({"category": cat_name, "monthly": amount, "type": btype, "threshold": 0.8})
+                    parts.append(f"{cat_name}: ${amount:.2f}")
+            if parts:
+                return ", ".join(parts)
 
-        # Try comma-separated: category, amount[, type]
-        parts = [p.strip() for p in text.split(",")]
-        if len(parts) >= 2:
+        # comma-separated: category, amount[, type]
+        csv_parts = [p.strip() for p in line.split(",")]
+        if len(csv_parts) >= 2:
             try:
-                amount = float(parts[1].replace("$", ""))
+                amount = float(csv_parts[1].replace("$", ""))
+                btype = csv_parts[2].lower().strip() if len(csv_parts) >= 3 else "variable"
+                if btype not in ("fixed", "variable"):
+                    btype = "variable"
+                items.append({"category": csv_parts[0], "monthly": amount, "type": btype, "threshold": 0.8})
+                return f"{csv_parts[0]}: ${amount:.2f}"
             except ValueError:
-                return _response("Amount must be a number.", self.state,
-                                 error=ErrorCode.SETUP_INVALID_INPUT.value)
-            btype = parts[2].lower().strip() if len(parts) >= 3 else "variable"
-            if btype not in ("fixed", "variable"):
-                btype = "variable"
-            items.append({"category": parts[0], "monthly": amount,
-                          "type": btype, "threshold": 0.8})
-            self._save()
-            return _response(f"Added: {parts[0]} — ${amount:.2f}/mo ({btype})", self.state)
+                pass
 
-        return _response("Format: N. $amount  OR  category, amount, type  OR  new Name $amount type",
-                         self.state, error=ErrorCode.SETUP_INVALID_INPUT.value)
+        return None
 
     # ── BUDGET_CONFIRM ────────────────────────────────
 
@@ -936,36 +996,52 @@ class SetupStateMachine:
             return self._prompt_bills_confirm()
 
         items = self.collected.setdefault("bills", [])
+        lang = _lang(self.collected)
+        entry = None
+
+        # Try comma parsing
         parts = [p.strip() for p in text.split(",")]
-        if len(parts) < 3:
-            return _response("Format: name, amount, due_day[, frequency]", self.state,
-                             error=ErrorCode.SETUP_INVALID_INPUT.value)
-        try:
-            amount = float(parts[1])
-            due_day = int(parts[2])
-        except ValueError:
-            return _response("Amount must be number, due_day must be integer.", self.state,
-                             error=ErrorCode.SETUP_INVALID_INPUT.value)
-        if not 1 <= due_day <= 28:
-            return _response("Due day must be 1-28.", self.state,
-                             error=ErrorCode.SETUP_INVALID_INPUT.value)
+        if len(parts) >= 3:
+            try:
+                amount = float(parts[1])
+                due_day = int(parts[2])
+                if 1 <= due_day <= 28:
+                    freq = "monthly"
+                    if len(parts) >= 4:
+                        freq = parts[3].lower().strip()
+                        if freq not in ("monthly", "quarterly", "semi_annual", "annual"):
+                            freq = "monthly"
+                    entry = {"name": parts[0], "amount": amount, "due_day": due_day,
+                             "frequency": freq, "autopay": False, "apr": 0}
+            except ValueError:
+                pass
 
-        freq = "monthly"
-        if len(parts) >= 4:
-            freq = parts[3].lower().strip()
-            if freq not in ("monthly", "quarterly", "semi_annual", "annual"):
-                return _response("Frequency: monthly, quarterly, semi_annual, or annual", self.state,
-                                 error=ErrorCode.SETUP_INVALID_INPUT.value)
+        # AI fallback
+        if not entry:
+            from . import ai_parser as AI
+            ai_result = AI.parse_bill(text, lang)
+            if ai_result and isinstance(ai_result, dict) and not ai_result.get("llm_request"):
+                if ai_result.get("name") and ai_result.get("amount"):
+                    due = int(ai_result.get("due_day", 1))
+                    if not 1 <= due <= 28:
+                        due = 1
+                    freq = ai_result.get("frequency", "monthly")
+                    if freq not in ("monthly", "quarterly", "semi_annual", "annual"):
+                        freq = "monthly"
+                    entry = {"name": ai_result["name"], "amount": float(ai_result["amount"]),
+                             "due_day": due, "frequency": freq, "autopay": False, "apr": 0}
 
-        # Calculate monthly equivalent for sinking fund display
-        monthly_equiv = amount * {"monthly": 1, "quarterly": 1/3, "semi_annual": 1/6, "annual": 1/12}[freq]
+        if not entry:
+            return _response("Format: name, amount, due_day[, frequency]\nExample: Power, 120, 15, monthly",
+                             self.state, error=ErrorCode.SETUP_INVALID_INPUT.value)
 
-        items.append({"name": parts[0], "amount": amount, "due_day": due_day,
-                       "frequency": freq, "autopay": False, "apr": 0})
+        freq_mult = {"monthly": 1, "quarterly": 1/3, "semi_annual": 1/6, "annual": 1/12}
+        monthly_equiv = entry["amount"] * freq_mult.get(entry["frequency"], 1)
+        items.append(entry)
         self._save()
-        freq_label = freq.replace("_", "-")
-        extra = f" (${monthly_equiv:.2f}/mo)" if freq != "monthly" else ""
-        return _response(f"Added: {parts[0]} — ${amount:.2f} {freq_label} due day {due_day}{extra}\nAnother? or 'done'",
+        freq_label = entry["frequency"].replace("_", "-")
+        extra = f" (${monthly_equiv:.2f}/mo)" if entry["frequency"] != "monthly" else ""
+        return _response(f"Added: {entry['name']} — ${entry['amount']:.2f} {freq_label} due day {entry['due_day']}{extra}\nAnother? or 'done'",
                          self.state, items_count=len(items))
 
     # ── BILLS_CONFIRM ─────────────────────────────────
@@ -1211,12 +1287,15 @@ class SetupStateMachine:
     def _state_telemetry_opt(self, text: str) -> dict:
         lang = _lang(self.collected)
         if not text:
-            msg = ("To improve reliability, we collect anonymous performance data:\n"
+            msg = ("We collect anonymous performance data DURING SETUP ONLY\n"
+                   "to improve the installation experience.\n"
+                   "No data is collected during daily use.\n\n"
+                   "Collected (setup only):\n"
                    "  + App version and stage completion/failure\n"
-                   "  + Coarse timing buckets (e.g., '5-15 seconds')\n"
-                   "  + Feature counts (categories, rules, income sources)\n"
+                   "  + Coarse timing buckets\n"
+                   "  + Feature counts (categories, income sources)\n"
                    "  + Standardized error codes\n\n"
-                   "We NEVER collect:\n"
+                   "NEVER collected:\n"
                    "  - Your name, email, phone, or chat ID\n"
                    "  - Account names, balances, or transactions\n"
                    "  - Merchant names or receipt text\n"

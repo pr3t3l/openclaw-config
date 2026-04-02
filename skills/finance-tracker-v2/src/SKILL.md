@@ -4,47 +4,40 @@ description: Personal finance tracker with receipt parsing, budget monitoring, t
 metadata: {"openclaw": {"requires": {"bins": ["python3", "curl"]}, "os": ["linux"]}}
 ---
 
-# Finance Tracker v2
+# CRITICAL: Setup Protocol
 
-## Setup
+**IMPORTANT: During setup, you are a RELAY ONLY. Follow these steps EXACTLY:**
 
-On ANY user message related to finance tracking, FIRST check setup status:
+1. Run: `exec python3 {baseDir}/scripts/finance.py setup-status`
+2. If `setup_complete` is `false`:
+   - Run: `exec python3 {baseDir}/scripts/finance.py setup-next "<raw_user_message>"`
+   - Show **ONLY** the `message` field from the JSON response
+   - Do **NOT** add recommendations ("My recommendation is...", "I suggest...")
+   - Do **NOT** add commentary ("Ojo:", "Nota:", "Mi recomendación:", "Note:")
+   - Do **NOT** ask questions the script didn't ask
+   - Do **NOT** reformat, normalize, or "improve" the user's input — pass it RAW to setup-next
+   - Do **NOT** skip ahead, combine steps, or anticipate the next question
+   - The **SCRIPT** decides what to ask. You **ONLY** relay.
+3. If response contains `cron_jobs`, register each via cron tool with exact params from the JSON
+4. If response contains `error`, show it verbatim
+5. Repeat step 2 for **EVERY** user message until `done` is `true`
 
-```
-exec python3 {baseDir}/scripts/finance.py setup-status
-```
+**YOU ARE NOT A FINANCIAL ADVISOR DURING SETUP. YOU ARE A MESSAGE RELAY.**
 
-If `setup_complete` is `false`:
+---
 
-```
-exec python3 {baseDir}/scripts/finance.py setup-next "<user_message>"
-```
+# Runtime
 
-Show the `message` field from the JSON response to the user. DO NOT add your own commentary, questions, or suggestions. DO NOT reorder steps. The script controls the conversation — just relay messages.
-
-If the response contains a `cron_jobs` key, register each job using the cron tool with the exact parameters from the JSON:
-
-```
-For each job in cron_jobs:
-  cron create --name "<job.name>" --schedule "<job.schedule>" --payload "<job.payload>" --delivery "<job.delivery>"
-```
-
-If the response contains `error`, show the error message. If `suggested_action` is present, tell the user to run it.
-
-Continue relaying `setup-next` calls until `done` is `true`.
-
-## Runtime
-
-After setup is complete, map user intents to these commands:
+After `setup_complete` is `true`, map user intents to these commands:
 
 | User Intent | Command |
 |-------------|---------|
-| Sends a receipt photo | `exec python3 {baseDir}/scripts/finance.py add-photo "<saved_photo_path>"` |
-| Text with dollar amount (e.g. "$15 Uber", "gasté $45 en Publix") | `exec python3 {baseDir}/scripts/finance.py add "<user_text>"` |
+| Receipt photo | `exec python3 {baseDir}/scripts/finance.py add-photo "<saved_photo_path>"` |
+| Text with dollar amount ("$15 Uber", "gasté $45 en Publix") | `exec python3 {baseDir}/scripts/finance.py add "<user_text>"` |
 | "budget", "budget status", "presupuesto" | `exec python3 {baseDir}/scripts/finance.py budget-status` |
 | "safe to spend", "how much can I spend", "cuánto puedo gastar" | `exec python3 {baseDir}/scripts/finance.py safe-to-spend` |
 | "cashflow", "daily report" | `exec python3 {baseDir}/scripts/finance.py cashflow` |
-| "transactions", "last transactions", "últimas transacciones" | `exec python3 {baseDir}/scripts/finance.py transactions 10` |
+| "transactions", "últimas transacciones" | `exec python3 {baseDir}/scripts/finance.py transactions 10` |
 | "undo", "deshacer" | `exec python3 {baseDir}/scripts/finance.py undo` |
 | "weekly review", "resumen semanal" | `exec python3 {baseDir}/scripts/finance.py weekly-review` |
 | "monthly report", "reporte mensual" | `exec python3 {baseDir}/scripts/finance.py monthly-report` |
@@ -52,6 +45,7 @@ After setup is complete, map user intents to these commands:
 | "tax summary", "resumen fiscal" | `exec python3 {baseDir}/scripts/finance.py tax-summary` |
 | "tax export" | `exec python3 {baseDir}/scripts/finance.py tax-export` |
 | "reconcile" + file path | `exec python3 {baseDir}/scripts/finance.py reconcile "<csv_path>"` |
+| "import csv" + file path | `exec python3 {baseDir}/scripts/finance.py import-csv "<csv_path>"` |
 | "analyze csv" + file path | `exec python3 {baseDir}/scripts/finance.py analyze-csv "<csv_path>"` |
 | "categories", "categorías" | `exec python3 {baseDir}/scripts/finance.py list-categories` |
 | "add category" + details | `exec python3 {baseDir}/scripts/finance.py add-category "<name>" <budget> <type>` |
@@ -60,36 +54,38 @@ After setup is complete, map user intents to these commands:
 | "add rule" + pattern + category | `exec python3 {baseDir}/scripts/finance.py add-rule "<pattern>" "<category>"` |
 | "balance" + account + amount | `exec python3 {baseDir}/scripts/finance.py update-balance "<account>" <amount>` |
 | "payment check", "payments due" | `exec python3 {baseDir}/scripts/finance.py payment-check` |
-| "savings", "savings goals", "metas de ahorro" | `exec python3 {baseDir}/scripts/finance.py savings-goals` |
+| "savings", "metas de ahorro" | `exec python3 {baseDir}/scripts/finance.py savings-goals` |
 | "add savings goal" + details | `exec python3 {baseDir}/scripts/finance.py add-savings-goal "<name>" <target> "<deadline>"` |
 | "repair sheet" | `exec python3 {baseDir}/scripts/finance.py repair-sheet` |
 | "reconnect sheets" | `exec python3 {baseDir}/scripts/finance.py reconnect-sheets` |
 | "help", "/finance_tracker" | `exec python3 {baseDir}/scripts/finance.py help` |
-| "check migrations" | `exec python3 {baseDir}/scripts/finance.py check-migrations` |
 
-### Displaying responses
+## Displaying responses
 
-- If the response contains `_formatted`, show that text to the user.
-- If the response contains `_message`, show that text.
-- If the response contains `_onboarding`, show the `onboarding_message` field after the main response.
-- If the response contains `_budget_alerts`, show each alert message.
-- If the response contains `_implicit_confirm` = true, the transaction was auto-logged. Show the `_message` field.
-- If `needs_confirmation` = true, show the parsed transaction and ask the user to confirm before logging.
-- For receipt photos: save the photo to a temp file path, then pass that path to `add-photo`.
+- If `_formatted` exists → show it
+- If `_message` exists → show it
+- If `_onboarding` exists → show `onboarding_message` after the main response
+- If `_budget_alerts` exists → show each alert
+- If `_implicit_confirm` is true → transaction was auto-logged, show `_message`
+- If `needs_confirmation` is true → show parsed transaction, ask user to confirm
+- For photos → save to temp path, pass path to `add-photo`
 
-### Handling llm_request responses
+## Handling llm_request responses
 
-If a command returns `llm_request: true`, the AI backend is not available. Process the request yourself:
-1. Read `system` and `user` fields from the response
-2. Use `llm-task` to get the AI to parse the text
-3. Pass the result back: `exec python3 {baseDir}/scripts/finance.py process-llm-response '<json>'`
+If a command returns `llm_request: true`:
+1. Read `system` and `user` fields
+2. Process via `llm-task`
+3. Pass result: `exec python3 {baseDir}/scripts/finance.py process-llm-response '<json>'`
 
-## Rules
+---
+
+# Rules (MANDATORY — applies at ALL times)
 
 - NEVER decide what to ask the user. The script decides.
 - NEVER skip setup steps or reorder them.
-- NEVER modify JSON output before showing to user.
-- NEVER invent categories, amounts, or merchants. Only relay what the script returns.
-- If an error is returned, show it. If `suggested_action` is present, follow it.
-- All exec calls use: `python3 {baseDir}/scripts/finance.py <command>`
-- The Python state machine controls ALL flow. You only translate between human language and CLI commands.
+- NEVER modify, reformat, or "improve" JSON output before showing to user.
+- NEVER invent categories, amounts, or merchants.
+- NEVER add "Nota:", "Ojo:", tips, or financial advice during setup.
+- If error returned → show it verbatim. If `suggested_action` → follow it.
+- All exec calls: `python3 {baseDir}/scripts/finance.py <command>`
+- The Python state machine controls ALL flow. You are a translator, not an advisor.

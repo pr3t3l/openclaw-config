@@ -282,6 +282,119 @@ def process_llm_response(response_text: str) -> dict | list | None:
         return None
 
 
+# ── Setup collectors: income/debt/budget/bill parsers ─
+
+def parse_income(text: str, lang: str = "en") -> dict | None:
+    """Parse free-form income text into structured JSON."""
+    system = "You are a financial data parser. Output only valid JSON."
+    user = f"""Parse this income description into JSON:
+
+Input ({lang}): {text}
+
+Return JSON with:
+- "name": string (income source name, e.g. "Day Job", "Airbnb")
+- "amount": number (per pay period)
+- "frequency": "weekly" | "biweekly" | "monthly" | "irregular"
+- "source_type": "salary" | "freelance" | "rental" | "business" | "other"
+- "account_label": string (bank account name, e.g. "Wells Fargo", "Checking")
+- "is_regular": boolean (true for salary, false for freelance/rental/business)
+
+If frequency has a typo (e.g. "bi-wekly"), correct it.
+If account not mentioned, use "Primary Checking".
+Respond ONLY with valid JSON."""
+
+    return _call_or_request(system, user, defaults={
+        "is_regular": False, "account_label": "Primary Checking",
+        "frequency": "monthly", "source_type": "other",
+    })
+
+
+def parse_debt(text: str, lang: str = "en") -> dict | None:
+    """Parse free-form debt text into structured JSON."""
+    system = "You are a financial data parser. Output only valid JSON."
+    user = f"""Parse this debt description into JSON:
+
+Input ({lang}): {text}
+
+Return JSON with:
+- "name": string (creditor name)
+- "type": "credit_card" | "personal_loan" | "auto_loan" | "mortgage" | "student_loan" | "other"
+- "balance": number
+- "apr": number (0 if not mentioned)
+- "minimum_payment": number (0 if not mentioned)
+
+Respond ONLY with valid JSON."""
+
+    return _call_or_request(system, user, defaults={"apr": 0, "minimum_payment": 0})
+
+
+def parse_budget(text: str, lang: str = "en",
+                 defaults: list[tuple] | None = None) -> list[dict] | None:
+    """Parse free-form budget text into list of budget entries."""
+    defaults_desc = ""
+    if defaults:
+        defaults_desc = "\nAvailable default categories (numbered):\n"
+        for i, (name, btype) in enumerate(defaults, 1):
+            defaults_desc += f"  {i}. {name} ({btype})\n"
+
+    system = "You are a financial data parser. Output only valid JSON."
+    user = f"""Parse these budget entries into a JSON array:
+
+Input ({lang}): {text}
+{defaults_desc}
+Return a JSON ARRAY of objects, each with:
+- "category": string
+- "monthly": number (monthly budget amount)
+- "type": "fixed" | "variable"
+
+If user references a number (e.g. "4. $250"), match it to the default category list.
+Respond ONLY with valid JSON array."""
+
+    return _call_or_request(system, user)
+
+
+def parse_bill(text: str, lang: str = "en") -> dict | None:
+    """Parse free-form bill text into structured JSON."""
+    system = "You are a financial data parser. Output only valid JSON."
+    user = f"""Parse this recurring bill into JSON:
+
+Input ({lang}): {text}
+
+Return JSON with:
+- "name": string (bill name)
+- "amount": number
+- "due_day": integer (1-28, day of month)
+- "frequency": "monthly" | "quarterly" | "semi_annual" | "annual"
+
+If due day not mentioned, use 1.
+If frequency not mentioned, use "monthly".
+Respond ONLY with valid JSON."""
+
+    return _call_or_request(system, user, defaults={"due_day": 1, "frequency": "monthly"})
+
+
+def _call_or_request(system: str, user: str,
+                     defaults: dict | None = None) -> dict | list | None:
+    """Call AI backend or return llm_request if no backend."""
+    backend = _get_backend()
+    if backend["backend"] == "none":
+        return build_llm_request(system, user)
+
+    payload = {
+        "model": _get_model(),
+        "messages": [
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
+        ],
+        "temperature": 0.1,
+    }
+    result = ai_extract_json(payload)
+    if isinstance(result, dict) and defaults:
+        for k, v in defaults.items():
+            result.setdefault(k, v)
+    return result
+
+
 # ── Transaction parser ────────────────────────────────
 
 def parse_transaction(text: str, lang: str = "en",

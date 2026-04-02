@@ -89,7 +89,8 @@ def send_event(event_type: str, **kwargs):
     Thread(target=_send, args=(payload,), daemon=True).start()
 
 
-# ── Convenience wrappers ──────────────────────────────
+# ── Setup-only convenience wrappers ───────────────────
+# Telemetry fires ONLY during setup. No runtime tracking.
 
 def track_setup_stage(stage: str, result: str = "ok", **kwargs):
     send_event("setup_stage_complete", stage=stage, result=result, **kwargs)
@@ -101,10 +102,6 @@ def track_setup_complete(mode: str, language: str, **kwargs):
     send_event("setup_complete", setup_mode=mode, detected_language=language,
                result="ok", **kwargs)
 
-def track_command(command: str, duration_ms: int = 0, result: str = "ok"):
-    send_event("command_used", stage=command, result=result,
-               duration_ms=duration_ms)
-
-def track_error(command: str, error_code: str):
-    send_event("error_occurred", stage=command, result="error",
+def track_preflight_failed(error_code: str):
+    send_event("preflight_failed", stage="PREFLIGHT", result="error",
                error_code=error_code)

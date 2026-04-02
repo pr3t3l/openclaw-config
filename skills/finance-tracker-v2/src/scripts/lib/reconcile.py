@@ -1,4 +1,4 @@
-"""Bank CSV reconciliation for Finance Tracker v2.
+"""Bank CSV reconciliation and import for Finance Tracker v2.
 
 Cherry-picked bank detection + matching from v1 reconcile.py.
 """
@@ -6,11 +6,11 @@ Cherry-picked bank detection + matching from v1 reconcile.py.
 import csv
 import io
 import re
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 from . import config as C
-from .merchant_rules import normalize_merchant
+from .merchant_rules import normalize_merchant, lookup_merchant, save_merchant_rule
 
 
 # ── Bank format detection ─────────────────────────────
@@ -195,3 +195,107 @@ def reconcile_csv(csv_path: str) -> dict:
         "unmatched_bank_rows": unmatched_bank[:20],
         "unmatched_tracker_rows": [logged[i] for i in unmatched_tracker[:20]] if logged else [],
     }
+
+
+# ── CSV Import ────────────────────────────────────────
+
+_PAYMENT_KEYWORDS = {"payment", "pago", "epay", "autopay", "auto pay", "thank you"}
+_TRANSFER_KEYWORDS = {"transfer", "zelle", "cash app", "paypal", "venmo", "xfer"}
+_RETURN_KEYWORDS = {"return", "refund", "credit", "reversal", "adjustment", "devolucion"}
+
+
+def _classify_csv_tx(row: dict) -> tuple[str, str]:
+    """Classify a CSV row: (type, category). Type: expense|income|payment|transfer|return."""
+    merchant = (row.get("merchant") or "").lower()
+    type_raw = (row.get("type_raw") or "").lower()
+    is_debit = row.get("is_debit", True)
+    combined = f"{merchant} {type_raw}"
+
+    # Payments first
+    if any(kw in combined for kw in _PAYMENT_KEYWORDS):
+        return "payment", "Debt Payment"
+    # Transfers
+    if any(kw in combined for kw in _TRANSFER_KEYWORDS):
+        return "transfer", "Transfer"
+    # Returns / credits (non-debit)
+    if not is_debit:
+        if any(kw in combined for kw in _RETURN_KEYWORDS):
+            return "return", "Refund"
+        return "income", "Income"
+    # Normal expense
+    return "expense", ""
+
+
+def import_csv(csv_path: str, dry_run: bool = False) -> dict:
+    """Import bank CSV as transactions.
+
+    Handles: purchases, returns/credits, payments, adjustments, reversals.
+    """
+    bank = detect_bank_format(csv_path)
+    csv_rows = _parse_rows(csv_path, bank)
+    if not csv_rows:
+        return {"error": True, "message": "No transactions found in CSV", "bank": bank}
+
+    transactions = []
+    for row in csv_rows:
+        tx_type, default_cat = _classify_csv_tx(row)
+        merchant_raw = row.get("merchant", "Unknown")
+        norm = normalize_merchant(merchant_raw)
+        amount = row.get("amount", 0)
+
+        # Determine category from merchant rules
+        category = default_cat
+        rule = lookup_merchant(merchant_raw)
+        if rule and rule.get("category") and tx_type == "expense":
+            category = rule["category"]
+        elif tx_type == "expense":
+            category = "Other"
+
+        # Build transaction
+        tx = {
+            "date": row.get("date", date.today().isoformat()),
+            "amount": amount if tx_type != "return" else -amount,
+            "merchant": merchant_raw,
+            "category": category,
+            "subcategory": "",
+            "card": bank.title(),
+            "input_method": "csv",
+            "confidence": 0.7 if rule else 0.5,
+            "matched": False,
+            "source": "csv",
+            "notes": f"Imported from {bank} CSV",
+            "timestamp": datetime.now().isoformat(),
+            "month": row.get("date", "")[:7],
+            "tax_deductible": False,
+            "tax_category": "none",
+            "type": tx_type,
+        }
+        transactions.append(tx)
+
+    summary = {
+        "bank": bank,
+        "total_rows": len(csv_rows),
+        "imported": len(transactions),
+        "by_type": {},
+        "dry_run": dry_run,
+    }
+    for tx in transactions:
+        t = tx["type"]
+        summary["by_type"].setdefault(t, {"count": 0, "total": 0})
+        summary["by_type"][t]["count"] += 1
+        summary["by_type"][t]["total"] += abs(tx["amount"])
+
+    # Round totals
+    for t in summary["by_type"]:
+        summary["by_type"][t]["total"] = round(summary["by_type"][t]["total"], 2)
+
+    if not dry_run:
+        try:
+            from . import sheets
+            written = sheets.write_transactions(transactions)
+            summary["written_to_sheets"] = written
+        except Exception as e:
+            summary["written_to_sheets"] = 0
+            summary["sheets_error"] = str(e)
+
+    return summary

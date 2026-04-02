@@ -127,6 +127,16 @@ def get_spreadsheet(spreadsheet_id: str) -> gspread.Spreadsheet:
     return _SPREADSHEET
 
 
+def test_auth() -> bool:
+    """Verify OAuth token actually works with a minimal API call."""
+    try:
+        client = get_client()
+        client.list_spreadsheet_files(limit=1)
+        return True
+    except Exception:
+        return False
+
+
 def get_sheet_by_id(spreadsheet_id: str, sheet_id: int) -> gspread.Worksheet:
     """Get a worksheet by its numeric sheetId (never by name)."""
     ss = get_spreadsheet(spreadsheet_id)

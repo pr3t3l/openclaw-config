@@ -302,6 +302,14 @@ def cmd_analyze_csv(csv_path: str):
         return
     _out(analyze_csv(csv_path))
 
+def cmd_import_csv(csv_path: str, dry_run: bool = False):
+    _require_setup()
+    from lib.reconcile import import_csv
+    if not Path(csv_path).exists():
+        _out({"error": True, "message": f"File not found: {csv_path}"})
+        return
+    _out(import_csv(csv_path, dry_run=dry_run))
+
 
 # ── Tax ───────────────────────────────────────────────
 
@@ -530,6 +538,7 @@ def main():
         "payment-check": cmd_payment_check,
         "reconcile": lambda: cmd_reconcile(args[0] if args else ""),
         "analyze-csv": lambda: cmd_analyze_csv(args[0] if args else ""),
+        "import-csv": lambda: cmd_import_csv(args[0] if args else "", "--dry-run" in sys.argv),
         "tax-summary": lambda: cmd_tax_summary(args[0] if args else ""),
         "tax-export": lambda: cmd_tax_export(args[0] if args else ""),
         "debt-strategy": cmd_debt_strategy,
