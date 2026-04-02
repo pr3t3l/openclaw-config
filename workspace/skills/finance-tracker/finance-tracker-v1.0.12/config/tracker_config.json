@@ -1,0 +1,87 @@
+{
+  "user": {
+    "name": "User",
+    "language": "en",
+    "spreadsheet_name": "User Finance 2026",
+    "currency": "USD",
+    "cards": [
+      "Chase CC",
+      "Wells Fargo CC",
+      "Wells Fargo debit",
+      "Amex"
+    ],
+    "setup_complete": true,
+    "created_at": "2026-04-02T12:59:01.776850"
+  },
+  "categories": {
+    "Groceries": {
+      "monthly": 300,
+      "threshold": 0.8
+    },
+    "Restaurants": {
+      "monthly": 150,
+      "threshold": 0.8
+    },
+    "Gas": {
+      "monthly": 100,
+      "threshold": 0.8
+    },
+    "Shopping": {
+      "monthly": 200,
+      "threshold": 0.8
+    },
+    "Entertainment": {
+      "monthly": 75,
+      "threshold": 0.8
+    },
+    "Subscriptions": {
+      "monthly": 100,
+      "threshold": 0.9
+    },
+    "Home": {
+      "monthly": 150,
+      "threshold": 0.8
+    },
+    "Personal": {
+      "monthly": 75,
+      "threshold": 0.8
+    },
+    "Travel": {
+      "monthly": null,
+      "threshold": null
+    },
+    "Work_Tools": {
+      "monthly": 100,
+      "threshold": 0.8
+    },
+    "Health": {
+      "monthly": 75,
+      "threshold": 0.8
+    },
+    "Other": {
+      "monthly": 50,
+      "threshold": 0.8
+    }
+  },
+  "balance": {
+    "available": 0,
+    "last_updated": null,
+    "pay_schedule": "biweekly",
+    "pay_dates": [
+      1,
+      15
+    ],
+    "expected_paycheck": 0
+  },
+  "tax": {
+    "enabled": false,
+    "business_type": null,
+    "schedule_type": null,
+    "business_name": null,
+    "tax_categories": [],
+    "ask_rules": [],
+    "never_ask": []
+  },
+  "payments": [],
+  "savings": []
+}
