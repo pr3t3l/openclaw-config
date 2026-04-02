@@ -430,6 +430,53 @@ def cmd_ai_backend():
     _out(detect_ai_backend())
 
 
+# ── Help ──────────────────────────────────────────────
+
+def cmd_help():
+    commands = [
+        ("add \"text\"", "Parse and log expense (e.g. add \"$15 Uber\")"),
+        ("add-photo \"path\"", "Parse receipt photo"),
+        ("undo", "Revert last transaction (5 min)"),
+        ("budget-status", "Budget overview by category"),
+        ("safe-to-spend", "Daily safe spending amount"),
+        ("cashflow", "Daily cashflow report"),
+        ("transactions [N]", "List last N transactions"),
+        ("weekly-review", "Weekly spending review"),
+        ("monthly-report [month]", "Monthly AI analysis"),
+        ("debt-strategy", "Avalanche vs Snowball comparison"),
+        ("tax-summary [year]", "Tax deductions by category"),
+        ("tax-export [year]", "CSV export for accountant"),
+        ("reconcile \"csv\"", "Bank CSV reconciliation"),
+        ("analyze-csv \"csv\"", "Detect bills from CSV"),
+        ("savings-goals", "Show savings progress"),
+        ("add-savings-goal", "Create savings goal"),
+        ("list-categories", "Show budget categories"),
+        ("add-category", "Add budget category"),
+        ("list-rules", "Show merchant rules"),
+        ("add-rule", "Add merchant rule"),
+        ("update-balance", "Set account balance"),
+        ("payment-check", "Due-soon payment alerts"),
+        ("repair-sheet", "Validate sheet structure"),
+        ("reconnect-sheets", "Refresh Google OAuth"),
+        ("check-migrations", "Show pending migrations"),
+        ("ai-backend", "Show AI backend info"),
+    ]
+    _out({
+        "commands": [{"command": c, "description": d} for c, d in commands],
+        "count": len(commands),
+        "_formatted": "Finance Tracker v2 Commands:\n" + "\n".join(
+            f"  {c:<28s} {d}" for c, d in commands
+        ),
+    })
+
+
+# ── Migrations ────────────────────────────────────────
+
+def cmd_check_migrations():
+    from lib.migrations import check_migrations
+    _out(check_migrations())
+
+
 # ── Main dispatcher ───────────────────────────────────
 
 def main():
@@ -445,6 +492,8 @@ def main():
         "setup-status": cmd_setup_status,
         "setup-reset": cmd_setup_reset,
         "ai-backend": cmd_ai_backend,
+        "help": cmd_help,
+        "check-migrations": cmd_check_migrations,
     }
 
     if cmd == "onboarding-check":

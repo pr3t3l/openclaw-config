@@ -411,3 +411,78 @@ With Chase Visa ($2,500 @ 24.99%) + Personal Loan ($3,000 @ 12%):
 2. **End-to-end integration test** with real Google Sheets
 3. **Correction tracking** — log_correction() for auto-rule learning from user corrections
 4. **Batch receipt processor** — Multiple receipt URLs at once
+
+---
+
+## Phase 5: SKILL.md, Telemetry, Migrations, Docs, Manifest (2026-04-02)
+
+### Files Created
+
+| File | Purpose |
+|------|---------|
+| `src/SKILL.md` | Thin agent router with setup + runtime sections + governance rules. 31 `{baseDir}` references. Maps user intents to CLI commands. |
+| `src/scripts/lib/telemetry.py` | Anonymous telemetry to Supabase `telemetry_v2` table. ZERO PII. Fire-and-forget via subprocess+curl. |
+| `src/scripts/lib/migrations.py` | Sequential migration system. Tracks applied migrations in config. Idempotent. |
+| `src/install/migrations/001_initial.py` | Baseline migration: ensures all required config keys exist. |
+| `src/install/manifest.json` | Package metadata: name, version, requires, entry_point, distribution, changelog. |
+| `src/docs/SYSTEM_GUIDE.md` | Complete user reference (~300 lines): all commands, setup flow, merchant rules, tax, cron, troubleshooting. |
+| `sql/telemetry_v2.sql` | Supabase CREATE TABLE + RLS policy + indexes for the telemetry table. |
+
+### Files Modified
+
+| File | Changes |
+|------|---------|
+| `src/scripts/finance.py` | Added `help` command (26 commands listed), `check-migrations` command |
+
+### SKILL.md Design
+
+Two sections with strict governance rules:
+- **Setup**: Relay `setup-next` messages verbatim. Register cron jobs from JSON. Never add commentary.
+- **Runtime**: Intent → command mapping table. Display `_formatted` or `_message` fields. Handle `llm_request` fallback.
+- **Rules**: Never decide flow, never skip steps, never modify output, never invent data.
+
+### Telemetry Schema (Supabase)
+
+Table `telemetry_v2` with columns: event, v, stage, result, duration_bucket, error_code, setup_mode, detected_language, distribution, income/debt/business counts, rulepack_ids, cron_job_count, reviewed.
+
+Zero PII: no user_id, no install_id, no session_id, no IP. Anon insert only via RLS policy.
+
+### Tests Run
+
+| Test | Result | Notes |
+|------|--------|-------|
+| `help` | PASS | Lists 26 commands with descriptions |
+| `check-migrations` | PASS | Shows 001_initial as pending, version 2.0.0 |
+| SKILL.md `{baseDir}` refs | PASS | 31 occurrences, all properly templated |
+| telemetry.py (disabled) | PASS | send_event returns gracefully when disabled |
+| manifest.json | PASS | Valid JSON with all required fields |
+
+### Total File Count (src/)
+
+```
+src/
+  SKILL.md, VERSION, requirements.txt
+  install/
+    manifest.json
+    schemas/ (4 files)
+    rulepacks/ (4 files)
+    migrations/ (1 file)
+  scripts/
+    finance.py (30+ commands)
+    lib/ (14 modules)
+  docs/
+    SYSTEM_GUIDE.md
+```
+
+### v2.0.0 Complete — Summary
+
+| Phase | What was built |
+|-------|---------------|
+| 1 | Foundation: errors, config, state machine, schemas |
+| 1.1 | Alignment: 21 states, rulepacks, confirms, GOG check |
+| 2 | AI parser, sheets integration, crons, onboarding |
+| 3 | Runtime: merchant rules, parser, budget, cashflow, payments |
+| 4 | Reports, reconciliation, tax, debt optimizer, sheets R/W |
+| 5 | SKILL.md router, telemetry, migrations, docs, manifest |
+
+Total: **14 Python modules**, **4 JSON schemas**, **4 tax rulepacks**, **1 migration**, **1 SKILL.md**, **1 SYSTEM_GUIDE.md**, **30+ CLI commands**, **21-state setup flow**.
