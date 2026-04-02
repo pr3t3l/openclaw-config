@@ -81,6 +81,10 @@ The Finance Tracker is a personal expense tracking system built as an OpenClaw s
 | 2026-04-02 | Supabase: Migrated to own project `oetfiiatbzfydbtzozlz` (Lovable project inaccessible via CLI) | Infrastructure | [WEB] |
 | 2026-04-02 | Supabase: Edge Functions deployed — `get-stripe-price` + `create-checkout` (no-verify-jwt) | Infrastructure | [WEB] |
 | 2026-04-02 | Website: Headline changed to "Stop guessing. Start tracking every purchase — line by line." | Copy optimization | [WEB] |
+| 2026-04-02 | Product delivery: stripe-webhook Edge Function — Stripe webhook → Resend email with Google Drive download link | Automated delivery | [WEB] |
+| 2026-04-02 | Product delivery: Admin sale notification email on each purchase | Ops visibility | [WEB] |
+| 2026-04-02 | Product delivery: Success banner on FinanceTracker page after payment | UX | [WEB] |
+| 2026-04-02 | Product delivery: End-to-end tested — payment → webhook → email → download confirmed | Verified | [WEB] |
 
 ---
 
@@ -622,7 +626,7 @@ Website ──checkout──→ Stripe Payment Link
 | 🟡 | Add Finance Tracker reference to CEO AGENTS.md | None | 10 min |
 | 🟡 | AI tax profile: add retry logic when LiteLLM is down | None | 1 hour |
 | 🟢 | Build unified cost dashboard (finance + LiteLLM spend) | Design needed | 4 hours |
-| 🔴 | **Product delivery system** — qué pasa cuando alguien paga? Opciones: (1) Stripe webhook → email automático con link de descarga, (2) Stripe webhook → redirect a success page con download, (3) Gumroad/Lemon Squeezy (manejo delivery integrado), (4) Manual via email. Necesita decisión + implementación | Decisión de approach | 2-4 hours |
+| ~~🔴~~ | ~~**Product delivery system**~~ | ~~None~~ | DONE — Stripe webhook → Resend email with Google Drive link |
 | 🟢 | SaaS multi-tenant conversion | After 3 months personal use | 4-6 weeks |
 
 ---

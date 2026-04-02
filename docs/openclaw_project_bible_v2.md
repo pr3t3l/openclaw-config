@@ -1374,6 +1374,14 @@ Gap analysis across 6+ chats, audit script v2.1, system verification, Bible v2 p
 - Vercel connected to GitHub for deployment (replacing Lovable Publish)
 - IONOS domain still pointing to Cloudflare/Lovable — needs migration to Vercel
 
+### Product delivery system
+- `stripe-webhook` Edge Function: listens for `checkout.session.completed`
+- Verifies Stripe signature via `STRIPE_WEBHOOK_SIGNING_SECRET`
+- Sends delivery email to customer via Resend (download link to Google Drive ZIP)
+- Sends admin notification email on each sale
+- Success banner on FinanceTracker page when redirected with `?success=true`
+- Tested end-to-end: payment → webhook → email → download confirmed
+
 ### Bugs fixed
 - Stripe SDK v12 didn't support apiVersion 2024-11-20 → upgraded to v14 + removed explicit version
 - Frontend called wrong Supabase project → `.env` updated
@@ -1424,6 +1432,7 @@ Gap analysis across 6+ chats, audit script v2.1, system verification, Bible v2 p
 | 35 | Supabase migration: Lovable project → own project | Session 10 |
 | 36 | Profile updates: M.AI completed, Automotive skills, ScrollToTop | Session 10 |
 | 37 | Headline copy optimization for conversion | Session 10 |
+| 38 | Product delivery system: Stripe webhook → Resend email → Google Drive download | Session 10 |
 
 ## PENDING 🔲
 
@@ -1451,7 +1460,7 @@ Gap analysis across 6+ chats, audit script v2.1, system verification, Bible v2 p
 | ~~Finance: Deploy get-stripe-price Edge Function~~ | ~~Deployed to oetfiiatbzfydbtzozlz~~ | DONE (Session 10) |
 | ~~Finance: Set STRIPE_API_KEY in website Supabase~~ | ~~New Stripe account configured~~ | DONE (Session 10) |
 | ~~Finance: Migrate to lookup keys + dynamic checkout~~ | ~~financial_tracker_standard~~ | DONE (Session 10) |
-| **Finance: Product delivery system after payment** | No delivery mechanism exists — buyer pays and gets nothing | Decision needed |
+| ~~**Finance: Product delivery system after payment**~~ | ~~Stripe webhook + Resend email + Google Drive~~ | DONE (Session 10) |
 | Website: Migrate IONOS domain from Cloudflare/Lovable to Vercel | DNS change needed | None |
 | Finance: PDF bank statement support | Spec ready | None |
 | Finance: Smart category creation (AI suggests + user approves) | Spec ready | None |
