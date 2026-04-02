@@ -1451,6 +1451,7 @@ Gap analysis across 6+ chats, audit script v2.1, system verification, Bible v2 p
 | ~~Finance: Deploy get-stripe-price Edge Function~~ | ~~Deployed to oetfiiatbzfydbtzozlz~~ | DONE (Session 10) |
 | ~~Finance: Set STRIPE_API_KEY in website Supabase~~ | ~~New Stripe account configured~~ | DONE (Session 10) |
 | ~~Finance: Migrate to lookup keys + dynamic checkout~~ | ~~financial_tracker_standard~~ | DONE (Session 10) |
+| **Finance: Product delivery system after payment** | No delivery mechanism exists — buyer pays and gets nothing | Decision needed |
 | Website: Migrate IONOS domain from Cloudflare/Lovable to Vercel | DNS change needed | None |
 | Finance: PDF bank statement support | Spec ready | None |
 | Finance: Smart category creation (AI suggests + user approves) | Spec ready | None |

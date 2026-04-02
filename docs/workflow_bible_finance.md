@@ -622,8 +622,8 @@ Website ──checkout──→ Stripe Payment Link
 | 🟡 | Add Finance Tracker reference to CEO AGENTS.md | None | 10 min |
 | 🟡 | AI tax profile: add retry logic when LiteLLM is down | None | 1 hour |
 | 🟢 | Build unified cost dashboard (finance + LiteLLM spend) | Design needed | 4 hours |
+| 🔴 | **Product delivery system** — qué pasa cuando alguien paga? Opciones: (1) Stripe webhook → email automático con link de descarga, (2) Stripe webhook → redirect a success page con download, (3) Gumroad/Lemon Squeezy (manejo delivery integrado), (4) Manual via email. Necesita decisión + implementación | Decisión de approach | 2-4 hours |
 | 🟢 | SaaS multi-tenant conversion | After 3 months personal use | 4-6 weeks |
-| 🟢 | Stripe webhook for delivery automation | After sales volume justifies | 2 hours |
 
 ---
 
