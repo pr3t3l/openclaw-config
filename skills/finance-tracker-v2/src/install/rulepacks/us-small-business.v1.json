@@ -1,0 +1,81 @@
+{
+  "rulepack_id": "us-small-business.v1",
+  "jurisdiction": "US",
+  "business_type": "small_business",
+  "description": "Tax deduction categories for small business owners and side hustles.",
+  "irs_form": "Schedule C",
+  "deductible_categories": [
+    {
+      "category": "cost_of_goods_sold",
+      "irs_reference": "Schedule C Line 4",
+      "description": "Raw materials, inventory, wholesale purchases for resale",
+      "keywords": ["wholesale", "inventory", "material", "supply", "raw", "packaging", "shipping supplies", "label", "box", "bubble wrap"]
+    },
+    {
+      "category": "office_supplies",
+      "irs_reference": "Schedule C Line 22",
+      "description": "Office supplies and general business consumables",
+      "keywords": ["office", "paper", "ink", "toner", "pen", "notebook", "printer", "stapler", "tape", "folder"]
+    },
+    {
+      "category": "equipment_tools",
+      "irs_reference": "Schedule C Line 13 / Section 179",
+      "description": "Business equipment, tools, machinery",
+      "keywords": ["equipment", "tool", "machine", "computer", "laptop", "software", "register", "scanner", "pos", "display"]
+    },
+    {
+      "category": "rent_lease",
+      "irs_reference": "Schedule C Line 20b",
+      "description": "Business space rent, storage units, co-working",
+      "keywords": ["rent", "lease", "storage", "warehouse", "co-working", "wework", "office space", "studio"]
+    },
+    {
+      "category": "utilities",
+      "irs_reference": "Schedule C Line 25",
+      "description": "Business utilities — electric, gas, water, internet, phone",
+      "keywords": ["electric", "gas", "water", "internet", "phone", "utility", "wifi", "cable"]
+    },
+    {
+      "category": "shipping_delivery",
+      "irs_reference": "Schedule C Line 27a",
+      "description": "Postage, shipping, delivery services",
+      "keywords": ["usps", "ups", "fedex", "dhl", "shipping", "postage", "stamps", "delivery", "freight", "courier"]
+    },
+    {
+      "category": "marketing_advertising",
+      "irs_reference": "Schedule C Line 8",
+      "description": "Advertising, marketing, promotions, website",
+      "keywords": ["advertising", "marketing", "google ads", "facebook ads", "instagram", "flyer", "banner", "sign", "website", "domain", "hosting", "seo"]
+    },
+    {
+      "category": "professional_services",
+      "irs_reference": "Schedule C Line 17",
+      "description": "Legal, accounting, consulting, freelance help",
+      "keywords": ["attorney", "lawyer", "accountant", "cpa", "bookkeeper", "consultant", "contractor", "freelancer", "payroll"]
+    },
+    {
+      "category": "insurance",
+      "irs_reference": "Schedule C Line 15",
+      "description": "Business insurance — general liability, product, property",
+      "keywords": ["insurance", "liability", "property", "product", "workers comp", "policy", "premium"]
+    },
+    {
+      "category": "vehicle_expenses",
+      "irs_reference": "Schedule C Line 9",
+      "description": "Business use of vehicle — mileage or actual expenses",
+      "keywords": ["gas", "fuel", "mileage", "oil change", "tire", "repair", "maintenance", "car wash", "parking", "toll"]
+    },
+    {
+      "category": "travel_meals",
+      "irs_reference": "Schedule C Line 24a/24b",
+      "description": "Business travel and 50% deductible business meals",
+      "keywords": ["flight", "airline", "hotel", "uber", "lyft", "taxi", "rental car", "meal", "restaurant", "client dinner"]
+    },
+    {
+      "category": "bank_fees",
+      "irs_reference": "Schedule C Line 27a",
+      "description": "Business bank fees, merchant processing, payment platform fees",
+      "keywords": ["bank fee", "stripe", "paypal", "square", "shopify", "processing", "merchant", "wire", "transfer"]
+    }
+  ]
+}

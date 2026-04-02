@@ -73,3 +73,76 @@
 5. **Logging** — log, log-split, income commands.
 6. **Rules engine** — merchant matching from v1.
 7. **Wire up remaining CLI commands** beyond setup.
+
+---
+
+## Phase 1.1: Alignment Patch (2026-04-02)
+
+Aligned state machine with spec at `docs/workflow_bible_finance specs V2.md` §3.
+
+### State Flow Changes
+
+**Old (13 states):** UNPACK → DETECT_USER → CARDS → CURRENCY → INCOME → DEBTS → BUDGETS → BILLS → TAX_CHECK → TAX_DESCRIBE → REVIEW → SHEETS → COMPLETE
+
+**New (21 states):** UNPACK → PREFLIGHT → DETECT_CONTEXT → SETUP_MODE_SELECT → INCOME_COLLECT → INCOME_CONFIRM → BUSINESS_RULES_MAP → BUSINESS_RULES_CONFIRM → DEBT_COLLECT → DEBT_CONFIRM → BUDGET_PRESENT → BUDGET_COLLECT → BUDGET_CONFIRM → BILLS_COLLECT → BILLS_CONFIRM → REVIEW_ALL → SHEETS_CREATE → CRONS_SETUP → TELEMETRY_OPT → ONBOARDING_MISSIONS → COMPLETE
+
+### Changes Made
+
+| # | Change | Reason |
+|---|--------|--------|
+| 1 | Added 10 new states: PREFLIGHT, SETUP_MODE_SELECT, INCOME_CONFIRM, DEBT_CONFIRM, BUDGET_CONFIRM, BUSINESS_RULES_MAP, BUSINESS_RULES_CONFIRM, CRONS_SETUP, TELEMETRY_OPT, ONBOARDING_MISSIONS | Spec §3.2-3.14 requires all of these as real states |
+| 2 | Removed CARDS and CURRENCY as separate states | Spec §3.4: cards are account_labels collected during INCOME_COLLECT. Currency auto-set in DETECT_CONTEXT |
+| 3 | Removed TAX_CHECK + TAX_DESCRIBE | Replaced by BUSINESS_RULES_MAP which loads pre-compiled rulepacks based on income source_type — no user description needed |
+| 4 | Created 4 rulepacks under install/rulepacks/ | Spec §3.6: deterministic tax rules from IRS references, not AI-generated |
+| 5 | Income schema: added source_type, account_label, is_regular | Spec §3.4: drives rulepack selection + cashflow calculator |
+| 6 | Budget schema: added type (fixed/variable) | Spec §3.8: AI analyst only suggests optimizations on variable categories |
+| 7 | SHEETS_CREATE no longer marks setup_complete | Spec §3.11-3.14: COMPLETE only after SHEETS + CRONS + TELEMETRY + ONBOARDING all succeed |
+| 8 | Every collect state has a confirm state | Spec §3.5, 3.7, 3.8, 3.9: formatted summary with explicit "yes" required before advancing |
+| 9 | GOG check now verifies google-client.json + finance-tracker-token.json | Spec §3.2: correct credential paths, not gog/ directory |
+| 10 | PREFLIGHT is a real state that blocks setup if checks fail | Spec §3.2: "no questions until this passes" |
+
+### Files Created
+
+| File | Purpose |
+|------|---------|
+| `src/install/rulepacks/us-personal.v1.json` | No-op placeholder for salary/personal income |
+| `src/install/rulepacks/us-rental-property.v1.json` | 9 deductible categories with IRS Schedule E references |
+| `src/install/rulepacks/us-freelance.v1.json` | 10 deductible categories with IRS Schedule C references |
+| `src/install/rulepacks/us-small-business.v1.json` | 12 deductible categories with IRS Schedule C references |
+
+### Files Modified
+
+| File | Changes |
+|------|---------|
+| `src/scripts/lib/state_machine.py` | Full rewrite: 21 states, confirm states, rulepack loading, CRONS_SETUP, TELEMETRY_OPT, ONBOARDING_MISSIONS |
+| `src/scripts/lib/config.py` | Added RULEPACKS_DIR path |
+| `src/install/schemas/income.v1.json` | Added: source_type, account_label, is_regular, currency. frequency now includes "irregular" |
+| `src/install/schemas/budget.v1.json` | Added: type (fixed/variable) as required field |
+
+### Rulepack Design (spec §3.6)
+
+- Source type → rulepack mapping is deterministic: salary→personal, rental→us-rental-property, freelance→us-freelance, business→us-small-business
+- Multiple income types load multiple rulepacks (e.g., salary + rental loads both)
+- Each rulepack has IRS form reference and per-category line references
+- Keywords enable future merchant-level auto-tagging
+- User customizations go to rules.user.json (overlay), never modify rulepack originals
+
+### Tests Run
+
+| Command | Result | Notes |
+|---------|--------|-------|
+| `install-check` | PASS | All schemas + all 4 rulepacks detected. google_oauth correctly shows client_json=true, token_json=false |
+| `preflight` | PASS | Returns UNPACK state |
+| `setup-next "start"` | PASS (with test token) | PREFLIGHT blocks without token. With token: auto-detects Alfredo/es, shows SETUP_MODE_SELECT |
+| Full flow test (21 states) | PASS | start → mode=full → income(2) → confirm → business_rules(rental rulepack loaded, 9 cats) → confirm → debts(skip) → confirm → budget(3 entries) → confirm → bills(skip) → confirm → review → sheets → crons → telemetry(yes) → onboarding → COMPLETE |
+| `setup-status` after complete | PASS | Shows `COMPLETE`, `21/21` |
+| `setup-reset` | PASS | Clears state cleanly |
+
+### What Session 2 Needs
+
+1. **SHEETS_CREATE** — Real Google Sheet creation via gspread (currently placeholder)
+2. **CRONS_SETUP** — Register OpenClaw native crons via gateway API (currently placeholder, shows plan)
+3. **ai_parser.py** — subprocess+curl for AI calls
+4. **sheets.py** — gspread integration with sheetId-based tab references
+5. **Transaction commands** — parse-text, parse-photo, log, log-split
+6. **Rules engine** — Two-tier: merchant_rules.json + line-item rules from rulepacks

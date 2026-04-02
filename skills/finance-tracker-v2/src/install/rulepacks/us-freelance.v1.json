@@ -1,0 +1,69 @@
+{
+  "rulepack_id": "us-freelance.v1",
+  "jurisdiction": "US",
+  "business_type": "freelance",
+  "description": "Tax deduction categories for freelancers and independent contractors.",
+  "irs_form": "Schedule C",
+  "deductible_categories": [
+    {
+      "category": "office_supplies",
+      "irs_reference": "Schedule C Line 22",
+      "description": "Office supplies, stationery, printer ink",
+      "keywords": ["office", "paper", "ink", "toner", "stapler", "pen", "notebook", "folder", "binder", "sticky note", "envelopes", "stamps", "printer"]
+    },
+    {
+      "category": "equipment_technology",
+      "irs_reference": "Schedule C Line 13 / Section 179",
+      "description": "Computers, software, monitors, peripherals",
+      "keywords": ["computer", "laptop", "monitor", "keyboard", "mouse", "webcam", "microphone", "headset", "software", "license", "subscription", "adobe", "microsoft", "apple", "dell", "best buy", "usb", "hard drive", "ssd"]
+    },
+    {
+      "category": "internet_phone",
+      "irs_reference": "Schedule C Line 25",
+      "description": "Internet service, phone plan — prorated if personal use",
+      "keywords": ["internet", "wifi", "comcast", "att", "verizon", "t-mobile", "spectrum", "phone", "cellular", "data plan"]
+    },
+    {
+      "category": "professional_services",
+      "irs_reference": "Schedule C Line 17",
+      "description": "Legal, accounting, consulting fees",
+      "keywords": ["attorney", "lawyer", "accountant", "cpa", "bookkeeper", "consultant", "legal", "tax prep", "payroll"]
+    },
+    {
+      "category": "education_training",
+      "irs_reference": "Schedule C Line 27a",
+      "description": "Courses, books, conferences related to work",
+      "keywords": ["course", "udemy", "coursera", "book", "training", "conference", "workshop", "seminar", "certification", "exam", "tuition"]
+    },
+    {
+      "category": "marketing_advertising",
+      "irs_reference": "Schedule C Line 8",
+      "description": "Website hosting, domain, business cards, ads",
+      "keywords": ["hosting", "domain", "godaddy", "squarespace", "wix", "google ads", "facebook ads", "business card", "vistaprint", "marketing", "seo", "branding"]
+    },
+    {
+      "category": "travel_business",
+      "irs_reference": "Schedule C Line 24a",
+      "description": "Business travel — flights, hotels, meals while traveling",
+      "keywords": ["flight", "airline", "hotel", "airbnb", "uber", "lyft", "rental car", "parking", "toll", "taxi", "mileage", "travel"]
+    },
+    {
+      "category": "home_office",
+      "irs_reference": "Schedule C Line 30",
+      "description": "Home office deduction — simplified or actual method",
+      "keywords": ["rent", "mortgage", "utilities", "home office", "desk", "chair", "lamp", "shelving"]
+    },
+    {
+      "category": "insurance",
+      "irs_reference": "Schedule C Line 15",
+      "description": "Business insurance, liability, E&O",
+      "keywords": ["insurance", "liability", "professional", "e&o", "errors", "omissions", "policy", "premium"]
+    },
+    {
+      "category": "bank_fees",
+      "irs_reference": "Schedule C Line 27a",
+      "description": "Business bank fees, payment processing fees",
+      "keywords": ["bank fee", "wire", "transfer", "stripe", "paypal", "square", "processing fee", "merchant fee", "overdraft"]
+    }
+  ]
+}

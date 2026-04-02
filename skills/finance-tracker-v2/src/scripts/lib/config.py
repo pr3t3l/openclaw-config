@@ -17,6 +17,7 @@ SKILL_DIR = SRC_DIR                                               # src/ is the 
 SCRIPTS_DIR = SRC_DIR / "scripts"
 INSTALL_DIR = SRC_DIR / "install"
 SCHEMAS_DIR = INSTALL_DIR / "schemas"
+RULEPACKS_DIR = INSTALL_DIR / "rulepacks"
 
 
 def get_base_dir() -> Path:

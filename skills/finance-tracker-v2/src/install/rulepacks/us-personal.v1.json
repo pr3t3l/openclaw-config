@@ -1,0 +1,8 @@
+{
+  "rulepack_id": "us-personal.v1",
+  "jurisdiction": "US",
+  "business_type": "personal",
+  "description": "Standard personal finance categories — no business deductions.",
+  "deductible_categories": [],
+  "note": "Personal income has no business deductions. This rulepack is a no-op placeholder that signals the system to skip tax deduction tracking."
+}
