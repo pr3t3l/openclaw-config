@@ -395,3 +395,142 @@ def load_sheets_config() -> dict | None:
     if path.exists():
         return C.load_json(path)
     return None
+
+
+def _get_tab_worksheet(tab_key: str) -> gspread.Worksheet | None:
+    """Get a worksheet by tab key, using sheetId from sheets_config.json."""
+    sc = load_sheets_config()
+    if not sc:
+        return None
+    tab_info = sc.get("tabs", {}).get(tab_key)
+    if not tab_info:
+        return None
+    return get_sheet_by_id(sc["spreadsheet_id"], tab_info["sheet_id"])
+
+
+# ── Transaction read/write ────────────────────────────
+
+def write_transaction(tx: dict) -> bool:
+    """Append a single transaction row to the Transactions tab."""
+    ws = _get_tab_worksheet("transactions")
+    if not ws:
+        return False
+    from datetime import datetime
+    headers = TAB_DEFS["transactions"]["headers"]
+    tx.setdefault("timestamp", datetime.now().isoformat())
+    tx.setdefault("month", tx.get("date", "")[:7])
+    row = [tx.get(h, "") for h in headers]
+    ws.append_row(row, value_input_option="USER_ENTERED")
+    return True
+
+
+def write_transactions(txs: list[dict], chunk_size: int = 100) -> int:
+    """Append multiple transaction rows in batches."""
+    ws = _get_tab_worksheet("transactions")
+    if not ws:
+        return 0
+    from datetime import datetime
+    headers = TAB_DEFS["transactions"]["headers"]
+    rows = []
+    for tx in txs:
+        tx.setdefault("timestamp", datetime.now().isoformat())
+        tx.setdefault("month", tx.get("date", "")[:7])
+        rows.append([tx.get(h, "") for h in headers])
+    for i in range(0, len(rows), chunk_size):
+        ws.append_rows(rows[i:i + chunk_size], value_input_option="USER_ENTERED")
+        if i + chunk_size < len(rows):
+            time.sleep(1.0)
+    return len(rows)
+
+
+def read_transactions(month: str | None = None, limit: int = 0) -> list[dict]:
+    """Read transactions, optionally filtered by month (YYYY-MM)."""
+    ws = _get_tab_worksheet("transactions")
+    if not ws:
+        return []
+    records = ws.get_all_records()
+    if month:
+        records = [r for r in records if r.get("month") == month]
+    if limit:
+        records = records[-limit:]
+    return records
+
+
+def get_month_spending_by_category(month: str) -> dict[str, float]:
+    """Sum spending per category for a month. Excludes income."""
+    records = read_transactions(month)
+    totals: dict[str, float] = {}
+    for r in records:
+        if str(r.get("type", "expense")).lower() == "income":
+            continue
+        cat = r.get("category", "Other")
+        try:
+            amt = float(r.get("amount", 0))
+        except (ValueError, TypeError):
+            amt = 0
+        totals[cat] = totals.get(cat, 0) + amt
+    return totals
+
+
+def get_month_income(month: str) -> float:
+    """Sum all income for a month."""
+    records = read_transactions(month)
+    return sum(
+        float(r.get("amount", 0)) for r in records
+        if str(r.get("type", "")).lower() == "income"
+    )
+
+
+def get_tax_deductions(year: str | None = None, month: str | None = None) -> list[dict]:
+    """Get tax-deductible transactions."""
+    ws = _get_tab_worksheet("transactions")
+    if not ws:
+        return []
+    records = ws.get_all_records()
+    results = []
+    for r in records:
+        td = r.get("tax_deductible")
+        if not td or str(td).upper() not in ("TRUE", "1", "YES"):
+            continue
+        if year and not r.get("date", "").startswith(year):
+            continue
+        if month and r.get("month") != month:
+            continue
+        results.append(r)
+    return results
+
+
+# ── Monthly summary write ─────────────────────────────
+
+def write_monthly_summary(month: str, data: dict) -> bool:
+    """Write a row to the Monthly Summary tab."""
+    ws = _get_tab_worksheet("monthly_summary")
+    if not ws:
+        return False
+    row = [
+        month,
+        data.get("total_income", 0),
+        data.get("total_expenses", 0),
+        data.get("total_fixed", 0),
+        data.get("total_variable", 0),
+        data.get("surplus", 0),
+        data.get("savings_contrib", 0),
+        data.get("debt_payments", 0),
+        data.get("deductible_total", 0),
+    ]
+    ws.append_row(row, value_input_option="USER_ENTERED")
+    return True
+
+
+# ── Reconciliation log ────────────────────────────────
+
+def write_reconciliation_rows(rows: list[dict]) -> int:
+    """Append rows to Reconciliation Log tab."""
+    ws = _get_tab_worksheet("reconciliation_log")
+    if not ws:
+        return 0
+    headers = TAB_DEFS["reconciliation_log"]["headers"]
+    sheet_rows = [[r.get(h, "") for h in headers] for r in rows]
+    if sheet_rows:
+        ws.append_rows(sheet_rows, value_input_option="USER_ENTERED")
+    return len(sheet_rows)

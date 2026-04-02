@@ -337,3 +337,77 @@ Sinking fund: Car Insurance $600/180 days = $3.33/day provisioned.
 3. **Weekly/monthly reports** — AI-powered analysis
 4. **Undo system** — Revert last transaction within 5 minutes
 5. **Debt optimizer** — Avalanche vs snowball payoff strategy
+
+---
+
+## Phase 4: Reports, Reconciliation, Tax, Debt Optimizer, Sheets R/W (2026-04-02)
+
+### Phase 3 Fix: budget.py real spending data
+
+- Added `sheets.read_transactions(month)`, `sheets.get_month_spending_by_category(month)`, `sheets.write_transaction(tx)`
+- `budget.get_budget_status()` now reads actual spending from Sheets via `_get_spending()`
+- Gracefully handles missing `sheets_config.json` (pre-setup) by returning empty spending
+
+### Files Created
+
+| File | Lines | Purpose |
+|------|-------|---------|
+| `reports.py` | 220 | daily_cashflow_report (cron target), weekly_review, monthly_report with AI analysis |
+| `reconcile.py` | 175 | Bank CSV reconciliation: auto-detect Chase/WF/Discover/Citi/Amex, 3-point matching (amount+date+merchant) |
+| `csv_analyzer.py` | 140 | CSV auto-detection: recurring bills, income patterns, subscriptions from 3-6 months bank data |
+| `debt_optimizer.py` | 165 | Avalanche vs Snowball payoff strategies with timeline simulation and comparison |
+
+### Files Modified
+
+| File | Changes |
+|------|---------|
+| `sheets.py` | +write_transaction, +write_transactions (batched), +read_transactions, +get_month_spending_by_category, +get_month_income, +get_tax_deductions, +write_monthly_summary, +write_reconciliation_rows |
+| `budget.py` | Wired to real Sheets data via _get_spending(). Graceful fallback when sheets unavailable. |
+| `finance.py` | Full rewrite: 30+ commands. Added: cashflow (daily report), weekly-review, monthly-report, reconcile, analyze-csv, tax-summary, tax-export, debt-strategy, savings-goals, add-savings-goal, repair-sheet, reconnect-sheets, undo. Wired add command to write to Sheets + budget alerts. |
+
+### New CLI Commands
+
+| Command | Purpose |
+|---------|---------|
+| `cashflow` | Daily cashflow report (cron target) — safe-to-spend + upcoming + budget + savings |
+| `weekly-review` | Weekly report — spending breakdown, budget vs actual, optimization suggestions |
+| `monthly-report [month]` | Full month AI analysis — trends, breakdown, debt progress |
+| `reconcile "csv"` | Bank CSV reconciliation — match CSV vs logged transactions |
+| `analyze-csv "csv"` | Detect recurring bills/income/subscriptions from bank CSV |
+| `tax-summary [year]` | Tax deduction summary by category with rulepack info |
+| `tax-export [year]` | CSV-ready export for accountant (Schedule E/C format) |
+| `debt-strategy` | Avalanche vs Snowball comparison with interest savings |
+| `savings-goals` | Show savings goals with daily required calculations |
+| `add-savings-goal name target deadline` | Create new savings goal |
+| `repair-sheet` | Validate sheet schema and detect drift |
+| `reconnect-sheets` | Refresh Google OAuth token |
+| `undo` | Revert last transaction (5-minute window) |
+
+### Debt Strategy Example (tested)
+
+With Chase Visa ($2,500 @ 24.99%) + Personal Loan ($3,000 @ 12%):
+- Avalanche: 79 months, $2,954.97 interest
+- Snowball: 79 months, $2,954.97 interest
+- Recommendation: "Either works" (similar results in this case)
+
+### Tests Run
+
+| Test | Result | Notes |
+|------|--------|-------|
+| `cashflow` | PASS | Daily report in Spanish: safe $210.97/day, savings $6.08/day, sinking $3.33/day |
+| `budget-status` | PASS | Shows $0 spent (no sheets, graceful fallback) |
+| `debt-strategy` | PASS | Avalanche vs Snowball comparison, 79 months payoff timeline |
+| `tax-summary` | PASS | $0 deductible (no transactions), rulepacks shown |
+| `weekly-review` | PASS | Weekly breakdown in Spanish with all categories |
+| `monthly-report` | PASS | Full report with income/spent/surplus/debts |
+| `savings-goals` | PASS | Vacation: $340/$2000, $6.08/day needed, 273d left |
+| `add-savings-goal` | PASS | Emergency Fund $5000 due 2027-01-01 created |
+| `undo` | PASS | "Nothing to undo" when no last transaction |
+| `reconcile` / `analyze-csv` | PASS (no file) | Returns proper error for missing file |
+
+### What Phase 5 Needs
+
+1. **SKILL.md** — The thin router that instructs the agent how to use finance.py
+2. **End-to-end integration test** with real Google Sheets
+3. **Correction tracking** — log_correction() for auto-rule learning from user corrections
+4. **Batch receipt processor** — Multiple receipt URLs at once

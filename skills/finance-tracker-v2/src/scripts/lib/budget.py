@@ -8,21 +8,32 @@ from datetime import date
 from . import config as C
 
 
+def _get_spending(month: str) -> dict[str, float]:
+    """Get actual spending by category. Gracefully handles missing sheets."""
+    try:
+        from . import sheets
+        sc = sheets.load_sheets_config()
+        if sc:
+            return sheets.get_month_spending_by_category(month)
+    except Exception:
+        pass
+    return {}
+
+
 def get_budget_status(month: str | None = None) -> dict:
     """Get per-category budget status. Returns structured dict."""
     if not month:
         month = date.today().strftime("%Y-%m")
 
     budgets = C.get_category_budgets()
-    # TODO Phase 4: read actual spending from Sheets
-    # For now, return budgets with $0 spent
+    spending = _get_spending(month)
     categories = []
     total_budget = 0
     total_spent = 0
 
     for cat_name, cat_data in budgets.items():
         monthly = cat_data.get("monthly", 0) or 0
-        spent = 0  # placeholder until Sheets integration
+        spent = spending.get(cat_name, 0)
         remaining = monthly - spent
         pct = (spent / monthly * 100) if monthly > 0 else 0
         btype = cat_data.get("type", "variable")
@@ -65,7 +76,9 @@ def check_budget_alerts(category: str, amount: float) -> list[dict]:
         return []
 
     monthly = cat_data["monthly"]
-    spent = 0  # TODO: read from Sheets
+    month = date.today().strftime("%Y-%m")
+    spending = _get_spending(month)
+    spent = spending.get(category, 0)
     new_total = spent + amount
     pct = new_total / monthly * 100
 
