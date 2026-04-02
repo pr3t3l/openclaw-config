@@ -194,6 +194,53 @@ def run_setup_wizard(answers: dict = None) -> dict:
             C.save_json(C.CONFIG_DIR / "tracker_config.json", config)
             C.invalidate_config_cache()
 
+    # Telegram / Cron configuration
+    print("\n" + "=" * 50)
+    print("Telegram & Scheduled Reports")
+    print("=" * 50)
+    print()
+
+    tg_config = {}
+    if "bot_token" in answers and "chat_id" in answers:
+        tg_config["bot_token"] = answers["bot_token"]
+        tg_config["chat_id"] = answers["chat_id"]
+        tg_config["timezone"] = answers.get("timezone", "America/New_York")
+    elif interactive:
+        print("The Finance Tracker can send you automatic reports via Telegram:")
+        print("  • Daily cashflow summary (weekday mornings)")
+        print("  • Payment reminders")
+        print("  • Weekly spending summary")
+        print("  • Monthly tax report")
+        print()
+        print("To enable this, you need your Telegram Bot Token and Chat ID.")
+        print("  Bot Token: get it from @BotFather when you create your bot")
+        print("  Chat ID: send a message to @userinfobot to get yours")
+        print()
+        bot_token = input("Bot Token (Enter to skip, configure later):\n→ ").strip()
+        if bot_token:
+            chat_id = input("Chat ID:\n→ ").strip()
+            if chat_id:
+                tg_config["bot_token"] = bot_token
+                tg_config["chat_id"] = chat_id
+                print("\nWhat timezone are you in? (e.g. America/New_York, America/Chicago, Europe/London)")
+                tz = input("→ ").strip() or "America/New_York"
+                tg_config["timezone"] = tz
+            else:
+                print("⚠️ Skipped — no Chat ID. Configure later: finance.py setup-telegram")
+        else:
+            print("⚠️ Skipped. Configure later: finance.py setup-telegram")
+    else:
+        pass  # Non-interactive without telegram config — skip
+
+    if tg_config.get("bot_token") and tg_config.get("chat_id"):
+        config["telegram"] = tg_config
+        C.save_json(C.CONFIG_DIR / "tracker_config.json", config)
+        print(f"✅ Telegram configured (TZ: {tg_config.get('timezone', 'America/New_York')})")
+        print(f"   Run: bash setup_crons.sh to install scheduled reports")
+    else:
+        config["telegram"] = {"bot_token": "", "chat_id": "", "timezone": "America/New_York"}
+        C.save_json(C.CONFIG_DIR / "tracker_config.json", config)
+
     print("\n" + "=" * 50)
     print("✅ Setup complete!")
     print(f"   Spreadsheet: {sheet_name}")

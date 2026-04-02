@@ -7,7 +7,7 @@
 #          cron_runner.sh weekly-summary weekly-summary
 #          cron_runner.sh monthly-report monthly-report
 
-set -euo pipefail
+set -uo pipefail
 
 JOB_NAME="${1:?Usage: cron_runner.sh <job_name> <subcommand> [args...]}"
 shift
@@ -21,10 +21,51 @@ FINANCE="$SCRIPT_DIR/finance.py"
 LOG_DIR="$SKILL_DIR/logs"
 LOG_FILE="${LOG_DIR}/${JOB_NAME}.log"
 
-# Telegram config
-source "$HOME/.openclaw/.env"
-BOT_TOKEN="${TELEGRAM_BOT_TOKEN}"
-CHAT_ID="${TELEGRAM_CHAT_ID}"
+# Ensure log directory exists
+mkdir -p "$LOG_DIR"
+
+# Pre-flight checks — catch missing files/config before they fail silently
+preflight_fail() {
+    local msg="$1"
+    local ts
+    ts=$(date '+%Y-%m-%d %H:%M:%S')
+    echo "[$ts] PREFLIGHT FAIL ($JOB_NAME): $msg" >> "$LOG_FILE"
+    # Try to alert via Telegram if possible
+    if [ -n "${BOT_TOKEN:-}" ] && [ -n "${CHAT_ID:-}" ]; then
+        curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
+            -d chat_id="$CHAT_ID" \
+            -d text="🚨 Finance cron PREFLIGHT FAIL [$JOB_NAME]: $msg" \
+            --max-time 10 > /dev/null 2>&1 || true
+    fi
+    exit 1
+}
+
+# Check finance.py exists
+if [ ! -f "$FINANCE" ]; then
+    preflight_fail "finance.py not found at $FINANCE — skill may have been deleted or moved"
+fi
+
+# Check python available
+if ! command -v "$PYTHON" &> /dev/null; then
+    preflight_fail "Python ($PYTHON) not found in PATH"
+fi
+
+# Read Telegram config from tracker_config.json (product config, not system .env)
+TRACKER_CONFIG="$SKILL_DIR/config/tracker_config.json"
+if [ ! -f "$TRACKER_CONFIG" ]; then
+    preflight_fail "tracker_config.json not found — run: finance.py setup"
+fi
+
+BOT_TOKEN=$("$PYTHON" -c "import json; d=json.load(open('$TRACKER_CONFIG')); print(d.get('telegram',{}).get('bot_token',''))" 2>/dev/null)
+CHAT_ID=$("$PYTHON" -c "import json; d=json.load(open('$TRACKER_CONFIG')); print(d.get('telegram',{}).get('chat_id',''))" 2>/dev/null)
+
+if [ -z "$BOT_TOKEN" ]; then
+    preflight_fail "Telegram bot_token not configured — run: finance.py setup-telegram"
+fi
+if [ -z "$CHAT_ID" ]; then
+    preflight_fail "Telegram chat_id not configured — run: finance.py setup-telegram"
+fi
+
 TG_API="https://api.telegram.org/bot${BOT_TOKEN}/sendMessage"
 
 send_telegram() {

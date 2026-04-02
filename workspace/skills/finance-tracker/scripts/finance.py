@@ -669,6 +669,42 @@ def cmd_batch_receipts(file_path: str, account: str = "Chase"):
         print(result["airbnb_prompt"])
 
 
+def cmd_setup_telegram(answers_json: str = None):
+    """Configure Telegram bot token, chat ID, and timezone for scheduled reports.
+
+    Non-interactive: finance.py setup-telegram '{"bot_token":"123:ABC","chat_id":"456","timezone":"America/New_York"}'
+    Interactive: finance.py setup-telegram
+    """
+    config = C._load_tracker_config()
+    if answers_json:
+        answers = json.loads(answers_json)
+    else:
+        answers = {}
+        print("=" * 50)
+        print("Telegram Setup for Scheduled Reports")
+        print("=" * 50)
+        print()
+        print("Bot Token (from @BotFather):")
+        answers["bot_token"] = input("→ ").strip()
+        print("Chat ID (from @userinfobot):")
+        answers["chat_id"] = input("→ ").strip()
+        print("Timezone (e.g. America/New_York, America/Chicago, Europe/London):")
+        answers["timezone"] = input("→ ").strip() or "America/New_York"
+
+    if not answers.get("bot_token") or not answers.get("chat_id"):
+        print("❌ Both bot_token and chat_id are required.")
+        return
+
+    config["telegram"] = {
+        "bot_token": answers["bot_token"],
+        "chat_id": answers["chat_id"],
+        "timezone": answers.get("timezone", "America/New_York"),
+    }
+    C.save_json(C.CONFIG_DIR / "tracker_config.json", config)
+    print(f"✅ Telegram configured (TZ: {config['telegram']['timezone']})")
+    print(f"   Now run: bash setup_crons.sh to install scheduled reports")
+
+
 def cmd_setup_sheets():
     """Create the Google Spreadsheet with all required tabs (5 data tabs)."""
     client = sheets.get_client()
@@ -807,6 +843,7 @@ def main():
         "add-goal": lambda: cmd_add_goal(args[0], args[1], args[2] if len(args) > 2 else None),
         "remove-goal": lambda: cmd_remove_goal(args[0]),
         "save": lambda: cmd_savings(args[0], args[1]),
+        "setup-telegram": lambda: cmd_setup_telegram(args[0] if args else None),
     }
 
     if cmd not in commands:
