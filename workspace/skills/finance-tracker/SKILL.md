@@ -77,16 +77,20 @@ Data:
 33. /batch-receipts + links — Process receipt links
 34. /add-rule <pattern> <category> [confidence] — Add categorization rule
 
+Telegram & Crons:
+35. /setup-telegram — Configure Telegram bot for scheduled reports
+36. /setup-crons — Install cron jobs for automatic reports
+
 Telemetry:
-35. /telemetry-on — Enable anonymous analytics
-36. /telemetry-off — Disable anonymous analytics
-37. /telemetry-status — Show current status
-38. /telemetry-info — What data is collected
+37. /telemetry-on — Enable anonymous analytics
+38. /telemetry-off — Disable anonymous analytics
+39. /telemetry-status — Show current status
+40. /telemetry-info — What data is collected
 
 Reply with a number or command name.
 ```
 
-When the user replies with a number (1-34) or a command name, execute the corresponding action below.
+When the user replies with a number (1-40) or a command name, execute the corresponding action below.
 
 ## Command Actions
 
@@ -307,12 +311,40 @@ python3 finance.py telemetry on
 python3 finance.py telemetry off
 ```
 
-### 37. /telemetry-status
+### 35. /setup-telegram
+Ask the user for:
+1. Bot Token (from @BotFather)
+2. Chat ID (from @userinfobot)
+3. Timezone (e.g. America/New_York)
+
+```bash
+python3 finance.py setup-telegram '{"bot_token":"TOKEN","chat_id":"CHATID","timezone":"TIMEZONE"}'
+```
+
+### 36. /setup-crons
+Install the 4 scheduled reports (cashflow, payment-check, weekly-summary, monthly-report).
+Requires Telegram to be configured first (setup-telegram).
+```bash
+bash setup_crons.sh
+```
+To remove: `bash setup_crons.sh --remove`
+
+### 37. /telemetry-on
+```bash
+python3 finance.py telemetry on
+```
+
+### 38. /telemetry-off
+```bash
+python3 finance.py telemetry off
+```
+
+### 39. /telemetry-status
 ```bash
 python3 finance.py telemetry status
 ```
 
-### 38. /telemetry-info
+### 40. /telemetry-info
 ```bash
 python3 finance.py telemetry info
 ```
@@ -359,7 +391,15 @@ python3 finance.py setup '{"cards":"CARDS","currency":"USD","tax":"rental","tax_
 
 Tax type options: `none`, `rental`, `freelancer`, `business`, `other`
 
-**Step 3:** Show the user the final result: parsed transaction + Google Sheet URL.
+**Step 5:** Ask: "Do you want automatic reports via Telegram? (daily cashflow, payment reminders, weekly summary, monthly report)"
+If yes:
+- Ask for Bot Token, Chat ID, and Timezone
+```bash
+python3 finance.py setup-telegram '{"bot_token":"TOKEN","chat_id":"CHATID","timezone":"America/New_York"}'
+bash setup_crons.sh
+```
+
+**Step 6:** Show the user the final result: parsed transaction + Google Sheet URL.
 
 **NEVER run `finance.py setup` without a JSON argument. It will fail with EOFError.**
 

@@ -1,4 +1,4 @@
-# Finance Tracker — System Guide v1.0.10
+# Finance Tracker — System Guide v1.0.12
 
 Complete reference for the Finance Tracker skill. Covers every module, command, cron job, and integration point.
 
@@ -324,7 +324,9 @@ Fire-and-forget POST to Supabase. Never blocks main flow.
 
 ## Cron Jobs
 
-Installed via `bash setup_crons.sh`. All times are **America/New_York (EST)**.
+**Prerequisites:** Telegram must be configured first via `finance.py setup-telegram` or during initial setup wizard.
+
+Installed via `bash setup_crons.sh`. Timezone is read from `tracker_config.json` (default: America/New_York). Change with `finance.py setup-telegram`.
 
 | Job | Schedule | Time | What it does |
 |-----|----------|------|-------------|
@@ -334,14 +336,21 @@ Installed via `bash setup_crons.sh`. All times are **America/New_York (EST)**.
 | **monthly-report** | 1st of month | 8:00 AM | Full month report with AI insights, top merchants, tax summary |
 
 **How crons work:**
-1. `setup_crons.sh` installs crontab entries tagged `# finance-tracker`
+1. `setup_crons.sh` reads timezone from `tracker_config.json` and installs crontab entries tagged `# finance-tracker`
 2. Each entry calls `cron_runner.sh <job_name> <subcommand>`
-3. `cron_runner.sh` runs `finance.py`, captures output
-4. If output has content → sends via Telegram API (max 4096 chars)
-5. If error → sends error alert (first 500 chars)
-6. Logs to `skills/finance-tracker/logs/<job_name>.log`
+3. `cron_runner.sh` runs pre-flight checks (finance.py exists, python available, Telegram configured)
+4. If pre-flight fails → logs error and sends Telegram alert if possible
+5. Runs `finance.py`, captures output
+6. If output has content → sends via Telegram API (max 4096 chars)
+7. If error → sends error alert (first 500 chars)
+8. Logs to `skills/finance-tracker/logs/<job_name>.log`
 
-**Manage:**
+**Configure Telegram (required before crons):**
+```bash
+python3 finance.py setup-telegram '{"bot_token":"TOKEN","chat_id":"CHATID","timezone":"America/New_York"}'
+```
+
+**Manage crons:**
 ```bash
 bash setup_crons.sh          # Install all 4 crons
 bash setup_crons.sh --remove # Remove all finance-tracker crons

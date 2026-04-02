@@ -1,0 +1,29 @@
+{
+  "_README": "Copy this file to tracker_config.json. Or run: python3 scripts/finance.py setup",
+  "user": {
+    "name": "",
+    "language": "",
+    "spreadsheet_name": "",
+    "currency": "",
+    "cards": [],
+    "setup_complete": false
+  },
+  "categories": {},
+  "balance": {
+    "available": 0,
+    "last_updated": null,
+    "pay_schedule": "biweekly",
+    "pay_dates": [1, 15],
+    "expected_paycheck": 0
+  },
+  "tax": {
+    "enabled": false
+  },
+  "telegram": {
+    "bot_token": "",
+    "chat_id": "",
+    "timezone": "America/New_York"
+  },
+  "payments": [],
+  "savings": []
+}
