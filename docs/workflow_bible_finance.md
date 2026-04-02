@@ -1,6 +1,6 @@
 # WORKFLOW BIBLE — FINANCE TRACKER (ROBOTIN FINANCE)
 ## Documento técnico autoritativo
-### Last verified: 2026-04-01 (audit v3.0)
+### Last verified: 2026-04-02 (audit v3.1)
 ### Sources: Build Instructions + v1.1 Addendum + Split/Tax Upgrade + Plan Financiero + Bible v2 §11 + v1.0.8–v1.0.11 changelogs
 
 > **Source tags:** `[AUDIT]` = machine-verified 2026-03-29. `[BUILD]` = from build instructions.
@@ -70,6 +70,17 @@ The Finance Tracker is a personal expense tracking system built as an OpenClaw s
 | 2026-04-01 | Website: Privacy Policy page created at /products/finance-tracker-privacy | Legal/compliance | [WEB] |
 | 2026-04-01 | Website: Dynamic pricing via Stripe API (Supabase Edge Function get-stripe-price) | Infrastructure | [WEB] |
 | 2026-04-01 | Website: Portfolio card updated — "(Robotin)" → "(OpenClaw Skill)", chips show product features | Branding | [WEB] |
+| 2026-04-01 | Website: Nav "Products" → "Workflows", new /workflows page with featured + other workflow cards | UX restructure | [WEB] |
+| 2026-04-01 | Website: M.AI education updated — removed "in progress", added "Continuous AI Development" | Profile fix | [WEB] |
+| 2026-04-01 | Website: Skills updated — new Automotive & Quality Standards category (ISO 9001, IATF 16949) | Profile enhancement | [WEB] |
+| 2026-04-01 | Website: ScrollToTop component — pages now scroll to top on navigation | UX fix | [WEB] |
+| 2026-04-01 | Website: OpenClaw Portfolio tabs now deep-linkable via ?tab= param | UX improvement | [WEB] |
+| 2026-04-02 | Stripe: New account created, migrated from old profile | Infrastructure | [WEB] |
+| 2026-04-02 | Stripe: Switched from hardcoded price_id to lookup keys (`financial_tracker_standard`) | Architecture | [WEB] |
+| 2026-04-02 | Stripe: Dynamic checkout sessions replace static Payment Link | Architecture | [WEB] |
+| 2026-04-02 | Supabase: Migrated to own project `oetfiiatbzfydbtzozlz` (Lovable project inaccessible via CLI) | Infrastructure | [WEB] |
+| 2026-04-02 | Supabase: Edge Functions deployed — `get-stripe-price` + `create-checkout` (no-verify-jwt) | Infrastructure | [WEB] |
+| 2026-04-02 | Website: Headline changed to "Stop guessing. Start tracking every purchase — line by line." | Copy optimization | [WEB] |
 
 ---
 
@@ -419,32 +430,54 @@ Names, emails, financial data, transaction amounts, merchant names, receipt cont
 
 ### Product page
 - URL: https://alfredopretelvargas.com/products/finance-tracker
+- Workflows page: https://alfredopretelvargas.com/workflows
 - Privacy: https://alfredopretelvargas.com/products/finance-tracker-privacy
-- **Price: dynamic from Stripe** (Supabase Edge Function `get-stripe-price`)
-- Stripe Price ID: `price_1THabeAcsyW8mQQCrokjTr0H`
-- Checkout: `https://buy.stripe.com/dRm9ASekt1a7gPx6bYawo00`
+- Headline: "Stop guessing. Start tracking every purchase — line by line."
+- **Price: dynamic from Stripe via lookup key** (no code changes needed to update price)
 
-### Website Supabase (separate from telemetry)
-- Project: `tajcmrnpnkfkkjunzkae`
-- Edge Function: `get-stripe-price` (verify_jwt: false)
-- Secret: `STRIPE_API_KEY` (must be set in this project)
+### Stripe integration (new account as of 2026-04-02)
+- **Lookup key:** `financial_tracker_standard` (used by both price display and checkout)
+- **No hardcoded price_id** — lookup key resolves to current active price
+- **Dynamic Checkout Sessions** via `create-checkout` Edge Function (replaces static Payment Link)
+- To change price: create new price in Stripe with same lookup key + "Transfer lookup key" checked
+
+### Supabase (Edge Functions)
+- Project: `oetfiiatbzfydbtzozlz` (own project — Lovable project `tajcmrnpnkfkkjunzkae` inaccessible via CLI)
+- Edge Function 1: `get-stripe-price` — accepts `lookupKey`, returns price + priceId
+- Edge Function 2: `create-checkout` (no-verify-jwt) — creates Stripe Checkout Session from lookup key
+- Secret: `STRIPE_API_KEY` (set via dashboard → Edge Functions → Secrets)
 
 ### Frontend architecture
-- `useStripePrice(priceId, fallback)` hook with in-memory cache
-- Used in: FinanceTracker.tsx (product page) + PortfolioSection.tsx (home page card)
+- `useStripePrice(lookupKey, fallback)` hook with in-memory cache — returns `{ formatted, priceId }`
+- Used in: FinanceTracker.tsx, Workflows.tsx, PortfolioSection.tsx
+- Checkout: `supabase.functions.invoke("create-checkout", { body: { lookupKey } })` → opens Stripe Checkout
 - Fallback price shown instantly, replaced when Stripe responds
+
+### Website structure
+- Nav: "Workflows" → /workflows (replaced "Products" → /products/finance-tracker)
+- /workflows page: 2 featured cards (Declassified + Finance Tracker) + 4 smaller "Other Workflows" cards + Contact CTA
+- Each workflow card deep-links to OpenClaw Portfolio via `?tab=` param
+- ScrollToTop component ensures pages start at top on navigation
+- Deployment: Vercel (connected to GitHub) — replaced Lovable Publish
 
 ### Portfolio card (Home page)
 - Title: "Finance Tracker (OpenClaw Skill)"
 - Chips: AI Receipt Parsing, Tax Deductions, Budget Alerts, Self-Hosted
 
+### About section updates (2026-04-01)
+- M.AI: removed "in progress" — completed, now shows "Continuous AI Development"
+- Skills: new "Automotive & Quality Standards" category (ISO 9001, IATF 16949)
+- Skills: added Prompt Engineering, Data Mining, Six Sigma, CNC Programming, AutoCAD, Master's in AI
+
 ### Pricing history
 | Date | Price | Reason |
 |------|-------|--------|
-| 2026-03-31 | $120 | Initial listing |
-| 2026-04-01 | $47 | Adjusted for launch |
+| 2026-03-31 | $120 | Initial listing (old Stripe account) |
+| 2026-04-01 | $47 | Adjusted for launch (old Stripe account) |
+| 2026-04-02 | $20 | New Stripe account, lookup key approach |
+| 2026-04-02 | Dynamic | Price set in Stripe, auto-reflected via lookup key |
 
-**Key differentiator:** Airbnb deduction tracking is the hook. Most expense trackers don't auto-categorize rental property deductions.
+**Key differentiator:** Line-item level tracking is the hook. Most expense trackers categorize at the receipt level — this one parses individual items and flags deductions per line.
 
 ---
 
@@ -580,8 +613,10 @@ Website ──checkout──→ Stripe Payment Link
 | ~~🔴~~ | ~~Schedule E parsing bug~~ | ~~None~~ | DONE (v1.0.8) |
 | ~~🔴~~ | ~~KeyError in logger~~ | ~~None~~ | DONE (v1.0.9) |
 | ~~🔴~~ | ~~Stripe checkout + dynamic pricing~~ | ~~None~~ | DONE (website) |
-| 🔴 | Deploy get-stripe-price Edge Function to Supabase (tajcmrnpnkfkkjunzkae) | `supabase functions deploy` + set STRIPE_API_KEY secret | 15 min |
-| 🔴 | Set STRIPE_API_KEY in website Supabase project | Need secret key | 5 min |
+| ~~🔴~~ | ~~Deploy get-stripe-price Edge Function~~ | ~~None~~ | DONE (oetfiiatbzfydbtzozlz) |
+| ~~🔴~~ | ~~Set STRIPE_API_KEY in website Supabase~~ | ~~None~~ | DONE (new Stripe account) |
+| ~~🔴~~ | ~~Migrate from hardcoded price_id to lookup keys~~ | ~~None~~ | DONE (financial_tracker_standard) |
+| ~~🔴~~ | ~~Create dynamic checkout (replace static Payment Link)~~ | ~~None~~ | DONE (create-checkout Edge Function) |
 | 🟡 | PDF bank statement support | None — spec ready | 3 hours |
 | 🟡 | Smart category creation (AI suggests + user approves) | None — spec ready | 2 hours |
 | 🟡 | Add Finance Tracker reference to CEO AGENTS.md | None | 10 min |
@@ -594,4 +629,4 @@ Website ──checkout──→ Stripe Payment Link
 
 **END OF WORKFLOW BIBLE — FINANCE TRACKER**
 
-*Consolidates: Build Instructions, v1.1 Addendum, Split/Tax Upgrade doc, Plan Financiero, Project Bible v2 §11, and v1.0.8–v1.0.11 changelogs. Verified against system audit 2026-04-01.*
+*Consolidates: Build Instructions, v1.1 Addendum, Split/Tax Upgrade doc, Plan Financiero, Project Bible v2 §11, v1.0.8–v1.0.11 changelogs, and Session 10 website/Stripe migration. Verified against system audit 2026-04-02.*

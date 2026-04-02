@@ -1,6 +1,6 @@
 # OPENCLAW — COMPLETE SYSTEM DOCUMENTATION
 ## Pipeline + Marketing + Meta-Planner + Finance + Infrastructure
-### Version: 2.0 | Last verified: 2026-03-29 (audit v2.1)
+### Version: 2.1 | Last verified: 2026-04-02 (audit v2.2)
 ### Classification: INTERNAL — DO NOT PUBLISH
 
 ---
@@ -685,19 +685,23 @@ finance-tracker/
 - AI batch classification: ~$0.01 per 50 merchants
 - Total estimated: $1-3/month at normal usage
 
-## Status (2026-04-01)
+## Status (2026-04-02)
 - v1.0.11 OPERATIONAL — packaged as 68K ZIP
-- Website live with Stripe checkout ($47, dynamic pricing)
+- Website live with dynamic Stripe pricing via lookup keys
 - Privacy policy published at /products/finance-tracker-privacy
 - All v1.0.8–v1.0.11 bugs fixed (EOFError, KeyError, Schedule E, setup UX)
-- Pending: deploy get-stripe-price Edge Function, PDF support, AI tax retry logic
+- Edge Functions deployed: `get-stripe-price` + `create-checkout`
+- Pending: PDF support, AI tax retry logic
 
 ## Commercialization — LIVE
 
 - Product page: https://alfredopretelvargas.com/products/finance-tracker
-- Stripe Price ID: `price_1THabeAcsyW8mQQCrokjTr0H`
-- Checkout: `https://buy.stripe.com/dRm9ASekt1a7gPx6bYawo00`
-- Dynamic pricing via Supabase Edge Function `get-stripe-price`
+- Workflows page: https://alfredopretelvargas.com/workflows
+- **Stripe lookup key:** `financial_tracker_standard` (no hardcoded price_id)
+- **Dynamic Checkout Sessions** via `create-checkout` Edge Function
+- Supabase project: `oetfiiatbzfydbtzozlz` (Edge Functions + telemetry)
+- Deployment: Vercel (connected to GitHub `pr3t3l/alfredo-ai-factory-guide`)
+- To change price: create new price in Stripe → same lookup key → "Transfer lookup key"
 - Phase 1 (NOW): Personal use + first sales
 - Phase 2 (Q3 2026): Scale marketing, collect testimonials
 - Phase 3 (Q4 2026): SaaS via Telegram ($19/mo) — target Airbnb hosts
@@ -834,7 +838,8 @@ All items `[MANUAL]` — not filesystem-verifiable.
 - Repo: `github.com/pr3t3l/declassifiedcase` (main branch)
 - Local: `~/declassifiedcase/`
 - Stack: React + Vite + Supabase + Stripe
-- Deployment: Lovable Publish (git push → Lovable → manual Publish button)
+- Deployment: **Vercel** (connected to GitHub, auto-deploy on push) — migrated from Lovable (2026-04-02)
+- Personal site repo: `github.com/pr3t3l/alfredo-ai-factory-guide` (alfredopretelvargas.com)
 - Status: **REDESIGN DEPLOYED AND LIVE** `[MANUAL]`
 
 ## Brand components: 14 `[AUDIT]`
@@ -1339,6 +1344,41 @@ Gap analysis across 6+ chats, audit script v2.1, system verification, Bible v2 p
 - workflow_bible_finance.md — full audit v3.0
 - openclaw_project_bible_v2.md §11 — updated to v1.0.11
 
+## Session 10: 2026-04-01/02 — Website Restructure + Stripe Migration (Claude Code)
+
+### Website restructure
+- Nav: "Products" → "Workflows", href changed from `/products/finance-tracker` → `/workflows`
+- New `/workflows` page: 2 featured cards (Declassified + Finance Tracker) + 4 smaller "Other Workflows" cards (Platform, Pipeline, Planner, Marketing) + Contact CTA
+- Each workflow card deep-links to OpenClaw Portfolio via `?tab=` query param
+- ScrollToTop component added — pages scroll to top on navigation
+- PortfolioSection: "Products" label → "Workflows"
+- Headline: "Stop guessing. Start tracking every purchase — line by line."
+
+### Profile updates
+- M.AI education: removed "in progress" — completed, shows "Continuous AI Development"
+- Skills: new "Automotive & Quality Standards" category (ISO 9001, IATF 16949)
+- Skills: added Prompt Engineering, Data Mining, Six Sigma, CNC Programming, AutoCAD, Lean Manufacturing, Master's in AI
+
+### Stripe migration
+- Created new Stripe account (replaced old profile)
+- Migrated from hardcoded `price_id` to **lookup keys** (`financial_tracker_standard`)
+- New `create-checkout` Edge Function: creates Stripe Checkout Session dynamically
+- Price shown on page and price charged are always in sync — no more static Payment Links
+- `useStripePrice` hook updated: accepts `lookupKey` instead of `priceId`, returns `{ formatted, priceId }`
+- To change price: create new price in Stripe with same lookup key + "Transfer lookup key"
+
+### Infrastructure migration
+- Frontend `.env`: switched from Lovable's Supabase (`tajcmrnpnkfkkjunzkae`) to own project (`oetfiiatbzfydbtzozlz`)
+- Edge Functions deployed to `oetfiiatbzfydbtzozlz`: `get-stripe-price` + `create-checkout` (no-verify-jwt)
+- `get-stripe-price`: upgraded Stripe SDK 12→14, removed invalid apiVersion
+- Vercel connected to GitHub for deployment (replacing Lovable Publish)
+- IONOS domain still pointing to Cloudflare/Lovable — needs migration to Vercel
+
+### Bugs fixed
+- Stripe SDK v12 didn't support apiVersion 2024-11-20 → upgraded to v14 + removed explicit version
+- Frontend called wrong Supabase project → `.env` updated
+- $47 fallback shown instead of real price → Edge Function deployed + working
+
 ---
 
 # 25. CURRENT STATE & PENDING ITEMS
@@ -1378,6 +1418,12 @@ Gap analysis across 6+ chats, audit script v2.1, system verification, Bible v2 p
 | 29 | Privacy Policy page (GDPR/CCPA compliant) | Session 9 |
 | 30 | Supabase telemetry: reviewed column, version tracking, enhanced events | Session 9 |
 | 31 | SYSTEM_GUIDE.md (521 lines — complete system reference) | Session 9 |
+| 32 | Website restructure: "Products" → "Workflows" page + nav | Session 10 |
+| 33 | Stripe migration: new account + lookup keys + dynamic checkout | Session 10 |
+| 34 | Edge Functions deployed: get-stripe-price + create-checkout | Session 10 |
+| 35 | Supabase migration: Lovable project → own project | Session 10 |
+| 36 | Profile updates: M.AI completed, Automotive skills, ScrollToTop | Session 10 |
+| 37 | Headline copy optimization for conversion | Session 10 |
 
 ## PENDING 🔲
 
@@ -1402,8 +1448,10 @@ Gap analysis across 6+ chats, audit script v2.1, system verification, Bible v2 p
 | ~~Finance: EOFError, KeyError, Schedule E bugs~~ | ~~Multiple~~ | DONE (Session 9, v1.0.8–v1.0.9) |
 | ~~Finance: Setup UX + telemetry + commands~~ | ~~v1.0.8–v1.0.11~~ | DONE (Session 9) |
 | ~~Finance: Stripe checkout + dynamic pricing~~ | ~~Website~~ | DONE (Session 9) |
-| Finance: Deploy get-stripe-price Edge Function | Code in repo, needs `supabase functions deploy` | None |
-| Finance: Set STRIPE_API_KEY in website Supabase | Need secret | None |
+| ~~Finance: Deploy get-stripe-price Edge Function~~ | ~~Deployed to oetfiiatbzfydbtzozlz~~ | DONE (Session 10) |
+| ~~Finance: Set STRIPE_API_KEY in website Supabase~~ | ~~New Stripe account configured~~ | DONE (Session 10) |
+| ~~Finance: Migrate to lookup keys + dynamic checkout~~ | ~~financial_tracker_standard~~ | DONE (Session 10) |
+| Website: Migrate IONOS domain from Cloudflare/Lovable to Vercel | DNS change needed | None |
 | Finance: PDF bank statement support | Spec ready | None |
 | Finance: Smart category creation (AI suggests + user approves) | Spec ready | None |
 | Finance: AI tax profile retry logic | LiteLLM down → basic fallback | None |
