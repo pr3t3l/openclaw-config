@@ -1,0 +1,401 @@
+{
+  "schema_version": "3.0",
+  "product_id": "finance-tracker",
+  "generated_at": "2026-04-01T16:00:00Z",
+  "value_proposition": {
+    "cpm": "I help freelancers, rental property owners, and spreadsheet-first solo operators capture more tax deductions and keep cleaner books through an AI-powered Telegram-to-Google-Sheets workflow they self-host, without paying QuickBooks- or Keeper-style subscriptions or giving up control to a locked cloud ledger.",
+    "tagline": "Pay once. Track faster. Keep your books.",
+    "elevator_pitch": "Finance Tracker turns receipts, bank CSVs, and mixed personal-business spending into organized, reviewable records inside your own Google Sheets. Instead of forcing you into a bloated accounting app, it gives solo operators a Telegram-first, self-hosted workflow for categorization, reconciliation, deduction flagging, and cleaner tax prep.",
+    "paradigm_shift": {
+      "old_way": "Buy another bookkeeping app, learn its ledger, connect your bank, and hope you keep up with receipts before tax season.",
+      "new_way": "Keep the spreadsheet you already trust and add a self-hosted automation layer that catches receipts in Telegram, reconciles CSVs, and flags deductions before they slip through the cracks."
+    }
+  },
+  "differentiation_pillars": [
+    {
+      "pillar": "Spreadsheet Ownership, Not Ledger Lock-In",
+      "why_it_matters": "Buyers want automation without giving up the Google Sheets workflow they already trust and understand.",
+      "how_to_communicate": "Use phrases like \"automation for the spreadsheet you already use\" and show receipts and CSVs flowing directly into an editable sheet.",
+      "against_whom": "Beats QuickBooks Solopreneur, Wave, and FreshBooks by keeping the system of record in user-owned Google Sheets instead of a proprietary accounting ledger."
+    },
+    {
+      "pillar": "Privacy-First Self-Hosting",
+      "why_it_matters": "Privacy-conscious operators do not want sensitive finance workflows trapped in another cloud app or dependent on forced bank-linking.",
+      "how_to_communicate": "Highlight self-hosting, user-provided API keys, CSV-based reconciliation, and transparent data flow from Telegram to Sheets.",
+      "against_whom": "Beats QuickBooks Solopreneur, Keeper Tax, Everlance, and Wave for buyers who reject cloud-first finance SaaS and centralized financial data storage."
+    },
+    {
+      "pillar": "Telegram-Native Capture",
+      "why_it_matters": "The biggest reason deductions get missed is delayed entry. Capturing receipts in a chat flow reduces friction in the moment.",
+      "how_to_communicate": "Show mobile-first examples: snap a receipt, send it in Telegram, review the category, and watch it land in the sheet.",
+      "against_whom": "Beats spreadsheet-only workflows and app-centric competitors like Keeper Tax and Everlance by fitting into an existing messaging habit instead of requiring another app routine."
+    },
+    {
+      "pillar": "Built for Deduction Recovery, Not App Bloat",
+      "why_it_matters": "Solo operators usually do not want full accounting software. They want receipts, categorization, reconciliation, and tax visibility.",
+      "how_to_communicate": "Lead with missed write-offs, mixed-use expense separation, and faster tax prep rather than broad bookkeeping feature lists.",
+      "against_whom": "Beats QuickBooks Solopreneur, Wave, and FreshBooks by focusing on the highest-value jobs without the overhead of a full accounting platform."
+    },
+    {
+      "pillar": "One-Time Economics Over Recurring SaaS",
+      "why_it_matters": "Cost-sensitive buyers compare every finance tool against free spreadsheets and seasonal bookkeeping pain, so subscriptions feel disproportionate.",
+      "how_to_communicate": "Frame the offer as \"pay once, use every month and every tax season\" and compare it against 6-12 months of subscription costs.",
+      "against_whom": "Beats Keeper Tax, QuickBooks Solopreneur, Everlance, and FreshBooks on long-term cost for users with relatively simple solo-operator workflows."
+    },
+    {
+      "pillar": "CSV Reconciliation for the Real World",
+      "why_it_matters": "Many users still export bank CSVs manually because of trust issues, unsupported institutions, or cost concerns around live bank feeds.",
+      "how_to_communicate": "Demonstrate messy statement exports being reconciled against receipts and categorized transactions in a single review flow.",
+      "against_whom": "Beats bank-feed-dependent SaaS positioning and manual spreadsheet bookkeeping by supporting practical CSV-first workflows users already rely on."
+    },
+    {
+      "pillar": "Auditability and Human Review",
+      "why_it_matters": "Users will not trust AI with tax-relevant bookkeeping unless they can inspect, edit, and approve what happened.",
+      "how_to_communicate": "Use messaging like \"AI assists, you review\" and show editable categories, receipt links, merchant classification, and clear review checkpoints in Sheets.",
+      "against_whom": "Beats generic AI-bookkeeping claims and low-end templates by making automation visible, reviewable, and tax-safer for real-world use."
+    }
+  ],
+  "message_house": [
+    {
+      "segment_id": "freelancers_contractors_tax_deduction",
+      "core_message": "Stop losing write-offs in scattered receipts and half-finished spreadsheets by using a Telegram-first tracker that captures, categorizes, and flags deductions in the sheet you already trust.",
+      "supporting_proof_points": [
+        "Receipts can be scanned through Telegram and written directly into Google Sheets instead of waiting for end-of-month manual entry.",
+        "Bank CSV reconciliation, merchant classification, and personal-versus-business separation reduce the cleanup that usually happens before Schedule C prep.",
+        "The workflow is self-hosted and reviewable, so categories remain editable instead of disappearing into a black-box finance app."
+      ],
+      "objection_neutralizer": "You do not need to adopt a full accounting system here. Setup is a one-time step, and the payoff is owning a lighter workflow that replaces weekly spreadsheet cleanup and recurring subscription fees.",
+      "sample_headlines": [
+        "The easiest way to stop missing freelance tax deductions in Google Sheets",
+        "Snap receipts in Telegram. Keep cleaner books without QuickBooks",
+        "Recover more write-offs without learning another accounting app"
+      ]
+    },
+    {
+      "segment_id": "rental_property_owners",
+      "core_message": "Keep rental repairs, utilities, supplies, and mixed-use spending organized before tax season without paying monthly for heavyweight bookkeeping software.",
+      "supporting_proof_points": [
+        "Receipt capture and bank CSV reconciliation help landlords sort property expenses before details are forgotten.",
+        "Google Sheets remains the source of truth, making it easy to hand organized records to a CPA or tax preparer.",
+        "The workflow supports separating personal and rental spending, which is one of the hardest parts of DIY landlord bookkeeping."
+      ],
+      "objection_neutralizer": "This is not a full accounting migration. It is a practical layer on top of the spreadsheet workflow many landlords already use, with landlord-friendly outputs and reviewable records.",
+      "sample_headlines": [
+        "Rental expense tracking that does not force you into full accounting software",
+        "Turn repair receipts and bank CSVs into CPA-ready rental records",
+        "A simpler way to organize Schedule E expenses without another monthly app"
+      ]
+    },
+    {
+      "segment_id": "spreadsheet_loyalists",
+      "core_message": "Automate your bookkeeping without abandoning the spreadsheet system you already know, trust, and want to keep.",
+      "supporting_proof_points": [
+        "The product writes to user-owned Google Sheets instead of forcing a migration into a proprietary ledger.",
+        "Receipt OCR, merchant classification, and CSV reconciliation replace repetitive spreadsheet chores that templates cannot automate.",
+        "Outputs stay editable and auditable, so automation helps without taking control away from the user."
+      ],
+      "objection_neutralizer": "This does not replace your spreadsheet. It removes the repetitive work around it, while preserving your categories, visibility, and ownership of the final records.",
+      "sample_headlines": [
+        "Your spreadsheet is fine. The manual bookkeeping around it is the problem",
+        "Keep Google Sheets. Stop doing receipt and CSV cleanup by hand",
+        "The no-migration finance tracker for spreadsheet-first business owners"
+      ]
+    }
+  ],
+  "voice_and_tone": {
+    "personality_adjectives": [
+      "practical",
+      "clear",
+      "reassuring",
+      "smart",
+      "independent"
+    ],
+    "tone_by_context": [
+      {
+        "context": "ad",
+        "tone": "direct, pain-aware, ROI-focused, and anti-bloat",
+        "example_copy": "Still doing tax deduction cleanup in a spreadsheet at midnight? Snap receipts in Telegram, reconcile bank CSVs, and keep clean books in your own Google Sheet without another monthly bookkeeping subscription."
+      },
+      {
+        "context": "product_page",
+        "tone": "clear, credible, demonstration-led, and trust-building",
+        "example_copy": "Finance Tracker is a self-hosted AI workflow for solo operators who want faster expense tracking without giving up spreadsheet ownership. Send a receipt in Telegram, review the category, reconcile your bank CSV, and keep an accountant-friendly ledger in Google Sheets."
+      },
+      {
+        "context": "email",
+        "tone": "helpful, educational, and lightly urgent",
+        "example_copy": "If your receipts live in your camera roll and your books live in a half-updated sheet, this is your fix. Finance Tracker helps you capture expenses as they happen, separate business from personal spending, and clean up tax records before deadline week gets ugly."
+      },
+      {
+        "context": "social_post",
+        "tone": "sharp, relatable, and demo-first",
+        "example_copy": "A bookkeeping template looks organized. It does not read receipts, reconcile CSVs, or flag deductions. Finance Tracker does all three and still leaves the final ledger in your Google Sheet."
+      },
+      {
+        "context": "telegram",
+        "tone": "concise, action-oriented, and supportive",
+        "example_copy": "Receipt processed. I tagged this as Office Supplies and marked it as potentially deductible. Review or edit the category, and I will log it to your sheet."
+      }
+    ],
+    "language_style": {
+      "formality": "semiformal",
+      "humor": "light",
+      "urgency": "medium",
+      "technical_level": "low"
+    }
+  },
+  "claims": {
+    "allowed": [
+      {
+        "claim": "Writes transaction and receipt data to your Google Sheets.",
+        "evidence": "This is a stated product feature and central system behavior.",
+        "source_type": "product_fact"
+      },
+      {
+        "claim": "Supports receipt scanning through Telegram.",
+        "evidence": "Receipt scanning via Telegram is listed as a core product feature.",
+        "source_type": "product_fact"
+      },
+      {
+        "claim": "Helps reconcile bank CSVs from Chase, Discover, Citi, and Wells Fargo.",
+        "evidence": "Supported institutions are explicitly listed in the product features.",
+        "source_type": "product_fact"
+      },
+      {
+        "claim": "Flags potential tax deductions and separates personal versus business expenses.",
+        "evidence": "Auto tax deduction flagging and personal/business separation are listed product capabilities.",
+        "source_type": "product_fact"
+      },
+      {
+        "claim": "Self-hosted workflow gives users more control over their data than typical cloud bookkeeping SaaS.",
+        "evidence": "The product runs on OpenClaw and keeps records in user-owned Google Sheets rather than a proprietary ledger.",
+        "source_type": "comparison"
+      },
+      {
+        "claim": "A one-time $120 purchase can cost less than several months of bookkeeping subscriptions.",
+        "evidence": "Competitor pricing commonly ranges from about $12 to $30 per month, making the comparison numerically defensible.",
+        "source_type": "comparison"
+      },
+      {
+        "claim": "Designed for freelancers, landlords, side hustlers, and spreadsheet-first operators who want lighter bookkeeping automation.",
+        "evidence": "These audiences are explicitly named in the product brief and supported by market and persona research.",
+        "source_type": "product_fact"
+      }
+    ],
+    "restricted": [
+      {
+        "claim": "Guarantees you will recover a specific dollar amount in tax deductions.",
+        "reason": "No customer outcome data or validated performance evidence supports guaranteed savings."
+      },
+      {
+        "claim": "Fully IRS-compliant or accountant-approved.",
+        "reason": "No formal certification, legal review, or accountant endorsement is provided in the source material."
+      },
+      {
+        "claim": "More accurate than QuickBooks, Keeper Tax, or any named competitor.",
+        "reason": "No controlled benchmark or head-to-head accuracy study is provided."
+      },
+      {
+        "claim": "Completely private or fully secure.",
+        "reason": "Absolute privacy and security claims are too broad and depend on user setup, hosting, Telegram use, and API configuration."
+      },
+      {
+        "claim": "Automatically files taxes or replaces a CPA/bookkeeper.",
+        "reason": "The product assists bookkeeping and tax preparation workflows but is not described as a filing or professional advisory service."
+      },
+      {
+        "claim": "Works for every bank or every bookkeeping workflow.",
+        "reason": "Supported CSV examples are named, but universal compatibility is not evidenced."
+      }
+    ],
+    "compliance_notes": [
+      "Avoid tax advice language; position deduction flagging as assistance that users should review before filing.",
+      "Use words like \"can help,\" \"designed to,\" and \"potentially deductible\" instead of guaranteed financial outcomes.",
+      "Be careful with privacy messaging; emphasize control, ownership, and reduced dependence on cloud SaaS rather than absolute security claims.",
+      "Comparisons to competitors should stay factual and pricing-based unless stronger evidence is available.",
+      "Do not imply professional accounting, legal, or tax certification."
+    ]
+  },
+  "creative_angles_library": [
+    {
+      "angle_id": "ANG-01",
+      "angle_name": "Missed Write-Off Rescue",
+      "emotion_type": "fear",
+      "target_segment": "freelancers_contractors_tax_deduction",
+      "sample_hook": "You are probably not overpaying taxes because of tax law. You are overpaying because receipts never make it into the sheet.",
+      "when_to_use": "Search ads, tax-season landing pages, and freelancer-focused video hooks",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-02",
+      "angle_name": "Spreadsheet, Upgraded",
+      "emotion_type": "aspiration",
+      "target_segment": "spreadsheet_loyalists",
+      "sample_hook": "Keep the spreadsheet you trust. Delete the weekly cleanup you hate.",
+      "when_to_use": "Product page hero, YouTube demos, and comparison pages",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-03",
+      "angle_name": "Subscription Escape",
+      "emotion_type": "urgency",
+      "target_segment": "universal",
+      "sample_hook": "Before you pay for another month of bookkeeping SaaS, ask if you really need another subscription at all.",
+      "when_to_use": "Comparison ads, retargeting, and pricing sections",
+      "source_type": "competitor_analysis"
+    },
+    {
+      "angle_id": "ANG-04",
+      "angle_name": "Telegram Is the Capture Habit",
+      "emotion_type": "curiosity",
+      "target_segment": "universal",
+      "sample_hook": "What if your fastest bookkeeping tool was not an app dashboard, but the chat app you already open every day?",
+      "when_to_use": "Short-form video, social posts, and product intros",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-05",
+      "angle_name": "Landlord Tax Chaos Fix",
+      "emotion_type": "fear",
+      "target_segment": "rental_property_owners",
+      "sample_hook": "Repair receipt in the truck. Utility payment on the card. CPA deadline next week. This is exactly where rental bookkeeping falls apart.",
+      "when_to_use": "Landlord search pages, BiggerPockets-style content, and tax prep campaigns",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-06",
+      "angle_name": "No Ledger Lock-In",
+      "emotion_type": "exclusivity",
+      "target_segment": "spreadsheet_loyalists",
+      "sample_hook": "Most bookkeeping tools want your data inside their ledger. This one writes to yours.",
+      "when_to_use": "Product page differentiation blocks and competitor comparison tables",
+      "source_type": "competitor_analysis"
+    },
+    {
+      "angle_id": "ANG-07",
+      "angle_name": "AI You Can Audit",
+      "emotion_type": "curiosity",
+      "target_segment": "privacy_first_self_hosters",
+      "sample_hook": "AI bookkeeping gets a lot more believable when every category can be reviewed inside your own sheet.",
+      "when_to_use": "Technical demos, self-hosted communities, and objection-handling sections",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-08",
+      "angle_name": "From Receipt Pile to CPA-Ready",
+      "emotion_type": "aspiration",
+      "target_segment": "rental_property_owners",
+      "sample_hook": "Turn scattered receipts and bank CSVs into a clean handoff your accountant can actually use.",
+      "when_to_use": "Landing pages, email nurture, and long-form demos",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-09",
+      "angle_name": "Template vs Tool",
+      "emotion_type": "curiosity",
+      "target_segment": "spreadsheet_loyalists",
+      "sample_hook": "Templates organize columns. Tools organize real life.",
+      "when_to_use": "Comparison creatives against Etsy, Gumroad, and Notion alternatives",
+      "source_type": "competitor_analysis"
+    },
+    {
+      "angle_id": "ANG-10",
+      "angle_name": "Catch-Up Weekend Compression",
+      "emotion_type": "urgency",
+      "target_segment": "tax_season_cleanup_buyers",
+      "sample_hook": "If you are three months behind on receipts, this is the fastest way back to clean books without a full accounting migration.",
+      "when_to_use": "Tax-season email, YouTube tutorials, and search ads for cleanup intent",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-11",
+      "angle_name": "Bank CSV Reality",
+      "emotion_type": "social_proof",
+      "target_segment": "universal",
+      "sample_hook": "Not everyone wants live bank feeds. Plenty of solo operators still work from CSVs, and this workflow is built for that.",
+      "when_to_use": "Educational content, FAQ sections, and self-hosted/privacy messaging",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-12",
+      "angle_name": "Side Hustle Without Overkill",
+      "emotion_type": "aspiration",
+      "target_segment": "side_hustler_spreadsheet_upgrade",
+      "sample_hook": "Your side hustle can be organized without pretending it needs enterprise software.",
+      "when_to_use": "Creator newsletters, Instagram creatives, and side-hustle landing pages",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-13",
+      "angle_name": "Privacy Without Manual Pain",
+      "emotion_type": "aspiration",
+      "target_segment": "privacy_first_self_hosters",
+      "sample_hook": "You should not have to choose between owning your financial workflow and automating it.",
+      "when_to_use": "Self-hosted forums, technical demos, and comparison content",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-14",
+      "angle_name": "Weekly Admin Hour Reclaimed",
+      "emotion_type": "aspiration",
+      "target_segment": "spreadsheet_loyalists",
+      "sample_hook": "Stop spending Friday night renaming merchants and matching receipts by hand.",
+      "when_to_use": "Search ads, YouTube pre-roll, and landing-page subheads",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-15",
+      "angle_name": "One Missed Deduction Pays for It",
+      "emotion_type": "urgency",
+      "target_segment": "freelancers_contractors_tax_deduction",
+      "sample_hook": "If one decent write-off slips through the cracks, the cost of staying manual gets expensive fast.",
+      "when_to_use": "Pricing sections, checkout copy, and retargeting ads",
+      "source_type": "hypothesis"
+    },
+    {
+      "angle_id": "ANG-16",
+      "angle_name": "Proof Over Promises",
+      "emotion_type": "social_proof",
+      "target_segment": "universal",
+      "sample_hook": "Do not trust bookkeeping claims. Watch the receipt go from Telegram to categorized row in real time.",
+      "when_to_use": "Demo videos, landing-page embeds, and webinar-style walkthroughs",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-17",
+      "angle_name": "Built for Mixed Spending",
+      "emotion_type": "fear",
+      "target_segment": "rental_property_owners",
+      "sample_hook": "The real tax mess starts when business, rental, and personal charges all hit the same card.",
+      "when_to_use": "Landlord and freelancer educational pages about separation workflows",
+      "source_type": "research"
+    },
+    {
+      "angle_id": "ANG-18",
+      "angle_name": "Serious Records, Casual Interface",
+      "emotion_type": "curiosity",
+      "target_segment": "rental_property_owners",
+      "sample_hook": "Telegram is just the fast intake. The serious part is the clean, reviewable sheet it creates.",
+      "when_to_use": "Objection handling for users skeptical about Telegram-first bookkeeping",
+      "source_type": "hypothesis"
+    },
+    {
+      "angle_id": "ANG-19",
+      "angle_name": "Anti-Bloat Bookkeeping",
+      "emotion_type": "exclusivity",
+      "target_segment": "freelancers_contractors_tax_deduction",
+      "sample_hook": "For people who need cleaner deductions, not a full accounting suite and a month of onboarding.",
+      "when_to_use": "Competitor comparison pages and freelancer-focused campaigns",
+      "source_type": "competitor_analysis"
+    },
+    {
+      "angle_id": "ANG-20",
+      "angle_name": "Own the Workflow",
+      "emotion_type": "exclusivity",
+      "target_segment": "privacy_first_self_hosters",
+      "sample_hook": "Self-host the automation. Keep the records. Skip the SaaS dependency.",
+      "when_to_use": "Reddit r/selfhosted, Indie Hackers, and technical landing pages",
+      "source_type": "research"
+    }
+  ]
+}

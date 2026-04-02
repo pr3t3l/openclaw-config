@@ -1,0 +1,25 @@
+{
+  "product_id": "finance-tracker",
+  "pending_gates": {
+    "S1": {
+      "gate_name": "S1",
+      "gate_type": "strategy",
+      "product_id": "finance-tracker",
+      "run_id": null,
+      "status": "pending",
+      "summary": "✅ Strategy v1 — Gate S1\nProducto: finance-tracker\n\nBuyer Persona:\n  ?, ?, ?\n  Pain points:\n\nCompetidores:\n\nDecisión:\n1. /strategy approve finance-tracker\n2. /strategy reject finance-tracker",
+      "artifact_paths": [
+        "/home/robotin/.openclaw/products/finance-tracker/strategies/v1/market_analysis.json",
+        "/home/robotin/.openclaw/products/finance-tracker/strategies/v1/buyer_persona.json"
+      ],
+      "created_at": "2026-04-01T15:20:38.288763",
+      "decided_at": null,
+      "decision": null,
+      "decided_by": null,
+      "adjustments": null
+    }
+  },
+  "resolved_gates": {},
+  "last_gate": "S1",
+  "last_updated": "2026-04-01T15:20:38.290531"
+}

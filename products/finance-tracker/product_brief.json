@@ -1,0 +1,40 @@
+{
+  "product_id": "finance-tracker",
+  "product_name": "Finance Tracker",
+  "description": "AI-powered Telegram finance tracker skill running on OpenClaw. It categorizes receipts, reconciles bank CSVs, flags tax deductions, separates personal vs business expenses, tracks income and balances, and writes to the user's Google Sheets.",
+  "project_type": "software_skill",
+  "price": 120,
+  "currency": "USD",
+  "language": "en",
+  "country": "US",
+  "platform_url": "https://lovable.dev",
+  "monthly_marketing_budget": 300,
+  "target_audience": [
+    "rental property owners",
+    "freelancers and contractors",
+    "side hustlers",
+    "privacy-first self-hosters"
+  ],
+  "core_problem": "People lose tax deductions and visibility because they track expenses manually in spreadsheets and cannot easily reconcile receipts, statements, and business vs personal spending.",
+  "primary_promise": "Stop losing tax deductions in a spreadsheet by using an AI-powered Telegram tracker that auto-categorizes receipts, reconciles bank CSVs, separates personal vs business expenses, and flags tax deductions.",
+  "key_features": [
+    "Receipt scanning via Telegram",
+    "Auto tax deduction flagging",
+    "Daily safe-to-spend alerts",
+    "Monthly AI-generated tax report",
+    "AI batch merchant classification",
+    "Bank CSV reconciliation (Chase, Discover, Citi, Wells Fargo)",
+    "Receipt-to-CSV replacement",
+    "Income tracking with auto-balance updates",
+    "Batch receipt processor",
+    "Self-hosted on OpenClaw with data in user's Google Sheets"
+  ],
+  "requirements": [
+    "OpenClaw platform installed",
+    "Python 3.10+",
+    "Telegram account",
+    "Google account",
+    "Any OpenAI-compatible API key"
+  ],
+  "positioning_notes": "Do not over-position this as Airbnb-only. Position it as any tax-deductible expense tracker for freelancers, landlords, home businesses, and side hustlers. Emphasize privacy, self-hosting, Telegram interface, and Google Sheets ownership."
+}
