@@ -26,6 +26,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 WORKSPACE = Path("/home/robotin/.openclaw/workspace-meta-planner")
+sys.path.insert(0, str(WORKSPACE / "scripts"))
 SHARED = Path("/home/robotin/.openclaw/shared")
 
 # Agent name (underscore) → skill directory name (hyphen)
@@ -286,66 +287,33 @@ def build_user_prompt(agent_name, slug, run_dir):
 
 
 def call_litellm(model, system_prompt, user_prompt, config, models, max_tokens=None):
-    """Call LiteLLM proxy via curl (TL-01: never use Python requests in WSL)."""
+    """Call LiteLLM proxy via streaming curl (TL-01, L-33)."""
+    from litellm_stream import call_litellm_stream
+
     if max_tokens is None:
         max_tokens = config["defaults"]["max_tokens_standard"]
 
     proxy_url = models["litellm_proxy"]
     api_key = models.get("litellm_api_key", "")
-
-    payload = {
-        "model": model,
-        "max_tokens": max_tokens,
-        "messages": [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt},
-        ],
-    }
-
-    payload_json = json.dumps(payload, ensure_ascii=True)
-
-    with tempfile.NamedTemporaryFile(mode="wb", suffix=".json", delete=False) as f:
-        f.write(payload_json.encode("utf-8"))
-        tmp_path = f.name
-
     curl_timeout = config["defaults"]["curl_max_time"]
-    subprocess_timeout = curl_timeout + config["defaults"]["subprocess_buffer"]
+    subprocess_buffer = config["defaults"]["subprocess_buffer"]
 
-    try:
-        cmd = [
-            "curl", "-s", "-S", "--max-time", str(curl_timeout),
-            "-H", "Content-Type: application/json",
-        ]
-        if api_key:
-            cmd.extend(["-H", f"Authorization: Bearer {api_key}"])
-        cmd.extend(["--data-binary", f"@{tmp_path}", f"{proxy_url}/v1/chat/completions"])
+    content, usage = call_litellm_stream(
+        model=model,
+        system_prompt=system_prompt,
+        user_prompt=user_prompt,
+        proxy_url=proxy_url,
+        api_key=api_key,
+        max_tokens=max_tokens,
+        curl_max_time=curl_timeout,
+        subprocess_buffer=subprocess_buffer,
+    )
 
-        result = subprocess.run(
-            cmd, capture_output=True, text=True, timeout=subprocess_timeout
-        )
-
-        if result.returncode != 0:
-            raise Exception(f"curl failed (rc={result.returncode}): {result.stderr[:300]}")
-
-        if not result.stdout.strip():
-            raise Exception(f"Empty response from LiteLLM. stderr: {result.stderr[:300]}")
-
-        response = json.loads(result.stdout)
-
-        if "error" in response:
-            raise Exception(f"LiteLLM error: {response['error']}")
-
-        content = response["choices"][0]["message"]["content"]
-        usage = response.get("usage", {})
-
-        return content, {
-            "prompt_tokens": usage.get("prompt_tokens", 0),
-            "completion_tokens": usage.get("completion_tokens", 0),
-            "total_tokens": usage.get("total_tokens", 0),
-        }
-
-    finally:
-        os.unlink(tmp_path)
+    return content, {
+        "prompt_tokens": usage.get("prompt_tokens", 0),
+        "completion_tokens": usage.get("completion_tokens", 0),
+        "total_tokens": usage.get("total_tokens", 0),
+    }
 
 
 def extract_json_from_response(content):
