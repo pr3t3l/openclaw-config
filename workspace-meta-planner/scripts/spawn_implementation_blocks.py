@@ -78,7 +78,17 @@ def compress_contracts(contracts_json):
             ftype = field_def.get("type", "unknown")
             if isinstance(ftype, list):
                 ftype = "/".join(ftype)
-            req_mark = " (required)" if field_name in required else ""
+            req_mark = " (req)" if field_name in required else ""
+            if ftype == "array" and isinstance(field_def.get("items"), dict):
+                items = field_def["items"]
+                if items.get("type") == "object" and "properties" in items:
+                    item_fields = list(items["properties"].keys())
+                    fields.append(f"  - {field_name}: {ftype}{req_mark} — array of [{', '.join(item_fields)}]")
+                    continue
+            if ftype == "object" and "properties" in field_def:
+                sub_fields = list(field_def["properties"].keys())
+                fields.append(f"  - {field_name}: {ftype}{req_mark} — object: {{{', '.join(sub_fields)}}}")
+                continue
             desc = field_def.get("description", "")
             if desc:
                 fields.append(f"  - {field_name}: {ftype}{req_mark} — {desc}")
