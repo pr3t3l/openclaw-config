@@ -1,1 +1,1 @@
-# Finance Tracker — Library package
+# Finance Tracker v2 — library package

@@ -232,7 +232,27 @@
       "Bash(git checkout:*)",
       "Bash(STAGE=\"/tmp/finance-tracker-v1.0.12\" rm -f \"$STAGE/config/tracker_config.json\" cd /tmp)",
       "Bash(rm -f robotin-finance-tracker-v1.0.12.zip zip -r \"robotin-finance-tracker-v1.0.12.zip\" \"finance-tracker-v1.0.12/\" -x \"*__pycache__*\" \"*.pyc\" cp /tmp/robotin-finance-tracker-v1.0.12.zip \"/mnt/c/Users/robot/Downloads/\" echo \"=== Config files in ZIP ===\" unzip -l /tmp/robotin-finance-tracker-v1.0.12.zip)",
-      "Bash(git remote:*)"
+      "Bash(git remote:*)",
+      "Bash(find /home/robotin/.openclaw/ -path */finance-tracker-v2/* -name *.py -o -path */finance-tracker-v2/* -name *.json)",
+      "Bash(F=\"/home/robotin/.openclaw/skills/finance-tracker-v2/src/scripts/finance.py\" echo \"=== add $15 Uber ===\" python3 $F add '$15 Uber' 2)",
+      "Bash(1 echo:*)",
+      "Bash(F=\"/home/robotin/.openclaw/skills/finance-tracker-v2/src/scripts/finance.py\" echo \"=== safe-to-spend ===\" python3 $F safe-to-spend)",
+      "Bash(F=\"/home/robotin/.openclaw/skills/finance-tracker-v2/src/scripts/finance.py\" echo \"=== list-categories ===\" python3 $F list-categories)",
+      "Bash(F=\"/home/robotin/.openclaw/skills/finance-tracker-v2/src/scripts/finance.py\")",
+      "Bash(F=\"/home/robotin/.openclaw/skills/finance-tracker-v2/src/scripts/finance.py\" python3 $F setup-next \"start\")",
+      "Bash(F=\"/home/robotin/.openclaw/skills/finance-tracker-v2/src/scripts/finance.py\" python3 $F setup-next \"done\")",
+      "Bash(wells fargo\" now parsed via AI when comma format fails.:*)",
+      "Bash(F=\"/home/robotin/.openclaw/skills/finance-tracker-v2/src/scripts/finance.py\" python3 $F setup-next 'Trabajo en Scout Motors me pagan $3190.12 cada dos semanas en mi cuenta de Wells Fargo debit')",
+      "Bash(Auto $16550 al 6.44% pago $447\" is split by \", y \" or \", [A-Z]\" patterns,:*)",
+      "Bash(rm -rf /tmp/ft-publish)",
+      "Bash(mkdir -p /tmp/ft-publish)",
+      "Bash(cp -r /home/robotin/.openclaw/skills/finance-tracker-v2/* /tmp/ft-publish/)",
+      "WebFetch(domain:alfredopretelvargas.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(gh api:*)",
+      "Read(//tmp/alfredo-ai-factory-guide/**)",
+      "Bash(gh pr:*)",
+      "Bash(gh auth:*)"
     ]
   }
 }

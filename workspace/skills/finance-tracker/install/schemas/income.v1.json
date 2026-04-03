@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Income Source",
+  "description": "A recurring income source for pay schedule and cashflow calculations.",
+  "type": "object",
+  "required": ["name", "amount", "frequency", "source_type", "account_label", "is_regular"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Income source name (e.g. Day Job, Freelance, Rental)",
+      "minLength": 1
+    },
+    "amount": {
+      "type": "number",
+      "description": "Gross amount per pay period (or avg monthly for irregular)",
+      "minimum": 0
+    },
+    "frequency": {
+      "type": "string",
+      "enum": ["weekly", "biweekly", "monthly", "irregular"],
+      "description": "Pay frequency"
+    },
+    "source_type": {
+      "type": "string",
+      "enum": ["salary", "freelance", "rental", "business", "other"],
+      "description": "Type of income source — drives rulepack selection"
+    },
+    "account_label": {
+      "type": "string",
+      "description": "Account that receives this income (e.g. Personal Checking, Business Account)",
+      "minLength": 1
+    },
+    "is_regular": {
+      "type": "boolean",
+      "description": "true for predictable paycheck, false for variable/irregular income"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code (auto-detected or specified)",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "pay_dates": {
+      "type": "array",
+      "items": { "type": "integer", "minimum": 1, "maximum": 28 },
+      "description": "Day(s) of month for monthly/biweekly pay"
+    }
+  },
+  "additionalProperties": false
+}

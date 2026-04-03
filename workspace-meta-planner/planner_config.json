@@ -25,7 +25,7 @@
   },
   "block_mode": {
     "implementation_planner": {
-      "enabled": false,
+      "enabled": true,
       "max_tokens_per_block": 5000,
       "max_retries_per_block": 3,
       "fallback_model": "gemini31pro-none",

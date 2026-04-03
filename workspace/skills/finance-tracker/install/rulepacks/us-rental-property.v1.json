@@ -1,0 +1,63 @@
+{
+  "rulepack_id": "us-rental-property.v1",
+  "jurisdiction": "US",
+  "business_type": "rental_property",
+  "description": "Tax deduction categories for rental property income (Airbnb, VRBO, long-term).",
+  "irs_form": "Schedule E",
+  "deductible_categories": [
+    {
+      "category": "cleaning_supplies",
+      "irs_reference": "Schedule E Line 7",
+      "description": "Cleaning products, trash bags, detergent for rental",
+      "keywords": ["cleaning", "bleach", "mop", "broom", "trash bag", "windex", "lysol", "clorox", "swiffer", "paper towel", "gloves", "scrub", "soap", "detergent", "disinfectant", "spray", "febreze"]
+    },
+    {
+      "category": "maintenance_repair",
+      "irs_reference": "Schedule E Line 14",
+      "description": "Repairs and maintenance for rental property",
+      "keywords": ["repair", "maintenance", "plumber", "electrician", "handyman", "paint", "drywall", "caulk", "hardware", "home depot", "lowes", "ace hardware", "bolt", "screw", "nail", "fix", "patch", "replace"]
+    },
+    {
+      "category": "insurance",
+      "irs_reference": "Schedule E Line 9",
+      "description": "Property insurance, liability insurance for rental",
+      "keywords": ["insurance", "policy", "premium", "liability", "coverage", "homeowner", "landlord", "renters"]
+    },
+    {
+      "category": "utilities",
+      "irs_reference": "Schedule E Line 17",
+      "description": "Utilities paid by landlord — prorated if shared",
+      "keywords": ["electric", "gas", "water", "sewer", "internet", "wifi", "cable", "utility", "power", "garbage", "trash"]
+    },
+    {
+      "category": "linens_supplies",
+      "irs_reference": "Schedule E Line 7",
+      "description": "Towels, sheets, pillows, toiletries for guests",
+      "keywords": ["towel", "sheet", "pillow", "blanket", "comforter", "mattress", "linen", "shampoo", "conditioner", "toilet paper", "tissue", "soap dispenser", "bath", "bedding", "duvet"]
+    },
+    {
+      "category": "professional_services",
+      "irs_reference": "Schedule E Line 17",
+      "description": "Property management, accounting, legal fees",
+      "keywords": ["property management", "accountant", "cpa", "attorney", "legal", "bookkeeper", "tax prep", "consultation"]
+    },
+    {
+      "category": "furnishing_decor",
+      "irs_reference": "Schedule E Line 7",
+      "description": "Furniture, appliances, decor for rental property",
+      "keywords": ["furniture", "ikea", "wayfair", "amazon", "lamp", "shelf", "table", "chair", "couch", "rug", "curtain", "appliance", "microwave", "toaster", "coffee maker", "decor", "frame"]
+    },
+    {
+      "category": "advertising",
+      "irs_reference": "Schedule E Line 5",
+      "description": "Listing fees, photography, marketing for rental",
+      "keywords": ["airbnb", "vrbo", "booking.com", "photography", "listing", "advertising", "marketing", "promotion"]
+    },
+    {
+      "category": "travel_to_property",
+      "irs_reference": "Schedule E Line 18",
+      "description": "Travel expenses to manage or maintain rental property",
+      "keywords": ["gas", "mileage", "toll", "parking", "travel", "uber", "lyft", "airline", "hotel"]
+    }
+  ]
+}

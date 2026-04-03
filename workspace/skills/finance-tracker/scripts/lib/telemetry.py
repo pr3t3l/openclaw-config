@@ -1,65 +1,45 @@
-"""Anonymous telemetry for the finance tracker.
+"""Anonymous telemetry for Finance Tracker v2.
 
-Sends anonymous usage data to help improve the product.
-- No personal data is ever collected (no names, amounts, merchants, API keys)
-- Only system config shape, command names, and error types
-- User can disable: finance.py telemetry off
-- All sends are fire-and-forget (never blocks the main flow)
+Sends to Supabase table telemetry_v2. ZERO PII.
+No user_id, no install_id, no session_id, no IP, no hashes.
+Fire-and-forget via subprocess+curl (never blocks).
 """
 
 import json
-import os
-import platform
 import subprocess
-import sys
-import uuid
-from pathlib import Path
 from threading import Thread
+from pathlib import Path
 
 from . import config as C
 
-SUPABASE_URL = "https://oetfiiatbzfydbtzozlz.supabase.co/rest/v1/telemetry"
+SUPABASE_URL = "https://oetfiiatbzfydbtzozlz.supabase.co/rest/v1/telemetry_v2"
 SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ldGZpaWF0YnpmeWRidHpvemx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwNzY5MjUsImV4cCI6MjA5MDY1MjkyNX0.SQ6oN4WpO8x6NKYzNMPinS0_gNO5aCe-bljrzp5g96s"
-VERSION = "1.0.12"
-
-
-def _get_install_id() -> str:
-    """Get or create an anonymous install ID (UUID, no relation to user)."""
-    cfg = C._load_tracker_config()
-    iid = cfg.get("telemetry", {}).get("install_id")
-    if iid:
-        return iid
-    iid = str(uuid.uuid4())
-    cfg.setdefault("telemetry", {})["install_id"] = iid
-    cfg["telemetry"].setdefault("enabled", True)
-    C.save_tracker_config(cfg)
-    C.invalidate_config_cache()
-    return iid
+VERSION = "2.0.0"
 
 
 def is_enabled() -> bool:
-    """Check if telemetry is enabled."""
-    cfg = C._load_tracker_config()
-    return cfg.get("telemetry", {}).get("enabled", True)
+    """Check if telemetry is enabled in config."""
+    try:
+        cfg = C._load_tracker_config()
+        return cfg.get("telemetry", {}).get("enabled", False)
+    except Exception:
+        return False
 
 
-def set_enabled(enabled: bool):
-    """Enable or disable telemetry."""
-    cfg = C._load_tracker_config()
-    cfg.setdefault("telemetry", {})["enabled"] = enabled
-    if enabled and "install_id" not in cfg["telemetry"]:
-        cfg["telemetry"]["install_id"] = str(uuid.uuid4())
-    C.save_tracker_config(cfg)
-    C.invalidate_config_cache()
+def _duration_bucket(ms: int) -> str:
+    if ms < 5000:
+        return "0-5s"
+    if ms < 15000:
+        return "5-15s"
+    if ms < 30000:
+        return "15-30s"
+    if ms < 60000:
+        return "30-60s"
+    return "60s+"
 
 
-def _send(install_id: str, event: str, data: dict):
-    """Send a telemetry event via curl (fire-and-forget)."""
-    payload = json.dumps({
-        "install_id": install_id,
-        "event": event,
-        "data": data,
-    })
+def _send(payload: dict):
+    """Fire-and-forget send via curl."""
     try:
         subprocess.run(
             ["curl", "-s", "--max-time", "5",
@@ -68,141 +48,60 @@ def _send(install_id: str, event: str, data: dict):
              "-H", f"Authorization: Bearer {SUPABASE_KEY}",
              "-H", "Content-Type: application/json",
              "-H", "Prefer: return=minimal",
-             "-d", payload],
+             "-d", json.dumps(payload)],
             capture_output=True, timeout=7,
         )
     except Exception:
-        pass  # Never fail
+        pass
 
 
-def track_event(event: str, data: dict | None = None):
-    """Track an anonymous event. Non-blocking (runs in background thread)."""
+def send_event(event_type: str, **kwargs):
+    """Send an anonymous telemetry event. Non-blocking.
+
+    Usage:
+        send_event("setup_stage_complete", stage="INCOME_COLLECT", result="ok")
+        send_event("command_used", stage="add", result="ok", duration_bucket="0-5s")
+        send_event("error_occurred", stage="add", error_code="SHEETS_ERROR")
+    """
     if not is_enabled():
         return
-    install_id = _get_install_id()
-    safe_data = data or {}
-    safe_data["v"] = VERSION
-    Thread(target=_send, args=(install_id, event, safe_data), daemon=True).start()
+
+    payload = {
+        "event": event_type,
+        "v": VERSION,
+        "distribution": "github_zip",
+    }
+
+    # Map kwargs to schema fields
+    for field in ("stage", "result", "duration_bucket", "error_code",
+                  "setup_mode", "detected_language", "income_source_count",
+                  "debt_count", "business_type_count", "custom_category_count",
+                  "cron_job_count"):
+        if field in kwargs:
+            payload[field] = kwargs[field]
+
+    if "rulepack_ids" in kwargs:
+        payload["rulepack_ids"] = json.dumps(kwargs["rulepack_ids"])
+
+    if "duration_ms" in kwargs:
+        payload["duration_bucket"] = _duration_bucket(kwargs["duration_ms"])
+
+    Thread(target=_send, args=(payload,), daemon=True).start()
 
 
-def track_install():
-    """Track installation event with system info."""
-    gog_available = Path.home().joinpath(".config", "gogcli", "credentials.json").exists()
-    track_event("install", {
-        "os": platform.system(),
-        "os_version": platform.release()[:30],
-        "python": platform.python_version(),
-        "gog_available": gog_available,
-        "ai_provider": "auto" if C._AI_CONFIG else "manual",
-        "ai_url_type": _classify_url(C.LITELLM_URL),
-    })
+# ── Setup-only convenience wrappers ───────────────────
+# Telemetry fires ONLY during setup. No runtime tracking.
 
+def track_setup_stage(stage: str, result: str = "ok", **kwargs):
+    send_event("setup_stage_complete", stage=stage, result=result, **kwargs)
 
-def track_setup_complete():
-    """Track setup wizard completion."""
-    cfg = C._load_tracker_config()
-    tax = cfg.get("tax", {})
-    track_event("setup_complete", {
-        "language": cfg.get("user", {}).get("language", "?"),
-        "currency": cfg.get("user", {}).get("currency", "?"),
-        "tax_enabled": tax.get("enabled", False),
-        "tax_generated_by": tax.get("generated_by", "none"),
-        "categories_count": len(cfg.get("categories", {})),
-        "cards_count": len(cfg.get("user", {}).get("cards", [])),
-    })
+def track_setup_error(stage: str, error_code: str):
+    send_event("setup_stage_error", stage=stage, result="error", error_code=error_code)
 
+def track_setup_complete(mode: str, language: str, **kwargs):
+    send_event("setup_complete", setup_mode=mode, detected_language=language,
+               result="ok", **kwargs)
 
-def track_command(command: str, duration_ms: int = 0):
-    """Track a command execution."""
-    track_event("command", {
-        "name": command,
-        "duration_ms": duration_ms,
-    })
-
-
-def track_error(command: str, error_type: str):
-    """Track an error (type only, never the message)."""
-    track_event("error", {
-        "command": command,
-        "type": error_type,
-    })
-
-
-def track_reconcile(bank: str, tx_count: int, matched: int, ai_rules: int):
-    """Track reconciliation stats."""
-    track_event("reconcile", {
-        "bank": bank,
-        "transaction_count": tx_count,
-        "matched_count": matched,
-        "ai_rules_created": ai_rules,
-    })
-
-
-def track_ai_call(command: str, model: str, duration_ms: int, status: str):
-    """Track an AI API call — never the prompt or response content."""
-    track_event("ai_call", {
-        "command": command,
-        "model": model,
-        "duration_ms": duration_ms,
-        "status": status,  # success, timeout, empty, invalid_json, error
-    })
-
-
-def track_setup_sheets(created: bool, tabs_created: int):
-    """Track setup-sheets result."""
-    track_event("setup_sheets", {
-        "created_new": created,
-        "tabs_created": tabs_created,
-    })
-
-
-def track_tax_profile(method: str, tax_type: str, rules_count: int):
-    """Track tax profile creation method."""
-    track_event("tax_profile", {
-        "method": method,  # ai_wizard, basic_fallback, manual
-        "tax_type": tax_type,
-        "rules_count": rules_count,
-    })
-
-
-def _classify_url(url: str) -> str:
-    """Classify AI endpoint type without exposing the full URL."""
-    if "127.0.0.1" in url or "localhost" in url:
-        return "local_proxy"
-    if "openai.com" in url:
-        return "openai_direct"
-    if "openrouter.ai" in url:
-        return "openrouter"
-    if "anthropic.com" in url:
-        return "anthropic_direct"
-    return "custom"
-
-
-def get_info_text() -> str:
-    """Return human-readable description of what telemetry collects."""
-    return """Anonymous Telemetry — What We Collect
-
-We collect anonymous usage data to improve the finance tracker.
-Your privacy is protected: NO personal data is ever sent.
-
-COLLECTED (anonymous):
-  • System info: OS type, Python version
-  • Config shape: language, currency, number of categories/cards
-  • Command names: which features you use (e.g., "parse-text", "cashflow")
-  • Command duration: how long each command takes (milliseconds)
-  • Error types: what kind of errors occur (e.g., "JSONDecodeError")
-  • AI call stats: model name, duration, success/failure (never prompt content)
-  • Reconciliation stats: bank name, transaction count, match rate
-  • Setup: which options were chosen (tax type, card count — never card names)
-  • AI provider type: local_proxy, openai_direct, openrouter, etc.
-  • Version number: which version of the tracker is running
-
-NEVER COLLECTED:
-  • Your name, email, or any personal info
-  • Transaction amounts, merchants, or financial data
-  • API keys, tokens, or credentials
-  • Message content or AI prompts
-  • Google Sheets data
-
-Your install has a random ID (UUID) with no connection to your identity.
-Disable anytime: finance.py telemetry off"""
+def track_preflight_failed(error_code: str):
+    send_event("preflight_failed", stage="PREFLIGHT", result="error",
+               error_code=error_code)

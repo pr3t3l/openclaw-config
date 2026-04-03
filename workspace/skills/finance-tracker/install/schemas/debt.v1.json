@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Debt",
+  "description": "A debt or credit balance to track for payoff planning.",
+  "type": "object",
+  "required": ["name", "balance"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Creditor or account name",
+      "minLength": 1
+    },
+    "balance": {
+      "type": "number",
+      "description": "Current outstanding balance",
+      "minimum": 0
+    },
+    "apr": {
+      "type": "number",
+      "description": "Annual percentage rate (0 if interest-free)",
+      "minimum": 0,
+      "default": 0
+    },
+    "minimum_payment": {
+      "type": "number",
+      "description": "Minimum monthly payment",
+      "minimum": 0,
+      "default": 0
+    },
+    "promo_expiry": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Promotional rate expiry date (YYYY-MM-DD) or null"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Free-form notes"
+    }
+  },
+  "additionalProperties": false
+}

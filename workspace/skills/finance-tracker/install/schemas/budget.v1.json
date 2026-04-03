@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Budget Category",
+  "description": "A monthly spending category with budget cap, alert threshold, and type.",
+  "type": "object",
+  "required": ["category", "monthly", "type"],
+  "properties": {
+    "category": {
+      "type": "string",
+      "description": "Category name (e.g. Groceries, Gas, Entertainment)",
+      "minLength": 1
+    },
+    "monthly": {
+      "type": ["number", "null"],
+      "description": "Monthly budget limit in user's currency. Null = uncapped.",
+      "minimum": 0
+    },
+    "type": {
+      "type": "string",
+      "enum": ["fixed", "variable"],
+      "description": "Fixed = non-negotiable (rent, insurance). Variable = adjustable (restaurants, entertainment)."
+    },
+    "threshold": {
+      "type": "number",
+      "description": "Alert when spending reaches this fraction of monthly (0.0-1.0)",
+      "minimum": 0,
+      "maximum": 1,
+      "default": 0.8
+    }
+  },
+  "additionalProperties": false
+}

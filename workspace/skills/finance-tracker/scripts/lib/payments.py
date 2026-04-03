@@ -1,100 +1,142 @@
-"""Module 4: Payment Reminder — alerts before due dates + promo APR warnings."""
+"""Payment calendar and reminders for Finance Tracker v2.
 
-import calendar
-from datetime import datetime, date, timedelta
+Cherry-picked from v1 payments.py.
+"""
+
+from datetime import date, timedelta
 
 from . import config as C
 
 
-def check_payments() -> list[str]:
-    """Check all payments and return alerts for today."""
+def _days_until_due(due_day: int, today: date | None = None) -> int:
+    """Calculate days until a due day this month or next."""
+    today = today or date.today()
+    try:
+        this_month = today.replace(day=min(due_day, 28))
+    except ValueError:
+        this_month = today.replace(day=28)
+
+    if this_month >= today:
+        return (this_month - today).days
+
+    # Next month
+    if today.month == 12:
+        next_month = today.replace(year=today.year + 1, month=1, day=1)
+    else:
+        next_month = today.replace(month=today.month + 1, day=1)
+    try:
+        next_due = next_month.replace(day=min(due_day, 28))
+    except ValueError:
+        next_due = next_month.replace(day=28)
+    return (next_due - today).days
+
+
+def get_upcoming_payments(days: int = 7) -> list[dict]:
+    """Get payments due within N days."""
+    today = date.today()
     payments = C.get_payments()
+    upcoming = []
+
+    for p in payments:
+        due_day = p.get("due_day", 1)
+        days_until = _days_until_due(due_day, today)
+
+        if 0 <= days_until <= days:
+            upcoming.append({
+                "name": p["name"],
+                "amount": p["amount"],
+                "due_day": due_day,
+                "days_until": days_until,
+                "frequency": p.get("frequency", "monthly"),
+                "autopay": p.get("autopay", False),
+                "apr": p.get("apr", 0),
+            })
+
+    upcoming.sort(key=lambda x: x["days_until"])
+    return upcoming
+
+
+def check_due_soon(days: int = 3) -> list[dict]:
+    """Get payments due within N days with alert messages."""
     today = date.today()
     lang = C.get_language()
+    payments = C.get_payments()
     alerts = []
 
     for p in payments:
-        days_until = _days_until_due(p["due_day"], today)
-        name = p["name"]
+        due_day = p.get("due_day", 1)
+        days_until = _days_until_due(due_day, today)
         amount = p["amount"]
-
-        if lang == "es":
-            autopay = "Autopay activo." if p.get("autopay") else "⚠ Sin autopay."
-        else:
-            autopay = "Autopay on." if p.get("autopay") else "⚠ No autopay."
+        name = p["name"]
+        autopay = p.get("autopay", False)
 
         if days_until == 0:
+            ap = " (autopay)" if autopay else " — check funds!"
             if lang == "es":
-                alerts.append(f"HOY VENCE: {name} ${amount}. {autopay}")
+                msg = f"HOY VENCE: {name} ${amount:,.2f}{ap}"
             else:
-                alerts.append(f"DUE TODAY: {name} ${amount}. {autopay}")
+                msg = f"DUE TODAY: {name} ${amount:,.2f}{ap}"
+            alerts.append({"name": name, "days": 0, "message": msg, "level": "urgent"})
         elif days_until == 1:
             if lang == "es":
-                alerts.append(f"MAÑANA vence {name} (${amount}). Verifica fondos. {autopay}")
+                msg = f"MAÑANA vence {name} ${amount:,.2f}"
             else:
-                alerts.append(f"DUE TOMORROW: {name} (${amount}). Check funds. {autopay}")
-        elif days_until == 3:
+                msg = f"DUE TOMORROW: {name} ${amount:,.2f}"
+            alerts.append({"name": name, "days": 1, "message": msg, "level": "warning"})
+        elif days_until <= days:
             if lang == "es":
-                alerts.append(f"Recordatorio: {name} (${amount}) vence el día {p['due_day']} (en 3 días). {autopay}")
+                msg = f"Recordatorio: {name} ${amount:,.2f} en {days_until} días"
             else:
-                alerts.append(f"Reminder: {name} (${amount}) due on day {p['due_day']} (in 3 days). {autopay}")
+                msg = f"Reminder: {name} ${amount:,.2f} in {days_until} days"
+            alerts.append({"name": name, "days": days_until, "message": msg, "level": "info"})
 
         # Promo APR expiry warnings
         promo = p.get("promo_expiry")
         if promo:
-            promo_date = date.fromisoformat(promo)
-            days_to_promo = (promo_date - today).days
-            if days_to_promo in [60, 30, 7]:
-                if lang == "es":
-                    alerts.append(
-                        f"⚠ PROMO: {name} — tasa promocional de {p['apr']}% "
-                        f"expira en {days_to_promo} días ({promo}). "
-                        f"Prepara un plan de pago."
-                    )
-                else:
-                    alerts.append(
-                        f"⚠ PROMO: {name} — promotional rate {p['apr']}% "
-                        f"expires in {days_to_promo} days ({promo}). "
-                        f"Prepare a payoff plan."
-                    )
-            elif days_to_promo == 0:
-                if lang == "es":
-                    alerts.append(
-                        f"🔴 HOY EXPIRA la tasa promo de {name} ({p['apr']}%). "
-                        f"La tasa normal entra en efecto."
-                    )
-                else:
-                    alerts.append(
-                        f"🔴 PROMO EXPIRES TODAY for {name} ({p['apr']}%). "
-                        f"Standard rate takes effect."
-                    )
+            try:
+                promo_date = date.fromisoformat(promo)
+                promo_days = (promo_date - today).days
+                if promo_days in (60, 30, 7, 0):
+                    apr = p.get("apr", 0)
+                    if lang == "es":
+                        msg = f"PROMO APR expira en {promo_days} días: {name} (APR sube a {apr}%)"
+                    else:
+                        msg = f"PROMO APR expires in {promo_days} days: {name} (APR jumps to {apr}%)"
+                    alerts.append({"name": name, "days": promo_days, "message": msg, "level": "promo"})
+            except ValueError:
+                pass
 
     return alerts
 
 
-def payment_summary_14d() -> tuple[float, list[str]]:
-    """Sum of payments due in next 14 days + list of details."""
+def sinking_fund_summary() -> dict:
+    """Show sinking fund provisions for non-monthly bills."""
     payments = C.get_payments()
-    today = date.today()
-    total = 0
-    details = []
+    funds = []
+    total_monthly = 0
 
     for p in payments:
-        days = _days_until_due(p["due_day"], today)
-        if 0 <= days <= 14:
-            total += p["amount"]
-            details.append(f"{p['name']} ${p['amount']} d{p['due_day']}")
+        freq = p.get("frequency", "monthly")
+        if freq == "monthly":
+            continue
+        amount = p["amount"]
+        monthly_provision = {
+            "quarterly": amount / 3,
+            "semi_annual": amount / 6,
+            "annual": amount / 12,
+        }.get(freq, 0)
 
-    return total, details
+        if monthly_provision > 0:
+            funds.append({
+                "name": p["name"],
+                "amount": amount,
+                "frequency": freq,
+                "monthly_provision": round(monthly_provision, 2),
+            })
+            total_monthly += monthly_provision
 
-
-def _days_until_due(due_day: int, today: date) -> int:
-    """Calculate days until next due date."""
-    this_month_due = today.replace(day=min(due_day, 28))
-    if this_month_due >= today:
-        return (this_month_due - today).days
-    # Next month
-    days_in_month = calendar.monthrange(today.year, today.month)[1]
-    next_month = today + timedelta(days=days_in_month - today.day + 1)
-    next_due = next_month.replace(day=min(due_day, 28))
-    return (next_due - today).days
+    return {
+        "sinking_funds": funds,
+        "total_monthly_provision": round(total_monthly, 2),
+        "total_daily_provision": round(total_monthly / 30, 2),
+    }

@@ -1,219 +1,214 @@
-"""Module 8: Daily Cashflow — 'how much can I safely spend today?'"""
+"""Safe-to-spend calculator for Finance Tracker v2.
 
-from datetime import datetime, date
+Formula: balance - upcoming_bills - debt_payments - savings - sinking_funds
+Cherry-picked from v1 cashflow.py.
+"""
+
+from datetime import date, timedelta
+
 from . import config as C
-from .payments import payment_summary_14d
-from .budget import budget_status_brief
-
-
-def daily_cashflow() -> str:
-    """Generate the daily cashflow message."""
-    today = date.today()
-    balance_info = C.get_balance_info()
-    lang = C.get_language()
-
-    available = balance_info.get("available", 0)
-    upcoming_total, upcoming_details = payment_summary_14d()
-    daily_savings = _daily_savings_quota()
-    days_to_pay = _days_to_payday(balance_info)
-
-    if days_to_pay > 0:
-        safe_daily = (available - upcoming_total) / days_to_pay - daily_savings
-    else:
-        safe_daily = available - upcoming_total - daily_savings
-
-    safe_daily = round(safe_daily, 2)
-
-    # Risk level
-    if lang == "es":
-        if safe_daily > 100:
-            risk_msg = ""
-        elif safe_daily >= 30:
-            risk_msg = "\n⚠ Cuidado con gastos grandes esta semana."
-        elif safe_daily >= 0:
-            risk_msg = "\n🔴 APRETADO. Solo gastos esenciales hasta próximo pago."
-        else:
-            risk_msg = "\n🚨 NO ALCANZA. Recorta o difiere un pago."
-    else:
-        if safe_daily > 100:
-            risk_msg = ""
-        elif safe_daily >= 30:
-            risk_msg = "\n⚠ Watch out for big purchases this week."
-        elif safe_daily >= 0:
-            risk_msg = "\n🔴 TIGHT. Essential spending only until next payday."
-        else:
-            risk_msg = "\n🚨 NOT ENOUGH. Cut spending or defer a payment."
-
-    # Payday info with estimated amount
-    expected_pay = balance_info.get("expected_paycheck", 0)
-    if lang == "es":
-        payday_line = f"Próximo ingreso: {days_to_pay} días"
-        if expected_pay:
-            payday_line += f" (~${expected_pay:,.0f} estimado)"
-    else:
-        payday_line = f"Next income: {days_to_pay} days"
-        if expected_pay:
-            payday_line += f" (~${expected_pay:,.0f} estimated)"
-
-    if lang == "es":
-        lines = [
-            f"BUENOS DÍAS — {today.strftime('%b %d, %Y')}",
-            "",
-            f"Saldo disponible: ${available:,.0f}",
-            f"Pagos próximos 14d: ${upcoming_total:,.0f} ({', '.join(upcoming_details)})" if upcoming_details else "Pagos próximos 14d: $0",
-            f"Ahorro viajes hoy: ${daily_savings:.0f}",
-            payday_line,
-            "",
-            f"→ Puedes gastar máximo ${max(safe_daily, 0):.0f}/día",
-            risk_msg,
-            "",
-            budget_status_brief(),
-            "",
-            _savings_status(),
-        ]
-    else:
-        lines = [
-            f"GOOD MORNING — {today.strftime('%b %d, %Y')}",
-            "",
-            f"Available balance: ${available:,.0f}",
-            f"Upcoming payments 14d: ${upcoming_total:,.0f} ({', '.join(upcoming_details)})" if upcoming_details else "Upcoming payments 14d: $0",
-            f"Savings quota today: ${daily_savings:.0f}",
-            payday_line,
-            "",
-            f"→ Safe to spend: ${max(safe_daily, 0):.0f}/day",
-            risk_msg,
-            "",
-            budget_status_brief(),
-            "",
-            _savings_status(),
-        ]
-
-    return "\n".join(lines)
-
-
-def update_balance(amount: float):
-    """Update the available cash balance."""
-    config = C._load_tracker_config()
-    config["balance"]["available"] = amount
-    config["balance"]["last_updated"] = datetime.now().isoformat()
-    C.save_tracker_config(config)
-    lang = C.get_language()
-    if lang == "es":
-        return f"Saldo actualizado: ${amount:,.2f}"
-    return f"Balance updated: ${amount:,.2f}"
-
-
-def update_savings(goal: str, amount: float):
-    """Log savings toward a goal."""
-    config = C._load_tracker_config()
-    savings = config.get("savings", [])
-    lang = C.get_language()
-    for s in savings:
-        if s["goal"].lower() == goal.lower():
-            s["saved"] += amount
-            C.save_tracker_config(config)
-            remaining = s["target"] - s["saved"]
-            days_left = (date.fromisoformat(s["deadline"]) - date.today()).days
-            daily = remaining / max(days_left, 1)
-            if lang == "es":
-                return (
-                    f"Ahorro registrado: ${amount:.0f} para {s['goal']}. "
-                    f"Total: ${s['saved']:.0f}/${s['target']}. "
-                    f"Faltan ${remaining:.0f} en {days_left} días (${daily:.0f}/día)."
-                )
-            return (
-                f"Savings logged: ${amount:.0f} for {s['goal']}. "
-                f"Total: ${s['saved']:.0f}/${s['target']}. "
-                f"${remaining:.0f} remaining in {days_left} days (${daily:.0f}/day)."
-            )
-    if lang == "es":
-        return f"Meta '{goal}' no encontrada."
-    return f"Goal '{goal}' not found."
-
-
-def update_savings_target(goal: str, target: float):
-    """Update a savings goal target."""
-    config = C._load_tracker_config()
-    savings = config.get("savings", [])
-    lang = C.get_language()
-    for s in savings:
-        if s["goal"].lower() == goal.lower():
-            s["target"] = target
-            C.save_tracker_config(config)
-            if lang == "es":
-                return f"Meta {s['goal']} actualizada: ${target:,.0f}"
-            return f"Goal {s['goal']} updated: ${target:,.0f}"
-    if lang == "es":
-        return f"Meta '{goal}' no encontrada."
-    return f"Goal '{goal}' not found."
-
-
-def update_payday(schedule: str, amount: float = 0, dates: list[int] = None):
-    """Update pay schedule and expected paycheck amount."""
-    config = C._load_tracker_config()
-    config["balance"]["pay_schedule"] = schedule
-    if amount:
-        config["balance"]["expected_paycheck"] = amount
-    if dates:
-        config["balance"]["pay_dates"] = dates
-    C.save_tracker_config(config)
-
-    pay_dates = config["balance"].get("pay_dates", [])
-    msg = f"Payday: {schedule}"
-    if amount:
-        msg += f", ~${amount:,.0f}/pay"
-    if pay_dates:
-        msg += f", days {pay_dates}"
-    return msg
-
-
-def _daily_savings_quota() -> float:
-    """Calculate total daily savings needed across all goals."""
-    savings = C.get_savings()
-    today = date.today()
-    total = 0
-    for s in savings:
-        remaining = s["target"] - s.get("saved", 0)
-        if remaining <= 0:
-            continue
-        days_left = (date.fromisoformat(s["deadline"]) - today).days
-        if days_left > 0:
-            total += remaining / days_left
-    return round(total, 2)
 
 
 def _days_to_payday(balance_info: dict) -> int:
     """Calculate days until next payday."""
     today = date.today()
     pay_dates = balance_info.get("pay_dates", [15, 30])
+    if not pay_dates:
+        return 14  # default assumption
 
     for d in sorted(pay_dates):
-        pay_day = today.replace(day=min(d, 28))
+        try:
+            pay_day = today.replace(day=min(d, 28))
+        except ValueError:
+            pay_day = today.replace(day=28)
         if pay_day > today:
             return (pay_day - today).days
 
-    # Next month's first pay date
-    import calendar
-    from datetime import timedelta
-    days_in_month = calendar.monthrange(today.year, today.month)[1]
-    next_month = today + timedelta(days=days_in_month - today.day + 1)
-    next_pay = next_month.replace(day=min(pay_dates[0], 28))
+    # Next month
+    if today.month == 12:
+        next_month = today.replace(year=today.year + 1, month=1, day=1)
+    else:
+        next_month = today.replace(month=today.month + 1, day=1)
+    first_pay = min(pay_dates[0], 28)
+    try:
+        next_pay = next_month.replace(day=first_pay)
+    except ValueError:
+        next_pay = next_month.replace(day=28)
     return (next_pay - today).days
 
 
-def _savings_status() -> str:
-    """Format savings goals status."""
-    savings = C.get_savings()
+def _upcoming_bills(days: int = 14) -> tuple[float, list[dict]]:
+    """Sum bills due in the next N days. Handles non-monthly frequencies."""
     today = date.today()
+    payments = C.get_payments()
+    total = 0.0
+    upcoming = []
+
+    for p in payments:
+        due_day = p.get("due_day", 1)
+        freq = p.get("frequency", "monthly")
+        amount = p.get("amount", 0)
+
+        # Check if due within window
+        try:
+            due_date = today.replace(day=min(due_day, 28))
+        except ValueError:
+            due_date = today.replace(day=28)
+        if due_date < today:
+            if today.month == 12:
+                due_date = due_date.replace(year=today.year + 1, month=1)
+            else:
+                due_date = due_date.replace(month=today.month + 1)
+
+        days_until = (due_date - today).days
+        if 0 <= days_until <= days:
+            # For non-monthly bills, only count if actually due this cycle
+            if freq == "monthly" or _is_due_this_cycle(freq, today):
+                total += amount
+                upcoming.append({
+                    "name": p["name"], "amount": amount,
+                    "due_day": due_day, "days_until": days_until,
+                    "frequency": freq,
+                })
+
+    return total, upcoming
+
+
+def _is_due_this_cycle(freq: str, today: date) -> bool:
+    """Rough check if a non-monthly bill is due this month."""
+    month = today.month
+    if freq == "quarterly":
+        return month in (1, 4, 7, 10)
+    if freq == "semi_annual":
+        return month in (1, 7)
+    if freq == "annual":
+        return month == 1
+    return True
+
+
+def _sinking_fund_daily() -> float:
+    """Calculate daily sinking fund provisions for non-monthly bills."""
+    payments = C.get_payments()
+    daily = 0.0
+    for p in payments:
+        freq = p.get("frequency", "monthly")
+        amount = p.get("amount", 0)
+        if freq == "quarterly":
+            daily += amount / 90
+        elif freq == "semi_annual":
+            daily += amount / 180
+        elif freq == "annual":
+            daily += amount / 365
+    return round(daily, 2)
+
+
+def _daily_savings_quota() -> float:
+    """Calculate total daily savings needed across all goals."""
+    goals = C.get_savings()
+    today = date.today()
+    daily = 0.0
+    for g in goals:
+        remaining = g.get("target", 0) - g.get("saved", 0)
+        if remaining <= 0:
+            continue
+        deadline = g.get("deadline")
+        if deadline:
+            try:
+                dl = date.fromisoformat(deadline)
+                days_left = (dl - today).days
+                if days_left > 0:
+                    daily += remaining / days_left
+            except ValueError:
+                pass
+    return round(daily, 2)
+
+
+def _debt_min_payments() -> float:
+    """Sum minimum debt payments."""
+    config = C._load_tracker_config()
+    debts = config.get("debts", [])
+    return sum(d.get("minimum_payment", 0) for d in debts)
+
+
+def safe_to_spend() -> dict:
+    """Calculate the daily safe-to-spend number."""
+    balance_info = C.get_balance_info()
+    available = balance_info.get("available", 0)
+    days_to_pay = _days_to_payday(balance_info)
+
+    upcoming_total, upcoming_list = _upcoming_bills(14)
+    debt_min = _debt_min_payments()
+    savings_daily = _daily_savings_quota()
+    sinking_daily = _sinking_fund_daily()
+
+    if days_to_pay > 0:
+        safe_daily = (available - upcoming_total - debt_min) / days_to_pay - savings_daily - sinking_daily
+    else:
+        safe_daily = available - upcoming_total - debt_min - savings_daily - sinking_daily
+
+    safe_daily = round(safe_daily, 2)
+
+    # Risk level
+    if safe_daily > 100:
+        risk = "comfortable"
+    elif safe_daily >= 30:
+        risk = "caution"
+    elif safe_daily >= 0:
+        risk = "tight"
+    else:
+        risk = "negative"
+
+    return {
+        "safe_to_spend_daily": safe_daily,
+        "balance": available,
+        "days_to_payday": days_to_pay,
+        "upcoming_bills_14d": round(upcoming_total, 2),
+        "upcoming_bills": upcoming_list,
+        "debt_min_payments": round(debt_min, 2),
+        "daily_savings": savings_daily,
+        "daily_sinking_fund": sinking_daily,
+        "risk": risk,
+    }
+
+
+def update_balance(account: str, amount: float) -> dict:
+    """Update account balance."""
+    config = C._load_tracker_config()
+    config["balance"]["available"] = amount
+    config["balance"]["last_updated"] = date.today().isoformat()
+    C.save_tracker_config(config)
+    return {"updated": True, "account": account, "balance": amount}
+
+
+def format_cashflow(data: dict) -> str:
+    """Format safe-to-spend as human-readable text."""
     lang = C.get_language()
-    header = "Metas de viaje:" if lang == "es" else "Savings goals:"
-    lines = [header]
-    for s in savings:
-        remaining = s["target"] - s.get("saved", 0)
-        days_left = max((date.fromisoformat(s["deadline"]) - today).days, 1)
-        daily = remaining / days_left
-        lines.append(
-            f"  {s['goal']} ({s['deadline']}): "
-            f"${s.get('saved', 0):,.0f}/${s['target']:,.0f} — ${daily:.0f}/{'día' if lang == 'es' else 'day'}"
-        )
+    risk_msgs = {
+        "comfortable": "",
+        "caution": "Watch out for big purchases" if lang == "en" else "Cuidado con compras grandes",
+        "tight": "TIGHT — essentials only" if lang == "en" else "APRETADO — solo esenciales",
+        "negative": "NOT ENOUGH — cut spending or defer" if lang == "en" else "NO ALCANZA — recorta o aplaza",
+    }
+
+    lines = []
+    if lang == "es":
+        lines.append(f"Seguro para gastar hoy: ${data['safe_to_spend_daily']:.2f}")
+    else:
+        lines.append(f"Safe to spend today: ${data['safe_to_spend_daily']:.2f}")
+
+    risk_msg = risk_msgs.get(data["risk"], "")
+    if risk_msg:
+        lines.append(f"  {risk_msg}")
+
+    lines.append(f"\nBalance: ${data['balance']:,.2f}")
+    lines.append(f"Days to payday: {data['days_to_payday']}")
+    lines.append(f"Upcoming bills (14d): ${data['upcoming_bills_14d']:,.2f}")
+
+    if data["upcoming_bills"]:
+        for b in data["upcoming_bills"]:
+            lines.append(f"  {b['name']}: ${b['amount']:,.2f} (in {b['days_until']}d)")
+
+    if data["daily_sinking_fund"] > 0:
+        lines.append(f"Sinking fund provision: ${data['daily_sinking_fund']:.2f}/day")
+
     return "\n".join(lines)

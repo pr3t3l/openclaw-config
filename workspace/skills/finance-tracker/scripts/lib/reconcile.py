@@ -1,481 +1,301 @@
-"""Module 6: Reconciliation Engine — match CSV uploads against logged receipts."""
+"""Bank CSV reconciliation and import for Finance Tracker v2.
+
+Cherry-picked bank detection + matching from v1 reconcile.py.
+"""
 
 import csv
 import io
-import json
 import re
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
+from pathlib import Path
 
 from . import config as C
-from . import sheets
-from .rules import normalize_merchant, match_rules, add_rule
+from .merchant_rules import normalize_merchant, lookup_merchant, save_merchant_rule
 
 
-def _ai_classify_merchants(merchants: list[str]) -> dict[str, str]:
-    """Classify unknown merchants in batch via LiteLLM. Returns {merchant: category}."""
-    if not merchants:
-        return {}
+# ── Bank format detection ─────────────────────────────
 
-    categories_str = ", ".join(C.get_categories())
-    merchant_list = "\n".join(f"- {m}" for m in merchants)
+def detect_bank_format(csv_path: str) -> str:
+    """Auto-detect bank from CSV headers. Returns: chase, discover, citi, wells, amex, unknown."""
+    with open(csv_path, "r", encoding="utf-8-sig") as f:
+        first_line = f.readline().lower().strip()
 
-    payload = {
-        "model": C.CLASSIFY_MODEL,
-        "messages": [
-            {"role": "system", "content": "You classify bank transaction merchants into spending categories. Respond ONLY with valid JSON, no markdown."},
-            {"role": "user", "content": (
-                f"Classify each merchant into exactly one category.\n"
-                f"Categories: {categories_str}\n\n"
-                f"Merchants:\n{merchant_list}\n\n"
-                f"Respond as JSON: {{\"merchant_name\": \"Category\"}}"
-            )},
-        ],
-        "temperature": 0.0,
-    }
+    if "memo" in first_line and "type" in first_line:
+        return "chase"
+    if "trans. date" in first_line:
+        return "discover"
+    if "extended details" in first_line:
+        return "citi"
+    if first_line.startswith('"') and '"*"' in first_line:
+        return "wells"
+    if "reference" in first_line and "amount" in first_line:
+        return "amex"
+    return "unknown"
 
-    ai_text = C.ai_extract_text(payload, timeout=30)
-    if not ai_text:
-        return {}
+
+# ── CSV row parsers ───────────────────────────────────
+
+def _parse_rows(csv_path: str, bank: str) -> list[dict]:
+    """Parse CSV rows into normalized transaction dicts."""
+    with open(csv_path, "r", encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        rows = []
+        for row in reader:
+            parsed = _parse_row(row, bank)
+            if parsed and parsed.get("amount"):
+                rows.append(parsed)
+    return rows
+
+
+def _parse_row(row: dict, bank: str) -> dict | None:
+    """Parse a single CSV row based on bank format."""
     try:
-        classifications = json.loads(ai_text)
-        valid = {}
-        for m, cat in classifications.items():
-            if cat in C.get_categories():
-                valid[m] = cat
-            else:
-                valid[m] = "Other"
-        return valid
-    except (json.JSONDecodeError, AttributeError):
-        return {}
-
-
-def _ensure_rules_for_merchants(unmatched_rows: list[dict]) -> int:
-    """Identify merchants without rules, classify via AI, save as new rules.
-
-    Returns number of new rules created.
-    """
-    # Collect expense merchants without rules
-    unknown_merchants = {}
-    for ub in unmatched_rows:
-        merchant = ub.get("merchant_bank", ub.get("merchant", ""))
-        if not merchant:
-            continue
-        rule = match_rules(merchant, ub.get("amount", 0))
-        if rule:
-            continue
-        # Check if it would be classified as expense (not payment/transfer/income)
-        tx_type, _ = _classify_csv_transaction(ub, None)
-        if tx_type != "expense":
-            continue
-        normalized = normalize_merchant(merchant)
-        if normalized not in unknown_merchants:
-            unknown_merchants[normalized] = merchant  # keep original for display
-
-    if not unknown_merchants:
-        return 0
-
-    # Batch classify via AI
-    classifications = _ai_classify_merchants(list(unknown_merchants.keys()))
-    if not classifications:
-        return 0
-
-    # Save as rules
-    created = 0
-    for normalized, original in unknown_merchants.items():
-        category = classifications.get(normalized)
-        if not category or category == "Other":
-            # Try matching by original name too
-            category = classifications.get(original)
-        if category and category != "Other":
-            add_rule(normalized, category, confidence=0.80,
-                     created_by="ai_auto")
-            created += 1
-    return created
-
-
-def reconcile_csv(csv_content: str, bank: str = "auto") -> dict:
-    """Reconcile a bank CSV against existing transactions."""
-    if bank == "auto":
-        bank = _detect_bank(csv_content)
-
-    csv_rows = _parse_csv(csv_content, bank)
-    months = _detect_months(csv_rows)
-    # Load existing receipts for ALL months in the CSV
-    existing = []
-    for m in months:
-        existing.extend(sheets.get_transactions_for_month(m))
-
-    matched = []
-    probable = []
-    unmatched_bank = []
-    unmatched_receipt = []
-    used_receipt_indices = set()
-
-    for ci, crow in enumerate(csv_rows):
-        best_match = None
-        best_score = 0
-
-        for ri, rtx in enumerate(existing):
-            if ri in used_receipt_indices:
-                continue
-            score = _match_score(crow, rtx)
-            if score > best_score:
-                best_score = score
-                best_match = (ri, rtx)
-
-        if best_match and best_score >= 2:
-            # Match: amount + at least one of (date, merchant)
-            ri, rtx = best_match
-            used_receipt_indices.add(ri)
-            matched.append({
-                "csv_row": ci,
-                "receipt_row": ri,
-                "amount": crow["amount"],
-                "merchant_bank": crow["merchant"],
-                "merchant_receipt": rtx.get("merchant", ""),
-                "date": crow["date"],
-                "status": "matched",
-                "resolved_by": "auto",
-                "receipt_id": rtx.get("receipt_id", ""),
-                "notes": f"tax:{rtx.get('tax_category', 'none')}" if rtx.get("tax_deductible") else "",
-            })
-        else:
-            # Score 0 or 1 (amount-only match = not reliable, treat as unmatched)
-            # Amount-only matches caused false positives like Anthropic vs Interest Charge
-            unmatched_bank.append({
-                "csv_row": ci,
-                "amount": crow["amount"],
-                "signed_amount": crow.get("signed_amount", crow["amount"]),
-                "merchant_bank": crow["merchant"],
-                "raw_category": crow.get("raw_category", ""),
-                "raw_type": crow.get("raw_type", ""),
-                "date": crow["date"],
-                "status": "unmatched_bank",
-            })
-
-    # Find unmatched receipts
-    for ri, rtx in enumerate(existing):
-        if ri not in used_receipt_indices and rtx.get("source") != "csv":
-            unmatched_receipt.append({
-                "receipt_row": ri,
-                "amount": float(rtx.get("amount", 0)),
-                "merchant_receipt": rtx.get("merchant", ""),
-                "date": rtx.get("date", ""),
-                "status": "unmatched_receipt",
-            })
-
-    # AI-classify unknown merchants and create rules before categorizing
-    ai_rules_created = _ensure_rules_for_merchants(unmatched_bank)
-
-    # Auto-log unmatched bank transactions in batch
-    auto_log_transactions = []
-    cashflow_rows = []
-    for ub in unmatched_bank:
-        rule = match_rules(ub["merchant_bank"], ub["amount"])
-        tx_type, tx_category = _classify_csv_transaction(ub, rule)
-        subcategory = rule.get("subcategory", "") if rule else ""
-        cashflow_rows.append({
-            "date": ub["date"],
-            "account": bank if bank != "auto" else "Unknown",
-            "merchant": ub["merchant_bank"],
-            "amount_signed": ub.get("signed_amount", ub["amount"]),
-            "flow_type": tx_type,
-            "category": tx_category,
-            "subcategory": subcategory,
-            "notes": "Imported from bank CSV",
-            "source": "csv",
-            "timestamp": datetime.now().isoformat(),
-            "month": ub["date"][:7] if ub["date"] else "",
-        })
-        if tx_type in {"payment", "income", "transfer"}:
-            continue
-        tx = {
-            "date": ub["date"],
-            "amount": ub["amount"],
-            "merchant": ub["merchant_bank"],
-            "category": tx_category,
-            "subcategory": subcategory,
-            "card": bank if bank != "auto" else "Unknown",
-            "input_method": "csv",
-            "confidence": 0.8,
-            "matched": False,
-            "source": "csv",
-            "notes": f"Auto-logged from bank CSV [{tx_type}]",
-            "timestamp": datetime.now().isoformat(),
-            "month": ub["date"][:7] if ub["date"] else "",
-            "receipt_id": "",
-            "receipt_number": "",
-            "store_address": "",
-            "tax_deductible": False,
-            "tax_category": "none",
-            "type": tx_type,
+        if bank == "chase":
+            return {
+                "date": row.get("Transaction Date", row.get("Posting Date", "")),
+                "merchant": row.get("Description", ""),
+                "amount": abs(float(row.get("Amount", 0))),
+                "is_debit": float(row.get("Amount", 0)) < 0,
+                "type_raw": row.get("Type", ""),
+            }
+        if bank == "discover":
+            return {
+                "date": row.get("Trans. Date", ""),
+                "merchant": row.get("Description", ""),
+                "amount": abs(float(row.get("Amount", 0))),
+                "is_debit": float(row.get("Amount", 0)) > 0,
+                "type_raw": row.get("Category", ""),
+            }
+        if bank == "wells":
+            amount = float(row.get("Amount", 0))
+            return {
+                "date": row.get("Date", ""),
+                "merchant": row.get("Description", ""),
+                "amount": abs(amount),
+                "is_debit": amount < 0,
+                "type_raw": "",
+            }
+        if bank == "citi":
+            debit = float(row.get("Debit", 0) or 0)
+            credit = float(row.get("Credit", 0) or 0)
+            return {
+                "date": row.get("Date", ""),
+                "merchant": row.get("Description", ""),
+                "amount": debit or credit,
+                "is_debit": debit > 0,
+                "type_raw": "",
+            }
+        # Generic fallback
+        amount_val = 0
+        for key in ("Amount", "amount", "Debit", "Credit"):
+            if row.get(key):
+                try:
+                    amount_val = abs(float(row[key]))
+                    break
+                except ValueError:
+                    pass
+        return {
+            "date": row.get("Date", row.get("date", "")),
+            "merchant": row.get("Description", row.get("description", row.get("Merchant", ""))),
+            "amount": amount_val,
+            "is_debit": True,
+            "type_raw": "",
         }
-        auto_log_transactions.append(tx)
-
-    sheets.append_transactions(auto_log_transactions)
-    sheets.append_cashflow_rows(cashflow_rows)
-    auto_logged = len(auto_log_transactions)
-
-    # Log all to reconciliation tab in batch
-    sheets.append_reconciliation_rows(matched + probable)
-
-    # Mark matched transactions
-    for m in matched:
-        # Update the existing receipt transaction as matched
-        pass  # Would need row-level update in sheets
-
-    month_str = ", ".join(months) if months else "unknown"
-    lang = C.get_language()
-    if lang == "es":
-        ai_note = f"\n{ai_rules_created} merchants clasificados por AI → reglas creadas" if ai_rules_created else ""
-        summary = (
-            f"RECONCILIACIÓN COMPLETA — {bank} ({month_str})\n"
-            f"{len(csv_rows)} transacciones en CSV\n"
-            f"{len(matched)} matched con recibos\n"
-            f"{auto_logged} nuevas (sin recibo) → auto-logged\n"
-            f"{len(probable)} probable match → necesita tu confirmación\n"
-            f"{len(unmatched_receipt)} recibos sin match → revisar"
-            f"{ai_note}"
-        )
-    else:
-        ai_note = f"\n{ai_rules_created} merchants classified by AI → rules created" if ai_rules_created else ""
-        summary = (
-            f"RECONCILIATION COMPLETE — {bank} ({month_str})\n"
-            f"{len(csv_rows)} transactions in CSV\n"
-            f"{len(matched)} matched with receipts\n"
-            f"{auto_logged} new (no receipt) → auto-logged\n"
-            f"{len(probable)} probable match → needs confirmation\n"
-            f"{len(unmatched_receipt)} receipts without match → review"
-            f"{ai_note}"
-        )
-
-    # Track reconciliation stats
-    from . import telemetry as T
-    T.track_reconcile(bank, len(csv_rows), len(matched), ai_rules_created)
-
-    return {
-        "summary": summary,
-        "matched": len(matched),
-        "probable": probable,
-        "unmatched_bank": auto_logged,
-        "unmatched_receipt": unmatched_receipt,
-    }
+    except (ValueError, KeyError):
+        return None
 
 
-def _match_score(csv_row: dict, receipt: dict) -> int:
-    """Score a potential match. Amount must be exact (required)."""
+# ── Match scoring ─────────────────────────────────────
+
+def _match_score(csv_row: dict, logged_tx: dict) -> int:
+    """Score a match between CSV row and logged transaction. 0-3 scale."""
     score = 0
-
-    # Amount: EXACT match required
-    csv_amt = round(csv_row["amount"], 2)
-    rcpt_amt = round(float(receipt.get("amount", 0)), 2)
-    if csv_amt != rcpt_amt:
+    # Amount must match (required)
+    csv_amt = round(csv_row.get("amount", 0), 2)
+    tx_amt = round(float(logged_tx.get("amount", 0)), 2)
+    if csv_amt != tx_amt:
         return 0
-    score += 1  # Amount match is baseline
+    score = 1
 
-    # Date: same day or ±2 days
+    # Date within ±2 days
     try:
-        csv_date = datetime.strptime(csv_row["date"], "%Y-%m-%d")
-        rcpt_date = datetime.strptime(receipt.get("date", ""), "%Y-%m-%d")
-        if abs((csv_date - rcpt_date).days) <= 2:
+        csv_date = _parse_date(csv_row.get("date", ""))
+        tx_date = _parse_date(logged_tx.get("date", ""))
+        if csv_date and tx_date and abs((csv_date - tx_date).days) <= 2:
             score += 1
-    except (ValueError, TypeError):
+    except Exception:
         pass
 
-    # Merchant: fuzzy match
-    csv_m = normalize_merchant(csv_row.get("merchant", ""))
-    rcpt_m = normalize_merchant(receipt.get("merchant", ""))
-    if csv_m and rcpt_m and (csv_m in rcpt_m or rcpt_m in csv_m):
+    # Merchant fuzzy match
+    csv_merchant = normalize_merchant(csv_row.get("merchant", ""))
+    tx_merchant = normalize_merchant(logged_tx.get("merchant", ""))
+    if csv_merchant and tx_merchant and (csv_merchant in tx_merchant or tx_merchant in csv_merchant):
         score += 1
 
     return score
 
 
-def _parse_csv(content: str, bank: str) -> list[dict]:
-    """Parse CSV content into standardized rows."""
-    rows = []
-    if bank == "Wells":
-        reader = csv.reader(io.StringIO(content))
-        for row in reader:
-            parsed = _parse_csv_row_wells(row)
-            if parsed:
-                rows.append(parsed)
-        return rows
-
-    reader = csv.DictReader(io.StringIO(content))
-    for row in reader:
-        parsed = _parse_csv_row(row, bank)
-        if parsed:
-            rows.append(parsed)
-    return rows
-
-
-def _parse_csv_row_wells(row: list[str]) -> dict | None:
-    try:
-        if len(row) < 5:
-            return None
-        date_val = row[0].strip().strip('"')
-        amt_val = float(row[1].strip().strip('"').replace(',', ''))
-        desc_val = row[4].strip().strip('"')
-        return {
-            "date": _normalize_date(date_val),
-            "amount": abs(amt_val),
-            "signed_amount": amt_val,
-            "merchant": desc_val,
-            "raw_category": "",
-            "raw_type": "",
-        }
-    except (ValueError, IndexError):
-        return None
-
-
-def _parse_csv_row(row: dict, bank: str) -> dict | None:
-    """Parse a single CSV row based on bank format."""
-    try:
-        if bank == "Chase":
-            amount = float(row.get("Amount", "0").replace(",", ""))
-            return {
-                "date": _normalize_date(row.get("Transaction Date", "")),
-                "amount": abs(amount),
-                "signed_amount": amount,
-                "merchant": row.get("Description", ""),
-                "raw_category": row.get("Category", ""),
-                "raw_type": row.get("Type", ""),
-            }
-        elif bank == "Discover":
-            amount = float(row.get("Amount", "0").replace(",", ""))
-            return {
-                "date": _normalize_date(row.get("Trans. Date", "")),
-                "amount": abs(amount),
-                "signed_amount": amount,
-                "merchant": row.get("Description", ""),
-                "raw_category": row.get("Category", ""),
-                "raw_type": "",
-            }
-        elif bank == "Citi":
-            amount = float(row.get("Amount", "0").replace(",", ""))
-            return {
-                "date": _normalize_date(row.get("Date", "")),
-                "amount": abs(amount),
-                "signed_amount": amount,
-                "merchant": row.get("Description", ""),
-                "raw_category": row.get("Category", ""),
-                "raw_type": "",
-            }
-        else:
-            # Generic: try common column names
-            date_val = row.get("Date", row.get("date", row.get("Transaction Date", "")))
-            amt_val = float(str(row.get("Amount", row.get("amount", "0"))).replace(",", "").replace("$", ""))
-            desc_val = row.get("Description", row.get("description", row.get("Merchant", "")))
-            return {
-                "date": _normalize_date(date_val),
-                "amount": abs(amt_val),
-                "signed_amount": amt_val,
-                "merchant": desc_val,
-                "raw_category": row.get("Category", row.get("category", "")),
-                "raw_type": row.get("Type", row.get("type", "")),
-            }
-    except (ValueError, KeyError):
-        return None
-
-
-def _normalize_date(date_str: str) -> str:
-    """Convert various date formats to YYYY-MM-DD."""
-    for fmt in ["%m/%d/%Y", "%Y-%m-%d", "%m/%d/%y", "%m-%d-%Y"]:
+def _parse_date(d: str) -> date | None:
+    for fmt in ("%Y-%m-%d", "%m/%d/%Y", "%m/%d/%y", "%d/%m/%Y"):
         try:
-            return datetime.strptime(date_str.strip(), fmt).strftime("%Y-%m-%d")
-        except ValueError:
+            return date.fromisoformat(d) if "-" in d and len(d) == 10 else __import__("datetime").datetime.strptime(d, fmt).date()
+        except (ValueError, TypeError):
             continue
-    return date_str
+    return None
 
 
-def _detect_bank(content: str) -> str:
-    first_line = content.strip().split("\n")[0].lower()
-    if "memo" in first_line and "type" in first_line:
-        return "Chase"
-    if "trans. date" in first_line:
-        return "Discover"
-    if "extended details" in first_line:
-        return "Citi"
-    if first_line.startswith('"') and '"*"' in first_line:
-        return "Wells"
-    return "unknown"
+# ── Reconciliation ────────────────────────────────────
+
+def reconcile_csv(csv_path: str) -> dict:
+    """Match CSV transactions against logged transactions."""
+    bank = detect_bank_format(csv_path)
+    csv_rows = _parse_rows(csv_path, bank)
+
+    # Get logged transactions
+    try:
+        from . import sheets
+        logged = sheets.read_transactions()
+    except Exception:
+        logged = []
+
+    matched = []
+    unmatched_bank = []
+    unmatched_tracker = list(range(len(logged)))
+    used_logged = set()
+
+    for csv_row in csv_rows:
+        best_score = 0
+        best_idx = -1
+        for i, tx in enumerate(logged):
+            if i in used_logged:
+                continue
+            score = _match_score(csv_row, tx)
+            if score > best_score:
+                best_score = score
+                best_idx = i
+
+        if best_score >= 2 and best_idx >= 0:
+            matched.append({
+                "csv": csv_row,
+                "logged": logged[best_idx],
+                "score": best_score,
+            })
+            used_logged.add(best_idx)
+            if best_idx in unmatched_tracker:
+                unmatched_tracker.remove(best_idx)
+        else:
+            unmatched_bank.append(csv_row)
+
+    return {
+        "bank": bank,
+        "csv_rows": len(csv_rows),
+        "matched": len(matched),
+        "unmatched_bank": len(unmatched_bank),
+        "unmatched_tracker": len(unmatched_tracker),
+        "unmatched_bank_rows": unmatched_bank[:20],
+        "unmatched_tracker_rows": [logged[i] for i in unmatched_tracker[:20]] if logged else [],
+    }
 
 
-def _detect_months(rows: list[dict]) -> list[str]:
-    """Detect all months present in CSV rows."""
-    months: set[str] = set()
-    for r in rows:
-        m = r.get("date", "")[:7]
-        if m and len(m) == 7:
-            months.add(m)
-    return sorted(months)
+# ── CSV Import ────────────────────────────────────────
+
+_PAYMENT_KEYWORDS = {"payment", "pago", "epay", "autopay", "auto pay", "thank you"}
+_TRANSFER_KEYWORDS = {"transfer", "zelle", "cash app", "paypal", "venmo", "xfer"}
+_RETURN_KEYWORDS = {"return", "refund", "credit", "reversal", "adjustment", "devolucion"}
 
 
-def _classify_csv_transaction(row: dict, rule: dict | None) -> tuple[str, str]:
-    merchant = (row.get("merchant_bank") or row.get("merchant") or "").upper()
-    raw_category = (row.get("raw_category") or "").upper()
-    raw_type = (row.get("raw_type") or "").upper()
-    signed_amount = float(row.get("signed_amount", row.get("amount", 0) or 0))
+def _classify_csv_tx(row: dict) -> tuple[str, str]:
+    """Classify a CSV row: (type, category). Type: expense|income|payment|transfer|return."""
+    merchant = (row.get("merchant") or "").lower()
+    type_raw = (row.get("type_raw") or "").lower()
+    is_debit = row.get("is_debit", True)
+    combined = f"{merchant} {type_raw}"
 
-    # === PAYMENTS: check FIRST, regardless of sign ===
-    # On credit cards, payments TO the card are POSITIVE (credit to account)
-    # On checking accounts, payments OUT are NEGATIVE
-    payment_keywords = ["PAYMENT", "THANK YOU", "SU PAGO", "PAGO AUTOMATICO",
-                        "PAGO AUTO", "EPAY", "AUTOPAY", "INTERNET PAYMENT"]
-    if any(k in merchant for k in payment_keywords) or "PAYMENT" in raw_category or "PAYMENT" in raw_type:
-        return "payment", "Payment"
-
-    # === TRANSFERS: check regardless of sign ===
-    transfer_keywords = ["TRANSFER TO", "TRANSFER FROM", "ZELLE TO", "ZELLE FROM",
-                         "WORLDREMIT", "CASH APP", "PAYPAL *", "ROBINHOOD FUNDS",
-                         "WIRE TRANS", "EXT TRNSFR", "ONLINE TRANSFER",
-                         "MONEY TRANSFER", "BANK ADJUSTMENT", "ADJUSTMENT",
-                         "BALANCE TRANSFER"]
-    if any(k in merchant for k in transfer_keywords):
+    # Payments first
+    if any(kw in combined for kw in _PAYMENT_KEYWORDS):
+        return "payment", "Debt Payment"
+    # Transfers
+    if any(kw in combined for kw in _TRANSFER_KEYWORDS):
         return "transfer", "Transfer"
-    if "BALANCE TRANSFERS" in raw_category:
-        return "transfer", "Transfer"
+    # Returns / credits (non-debit)
+    if not is_debit:
+        if any(kw in combined for kw in _RETURN_KEYWORDS):
+            return "return", "Refund"
+        return "income", "Income"
+    # Normal expense
+    return "expense", ""
 
-    # === POSITIVE amounts (money in) ===
-    if signed_amount > 0:
-        # Actual returns/refunds
-        if "RETURN" in raw_type or "RETURN" in merchant:
-            return "refund", "Refunds"
 
-        # Rewards, cashback, statement credits
-        if any(k in merchant for k in ["PAYYOURSELFBACK", "CASHBACK", "REWARD",
-                                        "REBATE", "BONUS REDEMPTION"]):
-            return "income", "Other"
-        if "AWARDS" in raw_category or "REBATE" in raw_category or "CREDIT" in raw_category:
-            return "income", "Other"
+def import_csv(csv_path: str, dry_run: bool = False) -> dict:
+    """Import bank CSV as transactions.
 
-        # Income: payroll, deposits, Airbnb, etc.
-        income_keywords = ["PAYROLL", "DEPOSIT", "VENMO CASHOUT", "PAYPAL TRANSFER",
-                          "AIRS EDI", "MOBILE DEPOSIT", "INSTANT PMT", "TAX REFUND",
-                          "AIRBNB PAYMENTS", "EPAYMENT REVERSAL"]
-        if any(k in merchant for k in income_keywords):
-            return "income", "Other"
+    Handles: purchases, returns/credits, payments, adjustments, reversals.
+    """
+    bank = detect_bank_format(csv_path)
+    csv_rows = _parse_rows(csv_path, bank)
+    if not csv_rows:
+        return {"error": True, "message": "No transactions found in CSV", "bank": bank}
 
-        # Store returns (positive amount + store name = likely return)
-        if rule and rule.get("category") in ("Home", "Shopping", "Groceries"):
-            return "refund", "Refunds"
+    transactions = []
+    for row in csv_rows:
+        tx_type, default_cat = _classify_csv_tx(row)
+        merchant_raw = row.get("merchant", "Unknown")
+        norm = normalize_merchant(merchant_raw)
+        amount = row.get("amount", 0)
 
-        # Default positive: unknown credit → transfer (NOT refund)
-        return "transfer", "Other"
+        # Determine category from merchant rules
+        category = default_cat
+        rule = lookup_merchant(merchant_raw)
+        if rule and rule.get("category") and tx_type == "expense":
+            category = rule["category"]
+        elif tx_type == "expense":
+            category = "Other"
 
-    # === NEGATIVE amounts (money out) ===
-    # Interest
-    if "INTEREST" in raw_category or "INTEREST" in merchant:
-        return "expense", "Debt_Interest"
+        # Build transaction
+        tx = {
+            "date": row.get("date", date.today().isoformat()),
+            "amount": amount if tx_type != "return" else -amount,
+            "merchant": merchant_raw,
+            "category": category,
+            "subcategory": "",
+            "card": bank.title(),
+            "input_method": "csv",
+            "confidence": 0.7 if rule else 0.5,
+            "matched": False,
+            "source": "csv",
+            "notes": f"Imported from {bank} CSV",
+            "timestamp": datetime.now().isoformat(),
+            "month": row.get("date", "")[:7],
+            "tax_deductible": False,
+            "tax_category": "none",
+            "type": tx_type,
+        }
+        transactions.append(tx)
 
-    # Fees
-    if any(k in merchant for k in ["FEE", "OVERDRAFT", "SVC CHARGE", "TRANSACTION FEE",
-                                     "LATE FEE", "BAL TRANS FEE"]):
-        return "expense", "Bank_Fees"
-    if "FEE" in raw_category:
-        return "expense", "Bank_Fees"
+    summary = {
+        "bank": bank,
+        "total_rows": len(csv_rows),
+        "imported": len(transactions),
+        "by_type": {},
+        "dry_run": dry_run,
+    }
+    for tx in transactions:
+        t = tx["type"]
+        summary["by_type"].setdefault(t, {"count": 0, "total": 0})
+        summary["by_type"][t]["count"] += 1
+        summary["by_type"][t]["total"] += abs(tx["amount"])
 
-    # Normal expense — use rule category if available
-    return "expense", (rule["category"] if rule else "Other")
+    # Round totals
+    for t in summary["by_type"]:
+        summary["by_type"][t]["total"] = round(summary["by_type"][t]["total"], 2)
 
+    if not dry_run:
+        try:
+            from . import sheets
+            written = sheets.write_transactions(transactions)
+            summary["written_to_sheets"] = written
+        except Exception as e:
+            summary["written_to_sheets"] = 0
+            summary["sheets_error"] = str(e)
+
+    return summary

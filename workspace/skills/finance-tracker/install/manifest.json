@@ -1,0 +1,16 @@
+{
+  "name": "finance-tracker",
+  "version": "2.0.0",
+  "description": "Personal finance tracker for OpenClaw",
+  "requires": {
+    "python": ">=3.10",
+    "bins": ["curl"],
+    "skills": ["gog"]
+  },
+  "entry_point": "scripts/finance.py",
+  "schema_version": "v1",
+  "distribution": ["github_zip", "gumroad"],
+  "changelog": {
+    "2.0.0": "Complete rewrite with deterministic state machine, two-tier merchant rules, tax rulepacks, OpenClaw native cron, debt optimizer, bank CSV reconciliation, sinking fund calculations"
+  }
+}

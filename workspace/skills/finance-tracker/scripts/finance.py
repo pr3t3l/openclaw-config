@@ -1,866 +1,561 @@
 #!/usr/bin/env python3
-"""Finance Tracker — Main CLI entry point.
+"""Finance Tracker v2 — CLI entry point.
 
-Usage:
-  python3 finance.py parse-text "$45 Publix Chase"
-  python3 finance.py parse-photo /path/to/receipt.jpg
-  python3 finance.py log '{"amount":45,"merchant":"Publix",...}'
-  python3 finance.py balance 3200
-  python3 finance.py cashflow
-  python3 finance.py weekly-summary
-  python3 finance.py monthly-report [YYYY-MM]
-  python3 finance.py payment-check
-  python3 finance.py reconcile /path/to/bank.csv [Chase|Discover|Citi]
-  python3 finance.py add-rule "pattern" Category [confidence]
-  python3 finance.py savings <goal> <amount>
-  python3 finance.py savings-target <goal> <target>
-  python3 finance.py status [category]
-  python3 finance.py log-split '{"receipt_id":"...","transactions":[...]}'
-  python3 finance.py taxes [year]
-  python3 finance.py setup '{"cards":"Chase,Cash","currency":"USD","tax":"none"}'
-  python3 finance.py setup-sheets
-  python3 finance.py new-tax-profile
-  python3 finance.py update-tax-profile
-  python3 finance.py current-tax-profile
-  python3 finance.py list-categories
-  python3 finance.py add-category <name> <budget> [threshold]
-  python3 finance.py modify-budget <category> <amount>
-  python3 finance.py remove-category <name>
-  python3 finance.py list-payments
-  python3 finance.py add-payment <name> <amount> <due_day> [account] [autopay]
-  python3 finance.py modify-payment <name> <amount>
-  python3 finance.py remove-payment <name>
-  python3 finance.py list-debts
-  python3 finance.py add-debt <name> <balance> [apr]
-  python3 finance.py update-debt <name> <balance>
-  python3 finance.py pay-debt <name> <amount>
-  python3 finance.py add-card <name>
-  python3 finance.py remove-card <name>
-  python3 finance.py list-goals
-  python3 finance.py add-goal <name> <target> [deadline]
-  python3 finance.py remove-goal <name>
-  python3 finance.py save <goal> <amount>
-  python3 finance.py telemetry [on|off|status|info]
+Every command returns JSON to stdout. The LLM never controls flow.
 """
 
 import json
 import sys
-from datetime import datetime
+from datetime import date, datetime
 from pathlib import Path
 
-# Add scripts dir to path
 sys.path.insert(0, str(Path(__file__).parent))
 
 from lib import config as C
-from lib.rules import match_rules, add_rule, log_correction
-from lib.parser import parse_text, parse_photo, parse_csv_text, check_duplicate
-from lib.logger import log_transaction, log_income, log_split_receipt, format_confirmation, format_income_confirmation, format_split_confirmation
-from lib.budget import weekly_summary, budget_status_brief
-from lib.payments import check_payments
-from lib.cashflow import daily_cashflow, update_balance, update_savings, update_savings_target, update_payday
-from lib.analyst import monthly_report
-from lib.reconcile import reconcile_csv
-from lib import sheets
+from lib.errors import FinanceError, ErrorCode
+from lib.state_machine import (
+    SetupStateMachine, install_check, preflight, setup_status, check_onboarding,
+)
 
 
-def cmd_parse_text(text: str):
-    lang = C.get_language()
-    tx = parse_text(text)
-    # If income, skip duplicate check
-    if tx.get("type") == "income":
-        print(json.dumps(tx, indent=2, ensure_ascii=False))
-        return
-    # Check duplicates for expenses
+def _out(data: dict) -> None:
+    print(json.dumps(data, indent=2, ensure_ascii=False))
+
+def _err(e: FinanceError) -> None:
+    print(json.dumps(e.to_dict(), indent=2, ensure_ascii=False))
+    sys.exit(1)
+
+def _require_setup():
+    if not C.is_setup_complete():
+        _err(FinanceError(ErrorCode.SETUP_INCOMPLETE,
+                          'Setup not complete. Run: finance.py setup-next "start"'))
+
+def _with_onboarding(command: str, result: dict) -> dict:
+    ob = check_onboarding(command)
+    if ob and ob.get("onboarding_message"):
+        result["_onboarding"] = ob
+    return result
+
+
+# ── Setup commands ────────────────────────────────────
+
+def cmd_install_check():
+    _out(install_check())
+
+def cmd_preflight():
+    _out(preflight())
+
+def cmd_setup_next(user_input: str, mode: str = "full"):
     try:
-        recent = sheets.get_recent_transactions(days=2)
-        dup = check_duplicate(tx, recent)
-        if dup:
-            if lang == "es":
-                tx["_duplicate_warning"] = (
-                    f"Ya registré ${tx['amount']:.2f} en {tx['merchant']} el {dup.get('date')}. "
-                    f"¿Es otra compra o duplicado?"
-                )
-            else:
-                tx["_duplicate_warning"] = (
-                    f"Already logged ${tx['amount']:.2f} at {tx['merchant']} on {dup.get('date')}. "
-                    f"Is this another purchase or a duplicate?"
-                )
-    except Exception:
-        pass  # Sheets not available yet, skip dup check
-    print(json.dumps(tx, indent=2, ensure_ascii=False))
+        sm = SetupStateMachine(mode=mode)
+        _out(sm.process(user_input))
+    except FinanceError as e:
+        _err(e)
+
+def cmd_setup_status():
+    _out(setup_status())
+
+def cmd_onboarding_check(command: str):
+    result = check_onboarding(command)
+    _out(result if result else {"onboarding_message": None})
+
+def cmd_setup_reset():
+    C.clear_setup_state()
+    C.invalidate_config_cache()
+    config_path = C.get_config_dir() / "tracker_config.json"
+    if config_path.exists():
+        cfg = C.load_json(config_path)
+        if not cfg.get("user", {}).get("setup_complete", False):
+            config_path.unlink()
+    _out({"reset": True, "message": "Setup state cleared."})
 
 
-def cmd_parse_photo(path: str):
-    tx = parse_photo(path)
-    print(json.dumps(tx, indent=2, ensure_ascii=False))
+# ── Add transaction ───────────────────────────────────
 
+def cmd_add(text: str):
+    _require_setup()
+    from lib.parser import parse_text
+    from lib.merchant_rules import save_merchant_rule
+    from lib.budget import check_budget_alerts
 
-def cmd_log(tx_json: str):
-    tx = json.loads(tx_json)
-    if tx.get("type") == "income":
-        result = log_income(tx)
-        msg = format_income_confirmation(tx, result)
-    else:
-        result = log_transaction(tx)
-        msg = format_confirmation(tx, result)
-    print(json.dumps({"result": result, "message": msg}, indent=2, ensure_ascii=False))
+    tx = parse_text(text)
+    if tx.get("llm_request"):
+        _out(tx)
+        return
 
+    # Auto-learn merchant rule
+    if (tx.get("confidence", 0) >= 0.8 and tx.get("merchant")
+            and tx.get("category") and tx.get("category") != "Other"
+            and not tx.get("requires_line_items")):
+        save_merchant_rule(tx["merchant"], tx["category"],
+                           confidence=tx.get("confidence", 0.85), created_by="auto")
 
-def cmd_income(text: str):
-    """Quick income registration: income 2800 or income 2800 paycheck"""
-    from lib.parser import parse_income
-    parts = text.strip().split()
-    amount = float(parts[0]) if parts else 0
-    source = parts[1] if len(parts) > 1 else "paycheck"
-    tx = {
-        "type": "income",
-        "amount": amount,
-        "merchant": "Income",
-        "date": datetime.now().strftime("%Y-%m-%d"),
-        "category": "Income",
-        "subcategory": source,
-        "card": "Bank",
-        "input_method": "text",
-        "confidence": 1.0,
-        "notes": f"Income: {text.strip()}",
-    }
-    result = log_income(tx)
-    msg = format_income_confirmation(tx, result)
-    print(json.dumps({"result": result, "message": msg}, indent=2, ensure_ascii=False))
+    # Write to Sheets
+    _try_write_tx(tx)
 
-
-def cmd_payday(text: str):
-    """Set payday schedule: 'biweekly 2800' or 'monthly 5000 15'"""
-    parts = text.strip().split()
-    schedule = parts[0] if parts else "biweekly"
-    amount = float(parts[1]) if len(parts) > 1 else 0
-    dates = None
-    if len(parts) > 2:
-        dates = [int(d) for d in parts[2].split(",")]
-    result = update_payday(schedule, amount, dates)
-    print(result)
-
-
-def cmd_balance(amount: str):
-    result = update_balance(float(amount))
-    print(result)
-
-
-def cmd_cashflow():
-    print(daily_cashflow())
-
-
-def cmd_weekly():
-    print(weekly_summary())
-
-
-def cmd_monthly(month: str = None):
-    print(monthly_report(month))
-
-
-def cmd_payments():
-    alerts = check_payments()
+    # Check budget alerts
+    alerts = check_budget_alerts(tx.get("category", "Other"), tx.get("amount", 0))
     if alerts:
-        print("\n".join(alerts))
-    else:
-        lang = C.get_language()
+        tx["_budget_alerts"] = alerts
+
+    # Implicit confirm for high confidence
+    lang = C.get_language()
+    if tx.get("confidence", 0) >= 0.9 and not tx.get("needs_confirmation"):
+        tx["_implicit_confirm"] = True
         if lang == "es":
-            print("No hay alertas de pago hoy.")
+            tx["_message"] = (f"Registrado: ${tx.get('amount', 0):.2f} → "
+                              f"{tx.get('category', 'Other')} ({tx.get('merchant', '')}). "
+                              f"Responde 'undo' para revertir.")
         else:
-            print("No payment alerts today.")
+            tx["_message"] = (f"Added: ${tx.get('amount', 0):.2f} → "
+                              f"{tx.get('category', 'Other')} ({tx.get('merchant', '')}). "
+                              f"Reply 'undo' to revert.")
+
+    # Save for undo
+    _save_last_tx(tx)
+    _out(_with_onboarding("add", tx))
 
 
-def cmd_reconcile(csv_path: str, bank: str = "auto"):
-    content = Path(csv_path).read_text()
-    result = reconcile_csv(content, bank)
-    print(result["summary"])
-    lang = C.get_language()
-    if result["probable"]:
-        header = "Necesitan confirmación:" if lang == "es" else "Need confirmation:"
-        print(f"\n{header}")
-        for p in result["probable"]:
-            print(f"  ${p['amount']:.2f} — Bank: {p['merchant_bank']} vs Receipt: {p['merchant_receipt']}")
-    if result["unmatched_receipt"]:
-        header = "Recibos sin match en banco:" if lang == "es" else "Receipts without bank match:"
-        print(f"\n{header}")
-        for u in result["unmatched_receipt"]:
-            print(f"  ${u['amount']:.2f} en {u['merchant_receipt']} ({u['date']})")
-
-
-def cmd_add_rule(pattern: str, category: str, confidence: str = "0.85"):
-    result = add_rule(pattern, category, float(confidence))
-    print(f"Rule {result}: {pattern} → {category} ({confidence})")
-
-
-def cmd_savings(goal: str, amount: str):
-    print(update_savings(goal, float(amount)))
-
-
-def cmd_savings_target(goal: str, target: str):
-    print(update_savings_target(goal, float(target)))
-
-
-def cmd_status(category: str = None):
-    from datetime import datetime
-    month = f"{datetime.now().year}-{datetime.now().month:02d}"
-    if category:
-        total = sheets.get_month_spending(category, month)
-        budgets = C.get_category_budgets()
-        budget = budgets.get(category, {}).get("monthly")
-        if budget:
-            print(f"{category}: ${total:.0f}/${budget} ({total/budget*100:.0f}%)")
-        else:
-            lang = C.get_language()
-            no_budget = "sin presupuesto" if lang == "es" else "no budget"
-            print(f"{category}: ${total:.0f} ({no_budget})")
+def cmd_add_photo(path: str):
+    _require_setup()
+    from lib.parser import parse_photo
+    tx = parse_photo(path)
+    if tx:
+        _out(_with_onboarding("add-photo", tx))
     else:
-        print(budget_status_brief(month))
+        _out({"error": True, "message": "Failed to parse receipt photo."})
 
 
-def cmd_log_split(receipt_json: str):
-    receipt = json.loads(receipt_json)
-    results = log_split_receipt(receipt)
-    messages = []
-    for r in results:
-        tx, budget = r["tx"], r["budget"]
-        msg = f"  ✔ ${tx['amount']:.2f} → {tx['category']}"
-        if tx.get("tax_deductible"):
-            msg += f" [Deductible: {tx.get('tax_category')}]"
-        if budget.get("alert_msg"):
-            msg += f"\n    {budget['alert_msg']}"
-        messages.append(msg)
-    lang = C.get_language()
-    header = f"Registradas {len(results)} transacciones:" if lang == "es" else f"Logged {len(results)} transactions:"
-    print(header + "\n" + "\n".join(messages))
+def _try_write_tx(tx: dict):
+    """Try to write transaction to Sheets. Silently skip if not available."""
+    try:
+        from lib import sheets
+        if sheets.load_sheets_config():
+            tx.setdefault("timestamp", datetime.now().isoformat())
+            tx.setdefault("month", tx.get("date", "")[:7])
+            tx.setdefault("matched", False)
+            tx.setdefault("source", "manual")
+            sheets.write_transaction(tx)
+            tx["_written_to_sheets"] = True
+    except Exception:
+        tx["_written_to_sheets"] = False
 
 
-def cmd_taxes(year: str = None):
-    """Tax deduction report — reads from tracker_config.json tax section."""
-    tax_profile = C.get_tax_profile()
-    if not tax_profile.get("enabled"):
-        print("Tax tracking is not enabled.")
-        print("Run: finance.py new-tax-profile")
+def _save_last_tx(tx: dict):
+    """Save last transaction for undo."""
+    C.save_json(C.get_config_dir() / "last_transaction.json", {
+        "tx": tx, "timestamp": datetime.now().isoformat(),
+    })
+
+
+# ── Undo ──────────────────────────────────────────────
+
+def cmd_undo():
+    _require_setup()
+    path = C.get_config_dir() / "last_transaction.json"
+    if not path.exists():
+        _out({"error": True, "message": "Nothing to undo."})
         return
-
-    year = year or str(datetime.now().year)
-    deductions = sheets.get_tax_deductions(year=year)
-
-    biz_name = tax_profile.get("business_name") or tax_profile.get("business_type", "Business")
-    schedule = tax_profile.get("schedule_type", "")
-
-    lines = [f"TAX DEDUCTIONS {year} — {biz_name} ({schedule})", ""]
-    total = 0
-
-    for cat in tax_profile.get("tax_categories", []):
-        cat_deductions = [d for d in deductions if d.get("tax_category") == cat["id"]]
-        cat_total = sum(float(d.get("amount", 0)) for d in cat_deductions)
-        if cat_total > 0:
-            lines.append(f"  {cat['label']}: ${cat_total:,.2f} ({len(cat_deductions)} items)")
-            total += cat_total
-
-    lines.append(f"\n  TOTAL DEDUCTIBLE: ${total:,.2f}")
-    print("\n".join(lines))
-
-
-def cmd_new_tax_profile(answers_json: str = None):
-    """Create a new tax profile via AI-powered wizard.
-
-    Non-interactive: finance.py new-tax-profile '{"tax":"rental","tax_description":"Airbnb house"}'
-    """
-    from lib.setup_wizard import run_tax_setup
-    answers = None
-    if answers_json:
-        answers = json.loads(answers_json)
-    run_tax_setup(answers=answers)
-
-
-def cmd_update_tax_profile(action: str = None, *action_args):
-    """Update existing tax profile — add/remove rules.
-
-    Non-interactive usage:
-      finance.py update-tax-profile regenerate
-      finance.py update-tax-profile remove-rule 2
-      finance.py update-tax-profile add-keywords 1 "keyword1,keyword2,keyword3"
-    """
-    tax_profile = C.get_tax_profile()
-    if not tax_profile.get("enabled"):
-        print("No tax profile exists. Run: finance.py new-tax-profile")
-        return
-    print(f"Current profile: {tax_profile.get('business_type')}")
-    print(f"Schedule: {tax_profile.get('schedule_type')}")
-    print(f"Rules: {len(tax_profile.get('ask_rules', []))}")
-    for i, rule in enumerate(tax_profile.get("ask_rules", []), 1):
-        print(f"  {i}. {rule['trigger']} ({len(rule['keywords'])} keywords)")
-
-    # Non-interactive mode
-    if action:
-        choice = {"regenerate": "1", "remove-rule": "3", "add-keywords": "4"}.get(action, action)
-    else:
-        print()
-        print("Options:")
-        print("  1. Regenerate entire profile with AI")
-        print("  2. Add a new rule")
-        print("  3. Remove a rule")
-        print("  4. Add keywords to existing rule")
-        try:
-            choice = input("→ ").strip()
-        except EOFError:
-            print("No input available. Use: finance.py update-tax-profile [regenerate|remove-rule N|add-keywords N 'kw1,kw2']")
+    data = C.load_json(path)
+    ts = data.get("timestamp", "")
+    try:
+        from datetime import datetime as dt
+        saved_at = dt.fromisoformat(ts)
+        if (dt.now() - saved_at).total_seconds() > 300:
+            _out({"error": True, "message": "Undo window expired (5 minutes)."})
             return
-
-    if choice == "1":
-        from lib.setup_wizard import run_tax_setup
-        run_tax_setup()
-    elif choice == "3" and tax_profile.get("ask_rules"):
-        if action_args:
-            idx = int(action_args[0]) - 1
-        else:
-            try:
-                idx = int(input("Rule number to remove: ").strip()) - 1
-            except EOFError:
-                print("No input. Usage: finance.py update-tax-profile remove-rule <number>")
-                return
-        if 0 <= idx < len(tax_profile["ask_rules"]):
-            removed = tax_profile["ask_rules"].pop(idx)
-            config = C._load_tracker_config()
-            config["tax"] = tax_profile
-            C.save_tracker_config(config)
-            print(f"Removed rule: {removed['trigger']}")
-    elif choice == "4" and tax_profile.get("ask_rules"):
-        if len(action_args) >= 2:
-            idx = int(action_args[0]) - 1
-            new_kw = action_args[1]
-        else:
-            try:
-                idx = int(input("Rule number to update: ").strip()) - 1
-                new_kw = input("New keywords (comma-separated): ").strip()
-            except EOFError:
-                print("No input. Usage: finance.py update-tax-profile add-keywords <number> 'kw1,kw2'")
-                return
-        if 0 <= idx < len(tax_profile["ask_rules"]):
-            keywords = [k.strip().lower() for k in new_kw.split(",") if k.strip()]
-            tax_profile["ask_rules"][idx]["keywords"].extend(keywords)
-            config = C._load_tracker_config()
-            config["tax"] = tax_profile
-            C.save_tracker_config(config)
-            print(f"Added {len(keywords)} keywords to rule: {tax_profile['ask_rules'][idx]['trigger']}")
+    except Exception:
+        pass
+    # TODO: remove from Sheets by row matching
+    path.unlink()
+    _out({"undone": True, "transaction": data.get("tx", {}),
+          "message": "Transaction marked for removal."})
 
 
-def cmd_current_tax_profile():
-    """Show current tax profile."""
-    tax_profile = C.get_tax_profile()
-    if not tax_profile.get("enabled"):
-        print("Tax tracking: DISABLED")
-        print("Run: finance.py new-tax-profile")
-        return
-    print(f"Business: {tax_profile.get('business_type')}")
-    print(f"Schedule: {tax_profile.get('schedule_type')}")
-    if tax_profile.get("business_name"):
-        print(f"Name: {tax_profile['business_name']}")
-    print(f"Deduction rules ({len(tax_profile.get('ask_rules', []))}):")
-    for rule in tax_profile.get("ask_rules", []):
-        kw_preview = ", ".join(rule["keywords"][:5])
-        print(f"  • {rule['trigger']}: {kw_preview}...")
-    print(f"Never ask about: {', '.join(tax_profile.get('never_ask', [])[:8])}...")
+# ── Budget ────────────────────────────────────────────
 
+def cmd_budget_status():
+    _require_setup()
+    from lib.budget import get_budget_status, format_budget_status
+    status = get_budget_status()
+    status["_formatted"] = format_budget_status(status)
+    _out(_with_onboarding("budget-status", status))
+
+
+# ── Cashflow ──────────────────────────────────────────
+
+def cmd_safe_to_spend():
+    _require_setup()
+    from lib.cashflow import safe_to_spend, format_cashflow
+    data = safe_to_spend()
+    data["_formatted"] = format_cashflow(data)
+    _out(_with_onboarding("cashflow", data))
+
+
+def cmd_daily_cashflow_report():
+    _require_setup()
+    from lib.reports import daily_cashflow_report
+    _out(daily_cashflow_report())
+
+
+# ── Reports ───────────────────────────────────────────
+
+def cmd_weekly_review():
+    _require_setup()
+    from lib.reports import weekly_review
+    _out(weekly_review())
+
+def cmd_monthly_report(month: str = ""):
+    _require_setup()
+    from lib.reports import monthly_report
+    _out(monthly_report(month or None))
+
+
+# ── Transactions ──────────────────────────────────────
+
+def cmd_transactions(count: int = 10):
+    _require_setup()
+    try:
+        from lib import sheets
+        txs = sheets.read_transactions(limit=count)
+        _out({"transactions": txs, "count": len(txs)})
+    except Exception:
+        _out({"transactions": [], "count": 0, "message": "Sheets not available."})
+
+
+# ── Categories ────────────────────────────────────────
 
 def cmd_list_categories():
-    """Show all categories with budget, threshold, and current month spending."""
+    _require_setup()
     budgets = C.get_category_budgets()
-    month = f"{datetime.now().year}-{datetime.now().month:02d}"
+    categories = [{"category": n, "monthly": d.get("monthly", 0),
+                    "type": d.get("type", "variable"), "threshold": d.get("threshold", 0.8)}
+                   for n, d in budgets.items()]
+    _out({"categories": categories, "count": len(categories)})
+
+def cmd_add_category(name: str, budget: float, btype: str = "variable"):
+    _require_setup()
+    config = C._load_tracker_config()
+    if name in config.get("categories", {}):
+        _out({"error": True, "message": f"Category '{name}' already exists."})
+        return
+    config.setdefault("categories", {})[name] = {"monthly": budget, "type": btype, "threshold": 0.8}
+    C.save_tracker_config(config)
+    _out({"added": True, "category": name, "monthly": budget, "type": btype})
+
+def cmd_remove_category(name: str):
+    _require_setup()
+    config = C._load_tracker_config()
+    if name not in config.get("categories", {}):
+        _out({"error": True, "message": f"Category '{name}' not found."})
+        return
+    del config["categories"][name]
+    C.save_tracker_config(config)
+    _out({"removed": True, "category": name})
+
+
+# ── Rules ─────────────────────────────────────────────
+
+def cmd_list_rules():
+    _require_setup()
+    from lib.merchant_rules import list_rules
+    _out({"rules": list_rules(), "count": len(list_rules())})
+
+def cmd_add_rule(pattern: str, category: str, confidence: float = 0.9):
+    _require_setup()
+    from lib.merchant_rules import save_merchant_rule
+    save_merchant_rule(pattern, category, confidence=confidence, created_by="manual")
+    _out({"added": True, "pattern": pattern, "category": category, "confidence": confidence})
+
+
+# ── Balance ───────────────────────────────────────────
+
+def cmd_update_balance(account: str, amount: float):
+    _require_setup()
+    from lib.cashflow import update_balance
+    _out(update_balance(account, amount))
+
+
+# ── Payments ──────────────────────────────────────────
+
+def cmd_payment_check():
+    _require_setup()
+    from lib.payments import check_due_soon, get_upcoming_payments
+    _out({"alerts": check_due_soon(days=3), "upcoming_7d": get_upcoming_payments(days=7)})
+
+
+# ── Reconciliation ────────────────────────────────────
+
+def cmd_reconcile(csv_path: str):
+    _require_setup()
+    from lib.reconcile import reconcile_csv
+    if not Path(csv_path).exists():
+        _out({"error": True, "message": f"File not found: {csv_path}"})
+        return
+    _out(reconcile_csv(csv_path))
+
+def cmd_analyze_csv(csv_path: str):
+    _require_setup()
+    from lib.csv_analyzer import analyze_csv
+    if not Path(csv_path).exists():
+        _out({"error": True, "message": f"File not found: {csv_path}"})
+        return
+    _out(analyze_csv(csv_path))
+
+def cmd_import_csv(csv_path: str, dry_run: bool = False):
+    _require_setup()
+    from lib.reconcile import import_csv
+    if not Path(csv_path).exists():
+        _out({"error": True, "message": f"File not found: {csv_path}"})
+        return
+    _out(import_csv(csv_path, dry_run=dry_run))
+
+
+# ── Tax ───────────────────────────────────────────────
+
+def cmd_tax_summary(year: str = ""):
+    _require_setup()
+    if not year:
+        year = str(date.today().year)
     try:
-        spending = sheets.get_all_month_spending(month)
+        from lib import sheets
+        deductions = sheets.get_tax_deductions(year=year)
     except Exception:
-        spending = {}
+        deductions = []
 
-    for cat in C.get_categories():
-        info = budgets.get(cat, {})
-        budget = info.get("monthly")
-        threshold = info.get("threshold")
-        spent = spending.get(cat, 0)
-        if budget:
-            pct = spent / budget * 100
-            if pct >= 100:
-                flag = "OVER"
-            elif pct >= 95:
-                flag = "ALERT"
-            elif pct >= 80:
-                flag = "CAUTION"
-            else:
-                flag = "OK"
-            print(f"  {cat}: ${spent:.0f}/${budget} ({pct:.0f}%) [{flag}]  threshold={threshold}")
-        else:
-            print(f"  {cat}: ${spent:.0f} (no budget)  threshold={threshold}")
-
-
-def cmd_add_category(name: str, budget: str, threshold: str = "0.8"):
-    """Add a category to tracker_config.json."""
-    config = C._load_tracker_config()
-    thr = None if threshold == "null" else float(threshold)
-    config.setdefault("categories", {})[name] = {"monthly": int(budget), "threshold": thr}
-    C.save_tracker_config(config)
-    C.invalidate_config_cache()
-    print(f"✅ Category '{name}' added: ${budget}/mo, threshold={thr}")
-
-
-def cmd_modify_budget(category: str, amount: str):
-    """Change the monthly budget for a category."""
-    config = C._load_tracker_config()
-    cats = config.get("categories", {})
-    if category not in cats:
-        print(f"Category '{category}' not found.")
-        return
-    old = cats[category].get("monthly")
-    cats[category]["monthly"] = int(amount)
-    C.save_tracker_config(config)
-    C.invalidate_config_cache()
-    print(f"✅ {category} budget: ${old} → ${amount}")
-
-
-def cmd_remove_category(name: str, confirm: str = None):
-    """Remove a category. Pass --yes or 'yes' to skip confirmation."""
-    config = C._load_tracker_config()
-    cats = config.get("categories", {})
-    if name not in cats:
-        print(f"Category '{name}' not found.")
-        return
-    if confirm not in ("yes", "--yes", "y"):
-        try:
-            confirm = input(f"Remove category '{name}'? (y/N) → ").strip().lower()
-        except EOFError:
-            confirm = "n"
-    if confirm not in ("y", "yes", "--yes"):
-        print("Cancelled.")
-        return
-    del cats[name]
-    C.save_tracker_config(config)
-    C.invalidate_config_cache()
-    print(f"✅ Category '{name}' removed.")
-
-
-def cmd_list_payments():
-    """Show all payments with details."""
-    payments = C.get_payments()
-    if not payments:
-        print("No payments configured.")
-        return
+    by_category = {}
     total = 0
-    for p in payments:
-        autopay = "autopay" if p.get("autopay") else "manual"
-        promo = f"  promo {p['apr']}% until {p['promo_expiry']}" if p.get("promo_expiry") else f"  APR {p.get('apr', '?')}%"
-        print(f"  {p['name']}: ${p['amount']} due day {p['due_day']} ({p.get('account', '?')}) [{autopay}]{promo}")
-        total += p["amount"]
-    print(f"\n  Total fixed monthly: ${total:,}")
+    for d in deductions:
+        cat = d.get("tax_category", "other")
+        amt = float(d.get("amount", 0))
+        by_category.setdefault(cat, {"count": 0, "total": 0})
+        by_category[cat]["count"] += 1
+        by_category[cat]["total"] += amt
+        total += amt
 
-
-def cmd_add_payment(name: str, amount: str, due_day: str, account: str = "Bank", autopay: str = "true"):
-    """Add a payment to tracker_config.json."""
     config = C._load_tracker_config()
-    payment = {
-        "name": name,
-        "amount": float(amount),
-        "due_day": int(due_day),
-        "account": account,
-        "autopay": autopay.lower() in ("true", "yes", "1"),
-        "apr": 0,
-        "promo_expiry": None,
-    }
-    config.setdefault("payments", []).append(payment)
-    C.save_tracker_config(config)
-    C.invalidate_config_cache()
-    print(f"✅ Payment '{name}' added: ${amount} due day {due_day}")
+    rulepacks = config.get("tax", {}).get("rulepacks", [])
+    _out({
+        "year": year,
+        "total_deductible": round(total, 2),
+        "by_category": {k: {"count": v["count"], "total": round(v["total"], 2)}
+                        for k, v in by_category.items()},
+        "rulepacks": rulepacks,
+        "transaction_count": len(deductions),
+    })
 
-
-def cmd_remove_payment(name: str):
-    """Remove a payment by name."""
-    config = C._load_tracker_config()
-    payments = config.get("payments", [])
-    idx = next((i for i, p in enumerate(payments) if p["name"].lower() == name.lower()), None)
-    if idx is None:
-        print(f"Payment '{name}' not found.")
-        return
-    removed = payments.pop(idx)
-    C.save_tracker_config(config)
-    C.invalidate_config_cache()
-    print(f"✅ Payment '{removed['name']}' removed.")
-
-
-def cmd_list_debts():
-    """Show debts from the Debt Tracker tab in Sheets."""
+def cmd_tax_export(year: str = ""):
+    _require_setup()
+    if not year:
+        year = str(date.today().year)
     try:
-        ws = sheets.get_sheet(C.TAB_DEBT)
-        rows = ws.get_all_records()
-        if not rows:
-            print("No debts in Debt Tracker tab.")
-            return
-        for r in rows:
-            print(f"  {r.get('creditor', '?')}: ${r.get('balance', 0):,} (APR {r.get('apr', '?')}%) min ${r.get('minimum_payment', '?')}")
-    except Exception as e:
-        print(f"Could not read Debt Tracker tab: {e}")
+        from lib import sheets
+        deductions = sheets.get_tax_deductions(year=year)
+    except Exception:
+        deductions = []
+
+    # Format as CSV-ready rows
+    rows = []
+    for d in deductions:
+        rows.append({
+            "date": d.get("date", ""),
+            "amount": d.get("amount", 0),
+            "merchant": d.get("merchant", ""),
+            "category": d.get("category", ""),
+            "tax_category": d.get("tax_category", ""),
+        })
+    _out({"year": year, "rows": rows, "count": len(rows),
+          "format": "Schedule E/C ready"})
 
 
-def cmd_add_card(name: str):
-    """Add a card to user.cards."""
-    config = C._load_tracker_config()
-    cards = config["user"].setdefault("cards", [])
-    if name in cards:
-        print(f"Card '{name}' already exists.")
-        return
-    cards.append(name)
-    C.save_tracker_config(config)
-    C.invalidate_config_cache()
-    print(f"✅ Card '{name}' added. Cards: {cards}")
+# ── Debt ──────────────────────────────────────────────
+
+def cmd_debt_strategy():
+    _require_setup()
+    from lib.debt_optimizer import compare_strategies, format_debt_strategy
+    comparison = compare_strategies()
+    comparison["_formatted"] = format_debt_strategy(comparison)
+    _out(comparison)
 
 
-def cmd_remove_card(name: str):
-    """Remove a card from user.cards."""
-    config = C._load_tracker_config()
-    cards = config["user"].get("cards", [])
-    matches = [c for c in cards if c.lower() == name.lower()]
-    if not matches:
-        print(f"Card '{name}' not found. Current: {cards}")
-        return
-    cards.remove(matches[0])
-    C.save_tracker_config(config)
-    C.invalidate_config_cache()
-    print(f"✅ Card '{matches[0]}' removed. Cards: {cards}")
+# ── Savings ───────────────────────────────────────────
 
+def cmd_savings_goals():
+    _require_setup()
+    goals = C.get_savings()
+    today = date.today()
+    for g in goals:
+        remaining = g.get("target", 0) - g.get("saved", 0)
+        try:
+            dl = date.fromisoformat(g.get("deadline", ""))
+            days_left = (dl - today).days
+            g["days_left"] = days_left
+            g["daily_required"] = round(remaining / max(days_left, 1), 2) if remaining > 0 else 0
+        except (ValueError, TypeError):
+            g["days_left"] = None
+            g["daily_required"] = 0
+    _out({"savings_goals": goals, "count": len(goals)})
 
-def cmd_list_goals():
-    """Show savings goals with progress."""
-    from datetime import date
-    savings = C.get_savings()
-    if not savings:
-        print("No savings goals configured.")
-        return
-    for s in savings:
-        remaining = s["target"] - s.get("saved", 0)
-        days_left = max((date.fromisoformat(s["deadline"]) - date.today()).days, 1)
-        daily = remaining / days_left
-        pct = s.get("saved", 0) / s["target"] * 100 if s["target"] else 0
-        print(f"  {s['goal']}: ${s.get('saved', 0):,.0f}/${s['target']:,.0f} ({pct:.0f}%) — ${daily:.0f}/day — deadline {s['deadline']} ({days_left}d)")
-
-
-def cmd_add_goal(name: str, target: str, deadline: str = None):
-    """Add a savings goal."""
-    from datetime import date
-    if not deadline:
-        from datetime import timedelta
-        deadline = (date.today() + timedelta(days=180)).isoformat()
+def cmd_add_savings_goal(name: str, target: float, deadline: str = ""):
+    _require_setup()
     config = C._load_tracker_config()
     config.setdefault("savings", []).append({
-        "goal": name,
-        "target": float(target),
-        "saved": 0,
-        "deadline": deadline,
+        "goal": name, "target": target, "saved": 0,
+        "deadline": deadline or (date.today().replace(year=date.today().year + 1)).isoformat(),
     })
     C.save_tracker_config(config)
-    C.invalidate_config_cache()
-    print(f"✅ Goal '{name}' added: ${target} by {deadline}")
+    _out({"added": True, "goal": name, "target": target, "deadline": deadline})
 
 
-def cmd_remove_goal(name: str):
-    """Remove a savings goal by name."""
-    config = C._load_tracker_config()
-    savings = config.get("savings", [])
-    idx = next((i for i, s in enumerate(savings) if s["goal"].lower() == name.lower()), None)
-    if idx is None:
-        print(f"Goal '{name}' not found.")
+# ── Sheet management ──────────────────────────────────
+
+def cmd_repair_sheet():
+    _require_setup()
+    from lib import sheets
+    sc = sheets.load_sheets_config()
+    if not sc:
+        _out({"error": True, "message": "No sheets_config.json found."})
         return
-    removed = savings.pop(idx)
-    C.save_tracker_config(config)
-    C.invalidate_config_cache()
-    print(f"✅ Goal '{removed['goal']}' removed (saved: ${removed.get('saved', 0):,.0f}).")
+    results = sheets.validate_schema(sc["spreadsheet_id"], sc)
+    _out({"validation": results, "all_ok": all(r["ok"] for r in results.values())})
+
+def cmd_reconnect_sheets():
+    _require_setup()
+    from lib import sheets
+    try:
+        sheets._CLIENT = None
+        sheets._SPREADSHEET = None
+        creds = sheets.get_credentials()
+        _out({"reconnected": True, "message": "Google OAuth token refreshed."})
+    except Exception as e:
+        _out({"error": True, "message": str(e)})
 
 
-def cmd_modify_payment(name: str, amount: str):
-    """Change the amount for an existing payment."""
-    config = C._load_tracker_config()
-    payments = config.get("payments", [])
-    match = next((p for p in payments if p["name"].lower() == name.lower()), None)
-    if not match:
-        print(f"Payment '{name}' not found.")
-        return
-    old = match["amount"]
-    match["amount"] = float(amount)
-    C.save_tracker_config(config)
-    C.invalidate_config_cache()
-    print(f"✅ {match['name']}: ${old} → ${amount}")
+# ── AI backend ────────────────────────────────────────
+
+def cmd_ai_backend():
+    from lib.ai_parser import detect_ai_backend
+    _out(detect_ai_backend())
 
 
-def cmd_add_debt(name: str, balance: str, apr: str = "0"):
-    """Add a debt to the Debt Tracker tab in Sheets."""
-    now = datetime.now()
-    row = [
-        now.strftime("%Y-%m"),
-        name,
-        float(balance),
-        0,  # minimum_payment — user can update later
-        float(apr),
-        f"Added {now.strftime('%Y-%m-%d')}",
+# ── Help ──────────────────────────────────────────────
+
+def cmd_help():
+    commands = [
+        ("add \"text\"", "Parse and log expense (e.g. add \"$15 Uber\")"),
+        ("add-photo \"path\"", "Parse receipt photo"),
+        ("undo", "Revert last transaction (5 min)"),
+        ("budget-status", "Budget overview by category"),
+        ("safe-to-spend", "Daily safe spending amount"),
+        ("cashflow", "Daily cashflow report"),
+        ("transactions [N]", "List last N transactions"),
+        ("weekly-review", "Weekly spending review"),
+        ("monthly-report [month]", "Monthly AI analysis"),
+        ("debt-strategy", "Avalanche vs Snowball comparison"),
+        ("tax-summary [year]", "Tax deductions by category"),
+        ("tax-export [year]", "CSV export for accountant"),
+        ("reconcile \"csv\"", "Bank CSV reconciliation"),
+        ("analyze-csv \"csv\"", "Detect bills from CSV"),
+        ("savings-goals", "Show savings progress"),
+        ("add-savings-goal", "Create savings goal"),
+        ("list-categories", "Show budget categories"),
+        ("add-category", "Add budget category"),
+        ("list-rules", "Show merchant rules"),
+        ("add-rule", "Add merchant rule"),
+        ("update-balance", "Set account balance"),
+        ("payment-check", "Due-soon payment alerts"),
+        ("repair-sheet", "Validate sheet structure"),
+        ("reconnect-sheets", "Refresh Google OAuth"),
+        ("check-migrations", "Show pending migrations"),
+        ("ai-backend", "Show AI backend info"),
     ]
-    try:
-        ws = sheets.get_sheet(C.TAB_DEBT)
-        ws.append_row(row, value_input_option="USER_ENTERED")
-        print(f"✅ Debt '{name}' added: ${balance} at {apr}% APR")
-    except Exception as e:
-        print(f"Error adding debt: {e}")
+    _out({
+        "commands": [{"command": c, "description": d} for c, d in commands],
+        "count": len(commands),
+        "_formatted": "Finance Tracker v2 Commands:\n" + "\n".join(
+            f"  {c:<28s} {d}" for c, d in commands
+        ),
+    })
 
 
-def cmd_update_debt(name: str, balance: str):
-    """Update the balance for an existing debt."""
-    try:
-        ws = sheets.get_sheet(C.TAB_DEBT)
-        rows = ws.get_all_records()
-        for i, r in enumerate(rows, start=2):  # row 1 is header
-            if str(r.get("creditor", "")).lower() == name.lower():
-                old = r.get("balance", 0)
-                ws.update_cell(i, 3, float(balance))  # column 3 = balance
-                print(f"✅ {name}: ${old} → ${balance}")
-                return
-        print(f"Debt '{name}' not found in Debt Tracker.")
-    except Exception as e:
-        print(f"Error updating debt: {e}")
+# ── Migrations ────────────────────────────────────────
+
+def cmd_check_migrations():
+    from lib.migrations import check_migrations
+    _out(check_migrations())
 
 
-def cmd_pay_debt(name: str, amount: str):
-    """Record a debt payment — reduces balance."""
-    try:
-        ws = sheets.get_sheet(C.TAB_DEBT)
-        rows = ws.get_all_records()
-        for i, r in enumerate(rows, start=2):
-            if str(r.get("creditor", "")).lower() == name.lower():
-                old = float(r.get("balance", 0))
-                new = old - float(amount)
-                ws.update_cell(i, 3, max(new, 0))
-                print(f"✅ Paid ${amount} to {name}: ${old:,.0f} → ${max(new, 0):,.0f}")
-                return
-        print(f"Debt '{name}' not found in Debt Tracker.")
-    except Exception as e:
-        print(f"Error recording payment: {e}")
-
-
-def cmd_setup(answers_json: str = None):
-    """Run the first-time setup wizard.
-
-    Name and language are auto-detected from workspace USER.md.
-    Only pass: cards, currency, tax type.
-
-    Non-interactive (for LLM/bot):
-      finance.py setup '{"cards":"Chase Visa,Discover,Cash","currency":"USD","tax":"none"}'
-
-    With tax:
-      finance.py setup '{"cards":"Chase,Cash","currency":"USD","tax":"rental","tax_description":"Airbnb house"}'
-    """
-    from lib.setup_wizard import run_setup_wizard
-    answers = None
-    if answers_json:
-        answers = json.loads(answers_json)
-    run_setup_wizard(answers=answers)
-
-
-def cmd_batch_receipts(file_path: str, account: str = "Chase"):
-    from lib.batch_receipts import process_receipt_batch
-    with open(file_path) as f:
-        links = [line.strip() for line in f if line.strip() and line.strip().startswith("http")]
-    result = process_receipt_batch(links, account)
-    print(result["summary"])
-    if result.get("pending_airbnb"):
-        print(result["airbnb_prompt"])
-
-
-def cmd_setup_telegram(answers_json: str = None):
-    """Configure Telegram bot token, chat ID, and timezone for scheduled reports.
-
-    Non-interactive: finance.py setup-telegram '{"bot_token":"123:ABC","chat_id":"456","timezone":"America/New_York"}'
-    Interactive: finance.py setup-telegram
-    """
-    config = C._load_tracker_config()
-    if answers_json:
-        answers = json.loads(answers_json)
-    else:
-        answers = {}
-        print("=" * 50)
-        print("Telegram Setup for Scheduled Reports")
-        print("=" * 50)
-        print()
-        print("Bot Token (from @BotFather):")
-        answers["bot_token"] = input("→ ").strip()
-        print("Chat ID (from @userinfobot):")
-        answers["chat_id"] = input("→ ").strip()
-        print("Timezone (e.g. America/New_York, America/Chicago, Europe/London):")
-        answers["timezone"] = input("→ ").strip() or "America/New_York"
-
-    if not answers.get("bot_token") or not answers.get("chat_id"):
-        print("❌ Both bot_token and chat_id are required.")
-        return
-
-    config["telegram"] = {
-        "bot_token": answers["bot_token"],
-        "chat_id": answers["chat_id"],
-        "timezone": answers.get("timezone", "America/New_York"),
-    }
-    C.save_json(C.CONFIG_DIR / "tracker_config.json", config)
-    print(f"✅ Telegram configured (TZ: {config['telegram']['timezone']})")
-    print(f"   Now run: bash setup_crons.sh to install scheduled reports")
-
-
-def cmd_setup_sheets():
-    """Create the Google Spreadsheet with all required tabs (5 data tabs)."""
-    client = sheets.get_client()
-    spreadsheet_name = C.get_spreadsheet_name()
-
-    created_new = False
-    try:
-        ss = client.open(spreadsheet_name)
-        print(f"Spreadsheet '{spreadsheet_name}' already exists.")
-    except Exception:
-        ss = client.create(spreadsheet_name)
-        created_new = True
-        print(f"Created spreadsheet: {spreadsheet_name}")
-
-    existing_tabs = [ws.title for ws in ss.worksheets()]
-
-    tab_headers = {
-        C.TAB_TRANSACTIONS: [
-            "date", "amount", "merchant", "category", "subcategory",
-            "card", "input_method", "confidence", "matched", "source",
-            "notes", "timestamp", "month",
-            "receipt_id", "receipt_number", "store_address",
-            "tax_deductible", "tax_category", "type"
-        ],
-        C.TAB_MONTHLY: [
-            "month", "total_spent", "total_budget", "categories_over", "top_merchant", "notes"
-        ],
-        C.TAB_DEBT: [
-            "month", "creditor", "balance", "minimum_payment", "apr", "notes"
-        ],
-        C.TAB_RECONCILIATION: [
-            "date", "amount", "merchant_bank", "merchant_receipt",
-            "status", "receipt_row", "csv_row", "resolved_by", "notes"
-        ],
-        C.TAB_CASHFLOW: [
-            "date", "account", "merchant", "amount_signed", "flow_type",
-            "category", "subcategory", "notes", "source", "timestamp", "month"
-        ],
-    }
-
-    for tab_name, headers in tab_headers.items():
-        if tab_name in existing_tabs:
-            print(f"  Tab '{tab_name}' already exists, skipping.")
-            continue
-        ws = ss.add_worksheet(title=tab_name, rows=1000, cols=len(headers))
-        ws.update(range_name="A1", values=[headers])
-        print(f"  Created tab: {tab_name}")
-
-    # Remove default Sheet1 if other tabs exist
-    if "Sheet1" in existing_tabs and len(ss.worksheets()) > 1:
-        try:
-            ss.del_worksheet(ss.worksheet("Sheet1"))
-            print("  Removed default Sheet1.")
-        except Exception:
-            pass
-
-    tabs_created = sum(1 for t in tab_headers if t not in existing_tabs)
-    print(f"\n✓ Spreadsheet ready: {ss.url}")
-
-    # Track setup-sheets
-    from lib import telemetry as T
-    T.track_setup_sheets(created_new, tabs_created)
-
+# ── Main dispatcher ───────────────────────────────────
 
 def main():
     if len(sys.argv) < 2:
-        print(__doc__)
-        sys.exit(1)
+        _err(FinanceError(ErrorCode.INVALID_ARGS, "Usage: finance.py <command> [args]"))
 
     cmd = sys.argv[1]
     args = sys.argv[2:]
 
-    # Telemetry commands
-    if cmd == "telemetry":
-        from lib import telemetry as T
-        subcmd = args[0] if args else "status"
-        if subcmd == "off":
-            T.set_enabled(False)
-            print("Telemetry disabled.")
-        elif subcmd == "on":
-            T.set_enabled(True)
-            print("Telemetry enabled.")
-        elif subcmd == "info":
-            print(T.get_info_text())
-        else:
-            print(f"Telemetry: {'enabled' if T.is_enabled() else 'disabled'}")
-            print(f"Install ID: {T._get_install_id()}")
-            print("Run 'finance.py telemetry info' for details on what is collected.")
-        return
-
-    # Setup check — gentle reminder on first run
-    if not C.is_setup_complete() and cmd not in ("setup", "setup-sheets"):
-        print("First time? Run the setup wizard first:")
-        print("   python3 finance.py setup")
-        print()
-
-    commands = {
-        "parse-text": lambda: cmd_parse_text(" ".join(args)),
-        "parse-photo": lambda: cmd_parse_photo(args[0]),
-        "log": lambda: cmd_log(args[0]),
-        "income": lambda: cmd_income(" ".join(args)),
-        "payday": lambda: cmd_payday(" ".join(args)),
-        "balance": lambda: cmd_balance(args[0]),
-        "cashflow": cmd_cashflow,
-        "weekly-summary": cmd_weekly,
-        "monthly-report": lambda: cmd_monthly(args[0] if args else None),
-        "payment-check": cmd_payments,
-        "reconcile": lambda: cmd_reconcile(args[0], args[1] if len(args) > 1 else "auto"),
-        "add-rule": lambda: cmd_add_rule(args[0], args[1], args[2] if len(args) > 2 else "0.85"),
-        "savings": lambda: cmd_savings(args[0], args[1]),
-        "savings-target": lambda: cmd_savings_target(args[0], args[1]),
-        "status": lambda: cmd_status(args[0] if args else None),
-        "log-split": lambda: cmd_log_split(args[0]),
-        "taxes": lambda: cmd_taxes(args[0] if args else None),
-        "batch-receipts": lambda: cmd_batch_receipts(args[0], args[1] if len(args) > 1 else "Chase"),
-        "setup-sheets": cmd_setup_sheets,
-        "setup": lambda: cmd_setup(args[0] if args else None),
-        "new-tax-profile": lambda: cmd_new_tax_profile(args[0] if args else None),
-        "update-tax-profile": lambda: cmd_update_tax_profile(*args),
-        "current-tax-profile": cmd_current_tax_profile,
-        "list-categories": cmd_list_categories,
-        "add-category": lambda: cmd_add_category(args[0], args[1], args[2] if len(args) > 2 else "0.8"),
-        "modify-budget": lambda: cmd_modify_budget(args[0], args[1]),
-        "remove-category": lambda: cmd_remove_category(args[0], args[1] if len(args) > 1 else None),
-        "list-payments": cmd_list_payments,
-        "add-payment": lambda: cmd_add_payment(args[0], args[1], args[2], args[3] if len(args) > 3 else "Bank", args[4] if len(args) > 4 else "true"),
-        "modify-payment": lambda: cmd_modify_payment(args[0], args[1]),
-        "remove-payment": lambda: cmd_remove_payment(args[0]),
-        "list-debts": cmd_list_debts,
-        "add-debt": lambda: cmd_add_debt(args[0], args[1], args[2] if len(args) > 2 else "0"),
-        "update-debt": lambda: cmd_update_debt(args[0], args[1]),
-        "pay-debt": lambda: cmd_pay_debt(args[0], args[1]),
-        "add-card": lambda: cmd_add_card(args[0]),
-        "remove-card": lambda: cmd_remove_card(args[0]),
-        "list-goals": cmd_list_goals,
-        "add-goal": lambda: cmd_add_goal(args[0], args[1], args[2] if len(args) > 2 else None),
-        "remove-goal": lambda: cmd_remove_goal(args[0]),
-        "save": lambda: cmd_savings(args[0], args[1]),
-        "setup-telegram": lambda: cmd_setup_telegram(args[0] if args else None),
+    setup_commands = {
+        "install-check": cmd_install_check,
+        "preflight": cmd_preflight,
+        "setup-status": cmd_setup_status,
+        "setup-reset": cmd_setup_reset,
+        "ai-backend": cmd_ai_backend,
+        "help": cmd_help,
+        "check-migrations": cmd_check_migrations,
     }
 
-    if cmd not in commands:
-        print(f"Unknown command: {cmd}")
-        print(__doc__)
-        sys.exit(1)
+    if cmd == "onboarding-check":
+        cmd_onboarding_check(args[0] if args else "")
+        return
+    if cmd == "setup-next":
+        user_input = args[0] if args else ""
+        mode = "full"
+        if "--mode" in sys.argv:
+            idx = sys.argv.index("--mode")
+            if idx + 1 < len(sys.argv):
+                mode = sys.argv[idx + 1]
+        cmd_setup_next(user_input, mode)
+        return
+    if cmd in setup_commands:
+        setup_commands[cmd]()
+        return
 
-    # Execute with telemetry
-    from lib import telemetry as T
-    import time
-    t0 = time.time()
-    try:
-        commands[cmd]()
-        T.track_command(cmd, int((time.time() - t0) * 1000))
-    except Exception as e:
-        T.track_error(cmd, type(e).__name__)
-        raise
+    runtime_commands = {
+        "add": lambda: cmd_add(" ".join(args)),
+        "add-photo": lambda: cmd_add_photo(args[0] if args else ""),
+        "budget-status": cmd_budget_status,
+        "safe-to-spend": cmd_safe_to_spend,
+        "cashflow": cmd_daily_cashflow_report,
+        "weekly-review": cmd_weekly_review,
+        "monthly-report": lambda: cmd_monthly_report(args[0] if args else ""),
+        "transactions": lambda: cmd_transactions(int(args[0]) if args else 10),
+        "list-categories": cmd_list_categories,
+        "add-category": lambda: cmd_add_category(args[0] if args else "", float(args[1]) if len(args) > 1 else 0, args[2] if len(args) > 2 else "variable"),
+        "remove-category": lambda: cmd_remove_category(args[0] if args else ""),
+        "list-rules": cmd_list_rules,
+        "add-rule": lambda: cmd_add_rule(args[0] if args else "", args[1] if len(args) > 1 else "Other", float(args[2]) if len(args) > 2 else 0.9),
+        "update-balance": lambda: cmd_update_balance(args[0] if args else "Bank", float(args[1]) if len(args) > 1 else 0),
+        "payment-check": cmd_payment_check,
+        "reconcile": lambda: cmd_reconcile(args[0] if args else ""),
+        "analyze-csv": lambda: cmd_analyze_csv(args[0] if args else ""),
+        "import-csv": lambda: cmd_import_csv(args[0] if args else "", "--dry-run" in sys.argv),
+        "tax-summary": lambda: cmd_tax_summary(args[0] if args else ""),
+        "tax-export": lambda: cmd_tax_export(args[0] if args else ""),
+        "debt-strategy": cmd_debt_strategy,
+        "savings-goals": cmd_savings_goals,
+        "add-savings-goal": lambda: cmd_add_savings_goal(args[0] if args else "", float(args[1]) if len(args) > 1 else 0, args[2] if len(args) > 2 else ""),
+        "repair-sheet": cmd_repair_sheet,
+        "reconnect-sheets": cmd_reconnect_sheets,
+        "undo": cmd_undo,
+        "status": cmd_budget_status,
+    }
+
+    if cmd in runtime_commands:
+        runtime_commands[cmd]()
+        return
+
+    all_cmds = list(setup_commands.keys()) + ["setup-next", "onboarding-check"] + list(runtime_commands.keys())
+    _err(FinanceError(ErrorCode.UNKNOWN_COMMAND, f"Unknown command: {cmd}", {"available": all_cmds}))
 
 
 if __name__ == "__main__":

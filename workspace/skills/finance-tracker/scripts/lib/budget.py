@@ -1,119 +1,126 @@
-"""Module 3: Budget Monitor — real-time alerts and weekly summaries."""
+"""Budget tracking for Finance Tracker v2.
 
-import json
-from datetime import datetime
+Cherry-picked status display logic from v1 budget.py.
+"""
+
+from datetime import date
 
 from . import config as C
-from . import sheets
 
 
-def weekly_summary(year: int = None, month: int = None) -> str:
-    """Generate the weekly spending summary."""
-    now = datetime.now()
-    month_str = f"{year or now.year}-{(month or now.month):02d}"
-    spending = sheets.get_all_month_spending(month_str)
+def _get_spending(month: str) -> dict[str, float]:
+    """Get actual spending by category. Gracefully handles missing sheets."""
+    try:
+        from . import sheets
+        sc = sheets.load_sheets_config()
+        if sc:
+            return sheets.get_month_spending_by_category(month)
+    except Exception:
+        pass
+    return {}
+
+
+def get_budget_status(month: str | None = None) -> dict:
+    """Get per-category budget status. Returns structured dict."""
+    if not month:
+        month = date.today().strftime("%Y-%m")
+
     budgets = C.get_category_budgets()
-    lang = C.get_language()
-    name = C.get_owner_name()
+    spending = _get_spending(month)
+    categories = []
+    total_budget = 0
+    total_spent = 0
 
-    lines = [f"WEEKLY SUMMARY — {now.strftime('%b %d, %Y')}"] if lang == "en" else [f"RESUMEN SEMANAL — {now.strftime('%b %d, %Y')}"]
+    for cat_name, cat_data in budgets.items():
+        monthly = cat_data.get("monthly", 0) or 0
+        spent = spending.get(cat_name, 0)
+        remaining = monthly - spent
+        pct = (spent / monthly * 100) if monthly > 0 else 0
+        btype = cat_data.get("type", "variable")
 
-    total = sum(spending.values())
-    days_elapsed = now.day
-    daily_avg = total / max(days_elapsed, 1)
-    if lang == "es":
-        lines.append(f"Gastaste ${total:.0f} este mes (${daily_avg:.0f}/día)")
-    else:
-        lines.append(f"Spent ${total:.0f} this month (${daily_avg:.0f}/day)")
-    lines.append("")
+        status = "ok"
+        if monthly > 0:
+            if pct >= 100:
+                status = "over"
+            elif pct >= 95:
+                status = "critical"
+            elif pct >= 80:
+                status = "warning"
 
-    for cat in C.get_categories():
-        budget = budgets.get(cat, {}).get("monthly")
-        if not budget:
-            continue
-        spent = spending.get(cat, 0)
-        pct = (spent / budget * 100) if budget else 0
-        if pct >= 95:
-            flag = "OVER" if pct >= 100 else "ALERT"
-            if lang == "es":
-                flag = "EXCEDIDO" if pct >= 100 else "ALERTA"
-        elif pct >= 80:
-            flag = "CAUTION" if lang == "en" else "CUIDADO"
-        else:
-            flag = "OK"
-        lines.append(f"  {cat}: ${spent:.0f}/${budget} ({pct:.0f}%) [{flag}]")
+        categories.append({
+            "category": cat_name,
+            "type": btype,
+            "budget": monthly,
+            "spent": spent,
+            "remaining": remaining,
+            "pct": round(pct, 1),
+            "status": status,
+        })
+        total_budget += monthly
+        total_spent += spent
 
-    # Upcoming payments
-    payments = C.get_payments()
-    upcoming = _upcoming_payments(payments, days=7)
-    if upcoming:
-        lines.append("")
-        for p in upcoming:
-            if lang == "es":
-                lines.append(f"Próximo pago: {p['name']} ${p['amount']} el día {p['due_day']} (en {p['days_until']} días)")
-            else:
-                lines.append(f"Upcoming payment: {p['name']} ${p['amount']} on day {p['due_day']} (in {p['days_until']} days)")
-
-    # AI analysis
-    analysis = _ai_weekly_analysis(spending, budgets, name, lang)
-    if analysis:
-        lines.append("")
-        lines.append(analysis)
-
-    return "\n".join(lines)
-
-
-def budget_status_brief(month: str = None) -> str:
-    """Short budget status for daily cashflow message."""
-    now = datetime.now()
-    month_str = month or f"{now.year}-{now.month:02d}"
-    spending = sheets.get_all_month_spending(month_str)
-    budgets = C.get_category_budgets()
-
-    lines = ["Budget status:"]
-    for cat in C.get_categories():
-        budget = budgets.get(cat, {}).get("monthly")
-        if not budget:
-            continue
-        spent = spending.get(cat, 0)
-        pct = spent / budget * 100
-        icon = "✔" if pct < 80 else ("⚠" if pct < 100 else "🔴")
-        if spent > 0 or pct >= 50:
-            lines.append(f"  {cat}: ${spent:.0f}/${budget} ({pct:.0f}%) {icon}")
-
-    return "\n".join(lines)
-
-
-def _upcoming_payments(payments: list, days: int = 7) -> list:
-    now = datetime.now()
-    current_day = now.day
-    results = []
-    for p in payments:
-        due = p["due_day"]
-        days_until = (due - current_day) % 30
-        if 0 <= days_until <= days:
-            results.append({**p, "days_until": days_until})
-    results.sort(key=lambda x: x["days_until"])
-    return results
-
-
-def _ai_weekly_analysis(spending: dict, budgets: dict, name: str, lang: str) -> str:
-    """Short AI analysis of weekly spending patterns."""
-    lang_instruction = "Under 100 words. Spanish only." if lang == "es" else "Under 100 words. English only."
-    prompt = f"""Analyze {name}'s spending this month. Provide 3-4 sentences:
-- Unusual purchases or patterns
-- Categories trending over budget
-- One actionable tip
-
-Spending: {json.dumps(spending)}
-Budgets: {json.dumps({k: v.get('monthly') for k, v in budgets.items() if v.get('monthly')})}
-
-{lang_instruction}"""
-
-    payload = {
-        "model": C.PARSE_MODEL,
-        "messages": [{"role": "user", "content": prompt}],
-        "temperature": 0.7,
+    return {
+        "month": month,
+        "categories": categories,
+        "total_budget": round(total_budget, 2),
+        "total_spent": round(total_spent, 2),
+        "total_remaining": round(total_budget - total_spent, 2),
     }
 
-    return C.ai_extract_text(payload, timeout=30) or ""
+
+def check_budget_alerts(category: str, amount: float) -> list[dict]:
+    """Check if adding `amount` to `category` triggers budget alerts."""
+    budgets = C.get_category_budgets()
+    cat_data = budgets.get(category)
+    if not cat_data or not cat_data.get("monthly"):
+        return []
+
+    monthly = cat_data["monthly"]
+    month = date.today().strftime("%Y-%m")
+    spending = _get_spending(month)
+    spent = spending.get(category, 0)
+    new_total = spent + amount
+    pct = new_total / monthly * 100
+
+    alerts = []
+    threshold = cat_data.get("threshold", 0.8) * 100
+
+    if pct >= 100:
+        alerts.append({
+            "level": "over",
+            "message": f"{category}: ${new_total:.2f}/${monthly:.2f} ({pct:.0f}%) — OVER BUDGET",
+        })
+    elif pct >= 95:
+        alerts.append({
+            "level": "critical",
+            "message": f"{category}: ${new_total:.2f}/${monthly:.2f} ({pct:.0f}%) — almost at limit",
+        })
+    elif pct >= threshold:
+        alerts.append({
+            "level": "warning",
+            "message": f"{category}: ${new_total:.2f}/${monthly:.2f} ({pct:.0f}%) — approaching limit",
+        })
+
+    return alerts
+
+
+def format_budget_status(status: dict) -> str:
+    """Format budget status as human-readable text."""
+    lang = C.get_language()
+    lines = []
+    for cat in status["categories"]:
+        if cat["budget"] <= 0 and cat["spent"] <= 0:
+            continue
+        icon = {"ok": "+", "warning": "!", "critical": "!!", "over": "X"}.get(cat["status"], " ")
+        btype = "(F)" if cat["type"] == "fixed" else "(V)"
+        lines.append(
+            f"  [{icon}] {cat['category']} {btype}: "
+            f"${cat['spent']:,.2f}/${cat['budget']:,.2f} ({cat['pct']:.0f}%)"
+        )
+
+    header = "Estado del Presupuesto" if lang == "es" else "Budget Status"
+    month = status["month"]
+    summary = "\n".join(lines) if lines else "  (no budgets with activity)"
+    total_line = (f"Total: ${status['total_spent']:,.2f}/${status['total_budget']:,.2f} "
+                  f"(remaining: ${status['total_remaining']:,.2f})")
+    return f"{header} ({month}):\n{summary}\n\n{total_line}"
