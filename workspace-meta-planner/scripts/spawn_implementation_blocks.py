@@ -126,6 +126,10 @@ def build_upstream_context(run_dir):
                 compressed = compress_contracts(contracts_data)
                 parts.append(f"=== {artifact_name}.json (compressed for build planning) ===\n{compressed}\n=== END {artifact_name}.json ===")
                 print(f"  Context: {artifact_name} compressed ({len(compressed)} chars vs {artifact_path.stat().st_size} raw)")
+                # Save compressed version for debug/audit
+                debug_compressed_path = run_dir / "debug_contracts_compressed.txt"
+                debug_compressed_path.write_text(compressed, encoding="utf-8")
+                print(f"  Saved: {debug_compressed_path}")
             else:
                 data = load_text(artifact_path)
                 parts.append(f"=== {artifact_name}.json ===\n{data}\n=== END {artifact_name}.json ===")

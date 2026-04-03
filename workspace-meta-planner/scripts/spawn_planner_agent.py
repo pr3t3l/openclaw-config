@@ -232,6 +232,10 @@ def build_user_prompt(agent_name, slug, run_dir):
                     compressed = compress_contracts(contracts_data)
                     parts.append(f"=== {artifact_name}.json (compressed for build planning) ===\n{compressed}\n=== END {artifact_name}.json ===")
                     print(f"  Context: {artifact_name} compressed ({len(compressed)} chars vs {artifact_path.stat().st_size} raw)")
+                    # Save compressed version for debug/audit
+                    debug_compressed_path = run_dir / "debug_contracts_compressed.txt"
+                    debug_compressed_path.write_text(compressed, encoding="utf-8")
+                    print(f"  Saved: {debug_compressed_path}")
                 # Compress large architecture for implementation_planner
                 elif agent_name == "implementation_planner" and artifact_name == "05_architecture_decision" and artifact_path.stat().st_size > 30000:
                     arch_data = load_json(artifact_path)
