@@ -90,6 +90,19 @@ def _is_done(text: str) -> bool:
     return text.strip().lower() in DONE_SIGNALS
 
 
+def _fix_ai_amount(parsed: dict, raw_text: str, key: str = "amount") -> None:
+    """Guard against AI truncating leading digits from amounts.
+
+    If regex finds a larger amount in raw text, override the AI result.
+    Example: AI returns 190.12 but raw text has $3190.12 → fix to 3190.12.
+    """
+    from .parser import _extract_amount
+    regex_amount = _extract_amount(raw_text)
+    ai_amount = parsed.get(key, 0)
+    if regex_amount and ai_amount and regex_amount > ai_amount * 1.5:
+        parsed[key] = regex_amount
+
+
 def _is_meta(text: str) -> str | None:
     t = text.strip().lower()
     word = t.split()[0] if t else ""
@@ -466,7 +479,6 @@ class SetupStateMachine:
             from . import ai_parser as AI
             ai_result = AI.parse_income(text, lang)
             if ai_result and isinstance(ai_result, dict) and not ai_result.get("llm_request"):
-                # Validate required fields
                 if ai_result.get("amount") and ai_result.get("name"):
                     entry = {
                         "name": ai_result["name"],
@@ -476,6 +488,8 @@ class SetupStateMachine:
                         "account_label": ai_result.get("account_label", "Primary Checking"),
                         "is_regular": ai_result.get("is_regular", False),
                     }
+                    # Fix 1: Guard against AI amount truncation
+                    _fix_ai_amount(entry, text)
 
         if not entry:
             if lang == "es":
@@ -682,54 +696,69 @@ class SetupStateMachine:
 
         items = self.collected.setdefault("debts", [])
         lang = _lang(self.collected)
-        entry = None
 
+        # Split by newlines first (multiline paste)
+        import re
+        lines = [l.strip() for l in text.split("\n") if l.strip()]
+        # Also split by ", y " or ", " followed by uppercase (multi-debt in one line)
+        if len(lines) == 1:
+            segments = re.split(r',\s*y\s+|,\s+(?=[A-Z])', text)
+            if len(segments) > 1:
+                lines = [s.strip() for s in segments if s.strip()]
+
+        added = []
+        failed = []
+        for line in lines:
+            entry = self._try_parse_debt(line, lang)
+            if entry:
+                items.append(entry)
+                added.append(f"{entry['name']} ${entry['balance']:,.2f} @ {entry['apr']}%")
+            else:
+                failed.append(line)
+
+        if added:
+            self._save()
+            msg = f"Added {len(added)}: " + "; ".join(added)
+            if failed:
+                msg += f"\nCouldn't parse: {'; '.join(failed[:3])}"
+            msg += "\nAnother? or 'done'"
+            return _response(msg, self.state, items_count=len(items))
+
+        return _response("Format: name, type, balance[, APR%, min_payment]\nExample: Chase Visa, credit_card, 2500, 24.99, 65",
+                         self.state, error=ErrorCode.SETUP_INVALID_INPUT.value)
+
+    def _try_parse_debt(self, text: str, lang: str) -> dict | None:
+        """Try to parse a single debt entry. Comma first, then AI."""
         # Try comma parsing
         parts = [p.strip() for p in text.split(",")]
         if len(parts) >= 3:
             try:
                 name = parts[0]
                 debt_type = parts[1].lower().strip()
-                balance = float(parts[2])
+                balance = float(parts[2].replace("$", "").replace(",", ""))
                 apr = float(parts[3]) if len(parts) >= 4 else 0.0
                 min_payment = float(parts[4]) if len(parts) >= 5 else 0.0
                 if balance >= 0:
-                    entry = {"name": name, "type": debt_type, "balance": balance,
-                             "apr": apr, "minimum_payment": min_payment}
+                    return {"name": name, "type": debt_type, "balance": balance,
+                            "apr": apr, "minimum_payment": min_payment}
             except ValueError:
                 pass
 
         # AI fallback
-        if not entry:
-            from . import ai_parser as AI
-            ai_result = AI.parse_debt(text, lang)
-            if ai_result and isinstance(ai_result, dict) and not ai_result.get("llm_request"):
-                if ai_result.get("name") and ai_result.get("balance"):
-                    entry = {
-                        "name": ai_result["name"],
-                        "type": ai_result.get("type", "other"),
-                        "balance": float(ai_result["balance"]),
-                        "apr": float(ai_result.get("apr", 0)),
-                        "minimum_payment": float(ai_result.get("minimum_payment", 0)),
-                    }
-
-        if not entry:
-            return _response("Format: name, type, balance[, APR%, min_payment]\nExample: Chase Visa, credit_card, 2500, 24.99, 65",
-                             self.state, error=ErrorCode.SETUP_INVALID_INPUT.value)
-
-        warnings = []
-        if entry["apr"] > 50:
-            warnings.append("APR > 50% seems very high.")
-        if entry["minimum_payment"] > entry["balance"]:
-            warnings.append("Min payment exceeds balance.")
-
-        items.append(entry)
-        self._save()
-        msg = f"Added: {entry['name']} — ${entry['balance']:,.2f} @ {entry['apr']}% APR, min ${entry['minimum_payment']:.2f}"
-        if warnings:
-            msg += "\n  Warning: " + "; ".join(warnings)
-        msg += "\nAnother? or 'done'"
-        return _response(msg, self.state, items_count=len(items))
+        from . import ai_parser as AI
+        ai_result = AI.parse_debt(text, lang)
+        if ai_result and isinstance(ai_result, dict) and not ai_result.get("llm_request"):
+            if ai_result.get("name") and ai_result.get("balance"):
+                entry = {
+                    "name": ai_result["name"],
+                    "type": ai_result.get("type", "other"),
+                    "balance": float(ai_result["balance"]),
+                    "apr": float(ai_result.get("apr", 0)),
+                    "minimum_payment": float(ai_result.get("minimum_payment", 0)),
+                }
+                _fix_ai_amount(entry, text, key="balance")
+                return entry
+        return None
 
     # ── DEBT_CONFIRM ──────────────────────────────────
 
@@ -997,13 +1026,38 @@ class SetupStateMachine:
 
         items = self.collected.setdefault("bills", [])
         lang = _lang(self.collected)
-        entry = None
 
-        # Try comma parsing
+        # Split by newlines (multiline paste)
+        lines = [l.strip() for l in text.split("\n") if l.strip()]
+
+        added = []
+        failed = []
+        for line in lines:
+            entry = self._try_parse_bill(line, lang)
+            if entry:
+                items.append(entry)
+                freq_label = entry["frequency"].replace("_", "-")
+                added.append(f"{entry['name']} ${entry['amount']:.2f} {freq_label}")
+            else:
+                failed.append(line)
+
+        if added:
+            self._save()
+            msg = f"Added {len(added)}: " + "; ".join(added)
+            if failed:
+                msg += f"\nCouldn't parse: {'; '.join(failed[:3])}"
+            msg += "\nAnother? or 'done'"
+            return _response(msg, self.state, items_count=len(items))
+
+        return _response("Format: name, amount, due_day[, frequency]\nExample: Power, 120, 15, monthly",
+                         self.state, error=ErrorCode.SETUP_INVALID_INPUT.value)
+
+    def _try_parse_bill(self, text: str, lang: str) -> dict | None:
+        """Try to parse a single bill entry. Comma first, then AI."""
         parts = [p.strip() for p in text.split(",")]
         if len(parts) >= 3:
             try:
-                amount = float(parts[1])
+                amount = float(parts[1].replace("$", ""))
                 due_day = int(parts[2])
                 if 1 <= due_day <= 28:
                     freq = "monthly"
@@ -1011,38 +1065,27 @@ class SetupStateMachine:
                         freq = parts[3].lower().strip()
                         if freq not in ("monthly", "quarterly", "semi_annual", "annual"):
                             freq = "monthly"
-                    entry = {"name": parts[0], "amount": amount, "due_day": due_day,
-                             "frequency": freq, "autopay": False, "apr": 0}
+                    return {"name": parts[0], "amount": amount, "due_day": due_day,
+                            "frequency": freq, "autopay": False, "apr": 0}
             except ValueError:
                 pass
 
         # AI fallback
-        if not entry:
-            from . import ai_parser as AI
-            ai_result = AI.parse_bill(text, lang)
-            if ai_result and isinstance(ai_result, dict) and not ai_result.get("llm_request"):
-                if ai_result.get("name") and ai_result.get("amount"):
-                    due = int(ai_result.get("due_day", 1))
-                    if not 1 <= due <= 28:
-                        due = 1
-                    freq = ai_result.get("frequency", "monthly")
-                    if freq not in ("monthly", "quarterly", "semi_annual", "annual"):
-                        freq = "monthly"
-                    entry = {"name": ai_result["name"], "amount": float(ai_result["amount"]),
-                             "due_day": due, "frequency": freq, "autopay": False, "apr": 0}
-
-        if not entry:
-            return _response("Format: name, amount, due_day[, frequency]\nExample: Power, 120, 15, monthly",
-                             self.state, error=ErrorCode.SETUP_INVALID_INPUT.value)
-
-        freq_mult = {"monthly": 1, "quarterly": 1/3, "semi_annual": 1/6, "annual": 1/12}
-        monthly_equiv = entry["amount"] * freq_mult.get(entry["frequency"], 1)
-        items.append(entry)
-        self._save()
-        freq_label = entry["frequency"].replace("_", "-")
-        extra = f" (${monthly_equiv:.2f}/mo)" if entry["frequency"] != "monthly" else ""
-        return _response(f"Added: {entry['name']} — ${entry['amount']:.2f} {freq_label} due day {entry['due_day']}{extra}\nAnother? or 'done'",
-                         self.state, items_count=len(items))
+        from . import ai_parser as AI
+        ai_result = AI.parse_bill(text, lang)
+        if ai_result and isinstance(ai_result, dict) and not ai_result.get("llm_request"):
+            if ai_result.get("name") and ai_result.get("amount"):
+                due = int(ai_result.get("due_day", 1))
+                if not 1 <= due <= 28:
+                    due = 1
+                freq = ai_result.get("frequency", "monthly")
+                if freq not in ("monthly", "quarterly", "semi_annual", "annual"):
+                    freq = "monthly"
+                entry = {"name": ai_result["name"], "amount": float(ai_result["amount"]),
+                         "due_day": due, "frequency": freq, "autopay": False, "apr": 0}
+                _fix_ai_amount(entry, text)
+                return entry
+        return None
 
     # ── BILLS_CONFIRM ─────────────────────────────────
 
