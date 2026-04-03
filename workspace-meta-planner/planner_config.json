@@ -22,5 +22,35 @@
     "enabled": true,
     "fail_on_orphan_outputs": true,
     "fail_on_missing_consumer": true
+  },
+  "block_mode": {
+    "implementation_planner": {
+      "enabled": false,
+      "max_tokens_per_block": 5000,
+      "max_retries_per_block": 3,
+      "fallback_model": "gemini31pro-none",
+      "blocks": [
+        {
+          "name": "01_foundation",
+          "task": "Generate implementation phases ONLY for foundation/bootstrap: directory layout, configuration, constants, preflight checks, core scripts, validators, state management. Output JSON: {\"phases\": [...], \"deferred_to_v2\": [...]}."
+        },
+        {
+          "name": "02_core_components",
+          "task": "Generate implementation phases ONLY for the core component scripts defined in the architecture. Cover each script's creation, its inputs/outputs, and integration points. Output JSON: {\"phases\": [...], \"deferred_to_v2\": [...]}."
+        },
+        {
+          "name": "03_orchestration_and_gates",
+          "task": "Generate implementation phases ONLY for orchestration, runtime flow, gate handling, error handling, rollback, and state promotion. Output JSON: {\"phases\": [...], \"deferred_to_v2\": [...]}."
+        },
+        {
+          "name": "04_entrypoints_and_integration",
+          "task": "Generate implementation phases ONLY for CLI entrypoints, operator workflows, external integrations (Telegram if applicable), and auth/access handling. Output JSON: {\"phases\": [...], \"deferred_to_v2\": [...]}."
+        },
+        {
+          "name": "05_testing_and_validation",
+          "task": "Generate implementation phases ONLY for testing, integration tests, end-to-end validation, rollout sequencing, and the consolidated deferred_to_v2 list. Output JSON: {\"phases\": [...], \"deferred_to_v2\": [...]}."
+        }
+      ]
+    }
   }
 }

@@ -98,6 +98,12 @@ Templates must be 100% data-driven. No static sample content that pretends to be
 - Sub-agents via sessions_spawn start fresh — token tracking per sub-agent is reliable
 - Main session context compounds with each spawn — keep orchestration concise
 
+## L-33: Compress upstream context for heavy agents
+When an agent receives upstream artifacts as context, only include fields relevant to that agent's task.
+Implementation planner needs artifact names, purposes, and key fields — not full JSON schemas, examples,
+or format-level validation rules. Use `compress_contracts()` pattern in `spawn_planner_agent.py`.
+If compression isn't enough, use `block_mode` as fallback. See `docs/FIX_LITELLM_TIMEOUT.md`.
+
 ## 2026-03-27 — Contract generation failure on large Advanced artifacts
 
 ### Lesson
@@ -218,3 +224,23 @@ For C1 implementation planning:
 - auto-retry each block up to 3 times
 - consolidate only after all blocks succeed
 - do not interrupt the human for per-block flakiness
+
+## 2026-04-03 — LiteLLM server disconnect on large completions is a timeout issue, not a model issue
+
+### Problem
+When combining large input context (~8k tokens) with large max_tokens request (8192), the Anthropic API disconnects mid-generation via LiteLLM proxy. The error appears as `litellm.InternalServerError: AnthropicException - Server disconnected`.
+
+### Diagnosis method
+Test the same payload with small max_tokens (500) → works. Test with large max_tokens (8192) → disconnects. This proves the issue is generation time / connection stability, not input size.
+
+### Root cause
+No explicit `request_timeout` configured in LiteLLM proxy config. Default timeout is insufficient for large Anthropic completions.
+
+### Fix
+Add `request_timeout: 600` to `litellm_settings` in the LiteLLM config YAML, or add per-model `timeout: 600` for Anthropic models. Restart LiteLLM after.
+
+### Fallback
+Use block-based generation (already implemented) to split large artifacts into smaller units that stay within safe timeout bounds.
+
+### Rule
+When a model call fails with InternalServerError/disconnect, always test with reduced max_tokens first to distinguish between input-size issues and generation-time issues. Document the threshold.

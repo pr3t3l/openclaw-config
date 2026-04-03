@@ -33,7 +33,20 @@ echo "=== FASE C: BUILDABILITY (level: $LEVEL) ==="
 echo ""
 
 echo "--- C1: Implementation Planner ---"
-python3 "$SCRIPTS/spawn_planner_agent.py" "$SLUG" implementation_planner
+# Check if block mode is enabled for implementation_planner
+BLOCK_MODE=$(python3 -c "
+import json
+with open('$WORKSPACE/planner_config.json') as f:
+    cfg = json.load(f)
+print(cfg.get('block_mode', {}).get('implementation_planner', {}).get('enabled', False))
+")
+
+if [ "$BLOCK_MODE" = "True" ]; then
+  echo "  (block mode enabled)"
+  python3 "$SCRIPTS/spawn_implementation_blocks.py" "$SLUG"
+else
+  python3 "$SCRIPTS/spawn_planner_agent.py" "$SLUG" implementation_planner
+fi
 echo ""
 
 echo "--- C2: Cost Estimator (script, no LLM) ---"

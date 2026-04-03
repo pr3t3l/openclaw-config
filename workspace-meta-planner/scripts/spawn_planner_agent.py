@@ -88,6 +88,73 @@ def calculate_cost(model, input_tokens, output_tokens):
     p = PRICING.get(model, {"input": 3.0, "output": 15.0})
     return (input_tokens * p["input"] / 1_000_000) + (output_tokens * p["output"] / 1_000_000)
 
+
+def compress_contracts(contracts_json: dict) -> str:
+    """Compress 04_contracts.json for implementation_planner context.
+
+    The implementation planner needs to know WHAT artifacts to build and their
+    purpose/key fields, NOT the full JSON Schema definitions, examples, or
+    format-level validation rules.
+
+    Reduces ~5,470 tokens to ~1,200 tokens without losing build-relevant info.
+    """
+    lines = []
+    lines.append(f"Project: {contracts_json.get('project_name', 'unknown')}")
+    lines.append(f"Artifacts to implement: {len(contracts_json.get('contracts', []))}")
+    lines.append("")
+
+    for contract in contracts_json.get("contracts", []):
+        name = contract["artifact_name"]
+        schema = contract.get("schema_definition", {})
+
+        # Extract top-level required fields and their types (no nested schema)
+        fields = []
+        props = schema.get("properties", {})
+        required = set(schema.get("required", []))
+        for field_name, field_def in props.items():
+            ftype = field_def.get("type", "unknown")
+            if isinstance(ftype, list):
+                ftype = "/".join(ftype)
+            req_mark = " (required)" if field_name in required else ""
+            desc = field_def.get("description", "")
+            if desc:
+                fields.append(f"  - {field_name}: {ftype}{req_mark} — {desc}")
+            else:
+                fields.append(f"  - {field_name}: {ftype}{req_mark}")
+
+        # Extract only business-logic validation rules (skip format/regex rules)
+        biz_rules = []
+        for rule in contract.get("validation_rules", []):
+            rule_lower = rule.lower()
+            if any(skip in rule_lower for skip in [
+                "pattern", "semver", "regex", "octal", "uuid",
+                "must follow", "must match pattern", "must be a valid"
+            ]):
+                continue
+            biz_rules.append(f"  - {rule}")
+
+        lines.append(f"### {name}")
+        lines.append(f"Format: {contract.get('format', 'json')}")
+        lines.append(f"Est. size: {contract.get('estimated_size_tokens', '?')} tokens")
+        lines.append("Fields:")
+        lines.extend(fields)
+        if biz_rules:
+            lines.append("Key rules:")
+            lines.extend(biz_rules)
+        lines.append("")
+
+    return "\n".join(lines)
+
+
+def compress_architecture(arch_json: dict) -> dict:
+    """Strip verbose fields from architecture that don't affect build planning."""
+    compressed = json.loads(json.dumps(arch_json))  # deep copy
+    compressed.pop("red_team_findings", None)
+    if "infrastructure_validation" in compressed:
+        compressed["infrastructure_validation"].pop("notes", None)
+    return compressed
+
+
 # What upstream context each agent needs
 AGENT_CONTEXT = {
     "intake_analyst": {"from_manifest": ["raw_idea"]},
@@ -143,8 +210,22 @@ def build_user_prompt(agent_name, slug, run_dir):
         for artifact_name in context["artifacts"]:
             artifact_path = run_dir / f"{artifact_name}.json"
             if artifact_path.exists():
-                data = load_text(artifact_path)
-                parts.append(f"=== {artifact_name}.json ===\n{data}\n=== END {artifact_name}.json ===")
+                # Compress contracts for implementation_planner (saves ~4k tokens)
+                if agent_name == "implementation_planner" and artifact_name == "04_contracts":
+                    contracts_data = load_json(artifact_path)
+                    compressed = compress_contracts(contracts_data)
+                    parts.append(f"=== {artifact_name}.json (compressed for build planning) ===\n{compressed}\n=== END {artifact_name}.json ===")
+                    print(f"  Context: {artifact_name} compressed ({len(compressed)} chars vs {artifact_path.stat().st_size} raw)")
+                # Compress large architecture for implementation_planner
+                elif agent_name == "implementation_planner" and artifact_name == "05_architecture_decision" and artifact_path.stat().st_size > 30000:
+                    arch_data = load_json(artifact_path)
+                    compressed_arch = compress_architecture(arch_data)
+                    data = json.dumps(compressed_arch, indent=2, ensure_ascii=False)
+                    parts.append(f"=== {artifact_name}.json (compressed) ===\n{data}\n=== END {artifact_name}.json ===")
+                    print(f"  Context: {artifact_name} compressed ({len(data)} chars vs {artifact_path.stat().st_size} raw)")
+                else:
+                    data = load_text(artifact_path)
+                    parts.append(f"=== {artifact_name}.json ===\n{data}\n=== END {artifact_name}.json ===")
             else:
                 print(f"WARNING: Upstream artifact {artifact_name}.json not found at {artifact_path}")
 
