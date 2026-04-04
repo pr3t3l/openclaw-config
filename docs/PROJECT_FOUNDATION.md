@@ -1,164 +1,138 @@
-# PROJECT_FOUNDATION.md — [Project Name]
+# PROJECT_FOUNDATION.md — OpenClaw
 <!--
-SCOPE: Vision, purpose, stack, roadmap, roles, key decisions, design system, doc registry.
-       This is the ONE-PAGER+ that answers "what are we building and why?"
-NOT HERE: Implementation specs → specs/[module]/spec.md
+SCOPE: Vision, purpose, stack, roadmap, key decisions, doc registry.
+NOT HERE: Implementation specs → docs/specs/[module]/spec.md
 NOT HERE: Database schemas → DATA_MODEL.md
 NOT HERE: API details → INTEGRATIONS.md
 NOT HERE: Rules/constraints → CONSTITUTION.md
 NOT HERE: Failures/fixes → LESSONS_LEARNED.md
 
-TARGET LENGTH: 3-5 pages max. If it's longer, you're putting spec-level detail here.
+TARGET LENGTH: 3-5 pages max.
 -->
 
-**Last updated:** YYYY-MM-DD
+**Last updated:** 2026-04-03
 
 ---
 
 ## 1. What This Is
 
-<!-- 2-3 sentences max. If you can't explain it concisely, you don't understand it yet. -->
-
+OpenClaw is a multi-agent AI orchestration platform running on WSL Ubuntu. It operates via 3 Telegram bots, each with a dedicated agent and workspace. It executes products (Declassified Cases), support systems (Marketing, Finance), and development tools (Planner).
 
 ## 2. What Problem It Solves
 
-<!-- Be specific. Not "improve communication" but "there is no tool that does X for Y people." -->
-
+Centralize the operation of multiple AI products and workflows on a single platform with model routing, cost tracking, and Telegram-based execution — without depending on third-party cloud services for orchestration.
 
 ## 3. What This Is NOT (Anti-Goals)
 
-<!-- Explicit exclusions prevent scope creep. List 3-5 things you will NOT build/become. -->
-
-1. **NOT a [thing]** — because [reason]
-2. **NOT a [thing]** — because [reason]
-3. **NOT a [thing]** — because [reason]
+1. **NOT a SaaS for other users** — it is Alfredo's personal infrastructure (for now)
+2. **NOT a replacement for n8n or Zapier** — it is complementary, not a competitor
+3. **NOT a generic AI agent framework** — it is optimized for the specific workflows that run here
 
 ## 4. Who It's For
 
-<!-- Primary users/personas. Keep brief — detailed personas go in marketing docs, not here. -->
-
-| Role | Who they are | What they need from this product |
-|------|-------------|--------------------------------|
-| | | |
+| Role | Who | What they need |
+|------|-----|---------------|
+| Owner/Operator | Alfredo Pretel | Execute workflows, monitor costs, operate remotely |
 
 ## 5. Competitive Differentiators
 
-<!-- 3-5 things that make this different from alternatives. Be honest — if it's not different, say so. -->
-
-1. **[Differentiator]**: [why it matters]
-2. **[Differentiator]**: [why it matters]
+1. **Multi-model routing via LiteLLM** — uses the cheapest model that meets quality per task
+2. **Telegram as interface** — operable from phone via Termius + Tailscale
+3. **Product-agnostic workflows** — Pipeline, Marketing, Finance are generic and reusable
 
 ---
 
 ## 6. Tech Stack
 
-| Layer | Technology | Why this one |
-|-------|-----------|-------------|
-| Frontend | | |
-| Backend | | |
-| Database | | |
-| AI/ML | | |
-| Auth | | |
-| State Management | | |
-| Hosting/Deploy | | |
-| CI/CD | | |
+| Layer | Technology | Why |
+|-------|-----------|-----|
+| OS | WSL Ubuntu on Windows | Alfredo's laptop, always-on |
+| Orchestration | OpenClaw Gateway (:18789) | Multi-agent management |
+| Model Proxy | LiteLLM (:4000) | Multi-provider routing, cost tracking |
+| Database | PostgreSQL 16 (:5432) | Marketing schema, LiteLLM data |
+| Data Store | Google Sheets | Finance Tracker |
+| Interface | Telegram Bots (3) | CEO, Declassified, Planner |
+| Remote Access | Tailscale + SSH + tmux | Phone operation via Termius |
+| Code Assistant | Claude Code | Implementation |
+| Web Store | React + Vite + Supabase + Stripe | declassified.shop |
+| Email | Resend + IONOS | Transactional + business email |
 
 ## 7. Key Decisions
 
-<!-- Decisions that affect the ENTIRE project. Module-specific decisions go in module specs. -->
-
 | Decision | Choice | Date | Why | Alternatives Rejected |
 |----------|--------|------|-----|----------------------|
-| | | | | |
+| API calls in WSL | Streaming curl via subprocess | 2026-02 | Python requests fails >30s in WSL | requests library |
+| Model routing | LiteLLM proxy | 2026-02 | Multi-provider, cost tracking, single endpoint | Direct API calls per provider |
+| Primary interface | Telegram bots | 2026-02 | Mobile-friendly, always accessible, async | Web UI |
+| Cost strategy | Codex OAuth ($0) for generation, paid API only for rendering | 2026-03 | 90%+ cost reduction | All-paid API calls |
+| Documentation system | SDD (Spec-Driven Development) | 2026-04 | Eliminate 10+ iteration cycles | Ad-hoc docs, monolith bibles |
 
 ---
 
 ## 8. Module Roadmap
 
-### MVP (Build NOW)
+### MVP (Active)
 
 | # | Module/Workflow | Type | Purpose | Status | Depends On |
 |---|----------------|------|---------|--------|------------|
-| 1 | | app / workflow | | ⬜🟡✅ | — |
-| 2 | | app / workflow | | ⬜🟡✅ | #1 |
-| 3 | | app / workflow | | ⬜🟡✅ | #1, #2 |
+| 1 | Platform/Robotin (CEO) | infra | Infrastructure, routing, Telegram, remote ops | ✅ Functional | — |
+| 2 | Declassified Pipeline V9 | workflow | AI-generated mystery case → packaged PDFs | 🟡 90% | Platform |
+| 3 | Finance Tracker | module (skill) | Personal expense tracking + Airbnb tax deductions | 🟡 90% | Platform |
+| 4 | Marketing System | workflow | Automated content generation, 3-layer campaign engine | 🟡 70% | Platform, Pipeline |
+| 5 | Planner (SDD) | workflow | Idea → validated spec via multi-model debate | 🔴 Rebuild | Platform |
 
-### Post-MVP (ONE LINE each — spec when ready to build)
+### Post-MVP (one line each — spec when ready to build)
 
-| Phase | Module | One-line purpose | Priority |
-|-------|--------|-----------------|----------|
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
+| Phase | Module | One-line purpose |
+|-------|--------|-----------------|
+| 2 | Telegram Ops Bot | Marketing operations via dedicated bot |
+| 2 | Social Publishing API | Automated FB/IG/TikTok/YouTube posting |
+| 3 | SaaS Finance Tracker | Multi-tenant version for sale |
 
 ---
 
-## 9. Roles & Permissions Summary
+## 9. Roles & Permissions
 
-<!-- Only if your product has multiple user roles. -->
-
-| Role | Can do | Cannot do |
-|------|--------|-----------|
-| | | |
+| Role | Who | Access |
+|------|-----|--------|
+| Owner/Operator | Alfredo | Full access to all bots, workspaces, and infrastructure |
 
 ## 10. Design System Summary
 
-<!-- Keep minimal. Only what's needed for visual consistency. -->
-
-### Colors
-| Role | Hex | Usage |
-|------|-----|-------|
-| Primary | | |
-| Secondary | | |
-| Background | | |
-| Text | | |
-
-### Typography
-- **Headings:** [font]
-- **Body:** [font]
-
-### UI Principles (3-5 max)
-- [Principle]
-- [Principle]
-
----
+N/A — OpenClaw is infrastructure. Product-specific design (Declassified, Finance) lives in their respective specs.
 
 ## 11. Monetization Model
 
-<!-- Even if free now. How will it make money? -->
-
-| Tier | Price | What's included | Target user |
-|------|-------|----------------|-------------|
-| Free | $0 | | |
-| Paid | $X/mo | | |
-
----
+| Product | Price | Channel |
+|---------|-------|---------|
+| Declassified Cases (single) | $12.00 USD (target: $19.99) | declassified.shop |
+| Declassified Cases (4-pack) | $59.00 USD | declassified.shop |
+| Finance Tracker (future SaaS) | TBD | Stripe subscription |
 
 ## 12. Cross-Cutting Concerns
 
-<!-- Things that apply to EVERY module/workflow. Keep to one line each. -->
-
-- **i18n:** [languages, approach]
-- **Security:** [auth approach, data access philosophy]
-- **Cost control:** [budget, monitoring approach]
-- **Testing:** [strategy — unit/integration/manual]
-- **Error handling:** [standard approach]
-- **Observability:** [what you monitor, how you know it works]
+- **i18n:** English primary, Spanish secondary. Products target Americans in USA.
+- **Security:** Telegram ACL (allowFrom.json), PostgreSQL RLS, Supabase RLS for web store.
+- **Cost control:** LiteLLM /spend endpoint for API costs. Budget alarm before starting work sessions. See CONSTITUTION.md §6.
+- **Testing:** Single-item E2E test before batch. Structural validators before LLM quality checks.
+- **Error handling:** Max 2 retries with diagnosis. Save raw output on failure. See LESSONS_LEARNED.md.
+- **Observability:** LiteLLM dashboard for model usage. api_audit_log table in PostgreSQL. manifest.json per pipeline run.
 
 ---
 
 ## 13. Document Registry
 
-<!-- CANONICAL INDEX. If a doc is not here, it doesn't exist for this project. -->
+<!-- CANONICAL INDEX. If a doc is not here, it doesn't exist. -->
 
 | Document | Purpose | Location | Last Updated |
 |----------|---------|----------|-------------|
-| PROJECT_FOUNDATION | This file — vision, stack, roadmap | docs/ | |
-| CONSTITUTION | Immutable rules + AI agent rules | ./ | |
-| DATA_MODEL | Database schemas | docs/ | |
-| INTEGRATIONS | External APIs | docs/ | |
-| LESSONS_LEARNED | Failures + fixes | docs/ | |
-| spec: [module] | Module spec | specs/[name]/ | |
+| PROJECT_FOUNDATION | This file — vision, stack, roadmap | docs/ | 2026-04-03 |
+| CONSTITUTION | Immutable rules + AI agent rules | docs/ | Pending |
+| DATA_MODEL | PostgreSQL + Google Sheets schemas | docs/ | Pending |
+| INTEGRATIONS | Telegram, Stripe, LiteLLM, external APIs | docs/ | Pending |
+| LESSONS_LEARNED | All failures + fixes (LL-CAT-XXX format) | docs/ | Pending |
+| spec: planner | Planner workflow spec (SDD rebuild) | docs/specs/planner/ | Pending |
+| Archive: workflow bibles | Previous documentation (reference only) | docs/archivo/ | 2026-04-03 |
 
 ### Anti-Duplication Rules
 1. **Reference, never copy.** Use "See [DOC.md §section]" format.
