@@ -3,9 +3,13 @@
 Each handler calls the real phase function, updates state with results,
 and sets state["_gate_pending"] for human gates.
 
+Transient data between phases (intake answers, draft content, etc.) is stored
+as files in the run directory, NOT in state dict (which has additionalProperties: false).
+
 See spec.md §3 for the full phase/gate mapping.
 """
 
+import json
 import logging
 from pathlib import Path
 from typing import Any, Optional
@@ -22,8 +26,29 @@ def _gateway_from_state(state: dict) -> ModelGateway:
     return ModelGateway(state)
 
 
-def _run_dir(project_root: str, run_id: str) -> str:
-    return str(Path(project_root) / "planner_runs" / run_id)
+def _run_dir(project_root: str, run_id: str) -> Path:
+    return Path(project_root) / "planner_runs" / run_id
+
+
+def _save_transient(run_dir: Path, filename: str, data: Any) -> None:
+    """Save transient phase data as a JSON file in the run directory."""
+    path = run_dir / filename
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if isinstance(data, str):
+        path.write_text(data, encoding="utf-8")
+    else:
+        path.write_text(json.dumps(data, indent=2), encoding="utf-8")
+
+
+def _load_transient(run_dir: Path, filename: str, default: Any = None) -> Any:
+    """Load transient phase data from a file in the run directory."""
+    path = run_dir / filename
+    if not path.exists():
+        return default
+    content = path.read_text(encoding="utf-8")
+    if filename.endswith(".json"):
+        return json.loads(content)
+    return content
 
 
 class Phase0Handler(PhaseHandler):
@@ -38,8 +63,12 @@ class Phase0Handler(PhaseHandler):
         from planner.phases.phase_0_setup import run_phase_0
 
         project_root = context["project_root"]
-        has_attachments = state.get("_has_attachments", False)
-        doc_type = state.get("_doc_type")
+        run_dir = _run_dir(project_root, state["run_id"])
+
+        # Read transient config if set by cmd_start
+        config = _load_transient(run_dir, "phase0_config.json", {})
+        has_attachments = config.get("has_attachments", False)
+        doc_type = config.get("doc_type")
 
         setup = run_phase_0(
             project_root,
@@ -67,6 +96,9 @@ class Phase1Handler(PhaseHandler):
     def execute(self, state: dict, context: dict) -> dict:
         from planner.phases.phase_1_intake import IntakeSession
         from planner.template_loader import load_template
+
+        project_root = context["project_root"]
+        run_dir = _run_dir(project_root, state["run_id"])
 
         doc = state["current_document"]
         if not doc:
@@ -115,7 +147,9 @@ class Phase1Handler(PhaseHandler):
 
         doc["phase_status"] = "intake_complete"
         doc["sections_completed"] = session.sections_completed
-        state["_intake_answers"] = session.answers
+
+        # Save intake answers to file (not state — schema disallows extra fields)
+        _save_transient(run_dir, "intake_answers.json", session.answers)
 
         # G1: human confirms idea captured
         state["_gate_pending"] = "G1"
@@ -134,6 +168,9 @@ class Phase1_5Handler(PhaseHandler):
     def execute(self, state: dict, context: dict) -> dict:
         from planner.phases.phase_1_5_ideation import ideate, should_skip
 
+        project_root = context["project_root"]
+        run_dir = _run_dir(project_root, state["run_id"])
+
         doc = state["current_document"]
         doc_type = doc.get("type", doc.get("template", "WORKFLOW_SPEC"))
 
@@ -141,8 +178,11 @@ class Phase1_5Handler(PhaseHandler):
             return state
 
         gateway = _gateway_from_state(state)
+
+        # Load intake answers from file
+        intake_answers = _load_transient(run_dir, "intake_answers.json", {})
         intake_summary = "\n".join(
-            f"- {k}: {v}" for k, v in state.get("_intake_answers", {}).items()
+            f"- {k}: {v}" for k, v in intake_answers.items()
         )
 
         result = ideate(
@@ -153,10 +193,11 @@ class Phase1_5Handler(PhaseHandler):
             document=doc.get("name"),
         )
 
-        state["_ideation_result"] = {
+        # Save ideation result to file
+        _save_transient(run_dir, "ideation_result.json", {
             "accepted": result.accepted,
             "skipped": result.skipped,
-        }
+        })
 
         # G1.5: human reviews ideation suggestions
         state["_gate_pending"] = "G1.5"
@@ -173,6 +214,7 @@ class Phase2Handler(PhaseHandler):
         from planner.template_loader import load_template
 
         project_root = context["project_root"]
+        run_dir = _run_dir(project_root, state["run_id"])
         doc = state["current_document"]
         doc_type = doc.get("type", doc.get("template", "WORKFLOW_SPEC"))
 
@@ -186,8 +228,10 @@ class Phase2Handler(PhaseHandler):
         except (ValueError, FileNotFoundError):
             template_content = f"# {doc_type}\n\n(Template not available)"
 
-        intake_answers = state.get("_intake_answers", {})
-        ideation_accepted = state.get("_ideation_result", {}).get("accepted", [])
+        # Load transient data from files
+        intake_answers = _load_transient(run_dir, "intake_answers.json", {})
+        ideation_result = _load_transient(run_dir, "ideation_result.json", {})
+        ideation_accepted = ideation_result.get("accepted", [])
 
         # Load constitution rules if available
         constitution_path = Path(project_root) / "docs" / "CONSTITUTION.md"
@@ -207,19 +251,16 @@ class Phase2Handler(PhaseHandler):
         )
 
         # Store draft content in run dir
-        run_dir = _run_dir(project_root, state["run_id"])
-        draft_path = Path(run_dir) / "drafts" / f"{doc.get('name', 'draft')}"
+        doc_name = doc.get("name", "draft.md")
+        draft_path = run_dir / "drafts" / doc_name
         draft_path.parent.mkdir(parents=True, exist_ok=True)
         draft_path.write_text(result.content, encoding="utf-8")
 
+        # Save draft content as transient file for subsequent phases
+        _save_transient(run_dir, "draft_content.md", result.content)
+
         doc["version"] = result.version
         doc["phase_status"] = "draft_complete"
-
-        state["_draft_content"] = result.content
-        state["_draft_validation"] = {
-            "passed": result.validation_passed,
-            "errors": result.validation_errors,
-        }
 
         # G2 is auto-evaluated (no human), dispatcher handles it
         return state
@@ -234,15 +275,18 @@ class Phase2_5Handler(PhaseHandler):
         from planner.phases.phase_2_5_preaudit import load_audit_findings, check_against_af
 
         project_root = context["project_root"]
+        run_dir = _run_dir(project_root, state["run_id"])
         doc = state["current_document"]
         doc_type = doc.get("type", doc.get("template", "WORKFLOW_SPEC"))
-        doc_content = state.get("_draft_content", "")
+
+        doc_content = _load_transient(run_dir, "draft_content.md", "")
 
         entries = load_audit_findings(project_root)
         result = check_against_af(doc_content, doc_type, entries)
 
         if result.safe_count > 0 or result.semantic_count > 0:
-            state["_draft_content"] = result.content
+            # Update the draft content file with pre-audit fixes
+            _save_transient(run_dir, "draft_content.md", result.content)
             logger.info(
                 f"Phase 2.5: {result.safe_count} safe fixes applied, "
                 f"{result.semantic_count} semantic flags"
@@ -266,9 +310,11 @@ class Phase3Handler(PhaseHandler):
         from planner.phases.phase_3_audit import run_audit
 
         project_root = context["project_root"]
+        run_dir = _run_dir(project_root, state["run_id"])
         doc = state["current_document"]
-        doc_content = state.get("_draft_content", "")
         doc_type = doc.get("type", doc.get("template", "WORKFLOW_SPEC"))
+
+        doc_content = _load_transient(run_dir, "draft_content.md", "")
 
         gateway = _gateway_from_state(state)
 
@@ -283,10 +329,11 @@ class Phase3Handler(PhaseHandler):
             phase="3",
         )
 
-        state["_audit_result"] = {
+        # Save audit result metadata to file
+        _save_transient(run_dir, "audit_result.json", {
             "call_count": len(result.call_results),
             "raw_paths": result.raw_saved_paths,
-        }
+        })
         doc["phase_status"] = "audit_complete"
 
         # G3: human reviews audit triage
@@ -303,14 +350,19 @@ class Phase4Handler(PhaseHandler):
         from planner.phases.phase_4_lessons import load_lessons, check_lessons
 
         project_root = context["project_root"]
+        run_dir = _run_dir(project_root, state["run_id"])
         doc = state["current_document"]
-        doc_content = state.get("_draft_content", "")
         doc_type = doc.get("type", doc.get("template", "WORKFLOW_SPEC"))
+
+        doc_content = _load_transient(run_dir, "draft_content.md", "")
 
         lessons_content = load_lessons(project_root)
         if not lessons_content:
             doc["phase_status"] = "lessons_complete"
-            state["lessons_check_result"] = {"violations": [], "recommendations": []}
+            # Save empty lessons result for G4 gate evaluation
+            _save_transient(run_dir, "lessons_check_result.json", {
+                "violations": [], "recommendations": [],
+            })
             return state
 
         gateway = _gateway_from_state(state)
@@ -324,7 +376,7 @@ class Phase4Handler(PhaseHandler):
             document=doc.get("name"),
         )
 
-        state["lessons_check_result"] = {
+        lessons_data = {
             "violations": [
                 {"id": v.lesson_id, "description": v.description}
                 for v in result.violations
@@ -334,6 +386,10 @@ class Phase4Handler(PhaseHandler):
                 for r in result.recommendations
             ],
         }
+
+        # Save to file for reference
+        _save_transient(run_dir, "lessons_check_result.json", lessons_data)
+
         doc["phase_status"] = "lessons_complete"
 
         # G4 is auto-evaluated (no human)
@@ -351,9 +407,12 @@ class Phase5Handler(PhaseHandler):
     def execute(self, state: dict, context: dict) -> dict:
         from planner.phases.phase_5_finalize import present_for_approval
 
+        project_root = context["project_root"]
+        run_dir = _run_dir(project_root, state["run_id"])
         doc = state["current_document"]
-        doc_content = state.get("_draft_content", "")
         doc_name = doc.get("name", "document.md")
+
+        doc_content = _load_transient(run_dir, "draft_content.md", "")
 
         result = present_for_approval(
             doc_content=doc_content,
@@ -363,11 +422,15 @@ class Phase5Handler(PhaseHandler):
             total_cost=state["cost"]["total_usd"],
         )
 
-        state["_finalize_result"] = {
+        # Save finalize result to file
+        _save_transient(run_dir, "finalize_result.json", {
             "summary": result.summary,
             "clean_content": result.clean_content,
-        }
-        state["_draft_content"] = result.content
+        })
+
+        # Update draft content with finalized version (includes AF markers for review)
+        _save_transient(run_dir, "draft_content.md", result.content)
+
         doc["phase_status"] = "finalize_complete"
 
         # G5: human approves document
@@ -385,16 +448,17 @@ class Phase6Handler(PhaseHandler):
         from planner.phases.phase_2_5_preaudit import load_audit_findings
 
         project_root = context["project_root"]
+        run_dir = _run_dir(project_root, state["run_id"])
         doc = state["current_document"]
         doc_name = doc.get("name", "document.md")
-        doc_content = state.get("_draft_content", "")
-        run_dir = _run_dir(project_root, state["run_id"])
+
+        doc_content = _load_transient(run_dir, "draft_content.md", "")
 
         gateway = _gateway_from_state(state)
         existing_af = load_audit_findings(project_root)
 
         result = update_all_records(
-            run_dir=run_dir,
+            run_dir=str(run_dir),
             document_name=doc_name,
             doc_content=doc_content,
             conversation_history=[],  # History managed by Telegram, not available here
@@ -414,15 +478,14 @@ class Phase6Handler(PhaseHandler):
             state["documents_completed"].append(doc_name)
 
         # Save final clean version
-        finalize = state.get("_finalize_result", {})
+        finalize = _load_transient(run_dir, "finalize_result.json", {})
         clean_content = finalize.get("clean_content", doc_content)
-        output_path = Path(run_dir) / "output" / doc_name
+        output_path = run_dir / "output" / doc_name
         output_path.parent.mkdir(parents=True, exist_ok=True)
         output_path.write_text(clean_content, encoding="utf-8")
 
         # Reset current_document for next doc (or None if done)
         state["current_document"] = None
-        doc_phase_status = "records_complete"
 
         logger.info(f"Phase 6 complete for {doc_name}")
         return state
@@ -449,10 +512,9 @@ class Phase6_5Handler(PhaseHandler):
 
         if raw_maps:
             # Reconstruct EntityMap objects from state dicts
+            from planner.entity_map import EntityEntry
             for doc_name, map_dict in raw_maps.items():
                 em = EntityMap(document_name=doc_name)
-                # If entries are stored, reconstruct them
-                from planner.entity_map import EntityEntry
                 for entry_data in map_dict.get("entries", []):
                     em.entries.append(EntityEntry(
                         name=entry_data.get("name", ""),
@@ -463,7 +525,7 @@ class Phase6_5Handler(PhaseHandler):
                 entity_maps[doc_name] = em
         else:
             # Fallback: extract from output documents
-            output_dir = Path(run_dir) / "output"
+            output_dir = run_dir / "output"
             if output_dir.exists():
                 for doc_path in output_dir.glob("*.md"):
                     content = doc_path.read_text(encoding="utf-8")
@@ -499,7 +561,7 @@ class Phase7Handler(PhaseHandler):
         gateway = _gateway_from_state(state)
 
         # Load the approved spec content
-        output_dir = Path(run_dir) / "output"
+        output_dir = run_dir / "output"
         spec_content = ""
         constitution_rules = ""
 
@@ -515,7 +577,7 @@ class Phase7Handler(PhaseHandler):
 
         if not spec_content:
             logger.warning("Phase 7: No spec found in output, using draft content")
-            spec_content = state.get("_draft_content", "")
+            spec_content = _load_transient(run_dir, "draft_content.md", "")
 
         # Generate plan
         plan_result = generate_plan(
@@ -525,7 +587,7 @@ class Phase7Handler(PhaseHandler):
             phase="7",
         )
 
-        plan_path = Path(run_dir) / "output" / "plan.md"
+        plan_path = run_dir / "output" / "plan.md"
         plan_path.parent.mkdir(parents=True, exist_ok=True)
         plan_path.write_text(plan_result.content, encoding="utf-8")
 
@@ -537,7 +599,7 @@ class Phase7Handler(PhaseHandler):
             phase="7",
         )
 
-        tasks_path = Path(run_dir) / "output" / "tasks.md"
+        tasks_path = run_dir / "output" / "tasks.md"
         tasks_path.write_text(tasks_result.content, encoding="utf-8")
 
         logger.info(
