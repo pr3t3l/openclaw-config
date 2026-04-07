@@ -6,14 +6,39 @@ and logs costs. See spec.md §4 (Model Selection + Degraded Mode).
 
 import json
 import logging
+import os
 import random
 import subprocess
+import tempfile
 import time
+from pathlib import Path
 from typing import Any, Callable, Optional
 
 from planner import cost_tracker
 
 logger = logging.getLogger(__name__)
+
+# Load model mapping config
+_MAPPING_PATH = Path(__file__).parent / "config" / "model_mapping.json"
+_mapping_cache: Optional[dict] = None
+
+
+def _load_mapping() -> dict:
+    global _mapping_cache
+    if _mapping_cache is None:
+        with open(_MAPPING_PATH) as f:
+            _mapping_cache = json.load(f)
+    return _mapping_cache
+
+
+def resolve_litellm_name(spec_name: str) -> str:
+    """Translate spec model name to LiteLLM registered name.
+
+    E.g., 'claude-opus-4-6' → 'claude-opus46'
+    """
+    mapping = _load_mapping()
+    return mapping["models"].get(spec_name, spec_name)
+
 
 LITELLM_BASE_URL = "http://127.0.0.1:4000"
 
@@ -201,64 +226,116 @@ class ModelGateway:
     ) -> dict:
         """Call LiteLLM proxy via streaming curl subprocess.
 
-        Uses streaming to handle WSL >30s timeout issue (LL-INFRA-001).
+        Uses the exact pattern from litellm_stream.py:
+        - Tempfile for payload (LL-INFRA-027: $(cat) fails >8KB)
+        - --data-binary @file (not -d inline)
+        - stream_options.include_usage for token counting
+        - Bearer auth token
+        - subprocess timeout > curl --max-time (LL-INFRA-005)
+
+        See LL-INFRA-001: Python requests fails in WSL >30s.
         """
+        mapping = _load_mapping()
+        litellm_model = resolve_litellm_name(model)
+        proxy_url = mapping.get("litellm_proxy", self.base_url)
+        api_key = mapping.get("litellm_api_key", "")
+        curl_max_time = mapping.get("curl_max_time", 300)
+        subprocess_buffer = mapping.get("subprocess_buffer", 50)
+
         payload = {
-            "model": model,
-            "messages": messages,
+            "model": litellm_model,
             "max_tokens": max_tokens,
-            "temperature": temperature,
             "stream": True,
+            "stream_options": {"include_usage": True},
+            "messages": messages,
         }
 
+        payload_json = json.dumps(payload, ensure_ascii=True)
+
+        with tempfile.NamedTemporaryFile(mode="wb", suffix=".json", delete=False) as f:
+            f.write(payload_json.encode("utf-8"))
+            tmp_path = f.name
+
+        subprocess_timeout = curl_max_time + subprocess_buffer
+
         try:
+            cmd = [
+                "curl", "-s", "-S", "--max-time", str(curl_max_time),
+                "-H", "Content-Type: application/json",
+            ]
+            if api_key:
+                cmd.extend(["-H", f"Authorization: Bearer {api_key}"])
+            cmd.extend(["--data-binary", f"@{tmp_path}", f"{proxy_url}/v1/chat/completions"])
+
             result = subprocess.run(
-                [
-                    "curl", "-s", "--max-time", "300",
-                    "-H", "Content-Type: application/json",
-                    "-d", json.dumps(payload),
-                    f"{self.base_url}/v1/chat/completions",
-                ],
-                capture_output=True,
-                text=True,
-                timeout=350,
+                cmd, capture_output=True, text=True, timeout=subprocess_timeout,
             )
         except subprocess.TimeoutExpired:
-            raise ProviderError(f"Timeout calling {model} via LiteLLM")
+            raise ProviderError(f"Timeout calling {litellm_model} via LiteLLM")
+        finally:
+            os.unlink(tmp_path)
 
         if result.returncode != 0:
-            raise ProviderError(f"curl failed (rc={result.returncode}): {result.stderr}")
+            raise ProviderError(f"curl failed (rc={result.returncode}): {result.stderr[:300]}")
 
-        return self._parse_streaming_response(result.stdout)
+        raw = result.stdout.strip()
+        if not raw:
+            raise ProviderError(f"Empty response from LiteLLM. stderr: {result.stderr[:300]}")
+
+        # Check for non-streaming error response
+        if raw.startswith("{"):
+            try:
+                response = json.loads(raw)
+                if "error" in response:
+                    err_msg = response["error"]
+                    if isinstance(err_msg, dict):
+                        err_msg = err_msg.get("message", str(err_msg))
+                    raise ProviderError(f"LiteLLM error: {err_msg}")
+            except json.JSONDecodeError:
+                pass
+
+        return self._parse_streaming_response(raw)
 
     def _parse_streaming_response(self, raw: str) -> dict:
-        """Parse SSE streaming response from LiteLLM."""
-        content_parts = []
-        tokens_in = 0
-        tokens_out = 0
+        """Parse SSE streaming response from LiteLLM.
 
-        for line in raw.strip().split("\n"):
+        Matches the exact parsing logic from litellm_stream.py.
+        """
+        content_parts = []
+        usage = {"prompt_tokens": 0, "completion_tokens": 0}
+
+        for line in raw.split("\n"):
+            line = line.strip()
+            if not line or line == "data: [DONE]":
+                continue
             if not line.startswith("data: "):
                 continue
-            data = line[6:].strip()
-            if data == "[DONE]":
-                break
+
             try:
-                chunk = json.loads(data)
-                delta = chunk.get("choices", [{}])[0].get("delta", {})
-                if "content" in delta:
-                    content_parts.append(delta["content"])
-                usage = chunk.get("usage")
-                if usage:
-                    tokens_in = usage.get("prompt_tokens", tokens_in)
-                    tokens_out = usage.get("completion_tokens", tokens_out)
+                chunk = json.loads(line[6:])
             except json.JSONDecodeError:
                 continue
 
+            choices = chunk.get("choices", [])
+            if choices:
+                delta = choices[0].get("delta", {})
+                content = delta.get("content", "")
+                if content:
+                    content_parts.append(content)
+
+            if "usage" in chunk:
+                u = chunk["usage"]
+                usage["prompt_tokens"] = u.get("prompt_tokens", usage["prompt_tokens"])
+                usage["completion_tokens"] = u.get("completion_tokens", usage["completion_tokens"])
+
+        full_content = "".join(content_parts)
+        if not full_content:
+            raise ProviderError("Streaming returned no content. Raw: " + raw[:500])
+
         return {
-            "content": "".join(content_parts),
-            "tokens_in": tokens_in,
-            "tokens_out": tokens_out,
+            "content": full_content,
+            "tokens_in": usage["prompt_tokens"],
+            "tokens_out": usage["completion_tokens"],
         }
 
 

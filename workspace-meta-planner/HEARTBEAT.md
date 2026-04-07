@@ -23,6 +23,14 @@ After Gate #3 is approved AND report is generated:
 1. All gates show approved in manifest.json
 2. Heartbeat checks will see no active runs and go idle automatically
 
+## SDD Planner runs (planner/)
+In addition to old pipeline runs, check for SDD Planner runs:
+- Look in `planner_runs/` for any `planner_state.json` where `run_status` is `active` or `paused`
+- If found → check `last_checkpoint` for pending gates
+- If a gate is pending → remind human once, then wait (do NOT auto-approve)
+- Check with: `python3 scripts/run_sdd_planner.py status`
+- SDD runs are SEPARATE from old pipeline runs in `runs/`
+
 ## During idle
 - Do NOT process old runs
 - Do NOT re-analyze completed plans

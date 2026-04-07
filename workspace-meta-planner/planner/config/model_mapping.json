@@ -1,0 +1,14 @@
+{
+  "_note": "Maps spec model names → LiteLLM registered names. Source of truth: system_configuration.md",
+  "models": {
+    "claude-opus-4-6": "claude-opus46",
+    "claude-sonnet-4-6": "claude-sonnet46",
+    "gpt-5.4": "gpt52-thinking",
+    "gpt-5.2": "gpt52-none",
+    "gemini-3.1-pro": "gemini31pro-none"
+  },
+  "litellm_proxy": "http://127.0.0.1:4000",
+  "litellm_api_key": "sk-litellm-local",
+  "curl_max_time": 300,
+  "subprocess_buffer": 50
+}
