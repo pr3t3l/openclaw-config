@@ -9,7 +9,7 @@ NOT HERE: How workflows use these → docs/specs/[workflow]/spec.md
 UPDATE FREQUENCY: When adding a new integration or when limits/pricing change.
 -->
 
-**Last updated:** 2026-04-04
+**Last updated:** 2026-04-07
 **Sources:** Project Bible v2 §3,§6, Platform Bible §4-5 (archived in docs/archivo/)
 
 ---
@@ -226,6 +226,43 @@ All LLM calls route through LiteLLM proxy at `http://127.0.0.1:4000` unless note
 | **Total estimate** | **$30-60/month** | | |
 
 **Budget targets:** See CONSTITUTION.md §6
+
+---
+
+## OpenClaw Skill System (Planner Integration)
+
+### Architecture
+- Planner runs as Python orchestrator at `~/.openclaw/workspace-meta-planner/planner/`
+- OpenClaw Gateway triggers execution via skills (SKILL.md files)
+- Skills use normal mode with strict exec instructions (`command-dispatch: tool` does NOT work for this use case — see LL-INFRA-036)
+- `/reset` required before skill invocation to prevent LLM simulation (LL-INFRA-037)
+
+### Skills
+- `skills/sdd-planner/SKILL.md` → `/sdd_planner` command
+  Executes: `python3 scripts/run_sdd_planner.py start "<args>"`
+- `skills/sdd-planner-reply/SKILL.md` → `/sdd_planner_reply` command
+  Executes: `status` to find run/gate, then `gate-reply <run_id> <gate_id> "<response>"`
+
+### Model Gateway
+- LiteLLM proxy at `http://127.0.0.1:4000`
+- `config/model_mapping.json` maps spec names → LiteLLM model names:
+  - `claude-opus-4-6` → `claude-opus46`
+  - `gpt-5.4` → `gpt52-thinking`
+  - `gemini-3.1-pro` → `gemini31pro-none`
+- ModelGateway uses streaming curl via subprocess (tempfile + @file pattern) because Python requests FAILS in WSL for long API calls (LL-INFRA-001)
+- API key: `sk-litellm-local` (from `~/.openclaw/.env`)
+
+### Transient Data Pattern
+- State (`planner_state.json`) only contains schema-valid fields (`additionalProperties: false`)
+- Transient data stored as files in `planner_runs/{run_id}/`:
+  `intake_answers.json`, `draft_content.md`, `audit_result.json`,
+  `ideation_result.json`, `lessons_check_result.json`, `finalize_result.json`
+- See LL-ARCH-034 for rationale
+
+### Known Limitations
+- `/reset` required before every skill invocation session (LL-INFRA-037)
+- `command-dispatch: tool` incompatible with Python script wrapping (LL-INFRA-036)
+- Skill directory hyphens become underscores in Telegram commands (LL-INFRA-038)
 
 ---
 

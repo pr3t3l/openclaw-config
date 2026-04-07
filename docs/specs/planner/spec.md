@@ -722,25 +722,38 @@ Result: Document #7's Intake receives ~3,500 tokens of Decision Logs
 
 ### 7.4 Telegram Commands
 
+> **NOTE:** Skill directory names with hyphens become underscores in Telegram
+> commands (e.g., `sdd-planner/` → `/sdd_planner`). See LL-INFRA-038.
+>
+> **IMPORTANT:** Run `/reset` before the first skill invocation in a session
+> to prevent the LLM from reading Python files and simulating the workflow
+> instead of executing via exec tool. See LL-INFRA-037.
+
 ```bash
 # Start a new project from an idea:
-/plan [description of idea in free text]
+/sdd_planner [description of idea in free text]
+# Executes: python3 scripts/run_sdd_planner.py start "<args>"
+# Runs Phase 0, creates run, presents Gate G0.
+# Human must reply with MODULE_SPEC or WORKFLOW_SPEC.
+
+# Respond to a pending gate (G0, G1, G3, G5, G6.5, G7):
+/sdd_planner_reply [response text]
+# Executes: status to find run/gate, then gate-reply <run_id> <gate_id> "<response>"
+# Resolves the gate, continues phases until next gate or completion.
 
 # Start from existing documentation:
-/plan-from-docs [attach files or paste links]
-
-# Resume an interrupted run:
-/plan-resume [run_id]
-
-# Check current status:
-/plan-status [run_id]
+# ⬜ NOT YET IMPLEMENTED — /plan-from-docs [attach files or paste links]
 
 # Re-entry from Code blocker:
-/plan-fix [run_id] [task_id]
+# ⬜ NOT YET IMPLEMENTED — /plan-fix [run_id] [task_id]
 
-# Via CLI (alternative):
+# Via CLI (alternative — all commands available):
 cd ~/.openclaw/workspace-meta-planner
-python3 scripts/resume_plan.py --run-id [run_id]
+python3 scripts/run_sdd_planner.py start "Build a todo CLI app"
+python3 scripts/run_sdd_planner.py gate-reply RUN-xxx G0 "MODULE_SPEC"
+python3 scripts/run_sdd_planner.py status [run_id]
+python3 scripts/run_sdd_planner.py resume [run_id]
+python3 scripts/run_sdd_planner.py test-call
 ```
 
 ### 7.5 PII / Secret Detection (Phase 0)
@@ -779,7 +792,7 @@ PATTERNS = [
 # → Sequential queue with jittered backoff handles this automatically
 
 # If human needs to pause:
-# → Just stop responding. State is saved. Use /plan-resume later.
+# → Just stop responding. State is saved. Use /sdd_planner_reply or CLI resume later.
 
 # If cost alert triggers at $30:
 # → Telegram notifies. Human decides: continue or optimize.
@@ -1187,7 +1200,7 @@ are highlighted in the document for human review in Phase 5.
 | Audit conflict handling | Both raw arguments to human | Triager cannot filter out disagreements on CRITICAL findings. |
 | MODULE vs WORKFLOW detection | Always ask human | 2-second question, prevents auto-detection errors. |
 | Telegram document delivery | .md file attachments | 4096-char limit makes inline delivery unreliable for docs. |
-| Telegram commands | /plan, /plan-from-docs, /plan-resume, /plan-status, /plan-fix | Clear, distinct triggers per mode. |
+| Telegram commands | /sdd_planner, /sdd_planner_reply (CLI: start, gate-reply, status, resume) | Skill dir names → underscore commands. /plan-from-docs and /plan-fix not yet implemented. |
 | planner_runs/ storage | Inside project repo, committed (no gitignore) | Small files (~5KB), valuable run history. |
 | Conversation history | Per-doc partitioning + Decision Logs | Prevents 40K+ token bloat by doc #7. ~500 words per doc summary. |
 | Large project handling | Module-by-module interactive with human | Prevents context overflow, maintains human control. |

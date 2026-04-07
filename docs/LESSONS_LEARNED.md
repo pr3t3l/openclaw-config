@@ -31,8 +31,8 @@ Old IDs are preserved in parentheses for cross-reference with archived docs.
 Full evidence and context available in docs/archivo/lessons_learned-master.md.
 -->
 
-**Last updated:** 2026-04-04
-**Total entries:** 74
+**Last updated:** 2026-04-07
+**Total entries:** 82
 
 ---
 
@@ -118,6 +118,14 @@ Full evidence and context available in docs/archivo/lessons_learned-master.md.
 | PL-07 | LL-ARCH-PL07 | Cross-critique > independent proposals |
 | PL-08 | LL-ARCH-PL08 | Alternative paths diverge without integration |
 | PL-09 | LL-PROC-PL09 | Gate auto-approval hides quality issues |
+| — | LL-INFRA-036 | command-dispatch:tool fails for Python wrapping |
+| — | LL-INFRA-037 | OpenClaw LLM simulates instead of exec |
+| — | LL-INFRA-038 | Skill hyphens → underscores in Telegram |
+| — | LL-CODE-041 | StubHandler tests miss real schema errors |
+| — | LL-ARCH-034 | additionalProperties:false vs transient data |
+| — | LL-ARCH-035 | OpenClaw skills need ultra-strict SKILL.md |
+| — | LL-AI-028 | Model audit benchmarks (GPT-5.4 vs Gemini) |
+| — | LL-PROC-033 | 500+ tests need real integration test |
 
 ---
 
@@ -157,6 +165,8 @@ Full evidence and context available in docs/archivo/lessons_learned-master.md.
 | LL-ARCH-033 | Compress upstream context for heavy agents. Only include fields relevant to the agent's task. | Full contracts passed to implementation planner caused timeouts. 67% reduction via compress_contracts(). | Compress function + block_mode fallback. | workflows |
 | LL-ARCH-PL07 | Cross-critique produces better results than independent proposals. | Basis for 3-round debate design. | Use debate pattern for architecture decisions. | workflows |
 | LL-ARCH-PL08 | Alternative paths diverge without integration. Avoid parallel paths that aren't merged. | Planner produced divergent proposals that were never reconciled. | Single proposal → critique → revision. | workflows |
+| LL-ARCH-034 | `planner_state.json` schema has `additionalProperties: false` — transient data (`_intake_answers`, `_draft_content`, `_audit_result`, etc.) must go to files in `planner_runs/{run_id}/`, NOT in the state dict. The Dispatcher pops `_gate_pending` before save, but all other transient fields cause schema validation errors. | Transient data → files in run dir. State dict = schema fields only. | Schema validation catches at save time, not at runtime. | both |
+| LL-ARCH-035 | OpenClaw skills use normal mode (not `command-dispatch: tool`). The SKILL.md must have ultra-strict instructions: "MUST execute via exec tool", "Do NOT read Python files", "Do NOT simulate". Even with these instructions, `/reset` before invocation is required to prevent LLM from reading and simulating the Python code. | Ultra-strict SKILL.md + `/reset` before invocation. | Tested April 2026 with Planner integration. | both |
 
 ---
 
@@ -195,6 +205,9 @@ Full evidence and context available in docs/archivo/lessons_learned-master.md.
 | LL-INFRA-030 | Google Sheets needs BOTH spreadsheets AND drive scopes. | Both scopes always. |
 | LL-INFRA-033 | LiteLLM Prisma: duplicate model LiteLLM_DeletedTeamTable — warning, not blocking. | Ignore this warning. |
 | LL-INFRA-035 | litellm.env: only API keys + UI creds. Extra vars (TELEGRAM_*, GATEWAY_*) crash LiteLLM. | Keep litellm.env minimal. |
+| LL-INFRA-036 | OpenClaw `command-dispatch: tool` does NOT work for Python script wrapping. The `exec` tool receives raw args as a shell command — you cannot prefix `python3 /path/to/script.py` or any command. Tested and confirmed April 2026. | Use normal skill mode with strict exec instructions instead. |
+| LL-INFRA-037 | OpenClaw LLM reads Python files in workspace and simulates the workflow instead of executing via exec tool. Workaround: `/reset` before skill invocation clears LLM context and forces exec execution. This is fragile — any prior conversation in the session can cause the LLM to bypass exec and simulate. | `/reset` before every skill invocation session. |
+| LL-INFRA-038 | OpenClaw skill names with hyphens become underscores in Telegram commands (`sdd-planner` dir → `/sdd_planner` command). The skill directory name determines the command, not the `command:` field in SKILL.md frontmatter. | Name skill directories with the Telegram command in mind. |
 
 ---
 
@@ -209,6 +222,7 @@ Full evidence and context available in docs/archivo/lessons_learned-master.md.
 | LL-AI-021 | Tell the model what NOT to do. Negative instructions prevent common failures. | Include "NEVER" rules in prompts. |
 | LL-AI-021b | Veo 3 model names use -001 suffix, not -preview. | Check exact model identifiers. |
 | LL-AI-027 | Different models for different tasks. Expensive for creative, cheap for formatting. | Model selection table in spec §4. |
+| LL-AI-028 | Model audit benchmarks (March 2026): GPT-5.4 is aggressive auditor (20+ findings, 15K chars per audit). Gemini 3.1 Pro is precise architect (7-8 findings, 3K chars, cheapest at $2/$12/M tokens). Audit pattern: 4 sequential calls (GPT tech + arch, Gemini tech + arch) with 5-10s jittered backoff. Todo CLI test run: $0.61 total for 7 docs + plan + 21 tasks. | Use 4-call audit pattern with model-appropriate expectations. |
 
 ### Model Notes
 
@@ -219,6 +233,8 @@ Full evidence and context available in docs/archivo/lessons_learned-master.md.
 | nano-banana-2-gemini | Needs exponential backoff (2s, 5s, 10s) for RESOURCE_EXHAUSTED | Operational |
 | M2.7 | Not reliable for multi-step routing (ignores complex AGENTS.md) | LL-AI-016 |
 | Claude Sonnet | Truncates JSON above ~8K tokens | LL-AI-017 |
+| GPT-5.4 | Aggressive auditor: 20+ findings, 15K chars per audit call | LL-AI-028 |
+| Gemini 3.1 Pro | Precise architect: 7-8 findings, 3K chars, cheapest ($2/$12/M tokens) | LL-AI-028 |
 
 ---
 
@@ -230,6 +246,7 @@ Full evidence and context available in docs/archivo/lessons_learned-master.md.
 | LL-CODE-038 | Receipt amounts: re.findall + max() beats re.search (first match). | Use findall for numeric extraction. |
 | LL-CODE-039 | Credit card payments are POSITIVE in Chase CSV — check payment keywords before sign split. | Validate sign logic per bank format. |
 | LL-CODE-040 | Spanish payment keywords needed in classifier (SU PAGO, PAGO AUTOMATICO). | i18n in financial classifiers. |
+| LL-CODE-041 | Claude Code builds modules with StubHandler unit tests that all pass, but real PhaseHandlers were never integration-tested through the Dispatcher with schema validation. Result: `_intake_answers` field caused schema validation crash at runtime that 573 unit tests missed. | Always require at least 1 integration test that runs real handlers through the full dispatcher loop with `state_manager.save()` and schema validation. |
 
 ---
 
@@ -258,6 +275,7 @@ Full evidence and context available in docs/archivo/lessons_learned-master.md.
 | LL-PROC-031b | Lovable Publish after Code edits: git push doesn't deploy — Publish button required. | Use Publish button, not git push. |
 | LL-PROC-032 | One Claude Code instance per repo — two on same repo causes git conflicts. | One instance per repo. |
 | LL-PROC-PL09 | Gate auto-approval hides quality issues. Human gates exist for a reason. | Real human review at gates. |
+| LL-PROC-033 | When Claude Code builds a system with 500+ tests, verify that at least some tests exercise the REAL integration path (real handlers → real dispatcher → real schema validation). A "Full Audit Policy" should be added to every build: after Code finishes all tasks, run one real integration test that flows through the actual system, not mocks. | Add integration test requirement to every build checklist. |
 
 ---
 
@@ -284,6 +302,9 @@ Full evidence and context available in docs/archivo/lessons_learned-master.md.
 - ❌ Never mix infra fixes with quality improvements (LL-PLAN-005)
 - ❌ Never split specs across multiple files for one consumer (LL-PLAN-020)
 - ❌ Normalize all identifiers consistently across phases (LL-ARCH-012)
+- ❌ Never put transient data in state dicts with `additionalProperties: false` — use files (LL-ARCH-034)
+- ❌ Never use `command-dispatch: tool` for Python script wrapping in OpenClaw (LL-INFRA-036)
+- ❌ Never trust 500+ unit tests without at least 1 integration test through the real system (LL-CODE-041, LL-PROC-033)
 
 ### Documentation
 - ❌ Never copy content between docs — reference with "See [DOC §section]"
@@ -326,6 +347,8 @@ Run this before starting ANY new module or workflow build.
 - [ ] Manifest updated on every phase completion/failure (LL-PROC-029)
 - [ ] Context compressed for heavy downstream agents (LL-ARCH-033)
 - [ ] Streaming curl used for all API calls in WSL (LL-INFRA-001)
+- [ ] At least 1 integration test through real dispatcher + schema validation (LL-CODE-041, LL-PROC-033)
+- [ ] Transient data stored in files, not state dicts with strict schema (LL-ARCH-034)
 
 ---
 
