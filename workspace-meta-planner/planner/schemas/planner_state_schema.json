@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PlannerState",
+  "description": "Schema for planner_state.json — tracks run state, cost, and progress.",
+  "schema_version": "1.0.0",
+  "type": "object",
+  "required": [
+    "run_id",
+    "project_id",
+    "run_status",
+    "locked_by",
+    "locked_until",
+    "state_version",
+    "schema_version",
+    "current_phase",
+    "current_document",
+    "last_checkpoint",
+    "documents_completed",
+    "documents_pending",
+    "decision_logs",
+    "entity_maps",
+    "cost",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "pattern": "^RUN-\\d{8}-\\d{3}$",
+      "description": "Unique run identifier, e.g. RUN-20260406-001"
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Project identifier for admission control (one active run per project)"
+    },
+    "run_status": {
+      "type": "string",
+      "enum": ["active", "paused", "degraded", "completed", "failed"],
+      "description": "Current run status"
+    },
+    "locked_by": {
+      "type": ["string", "null"],
+      "description": "Process holding the lock, or null if unlocked"
+    },
+    "locked_until": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "ISO timestamp when lock expires, or null"
+    },
+    "state_version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Increments on every save for optimistic concurrency"
+    },
+    "schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Schema version for future migrations"
+    },
+    "current_phase": {
+      "type": "string",
+      "description": "Current phase identifier, e.g. '0', '1', '1.5', '2', '2.5', '3', '4', '5', '6', '6.5', '7'"
+    },
+    "current_document": {
+      "type": ["object", "null"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Document filename, e.g. CONSTITUTION.md"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["PROJECT_FOUNDATION", "CONSTITUTION", "DATA_MODEL", "INTEGRATIONS", "LESSONS_LEARNED", "MODULE_SPEC", "WORKFLOW_SPEC"],
+          "description": "SDD template type"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Document draft version within this run"
+        },
+        "phase_status": {
+          "type": "string",
+          "description": "Status within current phase, e.g. 'intake_in_progress', 'audit_in_progress'"
+        },
+        "phase_attempt": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Attempt number for current phase (max 2 retries)"
+        },
+        "sections_completed": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Template sections already captured during intake"
+        },
+        "template": {
+          "type": "string",
+          "description": "Template type being used for this document"
+        }
+      },
+      "required": ["name", "version", "phase_status", "phase_attempt"],
+      "description": "Currently active document, or null if between documents"
+    },
+    "last_checkpoint": {
+      "type": "string",
+      "description": "Human-readable description of last completed checkpoint"
+    },
+    "documents_completed": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "List of document names that have been approved"
+    },
+    "documents_pending": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "List of document names still to process"
+    },
+    "decision_logs": {
+      "type": "object",
+      "additionalProperties": {"type": "string"},
+      "description": "Per-document Decision Log summaries (replaces raw chat history)"
+    },
+    "entity_maps": {
+      "type": "object",
+      "additionalProperties": {"type": "object"},
+      "description": "Per-document Entity Maps for cross-doc validation"
+    },
+    "cost": {
+      "type": "object",
+      "required": ["total_usd", "by_model", "by_phase", "by_document"],
+      "properties": {
+        "total_usd": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Running total cost in USD"
+        },
+        "by_model": {
+          "type": "object",
+          "additionalProperties": {"type": "number"},
+          "description": "Cost breakdown by model name"
+        },
+        "by_phase": {
+          "type": "object",
+          "additionalProperties": {"type": "number"},
+          "description": "Cost breakdown by phase"
+        },
+        "by_document": {
+          "type": "object",
+          "additionalProperties": {"type": "number"},
+          "description": "Cost breakdown by document"
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO timestamp when run was created"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO timestamp of last state update"
+    }
+  },
+  "additionalProperties": false
+}
