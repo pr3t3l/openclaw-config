@@ -90,5 +90,9 @@ def generate_tasks(
         content=content,
         validation_passed=validation_passed,
         validation_errors=validation_errors,
-        total_tasks=len([l for l in content.split("\n") if l.strip().startswith("### TASK-")]),
+        # Support both headings used by different generators: "### TASK-" and "## TASK-".
+        total_tasks=len([
+            l for l in content.split("\n")
+            if l.strip().startswith("### TASK-") or l.strip().startswith("## TASK-")
+        ]),
     )

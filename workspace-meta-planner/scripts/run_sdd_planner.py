@@ -7,6 +7,7 @@ Usage:
   python3 run_sdd_planner.py start --from-docs /path/to/monolith.md
   python3 run_sdd_planner.py resume [run_id]
   python3 run_sdd_planner.py status [run_id]
+  python3 run_sdd_planner.py gate-reply RUN-xxx G0 "MODULE_SPEC, keep it minimal"
   python3 run_sdd_planner.py test-call        # Test LiteLLM connectivity
 
 Integrates with the existing workspace-meta-planner infrastructure.
@@ -28,6 +29,7 @@ from planner.cost_tracker import get_summary
 from planner.phases.phase_0_setup import run_phase_0
 from planner.orchestrator.dispatcher import Dispatcher
 from planner.orchestrator.checkpoint import CheckpointManager
+from planner.orchestrator.gates import GateEngine
 
 logging.basicConfig(
     level=logging.INFO,
@@ -122,6 +124,102 @@ def cmd_status(args: argparse.Namespace) -> None:
                   f"(Phase {r['current_phase']}, ${r['cost_total']:.2f})")
 
 
+def cmd_gate_reply(args: argparse.Namespace) -> None:
+    """Resolve a pending gate and continue execution until the next gate or completion."""
+    run_id = args.run_id
+    gate_id = args.gate_id
+    response = " ".join(args.response) if args.response else ""
+
+    if not response:
+        print("Error: gate response cannot be empty")
+        sys.exit(1)
+
+    # Load state via checkpoint manager
+    checkpoint = CheckpointManager(PROJECT_ROOT)
+    try:
+        state = checkpoint.resume_from(run_id)
+    except Exception as e:
+        print(f"Error loading run {run_id}: {e}")
+        sys.exit(1)
+
+    # Verify the pending gate matches
+    stored_gate = state.get("pending_gate")
+    if stored_gate and stored_gate != gate_id:
+        print(f"Error: run {run_id} is waiting on gate {stored_gate}, not {gate_id}")
+        state_manager.release_lock(PROJECT_ROOT, state)
+        sys.exit(1)
+
+    # Determine approval from response
+    reject_keywords = {"reject", "rejected", "no", "deny", "denied", "redo"}
+    first_word = response.strip().split()[0].lower().rstrip(",") if response.strip() else ""
+    approved = first_word not in reject_keywords
+
+    # Resolve the gate
+    gate_engine = GateEngine()
+    result = gate_engine.resolve_gate(gate_id, approved=approved, notes=response)
+    print(f"Gate {gate_id}: {'APPROVED' if result.passed else 'REJECTED'}")
+    if result.message:
+        print(f"  {result.message}")
+
+    # Clear pending gate
+    state["pending_gate"] = None
+
+    if not result.passed:
+        # Gate rejected — save state and exit, human needs to adjust
+        state["last_checkpoint"] = f"Gate {gate_id} rejected: {response}"
+        state = state_manager.release_lock(PROJECT_ROOT, state)
+        print(f"\nGate {gate_id} rejected. Run paused at phase {state['current_phase']}.")
+        print(f"Fail action: {result.fail_action}")
+        return
+
+    # Gate approved — advance to next phase and run until next gate or completion
+    dispatcher = Dispatcher(PROJECT_ROOT, gate_engine=gate_engine, checkpoint_manager=checkpoint)
+    next_phase = dispatcher._next_phase(state, state["current_phase"])
+
+    if next_phase is None:
+        state["run_status"] = "completed"
+        state["last_checkpoint"] = "Run complete"
+        state = state_manager.release_lock(PROJECT_ROOT, state)
+        print("\nAll phases complete. Run finished.")
+        print(f"Cost: ${state['cost']['total_usd']:.2f}")
+        return
+
+    state["current_phase"] = next_phase
+    state = state_manager.save(PROJECT_ROOT, state)
+
+    # Dispatch phases until next gate or completion
+    while True:
+        result = dispatcher.dispatch_phase(state)
+        state = result.state
+        print(f"  Phase {state['current_phase']}: {result.message}")
+
+        if result.action == "gate_pending":
+            # Save checkpoint and exit — next gate reached
+            state = checkpoint.save_checkpoint(state, state["pending_gate"],
+                                                message_to_human=result.message)
+            print(f"\nPaused at gate {state['pending_gate']}.")
+            print(f"Run: {run_id}")
+            print(f"Cost: ${state['cost']['total_usd']:.2f}")
+            return
+
+        if result.action == "complete":
+            print(f"\nAll phases complete. Run finished.")
+            print(f"Cost: ${state['cost']['total_usd']:.2f}")
+            return
+
+        if result.action == "cost_alert":
+            print(f"\n{result.message}")
+            state = state_manager.release_lock(PROJECT_ROOT, state)
+            return
+
+        if result.action == "error":
+            print(f"\nError: {result.message}")
+            state = state_manager.release_lock(PROJECT_ROOT, state)
+            sys.exit(1)
+
+        # action == "continue" — keep going
+
+
 def cmd_test_call(args: argparse.Namespace) -> None:
     """Test LiteLLM connectivity with a real API call."""
     print("Testing LiteLLM connectivity...")
@@ -175,6 +273,12 @@ def main() -> None:
     p_status = sub.add_parser("status", help="Show run status")
     p_status.add_argument("run_id", nargs="?", help="Run ID (default: list all)")
 
+    # gate-reply
+    p_gate = sub.add_parser("gate-reply", help="Resolve a pending gate and continue")
+    p_gate.add_argument("run_id", help="Run ID (e.g. RUN-20260407-001)")
+    p_gate.add_argument("gate_id", help="Gate ID (e.g. G0, G3, G5, G7)")
+    p_gate.add_argument("response", nargs="*", help="Human response to the gate")
+
     # test-call
     p_test = sub.add_parser("test-call", help="Test LiteLLM connectivity")
     p_test.add_argument("--model", help="Model to test (default: gemini-3.1-pro)")
@@ -185,7 +289,7 @@ def main() -> None:
         sys.exit(1)
 
     {"start": cmd_start, "resume": cmd_resume, "status": cmd_status,
-     "test-call": cmd_test_call}[args.command](args)
+     "gate-reply": cmd_gate_reply, "test-call": cmd_test_call}[args.command](args)
 
 
 if __name__ == "__main__":

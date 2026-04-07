@@ -119,7 +119,8 @@ def _parse_tasks(content: str) -> list[dict]:
     current_lines: list[str] = []
 
     for line in content.split("\n"):
-        task_match = re.match(r"###\s+(TASK-\d+)", line)
+        # Accept either "## TASK-001" or "### TASK-001" heading styles.
+        task_match = re.match(r"#{2,3}\s+(TASK-\d+)", line)
         if task_match:
             if current_id:
                 tasks.append({"id": current_id, "content": "\n".join(current_lines)})

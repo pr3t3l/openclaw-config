@@ -158,6 +158,7 @@ class Dispatcher:
         # Check if a gate is pending (phase handler sets this via transient key)
         gate_id = state.pop("_gate_pending", None)
         if gate_id:
+            state["pending_gate"] = gate_id
             state["last_checkpoint"] = f"Phase {current_phase} complete, gate {gate_id} pending"
             state = state_manager.save(self.project_root, state)
             return DispatchResult(

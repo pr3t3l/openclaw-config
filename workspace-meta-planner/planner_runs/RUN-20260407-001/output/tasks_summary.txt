@@ -1,0 +1,10 @@
+📄 tasks.md ready for review
+
+Key changes:
+- Generated atomic tasks with required 8 fields
+- AF markers applied: none
+- Audit findings resolved: 0
+
+Cost for this document: $0.20 | Total: $0.61
+
+✅ Approve | 🔄 Another round | ❌ Start over

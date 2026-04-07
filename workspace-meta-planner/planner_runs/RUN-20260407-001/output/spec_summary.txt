@@ -1,0 +1,10 @@
+📄 spec.md ready for review
+
+Key changes:
+- Resolved audit items: argparse exit codes; idempotent done; stable list output; simplified id primary key
+- AF markers applied: none
+- Audit findings resolved: 3
+
+Cost for this document: $0.31 | Total: $0.31
+
+✅ Approve | 🔄 Another round | ❌ Start over

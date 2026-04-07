@@ -193,14 +193,23 @@ def _parse_findings(content: str, source: str) -> list[Finding]:
         if not line:
             continue
 
-        # Match severity markers
+        # Match severity markers.
+        # Supported formats:
+        #   - "- CRITICAL: ..." (old)
+        #   - "- **SEVERITY:** CRITICAL" (current model outputs)
         sev_match = re.match(r"[-*]\s*(CRITICAL|IMPORTANT|MINOR|NOISE)\s*:?\s*(.*)", line, re.IGNORECASE)
+        if not sev_match:
+            sev_match = re.match(
+                r"[-*]\s*\*\*SEVERITY:\*\*\s*(CRITICAL|IMPORTANT|MINOR|NOISE)\s*(.*)",
+                line,
+                re.IGNORECASE,
+            )
         if sev_match:
             if current:
                 findings.append(_build_finding(current, source))
             current = {
                 "severity": sev_match.group(1).upper(),
-                "description": sev_match.group(2).strip(),
+                "description": sev_match.group(2).strip().strip("-–—").strip(),
                 "section": "",
                 "suggestion": "",
             }

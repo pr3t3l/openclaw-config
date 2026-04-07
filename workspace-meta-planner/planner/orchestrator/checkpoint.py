@@ -62,6 +62,7 @@ class CheckpointManager:
             f"Phase {state['current_phase']}, "
             f"Doc: {doc_name}"
         )
+        state["pending_gate"] = gate_id
 
         # Release lock before exiting (human may take hours to respond)
         if state["locked_by"] is not None:

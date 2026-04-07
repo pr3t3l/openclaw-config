@@ -1,0 +1,1 @@
+Build a simple CLI todo app in Python with SQLite

@@ -2,387 +2,387 @@
   "providers": {
     "litellm": {
       "baseUrl": "http://127.0.0.1:4000",
-      "apiKey": "LITELLM_API_KEY",
       "api": "openai-completions",
       "models": [
         {
           "id": "gpt52-none",
           "name": "GPT-5.2 (sin razonamiento)",
+          "api": "openai-completions",
           "reasoning": false,
           "input": [
             "text",
             "image"
           ],
-          "contextWindow": 400000,
-          "maxTokens": 8192,
           "cost": {
             "input": 0,
             "output": 0,
             "cacheRead": 0,
             "cacheWrite": 0
           },
-          "api": "openai-completions"
+          "contextWindow": 400000,
+          "maxTokens": 8192
         },
         {
           "id": "gpt52-medium",
           "name": "GPT-5.2 (medio)",
+          "api": "openai-completions",
           "reasoning": true,
           "input": [
             "text",
             "image"
           ],
-          "contextWindow": 400000,
-          "maxTokens": 8192,
           "cost": {
             "input": 0,
             "output": 0,
             "cacheRead": 0,
             "cacheWrite": 0
           },
-          "api": "openai-completions"
+          "contextWindow": 400000,
+          "maxTokens": 8192
         },
         {
           "id": "gpt52-thinking",
           "name": "GPT-5.2 (thinking)",
+          "api": "openai-completions",
           "reasoning": true,
           "input": [
             "text",
             "image"
           ],
-          "contextWindow": 400000,
-          "maxTokens": 8192,
           "cost": {
             "input": 0,
             "output": 0,
             "cacheRead": 0,
             "cacheWrite": 0
           },
-          "api": "openai-completions"
+          "contextWindow": 400000,
+          "maxTokens": 8192
         },
         {
           "id": "gpt52-xhigh",
           "name": "GPT-5.2 (xhigh)",
+          "api": "openai-completions",
           "reasoning": true,
           "input": [
             "text",
             "image"
           ],
-          "contextWindow": 400000,
-          "maxTokens": 8192,
           "cost": {
             "input": 0,
             "output": 0,
             "cacheRead": 0,
             "cacheWrite": 0
           },
-          "api": "openai-completions"
+          "contextWindow": 400000,
+          "maxTokens": 8192
         },
         {
           "id": "gpt53-codex",
           "name": "GPT-5.3 Codex",
+          "api": "openai-completions",
           "reasoning": true,
           "input": [
             "text",
             "image"
           ],
-          "contextWindow": 192000,
-          "maxTokens": 16384,
           "cost": {
             "input": 0,
             "output": 0,
             "cacheRead": 0,
             "cacheWrite": 0
           },
-          "api": "openai-completions"
+          "contextWindow": 192000,
+          "maxTokens": 16384
         },
         {
           "id": "gpt5-mini",
           "name": "GPT-5 Mini",
+          "api": "openai-completions",
           "reasoning": false,
           "input": [
             "text",
             "image"
           ],
-          "contextWindow": 128000,
-          "maxTokens": 8192,
           "cost": {
             "input": 0,
             "output": 0,
             "cacheRead": 0,
             "cacheWrite": 0
           },
-          "api": "openai-completions"
+          "contextWindow": 128000,
+          "maxTokens": 8192
         },
         {
           "id": "gpt41",
           "name": "GPT-4.1",
+          "api": "openai-completions",
           "reasoning": false,
           "input": [
             "text",
             "image"
           ],
-          "contextWindow": 266000,
-          "maxTokens": 8192,
           "cost": {
             "input": 0,
             "output": 0,
             "cacheRead": 0,
             "cacheWrite": 0
           },
-          "api": "openai-completions"
+          "contextWindow": 266000,
+          "maxTokens": 8192
         },
         {
           "id": "gemini31pro-none",
           "name": "Gemini 3.1 Pro (sin razonamiento)",
+          "api": "openai-completions",
           "reasoning": false,
           "input": [
             "text",
             "image"
           ],
-          "contextWindow": 1000000,
-          "maxTokens": 8192,
           "cost": {
             "input": 0,
             "output": 0,
             "cacheRead": 0,
             "cacheWrite": 0
           },
-          "api": "openai-completions"
+          "contextWindow": 1000000,
+          "maxTokens": 8192
         },
         {
           "id": "gemini31pro-medium",
           "name": "Gemini 3.1 Pro (medio)",
+          "api": "openai-completions",
           "reasoning": true,
           "input": [
             "text",
             "image"
           ],
-          "contextWindow": 1000000,
-          "maxTokens": 8192,
           "cost": {
             "input": 0,
             "output": 0,
             "cacheRead": 0,
             "cacheWrite": 0
           },
-          "api": "openai-completions"
+          "contextWindow": 1000000,
+          "maxTokens": 8192
         },
         {
           "id": "gemini31pro-thinking",
           "name": "Gemini 3.1 Pro (thinking)",
+          "api": "openai-completions",
           "reasoning": true,
           "input": [
             "text",
             "image"
           ],
-          "contextWindow": 1000000,
-          "maxTokens": 8192,
           "cost": {
             "input": 0,
             "output": 0,
             "cacheRead": 0,
             "cacheWrite": 0
           },
-          "api": "openai-completions"
+          "contextWindow": 1000000,
+          "maxTokens": 8192
         },
         {
           "id": "gemini31lite-none",
           "name": "Gemini 3.1 Lite (sin razonamiento)",
+          "api": "openai-completions",
           "reasoning": false,
           "input": [
             "text",
             "image"
           ],
-          "contextWindow": 1000000,
-          "maxTokens": 65536,
           "cost": {
             "input": 0,
             "output": 0,
             "cacheRead": 0,
             "cacheWrite": 0
           },
-          "api": "openai-completions"
+          "contextWindow": 1000000,
+          "maxTokens": 65536
         },
         {
           "id": "gemini31lite-low",
           "name": "Gemini 3.1 Lite (low)",
+          "api": "openai-completions",
           "reasoning": true,
           "input": [
             "text",
             "image"
           ],
-          "contextWindow": 1000000,
-          "maxTokens": 65536,
           "cost": {
             "input": 0,
             "output": 0,
             "cacheRead": 0,
             "cacheWrite": 0
           },
-          "api": "openai-completions"
+          "contextWindow": 1000000,
+          "maxTokens": 65536
         },
         {
           "id": "gemini31lite-medium",
           "name": "Gemini 3.1 Lite (medio)",
+          "api": "openai-completions",
           "reasoning": true,
           "input": [
             "text",
             "image"
           ],
-          "contextWindow": 1000000,
-          "maxTokens": 65536,
           "cost": {
             "input": 0,
             "output": 0,
             "cacheRead": 0,
             "cacheWrite": 0
           },
-          "api": "openai-completions"
+          "contextWindow": 1000000,
+          "maxTokens": 65536
         },
         {
           "id": "gemini31lite-high",
           "name": "Gemini 3.1 Lite (high)",
+          "api": "openai-completions",
           "reasoning": true,
           "input": [
             "text",
             "image"
           ],
-          "contextWindow": 1000000,
-          "maxTokens": 65536,
           "cost": {
             "input": 0,
             "output": 0,
             "cacheRead": 0,
             "cacheWrite": 0
           },
-          "api": "openai-completions"
+          "contextWindow": 1000000,
+          "maxTokens": 65536
         },
         {
           "id": "claude-sonnet46",
           "name": "Claude Sonnet 4.6",
+          "api": "openai-completions",
           "reasoning": false,
           "input": [
             "text",
             "image"
           ],
-          "contextWindow": 200000,
-          "maxTokens": 64000,
           "cost": {
             "input": 0,
             "output": 0,
             "cacheRead": 0,
             "cacheWrite": 0
           },
-          "api": "openai-completions"
+          "contextWindow": 200000,
+          "maxTokens": 64000
         },
         {
           "id": "claude-sonnet46-thinking",
           "name": "Claude Sonnet 4.6 (thinking)",
+          "api": "openai-completions",
           "reasoning": true,
           "input": [
             "text",
             "image"
           ],
-          "contextWindow": 200000,
-          "maxTokens": 64000,
           "cost": {
             "input": 0,
             "output": 0,
             "cacheRead": 0,
             "cacheWrite": 0
           },
-          "api": "openai-completions"
+          "contextWindow": 200000,
+          "maxTokens": 64000
         },
         {
           "id": "claude-opus46",
           "name": "Claude Opus 4.6",
+          "api": "openai-completions",
           "reasoning": false,
           "input": [
             "text",
             "image"
           ],
-          "contextWindow": 200000,
-          "maxTokens": 128000,
           "cost": {
             "input": 0,
             "output": 0,
             "cacheRead": 0,
             "cacheWrite": 0
           },
-          "api": "openai-completions"
+          "contextWindow": 200000,
+          "maxTokens": 128000
         },
         {
           "id": "claude-opus46-thinking",
           "name": "Claude Opus 4.6 (thinking)",
+          "api": "openai-completions",
           "reasoning": true,
           "input": [
             "text",
             "image"
           ],
-          "contextWindow": 200000,
-          "maxTokens": 128000,
           "cost": {
             "input": 0,
             "output": 0,
             "cacheRead": 0,
             "cacheWrite": 0
           },
-          "api": "openai-completions"
+          "contextWindow": 200000,
+          "maxTokens": 128000
         },
         {
           "id": "minimax-m27",
           "name": "MiniMax M2.7",
+          "api": "openai-completions",
           "reasoning": true,
           "input": [
             "text",
             "image"
           ],
-          "contextWindow": 1000000,
-          "maxTokens": 16384,
           "cost": {
             "input": 0,
             "output": 0,
             "cacheRead": 0,
             "cacheWrite": 0
           },
-          "api": "openai-completions"
+          "contextWindow": 1000000,
+          "maxTokens": 16384
         },
         {
           "id": "step35-flash",
           "name": "Step 3.5 Flash",
+          "api": "openai-completions",
           "reasoning": true,
           "input": [
             "text"
           ],
-          "contextWindow": 256000,
-          "maxTokens": 16384,
           "cost": {
             "input": 0,
             "output": 0,
             "cacheRead": 0,
             "cacheWrite": 0
           },
-          "api": "openai-completions"
+          "contextWindow": 256000,
+          "maxTokens": 16384
         },
         {
           "id": "kimi-k25",
           "name": "Kimi K2.5",
+          "api": "openai-completions",
           "reasoning": true,
           "input": [
             "text",
             "image"
           ],
-          "contextWindow": 131072,
-          "maxTokens": 16384,
           "cost": {
             "input": 0,
             "output": 0,
             "cacheRead": 0,
             "cacheWrite": 0
           },
-          "api": "openai-completions"
+          "contextWindow": 131072,
+          "maxTokens": 16384
         }
-      ]
+      ],
+      "apiKey": "LITELLM_API_KEY"
     },
     "openai-codex": {
       "baseUrl": "https://chatgpt.com/backend-api",
@@ -445,6 +445,11 @@
         }
       ],
       "apiKey": "OPENROUTER_API_KEY"
+    },
+    "google": {
+      "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+      "apiKey": "GEMINI_API_KEY",
+      "models": []
     }
   }
 }
