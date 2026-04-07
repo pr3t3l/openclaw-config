@@ -6,54 +6,60 @@ command: /plan-sdd-reply
 
 # /plan-sdd-reply — Respond to a Pending Gate
 
-This skill handles human responses to SDD planner gates (G0, G1, G1.5, G3, G5, G6.5, G7).
+CRITICAL INSTRUCTIONS — READ CAREFULLY:
 
-## How to use
+When /plan-sdd-reply is invoked, you MUST execute the commands below via the exec tool.
 
-When a user responds to a pending gate, determine from their message:
+## Rules
 
-1. **Which run** — Check the most recent active run if not specified.
-   Run `python3 /home/robotin/.openclaw/workspace-meta-planner/scripts/run_sdd_planner.py status`
-   to list runs and find the one with a pending gate.
+1. Do NOT read, open, or inspect any Python file in workspace-meta-planner/
+2. Do NOT simulate, summarize, or roleplay the planner workflow
+3. Do NOT ask clarifying questions before executing (except to identify run_id/gate_id if ambiguous)
+4. Execute EXACTLY these commands and NOTHING ELSE
 
-2. **Which gate** — Read the `pending_gate` field from the run status.
-   Run `python3 /home/robotin/.openclaw/workspace-meta-planner/scripts/run_sdd_planner.py status <run_id>`
-   to get the pending gate ID.
+## Step 1: Find the active run and pending gate
 
-3. **The response** — The user's message text is the gate response.
-
-Then execute:
-
-```bash
-python3 /home/robotin/.openclaw/workspace-meta-planner/scripts/run_sdd_planner.py gate-reply <run_id> <gate_id> "<response>"
-```
-
-## Gate response patterns
-
-- **G0** (Mode confirmation): User says doc type, e.g. "MODULE_SPEC" or "WORKFLOW_SPEC, keep it minimal"
-- **G1** (Idea confirmation): "approved", "looks good", or corrections
-- **G1.5** (Ideation): "approved", "skip", or feedback
-- **G3** (Audit triage): "approved" or specific issues to fix
-- **G5** (Document approval): "approved" or revision requests
-- **G6.5** (Cross-doc validation): "approved" or contradictions to resolve
-- **G7** (Final approval): "approved" or revision requests
-
-Keywords that mean rejection: "reject", "rejected", "no", "deny", "denied", "redo"
-Everything else is treated as approval with notes.
-
-## What happens
-
-The script resolves the gate, then continues executing phases until:
-- The next human gate is reached (pauses again), or
-- The run completes, or
-- A cost limit is hit
-
-The output is printed to stdout for the user to see.
-
-## Examples
+Execute this command first to identify the run and gate:
 
 ```
-/plan-sdd-reply MODULE_SPEC, keep it minimal
-/plan-sdd-reply approved
-/plan-sdd-reply rejected, the scope is too broad
+python3 /home/robotin/.openclaw/workspace-meta-planner/scripts/run_sdd_planner.py status
 ```
+
+From the output, identify the active run ID (e.g. RUN-20260407-001). Then get its details:
+
+```
+python3 /home/robotin/.openclaw/workspace-meta-planner/scripts/run_sdd_planner.py status <RUN_ID>
+```
+
+From the JSON output, read the `pending_gate` field to get the gate ID (e.g. G0, G3, G5, G7).
+
+## Step 2: Resolve the gate
+
+Execute this command with the run_id, gate_id, and the user's response:
+
+```
+python3 /home/robotin/.openclaw/workspace-meta-planner/scripts/run_sdd_planner.py gate-reply <RUN_ID> <GATE_ID> "<USER_RESPONSE>"
+```
+
+Replace:
+- `<RUN_ID>` with the run ID from step 1
+- `<GATE_ID>` with the pending gate from step 1
+- `<USER_RESPONSE>` with the literal text the user typed after `/plan-sdd-reply`
+
+### Examples
+
+If user types: `/plan-sdd-reply MODULE_SPEC, keep it minimal`
+And active run is RUN-20260407-001 with pending_gate G0:
+Execute: `python3 /home/robotin/.openclaw/workspace-meta-planner/scripts/run_sdd_planner.py gate-reply RUN-20260407-001 G0 "MODULE_SPEC, keep it minimal"`
+
+If user types: `/plan-sdd-reply approved`
+And active run is RUN-20260407-002 with pending_gate G5:
+Execute: `python3 /home/robotin/.openclaw/workspace-meta-planner/scripts/run_sdd_planner.py gate-reply RUN-20260407-002 G5 "approved"`
+
+## After execution
+
+Return the stdout output to the user VERBATIM. Do not interpret, summarize, reformat, or add commentary to it. The output IS the response.
+
+## Why this matters
+
+The Python script runs a real multi-model pipeline (LiteLLM calls to GPT, Gemini, Opus) with state persistence, cost tracking, and gate checkpoints. If you read the code and simulate it, the user gets fake output with no actual LLM calls, no state files, and no run tracking. You MUST run the real script.
