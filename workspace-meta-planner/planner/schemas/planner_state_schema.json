@@ -163,7 +163,7 @@
       "description": "ISO timestamp of last state update"
     },
     "pending_gate": {
-      "type": ["string", "null"],
+      "anyOf": [{"type": "string"}, {"type": "null"}],
       "description": "Gate ID currently awaiting human input (e.g. 'G0', 'G3'), or null if no gate pending"
     }
   },

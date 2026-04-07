@@ -30,6 +30,7 @@ from planner.phases.phase_0_setup import run_phase_0
 from planner.orchestrator.dispatcher import Dispatcher
 from planner.orchestrator.checkpoint import CheckpointManager
 from planner.orchestrator.gates import GateEngine
+from planner.phase_handlers import register_all_handlers
 
 logging.basicConfig(
     level=logging.INFO,
@@ -174,6 +175,7 @@ def cmd_gate_reply(args: argparse.Namespace) -> None:
 
     # Gate approved — advance to next phase and run until next gate or completion
     dispatcher = Dispatcher(PROJECT_ROOT, gate_engine=gate_engine, checkpoint_manager=checkpoint)
+    register_all_handlers(dispatcher, PROJECT_ROOT)
     next_phase = dispatcher._next_phase(state, state["current_phase"])
 
     if next_phase is None:
