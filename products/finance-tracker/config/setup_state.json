@@ -1,13 +1,141 @@
 {
-  "current_state": "SETUP_MODE_SELECT",
+  "current_state": "BUDGET_COLLECT",
   "collected": {
     "context": {
       "name": "Alfredo",
       "language": "es",
       "currency": "USD",
       "timezone": "America/New_York"
-    }
+    },
+    "income": [
+      {
+        "name": "Trabajo",
+        "amount": 3190.0,
+        "frequency": "biweekly",
+        "source_type": "salary",
+        "account_label": "Personal Checking",
+        "is_regular": true
+      },
+      {
+        "name": "Airbnbn",
+        "amount": 500.0,
+        "frequency": "monthly",
+        "source_type": "other",
+        "account_label": "Airbnb Wellsfargo Checking",
+        "is_regular": false
+      },
+      {
+        "name": "Freelance",
+        "amount": 500.0,
+        "frequency": "monthly",
+        "source_type": "salary",
+        "account_label": "Personal Checking",
+        "is_regular": true
+      }
+    ],
+    "cards": [
+      "Personal Checking",
+      "Airbnb Wellsfargo Checking",
+      "Cash"
+    ],
+    "currency": "USD",
+    "rulepacks": [],
+    "business_rules": [],
+    "debts": [
+      {
+        "name": "Chase Auto",
+        "type": "auto_loan",
+        "balance": 16550.0,
+        "apr": 6.44,
+        "minimum_payment": 447.0
+      },
+      {
+        "name": "Upstart",
+        "type": "personal_loan",
+        "balance": 15795.0,
+        "apr": 11.0,
+        "minimum_payment": 343.0
+      },
+      {
+        "name": "DHI Horton",
+        "type": "mortgage",
+        "balance": 275000.0,
+        "apr": 5.5,
+        "minimum_payment": 1804.0
+      },
+      {
+        "name": "Wells Fargo",
+        "type": "credit_card",
+        "balance": 0.0,
+        "apr": 20.0,
+        "minimum_payment": 0.0
+      },
+      {
+        "name": "Discover",
+        "type": "credit_card",
+        "balance": 610.0,
+        "apr": 8.0,
+        "minimum_payment": 350.0
+      },
+      {
+        "name": "Citibank",
+        "type": "credit_card",
+        "balance": 11200.0,
+        "apr": 0.0,
+        "minimum_payment": 271.0
+      }
+    ],
+    "_budget_defaults": [
+      [
+        "Rent/Mortgage",
+        "fixed"
+      ],
+      [
+        "Utilities",
+        "fixed"
+      ],
+      [
+        "Insurance",
+        "fixed"
+      ],
+      [
+        "Groceries",
+        "variable"
+      ],
+      [
+        "Restaurants",
+        "variable"
+      ],
+      [
+        "Gas",
+        "variable"
+      ],
+      [
+        "Shopping",
+        "variable"
+      ],
+      [
+        "Entertainment",
+        "variable"
+      ],
+      [
+        "Healthcare",
+        "variable"
+      ],
+      [
+        "Personal Care",
+        "variable"
+      ],
+      [
+        "Subscriptions",
+        "variable"
+      ],
+      [
+        "Other",
+        "variable"
+      ]
+    ]
   },
   "mode": "full",
-  "updated_at": "2026-04-06T23:30:27.690055"
+  "updated_at": "2026-04-07T10:16:26.338427"
 }

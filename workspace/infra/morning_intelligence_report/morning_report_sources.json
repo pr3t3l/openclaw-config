@@ -1,0 +1,133 @@
+{
+  "timezone": "America/New_York",
+  "tiers": {
+    "tier1_daily": {
+      "label": "Tier 1 — Diario (siempre incluir)",
+      "sources": [
+        {
+          "category": "AI — Changelogs",
+          "priority": "highest",
+          "items": [
+            {"name": "Anthropic Platform Release Notes", "url": "https://docs.anthropic.com/en/release-notes/overview"},
+            {"name": "Claude Code Changelog", "url": "https://docs.anthropic.com/en/docs/claude-code/changelog"},
+            {"name": "OpenAI API Changelog", "url": "https://developers.openai.com/api/docs/changelog/"},
+            {"name": "OpenAI Codex Changelog", "url": "https://developers.openai.com/codex/changelog/"},
+            {"name": "Gemini API Release Notes", "url": "https://ai.google.dev/gemini-api/docs/changelog"},
+            {"name": "OpenClaw docs/updates", "url": "https://docs.openclaw.ai/"}
+          ]
+        },
+        {
+          "category": "AI — Noticias estratégicas",
+          "items": [
+            {"name": "Anthropic News", "url": "https://www.anthropic.com/news"},
+            {"name": "OpenAI Newsroom", "url": "https://openai.com/news/"},
+            {"name": "Google Gemini blog", "url": "https://blog.google/products-and-platforms/products/gemini/"},
+            {"name": "OpenClaw blog", "url": "https://openclaw.ai/blog/"},
+            {"name": "The Rundown AI (RSS)", "url": "https://rss.beehiiv.com/feeds/2R3C6BGTGJ.xml", "type": "rss"},
+            {"name": "TechCrunch AI", "url": "https://techcrunch.com/category/artificial-intelligence/"},
+            {"name": "SemiAnalysis", "url": "https://semianalysis.com/"},
+            {"name": "Semafor Tech", "url": "https://www.semafor.com/newsletters/tech"}
+          ]
+        },
+        {
+          "category": "Macro & Finanzas",
+          "items": [
+            {"name": "Federal Reserve Press Releases", "url": "https://www.federalreserve.gov/newsevents/pressreleases.htm"},
+            {"name": "CME FedWatch", "url": "https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html"},
+            {"name": "BLS CPI Calendar", "url": "https://www.bls.gov/schedule/news_release/cpi.htm"},
+            {"name": "FRED", "url": "https://fred.stlouisfed.org/"},
+            {"name": "Reuters Business", "url": "https://www.reuters.com/business/"},
+            {"name": "CNBC Economy", "url": "https://www.cnbc.com/economy/"}
+          ]
+        }
+      ]
+    },
+    "tier2_mwf": {
+      "label": "Tier 2 — 3 veces por semana (Lunes, Miércoles, Viernes)",
+      "schedule": ["Mon", "Wed", "Fri"],
+      "sources": [
+        {
+          "category": "Oportunidades de negocio",
+          "items": [
+            {"name": "Indie Hackers", "url": "https://www.indiehackers.com/"},
+            {"name": "Acquire.com", "url": "https://acquire.com/"},
+            {"name": "Product Hunt", "url": "https://www.producthunt.com/"},
+            {"name": "Exploding Topics", "url": "https://explodingtopics.com/"}
+          ]
+        },
+        {
+          "category": "Content creation & social media",
+          "items": [
+            {"name": "HeyOrca TikTok Updates", "url": "https://www.heyorca.com/blog/tiktok-social-news"},
+            {"name": "TikTok Newsroom", "url": "https://newsroom.tiktok.com/"},
+            {"name": "Social Media Examiner (RSS)", "url": "https://www.socialmediaexaminer.com/feed/", "type": "rss"}
+          ]
+        },
+        {
+          "category": "Developer tools",
+          "items": [
+            {"name": "Hacker News (100+ points)", "url": "https://hnrss.org/frontpage?points=100", "type": "rss"},
+            {"name": "n8n releases", "url": "https://github.com/n8n-io/n8n/releases"},
+            {"name": "GitHub Trending", "url": "https://github.com/trending"}
+          ]
+        },
+        {
+          "category": "AI Governance",
+          "items": [
+            {"name": "NIST AI", "url": "https://www.nist.gov/artificial-intelligence"}
+          ]
+        }
+      ]
+    },
+    "tier3_weekly_mon": {
+      "label": "Tier 3 — Semanal (Lunes)",
+      "schedule": ["Mon"],
+      "sources": [
+        {
+          "category": "EV & Manufacturing",
+          "items": [
+            {"name": "InsideEVs", "url": "https://insideevs.com/"},
+            {"name": "Canary Media", "url": "https://www.canarymedia.com/"},
+            {"name": "Scout Motors News", "url": "https://www.scoutmotors.com/news"},
+            {"name": "Electrek", "url": "https://electrek.co/"}
+          ]
+        },
+        {
+          "category": "Local Columbia SC",
+          "items": [
+            {"name": "SC Biz News", "url": "https://scbiznews.com/"},
+            {"name": "The State Business", "url": "https://www.thestate.com/news/business/"}
+          ]
+        },
+        {
+          "category": "Personal finance & tax",
+          "items": [
+            {"name": "IRS News", "url": "https://www.irs.gov/newsroom"},
+            {"name": "BiggerPockets", "url": "https://www.biggerpockets.com/blog"},
+            {"name": "CoinDesk Regulation", "url": "https://www.coindesk.com/policy/"}
+          ]
+        },
+        {
+          "category": "Competitive intel — Declassified Cases",
+          "items": [
+            {"name": "Etsy trending mystery games", "url": "https://www.etsy.com/search?q=mystery%20game"},
+            {"name": "Gumroad digital mystery products", "url": "https://gumroad.com/discover?query=mystery%20game"},
+            {"name": "The Verge AI (copyright/legal)", "url": "https://www.theverge.com/ai-artificial-intelligence"}
+          ]
+        },
+        {
+          "category": "Educación (para mi hija)",
+          "items": [
+            {"name": "Richland One School District", "url": "https://www.richlandone.org/"}
+          ]
+        },
+        {
+          "category": "Travel (activo hasta Sep 17, 2026)",
+          "items": [
+            {"name": "Vietnam Travel Advisory", "url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/vietnam-travel-advisory.html"}
+          ]
+        }
+      ]
+    }
+  }
+}

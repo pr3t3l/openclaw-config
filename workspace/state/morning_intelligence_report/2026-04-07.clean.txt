@@ -1,0 +1,67 @@
+Morning Intelligence Report — 2026-04-07 America
+
+1 Sección uno: Critical Changes
+Qué pasó: Sin cambios críticos hoy últimas 24h en APIs tooling confirmados en fuentes oficiales; los changelogs más recientes relevantes siguen siendo de marzo días de abril.
+Por qué importa: Reduce riesgo inmediato de roturas, pero conviene programar una revisión semanal de cambios acumulados.
+Urgencia: Urgencia baja Baja
+
+2 Sección dos: Strategic AI News
+Qué pasó: OpenAI API changelog destacó en marzo el despliegue de GPT‑5.4 a Chat Completions y el modelo GPT‑5.4‑pro en Responses; además se añadieron capacidades como tool search, computer use y compaction con contexto hasta 1M. 
+Por qué importa: Para OpenClaw esto habilita flujos más largos y agentes con UI tooling nativo si lo aprovechamos y compaction para bajar costos.
+Acción sugerida: Revisar dónde conviene migrar workflows a Responses+compaction y definir límites de token por skill.
+Urgencia: Urgencia media Media
+
+Qué pasó: OpenAI expandió Sora API marzo con generaciones más largas hasta 20s , 1080p en sora‑2‑pro, “character references”, “video extensions” y soporte Batch; pricing mencionado: 1080p en sora‑2‑pro ~$0.70
+Por qué importa: Si Declassified Cases entra a video marketing, Batch podría bajar costo pero el pricing 1080p es alto para volumen.
+Acción sugerida: Mantenerlo como “experimento limitado” 1–2 clips hasta tener CAC
+Urgencia: Urgencia baja Baja
+
+Qué pasó: Codex CLI 0.118.0 mar 31 agregó mejoras de sandboxing Windows proxy-only egress , login con device-code, soporte prompt+stdin, y tokens dinámicos para proveedores custom.
+Por qué importa: Mejor seguridad si usamos Codex en entornos Windows y si rotamos credenciales tokens.
+Acción sugerida: Si tienes flujos en Windows, evaluar activar proxy-only egress y estandarizar device-code login en ambientes con callbacks inestables.
+Urgencia: Urgencia media Media
+
+Qué pasó: Según changelog de Gemini API Google añadió “Flex” y “Priority inference tiers” early April y lanzó modelos Gemma 4 nuevos vía API.
+Por qué importa: Flex sugiere una palanca directa de costo vs latencia; útil para separar “background QA” vs “interactive chat” en OpenClaw.
+Acción sugerida: Mapear qué jobs pueden ir a Flex barato y reservar Priority para UX en tiempo real.
+Urgencia: Urgencia media Media
+
+3 Sección tres: Macro & Markets
+Qué pasó: El calendario BLS confirma que el CPI de marzo 2026 sale este viernes 2026-04-10 a las 8:30am ET.
+Por qué importa: CPI mueve yields hipotecarias; para rentals, cualquier sorpresa al alza puede presionar cap rates.
+Acción sugerida: Tener listo un “plan de reacción”: si CPI sorprende alto → pausar compras 1–2 semanas y revisar spreads locales.
+Urgencia: Urgencia media Media
+
+Qué pasó: NY Fed Survey of Consumer Expectations marzo mostró subida en inflación esperada 1 año a 3.4% , y expectativas de gasolina al 9.4% máximo desde mar 2022 .
+Por qué importa: Señal de presión en inflación percibida puede retrasar recortes y mantener costo de deuda alto.
+Urgencia: Urgencia media Media
+
+Qué pasó: FedWatch referencias de mercado apunta a alta probabilidad de “mantener” en la próxima decisión; el dato puntual varía por fuente y cambia intradía.
+Por qué importa: Base case sigue siendo “rates steady” a corto plazo; la sorpresa viene por CPI
+Acción sugerida: Tratar esto como escenario base, pero priorizar monitoreo de CPI y crude.
+Urgencia: Urgencia baja Baja
+
+4 Sección cuatro: Business Opportunities
+Qué pasó: La combinación de compaction OpenAI + tiers Gemini hace viable un “modo batch barato” para auditorías de contenidos y pipelines.
+Por qué importa: Puedes bajar costo por caso si separas: generación creativa modelo fuerte vs QA modelo barato con compaction .
+Acción sugerida: Diseñar dos colas: 1 “interactive” y 2 “batch QA”; medir $ caso antes y después.
+Urgencia: Urgencia media Media
+
+Qué pasó: Codex CLI ahora soporta mejor piping prompt+stdin y auth más resiliente.
+Por qué importa: Facilita automatizar “micro-agents” tipo linters en CI sin hacky wrappers.
+Acción sugerida: Probar un job: “issue → codex exec → patch suggestion → PR draft” en un repo pequeño.
+Urgencia: Urgencia baja Baja
+
+5 Sección cinco: Professional Edge
+Qué pasó: Señales de inflación ligada a energía vuelven a estar en el centro gasolina arriba en expectativas ; mercados sensibles a shocks geopolíticos.
+Por qué importa: Para EV volatilidad de inputs puede reordenar prioridades supply chain, pricing, timing de capex .
+Acción sugerida: Mantener un tracking semanal: WTI + spreads de crédito + anuncios de capex en EV.
+Urgencia: Urgencia baja Baja
+
+--
+Notas de fuentes rápidas 
+OpenAI API changelog: 
+OpenAI Codex changelog: 
+NY Fed SCE 2026-04-07 : 
+BLS CPI schedule: 
+Gemini API changelog vía búsqueda; fetch falló por redirects :

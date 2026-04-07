@@ -591,9 +591,16 @@
     "tts": {
       "auto": "off",
       "mode": "final",
-      "provider": "elevenlabs",
+      "provider": "microsoft",
       "providers": {
+        "microsoft": {
+          "enabled": true,
+          "voice": "es-US-AlonsoNeural",
+          "lang": "es-US",
+          "outputFormat": "audio-24khz-48kbitrate-mono-mp3"
+        },
         "elevenlabs": {
+          "enabled": true,
           "apiKey": "${ELEVENLABS_API_KEY}",
           "voiceId": "XrExE9yKIg1WjnnlVkGX",
           "modelId": "eleven_multilingual_v2"

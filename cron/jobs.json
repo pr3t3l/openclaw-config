@@ -1,4 +1,48 @@
 {
   "version": 1,
-  "jobs": []
+  "jobs": [
+    {
+      "id": "c62ccfce-0c3c-4973-ae8d-6a882fdb23c3",
+      "agentId": "main",
+      "sessionKey": "agent:main:telegram:direct:8024871665",
+      "name": "morning-intelligence-report",
+      "description": "Daily 6am ET briefing to Telegram (voice)",
+      "enabled": true,
+      "createdAtMs": 1775581784418,
+      "updatedAtMs": 1775585229663,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 6 * * *",
+        "tz": "America/New_York"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Run Morning Intelligence Report. Read /home/robotin/.openclaw/workspace/infra/morning_intelligence_report/prompt.txt and sources JSON. Use web_search/web_fetch to gather today's info, produce report text per prompt. Save log markdown to /home/robotin/.openclaw/workspace/state/morning_intelligence_report/YYYY-MM-DD.md. Then sanitize it for speech using: python3 /home/robotin/.openclaw/workspace/infra/morning_intelligence_report/sanitize_tts.py <md> <clean_txt>. Render MP3 with Alonso using: /home/robotin/.openclaw/workspace/tmp/edge_tts_venv/bin/python /home/robotin/.openclaw/workspace/infra/morning_intelligence_report/render_alonso.py <clean_txt> <mp3>. Finally send the MP3 to Telegram chatId 8024871665 as a voice message attachment (message tool).",
+        "toolsAllow": [
+          "web_search",
+          "web_fetch",
+          "write",
+          "read",
+          "message",
+          "exec"
+        ]
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1775642400000,
+        "lastRunAtMs": 1775584875147,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 178600,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    }
+  ]
 }

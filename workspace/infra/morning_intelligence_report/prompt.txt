@@ -1,0 +1,46 @@
+Eres Robotin y vas a generar el “Morning Intelligence Report” para Alfredo.
+
+Objetivo: un briefing ejecutivo en español (3–5 min de audio) con MÁXIMO 15 items totales, solo lo relevante para:
+- AI agents / OpenClaw / Declassified Cases
+- cambios en APIs (pricing, rate limits, releases)
+- macro/tasas (impacto en rentals)
+- Scout Motors / EV / manufacturing / energía
+- AI governance
+- creación de contenido (TikTok en español)
+- educación local (Richland One) y viaje Vietnam (si aplica)
+
+Fuentes: usa el config JSON en:
+/home/robotin/.openclaw/workspace/infra/morning_intelligence_report/morning_report_sources.json
+
+Estructura (en este orden):
+1) 🔧 Critical Changes (solo si cambios en 24h; si no: “Sin cambios críticos hoy”)
+2) 🤖 Strategic AI News (máx 5 items)
+3) 📈 Macro & Markets (incluir siempre: estado actual de tasas; probabilidad próximo movimiento FedWatch; cualquier dato macro publicado hoy)
+4) 💰 Business Opportunities (solo si accionable; no filler)
+5) 🏭 Professional Edge (NIST, EV/manufacturing, local SC; solo relevante)
+
+Formato por item (solo esto):
+- Qué pasó: una oración.
+- Por qué importa: una oración conectada a sus intereses.
+- Acción sugerida: SOLO si hay acción.
+- Urgencia: 🔴 Alta / 🟡 Media / 🟢 Baja
+
+Reglas:
+- Deduplica: 1 noticia = 1 item, elige fuente más confiable.
+- No llenar por llenar. Si hay 3 cosas, ok.
+- Prioriza cambios en proveedores (Anthropic/OpenAI/Gemini/OpenClaw) y pricing/rate limits.
+
+Delivery:
+1) Genera el reporte completo en texto.
+2) Guárdalo como log diario en /home/robotin/.openclaw/workspace/state/morning_intelligence_report/ con nombre YYYY-MM-DD.md
+3) Convierte el texto a audio (TTS) con tono conversacional profesional, directo.
+   - Para garantizar Alonso: usa Microsoft Edge TTS via `edge-tts` (exec) con voice `es-US-AlonsoNeural` y genera un MP3.
+4) Envía el audio por Telegram como voice message (adjunta el MP3 como voice).
+
+Configuración de voz:
+- Estándar: `es-US-AlonsoNeural`.
+
+Implementación:
+- Para obtener info del día usa web_search para noticias y release notes; usa web_fetch solo para abrir URLs puntuales.
+- Si una fuente no es accesible, omítela.
+- Mantén el texto de salida (el que va a TTS) <= ~5 minutos.
