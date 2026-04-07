@@ -52,17 +52,17 @@ def cmd_start(args: argparse.Namespace) -> None:
 
     has_attachments = bool(args.from_docs)
 
-    # Phase 0: detect mode
+    # Phase 0: detect mode (without doc_type — human chooses at G0)
     setup = run_phase_0(PROJECT_ROOT, has_attachments=has_attachments, doc_type=args.doc_type)
     print(f"Mode: {setup.mode}")
     print(f"Context docs loaded: {len(setup.context_loaded)}")
-    print(f"Documents to produce: {setup.documents_pending}")
 
-    # Create run
+    # Create run with empty documents_pending if no doc_type yet
+    docs_pending = setup.documents_pending if args.doc_type else []
     project_id = args.project_id or f"sdd-{idea[:20].replace(' ', '-').lower()}"
     try:
         run_state = state_manager.create_run(
-            PROJECT_ROOT, project_id, setup.documents_pending,
+            PROJECT_ROOT, project_id, docs_pending,
         )
     except state_manager.ProjectAdmissionError as e:
         print(f"Error: {e}")
@@ -73,10 +73,14 @@ def cmd_start(args: argparse.Namespace) -> None:
     run_dir = Path(PROJECT_ROOT) / "planner_runs" / run_state["run_id"]
     (run_dir / "input.txt").write_text(idea or f"from-docs: {args.from_docs}")
 
+    # Set Gate G0 pending — human must confirm doc type
+    run_state["pending_gate"] = "G0"
+    run_state = state_manager.save(PROJECT_ROOT, run_state)
+
     print(f"\nRun created: {run_state['run_id']}")
     print(f"Run dir: {run_dir}")
     print(f"Status: {run_state['run_status']}")
-    print(f"\nNext: connect Telegram or use 'resume {run_state['run_id']}' to continue.")
+    print(f"\nGate G0 pending. Reply with MODULE_SPEC or WORKFLOW_SPEC")
 
 
 def cmd_resume(args: argparse.Namespace) -> None:
@@ -150,14 +154,33 @@ def cmd_gate_reply(args: argparse.Namespace) -> None:
         state_manager.release_lock(PROJECT_ROOT, state)
         sys.exit(1)
 
+    # G0 special handling: extract doc_type from response and re-run phase 0
+    if gate_id == "G0":
+        response_upper = response.upper()
+        if "MODULE_SPEC" in response_upper:
+            doc_type = "MODULE_SPEC"
+        elif "WORKFLOW_SPEC" in response_upper:
+            doc_type = "WORKFLOW_SPEC"
+        else:
+            print(f"Error: G0 response must contain MODULE_SPEC or WORKFLOW_SPEC")
+            print(f"  Got: {response}")
+            state_manager.release_lock(PROJECT_ROOT, state)
+            sys.exit(1)
+
+        # Re-run phase 0 with the chosen doc_type
+        setup = run_phase_0(PROJECT_ROOT, has_attachments=False, doc_type=doc_type)
+        state["documents_pending"] = setup.documents_pending
+        print(f"Doc type: {doc_type}")
+        print(f"Documents to produce: {setup.documents_pending}")
+
     # Determine approval from response
     reject_keywords = {"reject", "rejected", "no", "deny", "denied", "redo"}
     first_word = response.strip().split()[0].lower().rstrip(",") if response.strip() else ""
-    approved = first_word not in reject_keywords
+    approved = gate_id == "G0" or first_word not in reject_keywords
 
     # Resolve the gate
     gate_engine = GateEngine()
-    result = gate_engine.resolve_gate(gate_id, approved=approved, notes=response)
+    result = gate_engine.resolve_gate(gate_id, approved=True if gate_id == "G0" else approved, notes=response)
     print(f"Gate {gate_id}: {'APPROVED' if result.passed else 'REJECTED'}")
     if result.message:
         print(f"  {result.message}")
@@ -263,7 +286,7 @@ def main() -> None:
     p_start = sub.add_parser("start", help="Start a new planner run")
     p_start.add_argument("idea", nargs="*", help="Project idea description")
     p_start.add_argument("--from-docs", help="Path to monolith document")
-    p_start.add_argument("--doc-type", default="WORKFLOW_SPEC",
+    p_start.add_argument("--doc-type", default=None,
                         choices=["MODULE_SPEC", "WORKFLOW_SPEC"])
     p_start.add_argument("--project-id", help="Override project ID")
 

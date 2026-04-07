@@ -1,1 +1,1 @@
-Build a simple CLI todo app in Python with SQLite
+Build a simple calculator CLI in Python
