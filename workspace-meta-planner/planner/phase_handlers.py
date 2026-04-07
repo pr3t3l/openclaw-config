@@ -85,16 +85,16 @@ class Phase0Handler(PhaseHandler):
 
 
 class Phase1Handler(PhaseHandler):
-    """Phase 1: Intake — section-by-section Q&A.
+    """Phase 1: Intake — generate content for each template section via Opus.
 
-    In command-dispatch mode (no conversation), we run a single-pass intake
-    that auto-accepts all sections. Gate G1 pauses for human confirmation.
+    Reads input.txt (the human's idea) and calls the model for each section
+    of the template. Saves real answers to intake_answers.json.
+    Gate G1 pauses for human confirmation.
     """
 
     phase_id = "1"
 
     def execute(self, state: dict, context: dict) -> dict:
-        from planner.phases.phase_1_intake import IntakeSession
         from planner.template_loader import load_template
 
         project_root = context["project_root"]
@@ -127,29 +127,66 @@ class Phase1Handler(PhaseHandler):
             doc["phase_status"] = "intake_complete"
             return state
 
+        # Load the human's project idea from input.txt
+        input_path = run_dir / "input.txt"
+        idea = input_path.read_text(encoding="utf-8").strip() if input_path.exists() else ""
+
+        # Load decision logs from previous docs for context
+        decision_logs = state.get("decision_logs", {})
+        decision_ctx = ""
+        if decision_logs:
+            decision_ctx = "\n\nDecisions from previous documents:\n" + "\n".join(
+                f"- {doc_name}: {log[:200]}" for doc_name, log in decision_logs.items()
+            )
+
         gateway = _gateway_from_state(state)
-        session = IntakeSession(
-            doc_type=doc_type,
-            sections=sections,
-            decision_logs=state.get("decision_logs"),
+        answers: dict[str, str] = {}
+        completed: list[str] = []
+
+        system = (
+            f"You are an SDD Planner intake agent. You generate content for "
+            f"each section of a {doc_type} document based on the human's project idea.\n\n"
+            f"Rules:\n"
+            f"- Be specific and concrete — not 'consider using X' but 'X because...'\n"
+            f"- No stubs: TBD, TODO, placeholder → FORBIDDEN\n"
+            f"- If you're unsure, make a reasonable choice and mark it with "
+            f"[ASSUMPTION — validate during implementation]\n"
+            f"- Output ONLY the section content, no markdown headers"
         )
 
-        # Single-pass: auto-complete all sections with placeholder answers
-        # The real intake happens via Telegram conversation; here we bootstrap.
-        while not session.is_complete:
-            prompt_info = session.get_next_prompt(gateway=gateway)
-            if prompt_info.get("action") == "complete":
-                break
-            section_title = prompt_info.get("section", "")
-            session.record_answer(f"[Pending human input for: {section_title}]")
-            if hasattr(session, 'confirm_section'):
-                session.confirm_section(True)
+        for section in sections:
+            # Skip level-1 headings (document title) — only fill content sections
+            if section.level < 2:
+                continue
+
+            prompt = (
+                f"Project idea: {idea}\n\n"
+                f"Document type: {doc_type}\n"
+                f"Section: {section.title}\n"
+                f"Template guidance for this section:\n{section.content}\n"
+                f"{decision_ctx}\n\n"
+                f"Generate complete, specific content for the '{section.title}' section "
+                f"of this {doc_type} based on the project idea above."
+            )
+
+            response = gateway.call_model(
+                role="primary",
+                prompt=prompt,
+                context=system,
+                phase="1",
+                document=doc.get("name"),
+                max_tokens=4096,
+            )
+
+            answers[section.title] = response["content"]
+            completed.append(section.title)
+            logger.info(f"Intake: section '{section.title}' completed")
 
         doc["phase_status"] = "intake_complete"
-        doc["sections_completed"] = session.sections_completed
+        doc["sections_completed"] = completed
 
         # Save intake answers to file (not state — schema disallows extra fields)
-        _save_transient(run_dir, "intake_answers.json", session.answers)
+        _save_transient(run_dir, "intake_answers.json", answers)
 
         # G1: human confirms idea captured
         state["_gate_pending"] = "G1"
@@ -232,6 +269,13 @@ class Phase2Handler(PhaseHandler):
         intake_answers = _load_transient(run_dir, "intake_answers.json", {})
         ideation_result = _load_transient(run_dir, "ideation_result.json", {})
         ideation_accepted = ideation_result.get("accepted", [])
+
+        # Inject project idea into intake context so drafter knows the project
+        input_path = run_dir / "input.txt"
+        if input_path.exists():
+            idea = input_path.read_text(encoding="utf-8").strip()
+            if idea and "Project Idea" not in intake_answers:
+                intake_answers["Project Idea"] = idea
 
         # Load constitution rules if available
         constitution_path = Path(project_root) / "docs" / "CONSTITUTION.md"
@@ -399,7 +443,8 @@ class Phase4Handler(PhaseHandler):
 class Phase5Handler(PhaseHandler):
     """Phase 5: Finalize — apply fixes, present to human for approval.
 
-    Gate G5: human approves document.
+    Saves the document to output/{doc_name} for human review and prints
+    the approval summary to stdout. Gate G5 pauses for human approval.
     """
 
     phase_id = "5"
@@ -430,6 +475,15 @@ class Phase5Handler(PhaseHandler):
 
         # Update draft content with finalized version (includes AF markers for review)
         _save_transient(run_dir, "draft_content.md", result.content)
+
+        # Save document to output/ for human review (CLI mode — no Telegram attachment)
+        output_path = run_dir / "output" / doc_name
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(result.content, encoding="utf-8")
+
+        # Print summary to stdout so gate-reply output includes it
+        print(f"\n{result.summary}")
+        print(f"\nDocument saved: {output_path}")
 
         doc["phase_status"] = "finalize_complete"
 
