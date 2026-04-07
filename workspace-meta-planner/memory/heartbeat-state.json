@@ -1,0 +1,26 @@
+{
+  "reminded": {
+    "test-verification-upgrade:gate_3": {
+      "ts": "2026-04-07T02:04:00Z",
+      "note": "waiting on human Gate #3"
+    },
+    "finance-test:gate_3": {
+      "ts": "2026-04-07T02:04:00Z",
+      "note": "waiting on human Gate #3"
+    }
+  },
+  "lastSeen": {
+    "test-verification-upgrade": {
+      "ts": "2026-04-07T02:04:00Z",
+      "pending_gates": [
+        "gate_3"
+      ]
+    },
+    "finance-test": {
+      "ts": "2026-04-07T02:04:00Z",
+      "pending_gates": [
+        "gate_3"
+      ]
+    }
+  }
+}
