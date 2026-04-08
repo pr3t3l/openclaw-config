@@ -26,6 +26,7 @@
     "auto_approve",
     "telegram_chat_id",
     "documents_skipped",
+    "interactive_intake",
     "cost_alert_threshold",
     "cost_hard_limit"
   ],
@@ -183,6 +184,10 @@
       "type": "array",
       "items": {"type": "string"},
       "description": "List of document names skipped by human at G1"
+    },
+    "interactive_intake": {
+      "type": "boolean",
+      "description": "If true, Phase 1 asks the human one question per section instead of auto-generating."
     },
     "cost_alert_threshold": {
       "anyOf": [{"type": "number"}, {"type": "null"}],

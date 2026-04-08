@@ -137,6 +137,7 @@ def create_run(
         "auto_approve": False,
         "telegram_chat_id": None,
         "documents_skipped": [],
+        "interactive_intake": False,
         "cost_alert_threshold": None,
         "cost_hard_limit": None,
     }
@@ -173,6 +174,8 @@ def load(project_root: str, run_id: str) -> dict:
         state["telegram_chat_id"] = None
     if "documents_skipped" not in state:
         state["documents_skipped"] = []
+    if "interactive_intake" not in state:
+        state["interactive_intake"] = False
     if "cost_alert_threshold" not in state:
         state["cost_alert_threshold"] = None
     if "cost_hard_limit" not in state:

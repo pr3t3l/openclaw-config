@@ -191,6 +191,11 @@ def cmd_gate_reply(args: argparse.Namespace) -> None:
             state["auto_approve"] = True
             print(f"Auto-approve: ENABLED (only G0 and G7 will require manual input)")
 
+        # Check for interactive intake mode
+        if "INTERACTIVE" in response_upper:
+            state["interactive_intake"] = True
+            print(f"Interactive intake: ENABLED (will ask questions per section)")
+
     # G1 skip: human can skip a document at G1
     skip_keywords = {"skip", "skip it", "not needed", "not applicable"}
     response_lower = response.strip().lower()
@@ -219,6 +224,76 @@ def cmd_gate_reply(args: argparse.Namespace) -> None:
         print(f"Document {doc_name} — SKIPPED (no cost)")
         print(f"Remaining: {state['documents_pending']}")
         return
+
+    # G1 interactive intake: save answer and re-enter Phase 1 for next section
+    if gate_id == "G1" and state.get("interactive_intake") and not state.get("auto_approve"):
+        doc = state.get("current_document")
+        if doc and doc.get("phase_status") == "intake_in_progress":
+            run_dir = Path(PROJECT_ROOT) / "planner_runs" / state["run_id"]
+            question_data = json.loads(
+                (run_dir / "intake_current_question.json").read_text()
+            ) if (run_dir / "intake_current_question.json").exists() else {}
+
+            # "auto" switches to non-interactive for remaining sections
+            if response.strip().lower() == "auto":
+                state["interactive_intake"] = False
+                state["pending_gate"] = None
+                # Keep current phase at "1" — Phase1Handler will auto-generate remaining
+                state = state_manager.save(PROJECT_ROOT, state)
+                print("Switching to auto-generate for remaining sections.")
+
+                # Continue dispatching
+                dispatcher = Dispatcher(PROJECT_ROOT)
+                register_all_handlers(dispatcher, PROJECT_ROOT)
+                while True:
+                    result = dispatcher.dispatch_phase(state)
+                    state = result.state
+                    print(f"  {result.message}")
+                    if result.action in ("gate_pending", "complete", "error", "cost_alert"):
+                        if result.action == "gate_pending":
+                            cp = CheckpointManager(PROJECT_ROOT)
+                            state = cp.save_checkpoint(state, state["pending_gate"],
+                                                        message_to_human=result.message)
+                        break
+                state_manager.release_lock(PROJECT_ROOT, state)
+                return
+
+            # Save the human's answer for the current section
+            section_title = question_data.get("section_title", f"section_{doc.get('intake_section_index', 0)}")
+            answers = json.loads(
+                (run_dir / "intake_answers.json").read_text()
+            ) if (run_dir / "intake_answers.json").exists() else {}
+            answers[section_title] = response
+            (run_dir / "intake_answers.json").write_text(json.dumps(answers, indent=2))
+
+            # Advance section index
+            next_idx = doc.get("intake_section_index", 0) + 1
+            doc["intake_section_index"] = next_idx
+            if section_title not in doc.get("sections_completed", []):
+                doc.setdefault("sections_completed", []).append(section_title)
+
+            print(f"  Section '{section_title}' captured.")
+
+            # Stay in Phase 1 — Phase1Handler will check next section
+            state["pending_gate"] = None
+            state["current_phase"] = "1"
+            state = state_manager.save(PROJECT_ROOT, state)
+
+            # Continue dispatching from Phase 1
+            dispatcher = Dispatcher(PROJECT_ROOT)
+            register_all_handlers(dispatcher, PROJECT_ROOT)
+            while True:
+                result = dispatcher.dispatch_phase(state)
+                state = result.state
+                print(f"  {result.message}")
+                if result.action in ("gate_pending", "complete", "error", "cost_alert"):
+                    if result.action == "gate_pending":
+                        cp = CheckpointManager(PROJECT_ROOT)
+                        state = cp.save_checkpoint(state, state["pending_gate"],
+                                                    message_to_human=result.message)
+                    break
+            state_manager.release_lock(PROJECT_ROOT, state)
+            return
 
     # Determine approval from response
     reject_keywords = {"reject", "rejected", "no", "deny", "denied", "redo"}

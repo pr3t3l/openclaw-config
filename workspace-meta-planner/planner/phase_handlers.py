@@ -230,11 +230,11 @@ class Phase0Handler(PhaseHandler):
 
 
 class Phase1Handler(PhaseHandler):
-    """Phase 1: Intake — generate content for each template section via Opus.
+    """Phase 1: Intake — generate or interactively collect content per section.
 
-    Reads input.txt (the human's idea) and calls the model for each section
-    of the template. Saves real answers to intake_answers.json.
-    Gate G1 pauses for human confirmation.
+    Non-interactive (default): Opus generates content for each section.
+    Interactive: generates one question per section, pauses at G1 for human answer.
+    Gate G1 pauses for human confirmation or next question.
     """
 
     phase_id = "1"
@@ -272,6 +272,9 @@ class Phase1Handler(PhaseHandler):
             doc["phase_status"] = "intake_complete"
             return state
 
+        # Filter to content sections only (level >= 2)
+        content_sections = [s for s in sections if s.level >= 2]
+
         # Load the human's project idea from input.txt
         input_path = run_dir / "input.txt"
         idea = input_path.read_text(encoding="utf-8").strip() if input_path.exists() else ""
@@ -281,9 +284,23 @@ class Phase1Handler(PhaseHandler):
         decision_ctx = ""
         if decision_logs:
             decision_ctx = "\n\nDecisions from previous documents:\n" + "\n".join(
-                f"- {doc_name}: {log[:200]}" for doc_name, log in decision_logs.items()
+                f"- {dn}: {lg[:200]}" for dn, lg in decision_logs.items()
             )
 
+        # Check interactive mode (auto_approve overrides interactive)
+        interactive = state.get("interactive_intake", False) and not state.get("auto_approve", False)
+
+        if interactive:
+            return self._interactive_intake(
+                state, doc, doc_type, content_sections, idea, decision_ctx, run_dir,
+            )
+        else:
+            return self._auto_intake(
+                state, doc, doc_type, content_sections, idea, decision_ctx, run_dir,
+            )
+
+    def _auto_intake(self, state, doc, doc_type, sections, idea, decision_ctx, run_dir):
+        """Auto-generate content for all sections via Opus."""
         gateway = _gateway_from_state(state)
         answers: dict[str, str] = {}
         completed: list[str] = []
@@ -300,10 +317,6 @@ class Phase1Handler(PhaseHandler):
         )
 
         for section in sections:
-            # Skip level-1 headings (document title) — only fill content sections
-            if section.level < 2:
-                continue
-
             prompt = (
                 f"Project idea: {idea}\n\n"
                 f"Document type: {doc_type}\n"
@@ -329,11 +342,71 @@ class Phase1Handler(PhaseHandler):
 
         doc["phase_status"] = "intake_complete"
         doc["sections_completed"] = completed
-
-        # Save intake answers to file (not state — schema disallows extra fields)
         _save_transient(run_dir, "intake_answers.json", answers)
 
-        # G1: human confirms idea captured
+        state["_gate_pending"] = "G1"
+        return state
+
+    def _interactive_intake(self, state, doc, doc_type, sections, idea, decision_ctx, run_dir):
+        """Ask human one question per section, pausing at G1 each time."""
+        section_idx = doc.get("intake_section_index", 0)
+
+        # Load existing answers (may have some from previous iterations)
+        answers = _load_transient(run_dir, "intake_answers.json", {})
+
+        if section_idx >= len(sections):
+            # All sections done — finalize
+            doc["phase_status"] = "intake_complete"
+            doc["sections_completed"] = list(answers.keys())
+            state["_gate_pending"] = "G1"
+            return state
+
+        section = sections[section_idx]
+        gateway = _gateway_from_state(state)
+
+        # Generate a targeted question for this section
+        question_prompt = (
+            f"Project idea: {idea}\n\n"
+            f"Document type: {doc_type}\n"
+            f"Section: {section.title}\n"
+            f"Template guidance:\n{section.content}\n"
+            f"{decision_ctx}\n\n"
+            f"Generate ONE specific, concrete question to ask the human about "
+            f"the '{section.title}' section. The question should help capture "
+            f"the key decision or detail needed for this section. "
+            f"Output ONLY the question, nothing else."
+        )
+
+        response = gateway.call_model(
+            role="primary",
+            prompt=question_prompt,
+            context=(
+                "You are an SDD intake interviewer. Ask specific questions, "
+                "not vague ones. Example: 'What database will you use and why?' "
+                "not 'Tell me about your data layer.'"
+            ),
+            phase="1",
+            document=doc.get("name"),
+            max_tokens=500,
+        )
+
+        question = response["content"].strip()
+        doc["intake_section_index"] = section_idx
+        doc["phase_status"] = "intake_in_progress"
+
+        # Save the question so gate-reply can reference it
+        _save_transient(run_dir, "intake_current_question.json", {
+            "section_index": section_idx,
+            "section_title": section.title,
+            "question": question,
+        })
+
+        # Print the question so it appears in gate-reply output
+        total = len(sections)
+        print(f"\n📝 [{section_idx + 1}/{total}] {section.title}")
+        print(f"   {question}")
+        print(f'   (Reply with answer, or "auto" to auto-generate remaining sections)')
+
         state["_gate_pending"] = "G1"
         return state
 

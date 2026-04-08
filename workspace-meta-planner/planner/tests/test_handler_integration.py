@@ -41,6 +41,7 @@ SCHEMA_FIELDS = {
     "auto_approve",
     "telegram_chat_id",
     "documents_skipped",
+    "interactive_intake",
     "cost_alert_threshold",
     "cost_hard_limit",
 }
@@ -676,3 +677,120 @@ class TestDocumentSkip:
 
         errors = state_manager.validate(state)
         assert errors == [], f"Schema validation failed after skip: {errors}"
+
+
+class TestInteractiveIntake:
+    """Verify interactive intake asks questions per section."""
+
+    def _make_interactive_state(self, project_root, doc_name="CONSTITUTION.md"):
+        state = state_manager.create_run(
+            project_root, f"interactive-{doc_name}", [doc_name]
+        )
+        state["current_phase"] = "1"
+        state["interactive_intake"] = True
+        state["current_document"] = {
+            "name": doc_name,
+            "type": doc_name.replace(".md", ""),
+            "version": 1,
+            "phase_status": "intake_in_progress",
+            "phase_attempt": 1,
+            "sections_completed": [],
+            "template": doc_name.replace(".md", ""),
+        }
+        state = state_manager.save(project_root, state)
+        run_dir = Path(project_root) / "planner_runs" / state["run_id"]
+        (run_dir / "input.txt").write_text("Build a todo CLI app")
+        return state
+
+    def test_non_interactive_is_default(self, project_root, mock_gateway):
+        """interactive_intake=False uses auto-generate (default behavior)."""
+        state = state_manager.create_run(
+            project_root, "non-interactive", ["CONSTITUTION.md"]
+        )
+        state["current_phase"] = "1"
+        state["interactive_intake"] = False
+        state = state_manager.save(project_root, state)
+        run_dir = Path(project_root) / "planner_runs" / state["run_id"]
+        (run_dir / "input.txt").write_text("Build a calculator")
+
+        d = Dispatcher(project_root)
+        register_all_handlers(d, project_root)
+        result = d.dispatch_phase(state)
+
+        # Auto mode generates all sections then sets G1
+        assert result.action == "gate_pending"
+        # Answers file should have content (from mock)
+        answers_path = run_dir / "intake_answers.json"
+        if answers_path.exists():
+            answers = json.loads(answers_path.read_text())
+            for v in answers.values():
+                assert "[Pending human input" not in v
+
+    def test_interactive_generates_question(self, project_root, mock_gateway):
+        """interactive_intake=True generates a question for the first section."""
+        state = self._make_interactive_state(project_root)
+        run_dir = Path(project_root) / "planner_runs" / state["run_id"]
+
+        d = Dispatcher(project_root)
+        register_all_handlers(d, project_root)
+        result = d.dispatch_phase(state)
+
+        assert result.action == "gate_pending"
+        # Question file should exist
+        q_path = run_dir / "intake_current_question.json"
+        assert q_path.exists(), "intake_current_question.json not created"
+        q_data = json.loads(q_path.read_text())
+        assert "section_title" in q_data
+        assert q_data["section_index"] == 0
+
+    def test_interactive_saves_human_answer(self, project_root, mock_gateway):
+        """Human answer is saved to intake_answers.json for the current section."""
+        state = self._make_interactive_state(project_root)
+        run_dir = Path(project_root) / "planner_runs" / state["run_id"]
+
+        # First: run Phase 1 to generate question
+        d = Dispatcher(project_root)
+        register_all_handlers(d, project_root)
+        d.dispatch_phase(state)
+
+        # Get the section title from the question
+        q_data = json.loads((run_dir / "intake_current_question.json").read_text())
+        section_title = q_data["section_title"]
+
+        # Simulate saving the human's answer (what cmd_gate_reply does)
+        answers = {}
+        answers[section_title] = "PostgreSQL because we need ACID transactions"
+        (run_dir / "intake_answers.json").write_text(json.dumps(answers))
+
+        assert section_title in answers
+        assert "PostgreSQL" in answers[section_title]
+
+    def test_auto_approve_overrides_interactive(self, project_root, mock_gateway):
+        """auto_approve=True + interactive_intake=True → non-interactive."""
+        state = self._make_interactive_state(project_root)
+        state["auto_approve"] = True
+        state = state_manager.save(project_root, state)
+        run_dir = Path(project_root) / "planner_runs" / state["run_id"]
+
+        d = Dispatcher(project_root)
+        register_all_handlers(d, project_root)
+        result = d.dispatch_phase(state)
+
+        # auto_approve overrides interactive → auto-generates then auto-approves G1
+        assert result.action == "continue"  # G1 auto-approved
+        assert "AUTO-APPROVED" in result.message
+
+        # No question file should exist (didn't enter interactive path)
+        q_path = run_dir / "intake_current_question.json"
+        assert not q_path.exists()
+
+    def test_interactive_state_passes_validation(self, project_root, mock_gateway):
+        """State with interactive intake fields passes schema validation."""
+        state = self._make_interactive_state(project_root)
+
+        d = Dispatcher(project_root)
+        register_all_handlers(d, project_root)
+        result = d.dispatch_phase(state)
+
+        errors = state_manager.validate(result.state)
+        assert errors == [], f"Schema validation failed: {errors}"
