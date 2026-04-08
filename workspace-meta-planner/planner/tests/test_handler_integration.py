@@ -40,6 +40,7 @@ SCHEMA_FIELDS = {
     "pending_gate",
     "auto_approve",
     "telegram_chat_id",
+    "documents_skipped",
 }
 
 # The only allowed transient key — dispatcher pops it before save
@@ -574,3 +575,102 @@ class TestTelegramDelivery:
 
         msg_text = mock_msg.call_args[0][1]
         assert "auto-approved" in msg_text
+
+
+class TestDocumentSkip:
+    """Verify document skip logic at G1."""
+
+    def _make_state_with_docs(self, project_root, docs, current_doc_name):
+        state = state_manager.create_run(
+            project_root, f"skip-test-{current_doc_name}", docs
+        )
+        state["current_phase"] = "1"
+        state["pending_gate"] = "G1"
+        state["current_document"] = {
+            "name": current_doc_name,
+            "type": current_doc_name.replace(".md", ""),
+            "version": 1,
+            "phase_status": "intake_complete",
+            "phase_attempt": 1,
+            "sections_completed": [],
+            "template": current_doc_name.replace(".md", ""),
+        }
+        return state_manager.save(project_root, state)
+
+    def _simulate_skip(self, project_root, state):
+        """Simulate what cmd_gate_reply does when response is 'skip'."""
+        doc = state.get("current_document")
+        doc_name = doc.get("name") if doc else "unknown"
+
+        if doc_name in state.get("documents_pending", []):
+            state["documents_pending"].remove(doc_name)
+        if doc_name not in state.get("documents_skipped", []):
+            state["documents_skipped"].append(doc_name)
+
+        state["current_document"] = None
+        state["pending_gate"] = None
+
+        if state["documents_pending"]:
+            state["current_phase"] = "1"
+        else:
+            state["current_phase"] = "6.5"
+
+        return state_manager.save(project_root, state)
+
+    def test_skip_moves_doc_to_skipped(self, project_root):
+        """'skip' at G1 moves doc from pending to skipped."""
+        state = self._make_state_with_docs(
+            project_root,
+            ["INTEGRATIONS.md", "MODULE_SPEC.md"],
+            "INTEGRATIONS.md",
+        )
+
+        state = self._simulate_skip(project_root, state)
+
+        assert "INTEGRATIONS.md" not in state["documents_pending"]
+        assert "INTEGRATIONS.md" in state["documents_skipped"]
+        assert "MODULE_SPEC.md" in state["documents_pending"]
+        assert state["current_document"] is None
+        assert state["current_phase"] == "1"
+
+    def test_skip_last_doc_advances_to_postdoc(self, project_root):
+        """Skipping the last pending doc advances to post-doc phases."""
+        state = self._make_state_with_docs(
+            project_root,
+            ["DATA_MODEL.md"],
+            "DATA_MODEL.md",
+        )
+
+        state = self._simulate_skip(project_root, state)
+
+        assert state["documents_pending"] == []
+        assert "DATA_MODEL.md" in state["documents_skipped"]
+        assert state["current_phase"] == "6.5"
+
+    def test_skip_preserves_completed_docs(self, project_root):
+        """Skipping a doc doesn't affect already-completed docs."""
+        state = self._make_state_with_docs(
+            project_root,
+            ["INTEGRATIONS.md", "MODULE_SPEC.md"],
+            "INTEGRATIONS.md",
+        )
+        state["documents_completed"] = ["PROJECT_FOUNDATION.md", "CONSTITUTION.md"]
+        state = state_manager.save(project_root, state)
+
+        state = self._simulate_skip(project_root, state)
+
+        assert state["documents_completed"] == ["PROJECT_FOUNDATION.md", "CONSTITUTION.md"]
+        assert "INTEGRATIONS.md" in state["documents_skipped"]
+
+    def test_skip_state_passes_validation(self, project_root):
+        """State after skip must pass schema validation."""
+        state = self._make_state_with_docs(
+            project_root,
+            ["DATA_MODEL.md", "MODULE_SPEC.md"],
+            "DATA_MODEL.md",
+        )
+
+        state = self._simulate_skip(project_root, state)
+
+        errors = state_manager.validate(state)
+        assert errors == [], f"Schema validation failed after skip: {errors}"

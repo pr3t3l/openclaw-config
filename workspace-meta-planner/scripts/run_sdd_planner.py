@@ -184,6 +184,35 @@ def cmd_gate_reply(args: argparse.Namespace) -> None:
             state["auto_approve"] = True
             print(f"Auto-approve: ENABLED (only G0 and G7 will require manual input)")
 
+    # G1 skip: human can skip a document at G1
+    skip_keywords = {"skip", "skip it", "not needed", "not applicable"}
+    response_lower = response.strip().lower()
+    if gate_id == "G1" and response_lower in skip_keywords:
+        doc = state.get("current_document")
+        doc_name = doc.get("name", "unknown") if doc else "unknown"
+
+        # Move doc from pending to skipped
+        if doc_name in state.get("documents_pending", []):
+            state["documents_pending"].remove(doc_name)
+        if doc_name not in state.get("documents_skipped", []):
+            state["documents_skipped"].append(doc_name)
+
+        state["current_document"] = None
+        state["pending_gate"] = None
+
+        # Advance to next document or post-doc phases
+        if state["documents_pending"]:
+            state["current_phase"] = "1"
+            state["last_checkpoint"] = f"Document {doc_name} skipped, next doc"
+        else:
+            state["current_phase"] = "6.5"
+            state["last_checkpoint"] = f"Document {doc_name} skipped, all docs done"
+
+        state = state_manager.release_lock(PROJECT_ROOT, state)
+        print(f"Document {doc_name} — SKIPPED (no cost)")
+        print(f"Remaining: {state['documents_pending']}")
+        return
+
     # Determine approval from response
     reject_keywords = {"reject", "rejected", "no", "deny", "denied", "redo"}
     first_word = response.strip().split()[0].lower().rstrip(",") if response.strip() else ""

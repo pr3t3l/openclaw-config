@@ -24,7 +24,8 @@
     "updated_at",
     "pending_gate",
     "auto_approve",
-    "telegram_chat_id"
+    "telegram_chat_id",
+    "documents_skipped"
   ],
   "properties": {
     "run_id": {
@@ -175,6 +176,11 @@
     "telegram_chat_id": {
       "anyOf": [{"type": "string"}, {"type": "null"}],
       "description": "Telegram chat ID for sending documents. Null if running in CLI mode."
+    },
+    "documents_skipped": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "List of document names skipped by human at G1"
     }
   },
   "additionalProperties": false
