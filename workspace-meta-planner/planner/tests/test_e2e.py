@@ -144,7 +144,7 @@ class TestE2E_ExistingProject:
         setup = run_phase_0(str(tmp_path), doc_type="MODULE_SPEC")
         assert setup.mode == "existing_project"
         assert len(setup.context_loaded) == len(FOUNDATION_DOCS)
-        assert setup.documents_pending == ["spec.md"]
+        assert setup.documents_pending == ["MODULE_SPEC.md"]
 
 
 class TestE2E_MonolithExtraction:

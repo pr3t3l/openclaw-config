@@ -87,12 +87,12 @@ class TestDetermineDocList:
         docs = determine_doc_list("new_project", "WORKFLOW_SPEC", {})
         assert docs[0] == "PROJECT_FOUNDATION.md"
         assert docs[1] == "CONSTITUTION.md"
-        assert "spec.md" in docs
+        assert "WORKFLOW_SPEC.md" in docs
         assert len(docs) == len(NEW_PROJECT_DOC_ORDER) + 1
 
     def test_existing_project_spec_only(self):
         docs = determine_doc_list("existing_project", "MODULE_SPEC", {})
-        assert docs == ["spec.md"]
+        assert docs == ["MODULE_SPEC.md"]
 
     def test_monolith_skips_existing(self):
         context = {"PROJECT_FOUNDATION.md": "content", "CONSTITUTION.md": "content"}
@@ -100,7 +100,7 @@ class TestDetermineDocList:
         assert "PROJECT_FOUNDATION.md" not in docs
         assert "CONSTITUTION.md" not in docs
         assert "DATA_MODEL.md" in docs
-        assert "spec.md" in docs
+        assert "WORKFLOW_SPEC.md" in docs
 
 
 class TestRunPhase0:
@@ -115,7 +115,7 @@ class TestRunPhase0:
         result = run_phase_0(existing_project, doc_type="MODULE_SPEC")
         assert result.mode == "existing_project"
         assert len(result.context_loaded) == len(FOUNDATION_DOCS)
-        assert result.documents_pending == ["spec.md"]
+        assert result.documents_pending == ["MODULE_SPEC.md"]
 
     def test_monolith(self, empty_project):
         result = run_phase_0(empty_project, has_attachments=True, doc_type="WORKFLOW_SPEC")

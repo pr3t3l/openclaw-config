@@ -121,7 +121,7 @@ def determine_doc_list(
     Returns:
         Ordered list of document names to produce.
     """
-    spec_filename = "spec.md"
+    spec_filename = f"{doc_type}.md"
 
     if mode == "new_project":
         docs = list(NEW_PROJECT_DOC_ORDER)
