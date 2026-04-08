@@ -11,6 +11,8 @@ See spec.md §3 for the full phase/gate mapping.
 
 import json
 import logging
+import os
+import subprocess
 from pathlib import Path
 from typing import Any, Optional
 
@@ -49,6 +51,60 @@ def _load_transient(run_dir: Path, filename: str, default: Any = None) -> Any:
     if filename.endswith(".json"):
         return json.loads(content)
     return content
+
+
+def _get_telegram_bot_token() -> Optional[str]:
+    """Load Telegram bot token from environment or ~/.openclaw/.env."""
+    token = os.environ.get("TELEGRAM_PLANNER_TOKEN") or os.environ.get("TELEGRAM_BOT_TOKEN")
+    if token:
+        return token
+    env_path = Path.home() / ".openclaw" / ".env"
+    if env_path.exists():
+        for line in env_path.read_text().split("\n"):
+            line = line.strip()
+            if line.startswith("TELEGRAM_PLANNER_TOKEN="):
+                return line.split("=", 1)[1].strip().strip("'\"")
+            if line.startswith("TELEGRAM_BOT_TOKEN=") and not token:
+                token = line.split("=", 1)[1].strip().strip("'\"")
+    return token
+
+
+def _send_telegram_message(chat_id: str, text: str, bot_token: str) -> bool:
+    """Send a text message via Telegram Bot API using curl."""
+    try:
+        result = subprocess.run(
+            [
+                "curl", "-s", "-X", "POST",
+                f"https://api.telegram.org/bot{bot_token}/sendMessage",
+                "-F", f"chat_id={chat_id}",
+                "-F", f"text={text}",
+                "-F", "parse_mode=Markdown",
+            ],
+            capture_output=True, text=True, timeout=30,
+        )
+        return result.returncode == 0
+    except Exception as e:
+        logger.error(f"Failed to send Telegram message: {e}")
+        return False
+
+
+def _send_telegram_document(chat_id: str, file_path: Path, caption: str, bot_token: str) -> bool:
+    """Send a file via Telegram Bot API using curl."""
+    try:
+        result = subprocess.run(
+            [
+                "curl", "-s", "-X", "POST",
+                f"https://api.telegram.org/bot{bot_token}/sendDocument",
+                "-F", f"chat_id={chat_id}",
+                "-F", f"document=@{file_path}",
+                "-F", f"caption={caption}",
+            ],
+            capture_output=True, text=True, timeout=30,
+        )
+        return result.returncode == 0
+    except Exception as e:
+        logger.error(f"Failed to send Telegram document: {e}")
+        return False
 
 
 def _load_audit_findings(run_dir: Path, doc_name: str) -> tuple[str, int]:
@@ -618,7 +674,7 @@ class Phase5Handler(PhaseHandler):
         # Update draft content with finalized version (includes AF markers for review)
         _save_transient(run_dir, "draft_content.md", result.content)
 
-        # Save document to output/ for human review (CLI mode — no Telegram attachment)
+        # Save document to output/ for human review
         output_path = run_dir / "output" / doc_name
         output_path.parent.mkdir(parents=True, exist_ok=True)
         output_path.write_text(result.content, encoding="utf-8")
@@ -626,6 +682,23 @@ class Phase5Handler(PhaseHandler):
         # Print summary to stdout so gate-reply output includes it
         print(f"\n{result.summary}")
         print(f"\nDocument saved: {output_path}")
+
+        # Send via Telegram if chat_id is available
+        chat_id = state.get("telegram_chat_id")
+        if chat_id:
+            bot_token = _get_telegram_bot_token()
+            if bot_token:
+                auto_note = " (auto-approved)" if state.get("auto_approve") else ""
+                summary_msg = (
+                    f"📄 {doc_name} ready for review{auto_note}\n"
+                    f"Cost: ${state['cost']['total_usd']:.2f}\n"
+                    f"✅ /sdd_planner_reply approved"
+                )
+                _send_telegram_message(chat_id, summary_msg, bot_token)
+                _send_telegram_document(chat_id, output_path, f"📎 {doc_name}", bot_token)
+                logger.info(f"Document sent to Telegram chat {chat_id}")
+            else:
+                logger.warning("Telegram chat_id set but no bot token found")
 
         doc["phase_status"] = "finalize_complete"
 

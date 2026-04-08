@@ -16,6 +16,7 @@ Integrates with the existing workspace-meta-planner infrastructure.
 import argparse
 import json
 import logging
+import os
 import sys
 from pathlib import Path
 
@@ -72,6 +73,11 @@ def cmd_start(args: argparse.Namespace) -> None:
     # Save input
     run_dir = Path(PROJECT_ROOT) / "planner_runs" / run_state["run_id"]
     (run_dir / "input.txt").write_text(idea or f"from-docs: {args.from_docs}")
+
+    # Capture Telegram chat ID if available
+    chat_id = os.environ.get("TELEGRAM_CHAT_ID")
+    if chat_id:
+        run_state["telegram_chat_id"] = chat_id
 
     # Set Gate G0 pending — human must confirm doc type
     run_state["pending_gate"] = "G0"

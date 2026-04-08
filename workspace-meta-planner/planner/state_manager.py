@@ -135,6 +135,7 @@ def create_run(
         "updated_at": now,
         "pending_gate": None,
         "auto_approve": False,
+        "telegram_chat_id": None,
     }
 
     errors = validate(state)
@@ -165,6 +166,8 @@ def load(project_root: str, run_id: str) -> dict:
         state["pending_gate"] = None
     if "auto_approve" not in state:
         state["auto_approve"] = False
+    if "telegram_chat_id" not in state:
+        state["telegram_chat_id"] = None
 
     errors = validate(state)
     if errors:

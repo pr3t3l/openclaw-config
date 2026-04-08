@@ -39,6 +39,7 @@ SCHEMA_FIELDS = {
     "updated_at",
     "pending_gate",
     "auto_approve",
+    "telegram_chat_id",
 }
 
 # The only allowed transient key — dispatcher pops it before save
@@ -486,3 +487,90 @@ class TestAutoApprove:
         result = d.dispatch_phase(state)
         assert result.action == "gate_pending"
         assert result.state["pending_gate"] == "G1"
+
+
+class TestTelegramDelivery:
+    """Verify Phase 5 sends documents via Telegram when chat_id is set."""
+
+    def _make_phase5_state(self, project_root, chat_id=None, auto_approve=False):
+        state = state_manager.create_run(
+            project_root, f"tg-test-{chat_id or 'cli'}", ["MODULE_SPEC.md"]
+        )
+        state["current_phase"] = "5"
+        state["telegram_chat_id"] = chat_id
+        state["auto_approve"] = auto_approve
+        state["current_document"] = {
+            "name": "MODULE_SPEC.md",
+            "type": "MODULE_SPEC",
+            "version": 1,
+            "phase_status": "lessons_complete",
+            "phase_attempt": 1,
+            "sections_completed": [],
+            "template": "MODULE_SPEC",
+        }
+        state = state_manager.save(project_root, state)
+        run_dir = Path(project_root) / "planner_runs" / state["run_id"]
+        (run_dir / "draft_content.md").write_text("# Module Spec\n\nContent.\n")
+        return state
+
+    @patch("planner.phase_handlers._send_telegram_document")
+    @patch("planner.phase_handlers._send_telegram_message")
+    @patch("planner.phase_handlers._get_telegram_bot_token")
+    def test_sends_document_when_chat_id_set(
+        self, mock_token, mock_msg, mock_doc, project_root, mock_gateway,
+    ):
+        """Phase 5 should send summary + file via Telegram."""
+        mock_token.return_value = "fake-bot-token"
+        mock_msg.return_value = True
+        mock_doc.return_value = True
+
+        state = self._make_phase5_state(project_root, chat_id="12345")
+
+        d = Dispatcher(project_root)
+        register_all_handlers(d, project_root)
+        d.dispatch_phase(state)
+
+        mock_msg.assert_called_once()
+        msg_text = mock_msg.call_args[0][1]
+        assert "MODULE_SPEC.md" in msg_text
+        assert "/sdd_planner_reply" in msg_text
+
+        mock_doc.assert_called_once()
+        assert mock_doc.call_args[0][0] == "12345"
+
+    @patch("planner.phase_handlers._send_telegram_document")
+    @patch("planner.phase_handlers._send_telegram_message")
+    @patch("planner.phase_handlers._get_telegram_bot_token")
+    def test_no_telegram_when_chat_id_null(
+        self, mock_token, mock_msg, mock_doc, project_root, mock_gateway,
+    ):
+        """Phase 5 should NOT call Telegram when chat_id is null."""
+        state = self._make_phase5_state(project_root, chat_id=None)
+
+        d = Dispatcher(project_root)
+        register_all_handlers(d, project_root)
+        d.dispatch_phase(state)
+
+        mock_token.assert_not_called()
+        mock_msg.assert_not_called()
+        mock_doc.assert_not_called()
+
+    @patch("planner.phase_handlers._send_telegram_document")
+    @patch("planner.phase_handlers._send_telegram_message")
+    @patch("planner.phase_handlers._get_telegram_bot_token")
+    def test_auto_approve_note_in_message(
+        self, mock_token, mock_msg, mock_doc, project_root, mock_gateway,
+    ):
+        """Auto-approve mode should include note in Telegram message."""
+        mock_token.return_value = "fake-bot-token"
+        mock_msg.return_value = True
+        mock_doc.return_value = True
+
+        state = self._make_phase5_state(project_root, chat_id="99999", auto_approve=True)
+
+        d = Dispatcher(project_root)
+        register_all_handlers(d, project_root)
+        d.dispatch_phase(state)
+
+        msg_text = mock_msg.call_args[0][1]
+        assert "auto-approved" in msg_text

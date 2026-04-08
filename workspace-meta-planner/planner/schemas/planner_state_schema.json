@@ -23,7 +23,8 @@
     "created_at",
     "updated_at",
     "pending_gate",
-    "auto_approve"
+    "auto_approve",
+    "telegram_chat_id"
   ],
   "properties": {
     "run_id": {
@@ -170,6 +171,10 @@
     "auto_approve": {
       "type": "boolean",
       "description": "If true, auto-approve gates except G0 and G7. Set via 'MODULE_SPEC auto' at G0."
+    },
+    "telegram_chat_id": {
+      "anyOf": [{"type": "string"}, {"type": "null"}],
+      "description": "Telegram chat ID for sending documents. Null if running in CLI mode."
     }
   },
   "additionalProperties": false
