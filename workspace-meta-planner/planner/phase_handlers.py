@@ -51,6 +51,95 @@ def _load_transient(run_dir: Path, filename: str, default: Any = None) -> Any:
     return content
 
 
+def _load_audit_findings(run_dir: Path, doc_name: str) -> tuple[str, int]:
+    """Load CRITICAL and IMPORTANT findings from Phase 3 audit files.
+
+    Returns:
+        Tuple of (concatenated findings text, count of findings).
+    """
+    audits_dir = run_dir / "audits"
+    if not audits_dir.exists():
+        return "", 0
+
+    doc_safe = doc_name.replace(".", "_").replace("/", "_")
+    findings_parts = []
+    total_count = 0
+
+    for audit_file in sorted(audits_dir.glob(f"{doc_safe}_*.json")):
+        try:
+            data = json.loads(audit_file.read_text(encoding="utf-8"))
+            content = data.get("content", "")
+            if not content:
+                continue
+
+            # Extract CRITICAL and IMPORTANT findings
+            label = data.get("model_label", audit_file.stem)
+            role = data.get("audit_role", "")
+            relevant_lines = []
+
+            for line in content.split("\n"):
+                line_upper = line.upper()
+                if "CRITICAL" in line_upper or "IMPORTANT" in line_upper:
+                    relevant_lines.append(line.strip())
+                elif relevant_lines and line.strip() and not line.strip().startswith("#"):
+                    # Include continuation lines after a finding header
+                    if line.strip().startswith("-") or line.strip().startswith("*"):
+                        relevant_lines.append(line.strip())
+
+            if relevant_lines:
+                count = sum(1 for l in relevant_lines
+                           if "CRITICAL" in l.upper() or "IMPORTANT" in l.upper())
+                total_count += count
+                findings_parts.append(
+                    f"### {label} ({role})\n" + "\n".join(relevant_lines)
+                )
+        except (json.JSONDecodeError, OSError) as e:
+            logger.warning(f"Failed to read audit file {audit_file}: {e}")
+
+    return "\n\n".join(findings_parts), total_count
+
+
+def _apply_audit_findings(
+    gateway: "ModelGateway",
+    doc_content: str,
+    findings_text: str,
+    doc_name: str,
+    phase: str = "5",
+    document: str = "",
+) -> str:
+    """Call Opus to apply audit findings to the document.
+
+    Returns:
+        The revised document content with findings applied.
+    """
+    prompt = (
+        f"Apply these audit findings to the document below. "
+        f"For each CRITICAL and IMPORTANT finding, make the minimum change needed. "
+        f"Do NOT rewrite sections that have no findings. "
+        f"Return the complete updated document in Markdown.\n\n"
+        f"## Audit Findings to Apply\n\n{findings_text}\n\n"
+        f"## Document to Update\n\n{doc_content}"
+    )
+
+    system = (
+        f"You are an SDD document editor. You apply audit findings to documents "
+        f"with minimal, targeted changes. Preserve all existing content that is "
+        f"not affected by the findings. Output ONLY the complete updated document "
+        f"in Markdown — no commentary, no explanation."
+    )
+
+    response = gateway.call_model(
+        role="primary",
+        prompt=prompt,
+        context=system,
+        phase=phase,
+        document=document,
+        max_tokens=16384,
+    )
+
+    return response["content"]
+
+
 class Phase0Handler(PhaseHandler):
     """Phase 0: Setup — detect mode, load context, determine doc list.
 
@@ -454,10 +543,11 @@ class Phase4Handler(PhaseHandler):
 
 
 class Phase5Handler(PhaseHandler):
-    """Phase 5: Finalize — apply fixes, present to human for approval.
+    """Phase 5: Finalize — apply audit findings, present to human for approval.
 
-    Saves the document to output/{doc_name} for human review and prints
-    the approval summary to stdout. Gate G5 pauses for human approval.
+    Loads audit results from Phase 3, extracts CRITICAL + IMPORTANT findings,
+    calls Opus to apply them to the draft, then presents for human approval.
+    Saves the document to output/{doc_name}. Gate G5 pauses for approval.
     """
 
     phase_id = "5"
@@ -472,12 +562,41 @@ class Phase5Handler(PhaseHandler):
 
         doc_content = _load_transient(run_dir, "draft_content.md", "")
 
+        # ── Apply audit findings before finalizing ──
+        findings_applied = 0
+        findings_text, findings_applied = _load_audit_findings(run_dir, doc_name)
+
+        if findings_text and doc_content:
+            gateway = _gateway_from_state(state)
+            try:
+                revised = _apply_audit_findings(
+                    gateway, doc_content, findings_text, doc_name,
+                    phase="5", document=doc_name,
+                )
+                if revised and revised.strip() != doc_content.strip():
+                    doc_content = revised
+                    _save_transient(run_dir, "draft_content.md", doc_content)
+                    logger.info(f"Phase 5: applied {findings_applied} audit findings to {doc_name}")
+                else:
+                    logger.info("Phase 5: Opus returned unchanged document")
+                    findings_applied = 0
+            except Exception as e:
+                logger.error(f"Phase 5: failed to apply audit findings, using original draft: {e}")
+                findings_applied = 0
+
+        changes_desc = (
+            f"Audit findings applied: {findings_applied}"
+            if findings_applied > 0
+            else "Draft ready for review (no audit findings to apply)"
+        )
+
         result = present_for_approval(
             doc_content=doc_content,
             document_name=doc_name,
-            changes_description="Draft ready for review",
+            changes_description=changes_desc,
             doc_cost=state["cost"].get("by_document", {}).get(doc_name, 0.0),
             total_cost=state["cost"]["total_usd"],
+            audit_resolved_count=findings_applied,
         )
 
         # Save finalize result to file

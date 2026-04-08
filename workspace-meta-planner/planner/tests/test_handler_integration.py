@@ -11,7 +11,11 @@ from unittest.mock import patch, MagicMock
 
 from planner import state_manager
 from planner.orchestrator.dispatcher import Dispatcher
-from planner.phase_handlers import register_all_handlers
+from planner.phase_handlers import (
+    register_all_handlers,
+    _load_audit_findings,
+    _apply_audit_findings,
+)
 
 
 # Schema-valid field names (from planner_state_schema.json)
@@ -207,3 +211,152 @@ class TestHandlerSchemaCompliance:
         # Verify all calls used phase="1"
         for call in mock_gateway.call_model.call_args_list:
             assert call.kwargs.get("phase") == "1" or call[1].get("phase") == "1"
+
+
+class TestAuditFindingsApplication:
+    """Verify Phase 5 applies audit findings from Phase 3."""
+
+    def _make_audit_file(self, audits_dir, doc_name, label, role, content):
+        """Helper to create an audit result file."""
+        doc_safe = doc_name.replace(".", "_")
+        filename = f"{doc_safe}_{role}_{label}.json"
+        audits_dir.mkdir(parents=True, exist_ok=True)
+        (audits_dir / filename).write_text(json.dumps({
+            "model_label": label,
+            "audit_role": role,
+            "content": content,
+            "model": "test-model",
+            "tokens_in": 100,
+            "tokens_out": 50,
+            "cost_usd": 0.01,
+            "duration": 1.0,
+        }))
+
+    def test_loads_critical_and_important(self, tmp_path):
+        """_load_audit_findings extracts CRITICAL and IMPORTANT lines."""
+        run_dir = tmp_path / "run"
+        audits_dir = run_dir / "audits"
+
+        self._make_audit_file(audits_dir, "spec.md", "gpt_tech", "technical",
+            "## Findings\n"
+            "CRITICAL: Missing error handling in API endpoints\n"
+            "- Add try/catch for all external calls\n"
+            "IMPORTANT: No rate limiting defined\n"
+            "MINOR: Consider adding comments\n"
+        )
+        self._make_audit_file(audits_dir, "spec.md", "gemini_arch", "architecture",
+            "## Findings\n"
+            "IMPORTANT: Database failover not specified\n"
+            "MINOR: Naming conventions could be clearer\n"
+        )
+
+        findings, count = _load_audit_findings(run_dir, "spec.md")
+
+        assert count == 3  # 1 CRITICAL + 2 IMPORTANT
+        assert "Missing error handling" in findings
+        assert "No rate limiting" in findings
+        assert "Database failover" in findings
+        # MINOR should not be in findings text as a finding header
+        assert "Consider adding comments" not in findings
+
+    def test_no_audit_files_returns_empty(self, tmp_path):
+        """No audit dir → empty findings."""
+        run_dir = tmp_path / "run"
+        run_dir.mkdir()
+        findings, count = _load_audit_findings(run_dir, "spec.md")
+        assert findings == ""
+        assert count == 0
+
+    def test_apply_findings_modifies_document(self, tmp_path):
+        """When there are findings, Opus revises the document."""
+        run_dir = tmp_path / "run"
+        run_dir.mkdir(parents=True)
+        audits_dir = run_dir / "audits"
+
+        original = "# Spec\n\n## API\nGET /users returns user list.\n"
+
+        self._make_audit_file(audits_dir, "spec.md", "gpt_tech", "technical",
+            "CRITICAL: Missing authentication on GET /users\n"
+        )
+
+        findings, count = _load_audit_findings(run_dir, "spec.md")
+        assert count == 1
+
+        # Mock the gateway to return a revised doc
+        mock_gw = MagicMock()
+        mock_gw.call_model.return_value = {
+            "content": "# Spec\n\n## API\nGET /users returns user list. Requires Bearer token auth.\n",
+            "model": "mock",
+            "tokens_in": 100,
+            "tokens_out": 100,
+            "cost_usd": 0.01,
+            "duration": 0.5,
+        }
+
+        revised = _apply_audit_findings(mock_gw, original, findings, "spec.md")
+
+        assert revised != original
+        assert "Bearer token auth" in revised
+        assert mock_gw.call_model.call_count == 1
+
+    def test_apply_findings_failure_preserves_original(self, tmp_path, mock_gateway):
+        """If Opus call fails, Phase 5 falls back to original draft."""
+        run_dir = tmp_path / "run"
+        run_dir.mkdir(parents=True)
+
+        mock_gateway.call_model.side_effect = RuntimeError("API timeout")
+
+        with pytest.raises(RuntimeError):
+            _apply_audit_findings(mock_gateway, "# Doc", "CRITICAL: fix X", "doc.md")
+
+    def test_phase5_with_findings_reports_count(self, project_root, run_state, mock_gateway):
+        """Phase 5 should report findings_applied > 0 when audit files exist."""
+        run_state["current_phase"] = "5"
+        run_state["current_document"] = {
+            "name": "CONSTITUTION.md",
+            "type": "CONSTITUTION",
+            "version": 1,
+            "phase_status": "lessons_complete",
+            "phase_attempt": 1,
+            "sections_completed": [],
+            "template": "CONSTITUTION",
+        }
+        run_state = state_manager.save(project_root, run_state)
+
+        run_dir = Path(project_root) / "planner_runs" / run_state["run_id"]
+
+        # Write a draft
+        (run_dir / "draft_content.md").write_text("# Constitution\n\n## Rules\nBe good.\n")
+
+        # Write audit findings
+        audits_dir = run_dir / "audits"
+        self._make_audit_file(audits_dir, "CONSTITUTION.md", "gpt_tech", "technical",
+            "CRITICAL: 'Be good' is too vague — specify concrete rules\n"
+        )
+
+        # Mock gateway to return revised content (clear side_effect first)
+        mock_gateway.call_model.side_effect = None
+        mock_gateway.call_model.return_value = {
+            "content": "# Constitution\n\n## Rules\n1. All API calls must have error handling.\n",
+            "model": "mock",
+            "tokens_in": 200,
+            "tokens_out": 150,
+            "cost_usd": 0.02,
+            "duration": 1.0,
+        }
+
+        d = Dispatcher(project_root)
+        register_all_handlers(d, project_root)
+
+        result = d.dispatch_phase(run_state)
+        state = result.state
+
+        _assert_state_schema_clean(state, "Phase 5 with findings")
+        assert result.action == "gate_pending"
+
+        # Verify the output file has the revised content
+        output_path = run_dir / "output" / "CONSTITUTION.md"
+        assert output_path.exists()
+        output = output_path.read_text()
+        assert "error handling" in output
+        assert "Be good" not in output
