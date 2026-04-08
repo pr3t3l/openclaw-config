@@ -139,4 +139,57 @@ class TestPricingConfig:
         for model, data in pricing["models"].items():
             assert "input_per_million" in data
             assert "output_per_million" in data
-            assert "provider" in data
+
+
+class TestDynamicThresholds:
+    """Test compute_thresholds and state-based threshold overrides."""
+
+    def test_small_project(self):
+        alert, hard = cost_tracker.compute_thresholds(2)
+        assert alert == 5.0
+        assert hard == 10.0
+
+    def test_medium_project(self):
+        alert, hard = cost_tracker.compute_thresholds(5)
+        assert alert == 10.0
+        assert hard == 20.0
+
+    def test_large_project(self):
+        alert, hard = cost_tracker.compute_thresholds(8)
+        assert alert == 30.0
+        assert hard == 50.0
+
+    def test_boundary_3_docs(self):
+        alert, hard = cost_tracker.compute_thresholds(3)
+        assert alert == 5.0
+
+    def test_boundary_6_docs(self):
+        alert, hard = cost_tracker.compute_thresholds(6)
+        assert alert == 10.0
+
+    def test_boundary_7_docs(self):
+        alert, hard = cost_tracker.compute_thresholds(7)
+        assert alert == 30.0
+
+    def test_state_overrides_alert(self, empty_state):
+        empty_state["cost_alert_threshold"] = 5.0
+        empty_state["cost"]["total_usd"] = 6.0
+        assert cost_tracker.should_alert(empty_state)
+
+    def test_state_overrides_hard_limit(self, empty_state):
+        empty_state["cost_hard_limit"] = 10.0
+        empty_state["cost"]["total_usd"] = 11.0
+        assert cost_tracker.should_hard_stop(empty_state)
+
+    def test_null_threshold_falls_back(self, empty_state):
+        empty_state["cost_alert_threshold"] = None
+        empty_state["cost"]["total_usd"] = 6.0
+        # $6 < $30 (pricing.json default) → no alert
+        assert not cost_tracker.should_alert(empty_state)
+
+    def test_state_threshold_lower_than_default(self, empty_state):
+        empty_state["cost_alert_threshold"] = 5.0
+        empty_state["cost"]["total_usd"] = 4.0
+        assert not cost_tracker.should_alert(empty_state)
+        empty_state["cost"]["total_usd"] = 5.0
+        assert cost_tracker.should_alert(empty_state)

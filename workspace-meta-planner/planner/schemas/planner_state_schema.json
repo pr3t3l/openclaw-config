@@ -25,7 +25,9 @@
     "pending_gate",
     "auto_approve",
     "telegram_chat_id",
-    "documents_skipped"
+    "documents_skipped",
+    "cost_alert_threshold",
+    "cost_hard_limit"
   ],
   "properties": {
     "run_id": {
@@ -181,6 +183,14 @@
       "type": "array",
       "items": {"type": "string"},
       "description": "List of document names skipped by human at G1"
+    },
+    "cost_alert_threshold": {
+      "anyOf": [{"type": "number"}, {"type": "null"}],
+      "description": "Alert threshold in USD. Null = use pricing.json default."
+    },
+    "cost_hard_limit": {
+      "anyOf": [{"type": "number"}, {"type": "null"}],
+      "description": "Hard limit in USD. Null = use pricing.json default."
     }
   },
   "additionalProperties": false

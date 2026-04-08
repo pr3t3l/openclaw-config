@@ -41,6 +41,8 @@ SCHEMA_FIELDS = {
     "auto_approve",
     "telegram_chat_id",
     "documents_skipped",
+    "cost_alert_threshold",
+    "cost_hard_limit",
 }
 
 # The only allowed transient key — dispatcher pops it before save

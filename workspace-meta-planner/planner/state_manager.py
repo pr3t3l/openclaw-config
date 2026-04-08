@@ -137,6 +137,8 @@ def create_run(
         "auto_approve": False,
         "telegram_chat_id": None,
         "documents_skipped": [],
+        "cost_alert_threshold": None,
+        "cost_hard_limit": None,
     }
 
     errors = validate(state)
@@ -171,6 +173,10 @@ def load(project_root: str, run_id: str) -> dict:
         state["telegram_chat_id"] = None
     if "documents_skipped" not in state:
         state["documents_skipped"] = []
+    if "cost_alert_threshold" not in state:
+        state["cost_alert_threshold"] = None
+    if "cost_hard_limit" not in state:
+        state["cost_hard_limit"] = None
 
     errors = validate(state)
     if errors:

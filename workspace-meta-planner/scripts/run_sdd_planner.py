@@ -31,6 +31,7 @@ from planner.phases.phase_0_setup import run_phase_0
 from planner.orchestrator.dispatcher import Dispatcher
 from planner.orchestrator.checkpoint import CheckpointManager
 from planner.orchestrator.gates import GateEngine
+from planner.cost_tracker import compute_thresholds
 from planner.phase_handlers import register_all_handlers
 
 logging.basicConfig(
@@ -178,6 +179,12 @@ def cmd_gate_reply(args: argparse.Namespace) -> None:
         state["documents_pending"] = setup.documents_pending
         print(f"Doc type: {doc_type}")
         print(f"Documents to produce: {setup.documents_pending}")
+
+        # Set dynamic cost thresholds based on document count
+        alert, hard = compute_thresholds(len(setup.documents_pending))
+        state["cost_alert_threshold"] = alert
+        state["cost_hard_limit"] = hard
+        print(f"Cost thresholds: alert=${alert:.0f}, hard_limit=${hard:.0f}")
 
         # Check for auto-approve mode
         if "AUTO" in response_upper:

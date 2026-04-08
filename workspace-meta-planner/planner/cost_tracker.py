@@ -116,11 +116,13 @@ def get_summary(state: dict) -> dict:
         Dict with total_usd, by_model, by_phase, by_document, alerts.
     """
     cost = state["cost"]
+    alert_thresh = state.get("cost_alert_threshold") or get_alert_threshold()
+    hard_lim = state.get("cost_hard_limit") or get_hard_limit()
     alerts = []
-    if cost["total_usd"] >= get_hard_limit():
-        alerts.append(f"HARD LIMIT EXCEEDED: ${cost['total_usd']:.2f} >= ${get_hard_limit():.2f}")
-    elif cost["total_usd"] >= get_alert_threshold():
-        alerts.append(f"ALERT: Cost ${cost['total_usd']:.2f} exceeds ${get_alert_threshold():.2f} threshold")
+    if cost["total_usd"] >= hard_lim:
+        alerts.append(f"HARD LIMIT EXCEEDED: ${cost['total_usd']:.2f} >= ${hard_lim:.2f}")
+    elif cost["total_usd"] >= alert_thresh:
+        alerts.append(f"ALERT: Cost ${cost['total_usd']:.2f} exceeds ${alert_thresh:.2f} threshold")
 
     return {
         "total_usd": cost["total_usd"],
@@ -131,11 +133,36 @@ def get_summary(state: dict) -> dict:
     }
 
 
+def compute_thresholds(doc_count: int) -> tuple[float, float]:
+    """Compute dynamic alert/hard_limit thresholds based on document count.
+
+    Args:
+        doc_count: Number of documents to produce.
+
+    Returns:
+        Tuple of (alert_threshold, hard_limit) in USD.
+    """
+    if doc_count <= 3:
+        return 5.0, 10.0
+    elif doc_count <= 6:
+        return 10.0, 20.0
+    else:
+        return 30.0, 50.0
+
+
 def should_alert(state: dict) -> bool:
-    """Check if cost has exceeded the alert threshold ($30)."""
-    return state["cost"]["total_usd"] >= get_alert_threshold()
+    """Check if cost has exceeded the alert threshold.
+
+    Uses state thresholds if set, otherwise falls back to pricing.json.
+    """
+    threshold = state.get("cost_alert_threshold") or get_alert_threshold()
+    return state["cost"]["total_usd"] >= threshold
 
 
 def should_hard_stop(state: dict) -> bool:
-    """Check if cost has exceeded the hard limit ($50)."""
-    return state["cost"]["total_usd"] >= get_hard_limit()
+    """Check if cost has exceeded the hard limit.
+
+    Uses state thresholds if set, otherwise falls back to pricing.json.
+    """
+    limit = state.get("cost_hard_limit") or get_hard_limit()
+    return state["cost"]["total_usd"] >= limit

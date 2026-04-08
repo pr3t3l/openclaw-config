@@ -104,10 +104,11 @@ class Dispatcher:
         """
         # Check cost alert before proceeding
         if cost_tracker.should_hard_stop(state):
+            hard_lim = state.get("cost_hard_limit") or cost_tracker.get_hard_limit()
             return DispatchResult(
                 state=state,
                 action="cost_alert",
-                message=f"HARD LIMIT: ${state['cost']['total_usd']:.2f} exceeds ${cost_tracker.get_hard_limit():.2f}. Human approval required.",
+                message=f"HARD LIMIT: ${state['cost']['total_usd']:.2f} exceeds ${hard_lim:.2f}. Human approval required.",
             )
 
         if cost_tracker.should_alert(state):
