@@ -31,8 +31,8 @@ Old IDs are preserved in parentheses for cross-reference with archived docs.
 Full evidence and context available in docs/archivo/lessons_learned-master.md.
 -->
 
-**Last updated:** 2026-04-07
-**Total entries:** 82
+**Last updated:** 2026-04-08
+**Total entries:** 88
 
 ---
 
@@ -126,6 +126,12 @@ Full evidence and context available in docs/archivo/lessons_learned-master.md.
 | — | LL-ARCH-035 | OpenClaw skills need ultra-strict SKILL.md |
 | — | LL-AI-028 | Model audit benchmarks (GPT-5.4 vs Gemini) |
 | — | LL-PROC-033 | 500+ tests need real integration test |
+| — | LL-CODE-042 | Phase 5 ignored audit findings |
+| — | LL-PROC-034 | 18 manual gates per run is friction |
+| — | LL-COST-042 | Drafter generates 15-20KB N/A sections |
+| — | LL-DATA-035 | Entity extractor regex produces garbage |
+| — | LL-COST-043 | $30 alert useless for $7 projects |
+| — | LL-PROC-035 | Auto-intake loses human input on complex projects |
 
 ---
 
@@ -181,6 +187,8 @@ Full evidence and context available in docs/archivo/lessons_learned-master.md.
 | LL-COST-025 | Two cost buckets: (1) direct API = manifest.json, (2) orchestrator = LiteLLM /spend. | manifest tracked $2.42, actual was $5+. | Track both, report both. | workflows |
 | LL-COST-025b | sessions_spawn phases are invisible for cost tracking. | Phases 2-7 cost untracked when using sessions_spawn. | Use spawn scripts with explicit cost logging. | workflows |
 | LL-COST-041 | AI batch classification ~$0.01/50 merchants — always cheaper than defaulting to "Other." | Finance tracker merchant categorization. | Use AI for classification when rule-based fails. | both |
+| LL-COST-042 | Drafter generates 15-20KB "Not applicable" sections per document, wasting output tokens ($25/M Opus). INTEGRATIONS.md for a calculator had 26KB explaining why each OpenClaw integration doesn't apply. Fix: `filter_applicable_sections()` excludes N/A sections from the drafter prompt. Estimated savings: 30-50% output tokens per run. | N/A content for calculator run. | Filter N/A sections before drafting. Drafter prompt must say "omit irrelevant sections." | both |
+| LL-COST-043 | alert_threshold of $30 and hard_limit of $50 (from pricing.json) are useless for simple projects ($7.37 total for calculator). Fix: dynamic thresholds based on doc count — <=3 docs: $5/$10, 4-6: $10/$20, 7+: $30/$50. Stored in state, overrides pricing.json. | Calculator run completed without any alerts despite being 7x more expensive per doc than expected. | Set thresholds proportional to project size. | both |
 
 ---
 
@@ -247,6 +255,7 @@ Full evidence and context available in docs/archivo/lessons_learned-master.md.
 | LL-CODE-039 | Credit card payments are POSITIVE in Chase CSV — check payment keywords before sign split. | Validate sign logic per bank format. |
 | LL-CODE-040 | Spanish payment keywords needed in classifier (SU PAGO, PAGO AUTOMATICO). | i18n in financial classifiers. |
 | LL-CODE-041 | Claude Code builds modules with StubHandler unit tests that all pass, but real PhaseHandlers were never integration-tested through the Dispatcher with schema validation. Result: `_intake_answers` field caused schema validation crash at runtime that 573 unit tests missed. | Always require at least 1 integration test that runs real handlers through the full dispatcher loop with `state_manager.save()` and schema validation. |
+| LL-CODE-042 | Phase 5 finalize never applied audit findings — drafts and outputs were identical (1 byte diff). GPT produced 30 findings including 2 CRITICAL for PROJECT_FOUNDATION but none were incorporated. $1.10 of audit cost per run was wasted. Fix: Phase 5 now calls Opus with CRITICAL+IMPORTANT findings to apply minimal changes before presenting to human. | Phase 5 must apply audit findings before finalizing. Verify output differs from draft when findings exist. |
 
 ---
 
@@ -257,6 +266,7 @@ Full evidence and context available in docs/archivo/lessons_learned-master.md.
 | LL-DATA-018 | PostgreSQL GENERATED columns can't use ::TEXT casts — use IMMUTABLE functions. | Use IMMUTABLE functions for generated cols. |
 | LL-DATA-019 | ON CONFLICT with GENERATED columns: use column_name not expression. | Column name, not expression in ON CONFLICT. |
 | LL-DATA-034 | verify_db_parity.py needs psycopg2 installed in the venv that runs it. | pip install psycopg2-binary in target venv. |
+| LL-DATA-035 | Entity extractor used regex on raw text, producing garbage entries like "rules; fully auditable in ~120 lines |" (table cell fragments). No semantic value for cross-doc validation. Fix: rewritten with 6 typed extractors (DECISION, CONSTRAINT, COMPONENT, INTERFACE, EXIT_CODE, DEPENDENCY) using structured markdown parsing. $0 cost, deterministic. | Entity maps from RUN-20260407-005 were noise. | Use structural markdown parsing, not regex on raw text. |
 
 ---
 
@@ -276,6 +286,8 @@ Full evidence and context available in docs/archivo/lessons_learned-master.md.
 | LL-PROC-032 | One Claude Code instance per repo — two on same repo causes git conflicts. | One instance per repo. |
 | LL-PROC-PL09 | Gate auto-approval hides quality issues. Human gates exist for a reason. | Real human review at gates. |
 | LL-PROC-033 | When Claude Code builds a system with 500+ tests, verify that at least some tests exercise the REAL integration path (real handlers → real dispatcher → real schema validation). A "Full Audit Policy" should be added to every build: after Code finishes all tasks, run one real integration test that flows through the actual system, not mocks. | Add integration test requirement to every build checklist. |
+| LL-PROC-034 | 18 manual gates per run (G1,G3,G5 × 6 docs) is friction without value when all responses are "approved". Fix: auto-approve mode activated with "MODULE_SPEC auto" at G0 reduces gates from ~20 to 2 (only G0 and G7). Exception: G3 pauses if audit findings include CRITICAL. | Offer auto-approve for simple projects. Always pause on CRITICAL findings. |
+| LL-PROC-035 | Phase 1 auto-generates content without asking the human. For simple projects this is correct, but for complex projects it loses valuable human input. Fix: interactive intake mode activated with "MODULE_SPEC interactive" generates one question per section and waits for human response. Human can reply "auto" to switch back to auto-generate. | Offer interactive intake for complex projects. Default to auto for simple ones. |
 
 ---
 
@@ -305,6 +317,9 @@ Full evidence and context available in docs/archivo/lessons_learned-master.md.
 - ❌ Never put transient data in state dicts with `additionalProperties: false` — use files (LL-ARCH-034)
 - ❌ Never use `command-dispatch: tool` for Python script wrapping in OpenClaw (LL-INFRA-036)
 - ❌ Never trust 500+ unit tests without at least 1 integration test through the real system (LL-CODE-041, LL-PROC-033)
+- ❌ Never skip applying audit findings before finalize — drafts and outputs must differ when findings exist (LL-CODE-042)
+- ❌ Never use regex on raw text for entity extraction — use structural markdown parsing (LL-DATA-035)
+- ❌ Never generate "Not applicable" sections — filter before drafting (LL-COST-042)
 
 ### Documentation
 - ❌ Never copy content between docs — reference with "See [DOC §section]"

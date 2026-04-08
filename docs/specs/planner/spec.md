@@ -734,12 +734,26 @@ Result: Document #7's Intake receives ~3,500 tokens of Decision Logs
 /sdd_planner [description of idea in free text]
 # Executes: python3 scripts/run_sdd_planner.py start "<args>"
 # Runs Phase 0, creates run, presents Gate G0.
-# Human must reply with MODULE_SPEC or WORKFLOW_SPEC.
 
-# Respond to a pending gate (G0, G1, G3, G5, G6.5, G7):
-/sdd_planner_reply [response text]
-# Executes: status to find run/gate, then gate-reply <run_id> <gate_id> "<response>"
-# Resolves the gate, continues phases until next gate or completion.
+# G0 responses (doc type + optional modes):
+/sdd_planner_reply MODULE_SPEC              # basic mode, all gates manual
+/sdd_planner_reply MODULE_SPEC auto         # auto-approve: only G0+G7 manual (~20→2 gates)
+/sdd_planner_reply MODULE_SPEC interactive  # ask human per section
+/sdd_planner_reply WORKFLOW_SPEC auto       # works with either doc type
+# Note: auto-approve skips G1,G1.5,G3,G5,G6.5 EXCEPT G3 with CRITICAL findings
+
+# G1 responses:
+/sdd_planner_reply approved       # confirm intake, advance
+/sdd_planner_reply skip           # skip this document entirely (no cost)
+# In interactive mode:
+/sdd_planner_reply [answer text]  # answer for current section
+/sdd_planner_reply auto           # switch to auto-generate remaining sections
+
+# G3, G5, G7 responses:
+/sdd_planner_reply approved       # approve and continue
+/sdd_planner_reply rejected       # reject (pauses for human fix)
+
+# Phase 5 delivers .md file via Telegram when TELEGRAM_CHAT_ID is set.
 
 # Start from existing documentation:
 # ⬜ NOT YET IMPLEMENTED — /plan-from-docs [attach files or paste links]
@@ -750,7 +764,9 @@ Result: Document #7's Intake receives ~3,500 tokens of Decision Logs
 # Via CLI (alternative — all commands available):
 cd ~/.openclaw/workspace-meta-planner
 python3 scripts/run_sdd_planner.py start "Build a todo CLI app"
-python3 scripts/run_sdd_planner.py gate-reply RUN-xxx G0 "MODULE_SPEC"
+python3 scripts/run_sdd_planner.py gate-reply RUN-xxx G0 "MODULE_SPEC auto"
+python3 scripts/run_sdd_planner.py gate-reply RUN-xxx G1 "approved"
+python3 scripts/run_sdd_planner.py gate-reply RUN-xxx G1 "skip"
 python3 scripts/run_sdd_planner.py status [run_id]
 python3 scripts/run_sdd_planner.py resume [run_id]
 python3 scripts/run_sdd_planner.py test-call

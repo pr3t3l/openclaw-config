@@ -9,7 +9,7 @@ NOT HERE: How workflows use these → docs/specs/[workflow]/spec.md
 UPDATE FREQUENCY: When adding a new integration or when limits/pricing change.
 -->
 
-**Last updated:** 2026-04-07
+**Last updated:** 2026-04-08
 **Sources:** Project Bible v2 §3,§6, Platform Bible §4-5 (archived in docs/archivo/)
 
 ---
@@ -258,6 +258,33 @@ All LLM calls route through LiteLLM proxy at `http://127.0.0.1:4000` unless note
   `intake_answers.json`, `draft_content.md`, `audit_result.json`,
   `ideation_result.json`, `lessons_check_result.json`, `finalize_result.json`
 - See LL-ARCH-034 for rationale
+
+### G0 Modes
+- `MODULE_SPEC` / `WORKFLOW_SPEC` — basic mode, all gates manual
+- `MODULE_SPEC auto` — auto-approve mode: skips G1/G3/G5, only G0+G7 manual (LL-PROC-034)
+- `MODULE_SPEC interactive` — interactive intake: asks one question per section (LL-PROC-035)
+- `MODULE_SPEC auto interactive` — auto-approve + interactive (auto wins, interactive ignored)
+
+### G1 Responses
+- `approved` — confirm intake, advance to Phase 1.5
+- `skip` — skip current document entirely, no cost (LL-COST-042)
+- `[section answer]` — in interactive mode, answer for current section
+- `auto` — in interactive mode, switch to auto-generate remaining sections
+
+### Telegram File Delivery
+- Phase 5 sends `.md` file attachment + summary message to Telegram chat
+- Uses `curl` subprocess to POST to Telegram Bot API (LL-INFRA-001 pattern)
+- Requires `TELEGRAM_CHAT_ID` env var set when run starts
+- Auto-approve mode sends file with "(auto-approved)" note
+- See `_send_telegram_document()` in `phase_handlers.py`
+
+### Dynamic Cost Thresholds
+- Thresholds calculated at G0 based on document count:
+  - <=3 docs: alert=$5, hard_limit=$10
+  - 4-6 docs: alert=$10, hard_limit=$20
+  - 7+ docs: alert=$30, hard_limit=$50
+- Stored in state as `cost_alert_threshold`/`cost_hard_limit`
+- Overrides pricing.json defaults (LL-COST-043)
 
 ### Known Limitations
 - `/reset` required before every skill invocation session (LL-INFRA-037)

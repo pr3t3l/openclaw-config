@@ -10,7 +10,7 @@ NOT HERE: Failures/fixes → LESSONS_LEARNED.md
 TARGET LENGTH: 3-5 pages max.
 -->
 
-**Last updated:** 2026-04-07
+**Last updated:** 2026-04-08
 
 ---
 
@@ -79,7 +79,7 @@ Centralize the operation of multiple AI products and workflows on a single platf
 | 2 | Declassified Pipeline V9 | workflow | AI-generated mystery case → packaged PDFs | 🟡 90% | Platform |
 | 3 | Finance Tracker | module (skill) | Personal expense tracking + Airbnb tax deductions | 🟡 90% | Platform |
 | 4 | Marketing System | workflow | Automated content generation, 3-layer campaign engine | 🟡 70% | Platform, Pipeline |
-| 5 | Planner (SDD) | workflow | Idea → validated spec via multi-model debate | 🟡 Integration Testing | Platform |
+| 5 | Planner (SDD) | workflow | Idea → validated spec via multi-model debate | 🟢 Functional | Platform |
 
 ### Post-MVP (one line each — spec when ready to build)
 
