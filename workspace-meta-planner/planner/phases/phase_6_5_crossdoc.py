@@ -121,7 +121,10 @@ def _compare_maps(
     contradictions = []
 
     # Group entries by type for targeted comparison
-    for entity_type in ("id", "api_endpoint", "state"):
+    for entity_type in (
+        "id", "api_endpoint", "state",  # legacy
+        "DECISION", "CONSTRAINT", "COMPONENT", "INTERFACE", "EXIT_CODE", "DEPENDENCY",
+    ):
         entries_a = {e.name.lower(): e for e in map_a.find_by_type(entity_type)}
         entries_b = {e.name.lower(): e for e in map_b.find_by_type(entity_type)}
 
