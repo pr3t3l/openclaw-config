@@ -209,6 +209,10 @@ class Phase1_5Handler(PhaseHandler):
         run_dir = _run_dir(project_root, state["run_id"])
 
         doc = state["current_document"]
+        if not doc:
+            logger.warning("Phase 1.5: no current_document, skipping ideation")
+            return state
+
         doc_type = doc.get("type", doc.get("template", "WORKFLOW_SPEC"))
 
         if should_skip(doc_type):
@@ -222,13 +226,22 @@ class Phase1_5Handler(PhaseHandler):
             f"- {k}: {v}" for k, v in intake_answers.items()
         )
 
-        result = ideate(
-            doc_type=doc_type,
-            intake_summary=intake_summary,
-            gateway=gateway,
-            phase="1.5",
-            document=doc.get("name"),
-        )
+        try:
+            result = ideate(
+                doc_type=doc_type,
+                intake_summary=intake_summary,
+                gateway=gateway,
+                phase="1.5",
+                document=doc.get("name"),
+            )
+        except Exception as e:
+            # Ideation is optional — skip gracefully on failure
+            logger.error(f"Phase 1.5 ideation failed, skipping: {e}")
+            _save_transient(run_dir, "ideation_result.json", {
+                "accepted": [],
+                "skipped": True,
+            })
+            return state
 
         # Save ideation result to file
         _save_transient(run_dir, "ideation_result.json", {
