@@ -102,6 +102,75 @@ def extract_sections(content: str) -> list[TemplateSection]:
     return sections
 
 
+_NA_PATTERNS = {
+    "not applicable", "n/a", "none", "no ", "does not apply",
+    "not relevant", "not needed", "not required", "this section does not apply",
+    "there are no", "there is no",
+}
+
+_MIN_SUBSTANTIVE_LENGTH = 50
+
+
+def filter_applicable_sections(
+    sections: list[TemplateSection],
+    intake_answers: dict[str, str],
+) -> list[TemplateSection]:
+    """Filter template sections to only those with substantive intake answers.
+
+    Removes sections where the intake answer indicates the section is not
+    applicable (e.g., "Not applicable", "N/A", "None") or is too short
+    to contain real content.
+
+    Args:
+        sections: Full list of template sections.
+        intake_answers: Dict of section title → intake answer.
+
+    Returns:
+        Filtered list of TemplateSection objects with applicable content.
+    """
+    result = []
+    for section in sections:
+        # Always keep level-1 headings (document title)
+        if section.level < 2:
+            result.append(section)
+            continue
+
+        answer = intake_answers.get(section.title, "")
+        if not answer:
+            # No intake answer — keep the section (drafter will fill it)
+            result.append(section)
+            continue
+
+        # Check if answer is substantive
+        answer_lower = answer.strip().lower()
+
+        # Check for N/A patterns
+        is_na = any(pattern in answer_lower for pattern in _NA_PATTERNS)
+
+        # Check minimum length (short answers like "None" or "N/A" are not substantive)
+        is_short = len(answer.strip()) < _MIN_SUBSTANTIVE_LENGTH
+
+        if is_na and is_short:
+            logger.info(f"Excluding section '{section.title}': intake says N/A")
+            continue
+
+        # If the answer is longer but mostly says "not applicable", still exclude
+        if is_na and answer_lower.count("not applicable") + answer_lower.count("n/a") > 0:
+            # Check if there's real content beyond the N/A statement
+            # Remove N/A phrases and check what's left
+            cleaned = answer_lower
+            for pattern in _NA_PATTERNS:
+                cleaned = cleaned.replace(pattern, "")
+            cleaned = cleaned.strip(" .,;:-–—\n\t")
+            if len(cleaned) < _MIN_SUBSTANTIVE_LENGTH:
+                logger.info(f"Excluding section '{section.title}': intake is mostly N/A")
+                continue
+
+        result.append(section)
+
+    return result
+
+
 def get_section_titles(doc_type: str, template_dir: Optional[str] = None) -> list[str]:
     """Get just the section titles for a template type.
 

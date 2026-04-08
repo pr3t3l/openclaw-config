@@ -16,7 +16,10 @@ def system_prompt(doc_type: str, constitution_rules: str = "") -> str:
         f"- [ASSUMPTION — ...] markers are allowed for deferred items\n"
         f"- Be specific and concrete — not 'consider using a database' but 'PostgreSQL 16 because...'\n"
         f"- Tables must have real data, not example_value\n"
-        f"- Output valid Markdown"
+        f"- Output valid Markdown\n"
+        f"- Only include sections that are relevant to THIS project\n"
+        f"- Do NOT generate 'Not applicable' or 'N/A' sections — if a section doesn't apply, omit it entirely\n"
+        f"- Use the project's actual name in headers, not the template platform name"
         f"{rules}"
     )
 
@@ -37,11 +40,17 @@ def draft_prompt(
         items = "\n".join(f"- {s.get('feature', '')}" for s in ideation_accepted)
         ideation_text = f"\n\nAccepted ideation suggestions to incorporate:\n{items}"
 
+    project_name = intake_answers.get("Project Name", "")
+    project_line = f"\nProject name: {project_name}\n" if project_name else ""
+
     return (
         f"Draft a complete {doc_type} document based on the following inputs.\n\n"
+        f"{project_line}"
         f"Template structure to follow:\n{template_content}\n\n"
         f"Captured answers from intake:\n{answers_text}"
         f"{ideation_text}\n\n"
         f"Produce the complete document in Markdown. Fill every section. "
-        f"No stubs, no placeholders."
+        f"No stubs, no placeholders. "
+        f"Only include sections relevant to this project — omit any section "
+        f"that would just say 'Not applicable' or 'N/A'."
     )

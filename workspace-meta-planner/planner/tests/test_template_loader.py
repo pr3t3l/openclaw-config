@@ -6,9 +6,11 @@ from pathlib import Path
 from planner.template_loader import (
     TEMPLATE_FILES,
     extract_sections,
+    filter_applicable_sections,
     get_section_titles,
     init_audit_findings,
     load_template,
+    TemplateSection,
 )
 
 
@@ -119,6 +121,83 @@ class TestInitAuditFindings:
         af.write_text("# Custom content")
         init_audit_findings(str(tmp_path))
         assert af.read_text() == "# Custom content"
+
+
+class TestFilterApplicableSections:
+    """Tests for filter_applicable_sections — excludes N/A sections."""
+
+    def _sections(self):
+        return [
+            TemplateSection(1, "Document Title", ""),
+            TemplateSection(2, "Purpose", "Describe purpose."),
+            TemplateSection(2, "Stack", "Describe stack."),
+            TemplateSection(2, "Integrations", "Describe integrations."),
+            TemplateSection(2, "Database", "Describe database."),
+            TemplateSection(2, "Monetization", "Describe monetization."),
+        ]
+
+    def test_keeps_sections_with_real_content(self):
+        sections = self._sections()
+        answers = {
+            "Purpose": "Build a calculator app that evaluates math expressions using an AST parser.",
+            "Stack": "Python 3.12, no external dependencies. Pure stdlib implementation.",
+        }
+        result = filter_applicable_sections(sections, answers)
+        titles = [s.title for s in result]
+        assert "Purpose" in titles
+        assert "Stack" in titles
+
+    def test_excludes_na_sections(self):
+        sections = self._sections()
+        answers = {
+            "Purpose": "Build a calculator app with AST parsing and REPL interface.",
+            "Integrations": "Not applicable",
+            "Database": "N/A",
+            "Monetization": "None",
+        }
+        result = filter_applicable_sections(sections, answers)
+        titles = [s.title for s in result]
+        assert "Purpose" in titles
+        assert "Integrations" not in titles
+        assert "Database" not in titles
+        assert "Monetization" not in titles
+
+    def test_keeps_level1_headings_always(self):
+        sections = self._sections()
+        answers = {"Document Title": "Not applicable"}
+        result = filter_applicable_sections(sections, answers)
+        assert any(s.title == "Document Title" for s in result)
+
+    def test_keeps_sections_without_intake_answer(self):
+        sections = self._sections()
+        answers = {}  # No answers at all
+        result = filter_applicable_sections(sections, answers)
+        assert len(result) == len(sections)
+
+    def test_keeps_long_content_despite_na_phrase(self):
+        """If a section has substantial content beyond 'not applicable', keep it."""
+        sections = self._sections()
+        answers = {
+            "Integrations": (
+                "Not applicable for external APIs, but the calculator uses "
+                "an internal module system where each operator is registered "
+                "as a plugin. The plugin registry handles operator precedence, "
+                "associativity, and argument validation."
+            ),
+        }
+        result = filter_applicable_sections(sections, answers)
+        titles = [s.title for s in result]
+        assert "Integrations" in titles
+
+    def test_excludes_verbose_na(self):
+        """Exclude sections that say N/A with some filler but no real content."""
+        sections = self._sections()
+        answers = {
+            "Integrations": "Not applicable. No integrations needed.",
+        }
+        result = filter_applicable_sections(sections, answers)
+        titles = [s.title for s in result]
+        assert "Integrations" not in titles
 
     def test_creates_docs_dir(self, tmp_path):
         path = init_audit_findings(str(tmp_path))

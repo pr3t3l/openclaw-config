@@ -350,7 +350,7 @@ class Phase2Handler(PhaseHandler):
 
     def execute(self, state: dict, context: dict) -> dict:
         from planner.phases.phase_2_draft import draft_document
-        from planner.template_loader import load_template
+        from planner.template_loader import load_template, filter_applicable_sections
 
         project_root = context["project_root"]
         run_dir = _run_dir(project_root, state["run_id"])
@@ -359,25 +359,35 @@ class Phase2Handler(PhaseHandler):
 
         gateway = _gateway_from_state(state)
 
+        # Load transient data from files
+        intake_answers = _load_transient(run_dir, "intake_answers.json", {})
+        ideation_result = _load_transient(run_dir, "ideation_result.json", {})
+        ideation_accepted = ideation_result.get("accepted", [])
+
+        # Extract project name from input.txt
+        input_path = run_dir / "input.txt"
+        project_name = ""
+        if input_path.exists():
+            idea = input_path.read_text(encoding="utf-8").strip()
+            if idea:
+                # Use first meaningful phrase as project name
+                project_name = idea.split("\n")[0].strip()[:80]
+                if "Project Idea" not in intake_answers:
+                    intake_answers["Project Idea"] = idea
+
         try:
             sections = load_template(doc_type)
+            # Filter out sections where intake says "N/A" or "not applicable"
+            sections = filter_applicable_sections(sections, intake_answers)
             template_content = "\n".join(
                 f"{'#' * s.level} {s.title}\n{s.content}" for s in sections
             )
         except (ValueError, FileNotFoundError):
             template_content = f"# {doc_type}\n\n(Template not available)"
 
-        # Load transient data from files
-        intake_answers = _load_transient(run_dir, "intake_answers.json", {})
-        ideation_result = _load_transient(run_dir, "ideation_result.json", {})
-        ideation_accepted = ideation_result.get("accepted", [])
-
-        # Inject project idea into intake context so drafter knows the project
-        input_path = run_dir / "input.txt"
-        if input_path.exists():
-            idea = input_path.read_text(encoding="utf-8").strip()
-            if idea and "Project Idea" not in intake_answers:
-                intake_answers["Project Idea"] = idea
+        # Inject project name into intake answers for the drafter
+        if project_name:
+            intake_answers["Project Name"] = project_name
 
         # Load constitution rules if available
         constitution_path = Path(project_root) / "docs" / "CONSTITUTION.md"
