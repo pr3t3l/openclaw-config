@@ -22,7 +22,8 @@
     "cost",
     "created_at",
     "updated_at",
-    "pending_gate"
+    "pending_gate",
+    "auto_approve"
   ],
   "properties": {
     "run_id": {
@@ -165,6 +166,10 @@
     "pending_gate": {
       "anyOf": [{"type": "string"}, {"type": "null"}],
       "description": "Gate ID currently awaiting human input (e.g. 'G0', 'G3'), or null if no gate pending"
+    },
+    "auto_approve": {
+      "type": "boolean",
+      "description": "If true, auto-approve gates except G0 and G7. Set via 'MODULE_SPEC auto' at G0."
     }
   },
   "additionalProperties": false

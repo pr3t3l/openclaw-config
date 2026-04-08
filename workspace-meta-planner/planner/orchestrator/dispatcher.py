@@ -5,7 +5,9 @@ Handles document loop, conditional phases, and cost alerts.
 See spec.md §3 (Phases & Agents, phase order).
 """
 
+import json
 import logging
+from pathlib import Path
 from typing import Any, Callable, Optional
 
 from planner import cost_tracker, state_manager
@@ -158,6 +160,24 @@ class Dispatcher:
         # Check if a gate is pending (phase handler sets this via transient key)
         gate_id = state.pop("_gate_pending", None)
         if gate_id:
+            # Auto-approve: skip human gates except G0 and G7
+            if self._should_auto_approve(state, gate_id):
+                state["pending_gate"] = None
+                state["last_checkpoint"] = f"Phase {current_phase} complete, gate {gate_id} auto-approved"
+                logger.info(f"Gate {gate_id} auto-approved")
+                # Continue to next phase instead of pausing
+                next_phase = self._next_phase(state, current_phase)
+                if next_phase is None:
+                    return self._handle_completion(state)
+                state["current_phase"] = next_phase
+                state = state_manager.save(self.project_root, state)
+                return DispatchResult(
+                    state=state,
+                    action="continue",
+                    next_phase=next_phase,
+                    message=f"Gate {gate_id}: AUTO-APPROVED",
+                )
+
             state["pending_gate"] = gate_id
             state["last_checkpoint"] = f"Phase {current_phase} complete, gate {gate_id} pending"
             state = state_manager.save(self.project_root, state)
@@ -183,6 +203,51 @@ class Dispatcher:
             next_phase=next_phase,
             message=f"Phase {current_phase} complete, next: {next_phase}",
         )
+
+    def _should_auto_approve(self, state: dict, gate_id: str) -> bool:
+        """Check if a gate should be auto-approved.
+
+        Auto-approve is enabled when state["auto_approve"] is True.
+        G0 and G7 always require human input.
+        G3 requires human input if there are CRITICAL audit findings.
+        """
+        if not state.get("auto_approve", False):
+            return False
+
+        # G0 (mode selection) and G7 (final plan review) always manual
+        if gate_id in ("G0", "G7"):
+            return False
+
+        # G3: check for CRITICAL findings — pause if any exist
+        if gate_id == "G3":
+            doc = state.get("current_document")
+            if doc:
+                doc_name = doc.get("name", "")
+                run_dir = Path(self.project_root) / "planner_runs" / state["run_id"]
+                if self._has_critical_findings(run_dir, doc_name):
+                    logger.warning(
+                        f"Gate G3 paused despite auto-approve: CRITICAL findings for {doc_name}"
+                    )
+                    return False
+
+        return True
+
+    def _has_critical_findings(self, run_dir: Path, doc_name: str) -> bool:
+        """Check if any audit file for this document contains CRITICAL findings."""
+        audits_dir = run_dir / "audits"
+        if not audits_dir.exists():
+            return False
+
+        doc_safe = doc_name.replace(".", "_").replace("/", "_")
+        for audit_file in audits_dir.glob(f"{doc_safe}_*.json"):
+            try:
+                data = json.loads(audit_file.read_text(encoding="utf-8"))
+                content = data.get("content", "")
+                if "CRITICAL" in content.upper():
+                    return True
+            except (json.JSONDecodeError, OSError):
+                pass
+        return False
 
     def _should_skip_phase(self, state: dict, phase: str) -> bool:
         """Check if a phase should be skipped based on conditions."""

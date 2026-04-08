@@ -10,7 +10,7 @@ from pathlib import Path
 from unittest.mock import patch, MagicMock
 
 from planner import state_manager
-from planner.orchestrator.dispatcher import Dispatcher
+from planner.orchestrator.dispatcher import Dispatcher, PhaseHandler
 from planner.phase_handlers import (
     register_all_handlers,
     _load_audit_findings,
@@ -38,6 +38,7 @@ SCHEMA_FIELDS = {
     "created_at",
     "updated_at",
     "pending_gate",
+    "auto_approve",
 }
 
 # The only allowed transient key — dispatcher pops it before save
@@ -360,3 +361,128 @@ class TestAuditFindingsApplication:
         output = output_path.read_text()
         assert "error handling" in output
         assert "Be good" not in output
+
+
+class _GateStubHandler(PhaseHandler):
+    """Stub handler that sets a specific gate as pending."""
+
+    def __init__(self, phase_id: str, gate_id: str):
+        self.phase_id = phase_id
+        self._gate_id = gate_id
+
+    def execute(self, state, context):
+        state["_gate_pending"] = self._gate_id
+        return state
+
+
+class TestAutoApprove:
+    """Verify auto-approve skips intermediate gates but not G0/G7.
+
+    Uses stub handlers to isolate dispatcher auto-approve logic
+    from real phase handler dependencies (templates, models, etc.).
+    """
+
+    def _make_state(self, project_root, label, phase, auto=False):
+        """Create a run state at a given phase with auto_approve set."""
+        state = state_manager.create_run(
+            project_root, f"auto-{label}", ["MODULE_SPEC.md"]
+        )
+        state["current_phase"] = phase
+        state["auto_approve"] = auto
+        state["current_document"] = {
+            "name": "MODULE_SPEC.md",
+            "type": "MODULE_SPEC",
+            "version": 1,
+            "phase_status": "in_progress",
+            "phase_attempt": 1,
+            "sections_completed": [],
+            "template": "MODULE_SPEC",
+        }
+        return state_manager.save(project_root, state)
+
+    def test_auto_approve_skips_g1(self, project_root):
+        """auto_approve=True should auto-approve G1."""
+        state = self._make_state(project_root, "g1-auto", "1", auto=True)
+        d = Dispatcher(project_root, phase_handlers={
+            "1": _GateStubHandler("1", "G1"),
+        })
+        result = d.dispatch_phase(state)
+        assert result.action == "continue"
+        assert "AUTO-APPROVED" in result.message
+
+    def test_auto_approve_skips_g3(self, project_root):
+        """auto_approve=True should auto-approve G3 when no CRITICAL findings."""
+        state = self._make_state(project_root, "g3-auto", "3", auto=True)
+        d = Dispatcher(project_root, phase_handlers={
+            "3": _GateStubHandler("3", "G3"),
+        })
+        result = d.dispatch_phase(state)
+        assert result.action == "continue"
+        assert "AUTO-APPROVED" in result.message
+
+    def test_auto_approve_skips_g5(self, project_root):
+        """auto_approve=True should auto-approve G5."""
+        state = self._make_state(project_root, "g5-auto", "5", auto=True)
+        d = Dispatcher(project_root, phase_handlers={
+            "5": _GateStubHandler("5", "G5"),
+        })
+        result = d.dispatch_phase(state)
+        assert result.action == "continue"
+        assert "AUTO-APPROVED" in result.message
+
+    def test_auto_approve_does_not_skip_g0(self, project_root):
+        """auto_approve=True must NOT skip G0."""
+        state = self._make_state(project_root, "g0-auto", "0", auto=True)
+        d = Dispatcher(project_root, phase_handlers={
+            "0": _GateStubHandler("0", "G0"),
+        })
+        result = d.dispatch_phase(state)
+        assert result.action == "gate_pending"
+        assert result.state["pending_gate"] == "G0"
+
+    def test_auto_approve_does_not_skip_g7(self, project_root):
+        """auto_approve=True must NOT skip G7."""
+        state = self._make_state(project_root, "g7-auto", "7", auto=True)
+        state["documents_completed"] = ["MODULE_SPEC.md"]
+        state["documents_pending"] = []
+        state = state_manager.save(project_root, state)
+
+        d = Dispatcher(project_root, phase_handlers={
+            "7": _GateStubHandler("7", "G7"),
+        })
+        result = d.dispatch_phase(state)
+        assert result.action == "gate_pending"
+        assert result.state["pending_gate"] == "G7"
+
+    def test_auto_approve_pauses_g3_on_critical(self, project_root):
+        """auto_approve=True must pause at G3 if CRITICAL findings exist."""
+        state = self._make_state(project_root, "g3-crit", "3", auto=True)
+
+        # Create audit file with CRITICAL finding
+        run_dir = Path(project_root) / "planner_runs" / state["run_id"]
+        audits_dir = run_dir / "audits"
+        audits_dir.mkdir(parents=True, exist_ok=True)
+        (audits_dir / "MODULE_SPEC_md_technical_gpt_tech.json").write_text(json.dumps({
+            "model_label": "gpt_tech",
+            "audit_role": "technical",
+            "content": "CRITICAL: Missing authentication on all endpoints\n",
+            "model": "test", "tokens_in": 100, "tokens_out": 50,
+            "cost_usd": 0.01, "duration": 1.0,
+        }))
+
+        d = Dispatcher(project_root, phase_handlers={
+            "3": _GateStubHandler("3", "G3"),
+        })
+        result = d.dispatch_phase(state)
+        assert result.action == "gate_pending"
+        assert result.state["pending_gate"] == "G3"
+
+    def test_no_auto_approve_pauses_at_g1(self, project_root):
+        """auto_approve=False (default) pauses at G1."""
+        state = self._make_state(project_root, "g1-manual", "1", auto=False)
+        d = Dispatcher(project_root, phase_handlers={
+            "1": _GateStubHandler("1", "G1"),
+        })
+        result = d.dispatch_phase(state)
+        assert result.action == "gate_pending"
+        assert result.state["pending_gate"] == "G1"

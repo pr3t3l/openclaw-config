@@ -134,6 +134,7 @@ def create_run(
         "created_at": now,
         "updated_at": now,
         "pending_gate": None,
+        "auto_approve": False,
     }
 
     errors = validate(state)
@@ -159,9 +160,11 @@ def load(project_root: str, run_id: str) -> dict:
     with open(path) as f:
         state = json.load(f)
 
-    # Migrate: add pending_gate if missing (pre-v1.1 states)
+    # Migrate: add fields missing from older schema versions
     if "pending_gate" not in state:
         state["pending_gate"] = None
+    if "auto_approve" not in state:
+        state["auto_approve"] = False
 
     errors = validate(state)
     if errors:

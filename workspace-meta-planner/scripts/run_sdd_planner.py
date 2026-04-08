@@ -173,6 +173,11 @@ def cmd_gate_reply(args: argparse.Namespace) -> None:
         print(f"Doc type: {doc_type}")
         print(f"Documents to produce: {setup.documents_pending}")
 
+        # Check for auto-approve mode
+        if "AUTO" in response_upper:
+            state["auto_approve"] = True
+            print(f"Auto-approve: ENABLED (only G0 and G7 will require manual input)")
+
     # Determine approval from response
     reject_keywords = {"reject", "rejected", "no", "deny", "denied", "redo"}
     first_word = response.strip().split()[0].lower().rstrip(",") if response.strip() else ""
