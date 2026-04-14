@@ -1,0 +1,2603 @@
+# LL-MASTER.yaml — OpenClaw Global Lessons Learned
+# ============================================================
+# SCOPE:      ALL OpenClaw platform failures, fixes, anti-patterns, incidents
+# MIGRATED:   From LESSONS_LEARNED.md (OpenClaw) — 88 entries
+# SOURCES:    L-01→L-33, TL-01→TL-41, PL-07→PL-09, LL-001→LL-019, LL-MTC-01→LL-MTC-04
+# FORMAT:     YAML per entry, grouped by category
+# SCHEMA:     id, date, category, severity, system, status,
+#             problem_statement, immediate_cause, root_cause, contributing_factors,
+#             failed_attempts, solution, prevention_action, keywords, applies_to,
+#             references, validated
+#
+# FILL-REQUIRED: Fields marked `unknown` need manual completion.
+#   See MIGRATION_TODO.md for the full list of entries needing
+#   `failed_attempts` and `severity`.
+#
+# TRIGGER POLICY (when to add a new entry):
+#   - Any bug that took >1 hour to fix
+#   - Any task that had to be redone
+#   - Any cost surprise (actual > 2x estimated)
+#   - Any architectural assumption that proved wrong
+#   - Any AI/model behavior that was unexpected
+#
+# NAMESPACE: LL-[CATEGORY]-[XXX]
+#   PLAN  — Planning failures
+#   ARCH  — Architecture decisions that were wrong
+#   COST  — Cost surprises and budget issues
+#   INFRA — Infrastructure, WSL, networking, deployment
+#   AI    — AI/LLM behavior, prompts, model issues
+#   DATA  — Database, schema, migration issues
+#   CODE  — Code-level bugs and patterns
+#   OPS   — Operational incidents and recovery
+#   PROC  — Process failures
+# ============================================================
+
+meta:
+  last_updated: "2026-04-08"
+  total_entries: 88
+  schema_version: "2.0"
+  migrated_from: "LESSONS_LEARNED.md (OpenClaw)"
+  old_id_archive: "docs/archivo/lessons_learned-master.md"
+
+# ============================================================
+# PLAN — Planning Failures
+# ============================================================
+
+lessons:
+
+  - id: LL-PLAN-001
+    old_id: L-01
+    date: unknown
+    category: PLAN
+    severity: unknown        # FILL: HIGH | MEDIUM | LOW
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      Artifacts were produced by agents with no downstream consumer.
+      Experience Designer output was never consumed by renderer.
+    immediate_cause: >
+      Orphan outputs were allowed to exist without validation.
+    root_cause: >
+      Data flow was not planned before building agents. No requirement
+      that every artifact have a declared consumer.
+    contributing_factors:
+      - No spec-level contract between producer and consumer
+    failed_attempts: unknown  # FILL: what was tried before discovering this
+    solution: >
+      Plan data flow BEFORE building agents. Every artifact must have a consumer.
+    prevention_action: >
+      FAIL pipeline if orphan_outputs or missing_required_artifacts are non-empty.
+    keywords: [data-flow, planning, artifacts, orphan-outputs]
+    applies_to: both
+    references: []
+    validated: false
+
+  - id: LL-PLAN-002
+    old_id: L-02
+    date: unknown
+    category: PLAN
+    severity: unknown
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      Narrative Architect produced `usage_map` arrays; Art Director expected
+      `for_doc` strings. Silent schema mismatch caused downstream failures.
+    immediate_cause: >
+      Producer and consumer had incompatible field types for the same contract.
+    root_cause: >
+      No schema contract was defined between producer-consumer pairs before building.
+    contributing_factors:
+      - No JSON examples in spec at contract definition time
+    failed_attempts: unknown
+    solution: >
+      Define the contract (schema) between every producer-consumer pair BEFORE building.
+    prevention_action: >
+      Spec §2 must include JSON examples for all inter-agent contracts.
+    keywords: [schema, contracts, producer-consumer, silent-failure]
+    applies_to: both
+    references: []
+    validated: false
+
+  - id: LL-PLAN-003
+    old_id: L-03
+    date: unknown
+    category: PLAN
+    severity: HIGH
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      Applied 15 audit fixes, ran full case ($6+), renders still broken.
+      Could have been caught with a 1-doc test at $0.10.
+    immediate_cause: >
+      Batch run executed before single-item E2E test.
+    root_cause: >
+      No policy requiring E2E test on one item before batch.
+    contributing_factors:
+      - Time pressure to see full results
+      - No cost gate before batch runs
+    failed_attempts: unknown
+    solution: >
+      Test ONE item end-to-end BEFORE batch. Never batch-run untested changes.
+    prevention_action: >
+      implementation-planner requires `test_minimum` per phase. Block batch
+      if single-item test has not passed.
+    keywords: [testing, batch, E2E, cost-waste]
+    applies_to: both
+    references: []
+    validated: false
+
+  - id: LL-PLAN-004
+    old_id: L-04
+    date: unknown
+    category: PLAN
+    severity: unknown
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      Multiple V2 rewrites were started before V1 was validated as producing value.
+    immediate_cause: >
+      scope-framer recommended Advanced complexity as starting point.
+    root_cause: >
+      No policy blocking V2 scope until V1 produces real value.
+    contributing_factors:
+      - Excitement about features over fundamentals
+    failed_attempts: unknown
+    solution: >
+      Don't build V2 until V1 produces value. "Feo pero funcional" beats
+      "bonito pero incompleto."
+    prevention_action: >
+      scope-framer never recommends Advanced as starting point.
+    keywords: [scope, V1, V2, MVP, planning]
+    applies_to: both
+    references: []
+    validated: false
+
+  - id: LL-PLAN-005
+    old_id: L-05
+    date: unknown
+    category: PLAN
+    severity: unknown
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      Hours wasted mixing pipeline plumbing fixes with quality improvements
+      in the same session, making it impossible to isolate what was broken.
+    immediate_cause: >
+      Infra fixes and quality tuning run in same session without separation.
+    root_cause: >
+      No policy separating "does it work?" from "is it good?" phases.
+    contributing_factors:
+      - Wanting to fix everything at once
+    failed_attempts: unknown
+    solution: >
+      Separate "does it work?" from "is it good?" Never mix infra fixes
+      with quality improvements in the same session.
+    prevention_action: >
+      Separate sessions for infra vs quality. Never combine.
+    keywords: [process, debugging, infra, quality, separation-of-concerns]
+    applies_to: both
+    references: []
+    validated: false
+
+  - id: LL-PLAN-010
+    old_id: L-10
+    date: unknown
+    category: PLAN
+    severity: HIGH
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      clue_catalog had type_key='some_type', reveals='Reveals something about DOC-XX'.
+      Stub/placeholder data passed validation and entered the pipeline.
+    immediate_cause: >
+      No structural validator rejecting placeholder patterns.
+    root_cause: >
+      Agents were not required to produce real content — stubs were accepted silently.
+    contributing_factors:
+      - No automated content-quality gate
+    failed_attempts: unknown
+    solution: >
+      No stub outputs. Never accept placeholder data. Validate ALL fields
+      have real content.
+    prevention_action: >
+      Structural validator rejects any stub pattern (e.g. 'some_type', 'Reveals something').
+    keywords: [validation, stubs, placeholders, quality-gate]
+    applies_to: both
+    references: []
+    validated: false
+
+  - id: LL-PLAN-016
+    old_id: L-16
+    date: unknown
+    category: PLAN
+    severity: LOW
+    system: OpenClaw/workflows
+    status: CONFIRMED
+    problem_statement: >
+      DoorDash receipt revealed a key case detail too early in the envelope sequence.
+    immediate_cause: >
+      Early envelope content was too explicit rather than ambiguous.
+    root_cause: >
+      No pacing rule for information reveal across envelopes.
+    contributing_factors:
+      - Declassified-specific pacing not documented as a pattern
+    failed_attempts: unknown
+    solution: >
+      Trojan horse pacing: early-envelope hints must be ambiguous.
+      Explicit reveal in later envelopes only.
+    prevention_action: >
+      Product-specific but pattern applies to any phased-reveal workflow:
+      don't leak conclusions in early phases.
+    keywords: [pacing, reveal, envelopes, information-design]
+    applies_to: workflows
+    references: []
+    validated: false
+
+  - id: LL-PLAN-017
+    old_id: L-17
+    date: unknown
+    category: PLAN
+    severity: unknown
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      Interview slips contained "remembers the timestamp perfectly" instead of
+      specific factual states. Generic descriptions that could apply to any project.
+    immediate_cause: >
+      Quality gate did not reject vague, non-specific content.
+    root_cause: >
+      No requirement for concrete, verifiable details in outputs.
+    contributing_factors:
+      - LLM defaults to generic language without explicit constraints
+    failed_attempts: unknown
+    solution: >
+      Details must be concrete and verifiable, not vague. Reject anything
+      that could apply to any project.
+    prevention_action: >
+      Reject generic descriptions in quality gate. Add "NEVER generic" rule to prompts.
+    keywords: [quality, specificity, generic-output, LLM-prompting]
+    applies_to: both
+    references: [LL-AI-021]
+    validated: false
+
+  - id: LL-PLAN-018
+    old_id: L-18
+    date: unknown
+    category: PLAN
+    severity: unknown
+    system: OpenClaw/workflows
+    status: CONFIRMED
+    problem_statement: >
+      Art Director only generated portraits for 18 docs. Digital evidence
+      documents received zero images despite needing visual support.
+    immediate_cause: >
+      Image brief planning was not part of spec for all document types.
+    root_cause: >
+      No image coverage checklist in spec phase.
+    contributing_factors:
+      - Assumed images were optional for some doc types
+    failed_attempts: unknown
+    solution: >
+      Every document type that needs visual support must have image briefs
+      planned during spec, not discovered during build.
+    prevention_action: >
+      Image coverage checklist in spec. Mandatory for all doc types.
+    keywords: [images, visual-support, planning, spec]
+    applies_to: workflows
+    references: []
+    validated: false
+
+  - id: LL-PLAN-020
+    old_id: L-20
+    date: unknown
+    category: PLAN
+    severity: MEDIUM
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      Visual instructions were split across 2 files; renderer only read 1.
+      Output was incomplete and inconsistent.
+    immediate_cause: >
+      Spec for downstream agent was split across multiple files.
+    root_cause: >
+      No rule requiring a self-contained spec per consumer.
+    contributing_factors:
+      - Multiple contributors editing different files
+    failed_attempts: unknown
+    solution: >
+      If an artifact is the complete spec for a downstream agent, it must
+      be self-contained. One spec file per consumer.
+    prevention_action: >
+      One spec file per consumer. No split specs for a single downstream agent.
+    keywords: [spec, self-contained, agents, files]
+    applies_to: both
+    references: []
+    validated: false
+
+# ============================================================
+# ARCH — Architecture Decisions
+# ============================================================
+
+  - id: LL-ARCH-004
+    old_id: TL-04
+    date: unknown
+    category: ARCH
+    severity: HIGH
+    system: OpenClaw/workflows
+    status: CONFIRMED
+    problem_statement: >
+      Sub-agents called via sessions_spawn completed with "(no output)" and 0 tokens.
+      File writes silently failed. Confirmed broken 6+ times across multiple sessions.
+    immediate_cause: >
+      sessions_spawn does not have file write permissions in its execution context.
+    root_cause: >
+      sessions_spawn runs in a sandboxed context without filesystem access.
+      Design assumption was wrong.
+    contributing_factors:
+      - sessions_spawn appeared to succeed (no error returned)
+      - Failure was silent — no exception or error message
+    failed_attempts:
+      - "Retried sessions_spawn multiple times — same silent failure each time (6+ attempts)"
+      - "Checked permissions on target directory — correct, problem was spawn context not filesystem"
+    solution: >
+      Use spawn scripts with direct file I/O. Direct API calls via spawn_agent.py
+      (direct curl) replaced sessions_spawn.
+    prevention_action: >
+      All AGENTS.md entries say "NEVER use sessions_spawn for file writing."
+      Use spawn_agent.py pattern.
+    keywords: [sessions_spawn, file-io, agents, silent-failure, spawn]
+    applies_to: workflows
+    references: [LL-ARCH-006, LL-ARCH-007]
+    validated: true
+
+  - id: LL-ARCH-006
+    old_id: L-06
+    date: unknown
+    category: ARCH
+    severity: HIGH
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      sessions_spawn file writing failure discovered after 6 attempts building
+      complex logic on top of it. All that work had to be redone.
+    immediate_cause: >
+      File I/O was not tested before building complex logic on top of it.
+    root_cause: >
+      No policy requiring trivial I/O verification on day 1 of any implementation.
+    contributing_factors:
+      - Assumed spawn method would work without testing
+    failed_attempts:
+      - "Attempted sessions_spawn with different file paths — all failed silently"
+      - "Adjusted SKILL.md instructions — no effect on spawn I/O"
+    solution: >
+      Test file I/O on day 1. Before complex logic, verify spawn method
+      reads/writes correctly with a trivial test.
+    prevention_action: >
+      Phase 1 of any implementation always tests I/O before building logic.
+    keywords: [file-io, testing, day-1, spawn, validation]
+    applies_to: both
+    references: [LL-ARCH-004]
+    validated: true
+
+  - id: LL-ARCH-007
+    old_id: L-07
+    date: unknown
+    category: ARCH
+    severity: MEDIUM
+    system: OpenClaw/workflows
+    status: CONFIRMED
+    problem_statement: >
+      Agent spawning for deterministic tasks was unreliable and added token cost
+      without adding value over a direct API call.
+    immediate_cause: >
+      Chose agent spawning for a task that didn't require LLM judgment.
+    root_cause: >
+      No decision matrix distinguishing deterministic vs judgment tasks.
+    contributing_factors:
+      - Default to agents because infrastructure was already set up
+    failed_attempts: unknown
+    solution: >
+      Direct API calls > agent spawning for deterministic tasks. Use agents
+      for orchestration, direct calls for generation. spawn_agent.py (direct curl)
+      is the replacement pattern.
+    prevention_action: >
+      Decision matrix: deterministic=script, judgment=agent. Script for
+      deterministic, agent for judgment.
+    keywords: [agents, scripts, deterministic, API-calls, spawn]
+    applies_to: workflows
+    references: [LL-ARCH-004, LL-ARCH-022]
+    validated: false
+
+  - id: LL-ARCH-008
+    old_id: L-08
+    date: unknown
+    category: ARCH
+    severity: HIGH
+    system: OpenClaw/workflows
+    status: CONFIRMED
+    problem_statement: >
+      Narrative Architect was asked to produce both case-plan AND clue_catalog
+      in a single call. The catalog was truncated and incomplete.
+    immediate_cause: >
+      Single agent call asked to produce two large output artifacts.
+    root_cause: >
+      No rule limiting each agent call to one output artifact.
+    contributing_factors:
+      - Assumed model could handle multiple large outputs in one call
+    failed_attempts: unknown
+    solution: >
+      One agent = one skill = one output type. Split large outputs into
+      separate calls.
+    prevention_action: >
+      Max one output artifact per agent call. Enforce in spec §2 contracts.
+    keywords: [agents, output, truncation, single-responsibility]
+    applies_to: workflows
+    references: [LL-AI-017]
+    validated: false
+
+  - id: LL-ARCH-011
+    old_id: L-11
+    date: unknown
+    category: ARCH
+    severity: unknown
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      Art briefs requested separate mugshots for the same POI across multiple
+      documents, causing redundant generation cost and inconsistent assets.
+    immediate_cause: >
+      No canonical asset library — each agent regenerated assets independently.
+    root_cause: >
+      Assets were not defined as reusable canonical references in the spec.
+    contributing_factors:
+      - Each agent had its own brief without cross-referencing shared assets
+    failed_attempts: unknown
+    solution: >
+      Canonical asset libraries: one version of shared assets, reference it.
+      Don't regenerate.
+    prevention_action: >
+      Define canonical assets in spec, reference by ID. Never regenerate existing assets.
+    keywords: [assets, canonical, reuse, cost, regeneration]
+    applies_to: both
+    references: [LL-ARCH-012]
+    validated: false
+
+  - id: LL-ARCH-012
+    old_id: L-12
+    date: unknown
+    category: ARCH
+    severity: MEDIUM
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      Same entity had different names in different pipeline phases, causing
+      cross-reference failures and data integrity issues.
+    immediate_cause: >
+      Each phase independently named entities without a shared registry.
+    root_cause: >
+      No identifier normalization requirement across phases.
+    contributing_factors:
+      - Different agents with different naming conventions
+    failed_attempts: unknown
+    solution: >
+      Normalize identifiers across all artifacts. Don't let phases use
+      different naming for the same entity.
+    prevention_action: >
+      Identifier registry in spec. Validator checks all identifiers match registry.
+    keywords: [identifiers, normalization, naming, integrity]
+    applies_to: both
+    references: [LL-ARCH-013]
+    validated: false
+
+  - id: LL-ARCH-013
+    old_id: L-13
+    date: unknown
+    category: ARCH
+    severity: MEDIUM
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      Type conversion left stale cross-references pointing to old document names.
+      Downstream consumers failed silently with missing-reference errors.
+    immediate_cause: >
+      Changed a doc type without updating all references to it.
+    root_cause: >
+      No requirement to update ALL references when changing a doc.
+    contributing_factors:
+      - Cross-references not tracked in a registry
+    failed_attempts: unknown
+    solution: >
+      Cross-reference integrity: when changing a doc, update ALL references.
+    prevention_action: >
+      Validator checks all cross-references resolve. Fail if any are stale.
+    keywords: [cross-references, integrity, refactoring, validation]
+    applies_to: both
+    references: [LL-ARCH-015]
+    validated: false
+
+  - id: LL-ARCH-015
+    old_id: L-15
+    date: unknown
+    category: ARCH
+    severity: MEDIUM
+    system: OpenClaw/workflows
+    status: CONFIRMED
+    problem_statement: >
+      Converting evidence_mosaic to interrogation_transcript left stale
+      cross-references in all dependent documents.
+    immediate_cause: >
+      Doc type conversion done without auditing all references to that type.
+    root_cause: >
+      No process for tracking and updating references on type change.
+    contributing_factors:
+      - Type changes treated as isolated operations
+    failed_attempts: unknown
+    solution: >
+      Any doc type conversion requires updating ALL dependent references.
+    prevention_action: >
+      Same as LL-ARCH-013: validator checks all references resolve.
+      Specific to type changes: run reference audit before confirming conversion.
+    keywords: [type-conversion, cross-references, doc-types, refactoring]
+    applies_to: workflows
+    references: [LL-ARCH-013]
+    validated: false
+
+  - id: LL-ARCH-019
+    old_id: L-19
+    date: unknown
+    category: ARCH
+    severity: MEDIUM
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      Render output went to layout_specs/ but validators expected envelope_X/.
+      Output was produced but never found.
+    immediate_cause: >
+      Output path was not defined in spec before building.
+    root_cause: >
+      No requirement to define output paths (intermediate vs final) before build phase.
+    contributing_factors:
+      - Developer assumed a reasonable path; spec said otherwise
+    failed_attempts: unknown
+    solution: >
+      Define output paths BEFORE building. Intermediate vs final must be explicit.
+    prevention_action: >
+      Output paths in spec §2 contracts. Validator confirms paths before execution.
+    keywords: [output-paths, spec, contracts, file-structure]
+    applies_to: both
+    references: [LL-PLAN-002]
+    validated: false
+
+  - id: LL-ARCH-022
+    old_id: L-22
+    date: unknown
+    category: ARCH
+    severity: MEDIUM
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      20-line Python script did image injection perfectly. Hours of LLM prompt
+      engineering for the same task failed repeatedly.
+    immediate_cause: >
+      Used an LLM agent for a task that was fully deterministic.
+    root_cause: >
+      No decision rule distinguishing deterministic vs judgment tasks.
+    contributing_factors:
+      - Defaulted to LLM because other tasks used LLMs
+    failed_attempts:
+      - "Hours of LLM prompt engineering for image injection — all failed"
+      - "Multiple prompt variations tried — none reliable for deterministic output"
+    solution: >
+      If logic is deterministic (no LLM needed), use a script, not an agent.
+    prevention_action: >
+      Decision matrix: deterministic=script, judgment=agent.
+    keywords: [deterministic, LLM, scripts, decision-matrix, agents]
+    applies_to: both
+    references: [LL-ARCH-007]
+    validated: true
+
+  - id: LL-ARCH-023
+    old_id: L-23
+    date: unknown
+    category: ARCH
+    severity: MEDIUM
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      QA agent spent tokens analyzing structurally broken data, producing
+      expensive nonsense quality reviews.
+    immediate_cause: >
+      Quality-check ran before structural validation.
+    root_cause: >
+      No ordering rule: structural first, LLM quality second.
+    contributing_factors:
+      - QA ran in parallel with structural validation
+    failed_attempts: unknown
+    solution: >
+      Validate outputs structurally BEFORE quality-checking. Structural
+      first, LLM QA second.
+    prevention_action: >
+      Structural validators are phase prerequisites. QA agent blocked until
+      structural validator passes.
+    keywords: [validation, quality, ordering, structural, LLM-QA]
+    applies_to: both
+    references: []
+    validated: false
+
+  - id: LL-ARCH-032
+    old_id: L-32
+    date: unknown
+    category: ARCH
+    severity: MEDIUM
+    system: OpenClaw/workflows
+    status: CONFIRMED
+    problem_statement: >
+      Multi-agent debates produced unstructured, incomparable outputs.
+      Judge agent could not compare proposals meaningfully.
+    immediate_cause: >
+      Debate format was unstructured — each model responded in free text.
+    root_cause: >
+      No JSON schema defined for debate proposals.
+    contributing_factors:
+      - Assumed structured output would emerge naturally from prompting
+    failed_attempts: unknown
+    solution: >
+      Multi-agent debates: define JSON schema for "proposal", each model
+      fills it, judge compares. spawn_debate.py uses JSON schema for all rounds.
+    prevention_action: >
+      JSON schema for all debate proposals. Judge receives structured inputs only.
+    keywords: [multi-agent, debate, structured-output, JSON, judge]
+    applies_to: workflows
+    references: []
+    validated: false
+
+  - id: LL-ARCH-033
+    old_id: L-33
+    date: unknown
+    category: ARCH
+    severity: HIGH
+    system: OpenClaw/workflows
+    status: CONFIRMED
+    problem_statement: >
+      Full contracts passed to implementation planner caused timeouts.
+      67% token reduction achieved via compress_contracts() fixed this.
+    immediate_cause: >
+      Passed full upstream JSON context to downstream heavy agent.
+    root_cause: >
+      No compression/filtering step before heavy agent calls.
+    contributing_factors:
+      - Assumed passing everything was safer than filtering
+      - No token budget per agent call
+    failed_attempts:
+      - "Increased timeout — still timed out with full context"
+      - "Reduced max_tokens output — did not fix input context size issue"
+    solution: >
+      Compress upstream context for heavy agents. Only include fields relevant
+      to the agent's task. compress_contracts() + block_mode fallback.
+    prevention_action: >
+      Compress function mandatory before heavy agent calls. 67% reduction target.
+    keywords: [context, compression, tokens, timeout, upstream, agents]
+    applies_to: workflows
+    references: []
+    validated: true
+
+  - id: LL-ARCH-034
+    old_id: LL-ARCH-034
+    date: "2026-04"
+    category: ARCH
+    severity: HIGH
+    system: OpenClaw/Planner
+    status: CONFIRMED
+    problem_statement: >
+      planner_state.json schema has `additionalProperties: false`. Transient
+      fields (_intake_answers, _draft_content, _audit_result, etc.) caused
+      schema validation errors when written to state dict.
+    immediate_cause: >
+      Transient data was written to planner_state.json which has strict schema.
+    root_cause: >
+      Design assumed state dict could hold any data; strict schema forbids it.
+    contributing_factors:
+      - Dispatcher pops `_gate_pending` before save, giving false impression
+        that other transient fields were also handled
+      - 573 unit tests with StubHandlers didn't catch this (stubs don't
+        exercise schema validation path)
+    failed_attempts:
+      - "Added transient fields to state dict — crashed at save with schema error"
+      - "Tried adding fields to schema — broke additionalProperties:false contract"
+    solution: >
+      Transient data goes to files in planner_runs/{run_id}/, NOT in state dict.
+      State dict = schema fields only.
+    prevention_action: >
+      Schema validation catches at save time. Rule: if not in schema, it goes to a file.
+    keywords: [state, schema, additionalProperties, transient, planner, strict]
+    applies_to: both
+    references: [LL-CODE-041, LL-PROC-033]
+    validated: true
+
+  - id: LL-ARCH-035
+    old_id: LL-ARCH-035
+    date: "2026-04"
+    category: ARCH
+    severity: HIGH
+    system: OpenClaw/skills
+    status: CONFIRMED
+    problem_statement: >
+      OpenClaw LLM reads Python files in workspace and simulates the workflow
+      instead of executing via exec tool, even when SKILL.md instructs otherwise.
+    immediate_cause: >
+      LLM context contains the Python source files for the skill, so it
+      simulates instead of executing.
+    root_cause: >
+      LLM defaults to reading and simulating code rather than executing it when
+      code is visible in context.
+    contributing_factors:
+      - SKILL.md instructions alone not sufficient to override LLM behavior
+      - Prior conversation context contaminates the session
+    failed_attempts:
+      - "Standard SKILL.md with exec instructions — LLM still simulated"
+      - "Added 'MUST execute via exec tool' — insufficient without /reset"
+      - "Added 'Do NOT read Python files' — insufficient without /reset"
+    solution: >
+      Ultra-strict SKILL.md with 'MUST execute via exec', 'Do NOT read Python
+      files', 'Do NOT simulate'. Plus /reset before every skill invocation.
+    prevention_action: >
+      /reset is required before any skill invocation. Ultra-strict SKILL.md is necessary
+      but not sufficient alone.
+    keywords: [OpenClaw, skills, exec, simulation, reset, LLM-behavior]
+    applies_to: both
+    references: [LL-INFRA-036, LL-INFRA-037]
+    validated: true
+
+  - id: LL-ARCH-PL07
+    old_id: PL-07
+    date: unknown
+    category: ARCH
+    severity: unknown
+    system: OpenClaw/workflows
+    status: CONFIRMED
+    problem_statement: >
+      Independent model proposals were incomparable and hard to evaluate.
+    immediate_cause: >
+      Models produced proposals in isolation without critiquing each other.
+    root_cause: >
+      No cross-critique mechanism in debate design.
+    contributing_factors: unknown
+    failed_attempts: unknown
+    solution: >
+      Cross-critique: one model proposes, others critique, first model revises.
+      Basis for 3-round debate design.
+    prevention_action: >
+      Use cross-critique debate pattern for architecture decisions.
+    keywords: [cross-critique, debate, multi-model, architecture]
+    applies_to: workflows
+    references: []
+    validated: false
+
+  - id: LL-ARCH-PL08
+    old_id: PL-08
+    date: unknown
+    category: ARCH
+    severity: unknown
+    system: OpenClaw/workflows
+    status: CONFIRMED
+    problem_statement: >
+      Planner produced divergent proposals that were never reconciled.
+      Alternative paths diverged without an integration point.
+    immediate_cause: >
+      Parallel paths created without a merge/reconciliation step.
+    root_cause: >
+      No rule requiring a single canonical path or explicit merge.
+    contributing_factors: unknown
+    failed_attempts: unknown
+    solution: >
+      Single proposal → critique → revision. Avoid parallel paths that
+      aren't merged.
+    prevention_action: >
+      Alternative paths must have a defined merge point. No unreconciled
+      parallel paths.
+    keywords: [architecture, divergence, proposals, merge, reconciliation]
+    applies_to: workflows
+    references: [LL-ARCH-PL07]
+    validated: false
+
+# ============================================================
+# COST — Cost Surprises
+# ============================================================
+
+  - id: LL-COST-002
+    old_id: TL-02
+    date: unknown
+    category: COST
+    severity: LOW
+    system: OpenClaw/workflows
+    status: CONFIRMED
+    problem_statement: >
+      POI portrait images were generated at unnecessarily high quality/size,
+      costing 15x more than needed.
+    immediate_cause: >
+      Default image settings (200px PNG) used without cost evaluation.
+    root_cause: >
+      No cost comparison done before choosing image format/quality.
+    contributing_factors:
+      - PNG assumed to be required for quality
+    failed_attempts: unknown
+    solution: >
+      POI portraits: 100px JPEG q70 = $0.004/image (15x cheaper than 200px PNG).
+    prevention_action: >
+      Use cheapest format that meets quality bar. Cost comparison mandatory
+      before selecting image settings.
+    keywords: [images, cost, JPEG, PNG, optimization]
+    applies_to: workflows
+    references: []
+    validated: true
+
+  - id: LL-COST-009
+    old_id: L-09
+    date: unknown
+    category: COST
+    severity: MEDIUM
+    system: OpenClaw/workflows
+    status: CONFIRMED
+    problem_statement: >
+      Tracked $2.42 direct API cost but actual bill was $5+. Orchestrator
+      token consumption was unaccounted.
+    immediate_cause: >
+      cost_estimator.py did not include orchestrator overhead.
+    root_cause: >
+      Orchestrator itself consumes tokens; this was not modeled in estimates.
+    contributing_factors:
+      - Focused cost tracking on direct API calls only
+    failed_attempts: unknown
+    solution: >
+      Orchestrator itself consumes tokens. Account for ~10% overhead in estimates.
+    prevention_action: >
+      cost_estimator.py includes orchestrator_overhead field. Track both
+      direct API and orchestrator costs.
+    keywords: [cost, orchestrator, overhead, estimation, tokens]
+    applies_to: workflows
+    references: [LL-COST-025]
+    validated: false
+
+  - id: LL-COST-014
+    old_id: L-14
+    date: unknown
+    category: COST
+    severity: HIGH
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      manifest.json cost_tracking remained zero despite a completed pipeline.
+      Costs were real but untracked — could not audit spend.
+    immediate_cause: >
+      No cost logging in spawn scripts.
+    root_cause: >
+      Cost telemetry was not built into scripts from day 1.
+    contributing_factors:
+      - Cost logging treated as optional / add-later feature
+    failed_attempts: unknown
+    solution: >
+      Track token usage and cost per API call. FAIL if pipeline shows zero cost
+      (indicates missing telemetry).
+    prevention_action: >
+      Cost logging mandatory in every spawn script. Zero-cost check in pipeline validator.
+    keywords: [cost, telemetry, tracking, manifest, tokens]
+    applies_to: both
+    references: [LL-COST-025]
+    validated: false
+
+  - id: LL-COST-024
+    old_id: L-24
+    date: unknown
+    category: COST
+    severity: HIGH
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      Discovered $37+ spent only by checking the billing dashboard hours later.
+      No real-time alerting during development.
+    immediate_cause: >
+      Budget alarm was not configured before starting the dev session.
+    root_cause: >
+      No policy requiring budget alarm setup before any API-heavy work.
+    contributing_factors:
+      - Trusted mental estimate over real-time monitoring
+    failed_attempts: unknown
+    solution: >
+      Set budget alarm BEFORE starting. Check actual spend every 30 minutes
+      during dev.
+    prevention_action: >
+      Budget alert configured in CONSTITUTION §6. Hard requirement before
+      any API-heavy session.
+    keywords: [budget, alarm, monitoring, cost, alerting]
+    applies_to: both
+    references: [LL-COST-043]
+    validated: false
+
+  - id: LL-COST-025
+    old_id: L-25
+    date: unknown
+    category: COST
+    severity: MEDIUM
+    system: OpenClaw/workflows
+    status: CONFIRMED
+    problem_statement: >
+      manifest.json tracked $2.42, actual spend was $5+. Orchestrator costs
+      tracked separately in LiteLLM /spend were not summed.
+    immediate_cause: >
+      Two cost buckets existed but only one was checked.
+    root_cause: >
+      No unified cost reporting that sums direct + orchestrator.
+    contributing_factors:
+      - LiteLLM /spend dashboard not checked routinely
+    failed_attempts: unknown
+    solution: >
+      Two cost buckets: (1) direct API = manifest.json, (2) orchestrator =
+      LiteLLM /spend. Track both, report both.
+    prevention_action: >
+      Unified cost report sums both buckets. Always check both before
+      declaring budget compliance.
+    keywords: [cost, orchestrator, LiteLLM, manifest, tracking, budgets]
+    applies_to: workflows
+    references: [LL-COST-009, LL-COST-025b]
+    validated: false
+
+  - id: LL-COST-025b
+    old_id: TL-25
+    date: unknown
+    category: COST
+    severity: HIGH
+    system: OpenClaw/workflows
+    status: CONFIRMED
+    problem_statement: >
+      Phases 2-7 cost was completely untracked when using sessions_spawn.
+      These phases were invisible to cost tracking.
+    immediate_cause: >
+      sessions_spawn does not report token usage back to the caller.
+    root_cause: >
+      sessions_spawn architecture has no cost telemetry path.
+    contributing_factors:
+      - Used sessions_spawn before understanding its cost tracking limitations
+    failed_attempts: unknown
+    solution: >
+      Use spawn scripts with explicit cost logging. sessions_spawn is invisible
+      for cost tracking.
+    prevention_action: >
+      Never use sessions_spawn for production phases. spawn_agent.py with
+      explicit cost logging is the only approved pattern.
+    keywords: [sessions_spawn, cost, invisible, tracking, telemetry]
+    applies_to: workflows
+    references: [LL-ARCH-004, LL-COST-025]
+    validated: false
+
+  - id: LL-COST-041
+    old_id: TL-41
+    date: unknown
+    category: COST
+    severity: LOW
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      Rule-based merchant classification was failing for ambiguous merchants,
+      defaulting to "Other" and losing categorization value.
+    immediate_cause: >
+      Rule-based classifier did not cover all merchant patterns.
+    root_cause: >
+      Assumption that rule-based was sufficient; AI fallback not considered.
+    contributing_factors: unknown
+    failed_attempts: unknown
+    solution: >
+      AI batch classification ~$0.01/50 merchants — always cheaper than
+      defaulting to "Other."
+    prevention_action: >
+      Use AI classification as fallback when rule-based fails. Cost is negligible.
+    keywords: [classification, merchants, AI, cost, Finance]
+    applies_to: both
+    references: []
+    validated: true
+
+  - id: LL-COST-042
+    old_id: LL-COST-042
+    date: unknown
+    category: COST
+    severity: HIGH
+    system: OpenClaw/Planner
+    status: CONFIRMED
+    problem_statement: >
+      Drafter generates 15-20KB "Not applicable" sections per document, wasting
+      output tokens at $25/M (Opus). INTEGRATIONS.md for a calculator had 26KB
+      explaining why each OpenClaw integration doesn't apply.
+    immediate_cause: >
+      Drafter prompt did not exclude irrelevant sections.
+    root_cause: >
+      No filter_applicable_sections() step before drafting.
+    contributing_factors:
+      - Template-first approach includes all sections regardless of relevance
+    failed_attempts: unknown
+    solution: >
+      filter_applicable_sections() excludes N/A sections from drafter prompt.
+      Estimated savings: 30-50% output tokens per run.
+    prevention_action: >
+      Filter N/A sections before drafting. Drafter prompt must say "omit irrelevant sections."
+    keywords: [cost, tokens, N/A-sections, drafter, Opus, filtering]
+    applies_to: both
+    references: []
+    validated: false
+
+  - id: LL-COST-043
+    old_id: LL-COST-043
+    date: unknown
+    category: COST
+    severity: MEDIUM
+    system: OpenClaw/Planner
+    status: CONFIRMED
+    problem_statement: >
+      alert_threshold of $30 and hard_limit of $50 (from pricing.json) are useless
+      for simple projects ($7.37 total for a calculator). Calculator run completed
+      without any alerts despite being 7x more expensive per doc than expected.
+    immediate_cause: >
+      Budget thresholds were hardcoded for large projects, not scaled to project size.
+    root_cause: >
+      No dynamic threshold calculation based on project scope.
+    contributing_factors:
+      - Thresholds set once and never revisited per project type
+    failed_attempts: unknown
+    solution: >
+      Dynamic thresholds based on doc count: <=3 docs: $5/$10, 4-6: $10/$20,
+      7+: $30/$50. Stored in state, overrides pricing.json.
+    prevention_action: >
+      Set thresholds proportional to project size at project start.
+    keywords: [budget, thresholds, dynamic, cost, alerting, scale]
+    applies_to: both
+    references: [LL-COST-024]
+    validated: false
+
+# ============================================================
+# INFRA — Infrastructure
+# ============================================================
+
+  - id: LL-INFRA-001
+    old_id: TL-01
+    date: unknown
+    category: INFRA
+    severity: HIGH
+    system: OpenClaw/WSL
+    status: CONFIRMED
+    problem_statement: >
+      Python `requests` library fails on all API calls longer than ~30s in WSL.
+      No exception is thrown — the call simply hangs and eventually silently fails.
+    immediate_cause: >
+      WSL networking stack does not handle long-lived HTTP connections reliably.
+    root_cause: >
+      Fundamental incompatibility between Python requests and WSL network layer
+      for long-duration connections.
+    contributing_factors:
+      - No timeout configured initially
+      - Silent failure made diagnosis slow
+    failed_attempts:
+      - "Increased timeout in requests — still hung"
+      - "Used requests.Session() — same failure"
+      - "asyncio parallel with requests — also fails (see LL-INFRA-014)"
+    solution: >
+      Use streaming curl via subprocess for all API calls in WSL.
+      All scripts use litellm_stream.py pattern.
+    prevention_action: >
+      Always streaming. See CONSTITUTION §4. Never use Python requests for
+      API calls in WSL.
+    keywords: [WSL, requests, curl, streaming, subprocess, API, timeout]
+    applies_to: workflows
+    references: [LL-INFRA-005, LL-INFRA-014]
+    validated: true
+
+  - id: LL-INFRA-005
+    old_id: TL-05
+    date: unknown
+    category: INFRA
+    severity: MEDIUM
+    system: OpenClaw/WSL
+    status: CONFIRMED
+    problem_statement: >
+      subprocess timed out before curl finished, killing API calls that were
+      actually in progress and would have succeeded.
+    immediate_cause: >
+      subprocess timeout was set equal to or less than curl --max-time.
+    root_cause: >
+      No rule requiring subprocess timeout to exceed curl timeout with buffer.
+    contributing_factors:
+      - Both timeouts set to same value assuming they were equivalent
+    failed_attempts: unknown
+    solution: >
+      subprocess timeout MUST exceed curl --max-time. Buffer: subprocess_buffer (50s).
+    prevention_action: >
+      timeout = curl_max_time + 50s. Always add buffer.
+    keywords: [subprocess, timeout, curl, buffer, WSL]
+    applies_to: workflows
+    references: [LL-INFRA-001]
+    validated: false
+
+  - id: LL-INFRA-006
+    old_id: TL-06
+    date: unknown
+    category: INFRA
+    severity: LOW
+    system: OpenClaw/workflows
+    status: CONFIRMED
+    problem_statement: >
+      curl failed to download DALL-E images due to special characters in
+      URLs generated by the API.
+    immediate_cause: >
+      curl does not handle special chars in DALL-E URLs correctly.
+    root_cause: >
+      DALL-E URLs contain query parameters that curl misparses.
+    contributing_factors:
+      - curl was the default tool for all HTTP operations
+    failed_attempts:
+      - "curl with quoted URL — still failed on some characters"
+      - "curl with --url flag — did not help"
+    solution: >
+      Use wget not curl for DALL-E image downloads.
+    prevention_action: >
+      wget for image downloads. curl for API calls only.
+    keywords: [wget, curl, DALL-E, images, download, special-chars]
+    applies_to: workflows
+    references: []
+    validated: true
+
+  - id: LL-INFRA-007
+    old_id: TL-07
+    date: unknown
+    category: INFRA
+    severity: MEDIUM
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      Using default MAX_TOKENS caused truncation on large visual documents
+      and waste on small standard docs.
+    immediate_cause: >
+      MAX_TOKENS not set per document type.
+    root_cause: >
+      No token budget policy per doc type.
+    contributing_factors:
+      - Single global max_tokens value used for all calls
+    failed_attempts: unknown
+    solution: >
+      MAX_TOKENS: 32000 visual docs, 16384 text docs, 8192 standard, 5000 per block.
+    prevention_action: >
+      Set per doc type, never use default. Token budget in spec §4.
+    keywords: [max_tokens, truncation, documents, token-budget]
+    applies_to: both
+    references: [LL-AI-017]
+    validated: false
+
+  - id: LL-INFRA-009
+    old_id: TL-09
+    date: unknown
+    category: INFRA
+    severity: LOW
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      File writes failed because target directory did not exist.
+    immediate_cause: >
+      Script assumed directory existed without creating it.
+    root_cause: >
+      No mkdir -p in script preamble.
+    contributing_factors: unknown
+    failed_attempts: unknown
+    solution: >
+      Always `mkdir -p` target directories before writing files.
+    prevention_action: >
+      Include mkdir -p in every script preamble.
+    keywords: [mkdir, filesystem, directories, scripts]
+    applies_to: both
+    references: []
+    validated: false
+
+  - id: LL-INFRA-010
+    old_id: TL-10
+    date: unknown
+    category: INFRA
+    severity: MEDIUM
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      Agents using relative paths failed when invoked from different working
+      directories, causing file-not-found errors.
+    immediate_cause: >
+      Relative paths in agent prompts resolved to wrong directories.
+    root_cause: >
+      No rule requiring absolute paths in all agent contexts.
+    contributing_factors:
+      - Relative paths work in local testing but fail in spawn context
+    failed_attempts: unknown
+    solution: >
+      ALL file paths must be absolute. Include WORKSPACE_ROOT in every
+      spawn preamble.
+    prevention_action: >
+      No relative paths in agents. WORKSPACE_ROOT defined in every spawn preamble.
+    keywords: [paths, absolute, relative, agents, spawn, filesystem]
+    applies_to: both
+    references: []
+    validated: false
+
+  - id: LL-INFRA-011
+    old_id: TL-11
+    date: unknown
+    category: INFRA
+    severity: MEDIUM
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      ${ENV_VARS} in OpenClaw apiKey config were not resolved — literal
+      string "${ANTHROPIC_API_KEY}" was sent as the key.
+    immediate_cause: >
+      OpenClaw does not perform environment variable substitution in config fields.
+    root_cause: >
+      Assumed OpenClaw config supports shell-style env var expansion.
+    contributing_factors: unknown
+    failed_attempts:
+      - "Used ${VAR} syntax — not resolved"
+      - "Used $VAR syntax — not resolved"
+    solution: >
+      OpenClaw doesn't resolve ${ENV_VARS} in apiKey — hardcode or skip master_key.
+    prevention_action: >
+      Don't use env vars in OpenClaw config. Hardcode values or reference litellm.env.
+    keywords: [OpenClaw, env-vars, config, API-keys, substitution]
+    applies_to: both
+    references: []
+    validated: true
+
+  - id: LL-INFRA-012
+    old_id: TL-12
+    date: unknown
+    category: INFRA
+    severity: LOW
+    system: OpenClaw/LiteLLM
+    status: CONFIRMED
+    problem_statement: >
+      LiteLLM dashboard login failed because UI credentials were in the wrong
+      config file.
+    immediate_cause: >
+      UI_USERNAME/UI_PASSWORD placed in master_key config instead of litellm.env.
+    root_cause: >
+      No clear documentation of which credentials go where.
+    contributing_factors: unknown
+    failed_attempts: unknown
+    solution: >
+      LiteLLM dashboard: UI_USERNAME/UI_PASSWORD in litellm.env (not master_key).
+    prevention_action: >
+      Separate UI creds from API auth. Document config file ownership.
+    keywords: [LiteLLM, dashboard, credentials, config, UI]
+    applies_to: both
+    references: [LL-INFRA-035]
+    validated: true
+
+  - id: LL-INFRA-014
+    old_id: TL-14
+    date: unknown
+    category: INFRA
+    severity: HIGH
+    system: OpenClaw/WSL
+    status: CONFIRMED
+    problem_statement: >
+      asyncio parallel debate raised "future belongs to different loop" error in WSL.
+      Parallel execution completely broken.
+    immediate_cause: >
+      asyncio event loop behavior differs in WSL from standard Linux.
+    root_cause: >
+      WSL asyncio implementation does not support the event loop sharing
+      pattern used by the parallel debate code.
+    contributing_factors:
+      - Works in standard Linux; WSL-specific issue
+    failed_attempts:
+      - "asyncio.gather() — failed with loop error"
+      - "asyncio.run() wrapper — same error"
+      - "nest_asyncio patch — did not fully resolve"
+    solution: >
+      Sequential fallback. asyncio parallel debate fails in WSL.
+      Use sequential execution pattern.
+    prevention_action: >
+      Sequential execution in WSL. No asyncio parallel in WSL environment.
+    keywords: [asyncio, parallel, WSL, event-loop, debate, sequential]
+    applies_to: workflows
+    references: [LL-INFRA-001]
+    validated: true
+
+  - id: LL-INFRA-015
+    old_id: TL-15
+    date: unknown
+    category: INFRA
+    severity: MEDIUM
+    system: OpenClaw/LiteLLM
+    status: CONFIRMED
+    problem_statement: >
+      LiteLLM model names differ from provider names. Using provider names
+      caused "model not found" errors.
+    immediate_cause: >
+      Used provider model name (e.g. claude-sonnet-4-6) instead of LiteLLM
+      config name (e.g. claude-sonnet46).
+    root_cause: >
+      LiteLLM uses its own model name registry separate from provider naming.
+    contributing_factors:
+      - No reference table of LiteLLM vs provider names in docs
+    failed_attempts: unknown
+    solution: >
+      LiteLLM model names ≠ provider names. Check LiteLLM config for exact names.
+    prevention_action: >
+      Always check litellm.env model names, not provider docs. Maintain
+      name mapping table.
+    keywords: [LiteLLM, model-names, config, providers, mapping]
+    applies_to: both
+    references: []
+    validated: false
+
+  - id: LL-INFRA-020
+    old_id: TL-20
+    date: unknown
+    category: INFRA
+    severity: LOW
+    system: OpenClaw/WSL
+    status: CONFIRMED
+    problem_statement: >
+      WSL services (LiteLLM, n8n, PostgreSQL) did not start automatically
+      after Windows reboot. Required manual startup each session.
+    immediate_cause: >
+      No auto-start mechanism configured for WSL services.
+    root_cause: >
+      WSL does not start automatically on Windows boot without explicit configuration.
+    contributing_factors:
+      - .bat keepalive approach did not work reliably
+    failed_attempts:
+      - "Windows Startup .bat file — unreliable, WSL not ready when .bat runs"
+      - "Task Scheduler — timing issues"
+    solution: >
+      WSL auto-start: WSL.lnk in shell:startup + wsl.conf boot hook
+      (NOT .bat keepalive). Calls start_all_services.sh.
+    prevention_action: >
+      Use WSL.lnk + wsl.conf boot hook pattern. start_all_services.sh pattern.
+    keywords: [WSL, auto-start, boot, startup, services, wsl.conf]
+    applies_to: both
+    references: []
+    validated: true
+
+  - id: LL-INFRA-023
+    old_id: TL-23
+    date: "2026-04"
+    category: INFRA
+    severity: LOW
+    system: OpenClaw/gateway
+    status: CONFIRMED
+    problem_statement: >
+      isolatedSession and lightContext features referenced in SKILL.md are not
+      available — gateway version is below v2026.4 requirement.
+    immediate_cause: >
+      Features used before confirming gateway version support.
+    root_cause: >
+      No version check before using new gateway features.
+    contributing_factors: unknown
+    failed_attempts: unknown
+    solution: >
+      Don't use isolatedSession/lightContext until gateway >=v2026.4 is deployed.
+    prevention_action: >
+      Check gateway version before using new features. Feature gating in SKILL.md.
+    keywords: [gateway, features, version, isolatedSession, lightContext]
+    applies_to: both
+    references: []
+    validated: false
+
+  - id: LL-INFRA-027
+    old_id: TL-27
+    date: unknown
+    category: INFRA
+    severity: MEDIUM
+    system: OpenClaw/WSL
+    status: CONFIRMED
+    problem_statement: >
+      $(cat file.md) in bash fails silently for files larger than ~8KB.
+      Content is truncated without error.
+    immediate_cause: >
+      bash command substitution has a buffer limit for large files.
+    root_cause: >
+      Command substitution is not suitable for large file content injection.
+    contributing_factors:
+      - Works for small files; failure mode only appears with large specs
+    failed_attempts:
+      - "Increased bash buffer with ulimit — partial improvement, not reliable"
+    solution: >
+      Pass files by path, not by content injection. Use file-based wrapper pattern.
+    prevention_action: >
+      Never use $(cat file) for files >~8KB. Always pass path, let script read.
+    keywords: [bash, cat, buffer, large-files, command-substitution, WSL]
+    applies_to: both
+    references: []
+    validated: true
+
+  - id: LL-INFRA-029
+    old_id: TL-29
+    date: unknown
+    category: INFRA
+    severity: LOW
+    system: OpenClaw/Google
+    status: CONFIRMED
+    problem_statement: >
+      Google Sheets OAuth flow failed in WSL because it tried to open a browser
+      and listen on default port.
+    immediate_cause: >
+      Default OAuth flow assumes a browser is available and uses default port.
+    root_cause: >
+      WSL has no GUI browser; OAuth callback must use a specific port.
+    contributing_factors: unknown
+    failed_attempts:
+      - "Default run_local_server() — browser launch failed in WSL"
+    solution: >
+      Google Sheets OAuth: use run_local_server(port=18900, open_browser=False) in WSL.
+    prevention_action: >
+      Port 18900, no browser. Use this pattern for all OAuth in WSL.
+    keywords: [Google-Sheets, OAuth, WSL, port, browser, authentication]
+    applies_to: both
+    references: [LL-INFRA-030]
+    validated: true
+
+  - id: LL-INFRA-030
+    old_id: TL-30
+    date: unknown
+    category: INFRA
+    severity: LOW
+    system: OpenClaw/Google
+    status: CONFIRMED
+    problem_statement: >
+      Google Sheets API calls failed with permission error despite valid OAuth token.
+    immediate_cause: >
+      Only spreadsheets scope was requested, not drive scope.
+    root_cause: >
+      Google Sheets API requires BOTH spreadsheets AND drive scopes.
+    contributing_factors:
+      - Google docs only mention spreadsheets scope for basic operations
+    failed_attempts:
+      - "spreadsheets scope only — permission denied on some operations"
+    solution: >
+      Google Sheets needs BOTH spreadsheets AND drive scopes.
+    prevention_action: >
+      Both scopes always for any Google Sheets integration.
+    keywords: [Google-Sheets, OAuth, scopes, drive, permissions, API]
+    applies_to: both
+    references: [LL-INFRA-029]
+    validated: true
+
+  - id: LL-INFRA-033
+    old_id: TL-33
+    date: unknown
+    category: INFRA
+    severity: LOW
+    system: OpenClaw/LiteLLM
+    status: CONFIRMED
+    problem_statement: >
+      LiteLLM startup shows warning: "duplicate model LiteLLM_DeletedTeamTable".
+      Caused concern about database integrity.
+    immediate_cause: >
+      LiteLLM Prisma migration artifact creates this warning on some versions.
+    root_cause: >
+      Known LiteLLM Prisma schema issue — not a runtime problem.
+    contributing_factors: unknown
+    failed_attempts:
+      - "Investigated database integrity — no actual corruption"
+    solution: >
+      Warning only — not blocking. Ignore this warning.
+    prevention_action: >
+      Document as known benign warning. Don't spend time investigating.
+    keywords: [LiteLLM, Prisma, warning, database, startup]
+    applies_to: both
+    references: []
+    validated: true
+
+  - id: LL-INFRA-035
+    old_id: TL-35
+    date: unknown
+    category: INFRA
+    severity: HIGH
+    system: OpenClaw/LiteLLM
+    status: CONFIRMED
+    problem_statement: >
+      Extra environment variables (TELEGRAM_*, GATEWAY_*) in litellm.env
+      caused LiteLLM to crash on startup.
+    immediate_cause: >
+      litellm.env contained vars that LiteLLM doesn't recognize and can't handle.
+    root_cause: >
+      litellm.env scope was not clearly defined — extra vars accumulated.
+    contributing_factors:
+      - Convenient to put all env vars in one file
+    failed_attempts:
+      - "Added extra vars to litellm.env for convenience — LiteLLM crashed"
+    solution: >
+      litellm.env: only API keys + UI creds. Extra vars (TELEGRAM_*, GATEWAY_*)
+      crash LiteLLM.
+    prevention_action: >
+      Keep litellm.env minimal. Other vars go to their respective .env files.
+    keywords: [LiteLLM, env, config, crash, TELEGRAM, GATEWAY]
+    applies_to: both
+    references: [LL-INFRA-012]
+    validated: true
+
+  - id: LL-INFRA-036
+    old_id: LL-INFRA-036
+    date: "2026-04"
+    category: INFRA
+    severity: HIGH
+    system: OpenClaw/skills
+    status: CONFIRMED
+    problem_statement: >
+      command-dispatch:tool does NOT work for Python script wrapping.
+      The exec tool receives raw args as a shell command — cannot prefix
+      `python3 /path/to/script.py`.
+    immediate_cause: >
+      Assumed command-dispatch:tool would allow command construction before exec.
+    root_cause: >
+      exec tool receives raw args as shell command string, not as structured
+      command + args.
+    contributing_factors:
+      - Documentation implied this would work
+    failed_attempts:
+      - "command-dispatch:tool with python3 prefix — exec received wrong format"
+      - "Multiple variations of arg passing — all failed"
+    solution: >
+      Use normal skill mode with strict exec instructions instead of
+      command-dispatch:tool.
+    prevention_action: >
+      Never use command-dispatch:tool for Python script wrapping in OpenClaw.
+    keywords: [OpenClaw, command-dispatch, exec, python, scripts, skills]
+    applies_to: both
+    references: [LL-ARCH-035, LL-INFRA-037]
+    validated: true
+
+  - id: LL-INFRA-037
+    old_id: LL-INFRA-037
+    date: "2026-04"
+    category: INFRA
+    severity: HIGH
+    system: OpenClaw/skills
+    status: CONFIRMED
+    problem_statement: >
+      OpenClaw LLM reads Python files in workspace and simulates the workflow
+      instead of executing via exec tool. Any prior conversation context can
+      trigger simulation mode.
+    immediate_cause: >
+      Python source files visible in LLM context cause it to simulate execution.
+    root_cause: >
+      LLM behavior: when code is visible in context, prefers reading+simulating
+      over executing via tool.
+    contributing_factors:
+      - Prior conversation context compounds the problem
+      - SKILL.md instructions alone insufficient
+    failed_attempts:
+      - "SKILL.md with exec instructions — LLM still simulated"
+      - "Explicit 'MUST execute' in SKILL.md — insufficient without /reset"
+    solution: >
+      /reset before skill invocation clears LLM context and forces exec execution.
+      Fragile — any prior conversation can revert behavior.
+    prevention_action: >
+      /reset before every skill invocation session. This is a known fragile
+      workaround pending gateway upgrade.
+    keywords: [OpenClaw, simulation, exec, reset, LLM-behavior, skills, context]
+    applies_to: both
+    references: [LL-ARCH-035, LL-INFRA-036]
+    validated: true
+
+  - id: LL-INFRA-038
+    old_id: LL-INFRA-038
+    date: "2026-04"
+    category: INFRA
+    severity: LOW
+    system: OpenClaw/Telegram
+    status: CONFIRMED
+    problem_statement: >
+      Skill named 'sdd-planner' (with hyphen) registered as '/sdd-planner' in
+      the code but appeared as '/sdd_planner' in Telegram. Command not found
+      when using hyphenated form.
+    immediate_cause: >
+      Telegram converts hyphens to underscores in bot commands.
+    root_cause: >
+      Skill directory name determines Telegram command; hyphens are illegal
+      in Telegram commands and auto-converted.
+    contributing_factors:
+      - command: field in SKILL.md frontmatter does not override directory name
+    failed_attempts:
+      - "Used command: field in SKILL.md — ignored, directory name wins"
+    solution: >
+      Skill directory names with hyphens become underscores in Telegram commands.
+      Name skill directories with the Telegram command in mind (underscores).
+    prevention_action: >
+      Use underscores in skill directory names. Never hyphens.
+    keywords: [OpenClaw, Telegram, skills, commands, hyphens, underscores, naming]
+    applies_to: both
+    references: []
+    validated: true
+
+# ============================================================
+# AI — Model Behavior
+# ============================================================
+
+  - id: LL-AI-008
+    old_id: TL-08
+    date: unknown
+    category: AI
+    severity: LOW
+    system: OpenClaw/workflows
+    status: CONFIRMED
+    problem_statement: >
+      HTML documents rendered with dark backgrounds printed as black pages or
+      were unreadable in print context.
+    immediate_cause: >
+      LLM chose dark backgrounds without constraint.
+    root_cause: >
+      Render prompt did not explicitly prohibit dark backgrounds.
+    contributing_factors:
+      - LLM aesthetically prefers dark mode without instruction
+    failed_attempts: unknown
+    solution: >
+      NEVER dark backgrounds in rendered HTML — documents are printed on paper.
+    prevention_action: >
+      Negative instruction in every render prompt: "NEVER dark backgrounds."
+    keywords: [HTML, rendering, dark-backgrounds, print, LLM-prompting]
+    applies_to: workflows
+    references: [LL-AI-021]
+    validated: false
+
+  - id: LL-AI-013
+    old_id: TL-13
+    date: unknown
+    category: AI
+    severity: HIGH
+    system: OpenClaw/skills
+    status: CONFIRMED
+    problem_statement: >
+      Models produced incompatible output formats because SKILL.md only described
+      the schema in prose, not with actual JSON examples and types.
+    immediate_cause: >
+      SKILL.md lacked exact JSON schema with types.
+    root_cause: >
+      Models infer schema from prose description — inferences diverge.
+    contributing_factors:
+      - Assumed prose description was sufficient for structured output
+    failed_attempts: unknown
+    solution: >
+      SKILL.md MUST include exact JSON schema inline with types.
+    prevention_action: >
+      Schema examples mandatory in all skills. Types, not just field names.
+    keywords: [SKILL.md, schema, JSON, models, structured-output, types]
+    applies_to: both
+    references: []
+    validated: false
+
+  - id: LL-AI-016
+    old_id: TL-16
+    date: unknown
+    category: AI
+    severity: HIGH
+    system: OpenClaw/M2.7
+    status: CONFIRMED
+    problem_statement: >
+      M2.7 ignores complex AGENTS.md routing instructions — does not reliably
+      route to the correct agent for multi-step orchestration.
+    immediate_cause: >
+      Complex routing logic exceeds M2.7's reliable instruction-following capability.
+    root_cause: >
+      M2.7 is not suited for complex multi-step routing. Led to dedicated bot
+      architecture.
+    contributing_factors:
+      - Used M2.7 before evaluating its routing capability limits
+    failed_attempts:
+      - "Simplified AGENTS.md routing — still unreliable"
+      - "Added explicit examples in AGENTS.md — M2.7 still ignored them"
+    solution: >
+      Don't use M2.7 for multi-step routing. Use dedicated bot per workflow.
+    prevention_action: >
+      M2.7 not approved for orchestration. Use Claude Sonnet or better.
+    keywords: [M2.7, routing, orchestration, AGENTS.md, models, reliability]
+    applies_to: both
+    references: []
+    validated: true
+
+  - id: LL-AI-017
+    old_id: TL-17
+    date: unknown
+    category: AI
+    severity: HIGH
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      Sonnet truncated JSON output above ~8K tokens. JSON structure was cut
+      mid-object, producing unparseable output.
+    immediate_cause: >
+      Single agent call requested output larger than Sonnet's reliable output limit.
+    root_cause: >
+      Sonnet has practical output truncation around 8K tokens for structured JSON.
+    contributing_factors:
+      - Set max_tokens high, assumed model would use all of it reliably
+    failed_attempts:
+      - "Increased max_tokens — still truncated at ~8K"
+      - "Prompted model to 'complete all fields' — truncation still occurred"
+    solution: >
+      Generate by blocks. Block mode for large structured output.
+    prevention_action: >
+      Block mode for any structured output >8K tokens. Never single call for large JSON.
+    keywords: [Sonnet, truncation, JSON, tokens, block-mode, output-limit]
+    applies_to: both
+    references: [LL-ARCH-008]
+    validated: true
+
+  - id: LL-AI-021
+    old_id: L-21
+    date: unknown
+    category: AI
+    severity: MEDIUM
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      Common LLM failure modes occurred because prompts only described what
+      to do, not what NOT to do.
+    immediate_cause: >
+      No negative instructions in prompts.
+    root_cause: >
+      LLMs default to their training distribution; without "NEVER X" constraints,
+      they produce X when it seems plausible.
+    contributing_factors: unknown
+    failed_attempts: unknown
+    solution: >
+      Tell the model what NOT to do. Negative instructions prevent common failures.
+    prevention_action: >
+      Include "NEVER" rules in all prompts alongside positive instructions.
+    keywords: [prompting, negative-instructions, NEVER, LLM-behavior]
+    applies_to: both
+    references: []
+    validated: false
+
+  - id: LL-AI-021b
+    old_id: TL-21
+    date: unknown
+    category: AI
+    severity: LOW
+    system: OpenClaw/workflows
+    status: CONFIRMED
+    problem_statement: >
+      Veo 3 API call failed because model name was wrong.
+    immediate_cause: >
+      Used 'veo-3-preview' instead of correct 'veo-3-001' suffix format.
+    root_cause: >
+      Veo 3 uses -001 suffix, not -preview. Not documented in obvious places.
+    contributing_factors:
+      - Assumed -preview suffix like other models
+    failed_attempts:
+      - "veo-3-preview — model not found error"
+    solution: >
+      Veo 3 model names use -001 suffix, not -preview.
+    prevention_action: >
+      Check exact model identifiers in provider docs. Don't assume suffix patterns.
+    keywords: [Veo3, model-names, Google, API, suffix]
+    applies_to: workflows
+    references: []
+    validated: true
+
+  - id: LL-AI-027
+    old_id: L-27
+    date: unknown
+    category: AI
+    severity: MEDIUM
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      Using expensive models for all tasks regardless of complexity drove up cost
+      without quality benefit on simpler tasks.
+    immediate_cause: >
+      No model selection policy per task type.
+    root_cause: >
+      All tasks assigned to same model by default.
+    contributing_factors: unknown
+    failed_attempts: unknown
+    solution: >
+      Different models for different tasks. Expensive for creative/judgment,
+      cheap for formatting/extraction.
+    prevention_action: >
+      Model selection table in spec §4. Mandatory assignment per task type.
+    keywords: [models, selection, cost, task-type, quality]
+    applies_to: both
+    references: []
+    validated: false
+
+  - id: LL-AI-028
+    old_id: LL-AI-028
+    date: "2026-03"
+    category: AI
+    severity: LOW
+    system: OpenClaw/SDD
+    status: CONFIRMED
+    problem_statement: >
+      No empirical data on model audit behavior — guessing which model to use
+      for what audit role.
+    immediate_cause: >
+      No benchmarking done before assigning models to audit roles.
+    root_cause: >
+      Model capabilities assumed, not measured.
+    contributing_factors: unknown
+    failed_attempts: unknown
+    solution: >
+      Benchmarks (March 2026): GPT-5.4 = aggressive auditor (20+ findings,
+      15K chars/audit). Gemini 3.1 Pro = precise architect (7-8 findings,
+      3K chars, cheapest at $2/$12/M tokens). Audit pattern: 4 sequential
+      calls (GPT tech+arch, Gemini tech+arch) with 5-10s jittered backoff.
+      Todo CLI test: $0.61 total for 7 docs + plan + 21 tasks.
+    prevention_action: >
+      Use 4-call audit pattern with model-appropriate expectations.
+      Re-benchmark when new model versions release.
+    keywords: [GPT-5.4, Gemini, audit, benchmarks, models, SDD, cost]
+    applies_to: both
+    references: []
+    validated: true
+
+# ============================================================
+# CODE — Code-Level
+# ============================================================
+
+  - id: LL-CODE-003
+    old_id: TL-03
+    date: unknown
+    category: CODE
+    severity: LOW
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      cost_tracker.py crashed with TypeError when API response contained
+      None values in token count fields.
+    immediate_cause: >
+      Direct field access without None check.
+    root_cause: >
+      No defensive default pattern for API response fields.
+    contributing_factors: unknown
+    failed_attempts: unknown
+    solution: >
+      Always use `(totals.get('field') or 0)` for None-safe access in
+      cost_tracker.py.
+    prevention_action: >
+      Default-safe access patterns. `(x or 0)` for all numeric fields from
+      API responses.
+    keywords: [Python, None-safe, cost_tracker, API-responses, defaults]
+    applies_to: both
+    references: []
+    validated: false
+
+  - id: LL-CODE-038
+    old_id: TL-38
+    date: unknown
+    category: CODE
+    severity: LOW
+    system: OpenClaw/Finance
+    status: CONFIRMED
+    problem_statement: >
+      Receipt amount extraction used re.search (first match) which returned
+      wrong amounts when multiple numbers appeared in the receipt.
+    immediate_cause: >
+      re.search returns first numeric match, not the final/total amount.
+    root_cause: >
+      Receipt amounts appear multiple times; last or max value is usually correct.
+    contributing_factors: unknown
+    failed_attempts:
+      - "re.search — returned wrong amount (first match, not total)"
+    solution: >
+      Use re.findall + max() instead of re.search for receipt amount extraction.
+    prevention_action: >
+      findall + max() for receipt/total extraction. search only for unique values.
+    keywords: [Python, regex, receipts, amounts, findall, Finance]
+    applies_to: both
+    references: []
+    validated: true
+
+  - id: LL-CODE-039
+    old_id: TL-39
+    date: unknown
+    category: CODE
+    severity: MEDIUM
+    system: OpenClaw/Finance
+    status: CONFIRMED
+    problem_statement: >
+      Chase CSV credit card payments were classified as expenses because they
+      appeared as positive amounts and the sign logic assumed positive=expense.
+    immediate_cause: >
+      Chase CSV format uses positive values for payments (opposite of intuition).
+    root_cause: >
+      Sign logic not validated per bank CSV format.
+    contributing_factors:
+      - Assumed all CSVs use the same sign convention (negative=payment)
+    failed_attempts: unknown
+    solution: >
+      Credit card payments are POSITIVE in Chase CSV. Check payment keywords
+      before applying sign split.
+    prevention_action: >
+      Validate sign logic per bank format. Document format differences.
+    keywords: [Finance, Chase, CSV, payments, sign, classification]
+    applies_to: both
+    references: [LL-CODE-040]
+    validated: true
+
+  - id: LL-CODE-040
+    old_id: TL-40
+    date: unknown
+    category: CODE
+    severity: LOW
+    system: OpenClaw/Finance
+    status: CONFIRMED
+    problem_statement: >
+      Spanish payment keywords (SU PAGO, PAGO AUTOMATICO) were not recognized
+      by the financial classifier, causing misclassification for Spanish-language
+      transactions.
+    immediate_cause: >
+      Classifier only had English payment keywords.
+    root_cause: >
+      No i18n consideration in financial classifier design.
+    contributing_factors:
+      - Spanish transactions common in Alfredo's accounts
+    failed_attempts: unknown
+    solution: >
+      Add Spanish payment keywords (SU PAGO, PAGO AUTOMATICO) to classifier.
+    prevention_action: >
+      i18n in financial classifiers. Check for Spanish variants of all patterns.
+    keywords: [Finance, Spanish, i18n, keywords, classifier, payments]
+    applies_to: both
+    references: [LL-CODE-039]
+    validated: true
+
+  - id: LL-CODE-041
+    old_id: LL-CODE-041
+    date: "2026-04"
+    category: CODE
+    severity: HIGH
+    system: OpenClaw/Planner
+    status: CONFIRMED
+    problem_statement: >
+      Claude Code built 573 unit tests with StubHandlers — all passed.
+      But real PhaseHandlers were never integration-tested through the Dispatcher
+      with schema validation. `_intake_answers` field caused schema validation
+      crash at runtime that ALL 573 tests missed.
+    immediate_cause: >
+      StubHandlers in unit tests bypass real schema validation path.
+    root_cause: >
+      Tests exercised stubs, not the real integration path (handlers →
+      dispatcher → state_manager.save() → schema validation).
+    contributing_factors:
+      - High test count gave false confidence
+      - CI passed, ship felt safe
+    failed_attempts: unknown
+    solution: >
+      Always require at least 1 integration test that runs real handlers
+      through full dispatcher loop with state_manager.save() and schema
+      validation.
+    prevention_action: >
+      "Full Audit Policy": after Code finishes all tasks, run one real
+      integration test through the actual system, not mocks.
+    keywords: [testing, integration-test, stubs, schema, Planner, Dispatcher]
+    applies_to: both
+    references: [LL-ARCH-034, LL-PROC-033]
+    validated: true
+
+  - id: LL-CODE-042
+    old_id: LL-CODE-042
+    date: "2026-04"
+    category: CODE
+    severity: HIGH
+    system: OpenClaw/Planner
+    status: CONFIRMED
+    problem_statement: >
+      Phase 5 finalize never applied audit findings — drafts and outputs were
+      identical (1 byte diff). GPT produced 30 findings including 2 CRITICAL for
+      PROJECT_FOUNDATION but none were incorporated. $1.10 of audit cost per run
+      was completely wasted.
+    immediate_cause: >
+      Phase 5 finalize passed audit results to output without applying them.
+    root_cause: >
+      No application step between audit and finalize — the "apply findings"
+      logic was never implemented.
+    contributing_factors:
+      - Audit findings stored in state but not consumed by finalize
+    failed_attempts: unknown
+    solution: >
+      Phase 5 now calls Opus with CRITICAL+IMPORTANT findings to apply minimal
+      targeted changes before presenting to human.
+    prevention_action: >
+      Verify output differs from draft when findings exist. 1-byte diff = bug.
+    keywords: [Planner, audit, findings, finalize, Phase5, application, waste]
+    applies_to: both
+    references: []
+    validated: true
+
+# ============================================================
+# DATA — Database
+# ============================================================
+
+  - id: LL-DATA-018
+    old_id: TL-18
+    date: unknown
+    category: DATA
+    severity: MEDIUM
+    system: OpenClaw/PostgreSQL
+    status: CONFIRMED
+    problem_statement: >
+      PostgreSQL GENERATED column definition failed because it used a ::TEXT cast,
+      which is not allowed in GENERATED expressions.
+    immediate_cause: >
+      Used ::TEXT cast in GENERATED column expression.
+    root_cause: >
+      PostgreSQL GENERATED columns do not support cast operators. Must use
+      IMMUTABLE functions.
+    contributing_factors: unknown
+    failed_attempts:
+      - "::TEXT cast in GENERATED — syntax error"
+      - "CAST(x AS TEXT) — also not allowed in GENERATED"
+    solution: >
+      Use IMMUTABLE functions instead of casts in GENERATED columns.
+    prevention_action: >
+      Always use IMMUTABLE functions for generated cols. No cast operators.
+    keywords: [PostgreSQL, GENERATED, columns, cast, IMMUTABLE, SQL]
+    applies_to: both
+    references: []
+    validated: true
+
+  - id: LL-DATA-019
+    old_id: TL-19
+    date: unknown
+    category: DATA
+    severity: MEDIUM
+    system: OpenClaw/PostgreSQL
+    status: CONFIRMED
+    problem_statement: >
+      ON CONFLICT clause with GENERATED column expression failed with syntax error.
+    immediate_cause: >
+      Used column expression in ON CONFLICT instead of column name.
+    root_cause: >
+      PostgreSQL ON CONFLICT requires column name, not expression, for
+      GENERATED columns.
+    contributing_factors: unknown
+    failed_attempts:
+      - "ON CONFLICT (expression) — syntax error"
+    solution: >
+      ON CONFLICT with GENERATED columns: use column_name not expression.
+    prevention_action: >
+      Column name, not expression, in ON CONFLICT. Check for GENERATED
+      columns before writing conflict clauses.
+    keywords: [PostgreSQL, ON-CONFLICT, GENERATED, columns, SQL, UPSERT]
+    applies_to: both
+    references: [LL-DATA-018]
+    validated: true
+
+  - id: LL-DATA-034
+    old_id: TL-34
+    date: unknown
+    category: DATA
+    severity: LOW
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      verify_db_parity.py crashed because psycopg2 was not installed in the
+      venv that runs it.
+    immediate_cause: >
+      psycopg2 missing from target venv.
+    root_cause: >
+      Script dependency not documented or auto-installed.
+    contributing_factors: unknown
+    failed_attempts: unknown
+    solution: >
+      pip install psycopg2-binary in target venv before running verify_db_parity.py.
+    prevention_action: >
+      Add psycopg2-binary to requirements.txt. Include install check in script preamble.
+    keywords: [psycopg2, Python, venv, dependencies, PostgreSQL]
+    applies_to: both
+    references: []
+    validated: false
+
+  - id: LL-DATA-035
+    old_id: LL-DATA-035
+    date: "2026-04-07"
+    category: DATA
+    severity: HIGH
+    system: OpenClaw/Planner
+    status: CONFIRMED
+    problem_statement: >
+      Entity extractor used regex on raw text, producing garbage entries like
+      "rules; fully auditable in ~120 lines |" (table cell fragments from markdown).
+      Entity maps from RUN-20260407-005 were entirely noise.
+    immediate_cause: >
+      Regex ran on raw markdown text without understanding markdown structure.
+    root_cause: >
+      Raw text regex cannot distinguish content from markdown formatting artifacts.
+    contributing_factors:
+      - Regex appeared to work on simple test cases without table fragments
+    failed_attempts:
+      - "Regex on raw text — produced garbage table cell fragments"
+      - "Cleaned text before regex — still caught markdown artifacts"
+    solution: >
+      Rewritten with 6 typed extractors (DECISION, CONSTRAINT, COMPONENT,
+      INTERFACE, EXIT_CODE, DEPENDENCY) using structural markdown parsing.
+      $0 cost, deterministic.
+    prevention_action: >
+      Use structural markdown parsing, not regex on raw text, for entity extraction.
+    keywords: [regex, entity-extraction, markdown, parsing, Planner, deterministic]
+    applies_to: both
+    references: [LL-ARCH-022]
+    validated: true
+
+# ============================================================
+# OPS — Operational
+# ============================================================
+
+  - id: LL-OPS-027
+    old_id: L-27-OPS
+    date: unknown
+    category: OPS
+    severity: HIGH
+    system: OpenClaw/security
+    status: CONFIRMED
+    problem_statement: >
+      API keys were at risk of exposure via chat history when pasted directly
+      into Claude.ai conversation.
+    immediate_cause: >
+      API key pasted into Claude.ai chat instead of terminal.
+    root_cause: >
+      No policy for where API keys may be used/pasted.
+    contributing_factors:
+      - Convenience of pasting directly in chat
+    failed_attempts: unknown
+    solution: >
+      API keys must never be pasted in Claude.ai chat — only in terminal
+      or Claude Code.
+    prevention_action: >
+      Rule in CONSTITUTION: API keys in terminal or Claude Code only. Never chat.
+    keywords: [security, API-keys, secrets, Claude.ai, terminal]
+    applies_to: both
+    references: []
+    validated: false
+
+# ============================================================
+# PROC — Process
+# ============================================================
+
+  - id: LL-PROC-022
+    old_id: TL-22
+    date: unknown
+    category: PROC
+    severity: LOW
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      echo >> .env created duplicate entries when run multiple times, causing
+      unpredictable env var resolution.
+    immediate_cause: >
+      echo >> appends without checking for existing entry.
+    root_cause: >
+      No safe pattern for adding env vars to .env files.
+    contributing_factors: unknown
+    failed_attempts:
+      - "echo >> .env — created duplicates on repeated runs"
+    solution: >
+      Never append to .env with echo. Edit with nano or use a dedup-aware script.
+    prevention_action: >
+      Never append to .env with echo. Explicit "edit with nano" rule.
+    keywords: [env, .env, echo, duplicates, environment-variables]
+    applies_to: both
+    references: []
+    validated: true
+
+  - id: LL-PROC-024
+    old_id: TL-24
+    date: unknown
+    category: PROC
+    severity: MEDIUM
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      CEO MEMORY.md was copied from Declassified workspace, mixing Declassified-specific
+      context into the CEO bot's memory.
+    immediate_cause: >
+      Copied MEMORY.md without removing workspace-specific content.
+    root_cause: >
+      No rule that MEMORY.md must be workspace-specific.
+    contributing_factors: unknown
+    failed_attempts: unknown
+    solution: >
+      CEO MEMORY.md must be CEO-specific — never copy from Declassified workspace.
+    prevention_action: >
+      Workspace-specific memory files. No copy-paste between workspaces.
+    keywords: [MEMORY.md, workspace, CEO, Declassified, context]
+    applies_to: both
+    references: []
+    validated: false
+
+  - id: LL-PROC-026
+    old_id: L-26
+    date: unknown
+    category: PROC
+    severity: HIGH
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      Identical retry attempts repeatedly failed without diagnosis, wasting time
+      and API cost.
+    immediate_cause: >
+      Retried with same parameters after failure without understanding why it failed.
+    root_cause: >
+      No policy requiring failure diagnosis before retry.
+    contributing_factors:
+      - Hoped the issue was transient
+    failed_attempts: unknown
+    solution: >
+      Never retry with identical parameters. Always include failure diagnosis.
+      Max 2 retries.
+    prevention_action: >
+      Diagnosis in retry prompt. Max 2 retries before escalation.
+      See CONSTITUTION §5.
+    keywords: [retry, diagnosis, process, failures, cost-waste]
+    applies_to: both
+    references: []
+    validated: false
+
+  - id: LL-PROC-028
+    old_id: L-28
+    date: unknown
+    category: PROC
+    severity: MEDIUM
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      Human gates were added without justification, making it unclear why
+      automation was insufficient and when gates could be removed.
+    immediate_cause: >
+      Gates added ad-hoc without documenting why human review was required.
+    root_cause: >
+      No policy requiring justification for human gates.
+    contributing_factors: unknown
+    failed_attempts: unknown
+    solution: >
+      Every human gate must have clear justification for why automation
+      is too risky. human_gate.justification required.
+    prevention_action: >
+      human_gate.justification is a required field. Fail if missing.
+    keywords: [human-gates, justification, automation, process, gates]
+    applies_to: both
+    references: [LL-PROC-PL09]
+    validated: false
+
+  - id: LL-PROC-028b
+    old_id: TL-28
+    date: unknown
+    category: PROC
+    severity: LOW
+    system: OpenClaw/git
+    status: CONFIRMED
+    problem_statement: >
+      Git commits attributed to wrong identity because git config was not set.
+    immediate_cause: >
+      git config user.name and user.email not set before first commit.
+    root_cause: >
+      No step in setup docs to configure git identity.
+    contributing_factors: unknown
+    failed_attempts: unknown
+    solution: >
+      Git identity: Alfredo Pretel, 30666965+pr3t3l@users.noreply.github.com.
+      Set git config before first commit.
+    prevention_action: >
+      Set git config in new repo setup checklist. Auto-check in deploy script.
+    keywords: [git, identity, config, commits, setup]
+    applies_to: both
+    references: []
+    validated: false
+
+  - id: LL-PROC-029
+    old_id: L-29
+    date: unknown
+    category: PROC
+    severity: HIGH
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      Manifest was not updated on phase failure, leaving corrupt state that
+      made recovery and auditing impossible.
+    immediate_cause: >
+      Manifest update only in success path, not in failure handler.
+    root_cause: >
+      No policy requiring manifest update in finally block.
+    contributing_factors: unknown
+    failed_attempts: unknown
+    solution: >
+      Every script must update manifest on completion AND on failure.
+    prevention_action: >
+      Manifest update in finally block. Non-negotiable.
+    keywords: [manifest, state, finally-block, recovery, failure-handling]
+    applies_to: both
+    references: []
+    validated: false
+
+  - id: LL-PROC-030
+    old_id: L-30
+    date: unknown
+    category: PROC
+    severity: HIGH
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      Content was regenerated and overwrote existing content without comparison.
+      Good content was lost.
+    immediate_cause: >
+      Regeneration ran without backup of existing content.
+    root_cause: >
+      No backup step before any overwrite operation.
+    contributing_factors: unknown
+    failed_attempts: unknown
+    solution: >
+      Always backup before regenerating content. Compare before discarding.
+    prevention_action: >
+      Backup step mandatory before any overwrite. Compare diff before discarding.
+    keywords: [backup, overwrite, content, regeneration, safety]
+    applies_to: both
+    references: []
+    validated: false
+
+  - id: LL-PROC-031
+    old_id: L-31
+    date: unknown
+    category: PROC
+    severity: LOW
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      File modifications attempted via chat conversation produced imprecise
+      edits and lost context between turns.
+    immediate_cause: >
+      Used chat for file edits instead of Claude Code.
+    root_cause: >
+      No clear rule about which tool to use for which task.
+    contributing_factors: unknown
+    failed_attempts: unknown
+    solution: >
+      For file modifications, use Claude Code directly. Chat is for planning,
+      not execution.
+    prevention_action: >
+      Code for edits, chat for planning. Never use chat for file modifications.
+    keywords: [Claude-Code, chat, workflow, files, execution]
+    applies_to: both
+    references: []
+    validated: false
+
+  - id: LL-PROC-031b
+    old_id: TL-31
+    date: unknown
+    category: PROC
+    severity: LOW
+    system: OpenClaw/Lovable
+    status: CONFIRMED
+    problem_statement: >
+      Code changes pushed via git push did not deploy to Lovable. Site showed
+      old version.
+    immediate_cause: >
+      git push does not trigger Lovable deployment.
+    root_cause: >
+      Lovable requires explicit Publish button click to deploy, not git push.
+    contributing_factors:
+      - Assumed git push = deploy (standard behavior in other platforms)
+    failed_attempts:
+      - "git push — did not deploy to Lovable"
+    solution: >
+      Lovable: use Publish button after Code edits, not git push.
+    prevention_action: >
+      Document Lovable deploy workflow. Publish button is the deploy trigger.
+    keywords: [Lovable, deployment, git, publish, deploy]
+    applies_to: both
+    references: []
+    validated: true
+
+  - id: LL-PROC-032
+    old_id: TL-32
+    date: unknown
+    category: PROC
+    severity: HIGH
+    system: OpenClaw/Claude-Code
+    status: CONFIRMED
+    problem_statement: >
+      Two Claude Code instances running on the same repo caused git conflicts
+      and state corruption.
+    immediate_cause: >
+      Two instances opened on same repo simultaneously.
+    root_cause: >
+      Multiple writers to same git repo without coordination.
+    contributing_factors:
+      - Opened second instance for "quick fix" while first was running
+    failed_attempts: unknown
+    solution: >
+      One Claude Code instance per repo — two on same repo causes git conflicts.
+    prevention_action: >
+      One instance per repo. Close existing before opening new.
+    keywords: [Claude-Code, git, conflicts, instances, repo]
+    applies_to: both
+    references: []
+    validated: false
+
+  - id: LL-PROC-PL09
+    old_id: PL-09
+    date: unknown
+    category: PROC
+    severity: MEDIUM
+    system: OpenClaw/both
+    status: CONFIRMED
+    problem_statement: >
+      Gate auto-approval was enabled, causing human gates to be bypassed
+      silently without actual review.
+    immediate_cause: >
+      Auto-approval activated without understanding its implications.
+    root_cause: >
+      Gates exist for a reason — auto-approval defeats their purpose.
+    contributing_factors: unknown
+    failed_attempts: unknown
+    solution: >
+      Gate auto-approval hides quality issues. Human gates exist for a reason.
+      Real human review at gates.
+    prevention_action: >
+      Auto-approval only for known-simple projects. Always pause on CRITICAL findings.
+    keywords: [gates, auto-approval, human-review, quality]
+    applies_to: both
+    references: [LL-PROC-028]
+    validated: false
+
+  - id: LL-PROC-033
+    old_id: LL-PROC-033
+    date: "2026-04"
+    category: PROC
+    severity: HIGH
+    system: OpenClaw/Planner
+    status: CONFIRMED
+    problem_statement: >
+      Claude Code built system with 573 tests. All passed. No real integration
+      path was tested. Schema crash discovered at runtime in production run.
+    immediate_cause: >
+      "Full test coverage" based on unit tests with stubs only.
+    root_cause: >
+      No policy requiring at least one integration test through the real system.
+    contributing_factors:
+      - High test count gave false confidence
+      - Build checklist did not include integration test requirement
+    failed_attempts: unknown
+    solution: >
+      "Full Audit Policy": after Claude Code finishes all tasks, run one real
+      integration test that flows through actual system, not mocks.
+    prevention_action: >
+      Add integration test requirement to every build checklist. Non-negotiable.
+    keywords: [testing, integration, unit-tests, stubs, build-checklist, Planner]
+    applies_to: both
+    references: [LL-CODE-041, LL-ARCH-034]
+    validated: true
+
+  - id: LL-PROC-034
+    old_id: LL-PROC-034
+    date: unknown
+    category: PROC
+    severity: MEDIUM
+    system: OpenClaw/Planner
+    status: CONFIRMED
+    problem_statement: >
+      18 manual gates per run (G1,G3,G5 × 6 docs) generated friction without
+      value when all responses were "approved." Developer productivity severely impacted.
+    immediate_cause: >
+      Gate frequency was not calibrated to project complexity.
+    root_cause: >
+      No auto-approve mode for simple/routine projects.
+    contributing_factors:
+      - Gates designed for complex projects, applied to all projects equally
+    failed_attempts: unknown
+    solution: >
+      Auto-approve mode: "MODULE_SPEC auto" at G0 reduces gates from ~20 to 2
+      (only G0 and G7). Exception: G3 always pauses if CRITICAL findings exist.
+    prevention_action: >
+      Offer auto-approve for simple projects. Always pause on CRITICAL findings.
+    keywords: [gates, friction, auto-approve, Planner, process, productivity]
+    applies_to: both
+    references: [LL-PROC-PL09]
+    validated: false
+
+  - id: LL-PROC-035
+    old_id: LL-PROC-035
+    date: unknown
+    category: PROC
+    severity: MEDIUM
+    system: OpenClaw/Planner
+    status: CONFIRMED
+    problem_statement: >
+      Phase 1 auto-generates content without asking the human. For complex projects,
+      this produced misaligned content that had to be regenerated after human review.
+    immediate_cause: >
+      Phase 1 defaulted to auto-generate for all project types.
+    root_cause: >
+      No interactive intake mode for complex projects.
+    contributing_factors:
+      - Auto-mode designed for speed, not accuracy on complex inputs
+    failed_attempts: unknown
+    solution: >
+      Interactive intake mode: "MODULE_SPEC interactive" generates one question
+      per section and waits for human response. Reply "auto" to switch back.
+    prevention_action: >
+      Offer interactive intake for complex projects. Default to auto for simple ones.
+    keywords: [intake, interactive, auto-generate, Planner, Phase1, complex-projects]
+    applies_to: both
+    references: []
+    validated: false
+
+# ============================================================
+# MODEL NOTES — Reference Table
+# ============================================================
+
+model_notes:
+  - model: gemini31pro-thinking
+    behavior: "Hits rate limits after ~15 spawns in 2 hours"
+    source: operational
+  - model: gpt52-thinking
+    behavior: "Reliable fallback for QA and narrative tasks"
+    source: operational
+  - model: nano-banana-2-gemini
+    behavior: "Needs exponential backoff (2s, 5s, 10s) for RESOURCE_EXHAUSTED"
+    source: operational
+  - model: M2.7
+    behavior: "Not reliable for multi-step routing (ignores complex AGENTS.md)"
+    source: LL-AI-016
+  - model: claude-sonnet
+    behavior: "Truncates JSON above ~8K tokens"
+    source: LL-AI-017
+  - model: gpt-5.4
+    behavior: "Aggressive auditor: 20+ findings, 15K chars per audit call"
+    source: LL-AI-028
+  - model: gemini-3.1-pro
+    behavior: "Precise architect: 7-8 findings, 3K chars, cheapest ($2/$12/M tokens)"
+    source: LL-AI-028
+
+# ============================================================
+# ESCALATION PATTERNS
+# ============================================================
+
+escalation_patterns:
+  large_ai_output_failure:
+    steps:
+      - "Monolithic generation fails → split by domain/section"
+      - "Domain-split fails → identify failing block, retry only that block"
+      - "Per-block still fails → compact mode (schema + required + rules only)"
+      - "JSON parse failure → auto-repair before declaring failure"
+      - "Auto-retry up to 2 times before surfacing to human"
+    rule: "Always save raw model output on failure before retrying"
+
+  litellm_server_disconnect:
+    steps:
+      - "Verify with small max_tokens (500) — if works, issue is generation time"
+      - "Add request_timeout: 600 to LiteLLM config"
+      - "Switch to streaming via litellm_stream.py"
+      - "Compress input context via compress_contracts()"
+      - "If still fails: block-based generation via spawn_implementation_blocks.py"
+
+# ============================================================
+# TEMPLATE FOR NEW ENTRIES
+# ============================================================
+
+# - id: LL-[CAT]-[XXX]
+#   old_id: ~
+#   date: "YYYY-MM-DD"
+#   category: PLAN|ARCH|COST|INFRA|AI|CODE|DATA|OPS|PROC
+#   severity: HIGH|MEDIUM|LOW
+#   system: "OpenClaw/component"
+#   status: DRAFT|CONFIRMED|VALIDATED
+#   problem_statement: >
+#     What went wrong. Concrete and specific.
+#   immediate_cause: >
+#     The direct trigger. The "what".
+#   root_cause: >
+#     The underlying systemic cause. The "why".
+#   contributing_factors:
+#     - Factor 1
+#   failed_attempts:
+#     - "What was tried that did NOT work"
+#   solution: >
+#     What resolved it.
+#   prevention_action: >
+#     One sentence rule. How it's enforced (not "manual discipline").
+#   keywords: [keyword1, keyword2]
+#   applies_to: both|workflows|apps
+#   references: [LL-CAT-XXX]
+#   validated: false

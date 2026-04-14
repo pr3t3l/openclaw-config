@@ -1,0 +1,179 @@
+# INDEX.yaml — Lessons Learned Cross-Reference Index
+# Covers ALL LL-*.yaml files
+# Last updated: 2026-04-12
+# Total: 156 entries (90 MASTER + 66 FORGE)
+#
+# Usage:
+#   grep "n8n" INDEX.yaml              
+#   grep "PostgreSQL" INDEX.yaml       
+#   grep "severity: HIGH" INDEX.yaml   
+#   grep "LL-MASTER" INDEX.yaml        
+#   grep "LL-FORGE" INDEX.yaml         
+#
+# Git repos:
+#   openclaw-config — canonical location for ALL LL files
+#   forge-product-intelligence — symlink to openclaw-config/lessons-learned/
+
+---
+entries:
+  # === LL-MASTER.yaml (90 entries) ===
+  - { id: LL-PLAN-001, file: LL-MASTER.yaml, severity: unknown, keywords: [data-flow, planning, artifacts, orphan-outputs] }
+  - { id: LL-PLAN-002, file: LL-MASTER.yaml, severity: unknown, keywords: [schema, contracts, producer-consumer, silent-failure] }
+  - { id: LL-PLAN-003, file: LL-MASTER.yaml, severity: HIGH, keywords: [testing, batch, E2E, cost-waste] }
+  - { id: LL-PLAN-004, file: LL-MASTER.yaml, severity: unknown, keywords: [scope, V1, V2, MVP, planning] }
+  - { id: LL-PLAN-005, file: LL-MASTER.yaml, severity: unknown, keywords: [process, debugging, infra, quality] }
+  - { id: LL-PLAN-010, file: LL-MASTER.yaml, severity: HIGH, keywords: [validation, stubs, placeholders, quality-gate] }
+  - { id: LL-PLAN-016, file: LL-MASTER.yaml, severity: LOW, keywords: [pacing, reveal, envelopes] }
+  - { id: LL-PLAN-017, file: LL-MASTER.yaml, severity: unknown, keywords: [quality, specificity, generic-output, LLM-prompting] }
+  - { id: LL-PLAN-018, file: LL-MASTER.yaml, severity: unknown, keywords: [images, visual-support, planning] }
+  - { id: LL-PLAN-020, file: LL-MASTER.yaml, severity: MEDIUM, keywords: [spec, self-contained, agents] }
+  - { id: LL-ARCH-004, file: LL-MASTER.yaml, severity: HIGH, keywords: [sessions_spawn, file-io, silent-failure] }
+  - { id: LL-ARCH-006, file: LL-MASTER.yaml, severity: HIGH, keywords: [file-io, testing, day-1, spawn] }
+  - { id: LL-ARCH-007, file: LL-MASTER.yaml, severity: MEDIUM, keywords: [agents, scripts, deterministic] }
+  - { id: LL-ARCH-008, file: LL-MASTER.yaml, severity: HIGH, keywords: [agents, output, truncation] }
+  - { id: LL-ARCH-011, file: LL-MASTER.yaml, severity: unknown, keywords: [assets, canonical, reuse, cost] }
+  - { id: LL-ARCH-012, file: LL-MASTER.yaml, severity: MEDIUM, keywords: [identifiers, normalization, naming] }
+  - { id: LL-ARCH-013, file: LL-MASTER.yaml, severity: MEDIUM, keywords: [cross-references, integrity, refactoring] }
+  - { id: LL-ARCH-015, file: LL-MASTER.yaml, severity: MEDIUM, keywords: [type-conversion, cross-references] }
+  - { id: LL-ARCH-019, file: LL-MASTER.yaml, severity: MEDIUM, keywords: [output-paths, spec, contracts] }
+  - { id: LL-ARCH-022, file: LL-MASTER.yaml, severity: MEDIUM, keywords: [deterministic, LLM, scripts, agents] }
+  - { id: LL-ARCH-023, file: LL-MASTER.yaml, severity: MEDIUM, keywords: [validation, quality, ordering] }
+  - { id: LL-ARCH-032, file: LL-MASTER.yaml, severity: MEDIUM, keywords: [multi-agent, debate, JSON, judge] }
+  - { id: LL-ARCH-033, file: LL-MASTER.yaml, severity: HIGH, keywords: [context, compression, tokens, timeout] }
+  - { id: LL-ARCH-034, file: LL-MASTER.yaml, severity: HIGH, keywords: [state, schema, additionalProperties] }
+  - { id: LL-ARCH-035, file: LL-MASTER.yaml, severity: HIGH, keywords: [OpenClaw, skills, exec, simulation] }
+  - { id: LL-ARCH-PL07, file: LL-MASTER.yaml, severity: unknown, keywords: [cross-critique, debate, multi-model] }
+  - { id: LL-ARCH-PL08, file: LL-MASTER.yaml, severity: unknown, keywords: [architecture, divergence, proposals] }
+  - { id: LL-COST-002, file: LL-MASTER.yaml, severity: LOW, keywords: [images, JPEG, PNG, optimization] }
+  - { id: LL-COST-009, file: LL-MASTER.yaml, severity: MEDIUM, keywords: [cost, orchestrator, overhead, tokens] }
+  - { id: LL-COST-014, file: LL-MASTER.yaml, severity: HIGH, keywords: [cost, telemetry, tracking, manifest] }
+  - { id: LL-COST-024, file: LL-MASTER.yaml, severity: unknown, keywords: [cost, baseline, measurement] }
+  - { id: LL-COST-025, file: LL-MASTER.yaml, severity: unknown, keywords: [cost, savings, measurement] }
+  - { id: LL-COST-025b, file: LL-MASTER.yaml, severity: unknown, keywords: [cost, savings, A/B, testing] }
+  - { id: LL-COST-041, file: LL-MASTER.yaml, severity: unknown, keywords: [cost, mini-models, quality] }
+  - { id: LL-COST-042, file: LL-MASTER.yaml, severity: HIGH, keywords: [cost, mini-models, quality, models] }
+  - { id: LL-COST-043, file: LL-MASTER.yaml, severity: HIGH, keywords: [cost, marketing, AGENTS.md, daily-spend] }
+  - { id: LL-INFRA-001, file: LL-MASTER.yaml, severity: unknown, keywords: [WSL, Python, requests, curl, subprocess] }
+  - { id: LL-INFRA-005, file: LL-MASTER.yaml, severity: unknown, keywords: [subprocess, timeout, curl, rendering] }
+  - { id: LL-INFRA-006, file: LL-MASTER.yaml, severity: unknown, keywords: [wget, curl, downloads, DALL-E] }
+  - { id: LL-INFRA-007, file: LL-MASTER.yaml, severity: unknown, keywords: [tokens, MAX_TOKENS, truncation] }
+  - { id: LL-INFRA-009, file: LL-MASTER.yaml, severity: unknown, keywords: [directories, mkdir, race-condition] }
+  - { id: LL-INFRA-010, file: LL-MASTER.yaml, severity: unknown, keywords: [file-paths, absolute, WORKSPACE_ROOT] }
+  - { id: LL-INFRA-011, file: LL-MASTER.yaml, severity: unknown, keywords: [OpenClaw, ENV_VARS, apiKey] }
+  - { id: LL-INFRA-012, file: LL-MASTER.yaml, severity: unknown, keywords: [LiteLLM, master_key, dashboard] }
+  - { id: LL-INFRA-014, file: LL-MASTER.yaml, severity: unknown, keywords: [LiteLLM, asyncio, WSL, sequential] }
+  - { id: LL-INFRA-015, file: LL-MASTER.yaml, severity: unknown, keywords: [LiteLLM, model-names, provider-names] }
+  - { id: LL-INFRA-020, file: LL-MASTER.yaml, severity: unknown, keywords: [WSL, startup, wsl.conf, boot] }
+  - { id: LL-INFRA-023, file: LL-MASTER.yaml, severity: unknown, keywords: [OpenClaw, isolatedSession, lightContext] }
+  - { id: LL-INFRA-027, file: LL-MASTER.yaml, severity: unknown, keywords: [Google-Sheets, OAuth, gspread] }
+  - { id: LL-INFRA-029, file: LL-MASTER.yaml, severity: unknown, keywords: [Google-Sheets, OAuth, WSL, port] }
+  - { id: LL-INFRA-030, file: LL-MASTER.yaml, severity: unknown, keywords: [Google-Sheets, scopes, drive] }
+  - { id: LL-INFRA-033, file: LL-MASTER.yaml, severity: unknown, keywords: [LiteLLM, Prisma, duplicate-model] }
+  - { id: LL-INFRA-035, file: LL-MASTER.yaml, severity: unknown, keywords: [litellm.env, env-vars, crash] }
+  - { id: LL-INFRA-036, file: LL-MASTER.yaml, severity: unknown, keywords: [Sonnet, JSON, truncation, 8K] }
+  - { id: LL-INFRA-037, file: LL-MASTER.yaml, severity: unknown, keywords: [n8n, PostgreSQL, alwaysOutputData] }
+  - { id: LL-INFRA-038, file: LL-MASTER.yaml, severity: unknown, keywords: [n8n, $env, Code-node, sandbox] }
+  - { id: LL-AI-008, file: LL-MASTER.yaml, severity: unknown, keywords: [rendering, backgrounds, dark, light] }
+  - { id: LL-AI-013, file: LL-MASTER.yaml, severity: unknown, keywords: [SKILL.md, JSON-schema, inline, types] }
+  - { id: LL-AI-016, file: LL-MASTER.yaml, severity: unknown, keywords: [M2.7, orchestration, AGENTS.md, routing] }
+  - { id: LL-AI-017, file: LL-MASTER.yaml, severity: unknown, keywords: [Sonnet, rendering, creative, quality] }
+  - { id: LL-AI-021, file: LL-MASTER.yaml, severity: MEDIUM, keywords: [prompting, negative-instructions, NEVER] }
+  - { id: LL-AI-021b, file: LL-MASTER.yaml, severity: LOW, keywords: [Veo3, model-names, Google, API] }
+  - { id: LL-AI-027, file: LL-MASTER.yaml, severity: MEDIUM, keywords: [models, selection, cost, task-type] }
+  - { id: LL-AI-028, file: LL-MASTER.yaml, severity: LOW, keywords: [GPT-5.4, Gemini, audit, benchmarks] }
+  - { id: LL-CODE-003, file: LL-MASTER.yaml, severity: LOW, keywords: [Python, None-safe, cost_tracker] }
+  - { id: LL-CODE-038, file: LL-MASTER.yaml, severity: LOW, keywords: [Python, regex, receipts, Finance] }
+  - { id: LL-CODE-039, file: LL-MASTER.yaml, severity: MEDIUM, keywords: [Finance, Chase, CSV, payments] }
+  - { id: LL-CODE-040, file: LL-MASTER.yaml, severity: LOW, keywords: [Finance, Spanish, i18n, classifier] }
+  - { id: LL-CODE-041, file: LL-MASTER.yaml, severity: HIGH, keywords: [testing, integration-test, stubs, Planner] }
+  - { id: LL-CODE-042, file: LL-MASTER.yaml, severity: HIGH, keywords: [Planner, audit, finalize, Phase5] }
+  - { id: LL-DATA-018, file: LL-MASTER.yaml, severity: MEDIUM, keywords: [PostgreSQL, GENERATED, IMMUTABLE] }
+  - { id: LL-DATA-019, file: LL-MASTER.yaml, severity: MEDIUM, keywords: [PostgreSQL, ON-CONFLICT, GENERATED] }
+  - { id: LL-DATA-034, file: LL-MASTER.yaml, severity: LOW, keywords: [psycopg2, Python, venv, dependencies] }
+  - { id: LL-DATA-035, file: LL-MASTER.yaml, severity: HIGH, keywords: [regex, entity-extraction, markdown, parsing] }
+  - { id: LL-OPS-027, file: LL-MASTER.yaml, severity: HIGH, keywords: [security, API-keys, secrets, Claude.ai] }
+  - { id: LL-PROC-022, file: LL-MASTER.yaml, severity: LOW, keywords: [env, .env, echo, duplicates] }
+  - { id: LL-PROC-024, file: LL-MASTER.yaml, severity: MEDIUM, keywords: [MEMORY.md, workspace, CEO, context] }
+  - { id: LL-PROC-026, file: LL-MASTER.yaml, severity: HIGH, keywords: [retry, diagnosis, process, failures] }
+  - { id: LL-PROC-028, file: LL-MASTER.yaml, severity: MEDIUM, keywords: [human-gates, justification, automation] }
+  - { id: LL-PROC-028b, file: LL-MASTER.yaml, severity: LOW, keywords: [git, identity, config, commits] }
+  - { id: LL-PROC-029, file: LL-MASTER.yaml, severity: HIGH, keywords: [manifest, state, finally-block, recovery] }
+  - { id: LL-PROC-030, file: LL-MASTER.yaml, severity: HIGH, keywords: [backup, overwrite, content, safety] }
+  - { id: LL-PROC-031, file: LL-MASTER.yaml, severity: LOW, keywords: [Claude-Code, chat, workflow, files] }
+  - { id: LL-PROC-031b, file: LL-MASTER.yaml, severity: LOW, keywords: [Lovable, deployment, git, publish] }
+  - { id: LL-PROC-032, file: LL-MASTER.yaml, severity: HIGH, keywords: [Claude-Code, git, conflicts, instances] }
+  - { id: LL-PROC-PL09, file: LL-MASTER.yaml, severity: MEDIUM, keywords: [gates, auto-approval, human-review] }
+  - { id: LL-PROC-033, file: LL-MASTER.yaml, severity: HIGH, keywords: [testing, integration, unit-tests, stubs] }
+  - { id: LL-PROC-034, file: LL-MASTER.yaml, severity: MEDIUM, keywords: [gates, friction, auto-approve, Planner] }
+  - { id: LL-PROC-035, file: LL-MASTER.yaml, severity: MEDIUM, keywords: [intake, interactive, auto-generate, Planner] }
+
+  # === LL-FORGE.yaml (66 entries) ===
+  - { id: LL-ARCH-001, file: LL-FORGE.yaml, severity: HIGH, keywords: [config, JSONB, PostgreSQL, architecture] }
+  - { id: LL-ARCH-022, file: LL-FORGE.yaml, severity: HIGH, keywords: [LLM, deterministic, Code-node], note: "Forge-specific version" }
+  - { id: LL-ARCH-033, file: LL-FORGE.yaml, severity: HIGH, keywords: [compression, tokens, Phase-8], note: "Forge-specific version" }
+  - { id: LL-ARCH-040, file: LL-FORGE.yaml, severity: MEDIUM, keywords: [UPSERT, SQL, PostgreSQL] }
+  - { id: LL-ARCH-044, file: LL-FORGE.yaml, severity: HIGH, keywords: [cost, tokens, LLM, Gemini, cost-logger] }
+  - { id: LL-ARCH-045, file: LL-FORGE.yaml, severity: HIGH, keywords: [SerpAPI, rate-limit, throttle, Wait-node] }
+  - { id: LL-ARCH-046, file: LL-FORGE.yaml, severity: HIGH, keywords: [envelope, verified_facts, hoisting, JSONB] }
+  - { id: LL-COST-042, file: LL-FORGE.yaml, severity: HIGH, keywords: [model-selection, mini-models], note: "Forge-specific version" }
+  - { id: LL-COST-043, file: LL-FORGE.yaml, severity: MEDIUM, keywords: [budget, thresholds, cost-ceiling], note: "Forge-specific version" }
+  - { id: LL-COST-047, file: LL-FORGE.yaml, severity: HIGH, keywords: [cost-estimates, accuracy, measurement] }
+  - { id: LL-COST-048, file: LL-FORGE.yaml, severity: MEDIUM, keywords: [SerpAPI, budget, cost-tracking] }
+  - { id: LL-QUAL-034, file: LL-FORGE.yaml, severity: HIGH, keywords: [quality, verified_facts, evidence] }
+  - { id: LL-QUAL-049, file: LL-FORGE.yaml, severity: MEDIUM, keywords: [validation, verified_facts, research-phases] }
+  - { id: LL-QUAL-050, file: LL-FORGE.yaml, severity: MEDIUM, keywords: [anti-persona, Phase-3, evidence] }
+  - { id: LL-QUAL-051, file: LL-FORGE.yaml, severity: MEDIUM, keywords: [generic-detection, banned-phrases, Phase-8] }
+  - { id: LL-QUAL-052, file: LL-FORGE.yaml, severity: LOW, keywords: [banned-language, non-ASCII] }
+  - { id: LL-DATA-053, file: LL-FORGE.yaml, severity: MEDIUM, keywords: [run_id, collision, sequence] }
+  - { id: LL-DATA-054, file: LL-FORGE.yaml, severity: HIGH, keywords: [human-feedback, gates, JSONB] }
+  - { id: LL-DATA-055, file: LL-FORGE.yaml, severity: HIGH, keywords: [resume, failure-recovery, current_phase] }
+  - { id: LL-DATA-056, file: LL-FORGE.yaml, severity: MEDIUM, keywords: [cost-tracking, retry, call_type] }
+  - { id: LL-DATA-057, file: LL-FORGE.yaml, severity: MEDIUM, keywords: [metadata, confidence-dashboard] }
+  - { id: LL-DATA-058, file: LL-FORGE.yaml, severity: LOW, keywords: [query, CTE, latest-run] }
+  - { id: LL-DATA-059, file: LL-FORGE.yaml, severity: LOW, keywords: [pgcrypto, UUID, migration] }
+  - { id: LL-OPS-027, file: LL-FORGE.yaml, severity: HIGH, keywords: [API-keys, security], note: "Forge-specific version" }
+  - { id: LL-OPS-041, file: LL-FORGE.yaml, severity: MEDIUM, keywords: [Claude-Code, git-conflicts] }
+  - { id: LL-OPS-060, file: LL-FORGE.yaml, severity: MEDIUM, keywords: [SerpAPI, null-check, competitor-URLs] }
+  - { id: LL-OPS-082, file: LL-FORGE.yaml, severity: MEDIUM, keywords: [PowerShell, Docker, stdin, WSL] }
+  - { id: LL-OPS-083, file: LL-FORGE.yaml, severity: MEDIUM, keywords: [Docker-Compose, restart, env-vars] }
+  - { id: LL-PROC-004, file: LL-FORGE.yaml, severity: HIGH, keywords: [build-order, dependencies], note: "Forge-specific version" }
+  - { id: LL-PROC-034, file: LL-FORGE.yaml, severity: HIGH, keywords: [cross-model-review, SDD], note: "Forge-specific version" }
+  - { id: LL-PROC-061, file: LL-FORGE.yaml, severity: MEDIUM, keywords: [cross-model-review, diminishing-returns] }
+  - { id: LL-PROC-062, file: LL-FORGE.yaml, severity: MEDIUM, keywords: [multi-model, generation-vs-audit] }
+  - { id: LL-PROC-063, file: LL-FORGE.yaml, severity: LOW, keywords: [SerpAPI, research-APIs, V1-scope] }
+  - { id: LL-PROC-084, file: LL-FORGE.yaml, severity: MEDIUM, keywords: [cross-model-review, SDD, process] }
+  - { id: LL-PROC-085, file: LL-FORGE.yaml, severity: MEDIUM, keywords: [SDD, Telegram, document-generation] }
+  - { id: LL-PROC-086, file: LL-FORGE.yaml, severity: HIGH, keywords: [cost-estimates, accuracy, measurement] }
+  - { id: LL-N8N-064, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, encryption-key, credentials, Docker] }
+  - { id: LL-N8N-065, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, $vars, $env, community-edition] }
+  - { id: LL-N8N-066, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, PostgreSQL, passthrough, data-flow] }
+  - { id: LL-N8N-067, file: LL-FORGE.yaml, severity: MEDIUM, keywords: [n8n, IF-node, looseTypeValidation] }
+  - { id: LL-N8N-068, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, Execute-Workflow, source, database] }
+  - { id: LL-N8N-069, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, LLM-Chain, chatInput] }
+  - { id: LL-N8N-070, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, PostgreSQL, zero-rows, alwaysOutputData] }
+  - { id: LL-N8N-071, file: LL-FORGE.yaml, severity: MEDIUM, keywords: [PowerShell, Docker, variable-expansion] }
+  - { id: LL-N8N-072, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, sub-workflow, Published] }
+  - { id: LL-N8N-073, file: LL-FORGE.yaml, severity: HIGH, keywords: [SQL-injection, single-quotes, JSONB] }
+  - { id: LL-N8N-074, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, triple-braces, Python-f-strings] }
+  - { id: LL-N8N-075, file: LL-FORGE.yaml, severity: MEDIUM, keywords: [n8n, import, duplicates] }
+  - { id: LL-N8N-076, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, credentials, encryption-key] }
+  - { id: LL-N8N-077, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, Execute-Workflow, workflowId] }
+  - { id: LL-N8N-078, file: LL-FORGE.yaml, severity: MEDIUM, keywords: [n8n, Gemini, model-name] }
+  - { id: LL-N8N-087, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, cost-logger, model-IDs] }
+  - { id: LL-N8N-088, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, Phase-8, empty-data, Validator, regex, Claude] }
+  - { id: LL-N8N-089, file: LL-FORGE.yaml, severity: MEDIUM, keywords: [n8n, Execute-step, debugging] }
+  - { id: LL-N8N-090, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, PostgreSQL, alwaysOutputData] }
+  - { id: LL-N8N-091, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, sub-workflow, Published] }
+  - { id: LL-N8N-092, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, $env, Code-node, sandbox] }
+  - { id: LL-N8N-093, file: LL-FORGE.yaml, severity: MEDIUM, keywords: [n8n, duplicates, run_id, UPSERT] }
+  - { id: LL-BUILD-079, file: LL-FORGE.yaml, severity: HIGH, keywords: [Claude-Code, specs, SDD] }
+  - { id: LL-BUILD-080, file: LL-FORGE.yaml, severity: MEDIUM, keywords: [n8n, sub-workflow, refactoring] }
+  - { id: LL-BUILD-081, file: LL-FORGE.yaml, severity: HIGH, keywords: [API-keys, security, export] }
+  - { id: LL-BUILD-090, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, deploy, audit, validation] }
+  - { id: LL-BUILD-091, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, deploy, import, disk-vs-database] }
+
+summary:
+  total_entries: 156
+  by_file: { LL-MASTER.yaml: 90, LL-FORGE.yaml: 66 }
+  overlapping_ids: [LL-ARCH-022, LL-ARCH-033, LL-COST-042, LL-COST-043, LL-OPS-027, LL-PROC-004, LL-PROC-034]
+  note: "Overlapping IDs exist in both files — MASTER has OpenClaw context, FORGE has n8n/Forge context"

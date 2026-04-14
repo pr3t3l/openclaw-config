@@ -1,0 +1,1675 @@
+# LL-FORGE.yaml — Forge Platform Lessons Learned
+# Product Intelligence Pipeline on n8n + PostgreSQL + Docker
+# Format: Structured YAML per entry — grep-searchable, Python-parseable
+# Last updated: 2026-04-12
+# Total entries: 66
+
+---
+
+# ============================================================
+# ARCHITECTURE
+# ============================================================
+
+- id: LL-ARCH-001
+  date: 2026-04-08
+  category: ARCH
+  system: Forge/PostgreSQL
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Confusion about where to store product configuration — database vs
+    config files vs environment variables.
+  immediate_cause: >
+    No clear convention established before build.
+  root_cause: >
+    Missing architectural decision about config storage layer.
+  solution: >
+    JSON config = source of truth for static config (works offline, no API
+    rate limits). DB = live transactional data only. Rule: "if it can't be
+    edited from the DB, it shouldn't be in the DB."
+  prevention_action: >
+    product_configs table stores JSONB config. Static product definitions
+    never go in env vars or spreadsheets.
+  keywords:
+    - config
+    - JSONB
+    - PostgreSQL
+    - product_configs
+    - architecture
+
+- id: LL-ARCH-022
+  date: 2026-04-08
+  category: ARCH
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    LLM used for tasks that are deterministic (counting, string matching,
+    math), wasting tokens and adding latency.
+  immediate_cause: >
+    Default tendency to route everything through LLM nodes.
+  root_cause: >
+    No explicit decision rule for LLM vs deterministic.
+  solution: >
+    If a task can be done with string matching, math, or JSON traversal,
+    do NOT use an LLM. LLMs are for synthesis and generation only.
+  prevention_action: >
+    Confidence Dashboard, Generic Detector, cost logger, structural
+    validator, stale barrier — all implemented as deterministic Code nodes.
+  keywords:
+    - LLM
+    - deterministic
+    - cost
+    - Function node
+    - Code node
+
+- id: LL-ARCH-033
+  date: 2026-04-08
+  category: ARCH
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Phase 8 LLM receives massive context (all 7 prior artifacts raw),
+    exceeding token limits and producing unfocused output.
+  immediate_cause: >
+    No compression logic between artifact storage and LLM prompt.
+  root_cause: >
+    Missing specification of exact field paths per source phase.
+  solution: >
+    Input compression is mandatory. Extract ONLY the fields that phase
+    needs. Define exact field paths, not "top N" or "relevant fields."
+  prevention_action: >
+    Phase 8 compression rules with deterministic field extraction defined
+    in WORKFLOW_SPEC §5.
+  keywords:
+    - compression
+    - context
+    - tokens
+    - Phase 8
+    - prompt engineering
+
+- id: LL-ARCH-040
+  date: 2026-04-08
+  category: ARCH
+  system: Forge/n8n
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Multiple ways to write artifacts (INSERT vs UPDATE vs UPSERT) causing
+    inconsistent behavior.
+  immediate_cause: >
+    Different developers/sessions using different SQL patterns.
+  root_cause: >
+    No canonical write pattern established.
+  solution: >
+    UPSERT is the ONE write pattern. No INSERT-then-UPDATE alternatives.
+    ON CONFLICT (product_id, phase_number, run_id) DO UPDATE.
+  prevention_action: >
+    SaveArtifact node uses single UPSERT query for all phases.
+  keywords:
+    - UPSERT
+    - SQL
+    - PostgreSQL
+    - write pattern
+
+- id: LL-ARCH-044
+  date: 2026-04-08
+  category: ARCH
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    No cost tracking after LLM calls — impossible to know how much a run
+    costs.
+  immediate_cause: >
+    n8n does NOT auto-track LLM costs.
+  root_cause: >
+    n8n native LLM nodes don't expose usage metadata in an accessible way.
+  solution: >
+    Every LLM node needs a dedicated cost-logger Code node immediately
+    after it. Gemini returns token usage in different field names than
+    OpenAI/Anthropic.
+  prevention_action: >
+    CostLog node in Phase Finalize sub-workflow handles all 3 providers.
+  keywords:
+    - cost
+    - tokens
+    - LLM
+    - Gemini
+    - OpenAI
+    - Anthropic
+    - cost logger
+
+- id: LL-ARCH-045
+  date: 2026-04-08
+  category: ARCH
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    SerpAPI returns 429 rate limit errors when multiple searches execute
+    back-to-back.
+  immediate_cause: >
+    n8n does NOT auto-throttle HTTP Request nodes.
+  root_cause: >
+    SerpAPI has 1 req/sec rate limit; sequential nodes fire instantly.
+  solution: >
+    Add 1.1s Wait node between each SerpAPI HTTP Request call.
+  prevention_action: >
+    SplitInBatches loop includes Wait node in the loop-back path.
+  keywords:
+    - SerpAPI
+    - rate limit
+    - throttle
+    - Wait node
+    - HTTP Request
+
+- id: LL-ARCH-046
+  date: 2026-04-08
+  category: ARCH
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Ambiguity about whether verified_facts lives inside artifact.data or
+    at the envelope level, causing queries to miss data.
+  immediate_cause: >
+    LLM generates verified_facts inside its output; PostgreSQL column
+    expects it at envelope level.
+  root_cause: >
+    No explicit hoisting convention documented.
+  solution: >
+    LLM generates the phase schema. Function node wraps it in the envelope
+    and HOISTS verified_facts/assumptions to envelope level. PostgreSQL
+    reads envelope level, never data.verified_facts.
+  prevention_action: >
+    Envelope wrapper Code node in Phase Finalize sub-workflow handles
+    hoisting for all phases.
+  keywords:
+    - envelope
+    - verified_facts
+    - hoisting
+    - JSONB
+    - data model
+
+# ============================================================
+# COST
+# ============================================================
+
+- id: LL-COST-042
+  date: 2026-04-08
+  category: COST
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Mini/nano models produce subtly wrong output that passes validation
+    but degrades strategy quality.
+  immediate_cause: >
+    Temptation to use cheaper models for "simple" phases.
+  root_cause: >
+    All phases require synthesis, not just extraction — mini models lack
+    this capability.
+  solution: >
+    Absolute rule: no mini/nano models anywhere. Use Sonnet, GPT-5.2, or
+    Gemini 3.1 Pro for everything.
+  prevention_action: >
+    Model assignment table in WORKFLOW_SPEC §6 enforces minimum tier.
+  keywords:
+    - model selection
+    - quality
+    - mini models
+    - nano models
+    - cost vs quality
+
+- id: LL-COST-043
+  date: 2026-04-08
+  category: COST
+  system: Forge/n8n
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Fixed budget thresholds don't scale with workflow complexity.
+  immediate_cause: >
+    8-phase workflow has different cost profile than a 3-phase workflow.
+  root_cause: >
+    Budget thresholds were hardcoded globally.
+  solution: >
+    Budget thresholds must be dynamic per workflow length. 8 phases → $3
+    target / $10 ceiling. Store in product_config.budget_thresholds.
+  prevention_action: >
+    BudgetCheck reads from hardcoded values (V1) but designed for
+    per-product override in V1.1.
+  keywords:
+    - budget
+    - thresholds
+    - cost ceiling
+    - dynamic config
+
+- id: LL-COST-047
+  date: 2026-04-08
+  category: COST
+  system: Forge
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Cost estimates in SDD docs were 40-60% lower than actual production
+    costs.
+  immediate_cause: >
+    Estimates didn't account for retries, longer contexts, and re-runs.
+  root_cause: >
+    Publishing estimates before measuring is inherently unreliable.
+  solution: >
+    Do NOT publish cost estimates before measuring. Measure after first 3
+    production runs, then publish.
+  failed_attempts:
+    - "Estimating from model pricing pages: missed retry overhead"
+    - "Cross-model review of estimates: all 3 models were equally optimistic"
+  prevention_action: >
+    All docs use TBD for costs until measured. HTML comments mark future
+    measurement points.
+  keywords:
+    - cost estimates
+    - accuracy
+    - measurement
+    - SDD
+
+- id: LL-COST-048
+  date: 2026-04-08
+  category: COST
+  system: Forge/n8n
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Search API costs silently excluded from budget tracking.
+  immediate_cause: >
+    Budget checker only summed LLM costs.
+  root_cause: >
+    Search calls weren't logged to phase_execution_log.
+  solution: >
+    Search API costs are real money (~$0.01/query × 10-16 queries per run
+    = $0.10-0.16). Budget checks must SUM both call types.
+  prevention_action: >
+    phase_execution_log tracks call_type = 'search' alongside 'llm'.
+    SearchCost PG nodes log each SerpAPI call.
+  keywords:
+    - SerpAPI
+    - budget
+    - cost tracking
+    - search API
+
+# ============================================================
+# QUALITY
+# ============================================================
+
+- id: LL-QUAL-034
+  date: 2026-04-08
+  category: QUAL
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    LLM output missing evidence sources — claims without backing.
+  immediate_cause: >
+    Prompt didn't explicitly require source fields.
+  root_cause: >
+    Quality is designed in the spec, not QA'd afterward. If the schema
+    doesn't require a source field, facts will be unsourced.
+  solution: >
+    verified_facts item schema requires source + source_type +
+    date_verified. Structural validator enforces non-empty arrays for
+    research phases.
+  prevention_action: >
+    Schema defined in WORKFLOW_SPEC §3, enforced by Validator Code node.
+  keywords:
+    - quality
+    - verified_facts
+    - evidence
+    - schema validation
+
+- id: LL-QUAL-049
+  date: 2026-04-08
+  category: QUAL
+  system: Forge/n8n
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Validator rejecting phases 1,4,5,6 for empty verified_facts when
+    those phases legitimately have no web research.
+  immediate_cause: >
+    Validator applied same rule to all phases.
+  root_cause: >
+    No distinction between research and non-research phases.
+  solution: >
+    Phases without web research (1,4,5,6) produce empty verified_facts[]
+    — that is expected. Phases WITH web research (2,3,7) MUST produce
+    non-empty verified_facts[]. Validator uses is_research_phase flag.
+  prevention_action: >
+    PrepFinalize sets is_research_phase=true for phases 2,3,7 only.
+  keywords:
+    - validation
+    - verified_facts
+    - research phases
+    - false positive
+
+- id: LL-QUAL-050
+  date: 2026-04-08
+  category: QUAL
+  system: Forge/n8n
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Anti-persona in Phase 3 was invented without evidence — just a
+    plausible-sounding non-buyer profile.
+  immediate_cause: >
+    Prompt requested anti-persona but didn't require evidence.
+  root_cause: >
+    Same validation rules as regular personas must apply to anti-persona.
+  solution: >
+    Anti-persona requires non-empty rejection_evidence +
+    ad_exclusion_keywords + signals. Validator checks all three.
+  prevention_action: >
+    Phase 3 validator checks anti_persona.rejection_evidence is non-empty.
+  keywords:
+    - anti-persona
+    - Phase 3
+    - evidence
+    - validation
+
+- id: LL-QUAL-051
+  date: 2026-04-08
+  category: QUAL
+  system: Forge/n8n
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Phase 8 strategy output contained generic marketing phrases that
+    add no product-specific value.
+  immediate_cause: >
+    LLM defaults to business-speak when synthesizing across many inputs.
+  root_cause: >
+    No detection mechanism for lazy output.
+  solution: >
+    Generic Output Detector scans Phase 8 text fields for banned phrases
+    ("leverage social media", "synergy", etc.). Flags at G2 but does NOT
+    auto-fail — human decides.
+  prevention_action: >
+    generic_detector.js with 26 banned phrases, stored as metadata on
+    Phase 8 artifact.
+  keywords:
+    - generic detection
+    - banned phrases
+    - quality
+    - Phase 8
+    - G2
+
+- id: LL-QUAL-052
+  date: 2026-04-08
+  category: QUAL
+  system: Forge/n8n
+  severity: LOW
+  status: VALIDATED
+  problem_statement: >
+    Banned language detection was flagging non-ASCII characters in valid
+    English content (accented names, currency symbols).
+  immediate_cause: >
+    Detection used non-ASCII regex instead of specific token list.
+  root_cause: >
+    Conflating "non-English" with "non-ASCII."
+  solution: >
+    Banned language detection uses a specific token list (hispanohablante,
+    España, español, en español), NOT non-ASCII detection.
+  prevention_action: >
+    Validator Code node uses string.includes() on specific tokens.
+  keywords:
+    - banned language
+    - non-ASCII
+    - validation
+    - false positive
+
+# ============================================================
+# DATA MODEL
+# ============================================================
+
+- id: LL-DATA-053
+  date: 2026-04-08
+  category: DATA
+  system: Forge/PostgreSQL
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Run ID collision possible if two runs start in the same second.
+  immediate_cause: >
+    Date-based IDs (PI-YYYYMMDD-NNN) without sequence.
+  root_cause: >
+    No atomic counter for the numeric suffix.
+  solution: >
+    Use PostgreSQL sequence (run_sequence) for the numeric suffix.
+    Format: PI-YYYYMMDD-NNNN where NNNN comes from nextval().
+  prevention_action: >
+    CREATE SEQUENCE run_sequence in migration script.
+  keywords:
+    - run_id
+    - collision
+    - sequence
+    - PostgreSQL
+
+- id: LL-DATA-054
+  date: 2026-04-08
+  category: DATA
+  system: Forge/PostgreSQL
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    G2 feedback overwrites G1 feedback in a single TEXT column.
+  immediate_cause: >
+    workflow_runs.human_feedback was TEXT, not JSONB.
+  root_cause: >
+    Design assumed only one gate.
+  solution: >
+    Use JSONB column: {g1: "...", g2: "..."}. Each gate writes to its
+    own key using jsonb_set().
+  prevention_action: >
+    human_feedback JSONB DEFAULT '{}' in CREATE TABLE.
+  keywords:
+    - human feedback
+    - gates
+    - JSONB
+    - G1
+    - G2
+
+- id: LL-DATA-055
+  date: 2026-04-08
+  category: DATA
+  system: Forge/PostgreSQL
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    After a failure, resume doesn't know which phase was being attempted
+    — only the last completed phase.
+  immediate_cause: >
+    current_phase was updated after completion, not at start.
+  root_cause: >
+    Update timing convention not specified.
+  solution: >
+    current_phase must be updated at the START of a phase, not after
+    completion.
+  prevention_action: >
+    P*_UpdatePhase nodes run BEFORE the LLM call, not after.
+  keywords:
+    - resume
+    - failure recovery
+    - current_phase
+    - workflow_runs
+
+- id: LL-DATA-056
+  date: 2026-04-08
+  category: DATA
+  system: Forge/PostgreSQL
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Cost SUM queries for 'llm' silently undercount by up to 30% because
+    retries are logged as separate call_type 'retry'.
+  immediate_cause: >
+    call_type enum included 'retry' as a separate value.
+  root_cause: >
+    A retry IS an LLM call — it shouldn't be a different type.
+  solution: >
+    call_type enum only has 'llm' and 'search'. Retries tracked via
+    is_retry boolean column.
+  prevention_action: >
+    CHECK constraint: call_type IN ('llm', 'search').
+  keywords:
+    - cost tracking
+    - retry
+    - call_type
+    - undercounting
+
+- id: LL-DATA-057
+  date: 2026-04-08
+  category: DATA
+  system: Forge/PostgreSQL
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Confidence dashboard and generic warnings have nowhere to be stored
+    — they're not part of Phase 8's LLM output (data column).
+  immediate_cause: >
+    No metadata column on phase_artifacts.
+  root_cause: >
+    Post-phase deterministic outputs weren't anticipated in schema.
+  solution: >
+    Add metadata JSONB column to phase_artifacts. Confidence report and
+    generic warnings stored there, separate from LLM data.
+  prevention_action: >
+    metadata JSONB NOT NULL DEFAULT '{}' in CREATE TABLE.
+  keywords:
+    - metadata
+    - confidence dashboard
+    - generic detector
+    - schema
+
+- id: LL-DATA-058
+  date: 2026-04-08
+  category: DATA
+  system: Forge/PostgreSQL
+  severity: LOW
+  status: VALIDATED
+  problem_statement: >
+    "Get latest intelligence" query mixes rows from different runs.
+  immediate_cause: >
+    Naive ORDER BY created_at DESC LIMIT 8 doesn't isolate run.
+  root_cause: >
+    No CTE to identify the latest run first.
+  solution: >
+    Use CTE to isolate latest completed run_id, then JOIN artifacts.
+  prevention_action: >
+    Query pattern documented in DATA_MODEL §8.
+  keywords:
+    - query
+    - CTE
+    - latest run
+    - mixed rows
+
+- id: LL-DATA-059
+  date: 2026-04-08
+  category: DATA
+  system: Forge/PostgreSQL
+  severity: LOW
+  status: VALIDATED
+  problem_statement: >
+    gen_random_uuid() fails on PostgreSQL < 13 without pgcrypto.
+  immediate_cause: >
+    Migration script didn't include CREATE EXTENSION.
+  root_cause: >
+    Default assumption about PostgreSQL version.
+  solution: >
+    Migration scripts must include CREATE EXTENSION IF NOT EXISTS pgcrypto
+    before any table that uses gen_random_uuid().
+  prevention_action: >
+    First line of migrate_forge.sql is CREATE EXTENSION.
+  keywords:
+    - pgcrypto
+    - UUID
+    - migration
+    - PostgreSQL
+
+# ============================================================
+# OPERATIONS
+# ============================================================
+
+- id: LL-OPS-027
+  date: 2026-04-08
+  category: OPS
+  system: Forge
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    API keys exposed in Claude.ai conversation history.
+  immediate_cause: >
+    User pasted keys directly in chat.
+  root_cause: >
+    No clear rule about where credentials can be entered.
+  solution: >
+    API keys must never be pasted in Claude.ai chat — only in terminal
+    or Claude Code.
+  prevention_action: >
+    All credential setup via n8n UI or docker-compose .env file.
+  keywords:
+    - API keys
+    - security
+    - credentials
+
+- id: LL-OPS-041
+  date: 2026-04-08
+  category: OPS
+  system: Forge
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Git conflicts when multiple Claude Code instances edit the same repo.
+  immediate_cause: >
+    Two instances modifying workflow JSONs simultaneously.
+  root_cause: >
+    No convention for single-instance editing.
+  solution: >
+    One Claude Code instance per repo at a time.
+  prevention_action: >
+    Close other instances before starting a build session.
+  keywords:
+    - Claude Code
+    - git conflicts
+    - concurrency
+
+- id: LL-OPS-060
+  date: 2026-04-08
+  category: OPS
+  system: Forge/n8n
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    SerpAPI queries include "site:null" when competitor URL is null.
+  immediate_cause: >
+    Query builder doesn't null-check competitor URLs.
+  root_cause: >
+    product_config seed data has null URL for Cold Case Inc.
+  solution: >
+    Query-builder Code nodes must null-check competitor URLs and fall
+    back to name-only queries.
+  prevention_action: >
+    BuildQueries nodes include: if (url) site:${url} else name-only.
+  keywords:
+    - SerpAPI
+    - null check
+    - competitor URLs
+    - query builder
+
+- id: LL-OPS-082
+  date: 2026-04-09
+  category: OPS
+  system: Forge/Docker
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    PowerShell rejects stdin redirection to Docker containers.
+  immediate_cause: >
+    PowerShell doesn't support the < operator for stdin.
+  root_cause: >
+    PowerShell syntax differs from bash.
+  solution: >
+    Use Get-Content file | docker exec -i or cmd /c "docker exec -i
+    ... < file". Better: use WSL directly for all Docker operations.
+  failed_attempts:
+    - "docker exec -i container psql < file.sql — PowerShell error"
+    - "Quoting the < operator — still fails"
+  prevention_action: >
+    Always use WSL for Docker commands, not PowerShell.
+  keywords:
+    - PowerShell
+    - Docker
+    - stdin
+    - redirect
+    - WSL
+
+- id: LL-OPS-083
+  date: 2026-04-09
+  category: OPS
+  system: Forge/Docker
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Environment variable changes in docker-compose.yml not picked up
+    after docker compose restart.
+  immediate_cause: >
+    restart doesn't re-read the compose file for env changes.
+  root_cause: >
+    Docker Compose restart only restarts the container, doesn't recreate.
+  solution: >
+    Use docker compose down && up -d for env var changes. Be aware this
+    can regenerate n8n encryption key (see LL-N8N-064).
+  prevention_action: >
+    Set N8N_ENCRYPTION_KEY first, then down/up is safe.
+  keywords:
+    - Docker Compose
+    - restart
+    - environment variables
+    - down/up
+  references:
+    - LL-N8N-064
+
+# ============================================================
+# PROCESS
+# ============================================================
+
+- id: LL-PROC-004
+  date: 2026-04-08
+  category: PROC
+  system: Forge
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Module built to consume output from another module that doesn't
+    exist yet — integration fails on first test.
+  immediate_cause: >
+    Build order not enforced.
+  root_cause: >
+    No dependency-aware build sequence.
+  solution: >
+    Never build a module that consumes another module's output before
+    the producer module exists and is tested.
+  prevention_action: >
+    plan.md build phases enforce order: Phase 1 before Phase 2, etc.
+  keywords:
+    - build order
+    - dependencies
+    - integration
+
+- id: LL-PROC-034
+  date: 2026-04-08
+  category: PROC
+  system: Forge
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Single-model design review misses structural issues that other
+    models catch.
+  immediate_cause: >
+    Each model has blind spots the others don't.
+  root_cause: >
+    Homogeneous review process.
+  solution: >
+    Cross-validate major decisions across GPT + Gemini + Claude before
+    finalizing. Share output with other models and bring back feedback.
+  prevention_action: >
+    All SDD docs went through 3-model cross-review.
+  keywords:
+    - cross-model review
+    - validation
+    - SDD
+
+- id: LL-PROC-061
+  date: 2026-04-08
+  category: PROC
+  system: Forge
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Third round of cross-model review found only cosmetic issues — not
+    worth the token cost.
+  immediate_cause: >
+    Diminishing returns after 2 rounds.
+  root_cause: >
+    Round 1 catches structural issues, Round 2 catches interaction bugs.
+    Round 3 finds edge cases that are V2 scope.
+  solution: >
+    Two rounds of 3-model cross-review is the sweet spot.
+  prevention_action: >
+    Stop after Round 2 unless critical issues found.
+  keywords:
+    - cross-model review
+    - diminishing returns
+    - SDD process
+
+- id: LL-PROC-062
+  date: 2026-04-08
+  category: PROC
+  system: Forge
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Multi-model generation per phase (3 models generate, then merge)
+    adds cost and complexity without proportional quality gain.
+  immediate_cause: >
+    Merge logic is complex and dilutes accountability.
+  root_cause: >
+    Generation is different from auditing — multi-model works for audit.
+  solution: >
+    V1: Single model per phase, assigned by task type. V1.5: add
+    second-model AUDIT (not generation) on Phase 3 and Phase 8 only.
+    Pattern: generate → audit → targeted repair.
+  prevention_action: >
+    WORKFLOW_SPEC §6 assigns exactly one model per phase.
+  keywords:
+    - multi-model
+    - generation vs audit
+    - cost
+    - V1 vs V1.5
+
+- id: LL-PROC-063
+  date: 2026-04-08
+  category: PROC
+  system: Forge
+  severity: LOW
+  status: VALIDATED
+  problem_statement: >
+    Pressure to integrate 5+ specialized research APIs before proving
+    the basic pipeline works.
+  immediate_cause: >
+    Over-engineering research infrastructure.
+  root_cause: >
+    Premature optimization of data sources.
+  solution: >
+    SerpAPI snippet-based research is sufficient for V1. Add ONE
+    specialized source in V1.1 (Reddit community extraction or keyword
+    volume API), not five.
+  prevention_action: >
+    INTEGRATIONS.md §5 explicitly lists what's NOT integrated and why.
+  keywords:
+    - SerpAPI
+    - research APIs
+    - V1 scope
+    - premature optimization
+
+- id: LL-PROC-084
+  date: 2026-04-09
+  category: PROC
+  system: Forge
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Unclear how many rounds of cross-model review to do for SDD docs.
+  immediate_cause: >
+    No stopping criterion defined.
+  root_cause: >
+    Process not formalized.
+  solution: >
+    Two rounds is optimal. Round 1 detects structural errors. Round 2
+    detects interaction bugs between documents. Round 3 is diminishing
+    returns.
+  prevention_action: >
+    Documented as standard process for all future SDD work.
+  keywords:
+    - cross-model review
+    - SDD
+    - process
+  references:
+    - LL-PROC-061
+
+- id: LL-PROC-085
+  date: 2026-04-09
+  category: PROC
+  system: Forge
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    SDD Planner bot (Telegram) regenerates documents from scratch instead
+    of incorporating specific corrections.
+  immediate_cause: >
+    Bot doesn't support incremental edits.
+  root_cause: >
+    Tool limitation — regeneration is the only mode.
+  solution: >
+    Generate SDD docs directly in Claude.ai where corrections can be
+    iterated and verified individually.
+  prevention_action: >
+    Use Claude.ai for document generation, not Telegram bots.
+  keywords:
+    - SDD
+    - Telegram
+    - document generation
+    - incremental edits
+
+- id: LL-PROC-086
+  date: 2026-04-09
+  category: PROC
+  system: Forge
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Cost estimates in SDD documents are consistently 40-60% too low.
+  immediate_cause: >
+    Estimates don't account for retries, context growth, and re-runs.
+  root_cause: >
+    Publishing estimates before production measurement.
+  solution: >
+    Remove cost estimates from docs. Measure after first 3 executions,
+    then publish.
+  prevention_action: >
+    All cost fields marked TBD until measured.
+  keywords:
+    - cost estimates
+    - accuracy
+    - measurement
+  references:
+    - LL-COST-047
+
+# ============================================================
+# n8n PLATFORM
+# ============================================================
+
+- id: LL-N8N-064
+  date: 2026-04-09
+  category: N8N
+  system: Forge/Docker/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    All n8n credentials become invalid after docker compose down/up.
+  timeline:
+    - "2026-04-09T03:00: docker compose down && up to apply env changes"
+    - "2026-04-09T03:05: All credential tests fail — decryption error"
+    - "2026-04-09T03:30: Root cause identified — encryption key regenerated"
+  immediate_cause: >
+    docker compose down removes the container; up creates a new one with
+    a new auto-generated encryption key.
+  root_cause: >
+    n8n generates a random encryption key on first start. Without pinning
+    it, each new container gets a different key and can't decrypt
+    credentials stored with the old key.
+  failed_attempts:
+    - "Re-entering credentials manually: works but doesn't scale"
+    - "Exporting/reimporting credentials: fails if key changed"
+  solution: >
+    Pin N8N_ENCRYPTION_KEY in docker-compose.yml environment section.
+    Use docker compose restart (not down/up) for env var changes.
+  prevention_action: >
+    N8N_ENCRYPTION_KEY=forge-platform-encryption-key-2026 set in
+    docker-compose.yml before any credentials are created.
+  keywords:
+    - n8n
+    - encryption key
+    - credentials
+    - Docker Compose
+    - down/up
+
+- id: LL-N8N-065
+  date: 2026-04-09
+  category: N8N
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    $vars.SERPAPI_KEY returns undefined in n8n community edition.
+  immediate_cause: >
+    n8n community edition does not support the Variables feature ($vars).
+  root_cause: >
+    Variables is an enterprise/paid feature.
+  solution: >
+    Use $env. with environment variables injected via docker-compose.yml
+    environment section instead of $vars.
+  prevention_action: >
+    All references changed from $vars. to $env. via find-and-replace.
+  keywords:
+    - n8n
+    - variables
+    - $vars
+    - $env
+    - community edition
+
+- id: LL-N8N-066
+  date: 2026-04-09
+  category: N8N
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Data from prior nodes lost after a PostgreSQL node executes because
+    PG nodes replace input with query results.
+  immediate_cause: >
+    _passthrough pattern breaks — PG node output only contains query rows.
+  root_cause: >
+    n8n PostgreSQL nodes don't pass through input data; they replace it.
+  solution: >
+    Use $('NodeName').first().json to reference prior nodes directly.
+    Or make Code nodes self-sufficient by querying DB themselves.
+  prevention_action: >
+    All Code nodes use explicit node references instead of $json from
+    immediate predecessor.
+  keywords:
+    - n8n
+    - PostgreSQL
+    - passthrough
+    - data flow
+    - node references
+
+- id: LL-N8N-067
+  date: 2026-04-09
+  category: N8N
+  system: Forge/n8n
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    IF nodes with expression-based conditions fail silently — always
+    take the false branch.
+  immediate_cause: >
+    Strict type validation rejects string-to-boolean comparisons.
+  root_cause: >
+    n8n v2.6 IF nodes default to strict type validation.
+  solution: >
+    Add looseTypeValidation: true to all IF nodes that use expressions.
+  prevention_action: >
+    generate_workflow.py sets looseTypeValidation on all IF nodes.
+  keywords:
+    - n8n
+    - IF node
+    - looseTypeValidation
+    - type coercion
+
+- id: LL-N8N-068
+  date: 2026-04-09
+  category: N8N
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Execute Workflow node fails with "workflow not found" even though
+    sub-workflow exists.
+  immediate_cause: >
+    source was set to "parameter" (expects inline JSON) instead of
+    "database" (references by ID).
+  root_cause: >
+    n8n documentation unclear about the difference between source modes.
+  solution: >
+    Use "source": "database" to reference sub-workflows by ID from n8n's
+    internal database.
+  prevention_action: >
+    All Execute Workflow nodes use source: database in generator.
+  keywords:
+    - n8n
+    - Execute Workflow
+    - source
+    - database
+    - parameter
+
+- id: LL-N8N-069
+  date: 2026-04-09
+  category: N8N
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    LLM Chain node produces empty output even though the model is
+    configured correctly.
+  immediate_cause: >
+    Input field was named "prompt" instead of "chatInput".
+  root_cause: >
+    n8n LLM Chain nodes specifically look for $json.chatInput field.
+  solution: >
+    Compression Code nodes must output field named chatInput, not prompt
+    or input or message.
+  prevention_action: >
+    All P*_Compress nodes return {chatInput: prompt, ...}.
+  keywords:
+    - n8n
+    - LLM Chain
+    - chatInput
+    - field name
+    - prompt
+
+- id: LL-N8N-070
+  date: 2026-04-09
+  category: N8N
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Workflow halts silently at PostgreSQL nodes that return 0 rows on the
+    happy path (e.g., no stale phases = good, but flow stops).
+  timeline:
+    - "2026-04-10: P8_StaleCheck returns 0 rows (correct — no stale phases)"
+    - "2026-04-10: Flow halts at P8_StaleCheck — Phase 8 never executes"
+    - "2026-04-10: Fixed by adding alwaysOutputData: true"
+  immediate_cause: >
+    n8n PG nodes with 0 rows produce no output item, halting the flow.
+  root_cause: >
+    n8n design: nodes without output stop the execution branch.
+  solution: >
+    Add alwaysOutputData: true to any PG node that might return 0 rows.
+  prevention_action: >
+    Check Prior Run, P8_StaleCheck, and any conditional query nodes all
+    have this setting.
+  keywords:
+    - n8n
+    - PostgreSQL
+    - zero rows
+    - alwaysOutputData
+    - flow halt
+
+- id: LL-N8N-071
+  date: 2026-04-09
+  category: N8N
+  system: Forge/Docker
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Docker commands with $ variables fail in PowerShell because
+    PowerShell interprets $ as its own variable syntax.
+  immediate_cause: >
+    $json, $env, etc. in Docker commands get expanded by PowerShell.
+  root_cause: >
+    PowerShell and bash use the same $ prefix for different purposes.
+  solution: >
+    Use WSL for ALL Docker operations, not PowerShell.
+  prevention_action: >
+    All Docker commands in documentation use WSL/bash syntax.
+  keywords:
+    - PowerShell
+    - Docker
+    - variable expansion
+    - WSL
+
+- id: LL-N8N-072
+  date: 2026-04-09
+  category: N8N
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Execute Workflow nodes return "workflow not found" for sub-workflow
+    that exists and is saved.
+  immediate_cause: >
+    Sub-workflow was saved but not Published.
+  root_cause: >
+    n8n requires sub-workflows to be Published (active/published state)
+    before they can be called by Execute Workflow nodes.
+  solution: >
+    Click "Publish" button on sub-workflow after saving.
+  prevention_action: >
+    Deploy checklist includes "Publish sub-workflows" step.
+  keywords:
+    - n8n
+    - sub-workflow
+    - Published
+    - Execute Workflow
+
+- id: LL-N8N-073
+  date: 2026-04-09
+  category: N8N
+  system: Forge/n8n/PostgreSQL
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    SQL INSERT fails with syntax error when LLM output contains single
+    quotes (e.g., "armchair detective").
+  immediate_cause: >
+    Single quotes in JSON break the SQL string literal.
+  root_cause: >
+    String interpolation in SQL without escaping.
+  solution: >
+    Escape single quotes: .replace(/'/g,"''") before inserting into SQL.
+    Better long-term: use parameterized queries.
+  prevention_action: >
+    SaveArtifact SQL uses .replace(/'/g,"''") on all JSONB fields.
+  keywords:
+    - SQL injection
+    - single quotes
+    - escaping
+    - JSONB
+    - LLM output
+
+- id: LL-N8N-074
+  date: 2026-04-09
+  category: N8N
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    n8n workflow JSON has invalid syntax — triple braces {{{ }}} in SQL
+    query fields.
+  timeline:
+    - "2026-04-09: P1_UpdatePhase fails with 'invalid syntax'"
+    - "2026-04-09: Root cause: Python f-strings produced triple braces"
+    - "2026-04-09: 36 replacements made across workflow JSON"
+  immediate_cause: >
+    Python f-strings with 6 braces ({{{{{{) produce 3 literal braces.
+  root_cause: >
+    Python f-string brace escaping is unintuitive: {{ = literal {,
+    so {{{{ = literal {{, but {{{{{{ = literal {{{ which is invalid n8n.
+  solution: >
+    Use 4 braces ({{{{) in Python f-strings to produce 2 literal braces
+    ({{ }}) which is valid n8n expression syntax.
+  prevention_action: >
+    generate_workflow.py sql_phase() function uses 4 braces.
+  keywords:
+    - n8n
+    - triple braces
+    - Python f-strings
+    - expression syntax
+    - generate_workflow.py
+
+- id: LL-N8N-075
+  date: 2026-04-09
+  category: N8N
+  system: Forge/n8n
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Each workflow import creates a duplicate instead of updating the
+    existing workflow.
+  immediate_cause: >
+    n8n import doesn't match by name — it always creates new.
+  root_cause: >
+    n8n uses internal IDs, not names, for identity.
+  solution: >
+    Include a stable "id" field in the exported JSON. n8n will upsert
+    on that ID. Clean up legacy duplicates via n8n UI.
+  prevention_action: >
+    generate_workflow.py includes stable workflow IDs.
+  keywords:
+    - n8n
+    - import
+    - duplicates
+    - workflow ID
+
+- id: LL-N8N-076
+  date: 2026-04-09
+  category: N8N
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    All PostgreSQL nodes show credential errors after encryption key
+    change.
+  immediate_cause: >
+    Credential IDs reference encrypted data that can't be decrypted
+    with the new key.
+  root_cause: >
+    Encryption key changed during docker compose down/up.
+  solution: >
+    Re-create credentials in n8n UI and update all workflow JSONs with
+    new credential IDs.
+  prevention_action: >
+    Pin N8N_ENCRYPTION_KEY (see LL-N8N-064).
+  keywords:
+    - n8n
+    - credentials
+    - encryption key
+    - credential IDs
+  references:
+    - LL-N8N-064
+
+- id: LL-N8N-077
+  date: 2026-04-09
+  category: N8N
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Execute Workflow node's workflowId field doesn't evaluate $env
+    expressions — sub-workflow not found.
+  immediate_cause: >
+    n8n doesn't evaluate expressions in the workflowId parameter field.
+  root_cause: >
+    n8n treats workflowId as a static value, not an expression field.
+  solution: >
+    Hardcode the sub-workflow ID directly instead of using $env.
+  prevention_action: >
+    All Execute Workflow nodes use hardcoded ID: PzBvnQAwmi52e6bs.
+  keywords:
+    - n8n
+    - Execute Workflow
+    - workflowId
+    - $env
+    - expression
+
+- id: LL-N8N-078
+  date: 2026-04-09
+  category: N8N
+  system: Forge/n8n
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Gemini LLM node fails with "model not found" error.
+  immediate_cause: >
+    Model name "gemini-3.1-pro" doesn't exist in the API.
+  root_cause: >
+    n8n display names differ from API model IDs.
+  solution: >
+    Correct model name is "models/gemini-3.1-pro-preview". Always verify
+    in n8n dropdown or API documentation.
+  prevention_action: >
+    generate_workflow.py uses verified model name.
+  keywords:
+    - n8n
+    - Gemini
+    - model name
+    - API
+    - models/gemini-3.1-pro-preview
+
+- id: LL-N8N-087
+  date: 2026-04-10
+  category: N8N
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    CostLog pricing map keys don't match the model IDs that n8n actually
+    passes (e.g., "claude-sonnet-4-5-20250514" vs "claude-sonnet-4.5").
+  immediate_cause: >
+    Pricing map used display names, not API model IDs.
+  root_cause: >
+    n8n passes the API model ID, which differs from marketing names.
+  solution: >
+    Use API model IDs as pricing map keys. Add fuzzy fallback: if exact
+    key doesn't match, check if string contains 'claude'/'gpt'/'gemini'
+    and use corresponding pricing.
+  prevention_action: >
+    CostLog Code node in Phase Finalize has both exact match and fuzzy
+    fallback.
+  keywords:
+    - n8n
+    - cost logger
+    - model IDs
+    - pricing map
+    - fuzzy matching
+
+- id: LL-N8N-088
+  date: 2026-04-11
+  category: N8N
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Phase 8 artifact data is empty ({}) even though Claude generated
+    valid output visible in P8_LLM_Chain output.
+  timeline:
+    - "2026-04-10: First run — Phase 8 data empty"
+    - "2026-04-11: Second run — Phase 8 data empty again"
+    - "2026-04-11: Root cause identified in Validator regex"
+    - "2026-04-12: Data inserted manually via SQL"
+  immediate_cause: >
+    Validator regex fails to extract JSON from Claude's ```json wrapper,
+    leaving parsed data as null, which Envelope converts to {}.
+  root_cause: >
+    n8n LLM Chain nodes wrap output in {text: "..."} object. When Claude
+    adds ```json``` markdown fences, the Validator regex
+    /```(?:json)?\s*([\s\S]*?)```/ may fail on edge cases (nested
+    backticks, special characters), causing JSON.parse to throw, and p
+    remains null → data becomes {}.
+  failed_attempts:
+    - "Checking SaveArtifact SQL — correct, problem is upstream"
+    - "Checking Envelope node — correct, receives {} from Validator"
+    - "Re-running Phase 8 — same result, reproducible bug"
+  solution: >
+    V1 workaround: manually insert Phase 8 data via SQL from LLM output.
+    V1.1 fix: make Validator regex more robust — try multiple extraction
+    strategies (strip markdown fences, try raw parse, try extracting
+    first { to last }).
+  prevention_action: >
+    Add explicit logging in Validator to capture parse failures.
+    Consider instructing Claude to NOT use markdown fences in system
+    prompt.
+  keywords:
+    - n8n
+    - Phase 8
+    - empty data
+    - Validator
+    - regex
+    - markdown fences
+    - Claude
+    - JSON parsing
+
+- id: LL-N8N-089
+  date: 2026-04-11
+  category: N8N
+  system: Forge/n8n
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Cannot execute a single node in isolation — "Execute step" re-runs
+    ALL upstream nodes, taking 3+ minutes.
+  immediate_cause: >
+    n8n needs input data for the node, so it executes the entire upstream
+    chain.
+  root_cause: >
+    n8n doesn't cache node outputs between executions. Each "Execute
+    step" is a fresh execution of the dependency chain.
+  solution: >
+    Use "Retry with currently saved workflow (from node with error)" in
+    Executions tab — this resumes from the failed node using cached data
+    from the original execution.
+  prevention_action: >
+    For iterative debugging: fix the node, then Retry from Executions tab
+    instead of Execute step from Editor.
+  keywords:
+    - n8n
+    - Execute step
+    - upstream re-execution
+    - debugging
+    - Retry
+
+- id: LL-N8N-090
+  date: 2026-04-11
+  category: N8N
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Workflow halts at P8_StaleCheck on the happy path (no stale phases)
+    because PostgreSQL node returns 0 rows and produces no output.
+  immediate_cause: >
+    0 rows returned = no output item in n8n = downstream nodes don't
+    execute.
+  root_cause: >
+    n8n stops execution branches when a node produces no output items.
+    This is by design but breaks "negative check" patterns where 0 rows
+    is the success case.
+  solution: >
+    Add alwaysOutputData: true in node Settings for any PostgreSQL node
+    where 0 rows is a valid/expected result.
+  prevention_action: >
+    Audit all PG nodes: if the query CAN return 0 rows on a valid path,
+    add alwaysOutputData.
+  keywords:
+    - n8n
+    - PostgreSQL
+    - alwaysOutputData
+    - zero rows
+    - happy path
+  references:
+    - LL-N8N-070
+
+- id: LL-N8N-091
+  date: 2026-04-11
+  category: N8N
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Execute Workflow node returns "workflow not found" even though the
+    sub-workflow exists in n8n.
+  immediate_cause: >
+    Sub-workflow was saved but not Published.
+  root_cause: >
+    n8n requires sub-workflows to be in Published state (not just Saved)
+    before Execute Workflow nodes can reference them.
+  solution: >
+    Click the "Publish" button on the sub-workflow after every change.
+  prevention_action: >
+    Deploy checklist: after importing sub-workflow JSON, always click
+    Publish in the n8n UI.
+  keywords:
+    - n8n
+    - sub-workflow
+    - Published
+    - saved vs published
+    - Execute Workflow
+  references:
+    - LL-N8N-072
+
+- id: LL-N8N-092
+  date: 2026-04-11
+  category: N8N
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    $env variables are not accessible inside n8n Code nodes (JavaScript),
+    causing "access to env vars denied" error.
+  timeline:
+    - "2026-04-11: BudgetCheck Code node fails with env var access denied"
+    - "2026-04-11: Confirmed $env only works in expression fields"
+    - "2026-04-11: Hardcoded values as workaround"
+  immediate_cause: >
+    Code nodes run in a sandboxed VM that blocks $env access.
+  root_cause: >
+    n8n security model: Code nodes can't access environment variables
+    directly. $env only works in expression fields (SQL queries, HTTP
+    URLs, node parameter fields).
+  failed_attempts:
+    - "$env.BUDGET_TARGET in Code node — access denied error"
+    - "process.env.BUDGET_TARGET — also blocked in sandbox"
+  solution: >
+    Hardcode values directly in Code nodes. Or pass values from a prior
+    Set node that reads $env in an expression field and outputs them as
+    JSON fields.
+  prevention_action: >
+    BudgetCheck uses hardcoded budgetTarget=3.00 and budgetCeiling=10.00.
+    All Code nodes audited for $env references.
+  keywords:
+    - n8n
+    - $env
+    - Code node
+    - sandbox
+    - environment variables
+    - access denied
+  references:
+    - LL-N8N-065
+
+- id: LL-N8N-093
+  date: 2026-04-12
+  category: N8N
+  system: Forge/n8n
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Duplicate phase_artifacts rows accumulate across test runs because
+    each execution generates a new run_id.
+  immediate_cause: >
+    UPSERT key includes run_id — different run_id = new row, not update.
+  root_cause: >
+    By design (each run is independent), but during iterative testing
+    it creates 10+ copies of each phase's artifacts.
+  solution: >
+    Clean up test data periodically with DELETE keeping only latest per
+    phase. In production, this won't be an issue (each run is intentional).
+  prevention_action: >
+    Pre-run cleanup script or manual SQL: DELETE FROM phase_artifacts
+    keeping only MAX(created_at) per phase_number.
+  keywords:
+    - n8n
+    - duplicates
+    - run_id
+    - UPSERT
+    - test data cleanup
+
+# ============================================================
+# BUILD PROCESS
+# ============================================================
+
+- id: LL-BUILD-079
+  date: 2026-04-09
+  category: BUILD
+  system: Forge
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Claude Code generates its own specs instead of following the provided
+    SDD documents.
+  immediate_cause: >
+    Spec files not present in Claude Code's working directory.
+  root_cause: >
+    Claude Code defaults to inventing specifications when none are
+    provided, producing plausible but incorrect implementations.
+  solution: >
+    ALWAYS place spec files (WORKFLOW_SPEC.md, DATA_MODEL.md, etc.) in
+    the working directory before requesting implementation.
+  prevention_action: >
+    Repo structure: specs/ directory with all SDD docs, referenced in
+    every Claude Code prompt.
+  keywords:
+    - Claude Code
+    - specs
+    - SDD
+    - working directory
+
+- id: LL-BUILD-080
+  date: 2026-04-09
+  category: BUILD
+  system: Forge/n8n
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    183-node workflow is unmaintainable — changes to shared logic (cost
+    logging, validation) require editing 9 copies.
+  immediate_cause: >
+    Every phase had its own copy of the post-LLM processing chain.
+  root_cause: >
+    No sub-workflow abstraction for shared logic.
+  solution: >
+    Phase Finalize sub-workflow (13 nodes) called 9 times from main
+    workflow. SplitInBatches for search loops. 183 → 120 nodes (41%
+    reduction) without losing auditability.
+  prevention_action: >
+    Any logic used by 3+ phases must be a sub-workflow.
+  keywords:
+    - n8n
+    - sub-workflow
+    - refactoring
+    - node count
+    - maintainability
+
+- id: LL-BUILD-081
+  date: 2026-04-09
+  category: BUILD
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    API keys for Anthropic, OpenAI, and Gemini exposed in conversation
+    after running n8n export:credentials --decrypted.
+  timeline:
+    - "2026-04-09: Exported credentials to get PostgreSQL credential ID"
+    - "2026-04-09: Output pasted in chat with all API keys visible"
+    - "2026-04-09: Keys rotated on all 3 provider dashboards"
+  immediate_cause: >
+    --decrypted flag outputs plaintext API keys.
+  root_cause: >
+    Needed credential ID but used a command that also exports secrets.
+  solution: >
+    Rotate all exposed keys immediately. Delete the exported file.
+    Never paste --decrypted output in chat.
+  prevention_action: >
+    Use n8n UI to view credential IDs instead of CLI export.
+  keywords:
+    - API keys
+    - security
+    - credentials
+    - export
+    - rotation
+
+- id: LL-BUILD-090
+  date: 2026-04-10
+  category: BUILD
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Deployed workflow has broken connections, missing credentials, and
+    incorrect node references that only surface at runtime.
+  immediate_cause: >
+    No systematic audit before deploy.
+  root_cause: >
+    Generator produces valid JSON structure but can have semantic errors
+    (wrong node names in $() references, missing credentials, etc.).
+  solution: >
+    Systematic workflow audit before deploy: trace EVERY connection,
+    verify Code node $() references match real node names, verify PG
+    credentials, verify IF conditions.
+  prevention_action: >
+    validate_workflow.py runs 14 checks before deploy is allowed.
+  keywords:
+    - n8n
+    - deploy
+    - audit
+    - validation
+    - validate_workflow.py
+
+- id: LL-BUILD-091
+  date: 2026-04-10
+  category: BUILD
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Changes to workflow JSON files on disk have no effect — n8n keeps
+    executing the old version.
+  immediate_cause: >
+    n8n reads from its internal database, not from disk files.
+  root_cause: >
+    Workflow import copies JSON into n8n's SQLite/PostgreSQL. Editing
+    the source file doesn't update the internal copy.
+  solution: >
+    Re-import workflow JSON after every change using docker cp + n8n
+    import:workflow.
+  prevention_action: >
+    Deploy script (scripts/deploy.ps1) automates: validate → copy →
+    import → verify.
+  keywords:
+    - n8n
+    - deploy
+    - import
+    - disk vs database
+    - workflow sync
