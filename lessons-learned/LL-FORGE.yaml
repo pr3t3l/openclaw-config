@@ -1772,15 +1772,20 @@
     $input.all() in the "done" branch receives whatever the SplitInBatches
     node accumulated. In n8n, this is the data from the loop-back
     connection, which gets overwritten by intermediate PG nodes (LL-N8N-066).
+  failed_attempts:
+    - "$('P2_Search').all() in AggSnippets — fails with 'Node P2_Search
+      hasn't been executed' because loop-internal nodes are not accessible
+      by named reference from the done branch outside the loop"
   solution: >
-    Replace $input.all() with explicit named references to the HTTP node:
-    const searchItems = $('P2_Search').all();
-    Named references always access the node's output directly, regardless
-    of what SplitInBatches accumulated.
+    Move PG nodes (SearchCost) OUT of the SplitInBatches loop entirely.
+    Clean loop: SplitBatch -> Search(HTTP) -> Wait -> SplitBatch.
+    SearchCost runs AFTER the loop: AggSnippets -> SearchCost -> LLM.
+    Now $input.all() in AggSnippets receives HTTP responses directly.
   prevention_action: >
-    RULE: After SplitInBatches "done" output, NEVER use $input.all() to
-    read loop data. Always use $('NodeName').all() referencing the specific
-    node whose output you need.
+    RULE: SplitInBatches loop must contain ONLY nodes whose output you
+    want accumulated. Any PG/side-effect node must go AFTER the loop.
+    Named refs $('NodeName') do NOT work for nodes inside the loop
+    when called from outside the loop (done branch).
   keywords:
     - n8n
     - SplitInBatches
