@@ -2357,38 +2357,77 @@
   severity: HIGH
   status: VALIDATED
   problem_statement: >
-    Question: should V2 use the AI Agent node instead of HTTP Request?
-    The AI Agent node looks similar to chainLlm in the UI and supports
-    tools, memory, and output parsers.
+    n8n has 3 ways to call LLMs: chainLlm node, AI Agent node, and
+    HTTP Request node. Which to use when, and why V2 chose HTTP Request.
   immediate_cause: >
-    Investigation of whether AI Agent exposes tokenUsage that chainLlm
-    does not.
+    Investigated whether AI Agent node exposes token usage (cost data)
+    that chainLlm does not, since both look similar in the UI.
   root_cause: >
-    Both chainLlm and AI Agent use the same LangChain abstraction layer
-    (N8nLlmTracing). Token usage IS calculated internally but goes to
+    Source code analysis of n8n 2.6.3 revealed the internal architecture.
+    Both chainLlm and AI Agent use the same LangChain abstraction layer.
+    Token usage IS calculated internally (N8nLlmTracing.js) but goes to
     n8n's execution tracing system, NOT to the node's JSON output.
-    chainLlm output: formatResponse() strips everything to {text: "..."}.
-    AI Agent output: agentExecutor.invoke() returns {input, output,
-    intermediateSteps} — also no tokenUsage.
+    Specifically:
+    - chainLlm: formatResponse() in responseFormatter.js converts the
+      LangChain response to {text: "..."} only. All metadata stripped.
+    - AI Agent: agentExecutor.invoke() returns {input, output,
+      intermediateSteps}. tokenUsage not included in output.
+    - HTTP Request: returns the FULL API response including
+      usage.prompt_tokens, usage.completion_tokens (OpenAI),
+      usage.input_tokens (Anthropic), usageMetadata (Gemini).
   solution: >
-    HTTP Request is the only way to get token usage in the node output.
-    Neither chainLlm nor AI Agent expose it. V2 correctly uses HTTP
-    Request nodes.
+    COMPARISON TABLE - when to use each:
+
+    chainLlm (V1 approach):
+    - Type: @n8n/n8n-nodes-langchain.chainLlm v1.9
+    - Output: {text: "..."} only
+    - Token usage: NOT exposed (formatResponse strips it)
+    - Credentials: native credential store (cleanest UI)
+    - Capabilities: prompt -> response only
+    - Best for: quick prototypes, no cost tracking needed
+    - Nodes per phase: 2 (chainLlm + lmChatModel sub-node)
+
+    AI Agent:
+    - Type: @n8n/n8n-nodes-langchain.agent v3
+    - Output: {input, output, intermediateSteps}
+    - Token usage: NOT exposed (same LangChain layer as chainLlm)
+    - Credentials: native credential store
+    - Capabilities: tools, memory, RAG, output parsers, multi-step
+    - Best for: complex reasoning, tool use, conversational flows
+    - Nodes per phase: 1 + N sub-nodes (tools, memory, etc.)
+    - NOT for Product Intelligence (no tools needed, adds overhead)
+
+    HTTP Request (V2 approach):
+    - Type: n8n-nodes-base.httpRequest v4.4
+    - Output: FULL API response (text + usage + metadata)
+    - Token usage: YES - directly from API response
+    - Credentials: predefinedCredentialType (reuses existing creds)
+    - Capabilities: prompt -> response with full API access
+    - Best for: production with cost tracking, custom API params
+    - Nodes per phase: 3 (BuildBody + HTTP_LLM + ParseResponse)
+    - Requires manual body/response handling per provider
+
+    Key insight: n8n calculates tokens internally in N8nLlmTracing.js
+    (file: nodes/llms/N8nLlmTracing.js) but sends them to execution
+    tracing, not to node output. This is by design — n8n shows token
+    usage in the execution details panel (click on a node after run)
+    but does not make it available for downstream nodes to read.
   prevention_action: >
-    RULE: n8n LangChain nodes (chainLlm, AI Agent) are for convenience
-    when cost tracking is not needed. For production workflows that
-    require cost tracking, always use HTTP Request with
-    predefinedCredentialType.
-    Use AI Agent only when you need: tools, memory, output parsers,
-    or multi-step reasoning. For simple prompt->JSON workflows like
-    Product Intelligence, HTTP Request is simpler and gives full
-    API response access.
+    DECISION RULES:
+    1. Need cost tracking? -> HTTP Request (only option)
+    2. Need tools/memory/RAG? -> AI Agent
+    3. Quick prototype, no cost tracking? -> chainLlm (simplest)
+    4. All three use the same credentials (predefinedCredentialType
+       for HTTP Request reuses openAiApi/anthropicApi/googlePalmApi)
   keywords:
     - n8n
     - AI Agent
     - chainLlm
+    - HTTP Request
     - tokenUsage
     - LangChain
-    - HTTP Request
+    - N8nLlmTracing
+    - formatResponse
     - cost tracking
     - comparison
+    - when to use
