@@ -2,7 +2,7 @@
 # Product Intelligence Pipeline on n8n + PostgreSQL + Docker
 # Format: Structured YAML per entry — grep-searchable, Python-parseable
 # Last updated: 2026-04-15
-# Total entries: 81
+# Total entries: 82
 
 ---
 
@@ -2349,3 +2349,46 @@
     - HTTP Request
     - V1 vs V2
     - LLM costs
+
+- id: LL-N8N-112
+  date: 2026-04-15
+  category: N8N
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Question: should V2 use the AI Agent node instead of HTTP Request?
+    The AI Agent node looks similar to chainLlm in the UI and supports
+    tools, memory, and output parsers.
+  immediate_cause: >
+    Investigation of whether AI Agent exposes tokenUsage that chainLlm
+    does not.
+  root_cause: >
+    Both chainLlm and AI Agent use the same LangChain abstraction layer
+    (N8nLlmTracing). Token usage IS calculated internally but goes to
+    n8n's execution tracing system, NOT to the node's JSON output.
+    chainLlm output: formatResponse() strips everything to {text: "..."}.
+    AI Agent output: agentExecutor.invoke() returns {input, output,
+    intermediateSteps} — also no tokenUsage.
+  solution: >
+    HTTP Request is the only way to get token usage in the node output.
+    Neither chainLlm nor AI Agent expose it. V2 correctly uses HTTP
+    Request nodes.
+  prevention_action: >
+    RULE: n8n LangChain nodes (chainLlm, AI Agent) are for convenience
+    when cost tracking is not needed. For production workflows that
+    require cost tracking, always use HTTP Request with
+    predefinedCredentialType.
+    Use AI Agent only when you need: tools, memory, output parsers,
+    or multi-step reasoning. For simple prompt->JSON workflows like
+    Product Intelligence, HTTP Request is simpler and gives full
+    API response access.
+  keywords:
+    - n8n
+    - AI Agent
+    - chainLlm
+    - tokenUsage
+    - LangChain
+    - HTTP Request
+    - cost tracking
+    - comparison
