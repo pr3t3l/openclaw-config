@@ -1,8 +1,8 @@
 # LL-FORGE.yaml — Forge Platform Lessons Learned
 # Product Intelligence Pipeline on n8n + PostgreSQL + Docker
 # Format: Structured YAML per entry — grep-searchable, Python-parseable
-# Last updated: 2026-04-14
-# Total entries: 76
+# Last updated: 2026-04-15
+# Total entries: 81
 
 ---
 
@@ -2172,3 +2172,180 @@
     RULE: After changing models, update WORKFLOW_SPEC.md model table
     and sync local JSONs from n8n export. Verify model IDs against
     actual API availability before hardcoding in specs.
+
+- id: LL-N8N-107
+  date: 2026-04-15
+  category: N8N
+  system: Forge/n8n
+  severity: CRITICAL
+  status: VALIDATED
+  problem_statement: >
+    n8n expression parser fails when jsonBody contains nested curly
+    braces. Expressions like ={{ JSON.stringify({model: "gpt-5.2",
+    messages: [...]}) }} cause "invalid syntax" because the parser
+    cannot distinguish between }} closing the expression and }} closing
+    a JavaScript object.
+  immediate_cause: >
+    n8n expression syntax uses {{ }} delimiters. Any JavaScript object
+    literals inside the expression create ambiguous }} tokens that the
+    parser cannot resolve.
+  root_cause: >
+    n8n's expression parser is not a full JavaScript parser. It uses
+    simple delimiter matching for {{ }}. Nested braces break it.
+  failed_attempts:
+    - "={{ JSON.stringify({model: ...}) }} - invalid syntax (nested braces)"
+    - "={{ JSON.stringify($json._body) }} - 400 Bad Request (unknown why)"
+  solution: >
+    Build the request body in a Code node as a JavaScript object,
+    stringify it there with JSON.stringify(body), and output as a
+    pre-built string field (_bodyStr). The HTTP Request node then
+    references it with a simple expression: ={{ $json._bodyStr }}
+    No nested braces, no JSON.stringify in the expression.
+  prevention_action: >
+    RULE: Never put object literals {} inside n8n {{ }} expressions.
+    If you need to build JSON for HTTP Request body, do it in a
+    preceding Code node and pass the result as a string field.
+  keywords:
+    - n8n
+    - expression parser
+    - jsonBody
+    - nested braces
+    - JSON.stringify
+    - HTTP Request
+    - Code node
+
+- id: LL-N8N-108
+  date: 2026-04-15
+  category: N8N
+  system: Forge/n8n
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    OpenAI GPT-5.2 API rejects max_tokens parameter with error
+    "Unsupported parameter: use max_completion_tokens instead."
+  immediate_cause: >
+    OpenAI changed the parameter name in newer model versions.
+    GPT-4.1-mini accepts max_tokens but GPT-5.2 requires
+    max_completion_tokens.
+  root_cause: >
+    OpenAI API breaking change between model generations. The n8n
+    native LLM Chain node handles this internally, but direct HTTP
+    Request calls must use the correct parameter name.
+  solution: >
+    Use max_completion_tokens (not max_tokens) for GPT-5.x models
+    in HTTP Request body. Anthropic still uses max_tokens.
+  prevention_action: >
+    RULE: When adding HTTP Request LLM calls, check the provider's
+    current API docs for the correct parameter names. Do not assume
+    field names are consistent across providers or model versions.
+  keywords:
+    - OpenAI
+    - GPT-5.2
+    - max_tokens
+    - max_completion_tokens
+    - API breaking change
+
+- id: LL-N8N-109
+  date: 2026-04-15
+  category: N8N
+  system: Forge/n8n
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Gemini API returns 404 "model not found" when using model ID
+    gemini-3.1-pro in the URL. The correct ID includes -preview suffix.
+  immediate_cause: >
+    The model ID in the Gemini API URL must exactly match the
+    registered model name. gemini-3.1-pro does not exist;
+    gemini-3.1-pro-preview does.
+  root_cause: >
+    Gemini model naming convention includes version suffixes (-preview,
+    -latest, etc.) that are not obvious. The n8n native Gemini node
+    stores the full ID as models/gemini-3.1-pro-preview in its
+    modelName parameter.
+  solution: >
+    Use full model name with suffix in the URL:
+    .../models/gemini-3.1-pro-preview:generateContent
+    Always check model name from n8n V1 config or Google AI Studio.
+  prevention_action: >
+    RULE: When migrating from n8n native LLM nodes to HTTP Request,
+    copy the exact model ID from the native node's parameter
+    (modelName or model.value), not from documentation or specs.
+  keywords:
+    - Gemini
+    - Google
+    - model ID
+    - preview suffix
+    - API URL
+
+- id: LL-N8N-110
+  date: 2026-04-15
+  category: N8N
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    HTTP Request node with predefinedCredentialType successfully
+    authenticates API calls using existing n8n credentials (openAiApi,
+    anthropicApi, googlePalmApi) without creating new Header Auth
+    credentials.
+  immediate_cause: >
+    n8n HTTP Request node v4.4 has Authentication option "Predefined
+    Credential Type" which accepts any existing credential type.
+    n8n handles the auth injection (Bearer token, x-api-key header,
+    etc.) automatically based on the credential type.
+  root_cause: >
+    This feature was not initially discovered because the n8n docs
+    are not prominent about it. The assumption was that HTTP Request
+    only supports generic auth types (Header Auth, Basic Auth, OAuth).
+  solution: >
+    Set authentication: "predefinedCredentialType" and
+    nodeCredentialType: "openAiApi" (or anthropicApi, googlePalmApi)
+    in the HTTP Request node. Reference existing credential by ID.
+    No new credentials needed.
+  prevention_action: >
+    RULE: Always check "Predefined Credential Type" option first
+    when configuring HTTP Request nodes. It reuses existing provider
+    credentials without duplication.
+  keywords:
+    - n8n
+    - HTTP Request
+    - predefined credential
+    - authentication
+    - openAiApi
+    - anthropicApi
+    - googlePalmApi
+
+- id: LL-COST-111
+  date: 2026-04-15
+  category: COST
+  system: Forge/n8n
+  severity: CRITICAL
+  status: VALIDATED
+  problem_statement: >
+    V1 workflow reports $0.54 total cost (search costs only) while
+    actual LLM spend is $7+ per run. Zero visibility into real costs.
+  immediate_cause: >
+    n8n chainLlm nodes do not expose token usage in their output.
+    CostLog receives {text: "..."} with no usage/tokenUsage fields.
+  root_cause: >
+    n8n's LangChain abstraction strips the raw API response and only
+    passes the text content. Token counts are consumed internally by
+    n8n but not forwarded to downstream nodes.
+  solution: >
+    V2 workflow replaces chainLlm with HTTP Request nodes. The full
+    API response including usage.prompt_tokens and usage.completion_tokens
+    is available. First V2 run: $7.3188 tracked (vs $0.54 in V1).
+    Architecture: Compress -> BuildBody(Code) -> HTTP_LLM -> ParseResponse(Code) -> PrepFinalize
+  prevention_action: >
+    RULE: For any workflow that needs cost tracking, use HTTP Request
+    nodes instead of n8n native LLM nodes. Native nodes are convenient
+    but opaque — they hide the data needed for cost calculation.
+    V2 is the production workflow; V1 is backup only.
+  keywords:
+    - cost tracking
+    - token usage
+    - chainLlm
+    - HTTP Request
+    - V1 vs V2
+    - LLM costs
