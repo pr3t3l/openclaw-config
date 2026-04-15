@@ -2,7 +2,7 @@
 # Product Intelligence Pipeline on n8n + PostgreSQL + Docker
 # Format: Structured YAML per entry — grep-searchable, Python-parseable
 # Last updated: 2026-04-14
-# Total entries: 71
+# Total entries: 74
 
 ---
 
@@ -1991,3 +1991,115 @@
     - regex
     - Validator
     - Code node sandbox
+
+- id: LL-N8N-102
+  date: 2026-04-14
+  category: N8N
+  system: Forge/n8n
+  severity: CRITICAL
+  status: VALIDATED
+  problem_statement: >
+    Claude Sonnet 4.5 phases (3, 4, 8) produced truncated JSON output
+    (2 chars = empty object) because default max_tokens was too low
+    for 7KB+ JSON responses.
+  immediate_cause: >
+    n8n Anthropic LLM node (lmChatAnthropic v1.3) with "options": {}
+    uses a low default max_tokens. Claude's structured JSON output for
+    complex phases (buyer personas, strategy integration) requires
+    7,000-10,000+ tokens. Output gets silently truncated mid-JSON,
+    causing parse failure in the Validator.
+  root_cause: >
+    Unlike OpenAI which defaults to a generous max_tokens, Anthropic's
+    API has a conservative default. The n8n node does not override this
+    unless explicitly configured via options.maxTokensToSample.
+  solution: >
+    Set maxTokensToSample explicitly on all Anthropic LLM nodes:
+    "options": { "maxTokensToSample": 8192 }
+    For OpenAI nodes, use "options": { "maxTokens": 8192 }
+  prevention_action: >
+    RULE: Every LLM node in the workflow MUST have explicit max tokens
+    set. Never rely on provider defaults. Anthropic uses
+    maxTokensToSample, OpenAI uses maxTokens. Check all LLM_Model
+    nodes before deploying.
+  keywords:
+    - n8n
+    - Claude
+    - Anthropic
+    - max_tokens
+    - maxTokensToSample
+    - truncation
+    - JSON output
+
+- id: LL-N8N-103
+  date: 2026-04-14
+  category: N8N
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    deploy_n8n.sh overwrites manual changes made in n8n UI. User changed
+    P8_LLM_Model to different models in the UI, but running the deploy
+    script reverted it to the version in the local JSON file.
+  immediate_cause: >
+    The deploy script does a full UPDATE of workflow_entity.nodes from
+    the local JSON, replacing ALL nodes including ones the user modified
+    via the n8n editor UI.
+  root_cause: >
+    One-directional sync: local JSON -> n8n DB. No mechanism to merge
+    UI changes back to local JSON before deploying.
+  solution: >
+    Before running deploy, export current state from n8n first:
+    docker exec platform_n8n n8n export:workflow --id=ID --output=file
+    Then merge changes manually or use the exported version as base.
+    For quick model changes, update directly in DB via SQL instead of
+    full deploy.
+  prevention_action: >
+    RULE: If you made changes in the n8n UI, either (1) export the
+    workflow and update the local JSON to match, or (2) make the same
+    changes in the local JSON before running deploy. The deploy script
+    is a FULL REPLACE, not a merge.
+  keywords:
+    - n8n
+    - deploy
+    - UI changes
+    - overwrite
+    - sync
+    - export
+
+- id: LL-N8N-104
+  date: 2026-04-14
+  category: N8N
+  system: Forge/n8n
+  severity: HIGH
+  status: INVESTIGATING
+  problem_statement: >
+    P8_LLM_Chain fails with "The resource you are requesting could not
+    be found" even after trying multiple models (Claude Sonnet, Claude
+    Haiku, GPT-5.2, GPT-4.1) and both list and ID modes.
+  immediate_cause: >
+    Unknown. The error comes from the n8n executeWorkflow/LLM chain
+    execution context, not directly from the LLM API. Same model and
+    credentials work in earlier phases (P4 with Haiku, P5 with GPT-5.2).
+  root_cause: >
+    Under investigation. Possible causes: (1) execution context corruption
+    after 8+ phases in a single n8n run, (2) prompt size exceeding an
+    internal limit, (3) n8n node state corruption from repeated DB updates.
+  failed_attempts:
+    - Changed model to claude-haiku-4-5-20251001 (works in P4)
+    - Changed model to gpt-5.2 (works in P5)
+    - Changed model to gpt-4.1
+    - Changed mode from list to id
+    - Changed provider from Anthropic to OpenAI
+  solution: >
+    Pending. Switched P8 to GPT-4.1 as latest attempt. If all models
+    fail, the issue is in the n8n execution context, not the API.
+    Next diagnostic: run P8 in isolation via Retry from Executions tab.
+  prevention_action: >
+    When debugging "resource not found" that persists across models,
+    check execution context and prompt size, not just model configuration.
+  keywords:
+    - n8n
+    - resource not found
+    - LLM Chain
+    - execution context
+    - Phase 8
