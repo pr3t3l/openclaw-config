@@ -2,7 +2,7 @@
 # Product Intelligence Pipeline on n8n + PostgreSQL + Docker
 # Format: Structured YAML per entry — grep-searchable, Python-parseable
 # Last updated: 2026-04-14
-# Total entries: 70
+# Total entries: 71
 
 ---
 
@@ -1949,3 +1949,45 @@
     Pattern: DataNode -> [ConsumerNode, LoggingPG] (parallel output).
     Audit checklist: for every PG node, verify its downstream node does
     NOT depend on $json from the node BEFORE the PG node.
+
+- id: LL-N8N-101
+  date: 2026-04-14
+  category: N8N
+  system: Forge/n8n
+  severity: CRITICAL
+  status: VALIDATED
+  problem_statement: >
+    Claude Sonnet 4.5 phases (3, 4, 8) stored data={} (2 chars) in
+    phase_artifacts. Warnings showed "Not valid JSON: Unexpected token
+    backtick" — the Validator failed to parse Claude's response.
+  immediate_cause: >
+    Claude wraps JSON output in markdown fences (```json...```). The
+    Validator's regex /```(?:json)?\s*([\s\S]*?)```/ failed to match
+    in n8n's Code node sandbox, causing JSON.parse to receive the full
+    fenced string and fail. The workflow continued with data={} instead
+    of halting because there was no IF gate checking valid===false.
+  root_cause: >
+    Two issues: (1) Regex-based fence stripping is fragile in n8n's
+    V8 sandbox — possible BOM, zero-width chars, or sandbox-specific
+    regex behavior. (2) Validator sets valid=false but Envelope node
+    continues regardless, saving empty data to PostgreSQL.
+  failed_attempts:
+    - Regex fence-stripping pattern works in Python/Node but fails
+      in n8n Code node sandbox for unknown reason
+  solution: >
+    Replaced regex with indexOf-based extraction:
+    1. Find first ``` and extract content between next newline and last ```
+    2. Fallback: find first { and last } in the string
+    Also added first-100-chars to error message for debugging.
+  prevention_action: >
+    RULE: Never rely on regex for markdown fence stripping in n8n Code
+    nodes. Use indexOf/substring approach. Also: add IF gate after
+    Validator to halt on valid===false instead of saving empty artifacts.
+  keywords:
+    - n8n
+    - Claude
+    - markdown fences
+    - JSON parsing
+    - regex
+    - Validator
+    - Code node sandbox
