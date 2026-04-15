@@ -177,9 +177,11 @@ entries:
   - { id: LL-N8N-096, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, SplitInBatches, done-output, input-all, named-reference, AggSnippets] }
   - { id: LL-N8N-097, file: LL-FORGE.yaml, severity: CRITICAL, keywords: [n8n, executeWorkflow, workflowId, resource-locator, __rl, sub-workflow, typeVersion] }
   - { id: LL-N8N-098, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, import-workflow, CLI, parameter-stripping, DB-update, deploy] }
+  - { id: LL-N8N-099, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, sub-workflow, active, publish, CLI-activation, deploy] }
+  - { id: LL-N8N-100, file: LL-FORGE.yaml, severity: CRITICAL, keywords: [n8n, PG-serial-path, SearchCost, parallel-branch, chatInput, LL-N8N-066] }
 
 summary:
-  total_entries: 161
-  by_file: { LL-MASTER.yaml: 90, LL-FORGE.yaml: 68, added_apr14: 5 }
+  total_entries: 163
+  by_file: { LL-MASTER.yaml: 90, LL-FORGE.yaml: 70, added_apr14: 7 }
   overlapping_ids: [LL-ARCH-022, LL-ARCH-033, LL-COST-042, LL-COST-043, LL-OPS-027, LL-PROC-004, LL-PROC-034]
   note: "Overlapping IDs exist in both files — MASTER has OpenClaw context, FORGE has n8n/Forge context"

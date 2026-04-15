@@ -2,7 +2,7 @@
 # Product Intelligence Pipeline on n8n + PostgreSQL + Docker
 # Format: Structured YAML per entry — grep-searchable, Python-parseable
 # Last updated: 2026-04-14
-# Total entries: 68
+# Total entries: 70
 
 ---
 
@@ -1879,3 +1879,73 @@
     - DB update
     - migration
     - deploy
+
+- id: LL-N8N-099
+  date: 2026-04-14
+  category: N8N
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Sub-workflow set to active=true via direct DB UPDATE still fails
+    with "Workflow is not active and cannot be executed" after restart.
+  immediate_cause: >
+    Setting active=true in workflow_entity is not enough. n8n has an
+    internal activation mechanism that registers the workflow in its
+    runtime service.
+  root_cause: >
+    n8n's activation is a two-step process: DB flag + runtime registration.
+    Direct DB UPDATE only does step 1. The n8n CLI or API must be used
+    for step 2.
+  failed_attempts:
+    - "UPDATE workflow_entity SET active = true — flag set but n8n ignores it"
+    - "docker restart after DB UPDATE — still not recognized as active"
+  solution: >
+    Use the n8n CLI to activate sub-workflows:
+    docker exec platform_n8n n8n update:workflow --id=WORKFLOW_ID --active=true
+    Then restart: docker restart platform_n8n
+    Both steps are required — CLI sets internal state, restart loads it.
+  prevention_action: >
+    RULE: Always use the deploy script (scripts/deploy_n8n.sh) which
+    does DB UPDATE + CLI activation + restart in the correct order.
+    Never set active=true via raw SQL alone.
+  keywords:
+    - n8n
+    - sub-workflow
+    - active
+    - publish
+    - CLI activation
+    - deploy
+
+- id: LL-N8N-100
+  date: 2026-04-14
+  category: N8N
+  system: Forge/n8n
+  severity: CRITICAL
+  status: VALIDATED
+  problem_statement: >
+    After moving SearchCost outside the SplitInBatches loop and placing
+    it between AggSnippets and LLM_Chain, LLM_Chain fails with
+    "No prompt specified — expected chatInput".
+  immediate_cause: >
+    SearchCost is a PostgreSQL executeQuery node. Per LL-N8N-066, it
+    replaces $json with its own output (empty INSERT result). LLM_Chain
+    receives {} instead of {chatInput: "..."} from AggSnippets.
+  root_cause: >
+    Same LL-N8N-066 pattern, but in a new location. Any PG node in the
+    serial path between a data-producing Code node and its consumer
+    will eat the data. This is the THIRD time this pattern caused a bug
+    in this workflow (Insert Run, SplitBatch loop, AggSnippets chain).
+  failed_attempts:
+    - "AggSnippets -> SearchCost(PG) -> LLM_Chain — PG eats chatInput"
+  solution: >
+    Make SearchCost a PARALLEL branch from AggSnippets, not serial.
+    AggSnippets outputs to both LLM_Chain AND SearchCost simultaneously.
+    SearchCost is a dead-end (no downstream connection needed).
+    In n8n connections JSON: one output array with two targets.
+  prevention_action: >
+    RULE: PG side-effect nodes (INSERT for logging, UPDATE for status)
+    must NEVER be in the serial data path. Always branch them in parallel.
+    Pattern: DataNode -> [ConsumerNode, LoggingPG] (parallel output).
+    Audit checklist: for every PG node, verify its downstream node does
+    NOT depend on $json from the node BEFORE the PG node.
