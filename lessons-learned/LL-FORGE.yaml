@@ -1,8 +1,8 @@
 # LL-FORGE.yaml — Forge Platform Lessons Learned
 # Product Intelligence Pipeline on n8n + PostgreSQL + Docker
 # Format: Structured YAML per entry — grep-searchable, Python-parseable
-# Last updated: 2026-04-12
-# Total entries: 66
+# Last updated: 2026-04-14
+# Total entries: 68
 
 ---
 
@@ -1673,3 +1673,204 @@
     - import
     - disk vs database
     - workflow sync
+
+# ============================================================
+# LESSONS FROM APR 14 BUG-FIX SESSION (post first E2E run)
+# ============================================================
+
+- id: LL-N8N-094
+  date: 2026-04-14
+  category: N8N
+  system: Forge/n8n
+  severity: CRITICAL
+  status: VALIDATED
+  problem_statement: >
+    Code nodes using n8n {{ }} template syntax inside JavaScript produce
+    literal strings instead of evaluated values. SerpAPI queries in Phases
+    2, 3, 7 sent "{{ $json.config.category.primary }} market size 2026"
+    as the actual query text.
+  immediate_cause: >
+    {{ }} is n8n expression syntax for Set/IF/PostgreSQL parameter fields.
+    Inside Code nodes (jsCode), it is treated as a plain string — n8n does
+    NOT evaluate expressions inside JavaScript code blocks.
+  root_cause: >
+    Confusion between two n8n interpolation contexts: parameter fields
+    (where {{ }} works) vs Code node JavaScript (where it doesn't).
+  failed_attempts:
+    - "Assumed {{ }} would be pre-processed before Code execution"
+  solution: >
+    Use JavaScript template literals with variables from upstream nodes.
+    Access data via $('NodeName').first().json or $input.first().json,
+    store in JS variables, then use `${variable}` interpolation.
+    Example: const name = pt.config.product_name; const q = `${name} market trends`;
+  prevention_action: >
+    RULE: Never use {{ }} inside jsCode. Always use JS template literals
+    with upstream node references. Review all Code nodes for {{ }} before
+    deploying.
+  keywords:
+    - n8n
+    - Code node
+    - template syntax
+    - expression
+    - interpolation
+    - SerpAPI
+    - BuildQueries
+
+- id: LL-N8N-095
+  date: 2026-04-14
+  category: N8N
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Cost logger returns $0.00 for all LLM calls. Token counts are always 0.
+  immediate_cause: >
+    CostLog reads llm.usage.prompt_tokens (API format) but n8n LLM Chain
+    nodes (chainLlm) expose tokens via tokenUsage.promptTokens (camelCase).
+  root_cause: >
+    n8n's LangChain abstraction (chainLlm v1.9) wraps the raw API response.
+    The raw usage fields (prompt_tokens, completion_tokens) are transformed
+    into tokenUsage (promptTokens, completionTokens, totalTokens) at the
+    n8n node level. The original API fields are not passed through.
+  failed_attempts:
+    - "Reading llm.usage.prompt_tokens — always undefined"
+    - "Reading llm.usageMetadata — also undefined (Gemini format)"
+  solution: >
+    Check tokenUsage first (n8n format), then fall back to API formats:
+    const tu = llm.tokenUsage || {};
+    const u = llm.usage || llm.usageMetadata || {};
+    const ti = tu.promptTokens || u.prompt_tokens || u.input_tokens || u.promptTokenCount || 0;
+  prevention_action: >
+    RULE: When reading LLM output from n8n LangChain nodes, always check
+    tokenUsage (camelCase) first. Add _debug_source field to identify which
+    format was found.
+  keywords:
+    - n8n
+    - cost logger
+    - tokenUsage
+    - LLM Chain
+    - chainLlm
+    - prompt_tokens
+    - promptTokens
+
+- id: LL-N8N-096
+  date: 2026-04-14
+  category: N8N
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    SplitInBatches "done" output may not contain HTTP Response data.
+    AggSnippets nodes using $input.all() received PG INSERT results
+    instead of SerpAPI search results, causing Research Data: [].
+  immediate_cause: >
+    The SplitInBatches loop path is: SplitBatch -> Search (HTTP) ->
+    SearchCost (PG INSERT) -> Wait -> SplitBatch. The "done" output
+    accumulates items from the loop-back path, where the last data-
+    producing node is SearchCost (PG), not Search (HTTP).
+  root_cause: >
+    $input.all() in the "done" branch receives whatever the SplitInBatches
+    node accumulated. In n8n, this is the data from the loop-back
+    connection, which gets overwritten by intermediate PG nodes (LL-N8N-066).
+  solution: >
+    Replace $input.all() with explicit named references to the HTTP node:
+    const searchItems = $('P2_Search').all();
+    Named references always access the node's output directly, regardless
+    of what SplitInBatches accumulated.
+  prevention_action: >
+    RULE: After SplitInBatches "done" output, NEVER use $input.all() to
+    read loop data. Always use $('NodeName').all() referencing the specific
+    node whose output you need.
+  keywords:
+    - n8n
+    - SplitInBatches
+    - done output
+    - $input.all
+    - named reference
+    - AggSnippets
+    - search results
+
+- id: LL-N8N-097
+  date: 2026-04-14
+  category: N8N
+  system: Forge/n8n
+  severity: CRITICAL
+  status: VALIDATED
+  problem_statement: >
+    ExecuteWorkflow node (v1.2) fails with "No information about the
+    workflow to execute found" even when workflowId is set correctly
+    as a plain string.
+  immediate_cause: >
+    n8n ExecuteWorkflow v1.2+ expects workflowId as a resource locator
+    object: {"__rl": true, "mode": "id", "value": "PzBvnQAwmi52e6bs"}.
+    When given a plain string, the code does
+    const { value } = getNodeParameter('workflowId') which destructures
+    a string and gets value = undefined.
+  root_cause: >
+    n8n changed the workflowId parameter format between v1.0 and v1.1.
+    v1.0 accepts a plain string. v1.1+ requires a resource locator object.
+    The source code explicitly branches:
+    if (nodeVersion === 1) { id = getNodeParameter('workflowId') }
+    else { const { value } = getNodeParameter('workflowId', i, {}); id = value }
+  failed_attempts:
+    - "Adding source: database to the params — same error"
+    - "Direct DB UPDATE of source field — did not help"
+    - "n8n import:workflow CLI — strips source field entirely"
+  solution: >
+    Set workflowId as resource locator object in the JSON:
+    "workflowId": {"__rl": true, "mode": "id", "value": "THE_WORKFLOW_ID"}
+    Push to n8n via direct DB UPDATE of workflow_entity.nodes, then restart.
+  prevention_action: >
+    RULE: For executeWorkflow nodes with typeVersion >= 1.1, ALWAYS use
+    resource locator format for workflowId. Never use plain string IDs.
+    When migrating workflows, verify this format before importing.
+  keywords:
+    - n8n
+    - executeWorkflow
+    - workflowId
+    - resource locator
+    - __rl
+    - sub-workflow
+    - typeVersion
+
+- id: LL-N8N-098
+  date: 2026-04-14
+  category: N8N
+  system: Forge/n8n
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    n8n import:workflow CLI strips and reformats node parameters.
+    Specifically: removes "source" field from executeWorkflow nodes,
+    adds empty "workflowInputs" object, reformats node positions.
+  immediate_cause: >
+    The CLI import validates and normalizes node parameters against the
+    current node schema. Fields not in the schema are dropped. Fields
+    with defaults are injected.
+  root_cause: >
+    n8n import:workflow is designed for portability between instances,
+    so it normalizes everything. It is NOT a lossless round-trip tool.
+  failed_attempts:
+    - "import:workflow --input=file.json — worked but corrupted params"
+    - "Re-adding source:database via DB UPDATE after import — n8n still
+      failed because workflowId format was also wrong"
+  solution: >
+    Do NOT use n8n import:workflow CLI for updating existing workflows.
+    Instead, UPDATE workflow_entity.nodes and workflow_entity.connections
+    directly in the n8n PostgreSQL database (database: n8n), then
+    docker restart platform_n8n.
+  prevention_action: >
+    RULE: To push workflow changes to n8n programmatically:
+    1. Generate SQL: UPDATE workflow_entity SET nodes='...'::jsonb,
+       connections='...'::jsonb WHERE id='WORKFLOW_ID';
+    2. Execute via: docker exec -i platform_postgres psql -U platform -d n8n < file.sql
+    3. Restart: docker restart platform_n8n
+    Never use n8n import:workflow CLI for existing workflows.
+  keywords:
+    - n8n
+    - import workflow
+    - CLI
+    - parameter stripping
+    - DB update
+    - migration
+    - deploy

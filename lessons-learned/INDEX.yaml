@@ -1,7 +1,7 @@
 # INDEX.yaml — Lessons Learned Cross-Reference Index
 # Covers ALL LL-*.yaml files
-# Last updated: 2026-04-12
-# Total: 156 entries (90 MASTER + 66 FORGE)
+# Last updated: 2026-04-14
+# Total: 161 entries (90 MASTER + 68 FORGE + 3 overlapping)
 #
 # Usage:
 #   grep "n8n" INDEX.yaml              
@@ -171,9 +171,15 @@ entries:
   - { id: LL-BUILD-081, file: LL-FORGE.yaml, severity: HIGH, keywords: [API-keys, security, export] }
   - { id: LL-BUILD-090, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, deploy, audit, validation] }
   - { id: LL-BUILD-091, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, deploy, import, disk-vs-database] }
+  # --- Apr 14 bug-fix session ---
+  - { id: LL-N8N-094, file: LL-FORGE.yaml, severity: CRITICAL, keywords: [n8n, Code-node, template-syntax, expression, interpolation, BuildQueries] }
+  - { id: LL-N8N-095, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, cost-logger, tokenUsage, LLM-Chain, promptTokens] }
+  - { id: LL-N8N-096, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, SplitInBatches, done-output, input-all, named-reference, AggSnippets] }
+  - { id: LL-N8N-097, file: LL-FORGE.yaml, severity: CRITICAL, keywords: [n8n, executeWorkflow, workflowId, resource-locator, __rl, sub-workflow, typeVersion] }
+  - { id: LL-N8N-098, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, import-workflow, CLI, parameter-stripping, DB-update, deploy] }
 
 summary:
-  total_entries: 156
-  by_file: { LL-MASTER.yaml: 90, LL-FORGE.yaml: 66 }
+  total_entries: 161
+  by_file: { LL-MASTER.yaml: 90, LL-FORGE.yaml: 68, added_apr14: 5 }
   overlapping_ids: [LL-ARCH-022, LL-ARCH-033, LL-COST-042, LL-COST-043, LL-OPS-027, LL-PROC-004, LL-PROC-034]
   note: "Overlapping IDs exist in both files — MASTER has OpenClaw context, FORGE has n8n/Forge context"
