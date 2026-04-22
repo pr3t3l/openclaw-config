@@ -1,0 +1,768 @@
+# Copilot Studio — Lessons Learned Register
+# Project: Scout Motors Procurement Bot
+# Date Range: 2026-04-20 to 2026-04-22
+# Author: Alfredo Pretel Vargas
+
+---
+
+# ══════════════════════════════════════════
+# SECTION 1: ARCHITECTURE & DESIGN
+# ══════════════════════════════════════════
+
+- id: LL-CS-001
+  date: 2026-04-20
+  category: ARCH
+  system: Copilot Studio
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Adaptive Card placed in a Message node renders buttons but
+    Action.Submit clicks do nothing. The bot shows the card,
+    user clicks a button, nothing happens — 5 seconds of
+    "thinking" then silence.
+  immediate_cause: >
+    Message nodes are display-only. Action.Submit requires an
+    "Ask with Adaptive Card" node to capture the submission
+    and populate output variables.
+  root_cause: >
+    Copilot Studio has two ways to add Adaptive Cards:
+    (1) Message node — display only, no interactivity
+    (2) Ask with Adaptive Card node — captures input, creates variables
+    The UI does not clearly distinguish these. Microsoft docs state:
+    "If your Adaptive Card has a Submit button, use an Adaptive Card node,
+    not a Message node."
+  resolution: >
+    Replaced Message node with "Ask with Adaptive Card" node.
+    Used Input.ChoiceSet for menu options instead of multiple
+    Action.Submit buttons. Added Edit Schema to define output
+    variable (userChoice: String). Condition branches route
+    based on the captured variable.
+  prevention_action: >
+    RULE: Any Adaptive Card with Action.Submit MUST use
+    "Ask with Adaptive Card" node. Cards in Message nodes
+    are for display/informational content only (no Submit buttons).
+  keywords:
+    - adaptive-card
+    - action-submit
+    - message-node
+    - ask-with-adaptive-card
+    - button-not-working
+
+- id: LL-CS-002
+  date: 2026-04-20
+  category: ARCH
+  system: Copilot Studio
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Quick reply buttons (from Multiple Choice Question nodes)
+    only display 3 options in Teams and M365 Copilot, even when
+    5 options are configured. Works correctly in Copilot Studio
+    test panel.
+  immediate_cause: >
+    Microsoft Teams and M365 Copilot cap quick reply buttons
+    at 3 visible options. This is a platform-level limitation,
+    not configurable.
+  root_cause: >
+    Microsoft Q&A confirms: "Quick replies are capped at 3
+    visible options to maintain a clean layout. Currently,
+    there isn't a way to increase the quick reply limit."
+  resolution: >
+    Replaced Multiple Choice Question node with an Adaptive Card
+    using Input.ChoiceSet (radio buttons) inside an "Ask with
+    Adaptive Card" node. Input.ChoiceSet has no button limit.
+    All 5 options render as radio buttons with a single "Go"
+    submit button.
+  prevention_action: >
+    RULE: If you need more than 3 clickable options, use an
+    Adaptive Card with Input.ChoiceSet instead of a Multiple
+    Choice Question node. Design for Teams limitations first,
+    not Studio test panel.
+  keywords:
+    - quick-replies
+    - 3-button-limit
+    - teams-limitation
+    - input-choiceset
+    - adaptive-card
+
+- id: LL-CS-003
+  date: 2026-04-20
+  category: ARCH
+  system: Copilot Studio
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Adaptive Card JSON in Copilot Studio does not support
+    variable substitution. Writing ${Topic.VariableName} in
+    the JSON renders as literal text, not the variable value.
+  immediate_cause: >
+    JSON mode treats all content as static text. Variable
+    references are not evaluated.
+  root_cause: >
+    Copilot Studio Adaptive Cards have two modes:
+    (1) JSON card — static, no variable substitution
+    (2) Formula (Power Fx) — dynamic, variables evaluated
+    You must explicitly switch from JSON to Formula mode in
+    the Adaptive Card Node properties panel.
+  resolution: >
+    In the Adaptive Card node: click three dots (…) → Properties →
+    switch from "JSON card" to "Formula". Then use Power Fx syntax:
+    Text(Topic.VariableName) to insert dynamic values.
+    For URLs with variables, use EncodeUrl(Text(Topic.Variable))
+    to properly encode values in mailto: links.
+  prevention_action: >
+    RULE: Any Adaptive Card that needs to display user-provided
+    data (variables from earlier in the conversation) MUST use
+    Formula mode, not JSON mode. Switch immediately after pasting
+    the initial JSON.
+  keywords:
+    - adaptive-card
+    - variables
+    - power-fx
+    - formula-mode
+    - dynamic-content
+
+- id: LL-CS-004
+  date: 2026-04-21
+  category: ARCH
+  system: Copilot Studio
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Edit Schema for Adaptive Card output requires a specific
+    YAML format. Pasting JSON like {"userChoice": "string"}
+    throws a DataType parsing error.
+  immediate_cause: >
+    The Edit Schema editor expects YAML format, not JSON.
+  root_cause: >
+    Copilot Studio's schema editor uses YAML internally.
+    The default content shows "kind: Record" which hints at
+    the expected format but is not clearly documented.
+  resolution: >
+    Use this exact format in Edit Schema:
+    kind: Record
+    properties:
+      userChoice:
+        type: String
+  prevention_action: >
+    RULE: Edit Schema always uses YAML. Property names must
+    match the Input field IDs in the Adaptive Card JSON exactly.
+  keywords:
+    - edit-schema
+    - yaml
+    - output-binding
+    - adaptive-card
+
+# ══════════════════════════════════════════
+# SECTION 2: TOPIC DESIGN & ROUTING
+# ══════════════════════════════════════════
+
+- id: LL-CS-005
+  date: 2026-04-20
+  category: DESIGN
+  system: Copilot Studio
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Topic with "The agent chooses" trigger was being bypassed.
+    User typed "I need to add a new vendor" but the knowledge
+    base answered instead of the Onboard New Vendor topic.
+    The LLM dumped all process steps at once instead of
+    step-by-step guided flow.
+  immediate_cause: >
+    The topic was turned off (disabled). Also, when topic
+    descriptions are weak, the agent's AI prefers the knowledge
+    base for complex questions.
+  root_cause: >
+    Two factors: (1) The topic was disabled in the Topics list.
+    (2) Even when enabled, "The agent chooses" routing depends
+    on the trigger description quality. Vague descriptions lose
+    to knowledge base responses.
+  resolution: >
+    Turned the topic on. Updated the trigger description to be
+    aggressive and specific with many trigger phrases:
+    "This topic handles ANY question about adding, onboarding,
+    registering, or setting up a new vendor or supplier..."
+    Listed 15+ variations.
+  prevention_action: >
+    RULE: (1) Always verify topics are enabled before testing.
+    (2) For "The agent chooses" triggers, make descriptions
+    extremely specific about what the topic handles AND what it
+    does NOT handle. Include 10-15 trigger phrase variations.
+    (3) Make topic descriptions compete aggressively — weak
+    descriptions lose to the knowledge base.
+  keywords:
+    - topic-routing
+    - agent-chooses
+    - trigger-description
+    - knowledge-base-override
+
+- id: LL-CS-006
+  date: 2026-04-21
+  category: DESIGN
+  system: Copilot Studio
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Greeting topic set to "A message is received" trigger
+    intercepted ALL messages, including starter prompts like
+    "I need to onboard a new vendor." Every message showed the
+    greeting menu instead of routing to the correct topic.
+  immediate_cause: >
+    "A message is received" fires on every single message —
+    it has the highest priority and catches everything before
+    other topics can match.
+  root_cause: >
+    Copilot Studio trigger types have an implicit priority:
+    "A message is received" > "Phrases" > "The agent chooses"
+    Using the highest-priority trigger on a greeting topic
+    blocks all other topics from firing.
+  resolution: >
+    Changed Greeting topic trigger back to "The agent chooses"
+    with a very restrictive description: "This topic ONLY handles
+    greeting messages... Do NOT use this topic for any question
+    about vendors, procurement, onboarding..."
+  prevention_action: >
+    RULE: Never use "A message is received" for content topics.
+    Reserve it only for system-level catch-all topics (like
+    error handling). For greetings, use "The agent chooses"
+    with a restrictive description that explicitly excludes
+    business topics.
+  keywords:
+    - trigger-type
+    - message-received
+    - routing-conflict
+    - greeting-topic
+
+- id: LL-CS-007
+  date: 2026-04-20
+  category: DESIGN
+  system: Copilot Studio
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Copilot Studio visual editor only flows downward.
+    Cannot loop back to a previous question node in the
+    same flow. "No" answers create dead ends.
+  immediate_cause: >
+    The visual editor does not support upward connections.
+  root_cause: >
+    Copilot Studio uses a directed acyclic graph (DAG) for
+    topic flows — by design, no backward connections.
+  resolution: >
+    Use GotoAction nodes to redirect back to any previous
+    node by referencing its action ID. In YAML:
+    - kind: GotoAction
+      actionId: Question_Step1
+    In the visual editor: add a node → Topic management →
+    "Go to step" → select the target question node.
+  prevention_action: >
+    RULE: For any "No" or "try again" branch, use GotoAction
+    to loop back to the same question. Never use EndDialog
+    unless the user explicitly chooses to leave.
+  keywords:
+    - goto-action
+    - loop
+    - no-branch
+    - dead-end
+
+- id: LL-CS-008
+  date: 2026-04-20
+  category: DESIGN
+  system: Copilot Studio
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Using Boolean (Yes/No) for diagnostic questions is too
+    limiting. Users often don't know the answer — they need
+    a third option like "I'm not sure" or "What is this?"
+  immediate_cause: >
+    BooleanPrebuiltEntity only supports Yes/No. No third option.
+  root_cause: >
+    Boolean is appropriate for simple confirmations but not for
+    diagnostic flows where the user may lack context.
+  resolution: >
+    Replaced BooleanPrebuiltEntity with ClosedListEntity
+    (Multiple Choice) with 3 options: Yes / No / I am not sure
+    (or contextual alternatives like "What is this?",
+    "How do I check?", "They are having trouble").
+  prevention_action: >
+    RULE: Use Boolean only for simple Yes/No confirmations.
+    For any diagnostic or decision question, use Multiple Choice
+    with a "help" option that provides context before looping back.
+  keywords:
+    - boolean
+    - multiple-choice
+    - closed-list
+    - third-option
+
+# ══════════════════════════════════════════
+# SECTION 3: CONTENT & DATA INTEGRITY
+# ══════════════════════════════════════════
+
+- id: LL-CS-009
+  date: 2026-04-20
+  category: DATA
+  system: Copilot Studio
+  severity: CRITICAL
+  status: VALIDATED
+  problem_statement: >
+    LLM hallucinated fake email addresses in bot responses:
+    vendormanagement@scoutmotors.com, support@scoutmotors.com,
+    finance@scoutmotors.com, itprocurement@scoutmotors.com.
+    None of these exist. Users could send emails to addresses
+    that go nowhere.
+  immediate_cause: >
+    When Copilot generates content (from knowledge base or
+    when auto-generating topic flows), the LLM invents
+    plausible-sounding email addresses that don't exist.
+  root_cause: >
+    LLMs pattern-match on email formats. "scoutmotors.com"
+    + department name = plausible but fake email. The knowledge
+    files contained real emails but the LLM also generated
+    its own when filling gaps.
+  resolution: >
+    (1) Audited all topic flows for fake URLs/emails.
+    (2) Replaced all fake emails with verified ones.
+    (3) Added anti-hallucination instruction to Agent Instructions:
+    "NEVER invent or guess email addresses. Only provide email
+    addresses that exist in your knowledge files."
+  prevention_action: >
+    RULE: After every topic creation (especially AI-generated),
+    manually verify every URL and email address against source
+    documents. Never trust LLM-generated contact information.
+    Maintain a verified contacts list in knowledge files.
+  keywords:
+    - hallucination
+    - fake-email
+    - data-integrity
+    - anti-hallucination
+
+- id: LL-CS-010
+  date: 2026-04-20
+  category: DATA
+  system: Copilot Studio
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Knowledge files contained Ivalua UI references ("orange box",
+    "workflow tab", "green = done") that are meaningless to
+    users who have never seen Ivalua's interface.
+  immediate_cause: >
+    Knowledge files were written from a power-user perspective,
+    not an end-user perspective.
+  root_cause: >
+    Source documents (Confluence, meeting notes) used internal
+    jargon because they were written for the procurement team,
+    not for general users.
+  resolution: >
+    Replaced all UI-specific references with plain language:
+    "orange box" → "ask the vendor if they clicked Submit"
+    "workflow tab" → removed entirely
+    "GREEN = done" → "once all validations are complete,
+    the supplier becomes active"
+    Defined every acronym on first use (ITBP, PKI, P2P, KMDG,
+    SAQ, LEMI, SOR, PoA, IPA).
+  prevention_action: >
+    RULE: Knowledge files must be written for a person who has
+    never used the system. No UI element references. No undefined
+    acronyms. Every term defined on first use. Test by asking:
+    "Would a new hire on their first day understand this?"
+  keywords:
+    - jargon
+    - plain-language
+    - acronyms
+    - user-level-writing
+
+- id: LL-CS-011
+  date: 2026-04-21
+  category: DATA
+  system: Copilot Studio
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    LLM could not answer "How do I fill out a PR?" even though
+    the knowledge file mentioned PR creation. Bot fell back to
+    generic catch-all response.
+  immediate_cause: >
+    Knowledge file said "Create a Purchase Requisition following
+    the training guide (7.3.5)" — a reference to an external
+    document, not actual instructions. The LLM had no content
+    to synthesize an answer from.
+  root_cause: >
+    Knowledge files contained pointers to external documentation
+    instead of actual content. The LLM cannot follow external
+    references — it can only answer from what's in the files.
+  resolution: >
+    (1) Added Ivalua Training Documentation URL to knowledge file
+    with section-by-section guide mapping.
+    (2) Added Agent Instructions to reference specific training
+    sections (7.3 for PRs, 9.1.1 for Goods Receipt).
+    (3) Long-term: convert the 32 Ivalua training PDFs to
+    markdown and upload as knowledge sources.
+  prevention_action: >
+    RULE: Knowledge files must contain actual answers, not
+    references to external documents. If the full content can't
+    be included, at minimum include: (1) the URL to the external
+    resource, (2) a summary of key steps, (3) the most common
+    fields/actions the user needs.
+  keywords:
+    - knowledge-gap
+    - external-reference
+    - training-documentation
+    - llm-cannot-follow-links
+
+# ══════════════════════════════════════════
+# SECTION 4: PUBLISHING & CHANNELS
+# ══════════════════════════════════════════
+
+- id: LL-CS-012
+  date: 2026-04-21
+  category: DEPLOY
+  system: Copilot Studio
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    After publishing updates in Copilot Studio, changes did not
+    appear in Teams or M365 Copilot. Old flow continued to run.
+    Bot icon update also did not propagate.
+  immediate_cause: >
+    Teams and M365 Copilot cache bot metadata and conversation
+    state aggressively. Old sessions continue using the
+    previous published version.
+  root_cause: >
+    Copilot Studio preserves existing sessions after publishing.
+    The agent only picks up the new version once the dialog
+    stack is empty or a new conversation starts.
+  resolution: >
+    (1) Re-publish with "Force newest version" checkbox checked.
+    (2) Users must delete old chat with the bot and start a
+    new conversation.
+    (3) Wait 15-30 minutes for full propagation.
+  prevention_action: >
+    RULE: After every publish:
+    (1) Check "Force newest version" if topics changed.
+    (2) Tell testers to start a NEW conversation (not continue old).
+    (3) Allow 15-30 minutes for Teams/M365 propagation.
+    (4) Test in Copilot Studio test panel first (instant updates).
+  keywords:
+    - publishing
+    - cache
+    - propagation
+    - force-newest-version
+    - teams-delay
+
+- id: LL-CS-013
+  date: 2026-04-20
+  category: DEPLOY
+  system: Copilot Studio
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Bot published to Teams channel but does not respond to
+    messages in Teams. Works in Copilot Studio and M365 Copilot.
+  immediate_cause: >
+    Teams channel provisioning can take 10-15 minutes.
+    Additionally, a yellow banner warning about premium
+    features/licensing may throttle the Teams channel.
+  root_cause: >
+    Teams channel requires separate provisioning after
+    publishing. The M365 Copilot channel and Studio test
+    panel use different infrastructure that provisions faster.
+  resolution: >
+    (1) Wait 15 minutes after enabling Teams channel.
+    (2) Delete and restart the chat in Teams.
+    (3) Access bot via "See agent in Teams" link from
+    Copilot Studio Channels page.
+    (4) If Teams continues to fail, use M365 Copilot channel
+    as primary — it works reliably.
+  prevention_action: >
+    RULE: Always test in M365 Copilot first (more reliable).
+    Teams channel is secondary. If Teams doesn't respond
+    after 30 minutes, check licensing warnings and channel
+    provisioning status.
+  keywords:
+    - teams-channel
+    - not-responding
+    - provisioning
+    - m365-copilot
+
+- id: LL-CS-014
+  date: 2026-04-20
+  category: DEPLOY
+  system: Copilot Studio
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Copilot Studio agents don't appear in the M365 Copilot
+    Agent Store search. Users cannot find the bot by searching.
+  immediate_cause: >
+    Copilot Studio agents published with private sharing
+    (specific viewers) are not indexed in the Agent Store.
+    Only org-wide published agents appear in search.
+  root_cause: >
+    Agent Store is for org-wide discovery. Privately shared
+    agents are accessed by direct link only.
+  resolution: >
+    Share the direct link with users via Teams message.
+    Get the link from: Copilot Studio → three dots → Copy link.
+    Or: Channels → Microsoft 365 and Teams → "See agent in
+    Microsoft 365" / "See agent in Teams".
+  prevention_action: >
+    RULE: For privately shared bots, always provide a direct
+    link. Don't tell users to "search for it" — they won't
+    find it. Include the link in the onboarding message.
+  keywords:
+    - agent-store
+    - direct-link
+    - private-sharing
+    - discovery
+
+# ══════════════════════════════════════════
+# SECTION 5: SHARING & SECURITY
+# ══════════════════════════════════════════
+
+- id: LL-CS-015
+  date: 2026-04-20
+  category: SEC
+  system: Copilot Studio
+  severity: HIGH
+  status: VALIDATED
+  problem_statement: >
+    Team repeatedly asked to confirm the bot was not publicly
+    accessible. The Share dialog shows "Everyone in organization"
+    as an option which caused concern.
+  immediate_cause: >
+    The Share dialog always shows "Everyone in organization"
+    as an available option under "My organization" — even when
+    it is not enabled. This creates confusion about whether
+    the bot is public.
+  root_cause: >
+    UI design issue in Copilot Studio. "Everyone in organization"
+    is listed as a selectable option, not just when it's active.
+    New users can't tell if it's enabled or just available.
+  resolution: >
+    Confirmed access list shows only 3 users:
+    Alfredo (Owner), Michael (Viewer), Srridewi (Viewer).
+    "Everyone in organization" is NOT added — it's just listed
+    as an option. Screenshot the Share dialog as audit trail.
+  prevention_action: >
+    RULE: Before every publish, check the Share dialog and
+    confirm the exact user list. Screenshot it. Only Owner
+    and explicitly added Viewers/Editors have access.
+    "Everyone in organization" must be explicitly added to
+    grant org-wide access — it's not on by default.
+  keywords:
+    - sharing
+    - privacy
+    - access-control
+    - audit-trail
+
+# ══════════════════════════════════════════
+# SECTION 6: PLATFORM LIMITATIONS
+# ══════════════════════════════════════════
+
+- id: LL-CS-016
+  date: 2026-04-22
+  category: PLATFORM
+  system: Copilot Studio / Teams
+  severity: MEDIUM
+  status: KNOWN_LIMITATION
+  problem_statement: >
+    URLs in bot messages appear as plain text, not clickable
+    hyperlinks, in Teams and M365 Copilot.
+  immediate_cause: >
+    "Plain text URLs are not rendered as clickable links in
+    Teams Copilot. There is currently no supported workaround."
+    — Microsoft Q&A, confirmed as known limitation.
+  root_cause: >
+    Teams Copilot strips or sanitizes URLs for security reasons.
+    Copilot Studio test panel renders them correctly, but
+    Teams and M365 Copilot do not.
+  resolution: >
+    Partial fix: Use markdown link format [display text](URL)
+    in Message nodes. This works in some channels but not all.
+    Angle bracket format <URL> also works in some cases.
+    For critical links, use Adaptive Card with Action.OpenUrl
+    button — this always renders as clickable.
+  prevention_action: >
+    RULE: For critical URLs that users MUST click, use an
+    Adaptive Card with Action.OpenUrl. For informational URLs,
+    use markdown format and accept that some channels may
+    render them as plain text.
+  keywords:
+    - urls
+    - hyperlinks
+    - plain-text
+    - teams-limitation
+    - action-openurl
+
+- id: LL-CS-017
+  date: 2026-04-21
+  category: PLATFORM
+  system: Copilot Studio
+  severity: LOW
+  status: KNOWN_LIMITATION
+  problem_statement: >
+    Starter prompts on the M365 Copilot landing page only
+    show 3 cards. Additional prompts are hidden behind
+    "Browse more prompts" link.
+  immediate_cause: >
+    M365 Copilot UI displays maximum 3 starter prompt cards
+    on the landing page. This is a fixed UI layout.
+  root_cause: >
+    Platform design decision. Not configurable.
+  resolution: >
+    Put the 3 most important starter prompts first in the list.
+    Users can click "Browse more prompts" for the rest.
+    The Adaptive Card greeting menu (inside the conversation)
+    shows all 5 options regardless.
+  prevention_action: >
+    RULE: Prioritize your top 3 starter prompts. Don't rely
+    on starter prompts as the only entry point — always have
+    the Greeting topic as backup with all options.
+  keywords:
+    - starter-prompts
+    - landing-page
+    - 3-card-limit
+
+# ══════════════════════════════════════════
+# SECTION 7: POWER FX & FORMULAS
+# ══════════════════════════════════════════
+
+- id: LL-CS-018
+  date: 2026-04-22
+  category: TECH
+  system: Copilot Studio
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Adaptive Card with Action.OpenUrl needs to include dynamic
+    variable values in a mailto: URL. Standard JSON string
+    concatenation doesn't work.
+  immediate_cause: >
+    JSON mode does not evaluate expressions. The URL must be
+    built using Power Fx string concatenation in Formula mode.
+  root_cause: >
+    mailto: URLs require URL-encoded values. Variable content
+    with spaces, special characters, or ampersands will break
+    the URL if not encoded.
+  resolution: >
+    Switch to Formula mode. Use Power Fx:
+    url: "mailto:vendor@scoutmotors.com?subject=" &
+    EncodeUrl(Text(Topic.SupplierLegalName)) & "&body=" &
+    EncodeUrl(Text(Topic.DUNSNumber))
+    EncodeUrl() handles special characters.
+    Text() converts non-string variables to strings.
+  prevention_action: >
+    RULE: Any Adaptive Card with dynamic URLs must use
+    Formula mode + EncodeUrl() for all variable insertions.
+    Test with values containing spaces and special characters.
+  keywords:
+    - power-fx
+    - mailto
+    - encodeurl
+    - formula-mode
+    - dynamic-url
+
+# ══════════════════════════════════════════
+# SECTION 8: PROCESS & METHODOLOGY
+# ══════════════════════════════════════════
+
+- id: LL-CS-019
+  date: 2026-04-20
+  category: PROC
+  system: Copilot Studio
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    YAML topic files cannot be directly imported into Copilot
+    Studio. Attempted to paste YAML into the visual editor
+    but it doesn't accept it.
+  immediate_cause: >
+    Copilot Studio uses YAML internally but does not expose
+    a YAML import function in the visual editor.
+  root_cause: >
+    The visual editor is the primary authoring interface.
+    YAML export exists (via code editor view) but import of
+    externally-written YAML is not supported in the standard UI.
+  resolution: >
+    Use YAML files as reference documents only. Build topics
+    manually in the visual editor, node by node, following
+    the YAML as a blueprint. The YAML documents every question,
+    condition, message, and redirect in order.
+  prevention_action: >
+    RULE: YAML files are blueprints, not importable code.
+    Always build in the visual editor. Keep YAML as version
+    control and reference for rebuilds.
+  keywords:
+    - yaml
+    - import
+    - visual-editor
+    - reference-document
+
+- id: LL-CS-020
+  date: 2026-04-21
+  category: PROC
+  system: Copilot Studio
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Procurement team clarified that the process is the same
+    for all indirect procurement — not IT-specific. Only 3
+    things are IT-only: VW SAM check, MS Budget List, and
+    FreshService updates.
+  immediate_cause: >
+    Initial bot design treated the entire flow as IT-specific,
+    with a 4-option purchase type question (Software/Hardware/
+    Consulting/Other).
+  root_cause: >
+    Bot was designed from IT perspective without procurement
+    team validation. Assumed more differences between IT and
+    non-IT than actually exist.
+  resolution: >
+    Simplified to a single Boolean: "Is this an IT purchase?"
+    IT = Yes → VW SAM check + MS Budget/FreshService reminders
+    IT = No → skip those 3 steps, everything else identical.
+  prevention_action: >
+    RULE: Validate process assumptions with the SME team
+    before building. Don't assume complexity that doesn't exist.
+    Ask: "What is actually different between these paths?"
+  keywords:
+    - process-validation
+    - sme-feedback
+    - simplification
+    - it-vs-indirect
+
+- id: LL-CS-021
+  date: 2026-04-22
+  category: PROC
+  system: Knowledge Base
+  severity: MEDIUM
+  status: VALIDATED
+  problem_statement: >
+    Knowledge file architecture decision: 3 files vs 15 files.
+    Copilot suggested 15 files during initial build.
+  immediate_cause: >
+    More files = more RAG retrieval boundaries to manage.
+    Copilot's 15-file suggestion would fragment related content
+    across many small files.
+  root_cause: >
+    RAG retrieval works best when related content is co-located.
+    If a process spans 3 files, the LLM may only retrieve 1-2
+    and give an incomplete answer.
+  resolution: >
+    Used 3 files with clear boundaries:
+    01_PROCESS_GUIDE.md — end-to-end process (14 steps)
+    02_CONTACTS_AND_RESOURCES.md — all contacts, URLs, templates
+    03_THRESHOLDS_AND_RULES.md — category rules, Policy 10
+    Each file covers a complete domain. No cross-file dependencies.
+  prevention_action: >
+    RULE: Fewer, larger knowledge files > many small ones.
+    Group by domain (process, contacts, rules) not by step.
+    Eliminate internal cross-references between files.
+  keywords:
+    - knowledge-architecture
+    - rag
+    - file-structure
+    - retrieval-boundaries
