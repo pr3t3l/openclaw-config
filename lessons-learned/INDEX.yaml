@@ -1,7 +1,7 @@
 # INDEX.yaml — Lessons Learned Cross-Reference Index
 # Covers ALL LL-*.yaml files
-# Last updated: 2026-04-14
-# Total: 161 entries (90 MASTER + 68 FORGE + 3 overlapping)
+# Last updated: 2026-04-22
+# Total: 184 entries (90 MASTER + 74 FORGE + 21 COPILOT-STUDIO + 3 overlapping)
 #
 # Usage:
 #   grep "n8n" INDEX.yaml              
@@ -184,8 +184,40 @@ entries:
   - { id: LL-N8N-103, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, deploy, UI-changes, overwrite, sync, export] }
   - { id: LL-N8N-104, file: LL-FORGE.yaml, severity: HIGH, keywords: [n8n, resource-not-found, LLM-Chain, execution-context, Phase-8] }
 
+  # === LL-COPILOT-STUDIO.yaml (21 entries) — Added 2026-04-22 ===
+  # Project: Scout Motors Procurement Bot (M365 Copilot Studio)
+  # --- Architecture & Design ---
+  - { id: LL-CS-001, file: LL-COPILOT-STUDIO.yaml, severity: HIGH, keywords: [adaptive-card, action-submit, message-node, ask-with-adaptive-card, button-not-working] }
+  - { id: LL-CS-002, file: LL-COPILOT-STUDIO.yaml, severity: HIGH, keywords: [quick-replies, 3-button-limit, teams-limitation, input-choiceset, adaptive-card] }
+  - { id: LL-CS-003, file: LL-COPILOT-STUDIO.yaml, severity: MEDIUM, keywords: [adaptive-card, variables, power-fx, formula-mode, dynamic-content] }
+  - { id: LL-CS-004, file: LL-COPILOT-STUDIO.yaml, severity: MEDIUM, keywords: [edit-schema, yaml, output-binding, adaptive-card] }
+  # --- Topic Design & Routing ---
+  - { id: LL-CS-005, file: LL-COPILOT-STUDIO.yaml, severity: HIGH, keywords: [topic-routing, agent-chooses, trigger-description, knowledge-base-override] }
+  - { id: LL-CS-006, file: LL-COPILOT-STUDIO.yaml, severity: HIGH, keywords: [trigger-type, message-received, routing-conflict, greeting-topic] }
+  - { id: LL-CS-007, file: LL-COPILOT-STUDIO.yaml, severity: MEDIUM, keywords: [goto-action, loop, no-branch, dead-end] }
+  - { id: LL-CS-008, file: LL-COPILOT-STUDIO.yaml, severity: MEDIUM, keywords: [boolean, multiple-choice, closed-list, third-option] }
+  # --- Content & Data Integrity ---
+  - { id: LL-CS-009, file: LL-COPILOT-STUDIO.yaml, severity: CRITICAL, keywords: [hallucination, fake-email, data-integrity, anti-hallucination] }
+  - { id: LL-CS-010, file: LL-COPILOT-STUDIO.yaml, severity: HIGH, keywords: [jargon, plain-language, acronyms, user-level-writing] }
+  - { id: LL-CS-011, file: LL-COPILOT-STUDIO.yaml, severity: MEDIUM, keywords: [knowledge-gap, external-reference, training-documentation, llm-cannot-follow-links] }
+  # --- Publishing & Channels ---
+  - { id: LL-CS-012, file: LL-COPILOT-STUDIO.yaml, severity: HIGH, keywords: [publishing, cache, propagation, force-newest-version, teams-delay] }
+  - { id: LL-CS-013, file: LL-COPILOT-STUDIO.yaml, severity: MEDIUM, keywords: [teams-channel, not-responding, provisioning, m365-copilot] }
+  - { id: LL-CS-014, file: LL-COPILOT-STUDIO.yaml, severity: MEDIUM, keywords: [agent-store, direct-link, private-sharing, discovery] }
+  # --- Sharing & Security ---
+  - { id: LL-CS-015, file: LL-COPILOT-STUDIO.yaml, severity: HIGH, keywords: [sharing, privacy, access-control, audit-trail] }
+  # --- Platform Limitations ---
+  - { id: LL-CS-016, file: LL-COPILOT-STUDIO.yaml, severity: MEDIUM, keywords: [urls, hyperlinks, plain-text, teams-limitation, action-openurl] }
+  - { id: LL-CS-017, file: LL-COPILOT-STUDIO.yaml, severity: LOW, keywords: [starter-prompts, landing-page, 3-card-limit] }
+  # --- Power Fx & Formulas ---
+  - { id: LL-CS-018, file: LL-COPILOT-STUDIO.yaml, severity: MEDIUM, keywords: [power-fx, mailto, encodeurl, formula-mode, dynamic-url] }
+  # --- Process & Methodology ---
+  - { id: LL-CS-019, file: LL-COPILOT-STUDIO.yaml, severity: MEDIUM, keywords: [yaml, import, visual-editor, reference-document] }
+  - { id: LL-CS-020, file: LL-COPILOT-STUDIO.yaml, severity: MEDIUM, keywords: [process-validation, sme-feedback, simplification, it-vs-indirect] }
+  - { id: LL-CS-021, file: LL-COPILOT-STUDIO.yaml, severity: MEDIUM, keywords: [knowledge-architecture, rag, file-structure, retrieval-boundaries] }
+
 summary:
-  total_entries: 167
-  by_file: { LL-MASTER.yaml: 90, LL-FORGE.yaml: 74, added_apr14: 11 }
+  total_entries: 184
+  by_file: { LL-MASTER.yaml: 90, LL-FORGE.yaml: 74, LL-COPILOT-STUDIO.yaml: 21, added_apr14: 11 }
   overlapping_ids: [LL-ARCH-022, LL-ARCH-033, LL-COST-042, LL-COST-043, LL-OPS-027, LL-PROC-004, LL-PROC-034]
-  note: "Overlapping IDs exist in both files — MASTER has OpenClaw context, FORGE has n8n/Forge context"
+  note: "Overlapping IDs exist in MASTER and FORGE — MASTER has OpenClaw context, FORGE has n8n/Forge context. LL-CS entries are unique to Copilot Studio."
